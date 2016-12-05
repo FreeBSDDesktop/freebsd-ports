@@ -1060,6 +1060,7 @@
     SUBDIR += vp
     SUBDIR += waffle
     SUBDIR += waifu2x-converter-cpp
+    SUBDIR += wayland
     SUBDIR += webp
     SUBDIR += wings
     SUBDIR += wmicons
