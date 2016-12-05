@@ -1,6 +1,6 @@
---- configure.orig	2015-12-22 17:04:20.271630000 +0100
-+++ configure	2015-12-22 17:05:17.669976000 +0100
-@@ -858,6 +858,8 @@
+--- configure.orig	2016-07-08 12:46:20.268123000 +0200
++++ configure	2016-07-08 13:06:42.801841000 +0200
+@@ -867,6 +867,8 @@
  GLPROTO_CFLAGS
  XLIBGL_LIBS
  XLIBGL_CFLAGS
@@ -8,9 +8,9 @@
 +LIBDEVQ_CFLAGS
  LIBUDEV_LIBS
  LIBUDEV_CFLAGS
- MESA_LLVM
-@@ -1156,6 +1158,8 @@
- LIBDRM_LIBS
+ ENABLE_SHADER_CACHE_FALSE
+@@ -1200,6 +1202,8 @@
+ OPENSSL_LIBS
  LIBUDEV_CFLAGS
  LIBUDEV_LIBS
 +LIBDEVQ_CFLAGS
@@ -18,7 +18,7 @@
  XLIBGL_CFLAGS
  XLIBGL_LIBS
  GLPROTO_CFLAGS
-@@ -1966,6 +1970,10 @@
+@@ -2041,6 +2045,10 @@
                C compiler flags for LIBUDEV, overriding pkg-config
    LIBUDEV_LIBS
                linker flags for LIBUDEV, overriding pkg-config
@@ -29,15 +29,15 @@
    XLIBGL_CFLAGS
                C compiler flags for XLIBGL, overriding pkg-config
    XLIBGL_LIBS linker flags for XLIBGL, overriding pkg-config
-@@ -5246,6 +5254,7 @@
+@@ -5379,6 +5387,7 @@
  DRI3PROTO_REQUIRED=1.0
  PRESENTPROTO_REQUIRED=1.0
  LIBUDEV_REQUIRED=151
 +LIBDEVQ_REQUIRED=0.0.2
  GLPROTO_REQUIRED=1.4.14
  LIBOMXIL_BELLAGIO_REQUIRED=0.0
- LIBVA_REQUIRED=0.35.0
-@@ -21035,7 +21044,7 @@
+ LIBVA_REQUIRED=0.38.0
+@@ -21721,7 +21730,7 @@
  
  
  case "$host_os" in
@@ -46,7 +46,7 @@
      dri3_default=yes
      ;;
  *)
-@@ -21543,6 +21552,78 @@
+@@ -22849,6 +22858,78 @@
  	have_libudev=yes
  fi
  
@@ -125,7 +125,7 @@
  # Check whether --enable-sysfs was given.
  if test "${enable_sysfs+set}" = set; then :
    enableval=$enable_sysfs; have_sysfs="$enableval"
-@@ -22258,6 +22339,10 @@
+@@ -23655,6 +23736,10 @@
      DEFINES="$DEFINES -DHAVE_LIBUDEV"
      have_pci_id=yes
  fi
@@ -136,7 +136,7 @@
  
  if test "$have_sysfs" = yes; then
      DEFINES="$DEFINES -DHAVE_SYSFS"
-@@ -22396,6 +22481,22 @@
+@@ -23793,6 +23878,22 @@
          ;;
      gnu*)
          DEFINES="$DEFINES -DHAVE_ALIAS"
@@ -159,7 +159,7 @@
          ;;
      cygwin*)
          if test "x$with_dri_drivers" = "xyes"; then
-@@ -23195,6 +23296,8 @@
+@@ -24646,6 +24747,8 @@
  
  if test "x$need_pci_id$have_libudev" = xyesyes; then
      GBM_PC_REQ_PRIV="libudev >= $LIBUDEV_REQUIRED"
@@ -168,7 +168,7 @@
  else
      GBM_PC_REQ_PRIV=""
  fi
-@@ -24018,9 +24121,19 @@
+@@ -25581,9 +25684,19 @@
          as_fn_error $? "cannot enable OpenCL without Gallium" "$LINENO" 5
      fi
  
@@ -188,7 +188,20 @@
  
      if test "x$have_libclc" = xno; then
          as_fn_error $? "pkg-config cannot find libclc.pc which is required to build clover.
-@@ -24835,9 +24948,6 @@
+@@ -26112,9 +26225,9 @@
+ strip_unwanted_llvm_flags() {
+     # Use \> (marks the end of the word)
+     echo `$1` | sed \
+-	-e 's/-march=\S*//g' \
+-	-e 's/-mtune=\S*//g' \
+-	-e 's/-mcpu=\S*//g' \
++	-e 's/-march=[:graph:]* //g' \
++	-e 's/-mtune=[:graph:]* //g' \
++	-e 's/-mcpu=[:graph:]* //g' \
+ 	-e 's/-DNDEBUG\>//g' \
+ 	-e 's/-D_GNU_SOURCE\>//g' \
+ 	-e 's/-pedantic\>//g' \
+@@ -26403,9 +26516,6 @@
                  CLANG_LIBDIR=${LLVM_LIBDIR}
              fi
              CLANG_RESOURCE_DIR=$CLANG_LIBDIR/clang/${LLVM_VERSION}

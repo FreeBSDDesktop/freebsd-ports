@@ -7,6 +7,10 @@
 WARNING+=	"WITHOUT_NLS is deprecated use OPTIONS_UNSET=NLS instead"
 .endif
 
+.if defined(WITH_NEW_MESA) || defined(WITHOUT_NEW_MESA)
+WARNING+=	"WITH_NEW_MESA was removed and has no effect"
+.endif
+
 .if defined(WITH_NEW_XORG) || defined(WITHOUT_NEW_XORG)
 WARNING+=	"WITH_NEW_XORG and WITHOUT_NEW_XORG knobs were removed and have no effect"
 .endif
