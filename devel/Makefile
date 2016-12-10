@@ -158,6 +158,7 @@
     SUBDIR += b2
     SUBDIR += babeltrace
     SUBDIR += bam
+    SUBDIR += bazel
     SUBDIR += bbfreeze
     SUBDIR += bbfreeze-loader
     SUBDIR += bcc
@@ -1227,7 +1228,6 @@
     SUBDIR += libconcurrent
     SUBDIR += libconfig
     SUBDIR += libconfuse
-    SUBDIR += libcppformat
     SUBDIR += libcrossguid
     SUBDIR += libcutl
     SUBDIR += libcwd
@@ -1276,6 +1276,7 @@
     SUBDIR += libffi
     SUBDIR += libfirm
     SUBDIR += libflatarray
+    SUBDIR += libfmt
     SUBDIR += libfortuna
     SUBDIR += libfreefare
     SUBDIR += libfsntfs
@@ -3216,6 +3217,7 @@
     SUBDIR += p5-Sub-Name
     SUBDIR += p5-Sub-Override
     SUBDIR += p5-Sub-Prototype
+    SUBDIR += p5-Sub-Quote
     SUBDIR += p5-Sub-Signatures
     SUBDIR += p5-Sub-Uplevel
     SUBDIR += p5-Sub-WrapPackages
@@ -4026,6 +4028,7 @@
     SUBDIR += py-Products.statusmessages
     SUBDIR += py-Products.validation
     SUBDIR += py-PyLD
+    SUBDIR += py-pyvalid
     SUBDIR += py-RPyC
     SUBDIR += py-Record
     SUBDIR += py-SymbolType
@@ -4260,7 +4263,6 @@
     SUBDIR += py-isodate
     SUBDIR += py-isort
     SUBDIR += py-iterpipes
-    SUBDIR += py-itools
     SUBDIR += py-jaraco.classes
     SUBDIR += py-jaraco.functools
     SUBDIR += py-jaraco.itertools
@@ -4473,12 +4475,14 @@
     SUBDIR += py-pyte
     SUBDIR += py-pytemplate
     SUBDIR += py-pytest
+    SUBDIR += py-pytest-asyncio
     SUBDIR += py-pytest-cache
     SUBDIR += py-pytest-capturelog
     SUBDIR += py-pytest-django
     SUBDIR += py-pytest-localserver
     SUBDIR += py-pytest-runner
     SUBDIR += py-pytest-timeout
+    SUBDIR += py-pytest-tornado
     SUBDIR += py-pytest-xdist
     SUBDIR += py-python-bugzilla
     SUBDIR += py-python-distutils-extra

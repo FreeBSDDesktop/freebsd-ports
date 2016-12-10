@@ -611,6 +611,7 @@
     SUBDIR += php56-sybase_ct
     SUBDIR += php70-dba
     SUBDIR += php70-interbase
+    SUBDIR += php70-memcached
     SUBDIR += php70-mysqli
     SUBDIR += php70-odbc
     SUBDIR += php70-pdo
@@ -771,7 +772,6 @@
     SUBDIR += py-rrdtool_lgpl
     SUBDIR += py-south
     SUBDIR += py-sqlalchemy-migrate
-    SUBDIR += py-sqlalchemy06
     SUBDIR += py-sqlalchemy07
     SUBDIR += py-sqlalchemy08
     SUBDIR += py-sqlalchemy09
@@ -790,12 +790,13 @@
     SUBDIR += py-unqlite
     SUBDIR += py-whisper
     SUBDIR += py3-bsddb3
+    SUBDIR += py3-mysqlclient
+    SUBDIR += py3-psycopg2
     SUBDIR += py33-gdbm
     SUBDIR += py33-sqlite3
     SUBDIR += py34-gdbm
     SUBDIR += py34-sqlite3
     SUBDIR += py35-gdbm
-    SUBDIR += py35-mysqlclient
     SUBDIR += py35-sqlite3
     SUBDIR += pydbx
     SUBDIR += pymongo
