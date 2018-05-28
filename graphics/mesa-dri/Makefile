@@ -106,5 +106,9 @@ PLIST_SUB+=	${_vd}_VDRIVER="@comment "
 
 post-install:
 	@${RM} -r ${STAGEDIR}/etc/OpenCL
+	${RM} -v \
+		${STAGEDIR}${LOCALBASE}/lib/libEGL_mesa.so* \
+		${STAGEDIR}${LOCALBASE}/lib/libGLX_mesa.so*
+	${RM} -rf ${STAGEDIR}${LOCALBASE}/share/glvnd
 
 .include <bsd.port.post.mk>

@@ -60,5 +60,6 @@ MESA_INSTALL_WRKSRC+=	src/egl
 post-install:
 	@cd ${WRKSRC}/src && ${SETENV} DESTDIR=${STAGEDIR} \
 		${MAKE_CMD} install-pkgconfigDATA install-glHEADERS install-glxHEADERS
+	${RM} -v ${STAGEDIR}${LOCALBASE}/lib/libGLESv2.so*
 
 .include <bsd.port.post.mk>

@@ -103,3 +103,10 @@ CONFIGURE_ARGS+=	--disable-glx-tls
 # we don't care about GLes v1
 CONFIGURE_ARGS+=	--disable-gles1
 
+# Enable support for libglvnd, the GL vendor-neutral dispatch library.
+#
+# It means that Mesa libraries will be installed as libEGL_mesa.so and
+# libGLX_mesa.so. Also, libGLESv*.so must not be installed: libglvnd
+# provides them.
+CONFIGURE_ARGS+=	--enable-libglvnd
+LIB_DEPENDS+=		libGLdispatch.so:graphics/libglvnd
