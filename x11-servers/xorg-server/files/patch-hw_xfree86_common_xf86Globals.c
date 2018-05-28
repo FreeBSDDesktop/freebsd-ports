@@ -1,4 +1,6 @@
---- hw/xfree86/common/xf86Globals.c.orig	2016-07-19 17:07:29 UTC
+* Include devd in the set of config backends
+*
+--- hw/xfree86/common/xf86Globals.c.orig	2017-03-15 18:05:25 UTC
 +++ hw/xfree86/common/xf86Globals.c
 @@ -122,7 +122,8 @@ xf86InfoRec xf86Info = {
      .pmFlag = TRUE,

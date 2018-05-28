@@ -58,12 +58,13 @@ USE_XORG+=      xorg-macros
 . endif
 
 . if ${XORG_CAT} == "driver"
-USE_XORG+=	xorg-server xproto randrproto xi renderproto xextproto \
-		inputproto kbproto fontsproto videoproto dri2proto dri3proto \
-		xf86driproto presentproto glproto xineramaproto resourceproto \
-		scrnsaverproto
+USE_XORG+=	dri2proto dri3proto fontsproto glproto inputproto kbproto \
+			presentproto randrproto renderproto resourceproto \
+			scrnsaverproto videoproto xextproto xf86driproto xi \
+			xineramaproto xorg-server xproto
 CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
-USES+=		libtool
+CFLAGS+=		-Werror=uninitialized
+USES+=			libtool
 INSTALL_TARGET=	install-strip
 . endif
 
@@ -81,8 +82,9 @@ PLIST_FILES+=	"@comment ${FONTSDIR}/fonts.dir" \
 .  endif
 
 . if ${XORG_CAT} == "lib"
-USES+=		pathfix libtool
+USES+=			libtool pathfix
 USE_LDCONFIG=	yes
+CFLAGS+=		-Werror=uninitialized
 CONFIGURE_ARGS+=--enable-malloc0returnsnull
 . endif
 
@@ -93,10 +95,10 @@ USES+=	pathfix
 . if ${XORG_CAT} == "xserver"
 DISTFILES?=	xorg-server-${PORTVERSION}.tar.bz2
 WRKSRC=		${WRKDIR}/xorg-server-${PORTVERSION}
-USES+=	pathfix
+USES+=		libtool pathfix
+CFLAGS+=	-Werror=uninitialized
 CONFIGURE_ARGS+=	--with-xkb-path=${LOCALBASE}/share/X11/xkb \
 					--with-fontrootdir=${LOCALBASE}/share/fonts
-
 LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
 USE_XORG+=	fontutil:build
 . endif
