@@ -1,0 +1,10 @@
+--- tests/Makefile.am.orig	2018-05-24 14:42:52 UTC
++++ tests/Makefile.am
+@@ -55,6 +55,7 @@ AM_CFLAGS =                                  \
+ 	-I$(top_srcdir)/src/util                 \
+ 	-I$(top_srcdir)/src/util/glvnd_pthread
+ 
++AM_CFLAGS += $(X11_CFLAGS)
+ 
+ TESTS += testgldispatch_static.sh
+ TESTS += testgldispatch_generated.sh

@@ -523,6 +523,7 @@
     SUBDIR += libgfx
     SUBDIR += libgltext
     SUBDIR += libgltf
+    SUBDIR += libglvnd
     SUBDIR += libgnomecanvas
     SUBDIR += libgnomecanvas-reference
     SUBDIR += libgnomecanvasmm26

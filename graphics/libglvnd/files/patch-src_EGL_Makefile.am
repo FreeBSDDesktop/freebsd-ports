@@ -1,0 +1,20 @@
+--- src/EGL/Makefile.am.orig	2018-05-24 14:42:52 UTC
++++ src/EGL/Makefile.am
+@@ -49,6 +49,7 @@ libEGL_la_CFLAGS =  -I$(srcdir)/$(UTHASH_DIR)
+ libEGL_la_CFLAGS += -I$(srcdir)/$(UTIL_DIR)
+ libEGL_la_CFLAGS += -I$(srcdir)/$(GL_DISPATCH_DIR)
+ libEGL_la_CFLAGS += -I$(top_srcdir)/include
++libEGL_la_CFLAGS += $(X11_CFLAGS)
+ 
+ libEGL_la_CFLAGS += \
+ 	-DDEFAULT_EGL_VENDOR_CONFIG_DIRS=\"@sysconfdir@/glvnd/egl_vendor.d:@datadir@/glvnd/egl_vendor.d\"
+@@ -81,7 +82,8 @@ libEGL_la_SOURCES = \
+ # to another directory.
+ 
+ noinst_LTLIBRARIES = libEGL_dispatch_stubs.la
+-libEGL_dispatch_stubs_la_CFLAGS = -I$(top_srcdir)/include
++libEGL_dispatch_stubs_la_CFLAGS =  -I$(top_srcdir)/include
++libEGL_dispatch_stubs_la_CFLAGS += $(X11_CFLAGS)
+ libEGL_dispatch_stubs_la_SOURCES = \
+ 	egldispatchstubs.c \
+ 	g_egldispatchstubs.c

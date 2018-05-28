@@ -1,0 +1,10 @@
+--- src/GLX/Makefile.am.orig	2018-05-24 14:42:52 UTC
++++ src/GLX/Makefile.am
+@@ -45,6 +45,7 @@ libGLX_la_CFLAGS =  -I$(srcdir)/$(UTHASH_DIR)
+ libGLX_la_CFLAGS += -I$(srcdir)/$(UTIL_DIR)
+ libGLX_la_CFLAGS += -I$(srcdir)/$(GL_DISPATCH_DIR)
+ libGLX_la_CFLAGS += -I$(top_srcdir)/include
++libGLX_la_CFLAGS += $(X11_CFLAGS)
+ libGLX_la_CFLAGS += $(GLPROTO_CFLAGS)
+ 
+ # Required library flags

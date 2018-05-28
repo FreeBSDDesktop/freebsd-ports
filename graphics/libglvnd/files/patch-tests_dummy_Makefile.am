@@ -1,0 +1,22 @@
+--- tests/dummy/Makefile.am.orig	2018-05-24 14:42:52 UTC
++++ tests/dummy/Makefile.am
+@@ -19,7 +19,8 @@ libGLX_dummy_la_CFLAGS = \
+ 	-I$(top_srcdir)/src/GLX        \
+ 	-I$(top_srcdir)/src/GLdispatch \
+ 	-I$(top_srcdir)/src/util       \
+-	-I$(top_srcdir)/include
++	-I$(top_srcdir)/include        \
++	$(X11_CFLAGS)
+ libGLX_dummy_la_SOURCES = \
+ 	GLX_dummy.c
+ libGLX_dummy_la_LIBADD = $(top_builddir)/src/util/libtrace.la
+@@ -35,7 +36,8 @@ endif # ENABLE_GLX
+ if ENABLE_EGL
+ EGL_DUMMY_CFLAGS_COMMON = \
+ 	-I$(top_srcdir)/src/util \
+-	-I$(top_srcdir)/include
++	-I$(top_srcdir)/include \
++	$(X11_CFLAGS)
+ EGL_DUMMY_SOURCES_COMMON = EGL_dummy.c
+ EGL_DUMMY_LIBADD_COMMON = \
+ 	$(top_builddir)/src/util/libglvnd_pthread.la

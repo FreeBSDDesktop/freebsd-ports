@@ -1,0 +1,13 @@
+--- src/GL/Makefile.am.orig	2018-05-24 14:42:52 UTC
++++ src/GL/Makefile.am
+@@ -53,8 +53,8 @@ g_libglglxwrapper.c : $(glapi_gen_libglglxstubs_deps)
+ 	$(AM_V_GEN)$(PYTHON2) $(PYTHON_FLAGS) \
+ 	$(glapi_gen_libglglxstubs_script) $(glapi_gen_glx_xml) > $@
+ 
+-libGL_la_CFLAGS = \
+-	-I$(top_srcdir)/include
++libGL_la_CFLAGS =  -I$(top_srcdir)/include
++libGL_la_CFLAGS += $(X11_CFLAGS)
+ 
+ libGL_la_LDFLAGS = -shared -version-info 8:0:7 $(LINKER_FLAG_NO_UNDEFINED)
+ 
