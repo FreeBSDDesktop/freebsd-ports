@@ -8,7 +8,7 @@ MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Generic input library
 
-BUILD_DEPENDS=	v4l_compat>=0:multimedia/v4l_compat
+BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 LIB_DEPENDS=	libevdev.so:devel/libevdev \
 		libepoll-shim.so:devel/libepoll-shim \
 		libwacom.so:x11/libwacom \
@@ -16,6 +16,7 @@ LIB_DEPENDS=	libevdev.so:devel/libevdev \
 		libmtdev.so:devel/libmtdev
 
 USES=		autoreconf gmake libtool pathfix pkgconfig tar:xz
+EXTRACT_AFTER_ARGS=	--exclude include/linux # supplied linux/input.h
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
