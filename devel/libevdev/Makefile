@@ -17,7 +17,7 @@ LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim
 USES=		gmake libtool pathfix python:build tar:xz localbase
 EXTRACT_AFTER_ARGS=	--exclude include # v4l_compat
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	ac_cv_path_DOXYGEN="" ac_cv_path_VALGRIND="" ac_cv_path_NM=""
+CONFIGURE_ENV=	ac_cv_path_DOXYGEN="" ac_cv_path_VALGRIND=""
 CPPFLAGS+=	-I${LOCALBASE}/include/libepoll-shim
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
