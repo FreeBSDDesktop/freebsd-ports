@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim
 
-USES=		gmake libtool pathfix python:build tar:xz localbase
+USES=		gmake libtool pathfix python:build tar:xz localbase pkgconfig
 EXTRACT_AFTER_ARGS=	--exclude include # v4l_compat
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_path_DOXYGEN="" ac_cv_path_VALGRIND=""
