@@ -166,7 +166,7 @@
     SUBDIR += freerdp1
     SUBDIR += freeswitch
     SUBDIR += freevrrpd
-    SUBDIR += frr
+    SUBDIR += frr4
     SUBDIR += fspclient
     SUBDIR += fspd
     SUBDIR += fsplib
@@ -1266,8 +1266,6 @@
     SUBDIR += rubygem-geoip
     SUBDIR += rubygem-gitaly
     SUBDIR += rubygem-gitaly-proto
-    SUBDIR += rubygem-gitaly-proto083
-    SUBDIR += rubygem-gitaly-proto084
     SUBDIR += rubygem-gitaly-proto088
     SUBDIR += rubygem-gitaly-proto094
     SUBDIR += rubygem-gitaly-proto095
