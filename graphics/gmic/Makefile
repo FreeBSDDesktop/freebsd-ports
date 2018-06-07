@@ -18,7 +18,7 @@ LICENSE_NAME=	CeCILL
 LICENSE_FILE=	${WRKSRC}/COPYING
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-BROKEN_FreeBSD_10=	error: "c++ crashes, clang-5 and 6 fail: undefined reference to `__atomic_load'"
+BROKEN_i386=	error: "c++ crashes, clang-5 and 6 fail: undefined reference to `__atomic_load'"
 
 BUILD_DEPENDS=	${LOCALBASE}/include/CImg.h:graphics/cimg
 LIB_DEPENDS=	libfftw3.so:math/fftw3 \
@@ -28,7 +28,7 @@ LIB_DEPENDS=	libfftw3.so:math/fftw3 \
 		libomp.so:devel/openmp \
 		libopencv_core.so:graphics/opencv-core \
 		libopencv_video.so:graphics/opencv \
-		libpng16.so:graphics/png \
+		libpng.so:graphics/png \
 		libtiff.so:graphics/tiff
 
 USES=		cmake:outsource compiler:c++11-lang jpeg pkgconfig

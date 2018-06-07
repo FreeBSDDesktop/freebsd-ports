@@ -17,7 +17,7 @@ BUILD_DEPENDS=	gawk:lang/gawk \
 				python:lang/python
 LIB_DEPENDS=	libjson-c.so:devel/json-c
 
-CONFLICTS=	openbgpd openospfd zebra quagga-esr quagga
+CONFLICTS=	openbgpd openospfd zebra quagga frr3
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
