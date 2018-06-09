@@ -53,6 +53,7 @@ post-extract:
 
 post-patch:
 	${REINPLACE_CMD} -e 's|program_invocation_short_name|getprogname()|' \
-		${WRKSRC}/tools/ptraccel-debug.c
+		${WRKSRC}/tools/ptraccel-debug.c \
+		${WRKSRC}/tools/libinput-record.c
 
 .include <bsd.port.mk>
