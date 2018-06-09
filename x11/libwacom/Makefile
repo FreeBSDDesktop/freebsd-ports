@@ -18,7 +18,7 @@ LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev
 USE_GITHUB=	yes
 GH_ACCOUNT=	linuxwacom
 
-USES=		gettext-runtime gmake libtool localbase pkgconfig \
+USES=		autoreconf gettext-runtime gmake libtool localbase pkgconfig \
 		pathfix tar:bzip2
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
@@ -26,6 +26,6 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
 post-patch:
-	@${REINPLACE_CMD} -e 's/-printf "%P\\n"/-print0 | xargs -0 basename/' ${WRKSRC}/data/Makefile.in
+	@${REINPLACE_CMD} -e 's/-printf "%P\\n"/-print0 | xargs -0 basename/' ${WRKSRC}/data/Makefile.am
 
 .include <bsd.port.mk>
