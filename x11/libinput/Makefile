@@ -42,10 +42,12 @@ LDFLAGS+=	-lepoll-shim
 INSTALL_TARGET=	install-strip
 
 python_OLD_CMD=	"/usr/bin/env python3"
-SHEBANG_FILES=	tools/libinput-measure-touch-size \
+SHEBANG_FILES=	tools/libinput-measure-fuzz \
+		tools/libinput-measure-touch-size \
 		tools/libinput-measure-touchpad-pressure \
 		tools/libinput-measure-touchpad-tap \
-		tools/libinput-measure-trackpoint-range
+		tools/libinput-measure-trackpoint-range \
+		tools/libinput-replay
 
 post-extract:
 	# meson script checks existence of bundled evdev headers. Fake them.
