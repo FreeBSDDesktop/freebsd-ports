@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	libwacom
-PORTVERSION=	0.23
-PORTREVISION=	1
+PORTVERSION=	0.30
+DISTVERSIONPREFIX=libwacom-
 CATEGORIES=	x11
-MASTER_SITES=	https://sourceforge.net/projects/linuxwacom/files/libwacom/
 
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Adds tablet support to libinput
@@ -15,6 +14,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 LIB_DEPENDS=	libgudev-1.0.so:devel/libgudev
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	linuxwacom
 
 USES=		gettext-runtime gmake libtool localbase pkgconfig \
 		pathfix tar:bzip2
