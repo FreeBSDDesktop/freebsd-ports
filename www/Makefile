@@ -103,6 +103,7 @@
     SUBDIR += cutelyst
     SUBDIR += cutycapt
     SUBDIR += davical
+    SUBDIR += davix
     SUBDIR += dddbl
     SUBDIR += ddgr
     SUBDIR += decss
@@ -359,7 +360,6 @@
     SUBDIR += libresonic-standalone
     SUBDIR += libsocialweb
     SUBDIR += libwww
-    SUBDIR += libxul
     SUBDIR += lightsquid
     SUBDIR += lighttpd
     SUBDIR += lighttpd-mod_h264_streaming
@@ -529,7 +529,6 @@
     SUBDIR += nostromo
     SUBDIR += novnc
     SUBDIR += novnc-websockify
-    SUBDIR += npapi-vlc
     SUBDIR += npapi-xine
     SUBDIR += npc
     SUBDIR += npm
@@ -1498,6 +1497,7 @@
     SUBDIR += py-WebError
     SUBDIR += py-WebFlash
     SUBDIR += py-WebTest
+    SUBDIR += py-aioh2
     SUBDIR += py-aiohttp
     SUBDIR += py-aiohttp-wsgi
     SUBDIR += py-albatross
@@ -1806,6 +1806,7 @@
     SUBDIR += py-poster
     SUBDIR += py-praw
     SUBDIR += py-prewikka
+    SUBDIR += py-priority
     SUBDIR += py-puppetboard
     SUBDIR += py-puppetboard02
     SUBDIR += py-puppetboard03
@@ -1914,6 +1915,7 @@
     SUBDIR += qupzilla-qt5
     SUBDIR += qutebrowser
     SUBDIR += radicale
+    SUBDIR += radicale2
     SUBDIR += red5
     SUBDIR += redaxo
     SUBDIR += redmine
@@ -2011,11 +2013,13 @@
     SUBDIR += rubygem-geminabox
     SUBDIR += rubygem-gitlab-flowdock-git-hook
     SUBDIR += rubygem-gitlab-gollum-lib
+    SUBDIR += rubygem-gitlab-gollum-rugged_adapter
     SUBDIR += rubygem-gitlab-grack
     SUBDIR += rubygem-gitlab-turbolinks-classic
     SUBDIR += rubygem-goldfinger
     SUBDIR += rubygem-gollum
     SUBDIR += rubygem-gollum-grit_adapter
+    SUBDIR += rubygem-gollum-grit_adapter10
     SUBDIR += rubygem-gollum-lib
     SUBDIR += rubygem-gollum-lib-gitlab
     SUBDIR += rubygem-gollum-rugged_adapter
