@@ -203,6 +203,7 @@
     SUBDIR += gbsplay
     SUBDIR += gervill
     SUBDIR += ghostess
+    SUBDIR += giada
     SUBDIR += gimmix
     SUBDIR += gkrellmms2
     SUBDIR += gkrellmvolume2
@@ -441,6 +442,7 @@
     SUBDIR += libsidplayfp
     SUBDIR += libsmf
     SUBDIR += libsndfile
+    SUBDIR += libsonic
     SUBDIR += libsoxr
     SUBDIR += libtremor
     SUBDIR += libumidi
@@ -910,6 +912,7 @@
     SUBDIR += xvmixer
     SUBDIR += xwave
     SUBDIR += yell
+    SUBDIR += ympd
     SUBDIR += yoshimi
     SUBDIR += zam-plugins-lv2
     SUBDIR += zinf

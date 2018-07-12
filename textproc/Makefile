@@ -376,7 +376,6 @@
     SUBDIR += kf5-kcodecs
     SUBDIR += kf5-sonnet
     SUBDIR += kf5-syntax-highlighting
-    SUBDIR += kibana46
     SUBDIR += kibana5
     SUBDIR += kibana5-search-guard
     SUBDIR += kibana6
@@ -1303,6 +1302,7 @@
     SUBDIR += py-genshi
     SUBDIR += py-gensim
     SUBDIR += py-gfm
+    SUBDIR += py-grako
     SUBDIR += py-guess-language
     SUBDIR += py-hexdump
     SUBDIR += py-html2text
@@ -1330,6 +1330,7 @@
     SUBDIR += py-openpyxl
     SUBDIR += py-openstackdocstheme
     SUBDIR += py-orange3-text
+    SUBDIR += py-os-api-ref
     SUBDIR += py-pager
     SUBDIR += py-pandocfilters
     SUBDIR += py-paragrep
@@ -1487,7 +1488,6 @@
     SUBDIR += rubygem-amatch
     SUBDIR += rubygem-asciidoctor
     SUBDIR += rubygem-asciidoctor-plantuml
-    SUBDIR += rubygem-asciidoctor-plantuml007
     SUBDIR += rubygem-autoprefixer-rails
     SUBDIR += rubygem-babel-source
     SUBDIR += rubygem-babel-transpiler

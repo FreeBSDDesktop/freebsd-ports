@@ -23,6 +23,7 @@
     SUBDIR += bsh
     SUBDIR += bwbasic
     SUBDIR += c
+    SUBDIR += cbmbasic
     SUBDIR += ccl
     SUBDIR += cdent
     SUBDIR += ceylon
@@ -167,6 +168,12 @@
     SUBDIR += libobjc2
     SUBDIR += librep
     SUBDIR += libstdc++_stldoc_4.2.2
+    SUBDIR += linux-dotnet-cli
+    SUBDIR += linux-dotnet-runtime
+    SUBDIR += linux-dotnet-sdk
+    SUBDIR += linux-dotnet10-runtime
+    SUBDIR += linux-dotnet11-runtime
+    SUBDIR += linux-dotnet11-sdk
     SUBDIR += linux-c6-tcl85
     SUBDIR += linux-c7-tcl85
     SUBDIR += linux-j
@@ -295,6 +302,7 @@
     SUBDIR += python34
     SUBDIR += python35
     SUBDIR += python36
+    SUBDIR += python37
     SUBDIR += qore
     SUBDIR += qscheme
     SUBDIR += qt5-qml

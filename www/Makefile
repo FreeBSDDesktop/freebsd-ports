@@ -28,6 +28,7 @@
     SUBDIR += apache-mode.el
     SUBDIR += apache24
     SUBDIR += apercu
+    SUBDIR += archiva
     SUBDIR += aria2
     SUBDIR += aria2fe
     SUBDIR += asql
@@ -200,7 +201,7 @@
     SUBDIR += getleft
     SUBDIR += gist
     SUBDIR += gitea
-    SUBDIR += gitlab
+    SUBDIR += gitlab-ce
     SUBDIR += gitlab-pages
     SUBDIR += gitlab-workhorse
     SUBDIR += glassfish
@@ -395,6 +396,7 @@
     SUBDIR += mediawiki127
     SUBDIR += mediawiki129
     SUBDIR += mediawiki130
+    SUBDIR += mediawiki131
     SUBDIR += mergelog
     SUBDIR += mgstat
     SUBDIR += mhonarc
@@ -552,6 +554,7 @@
     SUBDIR += nuvolaplayer-yandex-music
     SUBDIR += nuvolaplayer-youtube
     SUBDIR += obhttpd
+    SUBDIR += onionshare
     SUBDIR += opencart
     SUBDIR += opera
     SUBDIR += opera-linuxplugins
@@ -2082,7 +2085,6 @@
     SUBDIR += rubygem-kaminari-rails50
     SUBDIR += rubygem-kensa
     SUBDIR += rubygem-kubeclient
-    SUBDIR += rubygem-kubeclient22
     SUBDIR += rubygem-layout_yullio_generator
     SUBDIR += rubygem-less
     SUBDIR += rubygem-lighthouse-api
@@ -2262,6 +2264,7 @@
     SUBDIR += spreadlogd
     SUBDIR += sqstat
     SUBDIR += squid
+    SUBDIR += squid3
     SUBDIR += squid-devel
     SUBDIR += squid_radius_auth
     SUBDIR += squidanalyzer
@@ -2280,7 +2283,6 @@
     SUBDIR += swish++
     SUBDIR += swish-e
     SUBDIR += sws
-    SUBDIR += sxweb
     SUBDIR += syndigator
     SUBDIR += tclhttpd
     SUBDIR += tclwebtest

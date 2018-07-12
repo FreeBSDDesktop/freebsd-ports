@@ -22,6 +22,7 @@
     SUBDIR += clustalw
     SUBDIR += clustalx
     SUBDIR += consed
+    SUBDIR += cytoscape
     SUBDIR += ddocent
     SUBDIR += diamond
     SUBDIR += emboss
@@ -124,6 +125,7 @@
     SUBDIR += slclust
     SUBDIR += smithwaterman
     SUBDIR += stacks
+    SUBDIR += stringtie
     SUBDIR += tRNAscan-SE
     SUBDIR += t_coffee
     SUBDIR += tabixpp
