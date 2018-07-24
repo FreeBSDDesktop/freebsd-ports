@@ -112,8 +112,7 @@ Xorg_Post_Include=		bsd.xorg.mk
 # Register all xorg .pc files here.
 # foo_LIB_PC_DEPENDS means it should go to BUILD_DEPENDS *and* RUN_DEPENDS.
 
-XORG_MODULES=		
-				dmx \
+XORG_MODULES=	dmx \
 				fontenc \
 				fontutil \
 				ice \
