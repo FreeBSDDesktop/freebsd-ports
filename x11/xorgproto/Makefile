@@ -9,6 +9,7 @@ COMMENT=	xorg protocol headers
 
 OPTIONS_DEFINE=	LEGACY
 OPTIONS_DEFAULT=LEGACY
+OPTIONS_SUB=	yes
 LEGACY_DESC=	Install legacy protocol headers
 
 XORG_CAT=	proto
