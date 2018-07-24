@@ -12,6 +12,6 @@ COMMENT=	X XF86-Misc Extension
 LICENSE=	MIT
 
 XORG_CAT=	lib
-USE_XORG=	xproto x11 xextproto xext xf86miscproto:both
+USE_XORG=	x11 xext xorgproto
 
 .include <bsd.port.mk>

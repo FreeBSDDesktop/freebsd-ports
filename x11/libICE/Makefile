@@ -14,7 +14,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	lib
-USE_XORG=	xproto:both xtrans
+USE_XORG=	xorgproto xtrans
 INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>

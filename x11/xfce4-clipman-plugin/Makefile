@@ -21,7 +21,7 @@ USES=		gettext gmake libtool pkgconfig tar:bzip2 xfce:gtk3
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk30 intltool glib20 cairo
 USE_XFCE=	panel
-USE_XORG=	ice sm x11 xtst xproto
+USE_XORG=	ice sm x11 xtst xorgproto
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 

@@ -11,7 +11,7 @@ COMMENT=	Desktop pager for the Fluxbox Slit
 
 LICENSE=	GPLv2
 
-USE_XORG=	x11 ice xproto xt xaw xext
+USE_XORG=	x11 ice xorgproto xt xaw xext
 GNU_CONFIGURE=	yes
 USES=		gmake
 

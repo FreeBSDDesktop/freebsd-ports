@@ -28,7 +28,7 @@ USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 USE_QT5=	buildtools_build concurrent core gui linguisttools qmake_build \
 		testlib widgets x11extras
-USE_XORG=	ice inputproto sm x11 xcursor xext xfixes xi xrandr xrender \
+USE_XORG=	ice xorgproto sm x11 xcursor xext xfixes xi xrandr xrender \
 		xt xtst
 
 USE_GITHUB=	yes

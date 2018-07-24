@@ -11,6 +11,6 @@ COMMENT=	XKB file library
 LICENSE=	MIT
 
 XORG_CAT=	lib
-USE_XORG=	x11 kbproto:both
+USE_XORG=	x11 xorgproto
 
 .include <bsd.port.mk>

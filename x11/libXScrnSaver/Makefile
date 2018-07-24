@@ -12,6 +12,6 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	lib
-USE_XORG=	x11 xext xextproto scrnsaverproto:both
+USE_XORG=	x11 xext xorgproto
 
 .include <bsd.port.mk>

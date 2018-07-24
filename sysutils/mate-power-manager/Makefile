@@ -30,7 +30,7 @@ PORTSCOUT=	limitw:1,even
 USES=		gettext gmake libtool localbase \
 		pathfix pkgconfig tar:xz
 USE_MATE=	panel
-USE_XORG=	x11 xext xproto xrandr xrender
+USE_XORG=	x11 xext xorgproto xrandr xrender
 USE_GNOME=	cairo glib20 gtk30 intlhack
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes

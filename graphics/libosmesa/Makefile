@@ -7,7 +7,7 @@ CATEGORIES=	graphics
 
 COMMENT=	Off-Screen Mesa implementation of the OpenGL API
 
-USE_XORG=	glproto
+USE_XORG=	xorgproto
 
 # As of version 17.0.5 / 17.1.2, the Gallium variant fails to build due to
 # incorrectly ordered linker flags. Fortunately, autoreconf fixes the problem.

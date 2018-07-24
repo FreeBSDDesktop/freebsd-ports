@@ -14,7 +14,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 
 ONLY_FOR_ARCHS=	amd64 i386
 USES=	tar:bzip2
-USE_XORG=	x11 xproto xrender xext
+USE_XORG=	x11 xorgproto xrender xext
 PLIST_FILES=	bin/${PORTNAME}
 MAKE_ARGS+=	PREFIX=${PREFIX}
 

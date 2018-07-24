@@ -51,7 +51,7 @@ CMAKE_ARGS+=	-DSKIP_PYTHON_WRAPPER:BOOL=true
 .endif
 
 .if ${PORT_OPTIONS:MX11}
-USE_XORG=	x11 xproto xrandr
+USE_XORG=	x11 xorgproto xrandr
 .endif
 
 post-patch:

@@ -13,7 +13,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	lib
-USE_XORG=	xproto
+USE_XORG=	xorgproto
 
 CONFIGURE_ARGS=	--with-encodingsdir=${LOCALBASE}/share/fonts/encodings
 

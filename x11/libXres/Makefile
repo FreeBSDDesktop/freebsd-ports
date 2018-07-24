@@ -11,7 +11,7 @@ COMMENT=	X Resource usage library
 LICENSE=	MIT
 
 XORG_CAT=	lib
-USE_XORG=	x11 xext xextproto resourceproto xproto:both
+USE_XORG=	x11 xext xorgproto
 INSTALL_TARGET=	install-strip
 USES+=	cpe
 CPE_PRODUCT=	libxres

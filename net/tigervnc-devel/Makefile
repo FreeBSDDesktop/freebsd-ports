@@ -36,11 +36,8 @@ USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	TigerVNC
 
-USE_XORG+=	bigreqsproto compositeproto damageproto fixesproto fontsproto glproto \
-		ice inputproto kbproto pixman presentproto randrproto renderproto \
-		resourceproto scrnsaverproto sm videoproto x11 xau xcmiscproto xdamage \
-		xdmcp xext xextproto xfont xkbfile xorg-macros xproto xrandr xrender \
-		xtrans xtst
+USE_XORG+=	ice pixman sm x11 xau xdamage xdmcp xext xfont xkbfile \
+		xorg-macros xorgproto xrandr xrender xtrans xtst
 
 CFLAGS+=	-fPIC
 

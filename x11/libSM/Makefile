@@ -14,7 +14,7 @@ LICENSE=	MIT
 
 USES=		pathfix
 XORG_CAT=	lib
-USE_XORG=	ice xproto:both xtrans
+USE_XORG=	ice xorgproto xtrans
 
 CONFIGURE_ARGS+=--disable-docs --without-xmlto
 

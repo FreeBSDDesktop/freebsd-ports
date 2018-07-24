@@ -25,7 +25,7 @@ BROKEN_armv7=		fails to compile: passing char * to parameter of incompatible typ
 EXTRA_PATCHES=	${WRKDIR}/${PORTNAME}-${PORTVERSION}.diff
 
 USES=		gmake
-USE_XORG=	x11 xproto
+USE_XORG=	x11 xorgproto
 GNU_CONFIGURE=	yes
 MAKE_ARGS=	ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOHEADER="${TRUE}" \
 		AUTOMAKE="${TRUE}"

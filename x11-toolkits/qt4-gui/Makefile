@@ -20,7 +20,7 @@ USES=		pkgconfig
 
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
-USE_XORG=	xrender xrandr xinerama inputproto xfixes \
+USE_XORG=	xrender xrandr xinerama xorgproto xfixes \
 		sm xcursor xext x11 ice xi xt
 
 ALL_TARGET=	first

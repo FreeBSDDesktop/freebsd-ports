@@ -11,7 +11,7 @@ COMMENT=	Convert X font from BDF to PCF
 USES=		localbase
 
 XORG_CAT=	app
-USE_XORG=	fontsproto xproto
+USE_XORG=	xorgproto
 
 PLIST_FILES=	bin/bdftopcf man/man1/bdftopcf.1.gz
 

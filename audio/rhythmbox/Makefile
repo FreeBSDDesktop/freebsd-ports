@@ -34,7 +34,7 @@ USES=		desktop-file-utils gmake gnome libtool localbase \
 		pathfix pkgconfig tar:xz
 USE_GNOME=	cairo intlhack glib20 gnomeprefix gtk30 introspection \
 		pygobject3 libxml2
-USE_XORG=	ice x11 xproto
+USE_XORG=	ice x11 xorgproto
 GNU_CONFIGURE=	yes
 USE_GSTREAMER1=	flac lame jpeg cdparanoia vorbis
 CONFIGURE_ARGS=	--enable-vala \

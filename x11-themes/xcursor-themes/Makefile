@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	xcursorgen:x11/xcursorgen
 
-USE_XORG=	xextproto
+USE_XORG=	xorgproto
 
 XORG_CAT=	data
 

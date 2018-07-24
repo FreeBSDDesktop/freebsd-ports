@@ -15,7 +15,7 @@ COMMENT=	Gimp Toolkit for X11 GUI (previous stable version)
 
 USES=		libtool pathfix perl5
 USE_PERL5=	build
-USE_XORG=	x11 ice xext sm inputproto xi
+USE_XORG=	x11 ice xext sm xorgproto xi
 USE_GNOME=	glib12
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

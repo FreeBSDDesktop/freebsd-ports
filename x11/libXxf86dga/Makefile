@@ -12,7 +12,7 @@ COMMENT=	X DGA Extension
 LICENSE=	MIT
 
 XORG_CAT=	lib
-USE_XORG=	xproto x11 xextproto xext xf86dgaproto:both
+USE_XORG=	x11 xext xorgproto
 USES+=	cpe
 CPE_PRODUCT=	libxxf86dga
 CPE_VENDOR=	x

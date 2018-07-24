@@ -305,7 +305,7 @@ VDPAU_CONFIGURE_ENABLE=	vdpau
 VORBIS_LIB_DEPENDS=	libvorbis.so:audio/libvorbis
 VORBIS_CONFIGURE_ENABLE=vorbis
 
-X11_USE=		GL=gl XORG=xcb,xproto
+X11_USE=		GL=gl XORG=xcb,xorgproto
 X11_LIB_DEPENDS=	libxcb-keysyms.so:x11/xcb-util-keysyms
 X11_CONFIGURE_ENABLE=	xcb xvideo
 X11_CONFIGURE_WITH=	x

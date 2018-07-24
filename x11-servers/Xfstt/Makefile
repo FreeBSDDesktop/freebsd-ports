@@ -13,7 +13,7 @@ LICENSE=	LGPL20+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 USES=		pkgconfig tar:xz
-USE_XORG=	fontsproto xproto
+USE_XORG=	xorgproto
 USE_RC_SUBR=	xfstt
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --disable-nls

@@ -20,7 +20,7 @@ LIB_DEPENDS=	libfribidi.so:converters/fribidi \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
-USE_XORG=	x11 xext xextproto xft xpm xrandr
+USE_XORG=	x11 xext xorgproto xft xpm xrandr
 USES=		gmake pkgconfig
 GNU_CONFIGURE=	yes
 

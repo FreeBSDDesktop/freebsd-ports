@@ -16,7 +16,7 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-
 LIB_DEPENDS=	libdbus-1.so:devel/dbus
 
 USE_XORG=	x11 xcb xdamage xfixes xrandr xinerama xext xtst xau xrender \
-		xdmcp recordproto
+		xdmcp xorgproto
 # Sets LDFLAGS and adds to CONFIGURE_ENV, therefore we set LDFLAGS
 LDFLAGS+=	-L${LOCALBASE}/lib
 USES=		iconv pkgconfig jpeg ssl

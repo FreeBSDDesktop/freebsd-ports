@@ -9,7 +9,7 @@ MAINTAINER=	x11@FreeBSD.org
 COMMENT=	RX helper program
 
 XORG_CAT=	app
-USE_XORG=	x11 xt xext xtrans xproxymngproto xau xaw ice
+USE_XORG=	x11 xt xext xtrans xorgproto xau xaw ice
 USES=		libtool
 USE_LDCONFIG=	yes
 

@@ -15,7 +15,7 @@ LICENSE=	MIT
 CONFLICTS_INSTALL=	xsel-conrad-[0-9]*
 
 USES=		tar:bzip2
-USE_XORG=	xmu xaw xt xproto xkbfile
+USE_XORG=	xmu xaw xt xorgproto xkbfile
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lXt -lXaw -lX11 -lXmu

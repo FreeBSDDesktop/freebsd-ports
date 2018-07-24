@@ -10,7 +10,7 @@ MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Make your windows transparent
 
 XORG_CAT=	app
-USE_XORG=	x11 xproto
+USE_XORG=	x11 xorgproto
 
 PLIST_FILES=	bin/transset man/man1/transset.1.gz
 

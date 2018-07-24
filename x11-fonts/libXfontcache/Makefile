@@ -9,6 +9,6 @@ MAINTAINER=	x11@FreeBSD.org
 COMMENT=	The Xfontcache library
 
 XORG_CAT=	lib
-USE_XORG=	fontcacheproto:both x11 xext xextproto
+USE_XORG=	x11 xext xorgproto
 
 .include <bsd.port.mk>

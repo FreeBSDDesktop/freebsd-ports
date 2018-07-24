@@ -9,6 +9,6 @@ MAINTAINER=	x11@FreeBSD.org
 COMMENT=	The XprintAppUtil library
 
 XORG_CAT=	lib
-USE_XORG=	printproto x11 xau xp xprintutil xproto:both
+USE_XORG=	x11 xau xp xprintutil xorgproto
 
 .include <bsd.port.mk>

@@ -12,7 +12,7 @@ COMMENT=	X font library
 LIB_DEPENDS=	libfreetype.so:print/freetype2
 
 XORG_CAT=	lib
-USE_XORG=	xproto:both xtrans fontsproto:both fontenc
+USE_XORG=	xorgproto xtrans fontenc
 INSTALL_TARGET=	install-strip
 USES+=	cpe
 CPE_PRODUCT=	libxfont

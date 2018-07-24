@@ -21,7 +21,7 @@ GNU_CONFIGURE=	yes
 USE_GL=		yes
 USES=		gettext gmake libtool:keepla pathfix pkgconfig tar:bzip2
 USE_GNOME=	gconf2 intltool
-USE_XORG=	glproto
+USE_XORG=	xorgproto
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 

@@ -12,7 +12,7 @@ COMMENT=	Simple and easy to use graphical file manager
 
 PLIST_SUB+=	LOCALBASE=${LOCALBASE}
 
-USE_XORG=	x11 sm xaw xproto
+USE_XORG=	x11 sm xaw xorgproto
 USE_GNOME=	atk glib20 gtk20 libxml2 pango
 USES=		gmake pkgconfig shared-mime-info tar:bzip2
 

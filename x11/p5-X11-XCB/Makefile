@@ -32,7 +32,7 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		localbase perl5
 USE_PERL5=	configure
-USE_XORG=	x11 xcb xproto xinerama
+USE_XORG=	x11 xcb xorgproto xinerama
 MAKE_JOBS_UNSAFE=	yes
 
 post-install:

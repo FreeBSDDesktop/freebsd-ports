@@ -29,7 +29,7 @@ USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 USE_QT4=	corelib gui xml qtestlib uic_build moc_build \
 		qmake_build rcc_build linguisttools
-USE_XORG=	ice inputproto sm x11 xcursor xext xfixes xi xrandr xrender \
+USE_XORG=	ice xorgproto sm x11 xcursor xext xfixes xi xrandr xrender \
 		xt xtst
 
 .include <bsd.port.pre.mk>

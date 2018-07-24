@@ -13,7 +13,7 @@ COMMENT=	Falling-down-a-tunnel dockapp
 
 LICENSE=	GPLv2
 
-USE_XORG=	x11 xpm xextproto
+USE_XORG=	x11 xpm xorgproto
 ALL_TARGET=	wmtunlo
 
 OPTIONS_DEFINE=	EXAMPLES

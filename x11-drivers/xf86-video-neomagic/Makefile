@@ -9,6 +9,6 @@ MAINTAINER=	x11@FreeBSD.org
 COMMENT=	X.Org neomagic display driver
 
 XORG_CAT=	driver
-USE_XORG=	xf86dgaproto
+USE_XORG=	xorgproto
 
 .include <bsd.port.mk>

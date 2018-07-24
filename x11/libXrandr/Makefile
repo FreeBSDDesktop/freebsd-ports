@@ -11,7 +11,7 @@ COMMENT=	X Resize and Rotate extension library
 LICENSE=	MIT
 
 XORG_CAT=	lib
-USE_XORG=	x11 randrproto:both xext xextproto xrender renderproto xproto:both
+USE_XORG=	x11 xext xrender xorgproto
 USES+=	cpe
 CPE_PRODUCT=	libxrandr
 CPE_VENDOR=	x

@@ -16,7 +16,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-oss=yes \
 			--enable-jack=yes
 
-USE_XORG=	ice sm x11 xext xextproto xfixes xdamage
+USE_XORG=	ice sm x11 xext xorgproto xfixes xdamage
 PLIST_FILES=	bin/recordmydesktop man/man1/recordmydesktop.1.gz
 
 .include <bsd.port.mk>

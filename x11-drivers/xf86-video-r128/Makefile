@@ -13,6 +13,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_GL=		gl
 XORG_CAT=	driver
-USE_XORG=	xf86miscproto
+USE_XORG=	xorgproto
 
 .include <bsd.port.mk>

@@ -18,7 +18,7 @@ RUN_DEPENDS=	dmenu:x11/dmenu
 
 CONFLICTS=	wmii-devel-[0-9]*
 
-USE_XORG=	x11 xextproto xt xext
+USE_XORG=	x11 xorgproto xt xext
 
 MAKE_ARGS=	PREFIX="${PREFIX}" MAN="${MANPREFIX}/man" \
 		INCLUDE="${LOCALBASE}/include" \

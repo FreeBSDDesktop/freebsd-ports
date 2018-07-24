@@ -25,7 +25,7 @@ GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 USE_GNOME=	glib20 gtk20 cairo intltool intlhack
 USE_XFCE=	garcon libexo
-USE_XORG=	inputproto x11 xcursor xi xrandr
+USE_XORG=	xorgproto x11 xcursor xi xrandr
 
 CONFIGURE_ARGS=	--enable-debug=yes \
 		--disable-xorg-libinput

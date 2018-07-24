@@ -10,5 +10,5 @@ MAINTAINER=	x11@FreeBSD.org
 COMMENT=	The xkbui library
 
 XORG_CAT=	lib
-USE_XORG=	x11 xt xkbfile kbproto:both
+USE_XORG=	x11 xt xkbfile xorgproto
 .include <bsd.port.mk>

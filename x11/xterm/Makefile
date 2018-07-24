@@ -73,7 +73,7 @@ NEXTAW_CONFIGURE_WITH=		neXtaw
 NEXTAW_LIB_DEPENDS=		libneXtaw.so:x11-toolkits/neXtaw
 TOOLBAR_CONFIGURE_ENABLE=	toolbar
 WCHAR_LIB_DEPENDS=		libfreetype.so:print/freetype2
-XINERAMA_USE=			XORG=xinerama,xineramaproto
+XINERAMA_USE=			XORG=xinerama,xorgproto
 XINERAMA_CONFIGURE_OFF=		--without-xinerama
 
 LIB_DEPENDS+=	libfontconfig.so:x11-fonts/fontconfig

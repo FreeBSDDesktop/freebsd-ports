@@ -11,6 +11,6 @@ COMMENT=	X.Org sis display driver
 USE_GL=		gl
 
 XORG_CAT=	driver
-USE_XORG=	xf86dgaproto
+USE_XORG=	xorgproto
 
 .include <bsd.port.mk>

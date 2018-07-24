@@ -8,7 +8,7 @@ MAINTAINER=	x11@FreeBSD.org
 COMMENT=	The FS library
 
 XORG_CAT=	lib
-USE_XORG=	fontsproto:both xproto:both xtrans
+USE_XORG=	xorgproto xtrans
 USES+=	cpe
 CPE_PRODUCT=	libfs
 CPE_VENDOR=	x

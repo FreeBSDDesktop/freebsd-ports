@@ -22,7 +22,7 @@ USE_GL=		yes
 USES=		gettext gmake libtool:keepla pathfix pkgconfig tar:bzip2
 USE_CSTD=	gnu89
 USE_GNOME=	gconf2 intltool
-USE_XORG=	glproto
+USE_XORG=	xorgproto
 USE_LDCONFIG=	yes
 
 GCONF_SCHEMAS=	compiz-animation.schemas \

@@ -12,7 +12,7 @@ COMMENT=	X Video Extension library
 LICENSE=	MIT
 
 XORG_CAT=	lib
-USE_XORG=	x11 xext xextproto videoproto:both xproto:both
+USE_XORG=	x11 xext xorgproto
 USES+=	cpe
 CPE_PRODUCT=	libxv
 CPE_VENDOR=	x

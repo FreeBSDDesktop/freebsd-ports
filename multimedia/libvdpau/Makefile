@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		autoreconf libtool pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-documentation
-USE_XORG=	dri2proto xext
+USE_XORG=	xorgproto xext
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 

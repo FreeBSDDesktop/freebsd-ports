@@ -63,7 +63,7 @@ USES=		gperf jpeg python:2.7,build pkgconfig \
 USE_GNOME=	glib20 libxml2 libxslt
 USE_QT5=	core designer gui location network qml quick webchannel \
 		widgets buildtools_build qmake_build
-USE_XORG=	scrnsaverproto x11 xcb xcomposite xcursor xext xi xproto \
+USE_XORG=	x11 xcb xcomposite xcursor xext xi xorgproto \
 		xrandr xrender xscrnsaver xtst
 
 USE_LDCONFIG=	${QT_LIBDIR}

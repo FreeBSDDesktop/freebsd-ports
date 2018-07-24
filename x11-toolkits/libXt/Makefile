@@ -10,7 +10,7 @@ MAINTAINER=	x11@FreeBSD.org
 COMMENT=	X Toolkit library
 
 XORG_CAT=	lib
-USE_XORG=	x11 sm xproto:both kbproto
+USE_XORG=	x11 sm xorgproto
 CONFIGURE_ARGS=	--disable-specs
 USES+=	cpe
 CPE_PRODUCT=	libxt

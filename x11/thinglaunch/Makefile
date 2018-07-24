@@ -9,7 +9,7 @@ MASTER_SITES=	LOCAL/ehaupt
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Very fast launcher program for X
 
-USE_XORG=	x11 xproto
+USE_XORG=	x11 xorgproto
 
 CPPFLAGS+=	-I${LOCALBASE}/include -lX11
 LDFLAGS+=	-L${LOCALBASE}/lib

@@ -17,7 +17,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME:tl}-${PORTVERSION}
 USES=		desktop-file-utils qmake shared-mime-info
 USE_QT4=	moc_build uic_build qt3support_build rcc_build \
 		corelib gui xml
-USE_XORG=	xt inputproto xtst xrender xrandr xfixes xcursor\
+USE_XORG=	xt xorgproto xtst xrender xrandr xfixes xcursor\
 		xext x11 sm ice xi
 
 QMAKE_ARGS+=	INCLUDEPATH+=${LOCALBASE}/include LIBS+=-L${LOCALBASE}/lib

@@ -17,7 +17,7 @@ MAKE_JOBS_UNSAFE=	yes
 
 USES=		fortran shebangfix
 USE_LDCONFIG=	yes
-USE_XORG=	x11 xproto xt
+USE_XORG=	x11 xorgproto xt
 
 MAKE_ENV=	SSP_CFLAGS=
 SHEBANG_FILES=	makehtml maketex

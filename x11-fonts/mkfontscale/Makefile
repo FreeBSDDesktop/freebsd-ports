@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libfreetype.so:print/freetype2
 
 XORG_CAT=	app
-USE_XORG=	xproto fontenc
+USE_XORG=	xorgproto fontenc
 
 CONFIGURE_ARGS+=--disable-maintainer-mode
 

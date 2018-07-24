@@ -41,7 +41,7 @@ CMAKE_ARGS=	-DSYSCONFDIR=${PREFIX}/etc \
 		-DGENERATE_DOC=OFF
 USE_GNOME=	glib20 pango gdkpixbuf2
 USE_XORG=	pixman x11 xau xcb xdmcp xext xft xinerama xrandr xrender \
-		xproto
+		xorgproto
 
 OPTIONS_DEFINE=	DBUS DOCS MANPAGES
 OPTIONS_DEFAULT=DBUS MANPAGES
