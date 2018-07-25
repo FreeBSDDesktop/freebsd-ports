@@ -7,17 +7,11 @@ CATEGORIES=	x11
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	xorg protocol headers
 
-OPTIONS_DEFINE=	LEGACY
-OPTIONS_DEFAULT=LEGACY
-OPTIONS_SUB=	yes
-LEGACY_DESC=	Install legacy protocol headers
-
 XORG_CAT=	proto
 
 CONFIGURE_ARGS= --without-fop \
 		--without-xmlto \
-		--without-xsltproc
-
-LEGACY_CONFIGURE_ENABLE=	legacy
+		--without-xsltproc \
+		--enable-legacy
 
 .include <bsd.port.mk>
