@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	libinput
-PORTVERSION=	1.11.3
+PORTVERSION=	1.11.0
 CATEGORIES=	x11
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/
 
@@ -49,8 +49,13 @@ SHEBANG_FILES=	tools/libinput-measure-fuzz \
 		tools/libinput-measure-trackpoint-range \
 		tools/libinput-replay
 
-#post-extract:
-#	# meson script checks existence of bundled evdev headers. Fake them.
-#	${LN} -sf ${LOCALBASE}/include/linux ${WRKSRC}/include/linux
+post-extract:
+	# meson script checks existence of bundled evdev headers. Fake them.
+	${LN} -sf ${LOCALBASE}/include/linux ${WRKSRC}/include/linux
+
+post-patch:
+	${REINPLACE_CMD} -e 's|program_invocation_short_name|getprogname()|' \
+		${WRKSRC}/tools/ptraccel-debug.c \
+		${WRKSRC}/tools/libinput-record.c
 
 .include <bsd.port.mk>
