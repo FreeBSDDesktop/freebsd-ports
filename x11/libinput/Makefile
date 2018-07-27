@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	libinput
-PORTVERSION=	1.11.0
+PORTVERSION=	1.11.3
 CATEGORIES=	x11
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/
 
@@ -34,11 +34,8 @@ LIBWACOM_MESON_TRUE=	libwacom
 
 USES=			localbase meson pkgconfig python:3.4+,run shebangfix tar:xz
 USE_LDCONFIG=		yes
-EXTRACT_AFTER_ARGS=	--exclude include/linux # supplied linux/input.h
 
 MESON_ARGS+=	-Ddocumentation=false -Dtests=false
-CPPFLAGS+=	-I${LOCALBASE}/include/libepoll-shim
-LDFLAGS+=	-lepoll-shim
 INSTALL_TARGET=	install-strip
 
 python_OLD_CMD=	"/usr/bin/env python3"
@@ -48,14 +45,5 @@ SHEBANG_FILES=	tools/libinput-measure-fuzz \
 		tools/libinput-measure-touchpad-tap \
 		tools/libinput-measure-trackpoint-range \
 		tools/libinput-replay
-
-post-extract:
-	# meson script checks existence of bundled evdev headers. Fake them.
-	${LN} -sf ${LOCALBASE}/include/linux ${WRKSRC}/include/linux
-
-post-patch:
-	${REINPLACE_CMD} -e 's|program_invocation_short_name|getprogname()|' \
-		${WRKSRC}/tools/ptraccel-debug.c \
-		${WRKSRC}/tools/libinput-record.c
 
 .include <bsd.port.mk>
