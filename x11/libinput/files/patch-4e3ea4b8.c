@@ -2,10 +2,21 @@ diff --git a/meson.build b/meson.build
 index b9de1119fae84730288d5766e4be1056adb6817f..fc5371bb7e73363b3a11bc5992d6846b93a3b3d5 100644
 --- meson.build
 +++ meson.build
-@@ -173,6 +173,34 @@ litest_groups_rules_file = configure_file(input : 'udev/80-libinput-device-group
+@@ -96,6 +98,8 @@ endif
+ 
+ ############ udev bits ############
+ 
++if false
++
+ udev_dir = get_option('udev-dir')
+ if udev_dir == ''
+ 	udev_dir = join_paths(get_option('prefix'), 'lib', 'udev')
+@@ -173,6 +173,36 @@ litest_groups_rules_file = configure_file(input : 'udev/80-libinput-device-group
  	       install : false,
  	       configuration : litest_udev_rules_config)
  
++endif
++
 +############ libepoll-shim (BSD) ############
 +
 +if cc.has_header_symbol('sys/epoll.h', 'epoll_create1', prefix : prefix)
