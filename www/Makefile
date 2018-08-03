@@ -94,6 +94,7 @@
     SUBDIR += coppermine
     SUBDIR += cplanet
     SUBDIR += cppcms
+    SUBDIR += cpr
     SUBDIR += crawl
     SUBDIR += crp
     SUBDIR += css-mode.el
@@ -239,6 +240,7 @@
     SUBDIR += h2o
     SUBDIR += h2o-devel
     SUBDIR += habari
+    SUBDIR += halberd
     SUBDIR += hastymail2-devel
     SUBDIR += havp
     SUBDIR += helma
@@ -1575,7 +1577,6 @@
     SUBDIR += py-django-json-rpc
     SUBDIR += py-django-jsonfield
     SUBDIR += py-django-jsonfield2
-    SUBDIR += py-django-keyedcache
     SUBDIR += py-django-ldapdb
     SUBDIR += py-django-livesettings
     SUBDIR += py-django-markdownx
@@ -1606,10 +1607,8 @@
     SUBDIR += py-django-rest-swagger
     SUBDIR += py-django-reversion
     SUBDIR += py-django-sekizai
-    SUBDIR += py-django-signals-ahoy
     SUBDIR += py-django-simple-captcha
     SUBDIR += py-django-simple-history
-    SUBDIR += py-django-social-auth
     SUBDIR += py-django-solo
     SUBDIR += py-django-sortedm2m
     SUBDIR += py-django-star-ratings
@@ -1622,7 +1621,6 @@
     SUBDIR += py-django-taggit
     SUBDIR += py-django-tastypie
     SUBDIR += py-django-templatetag-sugar
-    SUBDIR += py-django-threaded-multihost
     SUBDIR += py-django-timezone-field
     SUBDIR += py-django-tinymce
     SUBDIR += py-django-treebeard
@@ -1631,6 +1629,7 @@
     SUBDIR += py-django111
     SUBDIR += py-django18
     SUBDIR += py-django20
+    SUBDIR += py-django21
     SUBDIR += py-django_compressor
     SUBDIR += py-django_openstack_auth
     SUBDIR += py-django_polymorphic
@@ -1692,6 +1691,7 @@
     SUBDIR += py-graphite-api
     SUBDIR += py-graphite-web
     SUBDIR += py-grequests
+    SUBDIR += py-grip
     SUBDIR += py-gunicorn
     SUBDIR += py-h2
     SUBDIR += py-horizon
@@ -1727,6 +1727,7 @@
     SUBDIR += py-paste
     SUBDIR += py-pastedeploy
     SUBDIR += py-pastescript
+    SUBDIR += py-path-and-address
     SUBDIR += py-pelican
     SUBDIR += py-planet
     SUBDIR += py-plone.alterego
@@ -2024,10 +2025,8 @@
     SUBDIR += rubygem-gollum-grit_adapter
     SUBDIR += rubygem-gollum-grit_adapter10
     SUBDIR += rubygem-gollum-lib
-    SUBDIR += rubygem-gollum-lib-gitlab
     SUBDIR += rubygem-gollum-rugged_adapter
     SUBDIR += rubygem-gon
-    SUBDIR += rubygem-gon61
     SUBDIR += rubygem-hackpad-cli
     SUBDIR += rubygem-haml
     SUBDIR += rubygem-haml-coderay
@@ -2466,6 +2465,7 @@
     SUBDIR += webreport
     SUBDIR += webresolve
     SUBDIR += websh
+    SUBDIR += websocat
     SUBDIR += websocketd
     SUBDIR += webstats
     SUBDIR += webstone

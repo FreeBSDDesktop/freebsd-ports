@@ -1392,6 +1392,7 @@
     SUBDIR += py-rxp
     SUBDIR += py-scour
     SUBDIR += py-sgrep
+    SUBDIR += py-simplebayes
     SUBDIR += py-snowballstemmer
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
@@ -1529,6 +1530,7 @@
     SUBDIR += rubygem-elasticsearch-api
     SUBDIR += rubygem-elasticsearch-dsl
     SUBDIR += rubygem-elasticsearch-transport
+    SUBDIR += rubygem-elasticsearch-xpack
     SUBDIR += rubygem-emot
     SUBDIR += rubygem-escape_utils
     SUBDIR += rubygem-escape_utils11
