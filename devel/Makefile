@@ -196,6 +196,7 @@
     SUBDIR += bbfreeze-loader
     SUBDIR += bcc
     SUBDIR += bcpp
+    SUBDIR += bcunit
     SUBDIR += bear
     SUBDIR += bennugd-core
     SUBDIR += bennugd-modules
@@ -4421,6 +4422,7 @@
     SUBDIR += py-characteristic
     SUBDIR += py-check-manifest
     SUBDIR += py-cheetah
+    SUBDIR += py-cheetah3
     SUBDIR += py-ciphon
     SUBDIR += py-circuits
     SUBDIR += py-cjson
