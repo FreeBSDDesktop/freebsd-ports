@@ -148,6 +148,7 @@
     SUBDIR += exabgp
     SUBDIR += exaddos
     SUBDIR += fb
+    SUBDIR += fiche
     SUBDIR += file2pcap
     SUBDIR += findmtu
     SUBDIR += flower
@@ -192,7 +193,6 @@
     SUBDIR += gnome-online-miners
     SUBDIR += gnu-dico
     SUBDIR += gnu-radius
-    SUBDIR += gobgp
     SUBDIR += go-amqp
     SUBDIR += go-bapu
     SUBDIR += go-cs
@@ -201,6 +201,7 @@
     SUBDIR += go-httptreemux
     SUBDIR += go-nats
     SUBDIR += go.net
+    SUBDIR += gobgp
     SUBDIR += gofish
     SUBDIR += gogoc
     SUBDIR += google-cloud-sdk
@@ -324,8 +325,8 @@
     SUBDIR += kdav
     SUBDIR += kdenetwork
     SUBDIR += kdenetwork-filesharing
-    SUBDIR += kdenetwork-kde4
     SUBDIR += kdenetwork-filesharing-kde4
+    SUBDIR += kdenetwork-kde4
     SUBDIR += kdenetwork-strigi-analyzers-kde4
     SUBDIR += kea
     SUBDIR += kf5-kholidays
@@ -526,6 +527,7 @@
     SUBDIR += ng_mikrotik_eoip
     SUBDIR += ngrep
     SUBDIR += nifmon
+    SUBDIR += nitroshare
     SUBDIR += nload
     SUBDIR += nmsg
     SUBDIR += nncp
@@ -1148,6 +1150,8 @@
     SUBDIR += py-txrestapi
     SUBDIR += py-upnp-inspector
     SUBDIR += py-uritemplate
+    SUBDIR += py-uritools
+    SUBDIR += py-urlextract
     SUBDIR += py-urllib3
     SUBDIR += py-wmi-query
     SUBDIR += py-wolframalpha

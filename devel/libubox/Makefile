@@ -10,7 +10,9 @@ COMMENT=	C utility functions for OpenWrt
 
 LICENSE=	GPLv2
 
-USES=		cmake lua:51 tar:xz
+LIB_DEPENDS=	libjson-c.so:devel/json-c
+
+USES=		cmake pkgconfig lua:51
 USE_GITHUB=	yes
 GH_ACCOUNT=	mmatuska
 GH_TAGNAME=	c83a84af

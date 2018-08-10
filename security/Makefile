@@ -33,6 +33,7 @@
     SUBDIR += authforce
     SUBDIR += autossh
     SUBDIR += avcheck
+    SUBDIR += aws-iam-authenticator
     SUBDIR += axTLS
     SUBDIR += barnyard2
     SUBDIR += barnyard2-sguil
@@ -455,7 +456,7 @@
     SUBDIR += opencryptoki
     SUBDIR += openct
     SUBDIR += openiked
-    SUBDIR += opensaml2
+    SUBDIR += opensaml
     SUBDIR += opensc
     SUBDIR += openscep
     SUBDIR += openssh-askpass
@@ -1044,8 +1045,8 @@
     SUBDIR += py-volatility
     SUBDIR += py-vulndb
     SUBDIR += py-yara
-    SUBDIR += py-yubioath-desktop
     SUBDIR += py-yubikey-manager
+    SUBDIR += py-yubioath-desktop
     SUBDIR += py-zope.app.authentication
     SUBDIR += py-zope.app.localpermission
     SUBDIR += py-zope.app.principalannotation
@@ -1102,15 +1103,16 @@
     SUBDIR += rubygem-bcrypt
     SUBDIR += rubygem-bcrypt-ruby
     SUBDIR += rubygem-bcrypt_pbkdf
-    SUBDIR += rubygem-devise_pam_authenticatable2
     SUBDIR += rubygem-devise-two-factor
     SUBDIR += rubygem-devise-two-factor-rails5
     SUBDIR += rubygem-devise-two-factor-rails50
+    SUBDIR += rubygem-devise_pam_authenticatable2
     SUBDIR += rubygem-digest-crc
     SUBDIR += rubygem-doorkeeper
     SUBDIR += rubygem-doorkeeper-openid_connect
     SUBDIR += rubygem-doorkeeper-rails5
     SUBDIR += rubygem-doorkeeper-rails50
+    SUBDIR += rubygem-doorkeeper43
     SUBDIR += rubygem-ed25519
     SUBDIR += rubygem-encryptor
     SUBDIR += rubygem-ezcrypto
@@ -1130,10 +1132,10 @@
     SUBDIR += rubygem-net-scp
     SUBDIR += rubygem-net-sftp
     SUBDIR += rubygem-net-ssh
-    SUBDIR += rubygem-net-ssh4
     SUBDIR += rubygem-net-ssh-gateway
     SUBDIR += rubygem-net-ssh-gateway1
     SUBDIR += rubygem-net-ssh-multi
+    SUBDIR += rubygem-net-ssh4
     SUBDIR += rubygem-net-telnet
     SUBDIR += rubygem-nexpose
     SUBDIR += rubygem-nmap-parser
@@ -1147,7 +1149,6 @@
     SUBDIR += rubygem-omniauth-oauth2-generic
     SUBDIR += rubygem-omniauth-saml
     SUBDIR += rubygem-omniauth-shibboleth
-    SUBDIR += rubygem-omniauth-shibboleth12
     SUBDIR += rubygem-openssl
     SUBDIR += rubygem-openssl-ccm
     SUBDIR += rubygem-openvas-omp
@@ -1216,7 +1217,7 @@
     SUBDIR += sha
     SUBDIR += sha1collisiondetection
     SUBDIR += sha2wordlist
-    SUBDIR += shibboleth2-sp
+    SUBDIR += shibboleth-sp
     SUBDIR += shimmer
     SUBDIR += shishi
     SUBDIR += shttpscanner
@@ -1315,6 +1316,7 @@
     SUBDIR += unicornscan
     SUBDIR += unssh
     SUBDIR += vault
+    SUBDIR += vanguards-tor
     SUBDIR += veracrypt
     SUBDIR += vinetto
     SUBDIR += vlock
