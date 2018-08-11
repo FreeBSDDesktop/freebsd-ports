@@ -3,17 +3,19 @@
 
 PORTNAME=	ceph
 DISTVERSION=	wip.v2017-08-15-1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	net
 PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	wjw@digiware.nl
-COMMENT=Ceph delivers object, block, and file storage in a unified system
+COMMENT=	Ceph delivers object, block, and file storage in a unified system
 
 LICENSE=	GPLv2 LGPL3
 LICENSE_COMB=	dual
 
 BROKEN=		fails to build with boost 1.66, see bug 224185
+DEPRECATED=	Broken for more than 5 months
+EXPIRATION_DATE=	2018-08-20
 # even though i386 will build, it is not really advised.
 ONLY_FOR_ARCHS=	amd64
 IGNORE_FreeBSD_10=	Doesnt build for FreeBSD 10.x

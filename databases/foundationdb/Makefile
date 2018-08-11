@@ -2,7 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	foundationdb
-PORTVERSION=	5.1.7
+PORTVERSION=	5.2.5
+#DISTVERSIONPREFIX=	release-
+PORTREVISION=	1
 CATEGORIES=	databases
 
 MAINTAINER=	vanilla@FreeBSD.org
@@ -13,6 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	not yet ported to anything other than amd64
+BROKEN=		fails to build with boost 1.68, see bug 229697
 
 BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
@@ -22,8 +25,10 @@ USES=		compiler:c++14-lang gmake mono python:build shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	apple
 USE_RC_SUBR=	foundationdb
-SHEBANG_FILES=	build/link-wrapper.sh bindings/c/generate_asm.py
+SHEBANG_FILES=	build/csprojtom4.py build/link-wrapper.sh build/vcxprojtom4.py \
+		bindings/c/generate_asm.py
 MAKE_ENV+=	PYTHON=${PYTHON_CMD}
+CXXFLAGS+=	-Wno-varargs
 
 USERS=		${PORTNAME}
 GROUPS=		${PORTNAME}

@@ -1,8 +1,10 @@
 include/KF5/Kirigami2/KirigamiPluginFactory
 include/KF5/Kirigami2/PlatformTheme
+include/KF5/Kirigami2/TabletModeWatcher
 include/KF5/Kirigami2/kirigami2_export.h
 include/KF5/Kirigami2/kirigamipluginfactory.h
 include/KF5/Kirigami2/platformtheme.h
+include/KF5/Kirigami2/tabletmodewatcher.h
 lib/cmake/KF5Kirigami2/KF5Kirigami2Config.cmake
 lib/cmake/KF5Kirigami2/KF5Kirigami2ConfigVersion.cmake
 lib/cmake/KF5Kirigami2/KF5Kirigami2Macros.cmake
@@ -19,6 +21,7 @@ lib/libKF5Kirigami2.so.%%KDE_FRAMEWORKS_VERSION%%
 %%QT_QMLDIR%%/org/kde/kirigami.2/AbstractItemViewHeader.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/AbstractListItem.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/Action.qml
+%%QT_QMLDIR%%/org/kde/kirigami.2/ActionToolBar.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/ApplicationHeader.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/ApplicationItem.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/ApplicationWindow.qml
@@ -34,6 +37,7 @@ lib/libKF5Kirigami2.so.%%KDE_FRAMEWORKS_VERSION%%
 %%QT_QMLDIR%%/org/kde/kirigami.2/InlineMessage.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/ItemViewHeader.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/Label.qml
+%%QT_QMLDIR%%/org/kde/kirigami.2/ListItemDragHandle.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/OverlayDrawer.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/OverlaySheet.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/Page.qml
@@ -46,6 +50,7 @@ lib/libKF5Kirigami2.so.%%KDE_FRAMEWORKS_VERSION%%
 %%QT_QMLDIR%%/org/kde/kirigami.2/Units.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/libkirigamiplugin.so
 %%QT_QMLDIR%%/org/kde/kirigami.2/plugins.qmltypes
+%%QT_QMLDIR%%/org/kde/kirigami.2/private/AbstractPageHeader.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/private/ActionButton.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/private/ActionIconGroup.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/private/ActionMenuItem.qml
@@ -61,9 +66,13 @@ lib/libKF5Kirigami2.so.%%KDE_FRAMEWORKS_VERSION%%
 %%QT_QMLDIR%%/org/kde/kirigami.2/private/DefaultListItemBackground.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/private/EdgeShadow.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/private/PageActionPropertyGroup.qml
+%%QT_QMLDIR%%/org/kde/kirigami.2/private/PageRowGlobalToolBarStyleGroup.qml
+%%QT_QMLDIR%%/org/kde/kirigami.2/private/PageRowGlobalToolBarUI.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/private/PrivateActionToolButton.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/private/RefreshableScrollView.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/private/SwipeItemEventFilter.qml
+%%QT_QMLDIR%%/org/kde/kirigami.2/private/TitlesPageHeader.qml
+%%QT_QMLDIR%%/org/kde/kirigami.2/private/ToolBarPageHeader.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/qmldir
 %%QT_QMLDIR%%/org/kde/kirigami.2/styles/Material/AbstractListItem.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/styles/Material/Label.qml
@@ -88,6 +97,7 @@ lib/libKF5Kirigami2.so.%%KDE_FRAMEWORKS_VERSION%%
 %%QT_QMLDIR%%/org/kde/kirigami.2/templates/private/BackButton.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/templates/private/ContextIcon.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/templates/private/ForwardButton.qml
+%%QT_QMLDIR%%/org/kde/kirigami.2/templates/private/GenericDrawerIcon.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/templates/private/IconPropertiesGroup.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/templates/private/MenuIcon.qml
 %%QT_QMLDIR%%/org/kde/kirigami.2/templates/private/PassiveNotification.qml

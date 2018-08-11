@@ -14,6 +14,9 @@ COMMENT=	GNAT Programming Studio - IDE for Ada and many other languages
 
 LICENSE=	GPLv3
 
+DEPRECATED=	Depends on obsolete LLVM 3.8.
+EXPIRATION_DATE=	2018-08-22
+
 BROKEN_aarch64=		fails to compile: No rule to make target 'default'
 
 BUILD_DEPENDS=	gprbuild:devel/gprbuild \
@@ -27,8 +30,8 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 RUN_DEPENDS=	rsvg-convert:graphics/librsvg2 \
 		gdb${PORTGDB}:devel/gdb \
 		gprbuild:devel/gprbuild \
-		${PYTHON_PKGNAMEPREFIX}pep8>0:devel/pep8 \
-		${PYTHON_PKGNAMEPREFIX}jedi>0:devel/py-jedi
+		${PYTHON_PKGNAMEPREFIX}pep8>0:devel/pep8@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}jedi>0:devel/py-jedi@${PY_FLAVOR}
 
 GNU_CONFIGURE=	yes
 USES=		ada:run gettext gmake perl5 pkgconfig python

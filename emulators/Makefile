@@ -117,7 +117,6 @@
     SUBDIR += qemu
     SUBDIR += qemu-cheri
     SUBDIR += qemu-devel
-    SUBDIR += qemu-launcher
     SUBDIR += qemu-ppcnv
     SUBDIR += qemu-riscv
     SUBDIR += qemu-sbruno
@@ -133,8 +132,6 @@
     SUBDIR += rubygem-fission
     SUBDIR += simh
     SUBDIR += skyeye
-    SUBDIR += snes9express
-    SUBDIR += snes9x
     SUBDIR += snes9x-gtk
     SUBDIR += spim
     SUBDIR += stella
@@ -177,8 +174,8 @@
     SUBDIR += x49gp
     SUBDIR += xbraitenberg
     SUBDIR += xcpc
-    SUBDIR += xen
-    SUBDIR += xen-kernel
+    SUBDIR += xen-kernel411
+    SUBDIR += xen-kernel47
     SUBDIR += xhomer
     SUBDIR += xsystem35
     SUBDIR += xzx

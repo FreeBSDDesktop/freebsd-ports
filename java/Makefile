@@ -37,7 +37,6 @@
     SUBDIR += intellij-rubymine
     SUBDIR += intellij-ultimate
     SUBDIR += jad
-    SUBDIR += jaf
     SUBDIR += jai
     SUBDIR += jakarta-bcel
     SUBDIR += jakarta-commons-beanutils
@@ -94,10 +93,13 @@
     SUBDIR += jxgrabkey
     SUBDIR += langspec
     SUBDIR += lightweight-java-profiler
+    SUBDIR += linux-oracle-jdk10
     SUBDIR += linux-oracle-jdk18
     SUBDIR += linux-oracle-jdk9
+    SUBDIR += linux-oracle-jre10
     SUBDIR += linux-oracle-jre18
     SUBDIR += linux-oracle-jre9
+    SUBDIR += linux-oracle-serverjre10
     SUBDIR += mmake
     SUBDIR += mx4j
     SUBDIR += netbeans

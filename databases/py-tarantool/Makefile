@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tarantool
-PORTVERSION=	0.6.1
-PORTREVISION=	2
+PORTVERSION=	0.6.4
 CATEGORIES=	databases python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,11 +12,11 @@ COMMENT=	Client library for Tarantool Database
 
 LICENSE=	BSD3CLAUSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}msgpack>=0.4:devel/py-msgpack@${FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}msgpack>=0.4:devel/py-msgpack@${PY_FLAVOR}
 
 NO_ARCH=	yes
 REINPLACE_ARGS=	-i ''
-USES=		python tar:bz2
+USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 post-patch:

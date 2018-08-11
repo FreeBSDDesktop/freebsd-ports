@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	git-cinnabar
-DISTVERSION=	0.5.0b2-16
-DISTVERSIONSUFFIX=	-g1113749 # custom release branch
+DISTVERSION=	0.5.0b4
 CATEGORIES=	devel
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -26,6 +25,7 @@ MAKE_ENV!=	${MAKE} -V MAKE_ENV -C ${.CURDIR}/../git
 MAKE_ARGS!=	${MAKE} -V MAKE_ARGS -C ${.CURDIR}/../git
 .endif
 MAKE_ENV+=	PYTHON_PATH="${PYTHON_CMD}"
+MAKE_ARGS+=	SUBMODULE_STATUS=dummy
 DATADIR=	${PREFIX}/libexec/git-core
 PORTDATA=	*
 PORTDOCS=	README.md

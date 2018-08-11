@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	bear
-PORTVERSION=	0.8.3
+PORTVERSION=	0.8.5
 CATEGORIES=	devel
 PKGNAMEPREFIX=	erlang-
 
-MAINTAINER=	olgeni@FreeBSD.org
+MAINTAINER=	erlang@FreeBSD.org
 COMMENT=	Set of statistics functions for Erlang
 
 LICENSE=	APACHE20

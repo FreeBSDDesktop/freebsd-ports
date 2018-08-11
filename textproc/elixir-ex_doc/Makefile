@@ -1,16 +1,18 @@
 # $FreeBSD$
 
 PORTNAME=	ex_doc
-PORTVERSION=	0.18.3
+PORTVERSION=	0.18.4
 DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc
 PKGNAMEPREFIX=	elixir-
 
-MAINTAINER=	olgeni@FreeBSD.org
+MAINTAINER=	erlang@FreeBSD.org
 COMMENT=	Tool to generate documentation for Elixir projects
 
 LICENSE=	APACHE20 MIT
 LICENSE_COMB=	multi
+
+BROKEN=		fails to build
 
 USES=		elixir
 USE_GITHUB=	yes

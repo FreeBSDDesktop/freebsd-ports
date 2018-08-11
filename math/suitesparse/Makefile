@@ -3,6 +3,7 @@
 
 PORTNAME=	suitesparse
 DISTVERSION=	5.2.0
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	http://faculty.cse.tamu.edu/davis/SuiteSparse/
 DISTNAME=	SuiteSparse-${PORTVERSION}
@@ -43,6 +44,7 @@ METIS_PATH=	${LOCALBASE}/include/metis
 CHOLMOD_CONFIG=
 CFLAGS+=	-I${LOCALBASE}/include
 CXXFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${WRKSRC}/lib # prevent linking with shared libs from the preinstalled older versions
 MAKE_ARGS+=	MY_METIS_LIB="-L${LOCALBASE}/lib -lmetis $(LDFLAGS)"
 
 post-patch:

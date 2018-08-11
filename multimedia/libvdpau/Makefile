@@ -2,6 +2,7 @@
 
 PORTNAME=	libvdpau
 PORTVERSION=	1.1.1
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://cgit.freedesktop.org/~aplattner/libvdpau/snapshot/
 

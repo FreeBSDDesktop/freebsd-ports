@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	chromium
-PORTVERSION=	65.0.3325.181
-PORTREVISION=	4
+PORTVERSION=	68.0.3440.84
+PORTREVISION=	1
 CATEGORIES?=	www
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -20,7 +20,6 @@ BUILD_DEPENDS=	bash:shells/bash \
 
 .if !defined(GN_ONLY)
 BUILD_DEPENDS+=	gperf:devel/gperf \
-		clang60:devel/llvm60 \
 		yasm:devel/yasm \
 		ffmpeg>=3.2.2,1:multimedia/ffmpeg \
 		flock:sysutils/flock \
@@ -50,7 +49,6 @@ LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-atk \
 		libpng.so:graphics/png \
 		libwebp.so:graphics/webp \
 		libavcodec.so:multimedia/ffmpeg \
-		libvpx.so:multimedia/libvpx \
 		libopenh264.so:multimedia/openh264 \
 		libfreetype.so:print/freetype2 \
 		libharfbuzz.so:print/harfbuzz \
@@ -91,8 +89,6 @@ SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper
 ALL_TARGET=	chrome
 INSTALLS_ICONS=	yes
 
-CC=		clang60
-CXX=		clang++60
 .endif
 
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-clang
@@ -107,7 +103,6 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		enable_nacl=false \
 		enable_one_click_signin=true \
 		enable_remoting=false \
-		enable_webrtc=true \
 		fieldtrial_testing_like_official_build=true \
 		is_clang=true \
 		toolkit_views=true \
@@ -124,7 +119,6 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		use_system_freetype=true \
 		use_system_harfbuzz=true \
 		use_system_libjpeg=true \
-		use_system_sqlite=false \
 		extra_cxxflags="-I${LOCALBASE}/include" \
 		extra_ldflags="-L${LOCALBASE}/lib"
 # TODO: investigate building with these options:
@@ -140,8 +134,8 @@ GN_ARGS+=	google_api_key="AIzaSyBsp9n41JLW8jCokwn7vhoaMejDFRd1mp8" \
 		google_default_client_secret="IR1za9-1VK0zZ0f_O8MVFicn"
 
 .if !defined(GN_ONLY)
-SUB_FILES=	chromium-browser.desktop chrome
-SUB_LIST+=	COMMENT="${COMMENT}"
+SUB_FILES=	chromium-browser.desktop chrome pkg-message
+SUB_LIST+=	COMMENT="${COMMENT}" DATADIR="${DATADIR}"
 
 OPTIONS_DEFINE=	CODECS CUPS DEBUG DRIVER KERBEROS TEST
 CODECS_DESC=	Compile and enable patented codecs like H.264
@@ -181,6 +175,7 @@ DEBUG_VARS_OFF=		BUILDTYPE=Release \
 			GN_ARGS+=remove_webcore_debug_symbols=true \
 			WANTSPACE="a fair amount of free disk space (~ 5.8GB)"
 
+DRIVER_BUILD_DEPENDS=	git:devel/git
 DRIVER_MAKE_ARGS=	chromedriver
 
 KERBEROS_VARS=		GN_ARGS+=use_kerberos=true
@@ -205,6 +200,16 @@ TEST_ALL_TARGET=	${TEST_TARGETS}
 TEST_DISTFILES=		${PORTNAME}-${DISTVERSION}-testdata${EXTRACT_SUFX}
 
 .include <bsd.port.options.mk>
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1101513
+BUILD_DEPENDS+=	clang60:devel/llvm60
+CC=             clang60
+CXX=            clang++60
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-llvm-port
+.else
+BUILD_DEPENDS+=	${LOCALBASE}/bin/ar:devel/binutils
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-llvm-base
+.endif
 
 # TODO: -isystem, would be just as ugly as this approach, but more reliably
 # build would fail without C_INCLUDE_PATH/CPLUS_INCLUDE_PATH env var set.
@@ -236,7 +241,7 @@ pre-configure:
 	#./build/linux/unbundle/remove_bundled_libraries.py [list of preserved]
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PYTHON_CMD} \
 		./build/linux/unbundle/replace_gn_files.py --system-libraries \
-		ffmpeg flac freetype harfbuzz-ng libdrm libvpx libwebp libxml libxslt openh264 opus snappy yasm || ${FALSE}
+		ffmpeg flac freetype harfbuzz-ng libdrm libusb libwebp libxml libxslt openh264 opus snappy yasm || ${FALSE}
 .endif
 
 do-configure:
@@ -293,6 +298,7 @@ do-install:
 	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/swiftshader/${g} \
 		${STAGEDIR}${DATADIR}/swiftshader
 .endfor
+	${INSTALL_SCRIPT} ${FILESDIR}/fix-hanging-tabs.sh ${STAGEDIR}${DATADIR}
 
 post-install-DEBUG-on:
 	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/*.so \

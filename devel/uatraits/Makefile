@@ -3,12 +3,14 @@
 
 PORTNAME=	uatraits
 PORTVERSION=	20130430
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	devel www
 MASTER_SITES=	http://people.freebsd.org/~demon/
 
 MAINTAINER=	demon@FreeBSD.org
 COMMENT=	User-Agent detection library
+
+BROKEN_powerpc64=	fails to link: checking linkage with boost::test... no
 
 LIB_DEPENDS=	${PY_BOOST} \
 		libpcre.so:devel/pcre \

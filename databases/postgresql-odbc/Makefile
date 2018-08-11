@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	postgresql
-PORTVERSION=	10.02.0000
+PORTVERSION=	10.03.0000
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	PGSQL/odbc/versions/src
 PKGNAMESUFFIX=	-odbc
@@ -11,7 +12,7 @@ DIST_SUBDIR=	postgresql
 MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	PostgreSQL ODBC driver
 
-LICENSE=	LGPL20
+LICENSE=	LGPL20+
 LICENSE_FILE=	${WRKSRC}/license.txt
 
 LIB_DEPENDS=	libodbc.so:databases/unixODBC

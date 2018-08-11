@@ -33,6 +33,7 @@
     SUBDIR += dte
     SUBDIR += e3
     SUBDIR += ecce
+    SUBDIR += ecrire
     SUBDIR += edith
     SUBDIR += editorconfig-core-c
     SUBDIR += emacs
@@ -48,9 +49,11 @@
     SUBDIR += gedit
     SUBDIR += gedit-plugins
     SUBDIR += ghex
+    SUBDIR += ghostwriter
     SUBDIR += gmanedit
     SUBDIR += gnotepad+
     SUBDIR += gobby
+    SUBDIR += gomate
     SUBDIR += gwrite
     SUBDIR += heme
     SUBDIR += hexcurse
@@ -77,11 +80,8 @@
     SUBDIR += komodo-edit
     SUBDIR += latexila
     SUBDIR += lazarus
-    SUBDIR += lazarus-lcl-gtk2
-    SUBDIR += lazarus-lcl-nogui
-    SUBDIR += lazarus-lcl-qt
-    SUBDIR += lazarus-lcl-qt5
-    SUBDIR += lazarus-lcl-units
+    SUBDIR += lazarus-qt4
+    SUBDIR += lazarus-qt5
     SUBDIR += le
     SUBDIR += leafpad
     SUBDIR += led
@@ -116,6 +116,7 @@
     SUBDIR += libreoffice-eu
     SUBDIR += libreoffice-fa
     SUBDIR += libreoffice-fi
+    SUBDIR += libreoffice-fy
     SUBDIR += libreoffice-ga
     SUBDIR += libreoffice-gd
     SUBDIR += libreoffice-gl
@@ -214,6 +215,7 @@
     SUBDIR += paredit-mode.el
     SUBDIR += pdfedit
     SUBDIR += pico-alpine
+    SUBDIR += picpas
     SUBDIR += pluma
     SUBDIR += plume-creator-devel
     SUBDIR += poedit

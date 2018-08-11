@@ -3,6 +3,7 @@
 
 PORTNAME=	awesome
 PORTVERSION=	4.2
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 PORTEPOCH=	1
 CATEGORIES=	x11-wm
@@ -14,7 +15,6 @@ LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	convert:graphics/ImageMagick \
-		xproto>=7.0.15:x11/xproto \
 		${LUA_MODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:devel/lua-lgi
 RUN_DEPENDS=	${LUA_MODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:devel/lua-lgi \
 		bash:shells/bash

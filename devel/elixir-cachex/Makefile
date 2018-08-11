@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	cachex
-PORTVERSION=	3.0.2
+PORTVERSION=	3.0.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 PKGNAMEPREFIX=	elixir-
 
-MAINTAINER=	olgeni@FreeBSD.org
+MAINTAINER=	erlang@FreeBSD.org
 COMMENT=	Caching library for Elixir
 
 LICENSE=	MIT

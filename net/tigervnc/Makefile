@@ -1,8 +1,8 @@
-# Created by: Koichiro IWAO <meta+ports@vmeta.jp>
 # $FreeBSD$
 
 PORTNAME=	tigervnc
-PORTVERSION=	1.8.0
+PORTVERSION=	1.9.0
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net x11-servers
 
@@ -25,17 +25,16 @@ RUN_DEPENDS=	${LOCALBASE}/share/X11/xkb/rules/base:x11/xkeyboard-config \
 		xkbcomp:x11/xkbcomp
 
 CONFLICTS=	tigervnc-devel-[0-9]* \
-		tightvnc-[0-9]* \
-		tridiavnc-[0-9]*
+		tightvnc-[0-9]*
 
-USES=		autoreconf:build cmake:noninja cpe iconv jpeg libtool pkgconfig \
-		python ssl
+USES=		autoreconf:build cmake:noninja cpe iconv jpeg libtool \
+		pkgconfig python ssl
 USE_GL=		gl
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	TigerVNC
 
-USE_XORG+=	ice pixman sm x11 xau xdamage xdmcp xext xfont xkbfile \
+USE_XORG+=	ice pixman sm x11 xau xdamage xdmcp xext xfixes xfont xkbfile \
 		xorg-macros xorgproto xrandr xrender xtrans xtst
 
 CFLAGS+=	-fPIC

@@ -5,10 +5,8 @@
 
     SUBDIR += adapta-backgrounds
     SUBDIR += adapta-gtk-theme
-    SUBDIR += adwaita-common
     SUBDIR += adwaita-icon-theme
-    SUBDIR += adwaita-qt4
-    SUBDIR += adwaita-qt5
+    SUBDIR += adwaita-qt
     SUBDIR += arc-gruvbox-theme
     SUBDIR += audacious-skins
     SUBDIR += beastie
@@ -99,6 +97,7 @@
     SUBDIR += icons-tango
     SUBDIR += icons-tango-extras
     SUBDIR += irssi-themes
+    SUBDIR += kde-base-artwork-kde4
     SUBDIR += kde-gtk-config
     SUBDIR += kde-icons-black-and-white
     SUBDIR += kde-icons-gartoon-blue-svg
@@ -110,7 +109,6 @@
     SUBDIR += kde-icons-noia
     SUBDIR += kde-icons-nuovext2
     SUBDIR += kde-icons-nuvola
-    SUBDIR += kde-base-artwork-kde4
     SUBDIR += kde-wallpapers-kde4
     SUBDIR += kde4-style-bespin
     SUBDIR += kde4-style-nitrogen
@@ -124,9 +122,11 @@
     SUBDIR += kf5-kemoticons
     SUBDIR += kf5-kiconthemes
     SUBDIR += kf5-oxygen-icons5
+    SUBDIR += kf5-qqc2-desktop-style
     SUBDIR += lumina-themes
     SUBDIR += lxappearance
     SUBDIR += lxde-icon-theme
+    SUBDIR += lxqt-themes
     SUBDIR += mate-backgrounds
     SUBDIR += mate-icon-theme
     SUBDIR += mate-icon-theme-faenza

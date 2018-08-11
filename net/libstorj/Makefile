@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	libstorj
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net
 
-MAINTAINER=	jhixson@gmail.com
+MAINTAINER=	jhixson@FreeBSD.org
 COMMENT=	C library and CLI for encrypted file transfer on the Storj network
 
 LICENSE=	LGPL21+
@@ -23,10 +23,10 @@ LIB_DEPENDS=	libjson-c.so:devel/json-c \
 		libnettle.so:security/nettle \
 		libmicrohttpd.so:www/libmicrohttpd
 
+USES=		autoreconf gmake libtool localbase pkgconfig
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	Storj
-
-USES=		autoreconf gmake libtool localbase pkgconfig
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

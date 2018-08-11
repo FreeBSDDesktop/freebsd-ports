@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	openmpi
-PORTVERSION=	3.0.1
+PORTVERSION=	3.1.1
+PORTREVISION=	1
 CATEGORIES=	net parallel
 MASTER_SITES=	http://www.open-mpi.org/software/ompi/v${PORTVERSION:R}/downloads/
 PKGNAMESUFFIX=	3
@@ -12,6 +13,7 @@ COMMENT=	High Performance Message Passing Library
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_aarch64=		fails to package: pkg-static: mca_patcher_overwrite.la: No such file or directory
 BROKEN_armv6=		fails to package: pkg-static: mca_patcher_overwrite.la: No such file or directory
 BROKEN_armv7=		fails to package: pkg-static: mca_patcher_overwrite.la: No such file or directory
 BROKEN_sparc64=		fails to compile on sparc64
@@ -25,7 +27,7 @@ HAS_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 # :keepla because port uses lt_dlopen
 USES=		fortran gmake libtool:keepla localbase perl5 \
-		pkgconfig tar:bzip2
+		pkgconfig shebangfix tar:bzip2
 USE_PERL5=	build
 
 MPIBASE?=	mpi
@@ -52,6 +54,9 @@ USE_LDCONFIG=	${PREFIX}/${MPIDIR}/lib \
 		${PREFIX}/${MPIDIR}/lib/openmpi
 
 MANPREFIX=	${PREFIX}/${MPIDIR}
+
+SHEBANG_FILES=	ompi/mca/common/monitoring/profile2mat.pl \
+		ompi/mca/common/monitoring/aggregate_profile.pl
 
 OPTIONS_DEFINE=	DEBUG IPV6 SLURM TORQUE
 TORQUE_DESC=	Enable Torque support

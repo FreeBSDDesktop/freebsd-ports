@@ -4,6 +4,7 @@
 PORTNAME=	gcc6-aux
 PORTVERSION=	${SNAPSHOT}
 PORTREVISION=	${MAIN_PR}
+PORTEPOCH=	1
 CATEGORIES=	lang
 MASTER_SITES=	http://downloads.dragonlace.net/src/:boot \
 		LOCAL/marino:boot GCC/${MS_SUBDIR}
@@ -16,6 +17,7 @@ LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
 
 BROKEN_FreeBSD_12_aarch64=	fails to configure: cannot compute sizeof (long long)
+BROKEN_aarch64=			fails to configure: ./config.h:556:15: two or more data types in declaration specifiers
 
 .include "${.CURDIR}/Makefile.common"
 
@@ -56,6 +58,8 @@ MODERN_BINUTILS=	yes
 .  if ${ARCH} == aarch64
 BOOTSTRAP_COMPILER=	ada-bootstrap.aarch64.freebsd.120.tar.bz2
 .  elif ${ARCH} == amd64 && ${OSVERSION} > 1200030 #ino64
+BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.freebsd.120.tar.bz2
+.  elif ${ARCH} == i386  && ${OSVERSION} > 1200030 #ino64
 BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.freebsd.120.tar.bz2
 .  else
 BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.freebsd.100B.tar.bz2
@@ -116,10 +120,12 @@ DISTFILES+=	${BOOTSTRAP_COMPILER}:boot
 # for port maintenance, invoke "make makesum PLUS_BOOTSTRAPS=1"
 .if defined(PLUS_BOOTSTRAPS)
 DISTFILES=	\
-   ${IDENTIFICATION}.tar.bz2 \
+   ${IDENTIFICATION}.tar.xz \
    ada-bootstrap.i386.freebsd.100B.tar.bz2:boot \
+   ada-bootstrap.i386.freebsd.120.tar.bz2:boot \
    ada-bootstrap.x86_64.dragonfly.41.tar.bz2:boot \
    ada-bootstrap.x86_64.freebsd.100B.tar.bz2:boot \
+   ada-bootstrap.x86_64.freebsd.120.tar.bz2:boot \
    ada-bootstrap.aarch64.freebsd.120.tar.bz2:boot
 .endif
 
@@ -217,6 +223,8 @@ post-extract:
 		${WRKSRC}/gcc/config/i386/freebsd64.h \
 		${WRKSRC}/gcc/config/i386/freebsd.h \
 		${WRKSRC}/gcc/config/aarch64/aarch64-freebsd.h
+	@${REINPLACE_CMD} -e 's|static:crtbeginT.o%s;||' \
+		${WRKSRC}/gcc/config/freebsd-spec.h
 .if defined(MODERN_BINUTILS)
 	# Use dwarf4-compatible addr2line (affects FreeBSD only)
 	${REINPLACE_CMD} -e 's|/usr/bin/addr2line|${PREFIX}/bin/addr2line|g' \

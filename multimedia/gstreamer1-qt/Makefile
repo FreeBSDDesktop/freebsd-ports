@@ -2,7 +2,7 @@
 
 PORTNAME=	gstreamer1
 PORTVERSION=	1.2.0
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/qt-gstreamer/
 PKGNAMESUFFIX=	-${FLAVOR}
@@ -30,11 +30,13 @@ CMAKE_OFF=	USE_GST_PLUGIN_DIR USE_QT_PLUGIN_DIR
 CMAKE_ARGS=	-DQT_VERSION=${FLAVOR:C/qt//}
 
 .  if ${FLAVOR} == qt4
-USE_QT4=	corelib gui opengl declarative script \
+USES+=		qt:4
+USE_QT=		corelib gui opengl declarative script \
 		qmake_build moc_build rcc_build uic_build qtestlib_build
 PLIST_SUB=	QT4_ONLY="" QT5_ONLY="@comment "
 .  else
-USE_QT5=	buildtools_build qmake_build core gui network opengl \
+USES+=		qt:5
+USE_QT=		buildtools_build qmake_build core gui network opengl \
 		qml quick testlib widgets
 QTVER_SUFFIX=	5
 PLIST_SUB=	QT4_ONLY="@comment " QT5_ONLY=""

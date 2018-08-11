@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	libvirt
-PORTVERSION=	4.3.0
+PORTVERSION=	4.5.0
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://libvirt.org/sources/ \
 		ftp://libvirt.org/libvirt/
@@ -64,7 +65,7 @@ SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 
 XEN_CONFIGURE_WITH=	libxl
 XEN_CFLAGS=	-I${LOCALBASE}/include
-XEN_LIB_DEPENDS=	libxenlight.so:sysutils/xen-tools
+XEN_LIB_DEPENDS=	libxenlight.so:sysutils/xen-tools47
 
 LIBSSH_CONFIGURE_WITH=	libssh
 LIBSSH_LIB_DEPENDS=	libssh.so:security/libssh
@@ -97,7 +98,7 @@ PORTSCOUT=	limit:\d+\.\d+\.\d+$$
 
 LDFLAGS+=	-L${LOCALBASE}/lib -fstack-protector
 
-USES=		charsetfix cpe gettext-runtime gmake libtool pathfix \
+USES=		charsetfix compiler:c++0x cpe gettext-runtime gmake libtool pathfix \
 		perl5 python:build pkgconfig shebangfix tar:xz
 USE_RC_SUBR=	libvirtd virtlogd
 CPE_VENDOR=	redhat
@@ -105,7 +106,7 @@ USE_PERL5=	build
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
-SHLIB_VER=	0.4003.0
+SHLIB_VER=	0.4005.0
 PLIST_SUB+=	PORTVERSION="-${PORTVERSION}" \
 		SHLIB_VER=${SHLIB_VER}
 PORTDOCS=	*

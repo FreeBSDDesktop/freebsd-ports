@@ -69,7 +69,7 @@ PLIST_SUB+=	NO_SVNSERVE_WRAPPER=""
 .endif
 
 .if ${PORT_OPTIONS:MTEST}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 .endif
 
 .if ${PORT_OPTIONS:MSTATIC}
@@ -140,7 +140,7 @@ pre-configure:
 .if ${PORT_OPTIONS:MSTATIC}
 	@if ${GREP} -q ucol_close ${LOCALBASE}/lib/libsqlite3.a ; then \
 		${ECHO_MSG} "" ; \
-		${ECHO_MSG} "You can not build static subversion if your SQLite3 is built with ICU enabled."; \
+		${ECHO_MSG} "You cannot build static subversion if your SQLite3 is built with ICU enabled."; \
 		${ECHO_MSG} "Please, reinstall 'devel/sqlite3' port with disabled ICU support."; \
 		${ECHO_MSG} "" ; \
 		${FALSE} ; \

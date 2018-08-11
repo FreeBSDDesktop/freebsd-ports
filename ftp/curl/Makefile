@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	curl
-PORTVERSION=	7.59.0
+PORTVERSION=	7.61.0
+PORTREVISION=	1
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.haxx.se/download/ \
 		LOCAL/sunpoet
@@ -62,7 +63,7 @@ CPE_VENDOR=	haxx
 DOCS=		BUGS CODE_OF_CONDUCT.md CODE_STYLE.md CONTRIBUTE.md FAQ \
 		FEATURES HISTORY.md HTTP-COOKIES.md HTTP2.md INSTALL \
 		INTERNALS.md KNOWN_BUGS LICENSE-MIXING.md MAIL-ETIQUETTE \
-		MANUAL RELEASE-PROCEDURE RESOURCES ROADMAP.md \
+		MANUAL RELEASE-PROCEDURE.md RESOURCES ROADMAP.md \
 		SECURITY-PROCESS.md SSL-PROBLEMS.md SSLCERTS.md THANKS TODO \
 		TheArtOfHttpScripting VERSIONS
 
@@ -74,13 +75,15 @@ CA_BUNDLE_CONFIGURE_WITH=	ca-bundle=${LOCALBASE}/share/certs/ca-root-nss.crt
 CA_BUNDLE_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 CARES_CONFIGURE_ENABLE=	ares
 CARES_LIB_DEPENDS=	libcares.so:dns/c-ares
+CARES_USES=		pkgconfig
 COOKIES_CONFIGURE_ENABLE=	cookies
 CURL_DEBUG_CONFIGURE_ENABLE=	curldebug
 DEBUG_CONFIGURE_ENABLE=	debug
 DICT_CONFIGURE_ENABLE=	dict
 FTP_CONFIGURE_ENABLE=	ftp
 GNUTLS_CONFIGURE_WITH=	gnutls
-GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls \
+			libnettle.so:security/nettle
 GOPHER_CONFIGURE_ENABLE=gopher
 GSSAPI_BASE_CONFIGURE_ON=	--with-gssapi=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
 GSSAPI_BASE_CPPFLAGS=	${GSSAPICPPFLAGS}
@@ -116,7 +119,8 @@ METALINK_CONFIGURE_WITH=libmetalink
 METALINK_LIB_DEPENDS=	libmetalink.so:misc/libmetalink
 METALINK_LIBS=		-lcrypto
 NSS_CONFIGURE_WITH=	nss
-NSS_LIB_DEPENDS=	libnss3.so:security/nss
+NSS_LIB_DEPENDS=	libnss3.so:security/nss \
+			libnspr4.so:devel/nspr
 NSS_USES=		pkgconfig
 OPENSSL_CONFIGURE_WITH=	ssl=${OPENSSLBASE}
 OPENSSL_CPPFLAGS=	-I${OPENSSLINC}
@@ -160,7 +164,7 @@ post-install:
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/ ${STAGEDIR}${DOCSDIR}/libcurl/
 	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}/
-	cd ${WRKSRC}/docs/libcurl/ && ${INSTALL_DATA} ABI *.html *.m4 ${STAGEDIR}${DOCSDIR}/libcurl/
+	cd ${WRKSRC}/docs/libcurl/ && ${INSTALL_DATA} ABI *.m4 ${STAGEDIR}${DOCSDIR}/libcurl/
 
 post-install-EXAMPLES-on:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/

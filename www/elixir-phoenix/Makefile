@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	phoenix
-PORTVERSION=	1.3.2
+PORTVERSION=	1.3.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 PKGNAMEPREFIX=	elixir-
 
-MAINTAINER=	olgeni@FreeBSD.org
+MAINTAINER=	erlang@FreeBSD.org
 COMMENT=	Web framework for Elixir
 
 LICENSE=	MIT

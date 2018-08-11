@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	octave-forge-sparsersb
-PORTVERSION=	1.0.5
-PORTREVISION=	4
+PORTVERSION=	1.0.6
+PORTREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	stephen@FreeBSD.org

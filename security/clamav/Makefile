@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	clamav
-PORTVERSION=	0.100.0
-PORTREVISION=	1
+PORTVERSION=	0.100.1
 CATEGORIES=	security
 MASTER_SITES=	http://www.clamav.net/downloads/production/
 
@@ -11,6 +10,7 @@ MAINTAINER=	ler@FreeBSD.org
 COMMENT=	Command line virus scanner written entirely in C
 
 LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libltdl.so:devel/libltdl \
 		libcurl.so:ftp/curl

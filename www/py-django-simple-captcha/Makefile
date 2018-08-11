@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	django-simple-captcha
-PORTVERSION=	0.5.6
+PORTVERSION=	0.5.7
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	jhixson@gmail.com
+MAINTAINER=	jhixson@FreeBSD.org
 COMMENT=	Simple, yet powerful, Django captcha application
 
 LICENSE=	MIT

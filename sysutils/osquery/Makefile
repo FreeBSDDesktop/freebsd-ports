@@ -2,8 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	osquery
-PORTVERSION=	3.2.4
+PORTVERSION=	3.2.6
+PORTREVISION=	3
 CATEGORIES=	sysutils
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES=	516061088514.patch:-p1
 
 MAINTAINER=	zi@FreeBSD.org
 COMMENT=	SQL powered OS instrumentation, monitoring, and analytics
@@ -11,11 +15,13 @@ COMMENT=	SQL powered OS instrumentation, monitoring, and analytics
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_aarch64=		fails to compile: the clang compiler does not support '-march=x86-64'
+
 BUILD_DEPENDS=	thrift>=0.11.0:devel/thrift \
 		bash>0:shells/bash \
 		linenoise-ng>0:devel/linenoise-ng \
 		rapidjson>0:devel/rapidjson \
-		${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2
+		${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR}
 LIB_DEPENDS=	libaugeas.so:textproc/augeas \
 		libboost_regex.so:devel/boost-libs \
 		libgflags.so:devel/gflags \

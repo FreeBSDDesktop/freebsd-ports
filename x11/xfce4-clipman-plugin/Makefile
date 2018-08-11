@@ -3,6 +3,7 @@
 
 PORTNAME=	xfce4-clipman-plugin
 PORTVERSION=	1.4.2
+PORTREVISION=	1
 CATEGORIES=	x11 xfce
 MASTER_SITES=	XFCE/src/panel-plugins/${PORTNAME}/${PORTVERSION:R}
 DIST_SUBDIR=	xfce4

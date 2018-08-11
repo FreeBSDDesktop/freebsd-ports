@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	flang-clang
-DISTVERSION=	5.0-20180112
-PORTREVISION=	0
+DISTVERSION=	5.0-20180506
+PORTREVISION=	1
 CATEGORIES=	devel lang
 
 MAINTAINER=	jmd@FreeBSD.org
@@ -13,8 +13,6 @@ LICENSE=	LLVM
 LICENSE_NAME=	LLVM Release License
 LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-
-BROKEN=		fails to package
 
 BUILD_DEPENDS=	llvm50>=0:devel/llvm50
 RUN_DEPENDS=	llvm50>=0:devel/llvm50

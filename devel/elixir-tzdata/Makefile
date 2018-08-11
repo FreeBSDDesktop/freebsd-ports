@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	tzdata
-PORTVERSION=	0.5.16
+PORTVERSION=	0.5.17
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 PKGNAMEPREFIX=	elixir-
 
-MAINTAINER=	olgeni@FreeBSD.org
+MAINTAINER=	erlang@FreeBSD.org
 COMMENT=	Time zone data for Elixir
 
 LICENSE=	MIT

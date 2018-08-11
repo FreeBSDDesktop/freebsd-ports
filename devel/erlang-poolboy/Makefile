@@ -1,12 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	poolboy
-PORTVERSION=	1.5.1
-PORTREVISION=	1
+PORTVERSION=	1.5.2
 CATEGORIES=	devel
 PKGNAMEPREFIX=	erlang-
 
-MAINTAINER=	olgeni@FreeBSD.org
+MAINTAINER=	erlang@FreeBSD.org
 COMMENT=	Pooling library for Erlang
 
 LICENSE=	ISCL

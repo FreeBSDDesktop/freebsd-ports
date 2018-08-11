@@ -3,7 +3,7 @@
 
 PORTNAME?=	xorg-server
 PORTVERSION?=	1.18.4
-PORTREVISION?=	6
+PORTREVISION?=	9
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -54,7 +54,7 @@ BUILD_DEPENDS+=	libepoxy>0:graphics/libepoxy	# only for configure
 USE_GL+=	gbm
 USE_XORG+=	pciaccess
 CONFIGURE_ARGS+=--disable-dmx --disable-xephyr --disable-xnest --disable-xvfb \
-		--disable-xwayland
+		--disable-xwayland --enable-xcsecurity
 SUB_FILES=	pkg-install pkg-deinstall
 .else
 CONFIGURE_ARGS+=--disable-xorg

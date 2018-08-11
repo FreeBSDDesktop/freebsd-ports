@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	R
-DISTVERSION=	3.5.0
+DISTVERSION=	3.5.1
+PORTREVISION=	1
 CATEGORIES=	math lang
 MASTER_SITES=	CRAN/src/base/R-${PORTVERSION:C|\..*||}
 
@@ -70,8 +71,6 @@ X11_DESC=		X11 graphics device
 
 ATLAS_USES=		blaslapack:atlas
 ATLAS_CONFIGURE_ON=	--disable-BLAS-shlib
-ATLAS_VARS=		MANUAL_PACKAGE_BUILD=\
-"Choose a BLAS option other than ATLAS for package building."
 CAIROPANGO_IMPLIES=	X11
 CAIROPANGO_CONFIGURE_WITH=	cairo
 CAIROPANGO_USES=	gettext jpeg pkgconfig

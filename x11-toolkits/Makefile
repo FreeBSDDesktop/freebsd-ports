@@ -160,6 +160,7 @@
     SUBDIR += p5-Gtk2-TrayIcon
     SUBDIR += p5-Gtk2-Unique
     SUBDIR += p5-Gtk3
+    SUBDIR += p5-Gtk3-SimpleList
     SUBDIR += p5-Pango
     SUBDIR += p5-Prima
     SUBDIR += p5-Tk
@@ -198,6 +199,7 @@
     SUBDIR += plib
     SUBDIR += pure-gtk
     SUBDIR += pure-tk
+    SUBDIR += py-AnyQt
     SUBDIR += py-Pmw
     SUBDIR += py-SquareMap
     SUBDIR += py-fltk
@@ -211,6 +213,7 @@
     SUBDIR += py-qt4-gui
     SUBDIR += py-qt5-gui
     SUBDIR += py-qt5-quick
+    SUBDIR += py-qt5-quickwidgets
     SUBDIR += py-qt5-widgets
     SUBDIR += py-sexy
     SUBDIR += py-tkinter
@@ -291,6 +294,7 @@
     SUBDIR += wxgtk28-contrib
     SUBDIR += wxgtk28-contrib-common
     SUBDIR += wxgtk30
+    SUBDIR += wxgtk31
     SUBDIR += xbae
     SUBDIR += xforms
     SUBDIR += xmhtml

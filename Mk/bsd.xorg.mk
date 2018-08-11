@@ -20,8 +20,7 @@ Xorg_Pre_Include=		bsd.xorg.mk
 # app - Installs applications, no shared libraries.
 # data - Installs only data.
 # doc - no particular notes
-# driver - input depends on inputproto/randrproto at least
-#          video depends on randrproto/renderproto at least
+# driver - depends on xorgproto at least
 # font - don't install .pc file
 # lib - various dependencies, install .pc file, needs pathfix
 # proto - install .pc file, needs pathfix, most only needed at build time.
@@ -58,10 +57,7 @@ USE_XORG+=      xorg-macros
 . endif
 
 . if ${XORG_CAT} == "driver"
-USE_XORG+=	xorg-server xproto randrproto xi renderproto xextproto \
-		inputproto kbproto fontsproto videoproto dri2proto dri3proto \
-		xf86driproto presentproto glproto xineramaproto resourceproto \
-		scrnsaverproto
+USE_XORG+=	xorg-server xorgproto xi
 CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
 USES+=		libtool
 INSTALL_TARGET=	install-strip

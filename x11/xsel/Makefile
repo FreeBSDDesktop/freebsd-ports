@@ -3,7 +3,7 @@
 
 PORTNAME=	xsel
 PORTVERSION=	0.04.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	x11
 MASTER_SITES=	http://BSDforge.com/projects/source/x11/xsel/
 

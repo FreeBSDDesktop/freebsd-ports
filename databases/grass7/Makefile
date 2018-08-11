@@ -3,7 +3,7 @@
 
 PORTNAME=	grass
 PORTVERSION=	7.4.0
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	databases geography
 MASTER_SITES=	http://grass.osgeo.org/%SUBDIR%/ \
 		http://grass.cict.fr/%SUBDIR%/ \
@@ -24,6 +24,8 @@ COMMENT=	Open source Geographical Information System (GIS)
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/GPL.TXT
+
+BROKEN=		fails to package
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.2:math/py-numpy@${PY_FLAVOR}
 LIB_DEPENDS=	libgdal.so:graphics/gdal \

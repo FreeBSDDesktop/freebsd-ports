@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	meck
-PORTVERSION=	0.8.9
+PORTVERSION=	0.8.12
 CATEGORIES=	devel
 PKGNAMEPREFIX=	erlang-
 
-MAINTAINER=	olgeni@FreeBSD.org
+MAINTAINER=	erlang@FreeBSD.org
 COMMENT=	Erlang library for building mock modules
 
 LICENSE=	APACHE20

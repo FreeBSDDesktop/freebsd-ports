@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	cooledit
-DISTVERSION=	3.17.26
+DISTVERSION=	3.17.28
+PORTREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	SUNSITE/apps/editors/X/cooledit
 

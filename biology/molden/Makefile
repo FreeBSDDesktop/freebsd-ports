@@ -3,10 +3,10 @@
 
 PORTNAME=	molden
 PORTVERSION=	5.7
-PORTREVISION=	14
+PORTREVISION=	16
 PORTEPOCH=	1
 CATEGORIES=	biology
-MASTER_SITES=	ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/
+MASTER_SITES=	ftp://ftp.cmbi.umcn.nl/pub/molgraph/molden/
 DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	jmd@FreeBSD.org
@@ -16,8 +16,6 @@ LICENSE=	Molden
 LICENSE_NAME=	Molden
 LICENSE_FILE=	${WRKSRC}/CopyRight
 LICENSE_PERMS=	auto-accept
-
-BROKEN=		checksum and size mismatch
 
 RESTRICTED=	free for academic, non profit usage; do not re-distribute source and executable.
 

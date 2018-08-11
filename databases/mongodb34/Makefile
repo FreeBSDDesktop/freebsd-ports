@@ -3,7 +3,7 @@
 PORTNAME=	mongodb
 DISTVERSIONPREFIX=	r
 DISTVERSION=	3.4.9
-PORTREVISION=	4
+PORTREVISION=	7
 CATEGORIES=	databases net
 MASTER_SITES=	https://fastdl.mongodb.org/src/ \
 		http://fastdl.mongodb.org/src/ \
@@ -20,20 +20,22 @@ LICENSE_COMB=	multi
 
 BROKEN_SSL=	openssl-devel
 BROKEN_SSL_REASON_openssl-devel=	no member named 'SSLv2_method' in the global namespace
-ONLY_FOR_ARCHS=	amd64
-ONLY_FOR_ARCHS_REASON=	"Only supported on amd64 (i386 deprecated in v3)"
+ONLY_FOR_ARCHS=	amd64 aarch64
+ONLY_FOR_ARCHS_REASON=	"Only supported on amd64 and aarch64 (i386 deprecated in v3)"
 
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libsnappy.so:archivers/snappy \
 		libboost_system.so:devel/boost-libs
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}yaml>=3.11:devel/py-yaml \
-		${PYTHON_PKGNAMEPREFIX}pymongo>=3.0:databases/pymongo
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}yaml>=3.11:devel/py-yaml@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pymongo>=3.0:databases/pymongo@${PY_FLAVOR}
 
 CONFLICTS_BUILD=	mongo-cxx-driver
 
 CHOSEN_COMPILER_TYPE=	clang
 
-USES=		compiler:c++14-lang cpe python:build scons
+USES=		compiler:c++14-lang cpe dos2unix python:build scons
+DOS2UNIX_FILES=	src/third_party/IntelRDFPMathLib20U1/LIBRARY/src/bid_functions.h
+
 USE_RC_SUBR=	mongod
 
 MAKE_ARGS=	--prefix=${STAGEDIR}${PREFIX} \
@@ -43,8 +45,6 @@ MAKE_ARGS=	--prefix=${STAGEDIR}${PREFIX} \
 		--runtime-hardening=on \
 		--disable-warnings-as-errors \
 		VERBOSE=on
-
-WITH_DEBUG=	yes
 
 USERS=		mongodb
 GROUPS=		mongodb

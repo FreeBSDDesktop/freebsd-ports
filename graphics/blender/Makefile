@@ -3,7 +3,7 @@
 
 PORTNAME=	blender
 PORTVERSION=	2.79b
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	graphics games
 MASTER_SITES=	http://download.blender.org/source/ \
 		http://mirror.cs.umn.edu/blender.org/source/ \
@@ -34,7 +34,7 @@ INSTALLS_ICONS=	yes
 # always enable c++11, this needs to be enabled for several options
 CMAKE_ON=	WITH_CXX11
 CMAKE_OFF=	WITH_PYTHON_INSTALL WITH_PYTHON_INSTALL_NUMPY \
-		WITH_INSTALL_PORTABLE
+		WITH_INSTALL_PORTABLE WITH_CYCLES_LOGGING
 
 SHEBANG_FILES=	release/bin/blender-thumbnailer.py \
 		release/scripts/modules/bl_i18n_utils/merge_po.py \

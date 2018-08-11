@@ -3,7 +3,7 @@
 
 PORTNAME=	ktorrent
 DISTVERSION=	4.3.1
-PORTREVISION=	15
+PORTREVISION=	16
 CATEGORIES=	net-p2p kde
 MASTER_SITES=	http://ktorrent.org/downloads/${DISTVERSION}/
 PKGNAMESUFFIX=	-kde4
@@ -16,9 +16,9 @@ LIB_DEPENDS=	libtag.so:audio/taglib \
 		libgmp.so:math/gmp \
 		libktorrent.so:net-p2p/libktorrent-kde4
 
-USES=		cmake:outsource gettext kde:4 tar:bzip2
+USES=		cmake:outsource gettext kde:4 qt:4 tar:bzip2
 USE_KDE=	kdelibs automoc4 pimlibs workspace
-USE_QT4=	corelib gui network qt3support qtestlib webkit \
+USE_QT=		corelib gui network qt3support qtestlib webkit \
 		qmake_build moc_build rcc_build uic_build
 USE_LDCONFIG=	yes
 

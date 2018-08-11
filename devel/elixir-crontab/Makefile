@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	crontab
-PORTVERSION=	1.1.2
+PORTVERSION=	1.1.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 PKGNAMEPREFIX=	elixir-
 
-MAINTAINER=	olgeni@FreeBSD.org
+MAINTAINER=	erlang@FreeBSD.org
 COMMENT=	Crontab format parser in Elixir
 
 LICENSE=	MIT
