@@ -10,7 +10,6 @@
     SUBDIR += amanda-client
     SUBDIR += amanda-perl-wrapper
     SUBDIR += amanda-server
-    SUBDIR += amfm
     SUBDIR += ansiweather
     SUBDIR += apparix
     SUBDIR += artikulate
@@ -540,6 +539,7 @@
     SUBDIR += usbids
     SUBDIR += usbrh-libusb
     SUBDIR += utftools
+    SUBDIR += valentina
     SUBDIR += valspeak
     SUBDIR += vdmfec
     SUBDIR += vera
@@ -567,7 +567,6 @@
     SUBDIR += xiphos
     SUBDIR += xless
     SUBDIR += xosd
-    SUBDIR += xpns
     SUBDIR += xtail
     SUBDIR += xtar
     SUBDIR += xtypo

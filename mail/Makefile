@@ -540,6 +540,7 @@
     SUBDIR += py-flufl.bounce
     SUBDIR += py-fuglu
     SUBDIR += py-libgmail
+    SUBDIR += py-managesieve3
     SUBDIR += py-milter
     SUBDIR += py-notmuch
     SUBDIR += py-ppolicy
@@ -598,7 +599,6 @@
     SUBDIR += roundcube-automatic_addressbook
     SUBDIR += roundcube-carddav
     SUBDIR += roundcube-contextmenu
-    SUBDIR += roundcube-groupvice
     SUBDIR += roundcube-html5_notifier
     SUBDIR += roundcube-identity_smtp
     SUBDIR += roundcube-login_info

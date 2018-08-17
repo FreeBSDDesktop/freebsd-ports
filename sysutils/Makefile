@@ -49,7 +49,6 @@
     SUBDIR += aptly
     SUBDIR += arcconf
     SUBDIR += archivemount
-    SUBDIR += areca-cli
     SUBDIR += ascpu
     SUBDIR += asfsm
     SUBDIR += asmctl
@@ -688,6 +687,7 @@
     SUBDIR += metalog
     SUBDIR += mfid
     SUBDIR += mgeupsd
+    SUBDIR += minikube
     SUBDIR += minimunin
     SUBDIR += minirsyslogd
     SUBDIR += mixer
@@ -958,6 +958,7 @@
     SUBDIR += pxattr
     SUBDIR += py-XenAPI
     SUBDIR += py-analyzemft
+    SUBDIR += py-ansible-lint
     SUBDIR += py-bcfg2
     SUBDIR += py-cdmi
     SUBDIR += py-consul
@@ -1253,6 +1254,7 @@
     SUBDIR += syslog-ng313
     SUBDIR += syslog-ng314
     SUBDIR += syslog-ng315
+    SUBDIR += syslog-ng317
     SUBDIR += syslog-ng36
     SUBDIR += syslog-ng37
     SUBDIR += syslog-ng39
@@ -1336,6 +1338,7 @@
     SUBDIR += u-boot-rpi
     SUBDIR += u-boot-rpi2
     SUBDIR += u-boot-rpi3
+    SUBDIR += u-boot-rpi-0-w
     SUBDIR += u-boot-sinovoip-bpi-m3
     SUBDIR += u-boot-sopine
     SUBDIR += u-boot-tools
