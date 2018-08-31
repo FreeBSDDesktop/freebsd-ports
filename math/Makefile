@@ -74,6 +74,7 @@
     SUBDIR += R-cran-nnls
     SUBDIR += R-cran-nortest
     SUBDIR += R-cran-numDeriv
+    SUBDIR += R-cran-numbers
     SUBDIR += R-cran-outliers
     SUBDIR += R-cran-pbkrtest
     SUBDIR += R-cran-pls
@@ -180,6 +181,7 @@
     SUBDIR += eigen2
     SUBDIR += eigen3
     SUBDIR += eispack
+    SUBDIR += elpa
     SUBDIR += emc2
     SUBDIR += ent
     SUBDIR += entropy
