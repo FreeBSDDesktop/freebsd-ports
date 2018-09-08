@@ -122,7 +122,6 @@
     SUBDIR += opendd
     SUBDIR += opendnssec
     SUBDIR += opendnssec2
-    SUBDIR += openmdns
     SUBDIR += openresolv
     SUBDIR += p5-AnyEvent-CacheDNS
     SUBDIR += p5-AnyEvent-DNS-EtcHosts
@@ -196,6 +195,7 @@
     SUBDIR += py-ldns
     SUBDIR += py-namebench
     SUBDIR += py-publicsuffix
+    SUBDIR += py-publicsuffixlist
     SUBDIR += py-py3dns
     SUBDIR += py-pycares
     SUBDIR += py-pydnstable

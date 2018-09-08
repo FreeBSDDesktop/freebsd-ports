@@ -300,6 +300,7 @@
     SUBDIR += ec2-scripts
     SUBDIR += edid-decode
     SUBDIR += eject
+    SUBDIR += eksctl
     SUBDIR += endian
     SUBDIR += enteruser
     SUBDIR += entr
@@ -480,6 +481,7 @@
     SUBDIR += healthd
     SUBDIR += heartbeat
     SUBDIR += heirloom
+    SUBDIR += helm
     SUBDIR += hextools
     SUBDIR += hfm
     SUBDIR += hfsexplorer
@@ -531,6 +533,7 @@
     SUBDIR += isomaster
     SUBDIR += isomd5sum
     SUBDIR += istatserver
+    SUBDIR += istio
     SUBDIR += jadm
     SUBDIR += jail-primer
     SUBDIR += jailadmin
@@ -639,6 +642,7 @@
     SUBDIR += lttng-ust
     SUBDIR += luckybackup
     SUBDIR += lxinput
+    SUBDIR += lxqt-config
     SUBDIR += lxqt-policykit
     SUBDIR += lxqt-qtplugin
     SUBDIR += lxsplit
@@ -1089,7 +1093,6 @@
     SUBDIR += rubygem-fluent-plugin-graylog
     SUBDIR += rubygem-fluent-plugin-tail-asis
     SUBDIR += rubygem-fluentd
-    SUBDIR += rubygem-fluentd010
     SUBDIR += rubygem-fssm
     SUBDIR += rubygem-god
     SUBDIR += rubygem-guard
