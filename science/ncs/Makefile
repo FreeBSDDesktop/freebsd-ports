@@ -3,7 +3,7 @@
 
 PORTNAME=	ncs
 PORTVERSION=	2.0.8
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	science parallel
 MASTER_SITES=	http://code-saturne.org/releases/
 
@@ -11,6 +11,8 @@ MAINTAINER=	thierry@FreeBSD.org
 COMMENT=	Code_Saturne Kernel
 
 LICENSE=	GPLv2
+
+BROKEN=		conflicting dependencies
 
 BUILD_DEPENDS=	cs_preprocess:science/ecs
 LIB_DEPENDS=	libbft.so:science/bft \

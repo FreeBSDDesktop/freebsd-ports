@@ -6,8 +6,12 @@ PORTVERSION=	${GHC_VERSION}
 PORTREVISION=	1
 CATEGORIES=	lang haskell
 MASTER_SITES=	http://www.haskell.org/ghc/dist/${PORTVERSION}/:source \
-		LOCAL/arrowd/:boot
-DISTFILES=	ghc-${PORTVERSION}-src${EXTRACT_SUFX}:source
+		LOCAL/arrowd/:boot \
+		${HACKAGE_SITE}hscolour-${HSCOLOUR_VERSION}/:docs
+
+EXTRACT_ONLY=	${_DISTFILES:C/hscolour.*$//g}
+DISTFILES=	ghc-${PORTVERSION}-src${EXTRACT_SUFX}:source \
+		hscolour-${HSCOLOUR_VERSION}.tar.gz:docs
 
 MAINTAINER=	haskell@FreeBSD.org
 COMMENT=	Compiler for the functional language Haskell
@@ -15,7 +19,7 @@ COMMENT=	Compiler for the functional language Haskell
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	i386 amd64
+ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386
 
 GHC_VERSION=		8.4.3
 HSCOLOUR_VERSION=	1.24.4
@@ -38,6 +42,8 @@ NO_CCACHE=	ccache: error: Failed to create directory /nonexistent/.ccache/tmp: P
 # This is better fixed in files/build.mk.in
 GNU_CONFIGURE=	yes
 
+# disable xelatex: PR 231438
+CONFIGURE_ENV+=		ac_cv_path_XELATEX=
 CONFIGURE_ARGS=		--with-gmp-includes=${LOCALBASE}/include \
 			--with-gmp-libraries=${LOCALBASE}/lib \
 			--with-iconv-includes=${LOCALBASE}/include \
@@ -51,14 +57,17 @@ SUB_LIST=		GHC_VERSION=${GHC_VERSION} \
 
 OPTIONS_GROUP=		BOOTSTRAP
 BOOTSTRAP_DESC=		Bootsrap using installed ghc
-OPTIONS_GROUP_BOOTSTRAP=BOOT BOOTH
+OPTIONS_GROUP_BOOTSTRAP=BOOT
 OPTIONS_DEFINE=		DYNAMIC PROFILE DOCS
 OPTIONS_SUB=		yes
 
 OPTIONS_DEFAULT=	PROFILE DYNAMIC
+# ghci segfaults on arm when dynamic linking is used
+OPTIONS_EXCLUDE_armv6=	DYNAMIC
+OPTIONS_EXCLUDE_armv7=	DYNAMIC
+OPTIONS_EXCLUDE_aarch64=	DYNAMIC
 
 BOOT_DESC=		Use installed GHC for bootstrapping
-BOOTH_DESC=		Use installed HsColour for bootstrapping
 PROFILE_DESC=		Add support for performance profiling
 DYNAMIC_DESC=		Add support for dynamic linking
 DOCS_DESC=		Install HTML documentation
@@ -92,6 +101,26 @@ LOCALBASE?=	/usr/local
 BOOT_GHC_VERSION=	8.4.2
 DISTFILES+=		ghc-${BOOT_GHC_VERSION}-boot-${ARCH}-freebsd${EXTRACT_SUFX}:boot
 .endif # MBOOT
+
+.if ${ARCH} == aarch64 || ${ARCH} == armv6 || ${ARCH} == armv7
+# CONFIGURE_TARGET must to be the same as the llvm triple
+CONFIGURE_TARGET=	${ARCH}-unknown-freebsd${"${ARCH:Maarch64}" != "":?:-gnueabihf}
+EXTRA_PATCHES+=		${PATCHDIR}/extra-patch-aclocal.m4
+BUILD_DEPENDS+=		ld.gold:devel/binutils \
+			llc50:devel/llvm50
+RUN_DEPENDS+=		ld.gold:devel/binutils \
+			llc50:devel/llvm50
+USE_GCC=		yes
+CONFIGURE_ENV+=		OPT=opt50 LLC=llc50
+
+.  if ${OSVERSION} < 1200064
+IGNORE=	lang/ghc on ARM requires at least __FreeBSD_version 1200064
+.  endif
+
+.  ifdef QEMU_EMULATING
+IGNORE=	qemu-user-static isn't able to build lang/ghc, but it builds fine on a real hardware
+.  endif
+.endif
 
 # Turn off for a while, see PR 228727
 CONFIGURE_ARGS+=	--enable-dtrace=0
@@ -135,31 +164,16 @@ TMPDIR=		${WRKSRC}/tmp
 # the build tree, without needing to install it. At the end
 # you could view the output of: ${BOOT_GHC} describe hscolour
 
-.if ${PORT_OPTIONS:MDOCS}
-
-.  if empty(PORT_OPTIONS:MBOOTH)
-
-MASTER_SITES+=	${HACKAGE_SITE}hscolour-${HSCOLOUR_VERSION}/:docs
-DISTFILES+=	hscolour-${HSCOLOUR_VERSION}.tar.gz:docs
-
-EXTRACT_ONLY=	${_DISTFILES:C/hscolour.*$//g}
-
-.  endif # MBOOTH
-
-.  if empty(PORT_OPTIONS:MBOOTH)
-
 SLAVES_PREFIX=		${WRKDIR}/slaves_prefix
 SLAVES_WRKDIRPREFIX=	${WRKDIR}/slaves_wrkdirprefix
 
 MAKE_ENV+=	PATH=${SLAVES_PREFIX}/bin:${PATH}
 CONFIGURE_ENV+=	PATH=${SLAVES_PREFIX}/bin:${PATH}
 
-.  endif # MBOOTH
-
-.endif # MDOCS
-
 post-extract:
-.if empty(PORT_OPTIONS:MBOOT) && ${OPSYS} == FreeBSD && ${OSVERSION} >= 1200031
+# don't use the "wrap" trick on arches that use post-ino64 bootstrap binaries (arm*)
+.if empty(PORT_OPTIONS:MBOOT) && ${OPSYS} == FreeBSD && ${OSVERSION} >= 1200031 && \
+    ${ARCH} != aarch64 && ${ARCH} != armv6 && ${ARCH} != armv7
 	@${REINPLACE_CMD} -e 's|@SettingsCCompilerLinkFlags@|& -Wl,--wrap=readdir_r,--wrap=stat,--wrap=lstat,--wrap=fstat,--wrap=mknod|' ${BOOT_DIR}/settings.in
 .endif
 
@@ -192,6 +206,12 @@ post-patch:
 		s|%%AR%%|${AR}|; \
 		s|%%LD%%|${LD}|' \
 		${WRKSRC}/libraries/Cabal/Cabal/Distribution/Simple/Program/Builtin.hs
+# we must use binutils:ld on arm
+.if ${ARCH} == aarch64 || ${ARCH} == armv6 || ${ARCH} == armv7
+	@${REINPLACE_CMD} -e 's|LD_NO_GOLD=ld|LD_NO_GOLD=${LOCALBASE}/bin/ld|' \
+		${WRKSRC}/aclocal.m4
+.endif
+
 .if empty(PORT_OPTIONS:MBOOT)
 	@${REINPLACE_CMD} -e '/^mandir/d' ${BOOT_DIR}/mk/build.mk
 	@${REINPLACE_CMD} -e '/^infodir/d' ${BOOT_DIR}/mk/build.mk
@@ -205,7 +225,8 @@ pre-configure: apply-slist
 
 	@${MKDIR} ${TMPDIR}
 .if empty(PORT_OPTIONS:MBOOT) && ${OPSYS} == FreeBSD && \
-    ${OSVERSION} >= 1200031
+    ${OSVERSION} >= 1200031 && \
+    ${ARCH} != aarch64 && ${ARCH} != armv6 && ${ARCH} != armv7
 	${CC} ${CFLAGS} -c -o ${BOOT_DIR}/wrap.o ${PATCHDIR}/wrap.c
 	for x in ${BOOT_DIR}/rts/dist/build/libCffi*.a; do \
 	    ${AR} q $$x ${BOOT_DIR}/wrap.o; ${RANLIB} $$x; \
@@ -217,7 +238,7 @@ pre-configure: apply-slist
 	@(cd ${BOOT_DIR} && PACKAGES='' ${MAKE_CMD} install)
 .endif
 
-.if ${PORT_OPTIONS:MDOCS} && empty(PORT_OPTIONS:MBOOTH)
+.if ${PORT_OPTIONS:MDOCS}
 	@${ECHO_MSG} -e "\a"
 	@${ECHO_MSG} "======================================================================"
 	@${ECHO_MSG} "  WARNING: Now HsColour will be built, the respective port will not   "

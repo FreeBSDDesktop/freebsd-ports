@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	polybar
-DISTVERSION=	3.2.0
+DISTVERSION=	3.2.1
 CATEGORIES=	x11
 
 MAINTAINER=	lebarondemerde@privacychain.ch
@@ -25,8 +25,8 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libxcb-util.so:x11/xcb-util \
 		libxcb-xrm.so:x11/xcb-util-xrm
 
-USES=		cmake:outsource localbase:ldflags pkgconfig \
-		python:2.7,build
+USES=		cmake:outsource compiler:c++11-lang localbase:ldflags \
+		pkgconfig python:2.7,build
 USE_GITHUB=	yes
 GH_ACCOUNT=	jaagr
 GH_TUPLE=	jaagr:i3ipcpp:v0.7.1-4-gd4e4786:i3ipcpp/lib/i3ipcpp \

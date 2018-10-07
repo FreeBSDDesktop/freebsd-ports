@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tbb
-PORTVERSION=	2018.2
+PORTVERSION=	2019
 CATEGORIES=	devel
 
 MAINTAINER=	martymac@FreeBSD.org
@@ -10,7 +10,7 @@ COMMENT=	Library that provides thread building blocks
 
 LICENSE=	APACHE20
 
-ONLY_FOR_ARCHS=		amd64 armv6 armv7 i386
+ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386
 ONLY_FOR_ARCHS_REASON=	has not been ported to this platform
 
 USES=	compiler gmake tar:tgz
@@ -24,9 +24,6 @@ SUB_LIST=	prefix="${PREFIX}" \
 		name="${PORTNAME}" \
 		description="${COMMENT}" \
 		version="${PORTVERSION}"
-
-OPTIONS_DEFINE=	DOCS
-PORTDOCS=	*
 
 USE_LDCONFIG=	yes
 ALL_TARGET=	default
@@ -58,9 +55,9 @@ do-install:
 	${LN} -sf libtbbmalloc.so.2 \
 		${STAGEDIR}${PREFIX}/lib/libtbbmalloc.so; \
 	${MKDIR} ${STAGEDIR}${PREFIX}/include/tbb/; \
-	cd include/tbb/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/tbb/
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/doc/html && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
+	cd include/tbb/ && \
+		${COPYTREE_SHARE} \
+			. ${STAGEDIR}${PREFIX}/include/tbb/ "! -name *\.html"
 
 post-install:
 	${INSTALL_DATA} ${WRKDIR}/tbb.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig

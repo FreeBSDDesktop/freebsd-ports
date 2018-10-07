@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mod_md
-PORTVERSION=	1.1.15
+PORTVERSION=	1.1.16
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
@@ -38,6 +38,8 @@ CONFIGURE_ARGS=	--with-openssl=${OPENSSLBASE} \
 SUB_FILES=	999_mod_md.conf pkg-message
 DOCSDIR=	share/doc/mod_md
 PORTDOCS=	README README.md
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>
 

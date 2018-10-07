@@ -12,6 +12,9 @@ LICENSE=	BSD2CLAUSE
 
 ONLY_FOR_ARCHS=	amd64 i386
 ONLY_FOR_ARCHS_REASON=	not yet ported to FreeBSD on other architectures
+BROKEN=		fails with current compilers	# PR 230125
+DEPRECATED=	"${BROKEN}"
+EXPIRATION_DATE=2018-11-05
 
 USES=		gmake
 USE_GCC=	any

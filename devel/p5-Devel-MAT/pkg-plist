@@ -16,7 +16,6 @@ bin/pmat-list-orphans
 %%SITE_ARCH%%/Devel/MAT/Tool/Callstack.pm
 %%SITE_ARCH%%/Devel/MAT/Tool/Count.pm
 %%SITE_ARCH%%/Devel/MAT/Tool/Find.pm
-%%SITE_ARCH%%/Devel/MAT/Tool/IO.pm
 %%SITE_ARCH%%/Devel/MAT/Tool/Identify.pm
 %%SITE_ARCH%%/Devel/MAT/Tool/Inrefs.pm
 %%SITE_ARCH%%/Devel/MAT/Tool/Outrefs.pm
@@ -24,6 +23,7 @@ bin/pmat-list-orphans
 %%SITE_ARCH%%/Devel/MAT/Tool/Roots.pm
 %%SITE_ARCH%%/Devel/MAT/Tool/Show.pm
 %%SITE_ARCH%%/Devel/MAT/Tool/Sizes.pm
+%%SITE_ARCH%%/Devel/MAT/Tool/Summary.pm
 %%SITE_ARCH%%/Devel/MAT/Tool/Symbols.pm
 %%SITE_ARCH%%/Devel/MAT/UI.pod
 %%SITE_ARCH%%/Devel/MAT/UserGuide.pod
@@ -72,7 +72,6 @@ bin/pmat-list-orphans
 %%PERL5_MAN3%%/Devel::MAT::Tool::Callstack.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Tool::Count.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Tool::Find.3.gz
-%%PERL5_MAN3%%/Devel::MAT::Tool::IO.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Tool::Identify.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Tool::Inrefs.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Tool::Outrefs.3.gz
@@ -80,6 +79,7 @@ bin/pmat-list-orphans
 %%PERL5_MAN3%%/Devel::MAT::Tool::Roots.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Tool::Show.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Tool::Sizes.3.gz
+%%PERL5_MAN3%%/Devel::MAT::Tool::Summary.3.gz
 %%PERL5_MAN3%%/Devel::MAT::Tool::Symbols.3.gz
 %%PERL5_MAN3%%/Devel::MAT::UI.3.gz
 %%PERL5_MAN3%%/Devel::MAT::UserGuide.3.gz

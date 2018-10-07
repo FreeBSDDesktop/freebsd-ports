@@ -39,7 +39,6 @@
     SUBDIR += doulos
     SUBDIR += doulos-compact
     SUBDIR += droid-fonts-ttf
-    SUBDIR += ecofont
     SUBDIR += emojione-color-font-ttf
     SUBDIR += encodings
     SUBDIR += exo
@@ -169,6 +168,7 @@
     SUBDIR += profont
     SUBDIR += proggy_fonts
     SUBDIR += proggy_fonts-ttf
+    SUBDIR += psftools
     SUBDIR += py-QtAwesome
     SUBDIR += py-bdflib
     SUBDIR += roboto-fonts-ttf
@@ -178,6 +178,7 @@
     SUBDIR += sourcecodepro-ttf
     SUBDIR += sourcesanspro-ttf
     SUBDIR += sourceserifpro-ttf
+    SUBDIR += spleen
     SUBDIR += stix-fonts
     SUBDIR += suxus
     SUBDIR += symbola

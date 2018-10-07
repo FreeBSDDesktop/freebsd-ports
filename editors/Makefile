@@ -51,6 +51,7 @@
     SUBDIR += ghex
     SUBDIR += ghostwriter
     SUBDIR += gmanedit
+    SUBDIR += gnome-latex
     SUBDIR += gnotepad+
     SUBDIR += gobby
     SUBDIR += gomate
@@ -66,7 +67,6 @@
     SUBDIR += jed
     SUBDIR += jedit
     SUBDIR += joe
-    SUBDIR += joe2
     SUBDIR += jove
     SUBDIR += jucipp
     SUBDIR += jupp
@@ -78,7 +78,6 @@
     SUBDIR += kile-kde4
     SUBDIR += klat4
     SUBDIR += komodo-edit
-    SUBDIR += latexila
     SUBDIR += lazarus
     SUBDIR += lazarus-qt4
     SUBDIR += lazarus-qt5
@@ -215,6 +214,7 @@
     SUBDIR += paredit-mode.el
     SUBDIR += pdfedit
     SUBDIR += pico-alpine
+    SUBDIR += picpas
     SUBDIR += pluma
     SUBDIR += plume-creator-devel
     SUBDIR += poedit
@@ -261,7 +261,6 @@
     SUBDIR += xmlcopyeditor
     SUBDIR += xvile
     SUBDIR += yudit
-    SUBDIR += yui
     SUBDIR += yzis
     SUBDIR += zile
     SUBDIR += zoinks
