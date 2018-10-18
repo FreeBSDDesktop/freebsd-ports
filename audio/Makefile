@@ -315,6 +315,7 @@
     SUBDIR += gstreamer1-plugins-twolame
     SUBDIR += gstreamer1-plugins-vorbis
     SUBDIR += gstreamer1-plugins-wavpack
+    SUBDIR += gstreamer1-plugins-webrtcdsp
     SUBDIR += gtick
     SUBDIR += gtkguitune
     SUBDIR += gtkpod
@@ -562,8 +563,6 @@
     SUBDIR += mpg321
     SUBDIR += mpiosh
     SUBDIR += mps
-    SUBDIR += msbcg729
-    SUBDIR += msilbc
     SUBDIR += mumble
     SUBDIR += murmur
     SUBDIR += musepack
@@ -869,6 +868,7 @@
     SUBDIR += waveplay
     SUBDIR += wavpack
     SUBDIR += wavplay
+    SUBDIR += webrtc-audio-processing
     SUBDIR += whysynth
     SUBDIR += wildmidi
     SUBDIR += wmalbum

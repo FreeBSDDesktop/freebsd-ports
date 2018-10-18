@@ -291,6 +291,7 @@
     SUBDIR += mime-support
     SUBDIR += mirmon
     SUBDIR += mmv
+    SUBDIR += molequeue
     SUBDIR += morse
     SUBDIR += mtail
     SUBDIR += mtx
@@ -394,6 +395,7 @@
     SUBDIR += php70-calendar
     SUBDIR += php71-calendar
     SUBDIR += php72-calendar
+    SUBDIR += php73-calendar
     SUBDIR += phraze
     SUBDIR += pinfo
     SUBDIR += pipe
@@ -443,6 +445,7 @@
     SUBDIR += py-spdx
     SUBDIR += py-spdx-lookup
     SUBDIR += py-spdx-tools
+    SUBDIR += py-toil
     SUBDIR += py-tqdm
     SUBDIR += py-yolk
     SUBDIR += pylize

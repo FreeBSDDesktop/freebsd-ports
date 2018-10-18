@@ -58,6 +58,7 @@
     SUBDIR += be-aspell
     SUBDIR += bedic-data
     SUBDIR += beediff
+    SUBDIR += belr
     SUBDIR += bg-aspell
     SUBDIR += bg-hyphen
     SUBDIR += bg-mythes
@@ -280,6 +281,7 @@
     SUBDIR += hs-pandoc
     SUBDIR += hs-pandoc-citeproc
     SUBDIR += hs-pandoc-types
+    SUBDIR += hs-parsec-numbers
     SUBDIR += hs-polyparse
     SUBDIR += hs-pretty-show
     SUBDIR += hs-regex-applicative
@@ -1251,6 +1253,16 @@
     SUBDIR += php72-xmlreader
     SUBDIR += php72-xmlwriter
     SUBDIR += php72-xsl
+    SUBDIR += php73-ctype
+    SUBDIR += php73-dom
+    SUBDIR += php73-enchant
+    SUBDIR += php73-pspell
+    SUBDIR += php73-simplexml
+    SUBDIR += php73-wddx
+    SUBDIR += php73-xml
+    SUBDIR += php73-xmlreader
+    SUBDIR += php73-xmlwriter
+    SUBDIR += php73-xsl
     SUBDIR += plover
     SUBDIR += po4a
     SUBDIR += pocketreader

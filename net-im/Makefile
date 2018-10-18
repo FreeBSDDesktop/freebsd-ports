@@ -21,6 +21,7 @@
     SUBDIR += farstream
     SUBDIR += finch
     SUBDIR += folks
+    SUBDIR += fractal
     SUBDIR += freetalk
     SUBDIR += fugu
     SUBDIR += gajim
@@ -31,7 +32,6 @@
     SUBDIR += hs-haskell-xmpp
     SUBDIR += icmpchat
     SUBDIR += icqlib
-    SUBDIR += jabber
     SUBDIR += jabber.el
     SUBDIR += jabberd
     SUBDIR += jarl
@@ -199,8 +199,7 @@
     SUBDIR += telepathy-logger-qt5
     SUBDIR += telepathy-mission-control
     SUBDIR += telepathy-python
-    SUBDIR += telepathy-qt4
-    SUBDIR += telepathy-qt5
+    SUBDIR += telepathy-qt
     SUBDIR += telepathy-rakia
     SUBDIR += telepathy-salut
     SUBDIR += telepathy-sofiasip

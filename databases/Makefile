@@ -460,6 +460,7 @@
     SUBDIR += p5-Metadata
     SUBDIR += p5-Mojo-Pg
     SUBDIR += p5-MongoDB
+    SUBDIR += p5-Mongoose
     SUBDIR += p5-MySQL-Diff
     SUBDIR += p5-Net-Async-CassandraCQL
     SUBDIR += p5-ORLite
@@ -681,6 +682,19 @@
     SUBDIR += php72-pdo_sqlite
     SUBDIR += php72-pgsql
     SUBDIR += php72-sqlite3
+    SUBDIR += php73-dba
+    SUBDIR += php73-interbase
+    SUBDIR += php73-mysqli
+    SUBDIR += php73-odbc
+    SUBDIR += php73-pdo
+    SUBDIR += php73-pdo_dblib
+    SUBDIR += php73-pdo_firebird
+    SUBDIR += php73-pdo_mysql
+    SUBDIR += php73-pdo_odbc
+    SUBDIR += php73-pdo_pgsql
+    SUBDIR += php73-pdo_sqlite
+    SUBDIR += php73-pgsql
+    SUBDIR += php73-sqlite3
     SUBDIR += phpliteadmin
     SUBDIR += phpminiadmin
     SUBDIR += phpmyadmin

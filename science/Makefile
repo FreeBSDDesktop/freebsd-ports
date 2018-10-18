@@ -29,6 +29,8 @@
     SUBDIR += atom
     SUBDIR += atompaw
     SUBDIR += avogadro
+    SUBDIR += avogadro2
+    SUBDIR += avogadrolibs
     SUBDIR += bagel
     SUBDIR += bddsolve
     SUBDIR += bft
@@ -75,6 +77,7 @@
     SUBDIR += fvcom-mpi
     SUBDIR += fvm
     SUBDIR += gabedit
+    SUBDIR += gamess-us
     SUBDIR += gchemutils
     SUBDIR += gdma
     SUBDIR += getdp
@@ -114,6 +117,7 @@
     SUBDIR += libint2
     SUBDIR += libkml
     SUBDIR += liblinear
+    SUBDIR += libmsym
     SUBDIR += liboglappth
     SUBDIR += libquantum
     SUBDIR += libssm
@@ -139,6 +143,7 @@
     SUBDIR += minc2
     SUBDIR += mmdb2
     SUBDIR += mol2ps
+    SUBDIR += molgif
     SUBDIR += mpb
     SUBDIR += mpqc
     SUBDIR += msms
@@ -267,6 +272,7 @@
     SUBDIR += sigrok-firmware-fx2lafw
     SUBDIR += sigrok-firmware-utils
     SUBDIR += silo
+    SUBDIR += simint
     SUBDIR += simlib
     SUBDIR += simsmith
     SUBDIR += spglib
@@ -283,6 +289,7 @@
     SUBDIR += vmd
     SUBDIR += voro++
     SUBDIR += wannier90
+    SUBDIR += wxmacmolplt
     SUBDIR += xcrysden
     SUBDIR += xdrawchem
     SUBDIR += xfce4-equake-plugin
