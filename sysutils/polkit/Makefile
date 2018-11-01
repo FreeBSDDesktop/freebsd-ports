@@ -3,6 +3,7 @@
 
 PORTNAME=	polkit
 PORTVERSION=	0.114
+PORTREVISION=	1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	http://www.freedesktop.org/software/polkit/releases/
 
@@ -19,8 +20,9 @@ RUN_DEPENDS=	dbus-launch:devel/dbus
 USERS=		polkitd
 GROUPS=		polkitd
 
+USES=		compiler:c++11-lib gettext gmake libtool localbase pathfix \
+		pkgconfig shebangfix
 USE_GNOME=	glib20 intlhack introspection:build
-USES=		gettext gmake libtool localbase pathfix pkgconfig shebangfix
 SHEBANG_FILES=	${WRKSRC}/src/polkitbackend/toarray.pl
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

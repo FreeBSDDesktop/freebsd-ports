@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	YubiOTP
-PORTVERSION=	0.2.1
+PORTVERSION=	0.2.2
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,8 +12,8 @@ COMMENT=	Library for verifying YubiKey OTP tokens
 
 LICENSE=	BSD2CLAUSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pycrypto>0:security/py-pycrypto@${FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pycrypto>0:security/py-pycrypto@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist distutils

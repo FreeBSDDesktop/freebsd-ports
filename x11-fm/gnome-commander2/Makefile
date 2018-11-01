@@ -3,7 +3,7 @@
 
 PORTNAME=	gnome-commander
 PORTVERSION=	1.8.1
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	x11-fm gnome
 MASTER_SITES=	GNOME/sources/gnome-commander/${PORTVERSION:R}
@@ -15,6 +15,9 @@ COMMENT=	File manager for Gnome2
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+DEPRECATED=	GNOME 2 application
+EXPIRATION_DATE=	2018-12-10
 
 LIB_DEPENDS=	libunique-1.0.so:x11-toolkits/unique \
 		libgnome-keyring.so:security/libgnome-keyring \

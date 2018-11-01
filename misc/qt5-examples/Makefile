@@ -1,4 +1,4 @@
-# Created by: Marie Loise Nolden <nolden@kde.org>
+# Created by: Marie Loise Nolden <loise@kde.org>
 # $FreeBSD$
 
 PORTNAME=	examples
@@ -15,8 +15,8 @@ COMMENT=	Qt 5 examples sourcecode
 NO_ARCH=	yes
 NO_BUILD=	yes
 
-USES=		tar:xz
-USE_QT5=	#
+USES=		qt:5 tar:xz
+USE_QT=		#
 
 DESCR=		${.CURDIR:H:H}/devel/qt5/pkg-descr
 DISTINFO_FILE=	${.CURDIR}/distinfo

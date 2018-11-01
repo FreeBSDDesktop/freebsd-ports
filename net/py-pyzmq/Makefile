@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pyzmq
-PORTVERSION=	17.0.0
+PORTVERSION=	17.1.2
 CATEGORIES=	net devel
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,16 +13,17 @@ COMMENT=	Python bindings for ZeroMQ
 LICENSE=	LGPL3
 
 LIB_DEPENDS=	libzmq.so:net/libzmq4
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	distutils autoplist
+
 PYDISTUTILS_CONFIGUREARGS=	--zmq=${LOCALBASE}
 
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_VER} == 3.3
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}asyncio>0:devel/py-asyncio@${FLAVOR}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}asyncio>0:devel/py-asyncio@${PY_FLAVOR}
 .endif
 
 do-test:

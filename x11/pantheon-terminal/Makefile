@@ -3,14 +3,16 @@
 
 PORTNAME=	pantheon-terminal
 PORTVERSION=	0.4.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 
-MAINTAINER=	amdmi3@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Lightweight, beautiful, and simple terminal from Elementary OS
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+BROKEN=		Doesn't build with vala 0.40+
 
 LIB_DEPENDS=	libgee-0.8.so:devel/libgee \
 		libgnutls.so:security/gnutls \

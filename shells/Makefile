@@ -23,6 +23,7 @@
     SUBDIR += jailkit
     SUBDIR += klish
     SUBDIR += ksh93
+    SUBDIR += ksh93-devel
     SUBDIR += lshell
     SUBDIR += mksh
     SUBDIR += nologinmsg
@@ -49,6 +50,7 @@
     SUBDIR += wcd
     SUBDIR += xonsh
     SUBDIR += zsh
+    SUBDIR += zsh-antigen
     SUBDIR += zsh-navigation-tools
 
 .include <bsd.port.subdir.mk>

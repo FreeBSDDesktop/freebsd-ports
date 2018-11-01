@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	xf86-video-ati
-PORTVERSION=	7.9.0
-PORTREVISION=	1
+PORTVERSION=	18.1.0
 PORTEPOCH=	1
 CATEGORIES=	x11-drivers
 
@@ -14,6 +13,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpciaccess.so:devel/libpciaccess \
 		libdrm_radeon.so:graphics/libdrm
+
+CONFLICTS_INSTALL=	xf86-video-ati-legacy
 
 USE_GL=		gl
 XORG_CAT=	driver

@@ -17,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LICENSE_FILE_ISO=	${WRKSRC}/README
 LICENSE_PERMS_ISO=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES=		gmake libtool
+USES=		compiler:c11 gmake libtool
 INSTALL_TARGET=	install-strip
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

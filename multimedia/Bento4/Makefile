@@ -3,13 +3,15 @@
 PORTNAME=	Bento4
 PORTVERSION=	1.5.1
 DISTVERSIONPREFIX=v
-DISTVERSIONSUFFIX=-622
+DISTVERSIONSUFFIX=-624
 CATEGORIES=	multimedia devel
 
 MAINTAINER=	mmokhi@FreeBSD.org
 COMMENT=	Full-featured MP4 format and MPEG DASH library and tools
 
 LICENSE=	GPLv2
+
+BROKEN_aarch64=		fails to compile: Ap4AesBlockCipher.cpp:93:4: AP4_PLATFORM_BYTE_ORDER is not set
 
 USES=		cmake:outsource,noninja
 

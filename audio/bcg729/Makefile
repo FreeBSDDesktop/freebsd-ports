@@ -2,20 +2,20 @@
 # $FreeBSD$
 
 PORTNAME=	bcg729
-PORTVERSION=	1.0.2
+PORTVERSION=	1.0.4
+PORTREVISION=	1
 CATEGORIES=	audio
-MASTER_SITES=	SAVANNAH/linphone/plugins/sources
+MASTER_SITES=	https://linphone.org/releases/sources/bcg729/
 
 MAINTAINER=	madpilot@FreeBSD.org
 COMMENT=	Software G729A encoder and decoder library written in C
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-msplugin --disable-strict
-INSTALL_TARGET=	install-strip
-USES=		libtool pathfix pkgconfig
+USES=		cmake:outsource
 USE_LDCONFIG=	yes
+
+CMAKE_ARGS=	-DENABLE_STATIC=NO
 
 .include <bsd.port.mk>

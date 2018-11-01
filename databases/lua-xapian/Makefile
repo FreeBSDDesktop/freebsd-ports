@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	xapian
-PORTVERSION=	1.4.5
+PORTVERSION=	1.4.8
 DISTVERSIONPREFIX=	bindings-
 CATEGORIES=	databases
-MASTER_SITES=	http://oligarchy.co.uk/xapian/${PORTVERSION}/ \
+MASTER_SITES=	https://oligarchy.co.uk/xapian/${PORTVERSION}/ \
 		LOCAL/sunpoet
 PKGNAMEPREFIX=	${LUA_PKGNAMEPREFIX}
 
@@ -24,6 +24,8 @@ OPTIONS_DEFINE=	DOCS
 
 PORTSCOUT=	limitw:1,even
 
+USES=		compiler:c++11-lang libtool lua tar:xz
+
 CONFIGURE_ARGS=	--datarootdir=${DATADIR} --docdir=${DOCSDIR} \
 		--enable-static \
 		--with-lua \
@@ -32,7 +34,7 @@ CONFIGURE_ARGS=	--datarootdir=${DATADIR} --docdir=${DOCSDIR} \
 CONFIGURE_ENV=	LUA="${LUA_CMD}" LUA_INC="${LUA_INCDIR}" LUA_LIB="${LUA_MODLIBDIR}" LUA_SO=.so
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		libtool lua tar:xz
+USE_CXXSTD=	c++11
 
 PORTDOCS=	*
 

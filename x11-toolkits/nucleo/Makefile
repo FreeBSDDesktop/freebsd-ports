@@ -18,7 +18,8 @@ LIB_DEPENDS=	libexif.so:graphics/libexif \
 		libfreetype.so:print/freetype2 \
 		libexpat.so:textproc/expat2
 
-USES=		gmake jpeg libtool localbase:ldflags pathfix pkgconfig python:run shebangfix tar:bzip2
+USES=		gl gmake jpeg libtool localbase:ldflags \
+		pathfix pkgconfig python:run shebangfix tar:bzip2
 USE_GL=		gl glu
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-opencv
@@ -50,7 +51,8 @@ GNUTLS_CONFIGURE_OFF=	--without-gnutls
 
 MDNSRESPONDER_LIB_DEPENDS=	libdns_sd.so:net/mDNSResponder
 
-QT4_USE=		QT4=moc_build,corelib
+QT4_USE=		QT=moc_build,corelib
+QT4_USES=		qmake:no_env qt:4
 QT4_CONFIGURE_OFF=	--without-qt
 QT4_MAKE_ARGS=		QT4MOC="${MOC}"
 
@@ -58,10 +60,6 @@ QT4_MAKE_ARGS=		QT4MOC="${MOC}"
 
 .if ! ${PORT_OPTIONS:MAVAHI} && ! ${PORT_OPTIONS:MMDNSRESPONDER}
 CONFIGURE_ARGS+=	--without-dns-sd
-.endif
-
-.if ${PORT_OPTIONS:MQT4}
-QT_NONSTANDARD=		yes
 .endif
 
 post-install:

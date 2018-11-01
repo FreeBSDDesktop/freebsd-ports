@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	libqalculate
-PORTVERSION=	2.2.1
-PORTREVISION=	2
+PORTVERSION=	2.6.1
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	https://github.com/Qalculate/${PORTNAME}/releases/download/v${PORTVERSION}/
 
@@ -18,8 +18,8 @@ LIB_DEPENDS=	libicuuc.so:devel/icu \
 		libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr
 
-USES=		gmake gettext iconv libtool localbase \
-		ncurses pathfix pkgconfig readline:port
+USES=		compiler:c++14-lang gettext gmake gnome iconv libtool \
+		localbase ncurses pathfix pkgconfig readline:port
 USE_GNOME=	intltool libxml2
 USE_LDCONFIG=	yes
 

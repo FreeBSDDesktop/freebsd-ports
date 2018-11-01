@@ -3,7 +3,7 @@
 
 PORTNAME=	vlc
 DISTVERSION=	2.2.8
-PORTREVISION=	6
+PORTREVISION=	13
 PORTEPOCH=	4
 CATEGORIES=	multimedia audio ipv6 net www
 MASTER_SITES=	http://download.videolan.org/pub/videolan/${PORTNAME}/${DISTVERSION:S/a$//}/ \
@@ -14,6 +14,9 @@ MAINTAINER=	multimedia@FreeBSD.org
 COMMENT?=	Qt based multimedia player and streaming server
 
 LICENSE=	GPLv2
+
+DEPRECATED=	vlc 2.x and vlc-qt4 is EOL upstream
+EXPIRATION_DATE=	2018-12-31
 
 LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libdvbpsi.so:multimedia/libdvbpsi \
@@ -36,7 +39,8 @@ USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
-CONFLICTS?=	vlc-qt4-*
+CONFLICTS?=	vlc-qt4-* \
+		vlc3-*
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-avcodec --enable-avformat --enable-dvbpsi \
@@ -237,13 +241,15 @@ PNG_CONFIGURE_ENABLE=	png
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
 PULSEAUDIO_CONFIGURE_ENABLE=	pulse
 
-QT4_USE=		QT4=gui,corelib,moc_build,rcc_build,uic_build
+QT4_USES=	qt:4
+QT4_USE=		QT=gui,corelib,moc_build,rcc_build,uic_build
 # QT_CFLAGS:	pkg-config --cflags "QtCore QtGui >= 4.6.0"
 # QT_LIBS:	pkg-config --libs "QtCore QtGui >= 4.6.0"
 QT4_CONFIGURE_ENV=	QT_CFLAGS="-I${QT_INCDIR}/QtGui -DQT_SHARED -I${QT_INCDIR} -I${QT_INCDIR}/QtCore" \
 			QT_LIBS="-lQtGui -L${QT_LIBDIR} -lQtCore"
 
-QT5_USE=		QT5=gui,core,widgets,x11extras,buildtools_build
+QT5_USES=	qt:5
+QT5_USE=		QT=gui,core,widgets,x11extras,buildtools_build
 
 REALRTSP_CONFIGURE_ENABLE=	realrtsp
 
@@ -305,7 +311,7 @@ VDPAU_CONFIGURE_ENABLE=	vdpau
 VORBIS_LIB_DEPENDS=	libvorbis.so:audio/libvorbis
 VORBIS_CONFIGURE_ENABLE=vorbis
 
-X11_USE=		GL=gl XORG=xcb,xproto
+X11_USE=		GL=gl XORG=xcb,xorgproto
 X11_LIB_DEPENDS=	libxcb-keysyms.so:x11/xcb-util-keysyms
 X11_CONFIGURE_ENABLE=	xcb xvideo
 X11_CONFIGURE_WITH=	x

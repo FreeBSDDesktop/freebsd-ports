@@ -3,6 +3,7 @@
 
 PORTNAME=	logcheck
 PORTVERSION=	1.3.19
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	DEBIAN_POOL
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -18,6 +19,9 @@ RUN_DEPENDS=	mime-construct:mail/mime-construct \
 		lockfile-create:sysutils/lockfile-progs \
 		bash:shells/bash
 
+# Enable Perl dependency for logtail script
+USES=		perl5 shebangfix tar:xz
+
 LOGCHECK_USER=	logcheck
 LOGCHECK_GROUP=	${LOGCHECK_USER}
 USERS=		${LOGCHECK_USER}
@@ -27,14 +31,11 @@ BASEDIR?=	# None. portlint compliance
 DBDIR=		${BASEDIR}/var/db/${PORTNAME}
 RUNDIR=		${BASEDIR}/var/run/${PORTNAME}
 
-OPTIONS_DEFINE=	CRON
+OPTIONS_DEFINE=	CRON DOCS EXAMPLES
 CRON_DESC=	Install cron script automatically
 .if !defined(BATCH)
 OPTIONS_DEFAULT=CRON
 .endif
-
-# Enable Perl dependency for logtail script
-USES=		perl5 shebangfix tar:xz
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S!_!-!}
 BINMODE=	755

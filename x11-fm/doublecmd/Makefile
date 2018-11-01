@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	doublecmd
-PORTVERSION=	0.8.2
+PORTVERSION=	0.8.3
 PORTREVISION=	1
 CATEGORIES=	x11-fm
 PKGNAMESUFFIX=	${LAZARUS_PKGNAMESUFFIX}
@@ -22,6 +22,7 @@ PORTDOCS=	*
 USES=		dos2unix desktop-file-utils fpc lazarus:flavors
 USE_FPC=	cairo chm fcl-base fcl-db fcl-image fcl-json fcl-registry \
 		fcl-xml iconvenc pasjpeg rtl-extra x11 regexpr
+USE_GNOME=	cairo glib20
 USE_XORG=	x11
 DOS2UNIX_FILES=	src/dmhelpmanager.pas
 

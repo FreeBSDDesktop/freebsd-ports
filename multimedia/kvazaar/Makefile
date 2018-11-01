@@ -3,15 +3,19 @@
 PORTNAME=	kvazaar
 DISTVERSIONPREFIX=	v
 DISTVERSION?=	1.2.0
-PORTREVISION?=	0
+PORTREVISION?=	2
 CATEGORIES=	multimedia
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	93e1c9f1c39c.patch:-p1 \
+		4f4bea749680.patch:-p1 \
+		4b24cd03a24e.patch:-p1 \
+		411276d6f2b2.patch:-p1
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	H.265/HEVC encoder implemented in C
 
 LICENSE=	LGPL21+
-
-BROKEN_powerpc64=	fails to compile: strategyselector.c:377:26: linux/auxvec.h: No such file or directory
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ultravideo
@@ -25,7 +29,7 @@ TEST_TARGET=	check
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	ASM CRYPTOPP
+OPTIONS_DEFINE=	ASM CRYPTOPP DOCS
 OPTIONS_DEFAULT=ASM
 
 ASM_BUILD_DEPENDS=	${ASM_BUILD_DEPENDS_${ARCH}}
@@ -35,8 +39,7 @@ ASM_CONFIGURE_ENABLE=	asm
 
 CRYPTOPP_DESC=		Selective encryption via Crypto++ library
 CRYPTOPP_LIB_DEPENDS=	libcryptopp.so:security/cryptopp
-CRYPTOPP_USES=		localbase
-CRYPTOPP_CONFIGURE_ENV=	cryptopp_CFLAGS=" " cryptopp_LIBS="-lcryptopp"
+CRYPTOPP_USES=		pkgconfig
 CRYPTOPP_CONFIGURE_WITH=cryptopp
 
 post-patch:

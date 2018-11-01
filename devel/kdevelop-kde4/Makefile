@@ -3,7 +3,7 @@
 
 PORTNAME=	kdevelop
 DISTVERSION=	${KDEVELOP_VERSION}
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	devel kde
 MASTER_SITES=	KDE/${KDEVELOP_BRANCH}/kdevelop/${DISTVERSION}
 DIST_SUBDIR=	KDE/kdevelop/${KDEVELOP_VERSION}
@@ -12,13 +12,16 @@ PKGNAMESUFFIX=	-kde4
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Plugin extensible IDE for KDE
 
+DEPRECATED=	KDE4 is EOL upstream
+EXPIRATION_DATE=	2018-12-31
+
 LIB_DEPENDS=	libkdevplatforminterfaces.so:devel/kdevplatform-kde4
 RUN_DEPENDS=	gmake:devel/gmake
 
 USES=		cmake:outsource compiler:c++11-lib kde:4 \
-		shared-mime-info tar:xz
+		qt:4 shared-mime-info tar:xz
 USE_KDE=	kdelibs workspace automoc4
-USE_QT4=	qmake_build moc_build uic_build rcc_build \
+USE_QT=		qmake_build moc_build uic_build rcc_build \
 		corelib declarative gui help script webkit xml
 
 OPTIONS_DEFINE=	OKTETA PHP NLS

@@ -14,10 +14,13 @@ COMMENT=	Twin panel file manager for KDE, like midnight or norton commander
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+DEPRECATED=	KDE4 is EOL upstream
+EXPIRATION_DATE=	2018-12-31
+
 CONFLICTS_INSTALL=	krusader2-2.*
 
-USES=		cmake:outsource gettext kde:4 tar:bzip2
+USES=		cmake:outsource gettext kde:4 qt:4 tar:bzip2
 USE_KDE=	kdelibs automoc4
-USE_QT4=	moc_build qmake_build rcc_build uic_build
+USE_QT=		moc_build qmake_build rcc_build uic_build
 
 .include <bsd.port.mk>

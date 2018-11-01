@@ -3,7 +3,7 @@
 
 PORTNAME=	gtetrinet
 PORTVERSION=	0.7.11
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	games gnome ipv6
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -14,14 +14,20 @@ COMMENT=	Version of the popular TetriNET multiplayer Tetris clone
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+DEPRECATED=	GNOME 2 application
+EXPIRATION_DATE=	2018-12-10
+
 USES=		pathfix gettext gmake pkgconfig tar:bzip2
-USE_GNOME=	esound gnomeprefix intltool libgnomeui
+USE_GNOME=	gnomeprefix intltool libgnomeui
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--bindir=${PREFIX}/bin --enable-ipv6
 
 GCONF_SCHEMAS=	gtetrinet.schemas
+
+post-patch:
+	@${REINPLACE_CMD} 's/pkg-config --exists esound/false/' ${WRKSRC}/configure
 
 pre-configure:
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \

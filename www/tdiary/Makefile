@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tdiary
-PORTVERSION=	5.0.8
+PORTVERSION=	5.0.10
 CATEGORIES?=	www ruby
 MASTER_SITES=	https://github.com/tdiary/tdiary-core/releases/download/v${PORTVERSION}/
 DISTNAME=	${PORTNAME}-full-v${PORTVERSION}
@@ -13,16 +13,17 @@ COMMENT=	Web-based diary system (like weblog) written in Ruby
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	rubygem-bundler>=1.16.1:sysutils/rubygem-bundler \
+RUN_DEPENDS=	rubygem-bundler>=1.16.5:sysutils/rubygem-bundler \
 		rubygem-emot>=0.0.4:textproc/rubygem-emot \
-		rubygem-fastimage>=2.1.1:graphics/rubygem-fastimage \
+		rubygem-fastimage>=2.1.4:graphics/rubygem-fastimage \
 		rubygem-hikidoc>=0.1.0:textproc/rubygem-hikidoc \
 		rubygem-mail>=2.7.0:mail/rubygem-mail \
-		rubygem-rack>=2.0.4:www/rubygem-rack \
+		rubygem-rack>=2.0.5:www/rubygem-rack \
 		rubygem-rake>=12.3.1:devel/rubygem-rake
 
 USES=		shebangfix
 USE_RUBY=	yes
+
 NO_ARCH=	yes
 NO_BUILD=	yes
 
@@ -81,7 +82,7 @@ pre-patch:
 	@${RM} ${WRKSRC}/tmp/.gitkeep
 	@${RM} -r ${WRKSRC}/.bundle
 	@${RM} -r ${WRKSRC}/.vscode
-	@${RM} -r ${WRKSRC}/misc/lib/bundler-1.16.1
+	@${RM} -r ${WRKSRC}/misc/lib/bundler-1.16.5
 	@${RM} -r ${WRKSRC}/public
 	@${RM} -r ${WRKSRC}/spec
 	@${RM} -r ${WRKSRC}/test

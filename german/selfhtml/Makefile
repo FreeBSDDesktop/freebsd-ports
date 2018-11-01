@@ -21,6 +21,9 @@ DISTNAME=	${PORTNAME}${PORTVERSION:S/.//g}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Extensive German HTML reference
 
+DEPRECATED=	Project migrated to a Wiki
+EXPIRATION_DATE=	2018-11-15
+
 NO_ARCH=	yes
 NO_BUILD=	yes
 USES=		dos2unix zip
@@ -47,6 +50,8 @@ PORTDOCS=	index.htm \
 		servercgi \
 		src \
 		xml
+
+OPTIONS_DEFINE=	DOCS
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

@@ -12,6 +12,8 @@ COMMENT=	Advanced PostgreSQL-based IMAP/POP server
 
 LICENSE=	MIT
 
+BROKEN_mips=		fails to build: /bin/sh: clang: not found
+BROKEN_mips64=		fails to build: /bin/sh: clang: not found
 BROKEN_powerpc64=	fails to build: /bin/sh: clang: not found
 
 BUILD_DEPENDS=	jam:devel/jam
@@ -33,6 +35,8 @@ PLIST_SUB+=	GROUPS="${GROUPS}"
 
 JAM?=		${LOCALBASE}/bin/jam
 JAMARG+=	-dx
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>
 

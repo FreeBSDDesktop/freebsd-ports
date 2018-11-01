@@ -213,7 +213,8 @@
     SUBDIR += nstreams
     SUBDIR += observium
     SUBDIR += ocsinventory-agent
-    SUBDIR += ocsinventory-ng
+    SUBDIR += ocsinventory-ocsreports
+    SUBDIR += ocsinventory-server
     SUBDIR += omping
     SUBDIR += onionlauncher
     SUBDIR += openbmp
@@ -265,12 +266,12 @@
     SUBDIR += p5-NetAddr-IP-Lite
     SUBDIR += p5-NetApp
     SUBDIR += p5-POE-Component-SNMP
+    SUBDIR += p5-RDR-Collector
     SUBDIR += p5-SNMP-Info
     SUBDIR += p5-SNMP-MIB-Compiler
     SUBDIR += p5-SNMP-Simple
     SUBDIR += p5-SNMP-Trapinfo
     SUBDIR += p5-SNMP-Util
-    SUBDIR += p5-RDR-Collector
     SUBDIR += p5-SNMP_Session
     SUBDIR += p5-Telnet-Cisco
     SUBDIR += p5-Tie-NetAddr-IP
@@ -292,6 +293,7 @@
     SUBDIR += php70-snmp
     SUBDIR += php71-snmp
     SUBDIR += php72-snmp
+    SUBDIR += php73-snmp
     SUBDIR += phpip
     SUBDIR += phpipam
     SUBDIR += phpweathermap
@@ -302,9 +304,9 @@
     SUBDIR += pnp-icinga
     SUBDIR += pnp-icinga2
     SUBDIR += portmon
+    SUBDIR += prometheus-collectd-exporter
     SUBDIR += prometheus1
     SUBDIR += prometheus2
-    SUBDIR += prometheus-collectd-exporter
     SUBDIR += pushgateway
     SUBDIR += py-adal
     SUBDIR += py-ciscoconfparse
@@ -318,8 +320,8 @@
     SUBDIR += py-napalm-logs
     SUBDIR += py-ncclient
     SUBDIR += py-pdagent
-    SUBDIR += py-pyIOSXR
     SUBDIR += py-prometheus-client
+    SUBDIR += py-pyIOSXR
     SUBDIR += py-pyang
     SUBDIR += py-pyeapi
     SUBDIR += py-pynsca
@@ -375,7 +377,6 @@
     SUBDIR += statsite
     SUBDIR += subcalc
     SUBDIR += super_mediator
-    SUBDIR += sx
     SUBDIR += sysmon
     SUBDIR += tcpreplay
     SUBDIR += tcptrack
@@ -398,25 +399,30 @@
     SUBDIR += xymon-client
     SUBDIR += xymon-server
     SUBDIR += yaf
-    SUBDIR += zabbix2-agent
-    SUBDIR += zabbix2-frontend
-    SUBDIR += zabbix2-proxy
-    SUBDIR += zabbix2-server
     SUBDIR += zabbix22-agent
     SUBDIR += zabbix22-frontend
+    SUBDIR += zabbix22-java
     SUBDIR += zabbix22-proxy
     SUBDIR += zabbix22-server
     SUBDIR += zabbix3-agent
     SUBDIR += zabbix3-frontend
+    SUBDIR += zabbix3-java
     SUBDIR += zabbix3-proxy
     SUBDIR += zabbix3-server
     SUBDIR += zabbix32-agent
     SUBDIR += zabbix32-frontend
+    SUBDIR += zabbix32-java
     SUBDIR += zabbix32-proxy
     SUBDIR += zabbix32-server
     SUBDIR += zabbix34-agent
     SUBDIR += zabbix34-frontend
+    SUBDIR += zabbix34-java
     SUBDIR += zabbix34-proxy
     SUBDIR += zabbix34-server
+    SUBDIR += zabbix4-agent
+    SUBDIR += zabbix4-frontend
+    SUBDIR += zabbix4-java
+    SUBDIR += zabbix4-proxy
+    SUBDIR += zabbix4-server
 
 .include <bsd.port.subdir.mk>

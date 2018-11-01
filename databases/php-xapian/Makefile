@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	xapian
-PORTVERSION=	1.4.5
+PORTVERSION=	1.4.8
 DISTVERSIONPREFIX=	bindings-
 CATEGORIES=	databases
-MASTER_SITES=	http://oligarchy.co.uk/xapian/${PORTVERSION}/ \
+MASTER_SITES=	https://oligarchy.co.uk/xapian/${PORTVERSION}/ \
 		LOCAL/sunpoet
 PKGNAMEPREFIX=	php-
 
@@ -24,6 +24,8 @@ OPTIONS_DEFINE=	DOCS
 
 PORTSCOUT=	limitw:1,even
 
+USES=		compiler:c++11-lang libtool php:build tar:xz
+
 CONFIGURE_ARGS=	--datarootdir=${DATADIR} --docdir=${DOCSDIR} \
 		--enable-static \
 		--with-php \
@@ -32,7 +34,7 @@ CONFIGURE_ARGS=	--datarootdir=${DATADIR} --docdir=${DOCSDIR} \
 CONFIGURE_ENV=	PHP_CONFIG=${LOCALBASE}/bin/php-config
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		libtool php:build tar:xz
+USE_CXXSTD=	c++11
 
 PLIST_SUB=	PHP_EXT_DIR=${PHP_EXT_DIR} PHP_MAJOR_VER=${PHP_VER:C|.$||}
 

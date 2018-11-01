@@ -4,12 +4,12 @@ PORTREVISION=	0
 CATEGORIES=	comms python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	avilla@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Python bindings for libimobiledevice
 
 LIB_DEPENDS=	libimobiledevice.so:${MASTER_PORT}
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libplist>0:devel/py-libplist@${FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libplist>0:devel/py-libplist@${FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libplist>0:devel/py-libplist@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libplist>0:devel/py-libplist@${PY_FLAVOR}
 
 PORTSCOUT=	ignore:1
 

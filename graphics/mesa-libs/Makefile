@@ -3,11 +3,12 @@
 
 PORTNAME=	mesa-libs
 PORTVERSION=	${MESAVERSION}
+PORTREVISION=	2
 CATEGORIES=	graphics
 
 COMMENT=	OpenGL libraries that support GLX and EGL clients
 
-USE_XORG=	dri2proto dri3proto glproto presentproto x11 xcb xdamage xext \
+USE_XORG=	xorgproto x11 xcb xdamage xext \
 		xfixes xshmfence xxf86vm
 
 OPTIONS_DEFINE=	WAYLAND
@@ -26,9 +27,9 @@ CONFIGURE_ARGS+=	--with-dri-drivers="" --with-gallium-drivers=""
 # libEGL needs gallium enabled which depends on llvm
 .if "${MESA_LLVM_VER}" != ""
 .if ${PORT_OPTIONS:MWAYLAND}
-CONFIGURE_ARGS+=	--with-platforms=x11,drm,wayland
+CONFIGURE_ARGS+=	--with-platforms=x11,surfaceless,drm,wayland
 .else
-CONFIGURE_ARGS+=	--with-platforms=x11,drm
+CONFIGURE_ARGS+=	--with-platforms=x11,surfaceless,drm
 .endif
 PLIST_SUB+=		EGL=""
 .else
@@ -53,6 +54,11 @@ MESA_INSTALL_WRKSRC+=	src/gbm src/glx
 .if "${MESA_LLVM_VER}" != ""
 MESA_BUILD_WRKSRC+=	src/egl
 MESA_INSTALL_WRKSRC+=	src/egl
+.endif
+
+.if ${ARCH} == "i386"
+# PR230239 Fix the build for i386 when WITH_LLD_IS_LD is set
+LDFLAGS+=-Wl,-z,notext
 .endif
 
 .include "${MASTERDIR}/Makefile.targets"

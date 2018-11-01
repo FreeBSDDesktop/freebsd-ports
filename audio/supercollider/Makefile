@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	supercollider
-PORTVERSION=	3.8.0
-PORTREVISION=	6
+DISTVERSION=	3.9.3
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	https://github.com/supercollider/supercollider/releases/download/Version-${PORTVERSION}/
 DISTNAME=	SuperCollider-${PORTVERSION}-Source-linux
@@ -20,11 +20,12 @@ LIB_DEPENDS=	libavahi-client.so:net/avahi-app \
 		libsndfile.so:audio/libsndfile \
 		libfftw3f.so:math/fftw3-float
 
-USES=		cmake:outsource iconv localbase pkgconfig readline \
-		shared-mime-info tar:bzip2
-USE_QT5=	buildtools_build concurrent core gui linguisttools location \
+USES=		cmake:outsource compiler:c++11-lang iconv localbase pkgconfig \
+		qt:5 readline shared-mime-info tar:bzip2
+USE_QT=		buildtools_build concurrent core gui linguisttools location \
 		network opengl printsupport qmake_build qml quick sensors \
 		sql webkit widgets
+USE_XORG=	x11
 USE_LDCONFIG=	yes
 
 WRKSRC=		${WRKDIR}/SuperCollider-Source
@@ -48,7 +49,12 @@ SUPERNOVA_DESC=	Build with supernova as optional audio synthesis server
 
 HELP_CMAKE_BOOL=	INSTALL_HELP
 SUPERNOVA_CMAKE_BOOL=	SUPERNOVA
-SUPERNOVA_USE=		XORG=x11
+
+.include <bsd.port.pre.mk>
+
+.if ${ARCH:Mmips*} || ${ARCH:Mpowerpc*} || ${ARCH} == sparc64
+CMAKE_ARGS+=	-DSSE:BOOL=FALSE -DSSE2:BOOL=FALSE
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|MATCHES "Linux" AND|MATCHES "FreeBSD" AND|' \
@@ -59,4 +65,4 @@ post-patch:
 		${WRKSRC}/server/plugins/CMakeLists.txt
 	@${REINPLACE_CMD} -e 's|__linux__|__FreeBSD__|' ${WRKSRC}/server/supernova/server/main.cpp
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

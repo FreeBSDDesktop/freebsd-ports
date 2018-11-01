@@ -37,7 +37,6 @@
     SUBDIR += intellij-rubymine
     SUBDIR += intellij-ultimate
     SUBDIR += jad
-    SUBDIR += jaf
     SUBDIR += jai
     SUBDIR += jakarta-bcel
     SUBDIR += jakarta-commons-beanutils
@@ -72,13 +71,13 @@
     SUBDIR += jcommon
     SUBDIR += jd-gui
     SUBDIR += jdbcpool
+    SUBDIR += jdk10-doc
     SUBDIR += jdk8-doc
     SUBDIR += jdk9-doc
     SUBDIR += jdom
     SUBDIR += jflex
     SUBDIR += jfreechart
     SUBDIR += jgraph
-    SUBDIR += jgrapht
     SUBDIR += jgraphx
     SUBDIR += jikes
     SUBDIR += jlex
@@ -94,10 +93,13 @@
     SUBDIR += jxgrabkey
     SUBDIR += langspec
     SUBDIR += lightweight-java-profiler
+    SUBDIR += linux-oracle-jdk10
     SUBDIR += linux-oracle-jdk18
     SUBDIR += linux-oracle-jdk9
+    SUBDIR += linux-oracle-jre10
     SUBDIR += linux-oracle-jre18
     SUBDIR += linux-oracle-jre9
+    SUBDIR += linux-oracle-serverjre10
     SUBDIR += mmake
     SUBDIR += mx4j
     SUBDIR += netbeans
@@ -127,6 +129,9 @@
     SUBDIR += visualvm
     SUBDIR += wildfly10
     SUBDIR += wildfly11
+    SUBDIR += wildfly12
+    SUBDIR += wildfly13
+    SUBDIR += wildfly14
     SUBDIR += wildfly90
     SUBDIR += xdoclet
 

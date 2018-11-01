@@ -2,12 +2,14 @@
 
 PORTNAME=	yesod-test
 PORTVERSION=	1.6.4
+PORTREVISION=	1
 CATEGORIES=	www haskell
 
 MAINTAINER=	haskell@FreeBSD.org
 COMMENT=	Integration testing for WAI/Yesod Applications
 
 LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_CABAL=	attoparsec>=0.10 blaze-builder blaze-html>=0.5 \
 		blaze-markup>=0.5.1 case-insensitive>=0.2 cookie \

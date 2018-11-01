@@ -2,7 +2,7 @@
 
 PORTNAME=	kdenlive
 PORTVERSION=	0.9.10
-PORTREVISION=	9
+PORTREVISION=	12
 CATEGORIES=	multimedia kde
 MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}/src/
 PKGNAMESUFFIX=	-kde4
@@ -12,14 +12,17 @@ COMMENT=	KDE professional quality non-linear video editing suite
 
 LICENSE=	GPLv2
 
+DEPRECATED=	KDE4 is EOL upstream
+EXPIRATION_DATE=	2018-12-31
+
 LIB_DEPENDS=	libmlt.so:multimedia/mlt \
 		libqjson.so:devel/qjson@qt4
 RUN_DEPENDS=	ffmpeg${FFMPEG_SUFX}:multimedia/ffmpeg${FFMPEG_SUFX} \
 		${LOCALBASE}/lib/mlt/libmltqt.so:multimedia/mlt-qt4
 
-USES=		cmake kde:4 pkgconfig shared-mime-info tar:bzip2
+USES=		cmake kde:4 pkgconfig qt:4 shared-mime-info tar:bzip2
 USE_KDE=	automoc4 kdelibs nepomuk-core
-USE_QT4=	corelib dbus gui opengl script svg xml \
+USE_QT=		corelib dbus gui opengl script svg xml \
 		moc_build qmake_build rcc_build uic_build
 USE_XORG=	x11
 CMAKE_ARGS=	-DFFMPEG_SUFFIX:STRING="${FFMPEG_SUFX}"

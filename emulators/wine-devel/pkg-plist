@@ -183,6 +183,8 @@ include/wine/windows/d2d1.h
 include/wine/windows/d2d1.idl
 include/wine/windows/d2d1_1.h
 include/wine/windows/d2d1_1.idl
+include/wine/windows/d2d1_2.h
+include/wine/windows/d2d1_2.idl
 include/wine/windows/d2dbasetypes.h
 include/wine/windows/d2derr.h
 include/wine/windows/d3d.h
@@ -206,6 +208,8 @@ include/wine/windows/d3d11_3.h
 include/wine/windows/d3d11_3.idl
 include/wine/windows/d3d11_4.h
 include/wine/windows/d3d11_4.idl
+include/wine/windows/d3d11on12.h
+include/wine/windows/d3d11on12.idl
 include/wine/windows/d3d11sdklayers.h
 include/wine/windows/d3d11sdklayers.idl
 include/wine/windows/d3d11shader.h
@@ -450,6 +454,7 @@ include/wine/windows/inseng.h
 include/wine/windows/inseng.idl
 include/wine/windows/inspectable.h
 include/wine/windows/inspectable.idl
+include/wine/windows/interactioncontext.h
 include/wine/windows/intshcut.h
 include/wine/windows/ipexport.h
 include/wine/windows/iphlpapi.h
@@ -554,6 +559,8 @@ include/wine/windows/msident.idl
 include/wine/windows/msinkaut.h
 include/wine/windows/msinkaut.idl
 include/wine/windows/msiquery.h
+include/wine/windows/msopc.h
+include/wine/windows/msopc.idl
 include/wine/windows/mssip.h
 include/wine/windows/msstkppg.h
 include/wine/windows/mstask.h
@@ -571,6 +578,8 @@ include/wine/windows/msxml6did.h
 include/wine/windows/msxmldid.h
 include/wine/windows/mtxdm.h
 include/wine/windows/multimon.h
+include/wine/windows/natupnp.h
+include/wine/windows/natupnp.idl
 include/wine/windows/nb30.h
 include/wine/windows/ncrypt.h
 include/wine/windows/ndrtypes.h
@@ -593,7 +602,6 @@ include/wine/windows/ntddscsi.h
 include/wine/windows/ntddstor.h
 include/wine/windows/ntdef.h
 include/wine/windows/ntdsapi.h
-%%STAGING%%include/wine/windows/ntifs.h
 include/wine/windows/ntlsa.h
 include/wine/windows/ntquery.h
 include/wine/windows/ntsecapi.h
@@ -629,6 +637,9 @@ include/wine/windows/oledberr.h
 include/wine/windows/oledlg.h
 include/wine/windows/oleidl.h
 include/wine/windows/oleidl.idl
+include/wine/windows/opcbase.idl
+include/wine/windows/opcobjectmodel.idl
+include/wine/windows/opcparturi.idl
 include/wine/windows/opnrst.idl
 include/wine/windows/optary.h
 include/wine/windows/optary.idl
@@ -694,6 +705,7 @@ include/wine/windows/rstinf.idl
 include/wine/windows/rstloc.idl
 include/wine/windows/rstnot.idl
 include/wine/windows/rtutils.h
+include/wine/windows/sal.h
 include/wine/windows/sapi.h
 include/wine/windows/sapi.idl
 include/wine/windows/sapiddk.h
@@ -753,6 +765,7 @@ include/wine/windows/strsafe.h
 include/wine/windows/structuredquerycondition.h
 include/wine/windows/structuredquerycondition.idl
 include/wine/windows/svrapi.h
+include/wine/windows/synchapi.h
 include/wine/windows/t2embapi.h
 include/wine/windows/tapi.h
 include/wine/windows/taskschd.h
@@ -803,7 +816,7 @@ include/wine/windows/ver.h
 include/wine/windows/verrsrc.h
 include/wine/windows/vfw.h
 include/wine/windows/vfwmsgs.h
-%%STAGING%%include/wine/windows/virtdisk.h
+include/wine/windows/virtdisk.h
 include/wine/windows/vmr9.h
 include/wine/windows/vmr9.idl
 include/wine/windows/vmrender.idl
@@ -986,6 +999,7 @@ lib/wine/api-ms-win-core-bem-l1-1-0.dll.so
 lib/wine/api-ms-win-core-com-l1-1-0.dll.so
 lib/wine/api-ms-win-core-com-l1-1-1.dll.so
 lib/wine/api-ms-win-core-com-private-l1-1-0.dll.so
+lib/wine/api-ms-win-core-comm-l1-1-0.dll.so
 lib/wine/api-ms-win-core-console-l1-1-0.dll.so
 lib/wine/api-ms-win-core-console-l2-1-0.dll.so
 lib/wine/api-ms-win-core-crt-l1-1-0.dll.so
@@ -1074,6 +1088,7 @@ lib/wine/api-ms-win-core-string-l1-1-0.dll.so
 lib/wine/api-ms-win-core-string-l2-1-0.dll.so
 lib/wine/api-ms-win-core-string-obsolete-l1-1-0.dll.so
 lib/wine/api-ms-win-core-stringansi-l1-1-0.dll.so
+lib/wine/api-ms-win-core-stringloader-l1-1-1.dll.so
 lib/wine/api-ms-win-core-synch-ansi-l1-1-0.dll.so
 lib/wine/api-ms-win-core-synch-l1-1-0.dll.so
 lib/wine/api-ms-win-core-synch-l1-2-0.dll.so
@@ -1120,6 +1135,7 @@ lib/wine/api-ms-win-crt-stdio-l1-1-0.dll.so
 lib/wine/api-ms-win-crt-string-l1-1-0.dll.so
 lib/wine/api-ms-win-crt-time-l1-1-0.dll.so
 lib/wine/api-ms-win-crt-utility-l1-1-0.dll.so
+lib/wine/api-ms-win-devices-config-l1-1-0.dll.so
 lib/wine/api-ms-win-devices-config-l1-1-1.dll.so
 lib/wine/api-ms-win-devices-query-l1-1-1.dll.so
 lib/wine/api-ms-win-downlevel-advapi32-l1-1-0.dll.so
@@ -1161,6 +1177,7 @@ lib/wine/api-ms-win-security-base-l1-1-0.dll.so
 lib/wine/api-ms-win-security-base-l1-2-0.dll.so
 lib/wine/api-ms-win-security-base-private-l1-1-1.dll.so
 lib/wine/api-ms-win-security-credentials-l1-1-0.dll.so
+lib/wine/api-ms-win-security-cryptoapi-l1-1-0.dll.so
 lib/wine/api-ms-win-security-grouppolicy-l1-1-0.dll.so
 lib/wine/api-ms-win-security-lsalookup-l1-1-0.dll.so
 lib/wine/api-ms-win-security-lsalookup-l1-1-1.dll.so
@@ -1309,6 +1326,7 @@ lib/wine/dhtmled.ocx.so
 lib/wine/difxapi.dll.so
 lib/wine/dinput.dll.so
 lib/wine/dinput8.dll.so
+lib/wine/dism.exe.so
 %%WINE32%%lib/wine/dispdib.dll16.so
 lib/wine/dispex.dll.so
 %%WINE32%%lib/wine/display.drv16.so
@@ -1412,6 +1430,7 @@ lib/wine/fakedlls/api-ms-win-core-bem-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-core-com-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-core-com-l1-1-1.dll
 lib/wine/fakedlls/api-ms-win-core-com-private-l1-1-0.dll
+lib/wine/fakedlls/api-ms-win-core-comm-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-core-console-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-core-console-l2-1-0.dll
 lib/wine/fakedlls/api-ms-win-core-crt-l1-1-0.dll
@@ -1500,6 +1519,7 @@ lib/wine/fakedlls/api-ms-win-core-string-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-core-string-l2-1-0.dll
 lib/wine/fakedlls/api-ms-win-core-string-obsolete-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-core-stringansi-l1-1-0.dll
+lib/wine/fakedlls/api-ms-win-core-stringloader-l1-1-1.dll
 lib/wine/fakedlls/api-ms-win-core-synch-ansi-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-core-synch-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-core-synch-l1-2-0.dll
@@ -1546,6 +1566,7 @@ lib/wine/fakedlls/api-ms-win-crt-stdio-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-crt-string-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-crt-time-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-crt-utility-l1-1-0.dll
+lib/wine/fakedlls/api-ms-win-devices-config-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-devices-config-l1-1-1.dll
 lib/wine/fakedlls/api-ms-win-devices-query-l1-1-1.dll
 lib/wine/fakedlls/api-ms-win-downlevel-advapi32-l1-1-0.dll
@@ -1587,6 +1608,7 @@ lib/wine/fakedlls/api-ms-win-security-base-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-security-base-l1-2-0.dll
 lib/wine/fakedlls/api-ms-win-security-base-private-l1-1-1.dll
 lib/wine/fakedlls/api-ms-win-security-credentials-l1-1-0.dll
+lib/wine/fakedlls/api-ms-win-security-cryptoapi-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-security-grouppolicy-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-security-lsalookup-l1-1-0.dll
 lib/wine/fakedlls/api-ms-win-security-lsalookup-l1-1-1.dll
@@ -1735,6 +1757,7 @@ lib/wine/fakedlls/dhtmled.ocx
 lib/wine/fakedlls/difxapi.dll
 lib/wine/fakedlls/dinput.dll
 lib/wine/fakedlls/dinput8.dll
+lib/wine/fakedlls/dism.exe
 %%WINE32%%lib/wine/fakedlls/dispdib.dll16
 lib/wine/fakedlls/dispex.dll
 %%WINE32%%lib/wine/fakedlls/display.drv16
@@ -1819,7 +1842,9 @@ lib/wine/fakedlls/ext-ms-win-uxtheme-themes-l1-1-0.dll
 %%STAGING%%lib/wine/fakedlls/ext-ms-win-xaml-pal-l1-1-0.dll
 lib/wine/fakedlls/extrac32.exe
 lib/wine/fakedlls/faultrep.dll
+lib/wine/fakedlls/fc.exe
 lib/wine/fakedlls/feclient.dll
+lib/wine/fakedlls/find.exe
 lib/wine/fakedlls/findstr.exe
 lib/wine/fakedlls/fltlib.dll
 lib/wine/fakedlls/fltmgr.sys
@@ -2032,6 +2057,7 @@ lib/wine/fakedlls/olepro32.dll
 lib/wine/fakedlls/olesvr32.dll
 lib/wine/fakedlls/olethk32.dll
 lib/wine/fakedlls/oleview.exe
+lib/wine/fakedlls/opcservices.dll
 %%OPENAL%%lib/wine/fakedlls/openal32.dll
 lib/wine/fakedlls/opengl32.dll
 lib/wine/fakedlls/packager.dll
@@ -2146,6 +2172,7 @@ lib/wine/fakedlls/traffic.dll
 lib/wine/fakedlls/twain_32.dll
 %%WINE32%%lib/wine/fakedlls/typelib.dll16
 lib/wine/fakedlls/ucrtbase.dll
+%%STAGING%%lib/wine/fakedlls/uianimation.dll
 lib/wine/fakedlls/uiautomationcore.dll
 lib/wine/fakedlls/uiribbon.dll
 lib/wine/fakedlls/unicows.dll
@@ -2253,6 +2280,7 @@ lib/wine/fakedlls/wmvcore.dll
 lib/wine/fakedlls/wnaspi32.dll
 lib/wine/fakedlls/wordpad.exe
 %%WINE32%%lib/wine/fakedlls/wow32.dll
+%%STAGING%%lib/wine/fakedlls/wow64cpu.dll
 lib/wine/fakedlls/wpc.dll
 lib/wine/fakedlls/wpcap.dll
 lib/wine/fakedlls/write.exe
@@ -2301,7 +2329,9 @@ lib/wine/fakedlls/xolehlp.dll
 lib/wine/fakedlls/xpsprint.dll
 lib/wine/fakedlls/xpssvcs.dll
 lib/wine/faultrep.dll.so
+lib/wine/fc.exe.so
 lib/wine/feclient.dll.so
+lib/wine/find.exe.so
 lib/wine/findstr.exe.so
 lib/wine/fltlib.dll.so
 lib/wine/fltmgr.sys.so
@@ -2407,7 +2437,7 @@ lib/wine/libdbghelp.def
 lib/wine/libdciman32.def
 lib/wine/libddraw.def
 lib/wine/libdinput.a
-lib/wine/libdinput8.def
+lib/wine/libdinput8.a
 lib/wine/libdmoguids.a
 lib/wine/libdnsapi.def
 lib/wine/libdplayx.def
@@ -2468,6 +2498,7 @@ lib/wine/libmswsock.def
 lib/wine/libnddeapi.def
 lib/wine/libnetapi32.def
 lib/wine/libnewdev.def
+lib/wine/libninput.def
 lib/wine/libnormaliz.def
 lib/wine/libntdll.def
 lib/wine/libntdsapi.def
@@ -2524,6 +2555,7 @@ lib/wine/libuuid.a
 lib/wine/libuxtheme.def
 lib/wine/libvdmdbg.def
 lib/wine/libversion.def
+lib/wine/libvulkan-1.def
 lib/wine/libwebservices.def
 lib/wine/libwer.def
 lib/wine/libwindowscodecs.def
@@ -2704,6 +2736,7 @@ lib/wine/olepro32.dll.so
 lib/wine/olesvr32.dll.so
 lib/wine/olethk32.dll.so
 lib/wine/oleview.exe.so
+lib/wine/opcservices.dll.so
 %%OPENAL%%lib/wine/openal32.dll.so
 lib/wine/opengl32.dll.so
 lib/wine/packager.dll.so
@@ -2818,6 +2851,7 @@ lib/wine/traffic.dll.so
 lib/wine/twain_32.dll.so
 %%WINE32%%lib/wine/typelib.dll16.so
 lib/wine/ucrtbase.dll.so
+%%STAGING%%lib/wine/uianimation.dll.so
 lib/wine/uiautomationcore.dll.so
 lib/wine/uiribbon.dll.so
 lib/wine/unicows.dll.so
@@ -2925,6 +2959,7 @@ lib/wine/wmvcore.dll.so
 lib/wine/wnaspi32.dll.so
 lib/wine/wordpad.exe.so
 %%WINE32%%lib/wine/wow32.dll.so
+%%STAGING%%lib/wine/wow64cpu.dll.so
 lib/wine/wpc.dll.so
 lib/wine/wpcap.dll.so
 lib/wine/write.exe.so

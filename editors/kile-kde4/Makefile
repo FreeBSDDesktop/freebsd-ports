@@ -14,10 +14,13 @@ COMMENT=	LaTeX source editor for KDE
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+DEPRECATED=	KDE4 is EOL upstream
+EXPIRATION_DATE=	2018-12-31
+
 RUN_DEPENDS=	identify:graphics/ImageMagick
 
-USES=		cmake gettext-tools kde:4 shared-mime-info tar:bzip2
-USE_QT4=	qmake_build moc_build rcc_build uic_build
+USES=		cmake gettext-tools kde:4 qt:4 shared-mime-info tar:bzip2
+USE_QT=		qmake_build moc_build rcc_build uic_build
 USE_KDE=	kdelibs automoc4 kate_run
 USE_TEX=	latex
 

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pip-tools
-PORTVERSION=	1.11.0
+PORTVERSION=	3.1.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,14 +13,14 @@ COMMENT=	Keep your pinned dependencies fresh
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>=0:devel/py-setuptools_scm@${FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}click>=6:devel/py-click@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}first>=0:devel/py-first@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>=0:devel/py-setuptools_scm@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}click>=6:devel/py-click@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
 USE_LOCALE=	en_US.UTF-8
-USE_PYTHON=	autoplist concurrent distutils
-USES=		python
 
 .include <bsd.port.mk>

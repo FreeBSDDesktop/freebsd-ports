@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	recursor
-DISTVERSION=	4.1.3
+DISTVERSION=	4.1.4
+PORTREVISION=	1
 CATEGORIES=	dns ipv6
 MASTER_SITES=	http://downloads.powerdns.com/releases/
 PKGNAMEPREFIX=	powerdns-
@@ -28,7 +29,8 @@ USES=		compiler:c++11-lib cpe gmake localbase:ldflags pkgconfig ssl tar:bzip2
 GNU_CONFIGURE=	YES
 CXXFLAGS+=	-D_GLIBCXX_USE_C99
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/pdns \
-		--with-protobuf
+		--with-protobuf \
+		--without-net-snmp
 
 CPE_VENDOR=	powerdns
 

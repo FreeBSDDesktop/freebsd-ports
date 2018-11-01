@@ -12,9 +12,10 @@ DISTNAME=	Radicale-${PORTVERSION}
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Python based CalDAV/CardDAV server
 
-LICENSE=	GPLv3
+LICENSE=	GPLv3+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}passlib>=1.6.5:security/py-passlib@${FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}passlib>=1.6.5:security/py-passlib@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
@@ -30,14 +31,14 @@ SUB_LIST=	PYTHON_CMD="${PYTHON_CMD}" \
 OPTIONS_DEFINE=	HTTP LDAP
 HTTP_DESC=	HTTP authentication support
 
-HTTP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests1>=0:www/py-requests1@${FLAVOR}
-LDAP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ldap>=0:net/py-ldap@${FLAVOR}
+HTTP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests1>=0:www/py-requests1@${PY_FLAVOR}
+LDAP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ldap>=0:net/py-ldap@${PY_FLAVOR}
 
 post-patch:
 	@${REINPLACE_CMD} 's|~/.config/radicale|${DATADIR}|; s|/etc|${PREFIX}/etc|' ${WRKSRC}/config
 
 post-install:
-	${MKDIR} ${STAGEDIR}/${ETCDIR} ${STAGEDIR}/${DATADIR}
+	@${MKDIR} ${STAGEDIR}/${ETCDIR} ${STAGEDIR}/${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/config ${STAGEDIR}/${ETCDIR}/config.sample
 	${INSTALL_DATA} ${WRKSRC}/logging ${STAGEDIR}/${ETCDIR}/logging.sample
 

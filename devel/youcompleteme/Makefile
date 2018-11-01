@@ -2,8 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	YouCompleteMe
-DISTVERSION=	g20180417
+DISTVERSION=	g20180819
 CATEGORIES=	devel
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ultima@FreeBSD.org
 COMMENT=	Code-completion engine for Vim
@@ -24,12 +25,13 @@ RUN_DEPENDS=	vim:editors/vim \
 		${PYTHON_PKGNAMEPREFIX}requests-futures>0:www/py-requests-futures@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}waitress>0:www/py-waitress@${PY_FLAVOR}
 
-USES=		cmake python:2.7
+USES=		cmake python
+USE_PYTHON=	flavors
 USE_GITHUB=	yes
 GH_ACCOUNT=	Valloric
-GH_TAGNAME=	6975efd
-GH_TUPLE=	Valloric:ycmd:2f87e12:ycm/third_party/ycmd \
-		vheon:JediHTTP:d283a73:ycmd5/third_party/ycmd/third_party/JediHTTP
+GH_TAGNAME=	e018777
+GH_TUPLE=	Valloric:ycmd:3869152:ycm/third_party/ycmd \
+		micbou:regex:7ceefe5:ycmd5/third_party/ycmd/third_party/cregex
 
 CMAKE_SOURCE_PATH+=	${WRKSRC}/third_party/ycmd/cpp
 
@@ -61,6 +63,9 @@ RUST_RUN_DEPENDS=	racerd:devel/racerd
 
 VIMFILESDIR=		${PREFIX}/share/vim/vimfiles
 
+CMAKE_ARGS_PY3=		-DUSE_PYTHON2:BOOL=OFF
+CMAKE_ARGS=		${CMAKE_ARGS_PY${PYTHON_MAJOR_VER}}
+
 do-install:
 		${MKDIR} ${STAGEDIR}${VIMFILESDIR}/third_party/ycmd/third_party
 		(cd ${WRKSRC} && ${COPYTREE_SHARE} "autoload doc plugin python" \
@@ -68,9 +73,8 @@ do-install:
 		(cd ${WRKSRC}/third_party/ycmd && ${COPYTREE_SHARE} \
 			"ycmd CORE_VERSION cpp clang_includes" \
 			"${STAGEDIR}${VIMFILESDIR}/third_party/ycmd/${d}")
-		${RM} -r ${WRKSRC}/third_party/ycmd/third_party/JediHTTP/vendor
 		(cd ${WRKSRC}/third_party/ycmd/third_party && ${COPYTREE_SHARE} \
-			"JediHTTP tern_runtime" \
+			"cregex tern_runtime" \
 			"${STAGEDIR}${VIMFILESDIR}/third_party/ycmd/third_party")
 		${RM} -rf ${STAGEDIR}${VIMFILESDIR}/third_party/ycmd/cpp/ycm/tests \
 			${STAGEDIR}${VIMFILESDIR}/third_party/ycmd/ycmd/tests

@@ -11,6 +11,10 @@ COMMENT=	Realtime software synthesizer
 
 LICENSE=	GPLv2
 
+BROKEN_aarch64=		fails to compile: argument unused during compilation: '-msse'
+BROKEN_armv6=		fails to compile: unknown argument: '-mvectorize-with-neon-quad'
+BROKEN_armv7=		fails to compile: unknown argument: '-mvectorize-with-neon-quad'
+
 LIB_DEPENDS=	libfftw3.so:math/fftw3 \
 		libmxml.so:textproc/mxml \
 		liblo.so:audio/liblo
@@ -78,13 +82,14 @@ CMAKE_ARGS+=	-DZYN_DATADIR:STRING=${DATADIR}
 CMAKE_ARGS+=	-DZYN_EXAMPLESDIR:STRING=${EXAMPLESDIR}
 
 .include <bsd.port.options.mk>
-
-# Build fix for ZynAddSubFx
-BUILD_DEPENDS+=	clang40:devel/llvm40
-CC=		clang40
-CXX=		clang++40
-
 .include <bsd.port.pre.mk>
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1100000
+# Build fix for ZynAddSubFx
+BUILD_DEPENDS+=	clang60:devel/llvm60
+CC=		clang60
+CXX=		clang++60
+.endif
 
 .if ${ARCH} == "i386" || ${ARCH} == "amd64"
 CFLAGS+=	-DASM_F2I_YES

@@ -22,7 +22,7 @@ BUILD_DEPENDS=	xf86-input-evdev>0:x11-drivers/xf86-input-evdev \
 		xf86-input-libinput>0:x11-drivers/xf86-input-libinput
 
 USES=		cmake:outsource compiler:c++11-lib cpe desktop-file-utils \
-		gettext kde:5 pkgconfig tar:xz
+		gettext kde:5 pkgconfig qt:5 tar:xz
 USE_GNOME=	glib20
 USE_KDE=	activities activities-stats archive attica auth baloo \
 		bookmarks codecs completion config configwidgets coreaddons \
@@ -34,9 +34,9 @@ USE_KDE=	activities activities-stats archive attica auth baloo \
 		plasma-workspace runner service solid \
 		sonnet textwidgets unitconversion wallet \
 		widgetsaddons windowsystem xmlgui
-USE_KDE+=	drkonqi_run infocenter_run kmenuedit_run ksysguard_run \
+USE_KDE+=	drkonqi_run infocenter_run kde-cli-tools_run kmenuedit_run ksysguard_run \
 		polkit-kde-agent-1_run systemsettings_run
-USE_QT5=	concurrent core dbus gui network phonon4 printsupport qml \
+USE_QT=		concurrent core dbus gui network phonon4 printsupport qml \
 		quick sql svg widgets x11extras xml \
 		buildtools_build qmake_build
 USE_XORG=	ice sm x11 xcb xcursor xext xfixes xft xi xrender

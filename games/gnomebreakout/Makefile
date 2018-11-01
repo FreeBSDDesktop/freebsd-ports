@@ -3,7 +3,7 @@
 
 PORTNAME=	gnomebreakout
 PORTVERSION=	0.5.3
-PORTREVISION=	19
+PORTREVISION=	21
 CATEGORIES=	games gnome
 MASTER_SITES=	SF/${PORTNAME:S/eb/e-b/}/${PORTNAME:S/eb/e-b/}/${PORTVERSION}/ \
 		http://www.users.on.net/~mipearson/
@@ -15,11 +15,13 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	GNOME version of the classic breakout game
 
+DEPRECATED=	GNOME 2 application
+EXPIRATION_DATE=	2018-12-10
+
 USES=		gettext-tools pathfix pkgconfig
 USE_GNOME=	gnomeprefix libgnomeui
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
-USE_GCC=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib -lX11 -lm

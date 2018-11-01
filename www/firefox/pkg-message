@@ -5,10 +5,19 @@ Some features available on other platforms are not implemented:
 - Encrypted Media Extensions (requires Widevine CDM binary)
 - Process sandboxing (requires Capsicum backend)
 - Reduced memory usage (requires mozjemalloc)
+- Crash Reporter (requires Google Breakpad and reproducible builds)
 - Performance profiling (requires GeckoProfiler)
 - Gamepad API (requires libusbhid backend)
 - WebVR (requires open source runtime)
 - TCP fast open
+- about:networking (requires link state notification)
+
+======================================================================
+
+On FreeBSD < 11.3 Web Content process may frequently crash due to bug 181741.
+If you cannot upgrade try applying the following workaround:
+
+$ sysctl net.local.stream.recvspace=16384
 
 ======================================================================
 

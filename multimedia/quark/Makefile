@@ -3,7 +3,7 @@
 
 PORTNAME=	quark
 PORTVERSION=	3.24
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	multimedia gnome
 MASTER_SITES=	http://hsgg.github.com/quark/
 
@@ -11,6 +11,9 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Audio player, for geeks, by geeks
 
 LICENSE=	GPLv2
+
+DEPRECATED=	GNOME 2 application
+EXPIRATION_DATE=	2018-12-10
 
 LIB_DEPENDS=	libxine.so:multimedia/libxine
 

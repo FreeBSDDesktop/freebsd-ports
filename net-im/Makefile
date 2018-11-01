@@ -21,6 +21,7 @@
     SUBDIR += farstream
     SUBDIR += finch
     SUBDIR += folks
+    SUBDIR += fractal
     SUBDIR += freetalk
     SUBDIR += fugu
     SUBDIR += gajim
@@ -28,11 +29,8 @@
     SUBDIR += gitterdone
     SUBDIR += gloox
     SUBDIR += hotot
-    SUBDIR += hs-haskell-xmpp
     SUBDIR += icmpchat
     SUBDIR += icqlib
-    SUBDIR += imspector
-    SUBDIR += jabber
     SUBDIR += jabber.el
     SUBDIR += jabberd
     SUBDIR += jarl
@@ -87,7 +85,6 @@
     SUBDIR += licq-qt-gui
     SUBDIR += linux-telegram-desktop
     SUBDIR += loudmouth
-    SUBDIR += mastodon
     SUBDIR += matterircd
     SUBDIR += mbpurple
     SUBDIR += mcabber
@@ -181,6 +178,7 @@
     SUBDIR += skype-devel
     SUBDIR += skype4
     SUBDIR += slack-term
+    SUBDIR += talkatu
     SUBDIR += teamwords
     SUBDIR += telegram
     SUBDIR += telegram-desktop
@@ -200,8 +198,7 @@
     SUBDIR += telepathy-logger-qt5
     SUBDIR += telepathy-mission-control
     SUBDIR += telepathy-python
-    SUBDIR += telepathy-qt4
-    SUBDIR += telepathy-qt5
+    SUBDIR += telepathy-qt
     SUBDIR += telepathy-rakia
     SUBDIR += telepathy-salut
     SUBDIR += telepathy-sofiasip
@@ -209,7 +206,6 @@
     SUBDIR += tkabber-plugins
     SUBDIR += toot
     SUBDIR += tox
-    SUBDIR += tox12
     SUBDIR += toxbot
     SUBDIR += toxic
     SUBDIR += toxins

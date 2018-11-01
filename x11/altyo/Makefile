@@ -5,13 +5,15 @@ PORTNAME=	altyo
 DISTVERSIONPREFIX=	debian/
 DISTVERSION=	0.4_rc19
 DISTVERSIONSUFFIX=	-${GH_ACCOUNT}1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 
 MAINTAINER=	nivit@FreeBSD.org
 COMMENT=	Drop-down terminal emulator, written in Vala
 
 LICENSE=	GPLv3
+
+BROKEN=		Cannot convert from `unowned string' to `unowned char[]?'
 
 BUILD_DEPENDS=	git:devel/git \
 		valac:lang/vala

@@ -2,9 +2,12 @@
 
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.5-464
-DISTVERSIONSUFFIX=	-g5454f57dd
+DISTVERSION=	0.0.5-1006
+DISTVERSIONSUFFIX=	-g7056b5fc7
 CATEGORIES=	emulators
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	1e28a22860c0.patch:-p1
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	PS3 emulator/debugger
@@ -12,9 +15,10 @@ COMMENT=	PS3 emulator/debugger
 LICENSE=	BSD3CLAUSE BSL GPLv2 MIT ZLIB
 LICENSE_COMB=	multi
 LICENSE_FILE_BSD3CLAUSE=${WRKSRC_cereal}/LICENSE
-LICENSE_FILE_BSL=	${WRKSRC_Optional}/LICENSE
 LICENSE_FILE_MIT=	${WRKSRC_GSL}/LICENSE
 LICENSE_FILE_ZLIB=	${WRKSRC_asmjit}/LICENSE.md
+
+BROKEN_FreeBSD_10=	libc++ does not support C++17 features
 
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libavcodec.so:multimedia/ffmpeg
@@ -24,33 +28,29 @@ ONLY_FOR_ARCHS_REASON=	requires int128 and SSE2
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	RPCS3
-GH_TUPLE=	RPCS3:hidapi:hidapi-0.8.0-rc1-25-gca39ce8:hidapi/3rdparty/hidapi \
-		RPCS3:llvm:17ec6d78a73:llvm/llvm \
-		RPCS3:yaml-cpp:release-0.5.3-62-g017626a:yamlcpp/Utilities/yaml-cpp \
-		akrzemi1:Optional:f27e790:Optional/3rdparty/Optional \
+GH_TUPLE=	RPCS3:hidapi:hidapi-0.8.0-rc1-26-g4c27501:hidapi/3rdparty/hidapi \
+		RPCS3:llvm:5c906fd1694e:llvm/llvm \
 		Cyan4973:xxHash:v0.6.5:xxHash/3rdparty/xxHash \
+		jbeder:yaml-cpp:yaml-cpp-0.6.2-8-gc90c08c:yamlcpp/3rdparty/yaml-cpp \
 		kobalicek:asmjit:673dcef:asmjit/asmjit \
-		KhronosGroup:glslang:3.0-1794-ge22e3473:glslang/Vulkan/glslang \
-		Microsoft:GSL:fc5fce4:GSL/3rdparty/GSL \
+		KhronosGroup:glslang:5.1-184-gc99304c5:glslang/Vulkan/glslang \
+		Microsoft:GSL:v2.0.0:GSL/3rdparty/GSL \
 		USCiLab:cereal:v1.2.0:cereal/3rdparty/cereal \
-		zeux:pugixml:v1.8.1-148-g257fbb4:pugixml/3rdparty/pugixml
+		zeux:pugixml:v1.9:pugixml/3rdparty/pugixml
 
-USES=		cmake:outsource compiler:c++14-lang iconv:wchar_t localbase:ldflags \
-		openal:soft pkgconfig
+USES=		cmake:outsource compiler:c++17-lang iconv:wchar_t localbase:ldflags \
+		openal:soft pkgconfig qt:5
 USE_GL=		gl glew
-USE_QT5=	qmake_build buildtools_build core dbus gui network widgets qml
+USE_QT=		qmake_build buildtools_build core dbus gui network widgets qml
 USE_XORG=	x11
+LLD_UNSAFE=	yes # XXX ports/219089
 CMAKE_ON=	CMAKE_SKIP_RPATH USE_SYSTEM_FFMPEG USE_SYSTEM_LIBPNG
 CMAKE_OFF=	USE_NATIVE_INSTRUCTIONS
-CXXFLAGS+=	-D_GLIBCXX_USE_C99 # XXX ports/193528
 CXXFLAGS+=	-Wno-macro-redefined # __STDC_*_MACROS sys/cdefs.h vs. llvm-config
 LDFLAGS+=	-Wl,--as-needed # GLU
 
 OPTIONS_DEFINE=	ALSA EVDEV GDB LLVM PULSEAUDIO VULKAN
 OPTIONS_DEFAULT=ALSA LLVM VULKAN
-.if !exists(${.CURDIR:H:H}/graphics/vulkan-sdk)
-OPTIONS_EXCLUDE=VULKAN # XXX ports/222175
-.endif
 
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins
@@ -70,7 +70,8 @@ PULSEAUDIO_LIB_DEPENDS=	libpulse-simple.so:audio/pulseaudio
 PULSEAUDIO_CMAKE_BOOL=	USE_PULSE
 
 VULKAN_DESC=		Vulkan renderer
-VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-sdk
+VULKAN_BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:devel/vulkan-headers
+VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 VULKAN_CMAKE_BOOL=	USE_VULKAN
 
 post-patch:

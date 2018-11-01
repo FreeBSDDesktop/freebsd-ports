@@ -19,6 +19,7 @@ CONFLICTS=	bird-[0-9]*
 CONFLICTS+=	bird6-[0-9]*
 
 USES=		bison gmake ncurses readline
+USE_CSTD=	gnu99
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var
 USE_RC_SUBR=	bird

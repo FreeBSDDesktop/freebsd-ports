@@ -3,6 +3,7 @@
 
 PORTNAME=	pfstools
 DISTVERSION=	2.1.0
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	SF
 
@@ -51,8 +52,8 @@ TIFF_CMAKE_BOOL=	WITH_TIFF
 TIFF_LIB_DEPENDS=	libtiff.so:graphics/tiff
 
 OPENEXR_CMAKE_BOOL=	WITH_OpenEXR
-OPENEXR_LIB_DEPENDS=	libIlmImf.so:graphics/OpenEXR \
-			libIex-2_2.so:graphics/ilmbase
+OPENEXR_LIB_DEPENDS=	libIlmImf.so:graphics/openexr \
+			libIex.so:graphics/ilmbase
 
 IMAGEMAGICK_CMAKE_BOOL=	WITH_ImageMagick
 IMAGEMAGICK_LIB_DEPENDS=	libMagick++-6.so:graphics/ImageMagick
@@ -85,8 +86,9 @@ GLVIEW_CMAKE_ON=	-DGLUT_INCLUDE_DIRS=${LOCALBASE}/include
 GLVIEW_USE=		GL=glut GL=gl,glu
 
 VIEW_CMAKE_BOOL=	WITH_QT
-VIEW_USE=		QT5=buildtools_build,qmake_build,widgets
-VIEW_USE=		GL=glut GL=gl,glu QT5=core,gui,widgets
+VIEW_USES=		qt:5
+VIEW_USE=		QT=buildtools_build,qmake_build,widgets
+VIEW_USE=		GL=glut GL=gl,glu QT=core,gui,widgets
 
 OPENMP_USES=		compiler:openmp
 

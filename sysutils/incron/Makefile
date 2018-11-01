@@ -27,10 +27,16 @@ MAKE_ARGS=	PREFIX="${PREFIX}" USER=${UID}	\
 		MANPATH=${MANPREFIX}/man
 USE_RC_SUBR=	${PORTNAME}
 
+.include <bsd.port.pre.mk>
+
 post-patch:
 	${REINPLACE_CMD} -e 's,/etc/incron,${PREFIX}/etc/incron,'	\
 		${WRKSRC}/*conf* ${WRKSRC}/Makefile ${WRKSRC}/*.[158h]	\
 		${WRKSRC}/*.cpp
 	${REINPLACE_CMD} -e '/INITDIR/d' ${WRKSRC}/Makefile
+.if ${ARCH:Mmips*} || ${ARCH:Mpowerpc*} || ${ARCH} == sparc64
+	${REINPLACE_CMD} -e '/pragma/d' ${WRKSRC}/inotify-cxx.cpp \
+		${WRKSRC}/usertable.cpp
+.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

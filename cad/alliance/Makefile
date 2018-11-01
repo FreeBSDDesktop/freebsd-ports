@@ -3,7 +3,7 @@
 
 PORTNAME=	alliance
 DISTVERSION=	5.0-20120515
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	cad
 MASTER_SITES=	http://ftp.lyx.org/lip6/softs/alliance/distribution/5.0/ \
 		http://ftp.jussieu.fr/lip6/softs/alliance/distribution/5.0/ \
@@ -35,7 +35,7 @@ CONFIGURE_ARGS+=--mandir=${MANPREFIX}/man \
 		--prefix=${ALLIANCE_TOP}
 
 # The port does not build with C++11 or later (bug 219275).
-USE_CXXSTD=	gnu++03
+USE_CXXSTD=	gnu++98
 
 MAKE_JOBS_UNSAFE=	yes
 

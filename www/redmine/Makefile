@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	redmine
-PORTVERSION=	3.4.5
+PORTVERSION=	3.4.6
 CATEGORIES=	www
 MASTER_SITES=	http://www.redmine.org/releases/
 
@@ -43,11 +43,10 @@ GROUPS=		${WWWGRP}
 PLIST_SUB=	WWWOWN=${WWWOWN} WWWGRP=${WWWGRP}
 SUB_LIST=	RUBY_NAME=${RUBY_NAME}
 
-OPTIONS_DEFINE=	MYSQL POSTGRESQL LDAP MARKDOWN RMAGIC THIN
+OPTIONS_DEFINE=	MYSQL POSTGRESQL MARKDOWN RMAGIC THIN
 OPTIONS_DEFAULT=MYSQL MARKDOWN RMAGIC THIN
 OPTIONS_SUB=	yes
 POSTGRESQL_DESC=Enable PostgreSQL support
-LDAP_DESC=	Enable LDAP Authentification
 MARKDOWN_DESC=	Enable Markdown support
 RMAGIC_DESC=	Enable Gantt charts support
 THIN_DESC=	Use Thin WEB server
@@ -94,9 +93,6 @@ do-install-MYSQL-on:
 
 do-install-POSTGRESQL-on:
 	${CP} ${FILESDIR}/pg.rb ${STAGEDIR}${WWWDIR}/bundler.d
-
-do-install-LDAP-on:
-	${CP} ${FILESDIR}/ldap.rb ${STAGEDIR}${WWWDIR}/bundler.d
 
 do-install-MARKDOWN-on:
 	${CP} ${FILESDIR}/markdown.rb ${STAGEDIR}${WWWDIR}/bundler.d

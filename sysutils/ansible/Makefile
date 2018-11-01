@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ansible
-PORTVERSION?=	2.5.3
+PORTVERSION?=	2.7.0
 PORTREVISION?=	0
 CATEGORIES=	sysutils python
 MASTER_SITES=	http://releases.ansible.com/ansible/
@@ -28,7 +28,11 @@ TEST_DEPENDS?=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}nose>0:devel/py-nose@${PY_FLAVOR}
 
-CONFLICTS?=	ansible1-* ansible23-* ansible24-*
+CONFLICTS?=	ansible1-* \
+		ansible23-* \
+		ansible24-* \
+		ansible25-* \
+		ansible26-*
 
 EXTRA_PATCHES?=	${FILESDIR}/extra-patch-sesu
 
@@ -68,6 +72,10 @@ post-install-EXAMPLES-on:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/examples/ansible.cfg ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/examples/hosts ${STAGEDIR}${EXAMPLESDIR}
+
+post-stage:
+	${FIND} ${STAGEDIR}${PREFIX}/bin -type l -name ansible-\* -lname ansible \
+		-execdir ${RLN} ansible-${PYTHON_VER} {} \;
 
 TEST_WRKSRC=${WRKSRC}/test
 

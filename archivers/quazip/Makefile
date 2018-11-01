@@ -20,10 +20,12 @@ USES=		cmake:outsource
 USE_LDCONFIG=	yes
 
 .  if ${FLAVOR} == qt4
-USE_QT4=	corelib moc_build network_build qmake_build rcc_build uic_build
+USES+=		qt:4
+USE_QT=		corelib moc_build network_build qmake_build rcc_build uic_build
 CMAKE_ARGS=	-DBUILD_WITH_QT4:BOOL=TRUE
 .  else
-USE_QT5=	core buildtools_build qmake_build
+USES+=		compiler:c++11-lang qt:5
+USE_QT=		core buildtools_build qmake_build
 CMAKE_ARGS=	-DBUILD_WITH_QT4:BOOL=FALSE
 QTVER_SUFFIX=	5
 .  endif

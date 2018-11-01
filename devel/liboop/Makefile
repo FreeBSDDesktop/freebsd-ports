@@ -3,13 +3,16 @@
 
 PORTNAME=	liboop
 PORTVERSION=	1.0
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES=	devel
 MASTER_SITES=	GENTOO \
 		http://download.ofb.net/liboop/
 
 MAINTAINER=	rodrigo@FreeBSD.org
 COMMENT=	Low-level event loop management library for POSIX-based OS
+
+DEPRECATED=	Uses obsolete glib12
+EXPIRATION_DATE=	2018-12-20
 
 LICENSE=	GPLv2
 

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gigolo
-PORTVERSION=	0.4.2
-PORTREVISION=	1
+PORTVERSION=	0.4.90
 CATEGORIES=	sysutils
 MASTER_SITES=	XFCE/src/apps/${PORTNAME}/${PORTVERSION:R}
 
@@ -12,11 +11,15 @@ COMMENT=	Frontend to easily manage filesystem connections
 
 LICENSE=	GPLv2
 
+ONLY_FOR_ARCHS=		amd64 i386 powerpc64
+ONLY_FOR_ARCHS_REASON=	Does not compile
+
 BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser
 
-USES=		gmake fuse pkgconfig gettext-tools xfce tar:bzip2
-USE_GNOME=	cairo gtk20 gvfs intlhack
+USES=		gmake fuse pkgconfig gettext-tools xfce:gtk3 tar:bzip2
+USE_GNOME=	cairo gdkpixbuf2 gtk30 gvfs intlhack
 USE_XORG=	x11
+
 GNU_CONFIGURE=	yes
 
 PORTDOCS=	AUTHORS ChangeLog NEWS README
@@ -26,9 +29,6 @@ OPTIONS_SUB=	yes
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=	gettext-runtime
-
-ONLY_FOR_ARCHS=	i386 amd64
-ONLY_FOR_ARCHS_REASON=	Does not compile
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|^DOCFILES.*|DOCFILES =|' \

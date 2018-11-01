@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	osquery
-PORTVERSION=	3.2.6
+PORTVERSION=	3.3.1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	zi@FreeBSD.org
@@ -11,6 +12,8 @@ COMMENT=	SQL powered OS instrumentation, monitoring, and analytics
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_aarch64=		fails to compile: the clang compiler does not support '-march=x86-64'
+
 BUILD_DEPENDS=	thrift>=0.11.0:devel/thrift \
 		bash>0:shells/bash \
 		linenoise-ng>0:devel/linenoise-ng \
@@ -18,6 +21,7 @@ BUILD_DEPENDS=	thrift>=0.11.0:devel/thrift \
 		${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR}
 LIB_DEPENDS=	libaugeas.so:textproc/augeas \
 		libboost_regex.so:devel/boost-libs \
+		libfuzzy.so:security/ssdeep \
 		libgflags.so:devel/gflags \
 		libglog.so:devel/glog \
 		libicuuc.so:devel/icu \
@@ -30,7 +34,8 @@ USES=		cmake:outsource libtool python:build compiler:c++11-lib \
 		libarchive ssl
 USE_GNOME=	libxml2
 CONFIGURE_ENV+=	OSQUERY_BUILD_VERSION="${PORTVERSION}" HOME="${WRKDIR}" \
-		SKIP_TESTS="yes" CC="${CC}" CXX="${CXX}"
+		SKIP_TESTS="yes" CC="${CC}" CXX="${CXX}" \
+		SKIP_SMART=1
 CMAKE_ARGS+=	-DFREEBSD=awesome -DCMAKE_SYSTEM_NAME="FreeBSD"
 BLDDIR=		${WRKDIR}/.build/${PORTNAME}
 TPVERSION=	3.0.0
@@ -63,9 +68,9 @@ LLDPD_CONFIGURE_ENV_OFF=SKIP_LLDPD=1
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 1100000
-BUILD_DEPENDS+=	clang40:devel/llvm40
-CC=	clang40
-CXX=	clang++40
+BUILD_DEPENDS+=	clang60:devel/llvm60
+CC=	clang60
+CXX=	clang++60
 .endif
 
 post-patch:

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gnome-screenshot
-PORTVERSION=	3.18.0
+PORTVERSION=	3.26.0
 CATEGORIES=	deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -10,17 +10,30 @@ DIST_SUBDIR=	gnome3
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	GNOME 3 utility for making picutures of your screen
 
-LIB_DEPENDS=	libcanberra-gtk3.so:audio/libcanberra-gtk3
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+BUILD_DEPENDS=	appstream-builder:devel/appstream-glib
+LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
+		libcanberra-gtk3.so:audio/libcanberra-gtk3
 
 CONFLICTS=	gnome-utils-2.[0-9]*
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gmake gnome pathfix pkgconfig tar:xz
-USE_GNOME=	gtk30 intlhack
-GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
+USES=		gettext gnome localbase meson pkgconfig python:3.4+,build \
+		shebangfix tar:xz
+USE_GNOME=	cairo gdkpixbuf2 gtk30
+USE_XORG=	x11 xext
+SHEBANG_FILES=	build-aux/postinstall.py
 
 GLIB_SCHEMAS=	org.gnome.gnome-screenshot.gschema.xml
+
+OPTIONS_DEFINE=	INTEL_FIX
+OPTIONS_SUB=	yes
+
+# Workaround garbled screenshot when 3D hardware acceleration is enabled
+# via x11-drivers/xf86-video-intel port
+INTEL_FIX_DESC=		Don't try to use the gnome-shell interface
+INTEL_FIX_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-intel
 
 .include <bsd.port.mk>

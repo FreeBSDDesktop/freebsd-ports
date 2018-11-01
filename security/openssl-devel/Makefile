@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	openssl
-PORTVERSION=	1.1.0h
+PORTVERSION=	1.1.0i
 PORTREVISION=	1
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.openssl.org/source/ \
@@ -10,20 +10,30 @@ MASTER_SITES=	https://www.openssl.org/source/ \
 PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	brnrd@FreeBSD.org
-COMMENT=	SSL and crypto library (1.1.x)
+COMMENT=	SSL and crypto library (1.1.0)
 
 LICENSE=	OpenSSL
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	libressl-[0-9]* \
 			libressl-devel-[0-9]* \
-			openssl-[0-9]*
+			openssl-[0-9]* \
+			openssl111-[0-9]*
+
+DEPRECATED=		Upstream support ends 2019-09-11, use security/openssl111
+EXPIRATION_DATE=	2019-09-11
 
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	config
 CONFIGURE_ENV=	PERL="${PERL}"
 CONFIGURE_ARGS=	--openssldir=${OPENSSLDIR} \
-		--prefix=${PREFIX}
+		--prefix=${PREFIX} -v
+
+USES=		cpe perl5
+USE_PERL5=	build
+MAKE_ARGS+=	WHOLE_ARCHIVE_FLAG=--whole-archive
+MAKE_ENV+=	LIBRPATH="${PREFIX}/lib" GREP_OPTIONS=
+TEST_TARGET=	test
 
 OPTIONS_GROUP=	CIPHERS HASHES OPTIMIZE PROTOCOLS
 OPTIONS_GROUP_CIPHERS=	IDEA JPAKE RC2 RC4 RC5
@@ -40,6 +50,7 @@ OPTIONS_GROUP_OPTIMIZE+=	EC
 OPTIONS_GROUP_OPTIMIZE+=	EC
 .endif
 OPTIONS_DEFAULT=	ASM ASYNC DH EC MAN3 MD4 RC2 RC4 RMD160 SCTP SHARED SSE2 THREADS TLS1 TLS1_1
+OPTIONS_SUB=	yes
 
 ASM_DESC=	Assembler code
 ASYNC_DESC=	Asynchronous mode
@@ -71,14 +82,6 @@ TLS1_DESC=	TLSv1.0 support
 TLS1_1_DESC=	TLSv1.1 support (disables TLSv1.0 as well) 
 ZLIB_DESC=	zlib compression support
 
-OPTIONS_SUB=	yes
-
-USES=		cpe perl5
-USE_PERL5=	build
-MAKE_ARGS+=	WHOLE_ARCHIVE_FLAG=--whole-archive
-MAKE_ENV+=	LIBRPATH="${PREFIX}/lib" GREP_OPTIONS=
-TEST_TARGET=	test
-
 # Upstream default disabled options
 .for _option in md2 rc5 sctp ssl3 zlib
 ${_option:tu}_CONFIGURE_ON=	enable-${_option}
@@ -86,7 +89,7 @@ ${_option:tu}_CONFIGURE_ON=	enable-${_option}
 
 # Upstream default enabled options
 .for _option in asm async dh idea md4 mdc2 md_ghost94 nextprotoneg rfc3779 \
-	rmd160 sse2 threads tls1 tls1_1 zlib
+	rmd160 shared sse2 threads tls1 tls1_1 zlib
 ${_option:tu}_CONFIGURE_OFF=	no-${_option}
 .endfor
 
@@ -100,7 +103,7 @@ ZLIB_CONFIGURE_ON=	zlib-dynamic
 
 .include <bsd.port.pre.mk>
 .if ${PREFIX} == /usr
-IGNORE=	the OpenSSL port can not be installed over the base version
+IGNORE=	the OpenSSL port cannot be installed over the base version
 .endif
 
 OPENSSLDIR?=	${PREFIX}/openssl
@@ -130,6 +133,7 @@ post-configure:
 	${REINPLACE_CMD} \
 		-e 's|SHLIB_VERSION_NUMBER "1.1"|SHLIB_VERSION_NUMBER "${OPENSSL_SHLIBVER}"|' \
 		${WRKSRC}/include/openssl/opensslv.h
+	${REINPLACE_CMD} -e 's|\^GNU ld|GNU|' ${WRKSRC}/Makefile.shared
 
 post-install-SHARED-on:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*.so.${OPENSSL_SHLIBVER} \

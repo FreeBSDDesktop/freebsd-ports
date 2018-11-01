@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	rapidjson
-DISTVERSIONPREFIX=	v
 PORTVERSION=	1.1.0
-PORTREVISION=	3
+DISTVERSIONPREFIX=	v
+PORTREVISION=	4
 CATEGORIES=	devel textproc
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -37,6 +37,10 @@ PORTDATA=	*
 .include <bsd.port.pre.mk>
 
 CXXFLAGS+=	-Wno-c++98-compat # for EXAMPLES option, due to this bug: https://github.com/miloyip/rapidjson/issues/761
+CXXFLAGS_powerpc=	-Wno-error
+CXXFLAGS_powerpcspe=	-Wno-error
+CXXFLAGS_powerpc64=	-Wno-error
+CXXFLAGS_sparc64=	-Wno-error
 .if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 50
 CXXFLAGS+=	-Wno-zero-as-null-pointer-constant
 .endif

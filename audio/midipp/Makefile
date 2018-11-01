@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	midipp
-PORTVERSION=	1.3.4
+PORTVERSION=	2.0.0
 CATEGORIES=	audio
 MASTER_SITES=	http://www.selasky.org/hans_petter/distfiles/ \
 		http://home.selasky.org:8192/distfiles/
@@ -25,7 +25,9 @@ OPTIONS_SINGLE_TOOLKIT=	QT4 QT5
 OPTIONS_DEFAULT=	QT5
 
 TOOLKIT_DESC=	Qt toolkit
-QT4_USE=	${_USE_QT4:S/^/QT4=/}
-QT5_USE=	${_USE_QT5:S/^/QT5=/} GL=gl
+QT4_USES=	qt:4
+QT4_USE=	${_USE_QT4:S/^/QT=/}
+QT5_USES=	qt:5
+QT5_USE=	${_USE_QT5:S/^/QT=/} GL=gl
 
 .include <bsd.port.mk>

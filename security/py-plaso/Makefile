@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	plaso
-PORTVERSION=	20180524
-PORTREVISION=	1
+PORTVERSION=	20180930
 CATEGORIES=	security python
 MASTER_SITES=	https://github.com/log2timeline/plaso/releases/download/${PORTVERSION}/ \
 		LOCAL/antoine
@@ -27,13 +26,12 @@ RUN_DEPENDS=	libesedb>=e:devel/libesedb \
 		${PYTHON_PKGNAMEPREFIX}artifacts>=0:security/py-artifacts@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}bencode.py>=0:converters/py-bencode.py@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}biplist>=0:devel/py-biplist@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}construct>=0:devel/py-construct@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dateutil>=0:devel/py-dateutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dfvfs>=0:security/py-dfvfs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dfwinreg>=0:security/py-dfwinreg@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}dpkt>=0:net/py-dpkt@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}efilter>=0:devel/py-efilter@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}elasticsearch5>=0:textproc/py-elasticsearch5@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}elasticsearch>=0:textproc/py-elasticsearch@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}lz4>=0:archivers/py-lz4@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pefile>=0:devel/py-pefile@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}psutil>=0:sysutils/py-psutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyparsing>=0:devel/py-pyparsing@${PY_FLAVOR} \
@@ -65,8 +63,8 @@ TEST_DEPENDS+=	ca_root_nss>=0:security/ca_root_nss
 .endif
 
 post-patch:
-	${REINPLACE_CMD} "s,'5.5.1',None," ${WRKSRC}/plaso/dependencies.py
-	${REINPLACE_CMD} "/maximum_version: 5.5.1/d" ${WRKSRC}/dependencies.ini
+	${REINPLACE_CMD} "/elasticsearch5/d" ${WRKSRC}/plaso/dependencies.py
+	${REINPLACE_CMD} "/^\[elasticsearch5/,/^$$/d" ${WRKSRC}/dependencies.ini
 	${REINPLACE_CMD} "s|'share', 'artifacts'|'share', '${PYTHON_PKGNAMEPREFIX}artifacts'|" \
 		${WRKSRC}/plaso/cli/helpers/artifact_definitions.py
 

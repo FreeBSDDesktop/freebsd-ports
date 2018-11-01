@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	CLDR
-PORTVERSION=	33.0
+PORTVERSION=	34.0
 CATEGORIES=	textproc
 MASTER_SITES=	http://unicode.org/Public/cldr/${PORTVERSION:R}/:src	\
 		http://www.unicode.org/:lic

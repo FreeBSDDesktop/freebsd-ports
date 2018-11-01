@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	buildbot-worker
-PORTVERSION=	0.9.11
+PORTVERSION=	0.9.15
 PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
@@ -14,16 +14,16 @@ COMMENT=	Buildbot Worker Daemon
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}future>=0.15.2:devel/py-future@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}twisted>=14.0.1:devel/py-twisted@${FLAVOR}
-TEST_DEPENDS=	trial:devel/py-twisted@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}future>=0.15.2:devel/py-future@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}twisted>=14.0.1:devel/py-twisted@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}twisted>0:devel/py-twisted@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist distutils
 USE_RC_SUBR=	buildbot-worker
 
-SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
+SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD} PYTHON_VER=${PYTHON_VER}
 
 NO_ARCH=	yes
 

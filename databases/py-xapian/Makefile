@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	xapian
-PORTVERSION=	1.4.5
+PORTVERSION=	1.4.8
 DISTVERSIONPREFIX=	bindings-
 CATEGORIES=	databases python
-MASTER_SITES=	http://oligarchy.co.uk/xapian/${PORTVERSION}/ \
+MASTER_SITES=	https://oligarchy.co.uk/xapian/${PORTVERSION}/ \
 		LOCAL/sunpoet
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -26,18 +26,20 @@ OPTIONS_DEFINE=	DOCS
 
 PORTSCOUT=	limitw:1,even
 
+USES=		compiler:c++11-lang libtool python tar:xz
+
 CONFIGURE_ARGS=	--datarootdir=${DATADIR} --docdir=${DOCSDIR} \
 		--enable-static \
 		--without-csharp --without-java --without-lua --without-perl \
 		--without-php --without-ruby --without-tcl
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		libtool python tar:xz
+USE_CXXSTD=	c++11
 USE_PYTHON=	flavors
 
 PORTDOCS=	*
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=1.4.8:textproc/py-sphinx@${FLAVOR}
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=1.4.8:textproc/py-sphinx@${PY_FLAVOR}
 
 .include <bsd.port.pre.mk>
 

@@ -3,6 +3,7 @@
 PORTNAME=	nxengine
 PORTVERSION=	2.6.3
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	games
 MASTER_SITES+=	https://www.cavestory.org/downloads/:data \
 		SF/lifanov-ports-distfiles/games/${PORTNAME}/:icons
@@ -24,15 +25,17 @@ LICENSE_DISTFILES_FREEWARE=	${DISTFILES:[2]:S/:data//}
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
-DESKTOP_ENTRIES="NXEngine" "" "${PORTNAME}" \
-		"${PORTNAME}" "Game;AdventureGame;" ""
-
 USES=		cmake:outsource compiler:c++11-lang
+
 USE_SDL=	mixer2 sdl2
 SUB_FILES=	${PORTNAME}
+CXXFLAGS+=	-Wno-error-narrowing
 
 USE_GITHUB=	yes
 GH_PROJECT=	${PORTNAME}-evo
+
+DESKTOP_ENTRIES="NXEngine" "" "${PORTNAME}" \
+		"${PORTNAME}" "Game;AdventureGame;" ""
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}

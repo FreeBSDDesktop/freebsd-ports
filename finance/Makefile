@@ -24,11 +24,14 @@
     SUBDIR += alkimia-qt4
     SUBDIR += aqbanking
     SUBDIR += aqmoney
+    SUBDIR += beancount
     SUBDIR += beanie
     SUBDIR += bitcoin-armory
     SUBDIR += cbb
+    SUBDIR += cointop
     SUBDIR += electrum
     SUBDIR += expense
+    SUBDIR += fava
     SUBDIR += fixc
     SUBDIR += frontaccounting
     SUBDIR += gnucash
@@ -101,6 +104,8 @@
     SUBDIR += py-vatnumber
     SUBDIR += py-ystockquote
     SUBDIR += qhacc
+    SUBDIR += qtbitcointrader
+    SUBDIR += quantlib
     SUBDIR += quickfix
     SUBDIR += rubygem-money
     SUBDIR += sabernetdcs-client

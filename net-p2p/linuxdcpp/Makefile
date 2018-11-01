@@ -2,7 +2,7 @@
 
 PORTNAME=	linuxdcpp
 PORTVERSION=	1.1.0
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	net-p2p
 MASTER_SITES=	http://launchpadlibrarian.net/69733951/
 
@@ -14,12 +14,12 @@ LICENSE_FILE=	${WRKSRC}/License.txt
 
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/version.hpp:devel/boost-libs
 
-USES=		gettext iconv pkgconfig scons tar:bzip2 ssl
+USES=		compiler:c++11-lang gettext iconv pkgconfig scons tar:bzip2 ssl
 USE_GNOME=	libglade2
 PORTDOCS=	*
 DESTDIRNAME=	FAKE_ROOT
 
-OPTIONS_DEFINE=	NOTIFY
+OPTIONS_DEFINE=	NOTIFY DOCS
 OPTIONS_DEFAULT=NOTIFY
 
 .if defined(WITH_DEBUG)

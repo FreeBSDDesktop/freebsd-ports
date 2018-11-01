@@ -3,6 +3,7 @@
 
 PORTNAME=		hitch
 PORTVERSION=		1.4.8
+PORTREVISION=		2
 CATEGORIES=		security
 MASTER_SITES=		http://hitch-tls.org/source/ \
 			ZI
@@ -15,8 +16,8 @@ LICENSE=		BSD2CLAUSE
 BUILD_DEPENDS=		rst2man:textproc/py-docutils
 LIB_DEPENDS=		libev.so:devel/libev
 
-USERS=			nobody
-GROUPS=			nobody
+USERS=			hitch
+GROUPS=			hitch
 
 USES=			pkgconfig ssl
 GNU_CONFIGURE=		yes
@@ -26,6 +27,8 @@ CONFIGURE_ENV=		CRYPTO_CFLAGS="-I${OPENSSLINC}" CRYPTO_LIBS="-L${OPENSSLLIB}" \
 USE_RC_SUBR=		${PORTNAME}
 CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib -lcrypto -lssl
+
+OPTIONS_DEFINE=	DOCS
 
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc

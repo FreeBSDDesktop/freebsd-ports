@@ -14,8 +14,6 @@ LICENSE_NAME=	Tcl/Tk License
 LICENSE_FILE=	${WRKSRC}/license.terms
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-BROKEN_powerpc64=	fails to package: Unable to access file freebsd-powerpc64/md5c.so:No such file or directory
-
 RUN_DEPENDS=	${LOCALBASE}/lib/Trf/pkgIndex.tcl:devel/tcl-trf	\
 		${LOCALBASE}/lib/tcllib/cmdline/pkgIndex.tcl:devel/tcllib
 
@@ -26,12 +24,12 @@ GH_ACCOUNT=	andreas-kupries
 TEST_TARGET=	test
 
 PLIST_SUB+=	VER=${PORTVERSION} \
-		ARCH=${ARCH:C/arm.*/arm/:S/i386/ix86/:S/aarch64/arm/}
+		ARCH=${ARCH:C/arm.*/arm/:S/i386/ix86/:S/aarch64/arm/:S/mips64/mips/:S/powerpc64/powerpc/}
 PORTDOCS=	*
 
 NO_BUILD=	yes
 
-.include <bsd.port.options.mk>
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	${REINPLACE_CMD} -e 's|dtplite|${LOCALBASE}/bin/dtplite|g' ${WRKSRC}/build.tcl

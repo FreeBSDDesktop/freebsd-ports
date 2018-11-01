@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME?=	mariadb
-PORTVERSION=	10.3.7
-PORTREVISION?=	0
+PORTVERSION=	10.3.10
+PORTREVISION?=	1
 CATEGORIES=	databases ipv6
 MASTER_SITES=	http://mirrors.supportex.net/${SITESDIR}/ \
 		http://mirror2.hs-esslingen.de/pub/Mirrors/${SITESDIR}/ \
@@ -39,9 +39,10 @@ OPTIONS_DEFAULT=	GSSAPI_BASE
 
 .if !defined(CLIENT_ONLY)
 # MySQL-Server options
-OPTIONS_DEFAULT+=	CONNECT_EXTRA INNOBASE SPHINX SPIDER
+OPTIONS_DEFAULT+=	CONNECT_EXTRA INNOBASE SPHINX SPIDER WSREP
 OPTIONS_GROUP=		COMPRESSION ENGINES GROONGA
-OPTIONS_DEFINE=		CONNECT_EXTRA
+OPTIONS_DEFINE=		CONNECT_EXTRA DOCS
+OPTIONS_DEFINE_amd64=	WSREP
 OPTIONS_GROUP_COMPRESSION=	LZ4 LZO SNAPPY ZSTD
 OPTIONS_GROUP_ENGINES=	INNOBASE MROONGA OQGRAPH ROCKSDB SPHINX SPIDER TOKUDB XTRADB
 OPTIONS_GROUP_GROONGA=	ZMQ MSGPACK
@@ -59,6 +60,7 @@ ROCKSDB_DESC=	RocksDB LSM engine (Alpha)
 SPHINX_DESC=	SphinxSE engine
 SPIDER_DESC=	Partitioning and XA-transactions engine
 TOKUDB_DESC=	Fractal tree index tree data structure engine
+WSREP_DESC=	Build wsrep clustering
 XTRADB_DESC=	Build XtraDB engine next to InnoDB
 ZMQ_DESC=	ZeroMQ support
 ZSTD_DESC+=	Zstandard compression support (RocksDB only)
@@ -119,9 +121,6 @@ USES+=		readline
 GSSAPI_NONE_CMAKE_ON=	-DPLUGIN_AUTH_GSSAPI_CLIENT=OFF
 .else
 # MySQL-Server part
-NOT_FOR_ARCHS=		i386
-NOT_FOR_ARCHS_REASON=	currently does not compile on i386, see \
-			https://jira.mariadb.org/browse/MDEV-9627
 USES+=		mysql:103m
 USE_LDCONFIG+=	${PREFIX}/lib/mysql/plugin
 USE_RC_SUBR=	mysql-server
@@ -134,8 +133,7 @@ CMAKE_ARGS+=	-DWITH_EMBEDDED_SERVER="ON" \
 		-DWITHOUT_CLIENT=1
 
 .for ENGINE in ${OPTIONS_GROUP_ENGINES:NINNOBASE}
-${ENGINE}_CMAKE_OFF=	-DPLUGIN_${ENGINE}=NO \
-			-DWITHOUT_${ENGINE}=1
+${ENGINE}_CMAKE_OFF=	-DPLUGIN_${ENGINE}=NO
 ${ENGINE}_CMAKE_ON=	-DPLUGIN_${ENGINE}=DYNAMIC
 .endfor
 INNOBASE_CMAKE_OFF=	-DPLUGIN_INNOBASE=NO -DWITHOUT_INNOBASE=1
@@ -160,12 +158,23 @@ SNAPPY_LIB_DEPENDS=	libsnappy.so:archivers/snappy
 TOKUDB_IMPLIES=		SNAPPY
 TOKUDB_PORTDOCS=	README.md
 TOKUDB_VARS=		LICENSE+=PerconaFT LICENSE_COMB=multi
+WSREP_CMAKE_OFF=	-DWITH_WSREP=OFF
+WSREP_LIB_DEPENDS=	libgalera.so:databases/galera
 ZMQ_LIB_DEPENDS=	libzmq.so:net/libzmq4
 ZSTD_CMAKE_ON=		-DWITH_ROCKSDB_ZSTD=ON
 ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 
+.include <bsd.port.options.mk>
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1200057
+SUB_LIST+=	LEGACY_LIMITS="@comment " MODERN_LIMITS=""
+.else
+SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "
+.endif
+
 post-install:
-	${RM} -r ${STAGEDIR}/${PREFIX}/share/mysql/policy
+	${RM} -r ${STAGEDIR}${PREFIX}/share/mysql/policy
+	${RM} -r ${STAGEDIR}${PREFIX}/include/mysql/server/private
 .endif # defined(CLIENT_ONLY)
 
 .if defined(WITH_OPENSSL_PORT)
@@ -174,14 +183,18 @@ GSSAPI_BASE_IGNORE=	BASE_GSSAPI is not compatible with OpenSSL from ports. Use o
 
 .include <bsd.port.pre.mk>
 
+.if ${ARCH} != amd64
+PLIST_SUB+=	WSREP="@comment "
+.endif
+
 .if ${OPSYS} == DragonFly
 CMAKE_ARGS+=	-DWITHOUT_TOKUDB
 .endif
 
 post-patch:
-	${REINPLACE_CMD} 's/*.1/${MAN1}/' ${WRKSRC}/man/CMakeLists.txt
 	${REINPLACE_CMD} 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/mysys/my_default.c
-	${REINPLACE_CMD} 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/scripts/mysql_config.sh
+	${REINPLACE_CMD} 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/scripts/mysql_config.sh \
+		${WRKSRC}/storage/tokudb/PerconaFT/cmake_modules/TokuThirdParty.cmake
 .if ${OPSYS} == DragonFly
 	${CP} ${WRKSRC}/cmake/os/FreeBSD.cmake \
 		${WRKSRC}/cmake/os/DragonFly.cmake

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	IO-Async-SSL
-PORTVERSION=	0.21
+PORTVERSION=	0.22
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,16 +14,16 @@ LICENSE=	ART10 GPLv1+
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	p5-Future>=0.33:devel/p5-Future \
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-Future>=0.33:devel/p5-Future \
 		p5-IO-Async>=0.66:devel/p5-IO-Async\
-		p5-IO-Socket-SSL>=1.968:security/p5-IO-Socket-SSL
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+		p5-IO-Socket-SSL>=2.003:security/p5-IO-Socket-SSL
 TEST_DEPENDS=	p5-Test-Identity>=0:devel/p5-Test-Identity \
 		p5-Test-Pod>=1:devel/p5-Test-Pod \
 		socat:net/socat
 
 NO_ARCH=	yes
-USE_PERL5=	configure
+USE_PERL5=	modbuild
 USES=		perl5
 
 .include <bsd.port.mk>

@@ -3,7 +3,6 @@
 
 PORTNAME=	aster
 DISTVERSION=	${ASTER_DISTVERSION}
-PORTREVISION=	3
 CATEGORIES=	french cad
 CATEGORIES=	french cad
 
@@ -13,6 +12,7 @@ COMMENT=	Code_Aster finite element method solver
 LICENSE=	GPLv2
 
 BROKEN_FreeBSD_12=	does not build (sed: ${STAGEDIR}${inst_dir}/${VE}/aster.conf: No such file or directory)
+BROKEN_FreeBSD_13=	does not build (sed: ${STAGEDIR}${inst_dir}/${VE}/aster.conf: No such file or directory)
 
 #-----------------------------------------------------------------------
 # You may define these options:
@@ -51,9 +51,9 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}gnuplot>0:math/py-gnuplot@${PY_FLAVOR} \
 		${SHELL_INSTALL_ASTER}:shells/${SHIADEP}	\
 		astk-serveur>0:cad/astk-serveur
 
-USES=		bison fortran gettext python:2.7 tk
+USES=		bison fortran gettext python:2.7 qt:4 tk
 USE_BINUTILS=	yes
-USE_QT4=	linguisttools_build
+USE_QT=		linguisttools_build
 
 .if defined(WITH_ATLAS)
 USES+=		blaslapack:atlas

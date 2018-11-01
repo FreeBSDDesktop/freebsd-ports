@@ -35,7 +35,7 @@ TEST_TARGET=	test
 
 OPTIONS_DEFINE=	DOCS
 
-ANT_ARCH=	${ARCH:S/amd64/x86-64/:S/i386/x86/}
+ANT_ARCH=	${ARCH:S/amd64/x86-64/:S/i386/x86/:S/powerpc64/ppc64/}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \

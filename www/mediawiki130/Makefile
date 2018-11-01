@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mediawiki
-PORTVERSION=	1.30.0
+PORTVERSION=	1.30.1
 CATEGORIES=	www
 MASTER_SITES=	http://releases.wikimedia.org/mediawiki/${PORTVERSION:R}/
 PKGNAMESUFFIX=	130
@@ -12,7 +12,7 @@ COMMENT=	Wiki engine used by Wikipedia
 
 LICENSE=	GPLv2
 
-CONFLICTS=	mediawiki12[3789]-[0-9]*
+CONFLICTS=	mediawiki12[79]-[0-9]* mediawiki131-[0-9]*
 
 USES=		php:web shebangfix
 SHEBANG_FILES=	maintenance/dev/*.sh \
@@ -22,7 +22,7 @@ SHEBANG_FILES=	maintenance/dev/*.sh \
 SHEBANG_LANG=	hhvm
 hhvm_OLD_CMD=	/usr/bin/hhvm
 hhvm_CMD=	${LOCALBASE}/bin/hhvm # not installed by anything yet
-USE_PHP=	ctype dom fileinfo hash iconv intl json mbstring pcre \
+USE_PHP=	ctype dom fileinfo hash iconv intl json mbstring openssl pcre \
 		readline session xml xmlreader zlib
 MEDIAWIKIDIR?=	www/mediawiki
 
@@ -54,8 +54,6 @@ XCACHE_RUN_DEPENDS=	${LOCALBASE}/lib/php/${PHP_EXT_DIR}/xcache.so:www/xcache
 
 pre-install:
 	@${FIND} -s -d ${WRKSRC} -not -type d | ${SED} "s?${WRKSRC}?${MEDIAWIKIDIR}?g" >>${PLIST}
-	@${ECHO} "@dir %%WWWDIR%%/vendor/monolog/monolog/tests/Monolog/Handler/Fixtures" >> ${PLIST}
-	@${ECHO} "@dir %%WWWDIR%%/tests/phan/issues" >> ${PLIST}
 	@${ECHO} "@mode 0777" >> ${PLIST}
 	@${ECHO} "@dir %%WWWDIR%%/images" >> ${PLIST}
 	@${ECHO} "@mode" >> ${PLIST}

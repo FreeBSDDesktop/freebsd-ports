@@ -3,7 +3,7 @@
 
 PORTNAME=	apache-openoffice
 PORTVERSION=	${AOOVERSION1}.${AOOVERSION2}.${SVNREVISION}
-#PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	4
 CATEGORIES=	editors java
 MASTER_SITES=	https://dist.apache.org/repos/dist/dev/openoffice/${AOOVERSION}-${AOORC}-r${SVNREVISION}/source/ \
@@ -98,6 +98,21 @@ RUN_DEPENDS=								\
 		${LOCALBASE}/share/fonts/Carlito/Carlito-Bold.ttf:x11-fonts/crosextrafonts-carlito-ttf \
 		${LOCALBASE}/share/fonts/ChromeOS/Arimo-Bold.ttf:x11-fonts/croscorefonts-fonts-ttf
 
+USES=		autoreconf bison compiler:c++11-lib cpe \
+		desktop-file-utils \
+		gettext-runtime gmake iconv jpeg perl5 pkgconfig python:2.7 \
+		shared-mime-info ssl tar:${TARTYPE}
+USE_GL=		gl glu
+USE_GNOME=	gtk20 libxslt libidl glib20
+USE_JAVA=	yes
+JAVA_BUILD=	jdk
+JAVA_RUN=	jdk
+JAVA_VENDOR=	openjdk
+JAVA_VERSION=	1.6+
+USE_PERL5=	build
+USE_XORG=	ice sm x11 xau xaw xcomposite xcursor xdamage xext xfixes xi \
+		xinerama xrandr xrender xt
+
 CONFLICTS_INSTALL=	apache-openoffice-4*
 
 AOOVERSION1=	4
@@ -105,7 +120,7 @@ AOOVERSION2=	2
 AOOVERSION3=	0
 # From solenv/inc/minor.mk SOURCEREVISION LAST_MINOR BUILD
 AOOTAG=		AOO420m1\(Build:9800\)
-SVNREVISION=	1829757
+SVNREVISION=	1838397
 #AOORC=rc3
 EXTSRC=		ApacheOpenOffice.ext_sources.${AOOVERSION1}.x.x.20150707.tar.gz
 
@@ -131,20 +146,6 @@ XDGDIR=			${OOPATH}/share/xdg
 XDGREL=			../../${INSTALLATION_BASEDIR}/openoffice${AOOVERSION1}/share/xdg
 EXECBASE?=		openoffice-${AOOSUFFIX}
 
-USES=		autoreconf bison compiler:c++11-lib cpe \
-		desktop-file-utils \
-		gettext-runtime gmake iconv jpeg perl5 pkgconfig python \
-		shared-mime-info ssl tar:${TARTYPE}
-USE_GL=		gl glu
-USE_GNOME=	gtk20 libxslt libidl glib20
-USE_JAVA=	yes
-JAVA_BUILD=	jdk
-JAVA_RUN=	jdk
-JAVA_VENDOR=	openjdk
-JAVA_VERSION=	1.6+
-USE_PERL5=	build
-USE_XORG=	ice sm x11 xau xaw xcomposite xcursor xdamage xext xfixes xi \
-		xinerama xrandr xrender xt
 INSTALLS_ICONS=	yes
 WITHOUT_CPU_CFLAGS=	true
 CPE_PRODUCT=	${PORTNAME:S|apache-||}
@@ -237,9 +238,6 @@ CONFIGURE_ARGS+=	--without-commons-logging
 
 .if ${COMPILER_TYPE} == clang
 CPPFLAGS+=		-I${LOCALBASE}/include
-. if ${COMPILER_VERSION} >= 40 && ${ARCH} == amd64
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-align16
-. endif
 .endif
 
 .if ${ARCH} == amd64
@@ -462,7 +460,6 @@ do-install:
 			${LN} -f ${EXECBASE} ${EXECBASE}-$${i} ; \
 	done
 	@${ECHO_CMD} "adding desktop support"
-	@${LN} -sf ${XDGREL} ${STAGEDIR}${DESKTOPDIR}/${EXECBASE}
 	@cd ${WRKSRC} ;						\
 	    . ${FREEBSD_ENV_SET} ;				\
 	    cd sysui/$${INPATH}/misc/openoffice ;		\
@@ -476,6 +473,10 @@ do-install:
 		${SH} ${CREATE_TREE} ;				\
 	    ${INSTALL_DATA} apacheopenoffice.xml		\
 		${STAGEDIR}/${PREFIX}/share/mime/packages
+	@cd ${STAGEDIR}${DESKTOPDIR}; for i in base calc draw impress \
+		javafilter math printeradmin qstart startcenter writer ; do \
+			${LN} -sf ${XDGREL}/$${i}.desktop ${EXECBASE}-$${i}.desktop ; \
+	done
 
 do-install-SDK-on:
 	${TAR} -s '|./[^/]*/||' -xz -C ${STAGEDIR}${PRINSTALLATION_BASEDIR} \

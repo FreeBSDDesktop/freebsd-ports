@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	packaging
-PORTVERSION=	17.1
+PORTVERSION=	18.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,11 +15,12 @@ LICENSE_COMB=	dual
 LICENSE_FILE_APACHE20=	${WRKSRC}/LICENSE.APACHE
 LICENSE_FILE_BSD2CLAUSE=${WRKSRC}/LICENSE.BSD
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyparsing>=2.0.2:devel/py-pyparsing@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyparsing>=2.0.2:devel/py-pyparsing@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${PY_FLAVOR}
+
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
-USE_PYTHON=	autoplist concurrent distutils
-USES=		python
 
 .include <bsd.port.mk>

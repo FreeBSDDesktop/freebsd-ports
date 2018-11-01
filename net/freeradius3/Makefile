@@ -3,6 +3,7 @@
 
 PORTNAME=	freeradius
 DISTVERSION=	3.0.17
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	ftp://ftp.freeradius.org/pub/freeradius/%SUBDIR%/ \
 		ftp://ftp.ntua.gr/pub/net/radius/freeradius/%SUBDIR%/ \
@@ -26,9 +27,9 @@ KRB5_CONFIG?=	/usr/bin/krb5-config --libs
 CONFLICTS_INSTALL=	gnu-radius-[0-9].* openradius-[0-9].* radiusd-cistron-[0-9].* \
 		freeradius-mysql-[0-9].* freeradius-[^3].*
 
+USES=		gmake readline shebangfix ssl tar:bzip2
 USE_RC_SUBR=	radiusd
 
-USES=		gmake readline shebangfix ssl tar:bzip2
 SHEBANG_FILES=	src/modules/rlm_counter/rad_counter scripts/sql/radsqlrelay
 GNU_CONFIGURE=	yes
 # Prevent /root/.rnd leftover
@@ -46,7 +47,7 @@ OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	USER LDAP MYSQL PGSQL UNIXODBC FIREBIRD REDIS \
 		EXPERIMENTAL UDPFROMTO DEVELOPER EDIR PERL REST \
 		FREETDS IDN DOCS SQLITE3 PYTHON RUBY UNBOUND PCRE \
-		WINBIND
+		WINBIND EXAMPLES
 OPTIONS_DEFAULT=USER PERL HEIMDAL UDPFROMTO
 OPTIONS_SINGLE=	KRB
 OPTIONS_SINGLE_KRB=	NOKRB HEIMDAL HEIMDAL_PORT MITKRB_PORT

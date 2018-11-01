@@ -64,7 +64,7 @@ _INCLUDE_USES_PHP_MK=	yes
 DEV_WARNING+=	"USES=php:build is included in USES=php:phpize, USES=php:ext, and USES=php:zend, so it is not needed"
 .  endif
 .  if ${php_ARGS:Mflavors} && ( ${php_ARGS:Mphpize} || ${php_ARGS:Mext} || ${php_ARGS:Mzend} || ${php_ARGS:Mpecl} )
-DEV_WARNINGS+=	"USES=php:flavors is included in phpize, ext, zend and pecl, so it is not needed."
+DEV_WARNING+=	"USES=php:flavors is included in phpize, ext, zend and pecl, so it is not needed."
 .  endif
 .  if ${php_ARGS:Mphpize} && ( ${php_ARGS:Mext} || ${php_ARGS:Mzend} )
 DEV_WARNING+=	"USES=php:phpize is included in USES=php:ext and USES=php:zend, so it is not needed"
@@ -96,7 +96,7 @@ DIST_SUBDIR=	PECL
 
 PHPBASE?=	${LOCALBASE}
 
-_ALL_PHP_VERSIONS=	56 70 71 72
+_ALL_PHP_VERSIONS=	56 70 71 72 73
 
 # Make the already installed PHP the default one.
 .  if exists(${PHPBASE}/etc/php.conf)
@@ -160,7 +160,10 @@ PHP_VER=	${FLAVOR:S/^php//}
 	(${FLAVOR:Mphp[0-9][0-9]} && ${FLAVOR} != ${FLAVORS:[1]})
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-.    if ${PHP_VER} == 72
+.    if ${PHP_VER} == 73
+PHP_EXT_DIR=   20180731
+PHP_EXT_INC=    pcre spl
+.    elif ${PHP_VER} == 72
 PHP_EXT_DIR=   20170718
 PHP_EXT_INC=    pcre spl
 .    elif ${PHP_VER} == 71
@@ -357,9 +360,10 @@ _USE_PHP_VER56=	${_USE_PHP_ALL} mssql mysql sybase_ct
 _USE_PHP_VER70=	${_USE_PHP_ALL}
 _USE_PHP_VER71=	${_USE_PHP_ALL}
 _USE_PHP_VER72=	${_USE_PHP_ALL} sodium
+_USE_PHP_VER73=	${_USE_PHP_ALL} sodium
 
 bcmath_DEPENDS=	math/php${PHP_VER}-bcmath
-.    if ${PHP_VER} == 70 || ${PHP_VER} == 71 || ${PHP_VER} == 72
+.    if ${PHP_VER} >= 70
 bitset_DEPENDS=	math/pecl-bitset@${PHP_FLAVOR}
 .    else
 bitset_DEPENDS=	math/pecl-bitset2@${PHP_FLAVOR}
@@ -384,7 +388,7 @@ iconv_DEPENDS=	converters/php${PHP_VER}-iconv
 igbinary_DEPENDS=	converters/pecl-igbinary@${PHP_FLAVOR}
 imap_DEPENDS=	mail/php${PHP_VER}-imap
 interbase_DEPENDS=	databases/php${PHP_VER}-interbase
-.    if ${PHP_VER} == 70 || ${PHP_VER} == 71 || ${PHP_VER} == 72
+.    if ${PHP_VER} >= 70
 intl_DEPENDS=	devel/php${PHP_VER}-intl
 .    else
 intl_DEPENDS=	devel/pecl-intl@${PHP_FLAVOR}
@@ -410,9 +414,7 @@ memcached_DEPENDS=	databases/pecl-memcached2@${PHP_FLAVOR}
 mssql_DEPENDS=	databases/php${PHP_VER}-mssql
 mysql_DEPENDS=	databases/php${PHP_VER}-mysql
 mysqli_DEPENDS=	databases/php${PHP_VER}-mysqli
-ncurses_DEPENDS=devel/php${PHP_VER}-ncurses
 odbc_DEPENDS=	databases/php${PHP_VER}-odbc
-oci8_DEPENDS=	databases/php${PHP_VER}-oci8
 opcache_DEPENDS=	www/php${PHP_VER}-opcache
 openssl_DEPENDS=security/php${PHP_VER}-openssl
 pcntl_DEPENDS=	devel/php${PHP_VER}-pcntl
@@ -439,8 +441,6 @@ snmp_DEPENDS=	net-mgmt/php${PHP_VER}-snmp
 soap_DEPENDS=	net/php${PHP_VER}-soap
 sockets_DEPENDS=net/php${PHP_VER}-sockets
 sodium_DEPENDS=	security/php${PHP_VER}-sodium
-spl_DEPENDS=	devel/php${PHP_VER}-spl
-sqlite_DEPENDS=	databases/php${PHP_VER}-sqlite
 sqlite3_DEPENDS=databases/php${PHP_VER}-sqlite3
 sybase_ct_DEPENDS=	databases/php${PHP_VER}-sybase_ct
 sysvmsg_DEPENDS=devel/php${PHP_VER}-sysvmsg

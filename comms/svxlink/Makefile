@@ -3,7 +3,7 @@
 
 PORTNAME?=	svxlink
 PORTVERSION=	15.11
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	comms hamradio
 
 MAINTAINER=	hamradio@FreeBSD.org
@@ -21,11 +21,11 @@ LIB_DEPENDS?=	libgsm.so:audio/gsm \
 		librtlsdr.so:comms/rtl-sdr
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 
+USES=		cmake compiler:c++11-lang tcl groff pkgconf
 USE_GITHUB=	yes
 GH_ACCOUNT=	sm0svx
 GH_PROJECT=	svxlink
 
-USES=		cmake tcl groff pkgconfig
 CMAKE_SOURCE_PATH=	${WRKSRC}/src
 CMAKE_ARGS+=	-DMAN_INSTALL_DIR:FILEPATH=${MANDIRS} \
 		-DLOCAL_STATE_DIR=/var
@@ -35,7 +35,7 @@ CMAKE_ARGS+=	-DUSE_QT:BOOL=NO
 USE_LDCONFIG=	yes
 
 ALL_TARGET?=	all man
-OPTIONS_DEFINE=	DOXYGEN STATIC
+OPTIONS_DEFINE=	DOXYGEN STATIC DOCS
 STATIC_DESC=	Build and install static libraries
 STATIC_CMAKE_ON=	-DBUILD_STATIC_LIBS=YES
 .if ${PORTNAME}==svxlink
@@ -48,6 +48,7 @@ ALSA_CMAKE_ON=	-DUSE_ALSA:BOOL=ON
 OSS_CMAKE_OFF=	-DUSE_OSS:BOOL=OFF
 OSS_CMAKE_ON=	-DUSE_OSS:BOOL=ON
 .endif
+DOXYGEN_IMPLIES=	DOCS
 DOXYGEN_ALL_TARGET=doc
 DOXYGEN_CMAKE_OFF=	-DCMAKE_DISABLE_FIND_PACKAGE_Doxygen:BOOL=TRUE
 DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen \

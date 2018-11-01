@@ -11,13 +11,16 @@ DIST_SUBDIR=	KDE/digikam
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE library for accessing vk.com
 
+DEPRECATED=	KDE4 is EOL upstream
+EXPIRATION_DATE=	2018-12-31
+
 LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/COPYING.LIB
 
 LIB_DEPENDS=	libqjson.so:devel/qjson@qt4
 
-USES=		cmake:outsource gettext kde:4 pkgconfig tar:xz
-USE_QT4=	moc_build qmake_build rcc_build uic_build
+USES=		cmake:outsource gettext kde:4 pkgconfig qt:4 tar:xz
+USE_QT=		moc_build qmake_build rcc_build uic_build
 USE_KDE=	automoc4 kdelibs
 USE_LDCONFIG=	yes
 

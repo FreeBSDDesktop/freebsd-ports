@@ -3,7 +3,7 @@
 
 PORTNAME=	gx
 PORTVERSION=	0.4.0
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	graphics
 MASTER_SITES=	http://BSDforge.com/projects/source/graphics/gx/
 
@@ -12,6 +12,9 @@ COMMENT=	Lightweight image viewer
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+DEPRECATED=	GNOME 2 application
+EXPIRATION_DATE=	2018-12-10
 
 LIB_DEPENDS=	libgnomevfsmm-2.6.so:devel/gnome-vfsmm
 

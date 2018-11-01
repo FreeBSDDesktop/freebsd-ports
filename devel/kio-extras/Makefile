@@ -11,19 +11,19 @@ LIB_DEPENDS=	libtag.so:audio/taglib \
 		libHalf.so:graphics/ilmbase
 
 USES=		cmake:outsource compiler:c++11-lib gettext gperf kde:5 \
-		pkgconfig shared-mime-info shebangfix tar:xz
+		pkgconfig qt:5 shared-mime-info shebangfix tar:xz
 USE_KDE=	activities archive auth bookmarks codecs completion config \
 		configwidgets coreaddons crash dbusaddons dnssd doctools ecm \
 		emoticons guiaddons i18n iconthemes init itemmodels itemviews \
 		jobwidgets js kdelibs4support khtml kio notifications parts \
 		pty service solid sonnet textwidgets unitconversion \
 		widgetsaddons windowsystem xmlgui
-USE_QT5=	core dbus gui location network phonon4 printsupport qml quick \
+USE_QT=		core dbus gui location network phonon4 printsupport qml quick \
 		sql svg testlib webchannel widgets xml \
 		buildtools_build qmake_build
 SHEBANG_FILES=	info/kde-info2html
 
-OPTIONS_DEFINE=	SAMBA MTP EXR EXIV SLP SSH WEBENGINE TAGLIB
+OPTIONS_DEFINE=	SAMBA MTP EXR EXIV SLP SSH WEBENGINE TAGLIB DOCS
 OPTIONS_DEFAULT=SAMBA MTP EXR EXIV SLP SSH WEBENGINE TAGLIB
 OPTIONS_SUB=	yes
 
@@ -37,7 +37,7 @@ MTP_LIB_DEPENDS=	libmtp.so:multimedia/libmtp
 
 EXR_DESC=		Provides support for OpenEXR formatted images in the thumbnail kioslave
 EXR_CMAKE_BOOL_OFF=	CMAKE_DISABLE_FIND_PACKAGE_OpenEXR
-EXR_LIB_DEPENDS=	libIlmImf.so:graphics/OpenEXR
+EXR_LIB_DEPENDS=	libIlmImf.so:graphics/openexr
 
 EXIV_DESC=		Provides support for automatic rotation of JPEGs in the thumbnail kioslave
 EXIV_CMAKE_BOOL_OFF=	CMAKE_DISABLE_FIND_PACKAGE_Exiv2
@@ -58,7 +58,7 @@ TAGLIB_LIB_DEPENDS=	libtag.so:audio/taglib
 
 WEBENGINE_DESC=		Needed to build the html thumbnailer
 WEBENGINE_CMAKE_BOOL_OFF=	CMAKE_DISABLE_FIND_PACKAGE_Qt5WebEngineWidget
-WEBENGINE_USE=		QT5=webengine
+WEBENGINE_USES=	qt:5
+WEBENGINE_USE=		QT=webengine
 
 .include <bsd.port.mk>
-

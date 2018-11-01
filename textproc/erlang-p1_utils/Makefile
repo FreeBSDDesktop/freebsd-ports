@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	p1_utils
-PORTVERSION=	1.0.11
+PORTVERSION=	1.0.12
 CATEGORIES=	textproc
 PKGNAMEPREFIX=	erlang-
 
@@ -13,5 +13,7 @@ LICENSE=	APACHE20
 USES=		erlang:rebar
 USE_GITHUB=	yes
 GH_ACCOUNT=	processone
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.mk>

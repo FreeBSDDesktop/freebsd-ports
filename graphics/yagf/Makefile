@@ -12,9 +12,9 @@ COMMENT=	Graphical interface for an OCR program (cuneiform and tesseract)
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libaspell.so:textproc/aspell
+ONLY_FOR_ARCHS=	amd64 i386
 
-ONLY_FOR_ARCHS=	i386 amd64
+LIB_DEPENDS=	libaspell.so:textproc/aspell
 
 OPTIONS_MULTI=		OCRENGINE
 OPTIONS_MULTI_OCRENGINE=CUNEIFORM TESSERACT
@@ -25,10 +25,10 @@ TESSERACT_RUN_DEPENDS=	tesseract:graphics/tesseract
 
 OPTIONS_DEFAULT=	CUNEIFORM
 
-USES=		cmake desktop-file-utils pkgconfig
+USES=		cmake desktop-file-utils pkgconfig qt:4
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
-USE_QT4=	corelib gui imageformats linguist_build \
+USE_QT=		corelib gui imageformats linguist_build \
 		moc_build qmake_build rcc_build uic_build
 
 PLIST_FILES=	bin/yagf lib/yagf/libxspreload.so share/applications/YAGF.desktop\

@@ -4,6 +4,8 @@
 PORTNAME=	protobuf
 PORTVERSION=	3.5.2
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
+PORTEPOCH=	1
 CATEGORIES=	devel
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -18,13 +20,16 @@ TEST_DEPENDS=	googlemock>=0:devel/googlemock \
 		googletest>=0:devel/googletest
 
 CFLAGS+=	-DGOOGLE_PROTOBUF_NO_RTTI -I${WRKSRC}/src
-CONFIGURE_ENV=	CXX_FOR_BUILD=c++
+CONFIGURE_ENV=	CC_FOR_BUILD="${CC}" CFLAGS_FOR_BUILD="${CFLAGS}" \
+		CPPFLAGS_FOR_BUILD="${CPPFLAGS}" \
+		CXX_FOR_BUILD="${CXX}" CXXFLAGS_FOR_BUILD="${CXXFLAGS}" \
+		LDFLAGS_FOR_BUILD="${LDFLAGS}"
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 TEST_ARGS=	${MAKE_ARGS} ${_MAKE_JOBS}
 TEST_TARGET=	check
-USE_LDCONFIG=	yes
 USES=		autoreconf compiler:c++11-lang gmake libtool localbase pathfix pkgconfig
+USE_LDCONFIG=	yes
 
 GH_ACCOUNT=	google
 USE_GITHUB=	yes

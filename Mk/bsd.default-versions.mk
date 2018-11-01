@@ -42,8 +42,8 @@ FIREBIRD_DEFAULT?=	2.5
 FORTRAN_DEFAULT?=	gfortran
 # Possible values: 3.0.4
 FPC_DEFAULT?=		3.0.4
-# Possible values: 4.9, 5, 6, 7
-GCC_DEFAULT?=		6
+# Possible values: 5, 6, 7, 8
+GCC_DEFAULT?=		7
 # Possible values: 7, 8, 9, agpl
 GHOSTSCRIPT_DEFAULT?=	agpl
 # Possible values: 1.8.2
@@ -57,7 +57,7 @@ LINUX_DEFAULT?=		c6
 .endif
 # Possible values: 5.1, 5.2, 5.3
 LUA_DEFAULT?=		5.2
-# Possible values: 5.5, 5.6, 5.7, 8.0, 5.5m, 10.0m, 10.1m, 10.2m, 5.5p, 5.6p, 5.7p, 5.6w
+# Possible values: 5.5, 5.6, 5.7, 8.0, 5.5m, 10.0m, 10.1m, 10.2m, 10.3m, 5.5p, 5.6p, 5.7p, 5.6w
 MYSQL_DEFAULT?=		5.6
 # Possible values: 5.24, 5.26, 5.28, devel
 .if !exists(${LOCALBASE}/bin/perl) || (!defined(_PORTS_ENV_CHECK) && \
@@ -76,19 +76,19 @@ PERL5_DEFAULT:=		${_PERL5_FROM_BIN:R}
 .endif
 # Possible values: 9.3, 9.4, 9.5, 9.6, 10
 PGSQL_DEFAULT?=		9.5
-# Possible values: 5.6, 7.0, 7.1, 7.2
-PHP_DEFAULT?=		5.6
-# Possible values: 2.7, 3.4, 3.5, 3.6
+# Possible values: 5.6, 7.0, 7.1, 7.2, 7.3
+PHP_DEFAULT?=		7.2
+# Possible values: 2.7, 3.4, 3.5, 3.6, 3.7
 PYTHON_DEFAULT?=	2.7
 # Possible values: 2.7
 PYTHON2_DEFAULT?=	2.7
-# Possible values: 3.4, 3.5, 3.6
+# Possible values: 3.4, 3.5, 3.6, 3.7
 PYTHON3_DEFAULT?=	3.6
 # Possible values: 2.3, 2.4, 2.5
 RUBY_DEFAULT?=		2.4
-# Possible values: 4.5, 4.6, 4.7, 4.8
-SAMBA_DEFAULT?=		4.6
-# Possible values: base, openssl, openssl-devel, libressl, libressl-devel
+# Possible values: 4.6, 4.7, 4.8
+SAMBA_DEFAULT?=		4.7
+# Possible values: base, openssl, openssl-devel, openssl111, libressl, libressl-devel
 .if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version
 #	but give an installed port preference over it.
@@ -127,7 +127,7 @@ SSL_DEFAULT?=	base
 # Possible values: 8.5, 8.6, 8.7
 TCLTK_DEFAULT?=		8.6
 
-# Possible values: 4, 5
+# Possible values: 4, 5, 6
 VARNISH_DEFAULT?=	4
 
 .endif

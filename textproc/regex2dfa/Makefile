@@ -2,6 +2,7 @@
 
 PORTNAME=	regex2dfa
 DISTVERSION=	0.1.6
+PORTREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	egypcio@googlemail.com
@@ -10,8 +11,9 @@ COMMENT=	Command-line utility that converts regular expressions to DFA
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		gmake libtool
+USES=		compiler:c++11-lang gmake libtool
 USE_GITHUB=	yes
+
 GH_ACCOUNT=	kpdyer
 
 GNU_CONFIGURE=	yes

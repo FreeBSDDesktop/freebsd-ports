@@ -3,17 +3,19 @@
 
 PORTNAME=	quagga
 PORTVERSION=	1.2.4
+PORTREVISION=	1
 CATEGORIES=	net ipv6
 MASTER_SITES=	SAVANNAH
 
 MAINTAINER=	pi@FreeBSD.org
 COMMENT=	Free RIPv1, RIPv2, OSPFv2, BGP4, IS-IS route software
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gawk:lang/gawk
 
-CONFLICTS=	openbgpd openospfd zebra quagga-esr frr pimd
+CONFLICTS=	frr3 frr4 frr5 frr6 openbgpd pimd zebra
 
 USES=		compiler:c11 cpe gmake libtool makeinfo \
 		perl5 readline ssl
@@ -26,7 +28,7 @@ USE_PERL5=	build
 INFO=		quagga
 
 OPTIONS_DEFINE=	ISISD PIMD PAM RTADV SNMP TCPSOCKETS DLMALLOC \
-		NO_BGP_ANNOUNCE OSPF_NEXTHOP ISIS_TOPOLOGY
+		NO_BGP_ANNOUNCE OSPF_NEXTHOP ISIS_TOPOLOGY EXAMPLES
 # IRDP needs something freebsd does not seem to have:
 # configure: error: 'IRDP requires in_pktinfo at the moment!'
 OPTIONS_DEFAULT=	ISISD PIMD RTADV

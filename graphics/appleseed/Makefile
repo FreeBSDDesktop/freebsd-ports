@@ -3,17 +3,18 @@
 
 PORTNAME=	appleseed
 DISTVERSION=	1.7.1-beta
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	graphics
 
 MAINTAINER=	danfe@FreeBSD.org
 COMMENT=	Modern, physically-based production renderer
 
 LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libpng.so:graphics/png \
-		libIlmImf.so:graphics/OpenEXR \
+		libIlmImf.so:graphics/openexr \
 		libxerces-c.so:textproc/xerces-c3 \
 		liboslexec.so:graphics/openshadinglanguage
 
@@ -57,7 +58,8 @@ EXAMPLES_CMAKE_OFF=	-DWITH_SAMPLES:BOOL=OFF
 DISNEY_LIB_DEPENDS=	libSeExpr.so:graphics/seexpr
 DISNEY_CMAKE_ON=	-DWITH_DISNEY_MATERIAL:BOOL=ON
 
-STUDIO_USE=	QT4=moc_build,qmake_build,rcc_build,uic_build,opengl
+STUDIO_USES=	qt:4
+STUDIO_USE=	QT=moc_build,qmake_build,rcc_build,uic_build,opengl
 STUDIO_CMAKE_OFF=	-DWITH_STUDIO:BOOL=OFF
 
 .include <bsd.port.pre.mk>

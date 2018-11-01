@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	fail2ban
-PORTVERSION=	0.10.3.1
+PORTVERSION=	0.10.4
 CATEGORIES=	security python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -11,7 +11,7 @@ COMMENT=	Scans log files and bans IP that makes too many password failures
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
 OPTIONS_DEFINE=	DOCS
 
@@ -60,6 +60,8 @@ post-patch:
 		${WRKSRC}/config/fail2ban.conf
 	@${REINPLACE_CMD} -e 's,jail.conf(5),fail2ban-jail.conf(5),g' \
 		${MAN_FILES}
+	@${REINPLACE_CMD} -e 's, sed , ${SED} ,g' \
+		${WRKSRC}/config/action.d/hostsdeny.conf
 
 .	if ${PYTHON_MAJOR_VER} >= 3
 		(cd ${WRKSRC}/ && ${PY2TO3_CMD} ${PY2TO3_ARG} bin/* fail2ban)

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	stem
-PORTVERSION=	1.6.0
-PORTREVISION=	1
+PORTVERSION=	1.7.0
 CATEGORIES=	security net python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,10 +13,10 @@ COMMENT=	Python controller library for Tor
 LICENSE=	LGPL3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycrypto>0:security/py-pycrypto@${FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyflakes>0:devel/py-pyflakes@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pycodestyle>0:devel/py-pycodestyle@${FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycrypto>0:security/py-pycrypto@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyflakes>0:devel/py-pyflakes@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pycodestyle>0:devel/py-pycodestyle@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	distutils autoplist concurrent

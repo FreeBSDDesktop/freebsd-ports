@@ -5,6 +5,7 @@ PORTNAME=	clementine
 DISTVERSIONPREFIX=	v
 DISTVERSION=		1.3.1-441
 DISTVERSIONSUFFIX=	-gc01b7bc
+PORTREVISION=	5
 CATEGORIES=	audio
 PKGNAMESUFFIX=	-player
 
@@ -35,13 +36,13 @@ USES=		cmake \
 		desktop-file-utils \
 		gettext-tools \
 		pkgconfig \
-		sqlite
+		qt:4 sqlite
 
 USE_GL=		gl glew glu
 USE_XORG=	x11
 
 CONFLICTS_BUILD=	qt-3.*
-USE_QT4=	corelib \
+USE_QT=		corelib \
 		dbus \
 		gui \
 		imageformats \
@@ -79,16 +80,7 @@ CFLAGS+=	-Wno-inconsistent-missing-override \
 
 CMAKE_ARGS+=	-DCMAKE_LIBRARY_PATH:PATH="${LOCALBASE}/lib:${PREFIX}/lib" \
 		-DENABLE_DBUS=ON \
-		-DENABLE_SPOTIFY_BLOB=OFF \
-		-DCRYPTOPP_LIBS=${LOCALBASE}/lib/libcryptopp.so \
-		-DCRYPTOPP_INCLUDEDIR=${LOCALBASE}/include/cryptopp \
-		-DCRYPTOPP_LIBDIR=${LOCALBASE}/lib \
-		-DCRYPTOPP_LDFLAGS=-lcryptopp \
-		-DCRYPTOPP_LIBRARIES=cryptopp \
-		-DCRYPTOPP_LIBRARY_DIRS=${LOCALBASE}/lib \
-		-DCRYPTOPP_cryptopp_INCLUDEDIR=${LOCALBASE}/include/cryptopp \
-		-DCRYPTOPP_cryptopp_LIBDIR=${LOCALBASE}/lib \
-		-DCRYPTOPP_FOUND=1
+		-DENABLE_SPOTIFY_BLOB=OFF
 
 OPTIONS_DEFINE=		AMAZON \
 			AUDIOCD \

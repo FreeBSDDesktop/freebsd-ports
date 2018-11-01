@@ -1,25 +1,29 @@
 # $FreeBSD$
 
 PORTNAME=	gitlab-markup
-PORTVERSION=	1.6.3
+PORTVERSION=	1.6.4
 PORTREVISION=	1
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	mfechner@FreeBSD.org
 COMMENT=	Render any fancy GitLab markup
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-NO_ARCH=	yes
-USE_RUBY=	yes
 USES=		gem python:run shebangfix
+USE_RUBY=	yes
 
-PLIST_FILES=	bin/github-markup
+NO_ARCH=	yes
+
+PLIST_FILES=	bin/gitlab-markup
 
 SHEBANG_FILES=	lib/github/commands/rest2html \
 		script/bootstrap \
 		script/cibuild
+
+post-patch:
+	${MV} ${WRKSRC}/bin/github-markup ${WRKSRC}/bin/gitlab-markup
 
 .include <bsd.port.mk>

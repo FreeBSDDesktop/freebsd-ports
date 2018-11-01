@@ -2,7 +2,7 @@
 
 PORTNAME=	ppsspp
 DISTVERSIONPREFIX=	v
-DISTVERSION?=	1.6.3
+DISTVERSION?=	1.7
 PORTREVISION?=	0
 CATEGORIES=	emulators
 # XXX Get from Debian once #697821 lands
@@ -11,9 +11,7 @@ DISTFILES=	${PORTNAME}.1:manpage
 EXTRACT_ONLY=	${DISTFILES:N*\:manpage:C/:.*//}
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES=	c783e7761c2a.patch:-p1
-PATCHFILES+=	f2a75719d843.patch:-p1
-PATCHFILES+=	78a41980dfd7.patch:-p1
+PATCHFILES+=	94c56ea09c04.patch:-p1
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	PSP emulator in C++ with dynarec JIT for x86, ARM, MIPS
@@ -27,11 +25,13 @@ RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
-GH_TUPLE?=	hrydgard:glslang:2edde666:glslang/ext/glslang \
-		hrydgard:${PORTNAME}-lang:1153a42:lang/assets/lang \
-		KhronosGroup:SPIRV-Cross:90966d5:SPIRV/ext/SPIRV-Cross \
-		Kingcom:armips:v0.9-89-g8b4cada:armips/ext/armips \
-		Kingcom:tinyformat:Release-2.0.1-7-gb7f5a22:tinyformat/ext/armips/ext/tinyformat
+GH_TUPLE?=	hrydgard:glslang:29619b23:glslang/ext/glslang \
+		hrydgard:${PORTNAME}-lang:cbad73f:lang/assets/lang \
+		KhronosGroup:SPIRV-Cross:be7425e:SPIRV/ext/SPIRV-Cross \
+		Kingcom:armips:v0.10.0-22-g9efe336:armips/ext/armips \
+		Kingcom:tinyformat:Release-2.0.1-7-gb7f5a22:tinyformat/ext/armips/ext/tinyformat \
+		Tencent:rapidjson:v1.1.0-415-g73063f50:rapidjson/ext/rapidjson \
+		discordapp:discord-rpc:v3.3.0-15-g3d3ae71:discord_rpc/ext/discord-rpc
 
 CONFLICTS_INSTALL=	${PORTNAME}-*
 
@@ -51,11 +51,12 @@ DESKTOP_ENTRIES="PPSSPP" \
 		"Game;Emulator;" \
 		""
 
-OPTIONS_DEFINE=	OLDJOY
+OPTIONS_DEFINE=	OLDJOY VULKAN
+OPTIONS_DEFAULT=VULKAN
 OPTIONS_SINGLE=	GUI
 OPTIONS_SINGLE_GUI=	QT5 SDL
 OPTIONS_SLAVE?=	LIBRETRO SDL
-OPTIONS_EXCLUDE:=	${OPTIONS_SINGLE_GUI}
+OPTIONS_EXCLUDE:=	${OPTIONS_EXCLUDE} ${OPTIONS_SINGLE_GUI}
 
 LIBRETRO_DESC=	libretro core for games/retroarch
 LIBRETRO_CMAKE_BOOL=	LIBRETRO
@@ -63,12 +64,16 @@ LIBRETRO_PLIST_FILES=	lib/libretro/${PORTNAME}_libretro.so
 LIBRETRO_IMPLIES=	SDL
 OLDJOY_DESC=	Old joystick support with fixed button mappings (deprecated)
 OLDJOY_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-old-joy
-QT5_USE=	QT5=qmake_build,buildtools_build,linguisttools_build,gui,opengl,widgets
+QT5_USES=	qt:5
+QT5_USE=	QT=qmake_build,buildtools_build,linguisttools_build,gui,opengl,widgets
 QT5_CMAKE_BOOL=	USING_QT_UI
 QT5_VARS=	EXENAME=PPSSPPQt
 SDL_BUILD_DEPENDS=	png>=1.6:graphics/png
 SDL_LIB_DEPENDS=	libpng.so:graphics/png
 SDL_VARS=	EXENAME=PPSSPPSDL
+VULKAN_DESC=		Vulkan renderer
+VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
+VULKAN_CFLAGS=	-DSDL_VIDEO_DRIVER_WAYLAND # XXX bug 223018, bug 227509
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/Linux/${OPSYS}/' \

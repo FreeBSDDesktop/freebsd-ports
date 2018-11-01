@@ -136,6 +136,7 @@ include/dovecot/event-log.h
 include/dovecot/execv-const.h
 include/dovecot/fail-mail-storage.h
 include/dovecot/failures.h
+include/dovecot/failures-private.h
 include/dovecot/fd-util.h
 include/dovecot/fdatasync-path.h
 include/dovecot/fdpass.h
@@ -796,6 +797,7 @@ man/man1/doveadm-proxy.1.gz
 man/man1/doveadm-purge.1.gz
 man/man1/doveadm-pw.1.gz
 man/man1/doveadm-quota.1.gz
+man/man1/doveadm-rebuild.1.gz
 man/man1/doveadm-reload.1.gz
 man/man1/doveadm-replicator.1.gz
 man/man1/doveadm-save.1.gz

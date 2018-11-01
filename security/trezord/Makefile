@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	trezord
-PORTVERSION=	1.2.1
-PORTREVISION=	2
+DISTVERSIONPREFIX=	v
+DISTVERSION=	2.0.24-5
+DISTVERSIONSUFFIX=	-gf593bf3
 CATEGORIES=	security
-MASTER_SITES=	LOCAL/ale
 
 MAINTAINER=	ale@FreeBSD.org
 COMMENT=	TREZOR Communication Daemon aka TREZOR Bridge
@@ -13,30 +13,19 @@ COMMENT=	TREZOR Communication Daemon aka TREZOR Bridge
 LICENSE=	LGPL3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	protoc:devel/protobuf \
-		boost-libs>=0:devel/boost-libs
-LIB_DEPENDS=	libcurl.so:ftp/curl \
-		libjsoncpp.so:devel/jsoncpp \
-		libmicrohttpd.so:www/libmicrohttpd
-
-USES=		cmake compiler:c++11-lang pkgconfig
-
+USES=		go
 USE_RC_SUBR=	${PORTNAME}
+USE_GITHUB=	yes
+GH_ACCOUNT=	trezor
+GH_PROJECT=	${PORTNAME}-go
+GO_PKGNAME=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 
-CMAKE_ARGS+=	-DJSONCPP_INCLUDE_DIR:STRING="${LOCALBASE}/include/jsoncpp" \
-		-DJSONCPP_LIBRARY:STRING="-L${LOCALBASE}/lib -ljsoncpp"
+PLIST_FILES=	bin/${GH_PROJECT}
 
-PLIST_FILES=	sbin/${PORTNAME}
+.include <bsd.port.pre.mk>
 
-post-extract:
-	${CP} ${FILESDIR}/usb.hpp ${WRKSRC}/src/
-	${CP} ${FILESDIR}/config.proto ${WRKSRC}/src/config/
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1102000
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-usb_libusb.go
+.endif
 
-pre-build:
-	cd ${WRKSRC}/src/config && ${LOCALBASE}/bin/protoc \
-		-I${LOCALBASE}/include -I. --cpp_out=. config.proto
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}/${PREFIX}/sbin/
-
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

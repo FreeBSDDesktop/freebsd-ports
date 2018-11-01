@@ -3,7 +3,7 @@
 
 PORTNAME=	gearmand
 PORTVERSION=	1.0.6
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES=	devel
 MASTER_SITES=	http://launchpad.net/gearmand/1.0/${PORTVERSION}/+download/
 
@@ -20,11 +20,10 @@ CONFLICTS=	p5-Gearman-Server-1.* gearmand-1.1.*
 USERS=		gearmand
 GROUPS=		gearmand
 
-BROKEN_sparc64=		Does not build: cannot link with boost
-
+USES=		compiler:c++11-lang pathfix gmake perl5 python:build libtool
+USE_CXXSTD=	c++11
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
-USES=		pathfix gmake perl5 python:build libtool
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	gearmand
 SUB_LIST+=	USERS=${USERS} GROUPS=${GROUPS}

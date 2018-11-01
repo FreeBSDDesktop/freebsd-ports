@@ -3,7 +3,7 @@
 
 PORTNAME=	jackit
 PORTVERSION=	0.125.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio
 
 MAINTAINER=	multimedia@FreeBSD.org
@@ -12,13 +12,14 @@ COMMENT=	Low latency audio server
 LICENSE=	GPLv2 LGPL21
 LICENSE_COMB=	multi
 
-BROKEN_powerpc64=	fails to build: Unrecognized opcode: 'sldi'
+BROKEN_mips=		fails to link: undefined reference to '__sync_add_and_fetch_4'
+BROKEN_mips64=		fails to link: undefined reference to '__sync_add_and_fetch_4'
 
 LIB_DEPENDS=	libsndfile.so:audio/libsndfile \
 		libsamplerate.so:audio/libsamplerate \
 		libcelt0.so:audio/celt
 
-USES=		autoreconf gmake pathfix pkgconfig libtool localbase bdb
+USES=		autoreconf compiler:c11 gmake pathfix pkgconfig libtool localbase bdb
 USE_GITHUB=	yes
 GH_ACCOUNT=	jackaudio
 GH_PROJECT=	jack1

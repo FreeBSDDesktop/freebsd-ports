@@ -35,7 +35,7 @@ TEST_ENV=	${MAKE_ENV} TEST_JOBS=${MAKE_JOBS_NUMBER} \
 USE_GITHUB=	yes
 GH_ACCOUNT=	Perl
 GH_PROJECT=	perl5
-GH_TAGNAME=	v5.28.0-RC1-17-g94fc6237e5
+GH_TAGNAME=	v5.29.4-24-g9eccdb0c88
 
 OPTIONS_DEFINE=	DEBUG GDBM PERL_64BITINT MULTIPLICITY SITECUSTOMIZE \
 		THREADS PERL_MALLOC DTRACE DOT_INC
@@ -184,6 +184,8 @@ PLIST_SUB+=	PERL_VERSION=${PERL_VERSION} \
 # XXX Remove and change to PERL_VERSION in the plist.
 PLIST_SUB+=	LIBPERL_VER=${LIBPERL_VER}
 
+# Why this is required is explained in:
+# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=227356#c5
 _PERL5_DEFAULT_FILE=	/tmp/PERL5_DEFAULT
 
 # Get the default version, and possibly, overwrite it.
@@ -301,7 +303,6 @@ post-install:
 	${MKDIR} ${STAGEDIR}${SITE_MAN1} ${STAGEDIR}${SITE_MAN3}
 	${MKDIR} ${STAGEDIR}${SITE_ARCH}/auto
 	${MKDIR} ${STAGEDIR}${SITE_PERL}/auto
-	${LN} ${STAGEDIR}${PREFIX}/bin/perl${PERL_VERSION} ${STAGEDIR}${PREFIX}/bin/perl5
 	${LN} -sf libperl.so.${LIBPERL_VER} ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/CORE/libperl.so
 	${LN} -sf libperl.so.${LIBPERL_VER} ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/CORE/libperl.so.${PERL_VER}
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/perl${PERL_VERSION}

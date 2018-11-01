@@ -2,19 +2,21 @@
 # $FreeBSD$
 
 PORTNAME=	fxt
-DISTVERSION=	2017.07.25
+DISTVERSION=	2018.07.03
 CATEGORIES=	math
 MASTER_SITES=	http://www.jjj.de/fxt/
 
-MAINTAINER=	amutu@amutu.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	FFT code and related stuff
 
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
 
+BROKEN_FreeBSD_10=	Fails to build
+
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USES=		gmake tar:tgz
+USES=		gmake
 MAKE_ENV=	FXT_INSTALL="${INSTALL_DATA}"
 MAKEFILE=	makefile
 

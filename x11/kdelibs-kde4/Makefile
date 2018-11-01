@@ -3,14 +3,17 @@
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE4_KDELIBS_VERSION}
-PORTREVISION=	3
+PORTREVISION=	6
 CATEGORIES=	x11 kde kde-applications
 PKGNAMESUFFIX=	-kde4
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Base set of libraries needed by KDE programs
 
-LIB_DEPENDS=	libImath-2_2.so:graphics/ilmbase \
+DEPRECATED=	KDE4 is EOL upstream
+EXPIRATION_DATE=	2018-12-31
+
+LIB_DEPENDS=	libImath.so:graphics/ilmbase \
 		libjasper.so:graphics/jasper \
 		libpcre.so:devel/pcre \
 		libenchant.so:textproc/enchant \
@@ -34,11 +37,11 @@ RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:misc/hicolor-icon-them
 KDE_APPLICATIONS_VERSION=	17.08.3
 
 USES=		cmake:outsource fam gettext grantlee:4 jpeg kde:4 perl5 \
-		shared-mime-info shebangfix tar:xz ssl
+		qt:4 shared-mime-info shebangfix tar:xz ssl
 USE_GNOME=	libxml2 libxslt
 USE_KDE=	oxygen-icons5 \
 		attica automoc4 ontologies soprano strigi
-USE_QT4=	corelib dbus declarative designer_build gui \
+USE_QT=		corelib dbus declarative designer_build gui \
 		network opengl phonon qt3support \
 		qtestlib script sql svg webkit xml \
 		moc_build qmake_build rcc_build uic_build \
@@ -85,7 +88,7 @@ UPNP_DESC=	UPnP backend for Solid (WARNING: Unstable)
 UPNP_LIB_DEPENDS=	libHUpnp.so:net/hupnp
 UPNP_CMAKE_ON=	-DHUPNP_ENABLED:BOOL=On
 
-OPENEXR_LIB_DEPENDS=	libIlmImf.so:graphics/OpenEXR
+OPENEXR_LIB_DEPENDS=	libIlmImf.so:graphics/openexr
 OPENEXR_CMAKE_BOOL_OFF=	CMAKE_DISABLE_FIND_PACKAGE_OpenEXR
 
 post-patch:

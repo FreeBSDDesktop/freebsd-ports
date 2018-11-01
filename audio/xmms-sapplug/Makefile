@@ -3,13 +3,16 @@
 
 PORTNAME=	xmms-sapplug
 DISTVERSION=	0.3f
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	audio
 MASTER_SITES=	LOCAL/ehaupt
 DISTNAME=	sapplug-xmms-${DISTVERSION}
 
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	XMMS input plugin for playing 8bit Atari(TM) .sap audio files
+
+DEPRECATED=	Uses obsolete glib12
+EXPIRATION_DATE=	2018-12-20
 
 LICENSE=	GPLv2
 
@@ -27,7 +30,9 @@ PLIST_FILES=	lib/xmms/Input/libsap.so
 
 OPTIONS_DEFINE=	OPTIMIZED_CFLAGS
 
+CFLAGS_aarch64=	-fpic -DPIC
 CFLAGS_amd64=	-fpic -DPIC
+CFLAGS_i386=	-fpic -DPIC
 
 .include <bsd.port.pre.mk>
 

@@ -363,11 +363,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # CXXFLAGS_${ARCH}
 #				 Append the cxxflags to CXXFLAGS only on the specified architecture
 ##
-# USE_GL		- A list of Mesa or GL related dependencies needed by the port.
-#				  Supported components are: egl, glesv2, glut, glu, glw, and gl.
-#				  If set to "yes", this is equivalent to "glu". Note that
-#				  glew and glut depend on glu, glw and glu depend on gl.
-##
+# LDFLAGS_${ARCH} Append the ldflags to LDFLAGS only on the specified architecture
 # USE_SDL		- If set, this port uses the sdl libraries.
 #				  See bsd.sdl.mk for more information.
 ##
@@ -533,7 +529,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  Installs all directories and files from ${WRKSRC}/doc
 #				  to ${DOCSDIR} except sed(1) backup files.
 #
-# MANPREFIX		- The directory prefix for ${MAN<sect>} and ${MLINKS}.
+# MANPREFIX		- The directory prefix for manual pages.
 #				  Default: ${PREFIX}
 # MAN<sect>PREFIX
 #				- If manual pages of some sections install in different
@@ -1148,6 +1144,15 @@ ARCH=	${CROSS_TOOLCHAIN:C,-.*$,,}
 .endif
 _EXPORTED_VARS+=	ARCH
 
+# Get operating system versions for a cross build
+.if defined(CROSS_SYSROOT)
+.if !exists(${CROSS_SYSROOT}/usr/include/sys/param.h)
+.error CROSS_SYSROOT does not include /usr/include/sys/param.h.
+.endif
+OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${CROSS_SYSROOT}/usr/include/sys/param.h
+_OSRELEASE!= ${AWK} -v version=${OSVERSION} 'END { printf("%d.%d-CROSS", version / 100000, version / 1000 % 100) }' < /dev/null
+.endif
+
 # Get the operating system type
 .if !defined(OPSYS)
 OPSYS!=	${UNAME} -s
@@ -1175,7 +1180,7 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${SRC
 .endif
 _EXPORTED_VARS+=	OSVERSION
 
-.if (${OPSYS} == FreeBSD && (${OSVERSION} < 1004000 || (${OSVERSION} >= 1100000 && ${OSVERSION} < 1101001))) || \
+.if (${OPSYS} == FreeBSD && (${OSVERSION} < 1004000 || (${OSVERSION} >= 1100000 && ${OSVERSION} < 1102000))) || \
     (${OPSYS} == DragonFly && ${DFLYVERSION} < 400400)
 _UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
 								are guaranteed to build on this system. Please upgrade to a supported release.
@@ -1309,8 +1314,8 @@ WITH_DEBUG=	yes
 # Start of pre-makefile section.
 .if !defined(AFTERPORTMK) && !defined(INOPTIONSMK)
 
-.if defined(PORTNAME)
-.include "${PORTSDIR}/Mk/bsd.sanity.mk"
+.if defined(_PREMKINCLUDED)
+DEV_ERROR+=	"you cannot include bsd.port[.pre].mk twice"
 .endif
 
 _PREMKINCLUDED=	yes
@@ -1399,10 +1404,6 @@ USE_APACHE:=	${USE_APACHE:S/common/server,/}
 USES+=	apache:${USE_APACHE:C/2([0-9])/2.\1/g}
 .endif
 
-.if defined(USE_QT4) || defined(USE_QT5)
-.include "${PORTSDIR}/Mk/bsd.qt.mk"
-.endif
-
 .if defined(USE_TEX)
 .include "${PORTSDIR}/Mk/bsd.tex.mk"
 .endif
@@ -1411,12 +1412,19 @@ USES+=	apache:${USE_APACHE:C/2([0-9])/2.\1/g}
 .include "${PORTSDIR}/Mk/bsd.gecko.mk"
 .endif
 
-.if defined(USE_GNOME) || defined(INSTALLS_ICONS)
+.if (defined(USE_GNOME) || defined(INSTALLS_ICONS)) && empty(USES:Mgnome)
+DEV_WARNING+=	"Using USE_GNOME alone is deprecated, please add USES=gnome."
 USES+=	gnome
 .endif
 
-.if defined(USE_MATE)
+.if defined(USE_MATE) && empty(USES:Mmate)
+DEV_WARNING+=	"Using USE_MATE alone is deprecated, please add USES=mate."
 USES+=	mate
+.endif
+
+.if defined(USE_GL) && (!defined(USES) || !${USES:Mgl})
+DEV_WARNING+=	"Setting USE_GL without USES=gl is deprecated"
+USES+=	gl
 .endif
 
 .if defined(USE_MYSQL)
@@ -1626,6 +1634,9 @@ QA_ENV+=		STAGEDIR=${STAGEDIR} \
 				LIB_RUN_DEPENDS='${_LIB_RUN_DEPENDS:C,[^:]*:([^:]*):?.*,\1,}' \
 				UNIFIED_DEPENDS=${_UNIFIED_DEPENDS:C,([^:]*:[^:]*):?.*,\1,:O:u:Q} \
 				PKGBASE=${PKGBASE} \
+				LICENSE="${LICENSE}" \
+				LICENSE_PERMS="${_LICENSE_PERMS}" \
+				DISABLE_LICENSES="${DISABLE_LICENSES:Dyes}" \
 				PORTNAME=${PORTNAME} \
 				NO_ARCH=${NO_ARCH} \
 				"NO_ARCH_IGNORE=${NO_ARCH_IGNORE}" \
@@ -1880,36 +1891,6 @@ IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
 
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 
-_GL_gbm_LIB_DEPENDS=		libgbm.so:graphics/mesa-libs
-_GL_glesv2_BUILD_DEPENDS=	${LOCALBASE}/lib/libGLESv2.so:graphics/mesa-libs
-_GL_glesv2_RUN_DEPENDS=		${LOCALBASE}/lib/libGLESv2.so:graphics/mesa-libs
-_GL_egl_BUILD_DEPENDS=		${LOCALBASE}/lib/libEGL.so:graphics/mesa-libs
-_GL_egl_RUN_DEPENDS=		${LOCALBASE}/lib/libEGL.so:graphics/mesa-libs
-_GL_gl_BUILD_DEPENDS=		${LOCALBASE}/lib/libGL.so:graphics/mesa-libs
-_GL_gl_RUN_DEPENDS=			${LOCALBASE}/lib/libGL.so:graphics/mesa-libs
-_GL_gl_USE_XORG=			glproto dri2proto dri3proto
-_GL_glew_LIB_DEPENDS=		libGLEW.so:graphics/glew
-_GL_glu_LIB_DEPENDS=		libGLU.so:graphics/libGLU
-_GL_glu_USE_XORG=			glproto dri2proto dri3proto
-_GL_glw_LIB_DEPENDS=		libGLw.so:graphics/libGLw
-_GL_glut_LIB_DEPENDS=		libglut.so:graphics/freeglut
-.if defined(USE_GL)
-. if ${USE_GL:tl} == "yes"
-USE_GL=		glu
-. endif
-. for _component in ${USE_GL}
-.  if !defined(_GL_${_component}_LIB_DEPENDS) && \
-		!defined(_GL_${_component}_RUN_DEPENDS)
-IGNORE=		uses unknown GL component
-.  else
-USE_XORG+=	${_GL_${_component}_USE_XORG}
-BUILD_DEPENDS+=	${_GL_${_component}_BUILD_DEPENDS}
-LIB_DEPENDS+=	${_GL_${_component}_LIB_DEPENDS}
-RUN_DEPENDS+=	${_GL_${_component}_RUN_DEPENDS}
-.  endif
-. endfor
-.endif
-
 .if defined(_DESTDIR_VIA_ENV)
 MAKE_ENV+=	${DESTDIRNAME}=${STAGEDIR}
 .else
@@ -1965,10 +1946,6 @@ _FORCE_POST_PATTERNS=	rmdir kldxref mkfontscale mkfontdir fc-cache \
 .include "${PORTSDIR}/Mk/bsd.ocaml.mk"
 .endif
 
-.if defined(USE_QT4) || defined(USE_QT5)
-.include "${PORTSDIR}/Mk/bsd.qt.mk"
-.endif
-
 .if defined(USE_SDL)
 .include "${PORTSDIR}/Mk/bsd.sdl.mk"
 .endif
@@ -2001,6 +1978,10 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .for f in ${_USES_POST}
 .include "${USESDIR}/${f:C/\:.*//}.mk"
 .endfor
+
+.if defined(PORTNAME)
+.include "${PORTSDIR}/Mk/bsd.sanity.mk"
+.endif
 
 .if defined(USE_LOCALE)
 CONFIGURE_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
@@ -2065,10 +2046,10 @@ CFLAGS+=       -fno-strict-aliasing
 ${lang}FLAGS:=	${${lang}FLAGS:N-std=*} -std=${USE_${lang}STD}
 .endif
 
-.if defined(${lang}FLAGS_${ARCH})
 ${lang}FLAGS+=	${${lang}FLAGS_${ARCH}}
-.endif
 .endfor
+
+LDFLAGS+=	${LDFLAGS_${ARCH}}
 
 # Multiple make jobs support
 .if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
@@ -2124,8 +2105,8 @@ PATCH_STRIP?=	-p0
 PATCH_DIST_STRIP?=	-p0
 .if defined(PATCH_DEBUG)
 PATCH_DEBUG_TMP=	yes
-PATCH_ARGS?=	-E ${PATCH_STRIP}
-PATCH_DIST_ARGS?=	--suffix ${DISTORIG} -E ${PATCH_DIST_STRIP}
+PATCH_ARGS?=	--forward -E ${PATCH_STRIP}
+PATCH_DIST_ARGS?=	--suffix ${DISTORIG} --forward -E ${PATCH_DIST_STRIP}
 .else
 PATCH_ARGS?=	--forward --quiet -E ${PATCH_STRIP}
 PATCH_DIST_ARGS?=	--suffix ${DISTORIG} --forward --quiet -E ${PATCH_DIST_STRIP}
@@ -2210,7 +2191,6 @@ PLIST?=			${PKGDIR}/pkg-plist
 PKGHELP?=		${PKGDIR}/pkg-help
 PKGINSTALL?=	${PKGDIR}/pkg-install
 PKGDEINSTALL?=	${PKGDIR}/pkg-deinstall
-PKGREQ?=		${PKGDIR}/pkg-req
 PKGMESSAGE?=	${PKGDIR}/pkg-message
 _PKGMESSAGES+=	${PKGMESSAGE}
 
@@ -2221,7 +2201,7 @@ PKG_SUFX?=		.tar
 .else
 PKG_SUFX?=		.txz
 .endif
-# where pkg_add records its dirty deeds.
+# where pkg(8) stores its data
 PKG_DBDIR?=		/var/db/pkg
 
 ALL_TARGET?=		all
@@ -2638,7 +2618,7 @@ GNU_CONFIGURE_PREFIX?=	${PREFIX}
 GNU_CONFIGURE_MANPREFIX?=	${MANPREFIX}
 CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
 .if defined(CROSS_TOOLCHAIN)
-CROSS_HOST=		${CROSS_TOOLCHAIN:C,-.*$,,}-unknown-${OPSYS:tl}${OSREL}
+CROSS_HOST=		${ARCH:S/amd64/x86_64/}-unknown-${OPSYS:tl}${OSREL}
 CONFIGURE_ARGS+=	--host=${CROSS_HOST}
 .endif
 CONFIGURE_ENV+=		CONFIG_SITE=${CONFIG_SITE} lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
@@ -2774,9 +2754,9 @@ __ARCH_OK?=		1
 
 .if !defined(__ARCH_OK)
 .if defined(ONLY_FOR_ARCHS)
-IGNORE=		is only for ${ONLY_FOR_ARCHS},
+IGNORE=		is only for ${ONLY_FOR_ARCHS:O},
 .else # defined(NOT_FOR_ARCHS)
-IGNORE=		does not run on ${NOT_FOR_ARCHS},
+IGNORE=		does not run on ${NOT_FOR_ARCHS:O},
 .endif
 IGNORE+=	while you are running ${ARCH}
 
@@ -3588,7 +3568,11 @@ security-check: ${TMPPLIST}
 #   4.  startup scripts, in conjunction with 2.
 #   5.  world-writable files/dirs
 #
-	-@${RM} ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable ${WRKDIR}/.PLIST.objdump; \
+#  The ${NONEXISTENT} argument of ${READELF} is there so that there are always
+#  at least two file arguments, and forces it to always output the "File: foo"
+#  header lines.
+#
+	-@${RM} ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable ${WRKDIR}/.PLIST.readelf; \
 	${AWK} -v prefix='${PREFIX}' ' \
 		match($$0, /^@cwd /) { prefix = substr($$0, RSTART + RLENGTH); if (prefix == "/") prefix=""; next; } \
 		/^@/ { next; } \
@@ -3601,10 +3585,10 @@ security-check: ${TMPPLIST}
 	| ${XARGS} -0 -J % ${FIND} % -prune -perm -0002 \! -type l 2> /dev/null > ${WRKDIR}/.PLIST.writable; \
 	${TR} '\n' '\0' < ${WRKDIR}/.PLIST.flattened \
 	| ${XARGS} -0 -J % ${FIND} % -prune ! -type l -type f -print0 2> /dev/null \
-	| ${XARGS} -0 -n 1 ${OBJDUMP} -R 2> /dev/null > ${WRKDIR}/.PLIST.objdump; \
+	| ${XARGS} -0 ${READELF} -r ${NONEXISTENT} 2> /dev/null > ${WRKDIR}/.PLIST.readelf; \
 	if \
 		! ${AWK} -v audit="$${PORTS_AUDIT}" -f ${SCRIPTSDIR}/security-check.awk \
-		  ${WRKDIR}/.PLIST.flattened ${WRKDIR}/.PLIST.objdump ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable; \
+		  ${WRKDIR}/.PLIST.flattened ${WRKDIR}/.PLIST.readelf ${WRKDIR}/.PLIST.setuid ${WRKDIR}/.PLIST.writable; \
 	then \
 		www_site=$$(cd ${.CURDIR} && ${MAKE} www-site); \
 	    if [ ! -z "$${www_site}" ]; then \
@@ -4528,6 +4512,7 @@ ${TMPPLIST}:
 	@cd ${.CURDIR} && ${MAKE} generate-plist
 
 .for _type in EXAMPLES DOCS
+.if !empty(_REALLY_ALL_POSSIBLE_OPTIONS:M${_type})
 .if !target(add-plist-${_type:tl})
 .if defined(PORT${_type}) && !empty(PORT_OPTIONS:M${_type})
 add-plist-${_type:tl}:
@@ -4539,6 +4524,7 @@ add-plist-${_type:tl}:
 .endfor
 	@${FIND} -P ${PORT${_type}:S/^/${STAGEDIR}${${_type}DIR}\//} ! -type d 2>/dev/null | \
 		${SED} -ne 's,^${STAGEDIR},,p' >> ${TMPPLIST}
+.endif
 .endif
 .endif
 .endfor

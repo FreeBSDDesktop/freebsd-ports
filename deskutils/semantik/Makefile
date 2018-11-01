@@ -7,19 +7,18 @@ CATEGORIES=	deskutils kde
 MASTER_SITES=	http://ftp.waf.io/pub/release/ \
 		http://www.freehackers.org/~tnagy/release/
 
-MAINTAINER=	avilla@FreeBSD.org
+MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE mind mapping tool
 
 LICENSE=	GPLv3
 
-USES=		kde:4 pkgconfig python:2.7 shebangfix tar:bzip2 waf \
+USES=		kde:4 pkgconfig python:2.7 qmake:no_env,no_configure qt:4 shebangfix tar:bzip2 waf \
 		gettext shared-mime-info
 USE_KDE=	kdelibs
 USE_OCAML=	yes
 NO_OCAML_RUNDEPENDS=	yes
-USE_QT4=	corelib gui linguist_build svg webkit xml \
+USE_QT=		corelib gui linguist_build svg webkit xml \
 		moc_build qmake_build uic_build
-QT_NONSTANDARD=	yes
 CONFIGURE_ENV=	CXXFLAGS="${CXXFLAGS}" \
 		PATH="${KDE_PREFIX}/bin:$$PATH" \
 		WAF_HOME="${WRKSRC}"

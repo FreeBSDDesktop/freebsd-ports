@@ -11,7 +11,10 @@ DISTNAME=	${PORTVERSION}_freera++_src
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Westwood red alert game engine
 
-USES=		scons
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/doc/gpl.txt
+
+USES=		compiler:c++11-lang scons
 USE_SDL=	sdl mixer
 
 WRKSRC=		${WRKDIR}/freera++
@@ -33,6 +36,6 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/freera ${STAGEDIR}${PREFIX}/bin/
-	cd ${WRKSRC}/data && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/
+	@cd ${WRKSRC}/data && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/
 
 .include <bsd.port.mk>

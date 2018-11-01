@@ -64,6 +64,7 @@
     SUBDIR += boodler
     SUBDIR += bristol
     SUBDIR += bs2b-lv2
+    SUBDIR += cadence
     SUBDIR += calf-lv2
     SUBDIR += cam
     SUBDIR += cantata
@@ -115,8 +116,10 @@
     SUBDIR += denemo
     SUBDIR += dir2ogg
     SUBDIR += discid
+    SUBDIR += dpf-plugins-lv2
     SUBDIR += dream
     SUBDIR += drumgizmo
+    SUBDIR += drumkv1-lv2
     SUBDIR += drumpiler
     SUBDIR += drumstick
     SUBDIR += dsbmixer
@@ -146,7 +149,10 @@
     SUBDIR += faad
     SUBDIR += fabla2-lv2
     SUBDIR += fapg
+    SUBDIR += fasttracker2
     SUBDIR += faust
+    SUBDIR += faust-lv2
+    SUBDIR += faustlive
     SUBDIR += fcplay
     SUBDIR += fdk-aac
     SUBDIR += fdmf
@@ -175,7 +181,6 @@
     SUBDIR += festvox-rab16
     SUBDIR += festvox-rab8
     SUBDIR += festvox-russian
-    SUBDIR += firefly
     SUBDIR += flac
     SUBDIR += flac123
     SUBDIR += flacon
@@ -203,10 +208,10 @@
     SUBDIR += gbsplay
     SUBDIR += gervill
     SUBDIR += ghostess
+    SUBDIR += giada
     SUBDIR += gimmix
     SUBDIR += gkrellmms2
     SUBDIR += gkrellmvolume2
-    SUBDIR += glame
     SUBDIR += glurp
     SUBDIR += gmidimonitor
     SUBDIR += gmixer
@@ -311,6 +316,7 @@
     SUBDIR += gstreamer1-plugins-twolame
     SUBDIR += gstreamer1-plugins-vorbis
     SUBDIR += gstreamer1-plugins-wavpack
+    SUBDIR += gstreamer1-plugins-webrtcdsp
     SUBDIR += gtick
     SUBDIR += gtkguitune
     SUBDIR += gtkpod
@@ -364,6 +370,7 @@
     SUBDIR += julius
     SUBDIR += kexis
     SUBDIR += kid3-kde4
+    SUBDIR += kid3-kf5
     SUBDIR += kid3-qt4
     SUBDIR += kid3-qt5
     SUBDIR += kio-audiocd-kde4
@@ -424,7 +431,6 @@
     SUBDIR += libmp3splt
     SUBDIR += libmpd
     SUBDIR += libmpdclient
-    SUBDIR += libmusicbrainz3
     SUBDIR += libmusicbrainz5
     SUBDIR += libmusicxml
     SUBDIR += libmysofa
@@ -432,7 +438,9 @@
     SUBDIR += libnoise
     SUBDIR += libogg
     SUBDIR += liboggz
+    SUBDIR += libopenmpt
     SUBDIR += libopenspc
+    SUBDIR += libopusenc
     SUBDIR += libsamplerate
     SUBDIR += libshairport
     SUBDIR += libshout
@@ -441,6 +449,7 @@
     SUBDIR += libsidplayfp
     SUBDIR += libsmf
     SUBDIR += libsndfile
+    SUBDIR += libsonic
     SUBDIR += libsoxr
     SUBDIR += libtremor
     SUBDIR += libumidi
@@ -555,8 +564,6 @@
     SUBDIR += mpg321
     SUBDIR += mpiosh
     SUBDIR += mps
-    SUBDIR += msbcg729
-    SUBDIR += msilbc
     SUBDIR += mumble
     SUBDIR += murmur
     SUBDIR += musepack
@@ -566,7 +573,6 @@
     SUBDIR += musicpc
     SUBDIR += musicpd
     SUBDIR += mythplugin-mythmusic
-    SUBDIR += napster
     SUBDIR += nas
     SUBDIR += ncmpc
     SUBDIR += ncmpcpp
@@ -635,6 +641,7 @@
     SUBDIR += paprefs
     SUBDIR += patchage
     SUBDIR += pavucontrol
+    SUBDIR += pavucontrol-qt
     SUBDIR += pavumeter
     SUBDIR += pc-mixer
     SUBDIR += pd
@@ -661,6 +668,7 @@
     SUBDIR += puddletag
     SUBDIR += pulseaudio
     SUBDIR += pulseaudio-module-sndio
+    SUBDIR += pulseaudio-module-xrdp
     SUBDIR += py-SoundFile
     SUBDIR += py-al
     SUBDIR += py-ao
@@ -678,7 +686,7 @@
     SUBDIR += py-karaoke
     SUBDIR += py-mpd
     SUBDIR += py-mpd2
-    SUBDIR += py-musicbrainz2
+    SUBDIR += py-music21
     SUBDIR += py-musicbrainzngs
     SUBDIR += py-mutagen
     SUBDIR += py-ogg
@@ -717,12 +725,15 @@
     SUBDIR += resid
     SUBDIR += rexima
     SUBDIR += rezound
+    SUBDIR += rhvoice
+    SUBDIR += rhvoice-dictionary
     SUBDIR += rhythmbox
     SUBDIR += rio500
     SUBDIR += rioutil
     SUBDIR += ripit
     SUBDIR += ripperx
     SUBDIR += rkr-lv2
+    SUBDIR += rnnoise-nu
     SUBDIR += rosegarden
     SUBDIR += rplay
     SUBDIR += rsynth
@@ -736,6 +747,7 @@
     SUBDIR += rubygem-ruby-ogginfo
     SUBDIR += rubygem-ruby-shout
     SUBDIR += s3mod
+    SUBDIR += samplv1-lv2
     SUBDIR += sayonara
     SUBDIR += sbagen
     SUBDIR += sc3-plugins
@@ -776,8 +788,10 @@
     SUBDIR += soundtouch
     SUBDIR += soundtracker
     SUBDIR += sox
+    SUBDIR += spc2it
     SUBDIR += specimen
     SUBDIR += spectrogram
+    SUBDIR += speech-denoiser-lv2
     SUBDIR += speex
     SUBDIR += speexdsp
     SUBDIR += spek
@@ -801,6 +815,7 @@
     SUBDIR += swh-lv2
     SUBDIR += swhplugins
     SUBDIR += synthpod-lv2
+    SUBDIR += synthv1-lv2
     SUBDIR += taglib
     SUBDIR += taglib-extras
     SUBDIR += taglib-sharp
@@ -859,6 +874,7 @@
     SUBDIR += waveplay
     SUBDIR += wavpack
     SUBDIR += wavplay
+    SUBDIR += webrtc-audio-processing
     SUBDIR += whysynth
     SUBDIR += wildmidi
     SUBDIR += wmalbum
@@ -910,6 +926,7 @@
     SUBDIR += xvmixer
     SUBDIR += xwave
     SUBDIR += yell
+    SUBDIR += ympd
     SUBDIR += yoshimi
     SUBDIR += zam-plugins-lv2
     SUBDIR += zinf

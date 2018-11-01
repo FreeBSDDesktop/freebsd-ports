@@ -3,12 +3,14 @@
 
 PORTNAME=	ezbounce
 PORTVERSION=	1.99.15
-PORTREVISION=	12
+PORTREVISION=	14
 CATEGORIES=	irc
 MASTER_SITES=	http://BSDforge.com/projects/source/irc/ezbounce/
 
 MAINTAINER=	portmaster@BSDforge.com
 COMMENT=	Highly configurable IRC Proxy
+
+BROKEN_powerpc64=	fails to configure: checking for boostlib >= 1.33... not found
 
 OPTIONS_DEFINE=	DOCS SSL COMPRESS
 OPTIONS_DEFAULT=SSL COMPRESS
@@ -26,7 +28,7 @@ USE_GCC=	any
 
 # ezbounce 1.99.15 isn't compatible with C++11 and later, which some compilers
 # such as GCC 6 default to.
-USE_CXXSTD=	gnu++03
+USE_CXXSTD=	gnu++98
 
 SUB_FILES=	pkg-message
 

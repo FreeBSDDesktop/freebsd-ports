@@ -18,7 +18,7 @@ LICENSE_FILE_MPL20=	${WRKSRC}/LICENSE.mpl
 LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		libnss3.so:security/nss
 
-USES=		python tar:bzip2
+USES=		compiler:c11 python tar:bzip2
 USE_PYTHON=	autoplist distutils
 
 PYDISTUTILS_CONFIGUREARGS=	--include-root="${LOCALBASE}/include" \

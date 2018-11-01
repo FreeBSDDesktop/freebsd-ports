@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	libtomcrypt
-PORTVERSION=	1.18.1
-PORTREVISION=	1
+PORTVERSION=	1.18.2
+PORTREVISION=	0
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/libtom/${PORTNAME}/releases/download/v${PORTVERSION}/
 DISTNAME=	crypt-${PORTVERSION}
@@ -14,6 +14,8 @@ COMMENT=	Comprehensive, modular, and portable cryptographic toolkit
 LICENSE=	PD
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USES=		gmake libtool:build tar:xz
+
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 CFLAGS+=	-I${LOCALBASE}/include
@@ -22,7 +24,6 @@ MAKEFILE=	makefile.shared
 ALL_TARGET=	library
 MAKE_ARGS=	INCPATH="${PREFIX}/include" LIBPATH="${PREFIX}/lib" \
 		EXTRALIBS="${EXTRALIBS}"
-USES=		gmake libtool:build tar:xz
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=		DOCS

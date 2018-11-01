@@ -10,6 +10,7 @@
     SUBDIR += abby
     SUBDIR += acidrip
     SUBDIR += aegisub
+    SUBDIR += aom
     SUBDIR += aravis
     SUBDIR += asdcplib
     SUBDIR += assimp
@@ -25,6 +26,7 @@
     SUBDIR += avidemux-qt4
     SUBDIR += avinfo
     SUBDIR += baka-mplayer
+    SUBDIR += bcmatroska2
     SUBDIR += bino
     SUBDIR += bitstream
     SUBDIR += blind
@@ -34,6 +36,7 @@
     SUBDIR += cclive
     SUBDIR += cheese
     SUBDIR += chilitags
+    SUBDIR += cinelerra-gg
     SUBDIR += clipgrab
     SUBDIR += clive
     SUBDIR += clutter-gst
@@ -50,6 +53,7 @@
     SUBDIR += dumpmpeg
     SUBDIR += dv2jpg
     SUBDIR += dv2sub
+    SUBDIR += dvb-apps
     SUBDIR += dvbcut
     SUBDIR += dvbsnoop
     SUBDIR += dvd-slideshow
@@ -169,8 +173,8 @@
     SUBDIR += kamoso
     SUBDIR += kdemultimedia
     SUBDIR += kdemultimedia-ffmpegthumbs
-    SUBDIR += kdemultimedia-kde4
     SUBDIR += kdemultimedia-ffmpegthumbs-kde4
+    SUBDIR += kdemultimedia-kde4
     SUBDIR += kdemultimedia-mplayerthumbs-kde4
     SUBDIR += kdenlive
     SUBDIR += kdenlive-kde4
@@ -178,6 +182,8 @@
     SUBDIR += kissdx
     SUBDIR += kmplayer-kde4
     SUBDIR += kodi
+    SUBDIR += kodi-addon-pvr-hts
+    SUBDIR += kodi-addon-pvr-iptvsimple
     SUBDIR += kodi-devel
     SUBDIR += kplayer-kde4
     SUBDIR += kvazaar
@@ -278,13 +284,14 @@
     SUBDIR += mpv
     SUBDIR += msdl
     SUBDIR += msopenh264
-    SUBDIR += msx264
+    SUBDIR += mswebrtc
     SUBDIR += mxflib
     SUBDIR += mythtv
     SUBDIR += mythtv-frontend
     SUBDIR += naludump
     SUBDIR += nordlicht
     SUBDIR += nostt
+    SUBDIR += obs-qtwebkit
     SUBDIR += obs-studio
     SUBDIR += oggvideotools
     SUBDIR += ogmrip
@@ -326,6 +333,8 @@
     SUBDIR += ptx-kmod
     SUBDIR += pwcbsd
     SUBDIR += pwcview
+    SUBDIR += py-PySceneDetect
+    SUBDIR += py-av
     SUBDIR += py-cec
     SUBDIR += py-enzyme
     SUBDIR += py-flvlib
@@ -342,7 +351,6 @@
     SUBDIR += py-openlp
     SUBDIR += py-periscope
     SUBDIR += py-pretty_midi
-    SUBDIR += py-PySceneDetect
     SUBDIR += py-qt4-multimedia
     SUBDIR += py-qt4-phonon
     SUBDIR += py-qt5-multimedia
@@ -360,10 +368,6 @@
     SUBDIR += qt4-mobility
     SUBDIR += qt4-multimedia
     SUBDIR += qt5-multimedia
-    SUBDIR += qt5-phonon4
-    SUBDIR += qt5-phonon4-designerplugin
-    SUBDIR += qt5-phonon4-gstreamer
-    SUBDIR += qt5-phonon4-vlc
     SUBDIR += quark
     SUBDIR += quodlibet
     SUBDIR += quvi
@@ -395,6 +399,7 @@
     SUBDIR += snappy
     SUBDIR += spigot
     SUBDIR += spook
+    SUBDIR += subtitlecomposer
     SUBDIR += subtitlecomposer-kde4
     SUBDIR += subtitleeditor
     SUBDIR += subtitleoffsetmodifier
@@ -452,6 +457,7 @@
     SUBDIR += vid.stab
     SUBDIR += vlc
     SUBDIR += vlc-qt4
+    SUBDIR += vlc3
     SUBDIR += vtkmpeg2encode
     SUBDIR += w_scan
     SUBDIR += webcamd
