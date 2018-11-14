@@ -90,7 +90,8 @@ CONFIGURE_ARGS+=	--with-platforms=x11,surfaceless,drm,wayland
 
 CONFIGURE_ARGS+=	--with-dri-drivers="${DRI_DRIVERS:tl}" \
 			--with-gallium-drivers="${GALLIUM_DRIVERS:tl}" \
-			--with-vulkan-drivers="${VULKAN_DRIVERS:tl}"
+			--with-vulkan-drivers="${VULKAN_DRIVERS:tl}" \
+			--enable-xa
 
 .for _d in ${ALL_DRI_DRIVERS}
 . if ${DRI_DRIVERS:M${_d}}

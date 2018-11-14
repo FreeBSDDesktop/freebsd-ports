@@ -95,3 +95,10 @@ libdata/pkgconfig/dri.pc
 @comment libdata/pkgconfig/wayland-egl.pc
 %%INTEL_VDRIVER%%share/vulkan/icd.d/intel_icd.%%ARCH%%.json
 %%RADEON_VDRIVER%%share/vulkan/icd.d/radeon_icd.%%ARCH%%.json
+include/xa_composite.h
+include/xa_context.h
+include/xa_tracker.h
+lib/libxatracker.so
+lib/libxatracker.so.2
+lib/libxatracker.so.2.3.0
+libdata/pkgconfig/xatracker.pc
