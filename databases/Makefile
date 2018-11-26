@@ -612,6 +612,7 @@
     SUBDIR += pgpool-II-35
     SUBDIR += pgpool-II-36
     SUBDIR += pgpool-II-37
+    SUBDIR += pgpool-II-40
     SUBDIR += pgreplay
     SUBDIR += pgroonga
     SUBDIR += pgrouting
@@ -725,6 +726,14 @@
     SUBDIR += postgresql-repmgr
     SUBDIR += postgresql-tds_fdw
     SUBDIR += postgresql-zhparser
+    SUBDIR += postgresql11-client
+    SUBDIR += postgresql11-contrib
+    SUBDIR += postgresql11-docs
+    SUBDIR += postgresql11-pgtcl
+    SUBDIR += postgresql11-plperl
+    SUBDIR += postgresql11-plpython
+    SUBDIR += postgresql11-pltcl
+    SUBDIR += postgresql11-server
     SUBDIR += postgresql10-client
     SUBDIR += postgresql10-contrib
     SUBDIR += postgresql10-docs

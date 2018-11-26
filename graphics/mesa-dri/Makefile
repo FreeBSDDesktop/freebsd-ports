@@ -3,7 +3,7 @@
 
 PORTNAME=	mesa-dri
 PORTVERSION=	${MESAVERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 
 COMMENT=	OpenGL hardware acceleration drivers for DRI2+
@@ -11,7 +11,7 @@ COMMENT=	OpenGL hardware acceleration drivers for DRI2+
 USE_XORG=	xorgproto x11 xdamage xext xfixes xshmfence xv xvmc
 
 OPTIONS_DEFINE=	TEXTURE VAAPI VDPAU WAYLAND
-OPTIONS_DEFAULT=TEXTURE
+OPTIONS_DEFAULT=TEXTURE WAYLAND
 OPTIONS_SUB=	yes
 
 TEXTURE_DESC=	Enable texture-float support (patent encumbered)
@@ -46,7 +46,11 @@ VULKAN_DRIVERS=		#
 .if ${ARCH} == amd64 || ${ARCH} == i386 \
  || ${ARCH} == powerpc || ${ARCH} == powerpc64
 DRI_DRIVERS+=		RADEON R200
-GALLIUM_DRIVERS+=	R300 R600
+GALLIUM_DRIVERS+=	R600
+. if "${MESA_LLVM_VER}" != "" && (${ARCH} == amd64 || ${ARCH} == i386)
+# https://cgit.freedesktop.org/mesa/mesa/commit/?id=58952675f6d4
+GALLIUM_DRIVERS+=	R300
+. endif
 . if "${MESA_LLVM_VER}" != ""	# until PPC gets LLVM in base
 GALLIUM_DRIVERS+=	RADEONSI
 VULKAN_DRIVERS+=	RADEON
@@ -80,11 +84,8 @@ LDFLAGS+=		-B${LOCALBASE}/bin
 .endif
 
 # enables VK_KHR_wayland_surface in Vulkan drivers
-.if ${PORT_OPTIONS:MWAYLAND}
+.if ${PORT_OPTIONS:MWAYLAND} && !empty(VULKAN_DRIVERS)
 CONFIGURE_ARGS+=	--with-platforms=x11,surfaceless,drm,wayland
-. if empty(VULKAN_DRIVERS)
-IGNORE=	option WAYLAND is only valid on platforms with Vulkan
-. endif
 .endif
 
 CONFIGURE_ARGS+=	--with-dri-drivers="${DRI_DRIVERS:tl}" \

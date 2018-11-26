@@ -3,6 +3,7 @@
 
 PORTNAME=	tea
 PORTVERSION=	46.3.0
+PORTREVISION=	1
 CATEGORIES=	editors
 
 MAINTAINER=	danilo@FreeBSD.org
@@ -10,9 +11,7 @@ COMMENT=	Simple and powerful Qt-based text editor
 
 LICENSE=	GPLv3
 
-BROKEN_powerpc64=	fails to link: spellchecker.o:(.text+0xd2c): undefined reference to Hunspell::remove(std::string const&)
-
-USES=		gl pkgconfig:build qmake
+USES=		compiler:c++11-lang gl pkgconfig:build qmake
 
 OPTIONS_SINGLE=	TOOLKITS
 OPTIONS_SINGLE_TOOLKITS=	QT4 QT5
@@ -31,7 +30,7 @@ GH_PROJECT=	${PORTNAME}-qt
 QT4_USES=	qt:4
 QT4_USE=	qt=corelib,gui,moc_build,network,rcc_build
 QT5_USES=	qt:5
-QT5_USE=	qt=buildtools_build,core,gui,network,widgets,printsupport,qml,quick
+QT5_USE=	qt=buildtools_build,core,declarative,gui,network,widgets,printsupport
 
 LDFLAGS+=	-lz
 PLIST_FILES=	bin/tea share/pixmaps/tea_icon_v2.png

@@ -6,7 +6,7 @@ PORTVERSION=	2.0.10
 CATEGORIES=	devel
 PKGNAMESUFFIX=	2
 
-MAINTAINER=	johnpupu@gmail.com
+MAINTAINER=	joneum@FreeBSD.org
 COMMENT=	Compatible Threading API for PHP5.3+
 
 LICENSE=	PHP301
@@ -16,7 +16,7 @@ PORTSCOUT=	limit:^2\.
 CFLAGS+=	-I${LOCALBASE}/include
 
 USES=		php:pecl
-IGNORE_WITH_PHP=70 71
+IGNORE_WITH_PHP=70 71 72 73
 
 .include <bsd.port.options.mk>
 

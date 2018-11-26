@@ -9,8 +9,8 @@
     SUBDIR += GraphicsMagick
     SUBDIR += Hermes
     SUBDIR += IPA
-    SUBDIR += ImageMagick
-    SUBDIR += ImageMagick-nox11
+    SUBDIR += ImageMagick6
+    SUBDIR += ImageMagick6-nox11
     SUBDIR += ImageMagick7
     SUBDIR += ImageMagick7-nox11
     SUBDIR += O2-tools
@@ -289,6 +289,9 @@
     SUBDIR += gmic
     SUBDIR += gmic-qt
     SUBDIR += gmt
+    SUBDIR += gmt5
+    SUBDIR += gmt5-dcw
+    SUBDIR += gmt5-gshhg
     SUBDIR += gnash
     SUBDIR += gnofract4d
     SUBDIR += gnome-color-manager
@@ -339,6 +342,7 @@
     SUBDIR += gstreamer1-plugins-openjpeg
     SUBDIR += gstreamer1-plugins-png
     SUBDIR += gstreamer1-plugins-rsvg
+    SUBDIR += gstreamer1-plugins-vulkan
     SUBDIR += gstreamer1-plugins-webp
     SUBDIR += gstreamer1-plugins-zbar
     SUBDIR += gthumb
@@ -811,6 +815,7 @@
     SUBDIR += pecl-qrencode
     SUBDIR += pecomato
     SUBDIR += pencil
+    SUBDIR += pencil2d
     SUBDIR += peps
     SUBDIR += perceptualdiff
     SUBDIR += pfstools
@@ -990,6 +995,7 @@
     SUBDIR += quesa
     SUBDIR += quesoglc
     SUBDIR += qxv
+    SUBDIR += radiance
     SUBDIR += radius-engine
     SUBDIR += raster3d
     SUBDIR += rawstudio
