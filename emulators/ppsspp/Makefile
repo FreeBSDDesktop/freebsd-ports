@@ -2,7 +2,7 @@
 
 PORTNAME=	ppsspp
 DISTVERSIONPREFIX=	v
-DISTVERSION?=	1.7.1
+DISTVERSION?=	1.7.4
 PORTREVISION?=	0
 CATEGORIES=	emulators
 # XXX Get from Debian once #697821 lands
@@ -23,7 +23,7 @@ RUN_DEPENDS=	xdg-open:devel/xdg-utils
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
 GH_TUPLE?=	hrydgard:glslang:29619b23:glslang/ext/glslang \
-		hrydgard:${PORTNAME}-lang:f60be49:lang/assets/lang \
+		hrydgard:${PORTNAME}-lang:a6c1c24:lang/assets/lang \
 		KhronosGroup:SPIRV-Cross:be7425e:SPIRV/ext/SPIRV-Cross \
 		Kingcom:armips:v0.10.0-22-g9efe336:armips/ext/armips \
 		Kingcom:tinyformat:Release-2.0.1-7-gb7f5a22:tinyformat/ext/armips/ext/tinyformat \
@@ -69,8 +69,7 @@ SDL_BUILD_DEPENDS=	png>=1.6:graphics/png
 SDL_LIB_DEPENDS=	libpng.so:graphics/png
 SDL_VARS=	EXENAME=PPSSPPSDL
 VULKAN_DESC=		Vulkan renderer
-VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
-VULKAN_CFLAGS=	-DSDL_VIDEO_DRIVER_WAYLAND # XXX bug 223018, bug 227509
+VULKAN_RUN_DEPENDS=	${LOCALBASE}/lib/libvulkan.so:graphics/vulkan-loader
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/Linux/${OPSYS}/' \

@@ -1,29 +1,14 @@
---- setup.py.orig	2018-09-16 19:57:43 UTC
+--- setup.py.orig	2018-12-01 15:27:12 UTC
 +++ setup.py
-@@ -37,7 +37,7 @@ def _maybe_clang(flags):
-         compiler.linker_so[0] = os.environ['CXX']
-         return compiler
-     distutils.sysconfig.customize_compiler = customize_compiler
--    flags[:] = ['-c', '-O3'] + flags + ['-stdlib=libc++']
-+    flags[:] = ['-c'] + flags
+@@ -18,9 +18,9 @@ MACOS_FLAG = ['-mmacosx-version-min=10.7']
+ FLAGS_POSIX = [
+     '-fPIC', '-std=gnu++0x', '-Wall', '-Wno-parentheses', '-Werror=switch',
+ ]
+-FLAGS_CLANG = ['-c', '-O3'] + FLAGS_POSIX + ['-stdlib=libc++']
++FLAGS_CLANG = ['-c'] + FLAGS_POSIX
+ LFLAGS_POSIX = ['-fPIC',  '-lstdc++']
+-LFLAGS_CLANG = ['-fPIC', '-stdlib=libc++']
++LFLAGS_CLANG = ['-fPIC']
  
- 
- def _maybe_macos(flags):
-@@ -59,7 +59,7 @@ if system_sass:
-     _maybe_macos(flags)
- 
-     if platform.system() == 'FreeBSD':
--        link_flags = ['-fPIC', '-lc++']
-+        link_flags = ['-fPIC']
-     else:
-         link_flags = ['-fPIC', '-lstdc++']
-     libraries = ['sass']
-@@ -173,7 +173,7 @@ else:
-                         f.write(cencode_body)
- 
-         if platform.system() == 'FreeBSD':
--            link_flags = ['-fPIC', '-lc++']
-+            link_flags = ['-fPIC']
-         else:
-             link_flags = ['-fPIC', '-lstdc++']
- 
+ sources = ['pysass.cpp']
+ headers = []

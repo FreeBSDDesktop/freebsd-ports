@@ -154,6 +154,7 @@
     SUBDIR += cfengine-masterfiles310
     SUBDIR += cfengine-masterfiles311
     SUBDIR += cfengine-masterfiles312
+    SUBDIR += cfengine-masterfiles313
     SUBDIR += cfengine-masterfiles36
     SUBDIR += cfengine-masterfiles37
     SUBDIR += cfengine-masterfiles38
@@ -162,6 +163,7 @@
     SUBDIR += cfengine310
     SUBDIR += cfengine311
     SUBDIR += cfengine312
+    SUBDIR += cfengine313
     SUBDIR += cfengine32
     SUBDIR += cfengine33
     SUBDIR += cfengine34
@@ -249,6 +251,7 @@
     SUBDIR += devstat
     SUBDIR += dfc
     SUBDIR += di
+    SUBDIR += digdag
     SUBDIR += dim
     SUBDIR += dirdiff
     SUBDIR += direnv
@@ -321,7 +324,6 @@
     SUBDIR += facter
     SUBDIR += fanout
     SUBDIR += farbot
-    SUBDIR += fastest_cvsup
     SUBDIR += fatback
     SUBDIR += fcode-utils
     SUBDIR += fconfig
@@ -412,6 +414,7 @@
     SUBDIR += fusefs-wikipediafs
     SUBDIR += fusefs-zip
     SUBDIR += fvcool
+    SUBDIR += fwup
     SUBDIR += gaffitter
     SUBDIR += gai-leds
     SUBDIR += ganglia-monitor-core
@@ -520,6 +523,7 @@
     SUBDIR += intel-pcm-devel
     SUBDIR += intel-qcu
     SUBDIR += iocage
+    SUBDIR += iocage-devel
     SUBDIR += iocell
     SUBDIR += iogen
     SUBDIR += iograph
@@ -550,6 +554,7 @@
     SUBDIR += jkill
     SUBDIR += jobd
     SUBDIR += jps
+    SUBDIR += jstest-gtk
     SUBDIR += jtop
     SUBDIR += jtopen
     SUBDIR += jvmtop
@@ -972,6 +977,7 @@
     SUBDIR += py-XenAPI
     SUBDIR += py-analyzemft
     SUBDIR += py-ansible-lint
+    SUBDIR += py-ansible-runner
     SUBDIR += py-bcfg2
     SUBDIR += py-cdmi
     SUBDIR += py-consul
@@ -1023,6 +1029,7 @@
     SUBDIR += py-stdiff
     SUBDIR += py-superlance
     SUBDIR += py-supervisor
+    SUBDIR += py-tarsnapper
     SUBDIR += py-tmuxp
     SUBDIR += py-uptime
     SUBDIR += py-zdaemon
@@ -1073,6 +1080,8 @@
     SUBDIR += riak-cs
     SUBDIR += rinse
     SUBDIR += rmonitor
+    SUBDIR += rocr
+    SUBDIR += roct
     SUBDIR += roottail
     SUBDIR += rovclock
     SUBDIR += rpi-firmware
@@ -1256,6 +1265,7 @@
     SUBDIR += symlinks
     SUBDIR += symon
     SUBDIR += synergy
+    SUBDIR += synergy-1
     SUBDIR += sysadm
     SUBDIR += sysadm-client
     SUBDIR += sysgather

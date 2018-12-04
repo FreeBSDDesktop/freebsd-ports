@@ -6,8 +6,11 @@ PORTVERSION=	0.1.5
 PORTREVISION=	1
 CATEGORIES=	databases
 
-MAINTAINER=	johnpupu@gmail.com
+MAINTAINER=	joneum@FreeBSD.org
 COMMENT=	This extension is a PHP binding for Google LevelDB
+
+DEPRECATED=	Works only with EOL php 5.6
+EXPIRATION_DATE=	2018-12-30
 
 LICENSE=	PHP301
 

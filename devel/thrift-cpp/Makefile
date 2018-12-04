@@ -19,8 +19,8 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 DISTINFO_FILE=		${.CURDIR}/../thrift/distinfo
 
 BROKEN_powerpc64=	fails to compile: undefined reference to std::__throw_out_of_range_fmt
-BROKEN_SSL=	openssl-devel
-BROKEN_SSL_REASON_openssl-devel=	'configure: error: "Error: libcrypto required."'
+BROKEN_SSL=	openssl111
+BROKEN_SSL_REASON_openssl111=	'configure: error: "Error: libcrypto required."'
 
 USES=			autoreconf pkgconfig gmake compiler:c++11-lang \
 			libtool pathfix ssl
@@ -53,6 +53,13 @@ CONFIGURE_ARGS+=	\
 
 LDFLAGS+=	-L${OPENSSLLIB}
 CFLAGS+=	-I${OPENSSLINC}
+
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MQT4}
+DEPRECATED=		Qt4 has been EOL since december 2015
+EXPIRATION_DATE=	2019-03-15
+.endif
 
 .include <bsd.port.pre.mk>
 

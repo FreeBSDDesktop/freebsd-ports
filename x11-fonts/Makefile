@@ -39,7 +39,6 @@
     SUBDIR += doulos
     SUBDIR += doulos-compact
     SUBDIR += droid-fonts-ttf
-    SUBDIR += emojione-color-font-ttf
     SUBDIR += encodings
     SUBDIR += exo
     SUBDIR += fantasque-sans-mono
@@ -172,6 +171,7 @@
     SUBDIR += psftools
     SUBDIR += py-QtAwesome
     SUBDIR += py-bdflib
+    SUBDIR += raleway
     SUBDIR += roboto-fonts-ttf
     SUBDIR += sgifonts
     SUBDIR += sharefonts
@@ -183,6 +183,7 @@
     SUBDIR += stix-fonts
     SUBDIR += suxus
     SUBDIR += symbola
+    SUBDIR += tamsyn
     SUBDIR += terminus-font
     SUBDIR += terminus-ttf
     SUBDIR += tkfont

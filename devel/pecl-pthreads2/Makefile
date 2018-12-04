@@ -6,8 +6,11 @@ PORTVERSION=	2.0.10
 CATEGORIES=	devel
 PKGNAMESUFFIX=	2
 
-MAINTAINER=	johnpupu@gmail.com
+MAINTAINER=	joneum@FreeBSD.org
 COMMENT=	Compatible Threading API for PHP5.3+
+
+DEPRECATED=	Works only with EOL php 5.6
+EXPIRATION_DATE=	2018-12-30
 
 LICENSE=	PHP301
 

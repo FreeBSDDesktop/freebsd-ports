@@ -6,8 +6,11 @@ PORTVERSION=	1.0.2
 PORTREVISION=	1
 CATEGORIES=	devel pear
 
-MAINTAINER=	tj@FreeBSD.org
+MAINTAINER=	joneum@FreeBSD.org
 COMMENT=	PECL extension for ncurses
+
+DEPRECATED=	Works only with EOL php 5.6
+EXPIRATION_DATE=	2018-12-30
 
 LICENSE=	PHP301
 
