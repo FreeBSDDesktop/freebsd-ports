@@ -2,7 +2,7 @@
 
 PORTNAME=	libevdev
 PORTVERSION=	1.4.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/
 
@@ -12,14 +12,13 @@ COMMENT=	Linux Event Device library
 LICENSE=	MIT # without linux/*.h
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	v4l_compat>=1.0.20110603:multimedia/v4l_compat
-RUN_DEPENDS=	v4l_compat>=1.0.20110603:multimedia/v4l_compat
+BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 
 USES=		gmake libtool pathfix python:build tar:xz
-EXTRACT_AFTER_ARGS=	--exclude include # v4l_compat
+EXTRACT_AFTER_ARGS=	--exclude include # evdev-proto
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_path_DOXYGEN=""
-CPPFLAGS+=	-I${LOCALBASE}/include # v4l_compat
+CPPFLAGS+=	-I${LOCALBASE}/include # evdev-proto
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 

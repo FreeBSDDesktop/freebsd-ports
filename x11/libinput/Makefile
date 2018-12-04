@@ -2,14 +2,14 @@
 
 PORTNAME=	libinput
 PORTVERSION=	1.6.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/
 
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Generic input library
 
-BUILD_DEPENDS=	v4l_compat>=0:multimedia/v4l_compat
+BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 LIB_DEPENDS=	libevdev.so:devel/libevdev \
 		libepoll-shim.so:devel/libepoll-shim \
 		libwacom.so:x11/libwacom \
