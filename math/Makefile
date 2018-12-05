@@ -3,6 +3,7 @@
 
     COMMENT = Mathematics
 
+    SUBDIR += 4ti2
     SUBDIR += GiNaC
     SUBDIR += PDL
     SUBDIR += R
@@ -199,6 +200,7 @@
     SUBDIR += eval
     SUBDIR += facile
     SUBDIR += fann
+    SUBDIR += fcl
     SUBDIR += fflas-ffpack
     SUBDIR += fftw
     SUBDIR += fftw-float
@@ -209,6 +211,7 @@
     SUBDIR += fityk
     SUBDIR += flann
     SUBDIR += flint2
+    SUBDIR += flintqs
     SUBDIR += form
     SUBDIR += fpc-fftw
     SUBDIR += fpc-gmp
@@ -278,6 +281,7 @@
     SUBDIR += hs-statistics
     SUBDIR += hs-vector-space
     SUBDIR += igraph
+    SUBDIR += ignition-math
     SUBDIR += intervaltree
     SUBDIR += ipopt
     SUBDIR += ised
@@ -312,6 +316,7 @@
     SUBDIR += lean
     SUBDIR += levmar
     SUBDIR += libRmath
+    SUBDIR += libccd
     SUBDIR += libflame
     SUBDIR += liblbfgs
     SUBDIR += libmesh
@@ -328,10 +333,12 @@
     SUBDIR += libxls
     SUBDIR += libxlsxwriter
     SUBDIR += libxsmm
+    SUBDIR += lidia
     SUBDIR += linpack
     SUBDIR += lll_spect
     SUBDIR += lp_solve
     SUBDIR += lrng
+    SUBDIR += lrslib
     SUBDIR += ltl
     SUBDIR += ltl2ba
     SUBDIR += lybniz
@@ -473,6 +480,7 @@
     SUBDIR += octave-forge-video
     SUBDIR += octave-forge-zenity
     SUBDIR += octave-forge-zeromq
+    SUBDIR += octomap
     SUBDIR += ogdf
     SUBDIR += oleo
     SUBDIR += openblas
@@ -481,6 +489,7 @@
     SUBDIR += openmesh
     SUBDIR += opensolaris-libm
     SUBDIR += orpie
+    SUBDIR += osqp
     SUBDIR += p5-AI-DecisionTree
     SUBDIR += p5-AI-Genetic
     SUBDIR += p5-AI-NeuralNet-BackProp
@@ -691,7 +700,9 @@
     SUBDIR += py-colormath
     SUBDIR += py-cryptominisat
     SUBDIR += py-cvxopt
+    SUBDIR += py-cvxpy
     SUBDIR += py-cyipopt
+    SUBDIR += py-ecos
     SUBDIR += py-fastcluster
     SUBDIR += py-fastdtw
     SUBDIR += py-ffc
@@ -721,6 +732,7 @@
     SUBDIR += py-numexpr
     SUBDIR += py-numpy
     SUBDIR += py-nzmath
+    SUBDIR += py-osqp
     SUBDIR += py-pandas
     SUBDIR += py-pandas-datareader
     SUBDIR += py-patsy
@@ -754,6 +766,7 @@
     SUBDIR += py-rpy2
     SUBDIR += py-scientific
     SUBDIR += py-scikit-umfpack
+    SUBDIR += py-scs
     SUBDIR += py-seaborn
     SUBDIR += py-secp256k1
     SUBDIR += py-simhash
@@ -769,6 +782,7 @@
     SUBDIR += py-theano
     SUBDIR += py-ufl
     SUBDIR += py-uncertainties
+    SUBDIR += py-vincenty
     SUBDIR += py-viper
     SUBDIR += py-yt
     SUBDIR += py-z3-solver
@@ -780,6 +794,7 @@
     SUBDIR += qtiplot
     SUBDIR += qtiplot-doc
     SUBDIR += qtoctave
+    SUBDIR += qwtplot3d
     SUBDIR += qwtplot3d-qt4
     SUBDIR += randlib
     SUBDIR += rapid
@@ -809,6 +824,7 @@
     SUBDIR += scalapack
     SUBDIR += scilab
     SUBDIR += scilab-toolbox-swt
+    SUBDIR += scs
     SUBDIR += sdpa
     SUBDIR += sdpara
     SUBDIR += secp256k1
@@ -855,7 +871,6 @@
     SUBDIR += unuran
     SUBDIR += viennacl
     SUBDIR += vowpal_wabbit
-    SUBDIR += vtk5
     SUBDIR += vtk5-data
     SUBDIR += vtk6
     SUBDIR += vtk8

@@ -272,7 +272,6 @@
     SUBDIR += gimp-wavelet-decompose-plugin
     SUBDIR += gimp-wavelet-denoise-plugin
     SUBDIR += gimp-wavelet-sharpen-plugin
-    SUBDIR += gimpfx-foundry
     SUBDIR += giram
     SUBDIR += gkrellkam2
     SUBDIR += gle
@@ -815,6 +814,7 @@
     SUBDIR += pecl-qrencode
     SUBDIR += pecomato
     SUBDIR += pencil
+    SUBDIR += pencil2d
     SUBDIR += peps
     SUBDIR += perceptualdiff
     SUBDIR += pfstools
