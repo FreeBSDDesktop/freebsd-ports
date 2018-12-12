@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	evdev
-PORTVERSION=	0.5.0
-PORTREVISION=	2
+PORTVERSION=	0.8.1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,11 +16,18 @@ BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 
 USES=		python
 USE_PYTHON=	autoplist distutils
-CPPFLAGS+=	-I${LOCALBASE}/include # evdev-proto
+CPPFLAGS+=	-I${LOCALBASE}/include # v4l_compat
 
-post-patch:
-	@${REINPLACE_CMD} -e '/header/s,/usr,${LOCALBASE},' \
-		${WRKSRC}/${PYSETUP}
+EVDEV_INCLUDES=	${LOCALBASE}/include
+
+PYDISTUTILS_BUILD_TARGET=	build_ecodes
+PYDISTUTILS_BUILDARGS+=		--evdev-headers ${EVDEV_INCLUDES}/linux/input.h:${EVDEV_INCLUDES}/linux/input-event-codes.h
+PYDISTUTILS_BUILDARGS+=		build_ext
+PYDISTUTILS_BUILDARGS+=		--include-dirs ${EVDEV_INCLUDES}
+
+# Supply install target with evdev headers path
+PYDISTUTILS_INSTALL_TARGET=	${PYDISTUTILS_BUILD_TARGET} \
+				${PYDISTUTILS_BUILDARGS} install
 
 post-install:
 	${FIND} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} \
