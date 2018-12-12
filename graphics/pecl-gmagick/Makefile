@@ -3,7 +3,7 @@
 
 PORTNAME=	gmagick
 PORTVERSION=	1.1.7RC3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 
 MAINTAINER=	bsdports@wayfair.com
@@ -18,7 +18,7 @@ LIB_DEPENDS=	libGraphicsMagick.so:graphics/GraphicsMagick
 
 USES=		php:pecl
 
-IGNORE_WITH_PHP=	70 71 72 73
+IGNORE_WITH_PHP=	71 72 73
 
 CONFIGURE_ARGS=	--with-gmagick=${LOCALBASE}
 
