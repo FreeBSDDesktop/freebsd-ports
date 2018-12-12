@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	evdev-proto
-PORTVERSION=	4.16
+PORTVERSION=	4.19
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/torvalds/linux/raw/v${PORTVERSION}/include/uapi/linux/
 DISTNAME=	input.h input-event-codes.h uinput.h
