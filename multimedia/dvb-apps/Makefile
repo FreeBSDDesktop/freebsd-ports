@@ -12,7 +12,8 @@ COMMENT=	Linux DVB API applications and utilities
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING.LGPL
 
-BUILD_DEPENDS=	${LOCALBASE}/include/linux/dvb/version.h:multimedia/v4l_compat
+BUILD_DEPENDS=	${LOCALBASE}/include/linux/dvb/version.h:multimedia/v4l_compat \
+		${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 
 USES=		gmake iconv perl5 tar:bzip2
 
