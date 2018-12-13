@@ -17,6 +17,7 @@ LIB_DEPENDS=	libevdev.so:devel/libevdev \
 		libmtdev.so:devel/libmtdev
 
 USES=		autoreconf gmake libtool pathfix pkgconfig tar:xz
+EXTRACT_AFTER_ARGS=	--exclude include # evdev-proto
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
