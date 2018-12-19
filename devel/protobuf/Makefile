@@ -3,6 +3,7 @@
 
 PORTNAME=	protobuf
 PORTVERSION=	3.6.1
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 PORTEPOCH=	1
 CATEGORIES=	devel
@@ -20,7 +21,7 @@ TEST_DEPENDS=	googlemock>=0:devel/googlemock \
 
 USES=		autoreconf compiler:c++11-lang gmake libtool localbase pathfix pkgconfig
 
-CFLAGS+=	-DGOOGLE_PROTOBUF_NO_RTTI -I${WRKSRC}/src
+CFLAGS+=	-D_THREAD_SAFE -DGOOGLE_PROTOBUF_NO_RTTI -I${WRKSRC}/src
 CONFIGURE_ENV=	CC_FOR_BUILD="${CC}" \
 		CFLAGS_FOR_BUILD="${CFLAGS}" \
 		CPPFLAGS_FOR_BUILD="${CPPFLAGS}" \

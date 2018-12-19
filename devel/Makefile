@@ -185,6 +185,9 @@
     SUBDIR += avro-c
     SUBDIR += avro-cpp
     SUBDIR += awless
+    SUBDIR += aws-c-commons
+    SUBDIR += aws-c-event-stream
+    SUBDIR += aws-checksums
     SUBDIR += aws-sdk-cpp
     SUBDIR += aws-sdk-php
     SUBDIR += awscli
@@ -434,7 +437,6 @@
     SUBDIR += dbus-tcl
     SUBDIR += dcd-client
     SUBDIR += dcd-server
-    SUBDIR += dcmtk
     SUBDIR += dconf
     SUBDIR += dconf-editor
     SUBDIR += ddd
@@ -743,6 +745,7 @@
     SUBDIR += geany-plugin-treebrowser
     SUBDIR += geany-plugin-updatechecker
     SUBDIR += geany-plugin-utilslib
+    SUBDIR += geany-plugin-vimode
     SUBDIR += geany-plugin-vc
     SUBDIR += geany-plugin-webhelper
     SUBDIR += geany-plugin-workbench
@@ -816,7 +819,6 @@
     SUBDIR += gnome-common
     SUBDIR += gnome-js-common
     SUBDIR += gnome-vfs
-    SUBDIR += gnome-vfs-monikers
     SUBDIR += gnome-vfs-reference
     SUBDIR += gnome-vfsmm
     SUBDIR += gnu-efi
@@ -1235,6 +1237,7 @@
     SUBDIR += ignition-plugin
     SUBDIR += ignition-tools
     SUBDIR += ignition-transport
+    SUBDIR += ikos
     SUBDIR += imake
     SUBDIR += inastemp
     SUBDIR += include-what-you-use
@@ -4149,16 +4152,6 @@
     SUBDIR += php56-sysvsem
     SUBDIR += php56-sysvshm
     SUBDIR += php56-tokenizer
-    SUBDIR += php70-gettext
-    SUBDIR += php70-intl
-    SUBDIR += php70-json
-    SUBDIR += php70-pcntl
-    SUBDIR += php70-readline
-    SUBDIR += php70-shmop
-    SUBDIR += php70-sysvmsg
-    SUBDIR += php70-sysvsem
-    SUBDIR += php70-sysvshm
-    SUBDIR += php70-tokenizer
     SUBDIR += php71-gettext
     SUBDIR += php71-intl
     SUBDIR += php71-json
@@ -4212,6 +4205,7 @@
     SUBDIR += plasma5-plasma-sdk
     SUBDIR += pmccabe
     SUBDIR += pmd
+    SUBDIR += pmdk
     SUBDIR += poco
     SUBDIR += poco-ssl
     SUBDIR += popt
@@ -4667,13 +4661,13 @@
     SUBDIR += py-initgroups
     SUBDIR += py-instant
     SUBDIR += py-intbitset
-    SUBDIR += py-interface
     SUBDIR += py-intervaltree
     SUBDIR += py-invoke
     SUBDIR += py-ioflo
     SUBDIR += py-ipaddr
     SUBDIR += py-ipdb
     SUBDIR += py-ipykernel
+    SUBDIR += py-ipykernel5
     SUBDIR += py-ipyparallel
     SUBDIR += py-ipython_genutils
     SUBDIR += py-ipywidgets
@@ -4907,6 +4901,7 @@
     SUBDIR += py-prettytable
     SUBDIR += py-prioritized_methods
     SUBDIR += py-prompt_toolkit
+    SUBDIR += py-prompt_toolkit2
     SUBDIR += py-protobuf
     SUBDIR += py-protocols
     SUBDIR += py-ptable
@@ -4916,6 +4911,7 @@
     SUBDIR += py-pudb
     SUBDIR += py-py
     SUBDIR += py-py-ubjson
+    SUBDIR += py-py_interface
     SUBDIR += py-pyasn1
     SUBDIR += py-pyasn1-modules
     SUBDIR += py-pybind11
@@ -4973,6 +4969,7 @@
     SUBDIR += py-pyrepl
     SUBDIR += py-pyrfc3339
     SUBDIR += py-pyro
+    SUBDIR += py-pyrsistent
     SUBDIR += py-pyshapelib
     SUBDIR += py-pyshp
     SUBDIR += py-pysparklines
@@ -5116,6 +5113,7 @@
     SUBDIR += py-setuptools_darcs
     SUBDIR += py-setuptools_hg
     SUBDIR += py-setuptools_scm
+    SUBDIR += py-setuptools_scm_git_archive
     SUBDIR += py-sh
     SUBDIR += py-shapely
     SUBDIR += py-shellingham
@@ -5237,6 +5235,7 @@
     SUBDIR += py-virtualenvwrapper
     SUBDIR += py-visitor
     SUBDIR += py-voluptuous
+    SUBDIR += py-vulture
     SUBDIR += py-warlock
     SUBDIR += py-watchdog
     SUBDIR += py-wcwidth
@@ -5792,6 +5791,7 @@
     SUBDIR += rubygem-json1
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-json_pure1
+    SUBDIR += rubygem-json-schema
     SUBDIR += rubygem-jsonapi-renderer
     SUBDIR += rubygem-kafo
     SUBDIR += rubygem-kafo_parsers
@@ -5883,6 +5883,7 @@
     SUBDIR += rubygem-omniauth_crowd22
     SUBDIR += rubygem-open3_backport
     SUBDIR += rubygem-open4
+    SUBDIR += rubygem-opt_parse_validator
     SUBDIR += rubygem-optimist
     SUBDIR += rubygem-orm_adapter
     SUBDIR += rubygem-os
@@ -6314,6 +6315,7 @@
     SUBDIR += thrift-c_glib
     SUBDIR += thrift-cpp
     SUBDIR += thunar-vcs-plugin
+    SUBDIR += ticcutils
     SUBDIR += tig
     SUBDIR += tigcc
     SUBDIR += tijmp
@@ -6426,6 +6428,7 @@
     SUBDIR += zanata-cli
     SUBDIR += zapcc
     SUBDIR += zeal
+    SUBDIR += zfp
     SUBDIR += zookeeper
     SUBDIR += zpu-binutils
     SUBDIR += zpu-gcc

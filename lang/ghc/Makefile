@@ -8,17 +8,15 @@ MASTER_SITES=	http://www.haskell.org/ghc/dist/${PORTVERSION}/:source \
 		LOCAL/arrowd/:boot \
 		${HACKAGE_SITE}hscolour-${HSCOLOUR_VERSION}/:docs
 
-EXTRACT_ONLY=	${_DISTFILES:C/hscolour.*$//g}
 DISTFILES=	ghc-${PORTVERSION}-src${EXTRACT_SUFX}:source \
 		hscolour-${HSCOLOUR_VERSION}.tar.gz:docs
+EXTRACT_ONLY=	${_DISTFILES:C/hscolour.*$//g}
 
 MAINTAINER=	haskell@FreeBSD.org
 COMMENT=	Compiler for the functional language Haskell
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386
 
 GHC_VERSION=		8.4.4
 HSCOLOUR_VERSION=	1.24.4

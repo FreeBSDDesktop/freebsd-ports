@@ -2,9 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	netpbm
-DISTVERSION=	10.84.02
+DISTVERSION=	10.84.05
 CATEGORIES=	graphics
 MASTER_SITES=	https://github.com/t6/netpbm/releases/download/v${DISTVERSION}/ \
+		https://gitlab.com/tobiask/netpbm/uploads/d315e060b53cc24d080c8e7463653d85/ \
 		LOCAL/tobik
 
 MAINTAINER=	tobik@FreeBSD.org
@@ -69,6 +70,7 @@ STATIC_LIB_DEPENDS_OFF=	libtiff.so:graphics/tiff \
 STATIC_USES=		jpeg:build
 STATIC_USES_OFF=	jpeg
 SVGTOPAM_DESC=		Build svgtopam
+SVGTOPAM_USES=		gnome
 SVGTOPAM_USE=		GNOME=libxml2
 SVGTOPAM_VARS_OFF=	DISABLED_TESTS+=svgtopam
 X11_USE=		XORG=x11,xcb,xau,xdmcp

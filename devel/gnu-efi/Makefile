@@ -3,11 +3,11 @@
 
 PORTNAME=	gnu-efi
 PORTVERSION=	3.0.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	SF/gnu-efi
 
-MAINTAINER=	egypcio@googlemail.com
+MAINTAINER=	egypcio@FreeBSD.org
 COMMENT=	SDK for EFI applications
 
 LICENSE=	GPLv2
