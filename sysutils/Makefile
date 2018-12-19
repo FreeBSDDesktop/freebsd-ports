@@ -445,9 +445,11 @@
     SUBDIR += gnome-system-monitor
     SUBDIR += gnome_subr
     SUBDIR += goaccess
+    SUBDIR += goawk
     SUBDIR += gomplate
     SUBDIR += google-compute-engine-oslogin
     SUBDIR += goss
+    SUBDIR += gotop
     SUBDIR += gpart
     SUBDIR += gpte
     SUBDIR += graffer
@@ -1273,6 +1275,7 @@
     SUBDIR += syslog-ng315
     SUBDIR += syslog-ng317
     SUBDIR += syslog-ng318
+    SUBDIR += syslog-ng319
     SUBDIR += syslog-ng36
     SUBDIR += syslog-ng37
     SUBDIR += syslog-ng39

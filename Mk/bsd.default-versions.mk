@@ -64,7 +64,7 @@ MYSQL_DEFAULT?=		5.6
 # Possible values: 5.24, 5.26, 5.28, devel
 .if !exists(${LOCALBASE}/bin/perl) || (!defined(_PORTS_ENV_CHECK) && \
     defined(PACKAGE_BUILDING))
-PERL5_DEFAULT?=		5.26
+PERL5_DEFAULT?=		5.28
 .elif !defined(PERL5_DEFAULT)
 # There's no need to replace development versions, like "5.23" with "devel"
 # because 1) nobody is supposed to use it outside of poudriere, and 2) it must
@@ -80,11 +80,11 @@ PERL5_DEFAULT:=		${_PERL5_FROM_BIN:R}
 PGSQL_DEFAULT?=		9.5
 # Possible values: 5.6, 7.1, 7.2, 7.3
 PHP_DEFAULT?=		7.2
-# Possible values: 2.7, 3.4, 3.5, 3.6, 3.7
+# Possible values: 2.7, 3.5, 3.6, 3.7
 PYTHON_DEFAULT?=	2.7
 # Possible values: 2.7
 PYTHON2_DEFAULT?=	2.7
-# Possible values: 3.4, 3.5, 3.6, 3.7
+# Possible values: 3.5, 3.6, 3.7
 PYTHON3_DEFAULT?=	3.6
 # Possible values: 2.3, 2.4, 2.5
 RUBY_DEFAULT?=		2.4
