@@ -25,6 +25,13 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
+OPTIONS_DEFINE=	LAYOUT_GUI
+OPTIONS_SUB=	yes
+
+LAYOUT_GUI_DESC=Build the layout image viewer
+
+LAYOUT_GUI_USE=	GNOME=gtk20,librsvg2
+
 post-patch:
 	@${REINPLACE_CMD} -e 's/-printf "%P\\n"/-print0 | xargs -0 basename/' ${WRKSRC}/data/Makefile.am
 
