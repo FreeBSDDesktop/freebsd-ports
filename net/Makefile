@@ -44,6 +44,7 @@
     SUBDIR += avahi-header
     SUBDIR += avahi-libdns
     SUBDIR += avahi-qt4
+    SUBDIR += avahi-qt5
     SUBDIR += avahi-sharp
     SUBDIR += axa
     SUBDIR += babeld
@@ -68,7 +69,6 @@
     SUBDIR += bounce
     SUBDIR += bredbandskollen
     SUBDIR += bsdec2-image-upload
-    SUBDIR += bsdproxy
     SUBDIR += bsdrcmds
     SUBDIR += bwi-firmware-kmod
     SUBDIR += bwn-firmware-kmod
@@ -181,7 +181,6 @@
     SUBDIR += geoipupdate
     SUBDIR += get_iplayer
     SUBDIR += gfbgraph
-    SUBDIR += gini
     SUBDIR += gkrellmwireless2
     SUBDIR += glflow
     SUBDIR += glib-networking
@@ -293,7 +292,6 @@
     SUBDIR += ipdecap
     SUBDIR += ipgrab
     SUBDIR += iplog
-    SUBDIR += ipsorc
     SUBDIR += ipsumdump
     SUBDIR += ipsvd
     SUBDIR += ipxe
@@ -303,7 +301,6 @@
     SUBDIR += isc-dhcp44-relay
     SUBDIR += isc-dhcp44-server
     SUBDIR += istgt
-    SUBDIR += jags
     SUBDIR += jakarta-commons-net
     SUBDIR += java-beepcore
     SUBDIR += jcifs
@@ -399,7 +396,6 @@
     SUBDIR += libmxp
     SUBDIR += libnatpmp
     SUBDIR += libnet
-    SUBDIR += libnetdude
     SUBDIR += libnfs
     SUBDIR += libnids
     SUBDIR += libnss-cache
@@ -511,12 +507,9 @@
     SUBDIR += ndpi
     SUBDIR += ndproxy
     SUBDIR += nepenthes
-    SUBDIR += nepim
     SUBDIR += net6
-    SUBDIR += netatalk
     SUBDIR += netatalk3
     SUBDIR += netcat
-    SUBDIR += netdude
     SUBDIR += netembryo
     SUBDIR += nethogs
     SUBDIR += netmap
@@ -539,7 +532,6 @@
     SUBDIR += nmsg
     SUBDIR += nncp
     SUBDIR += nng
-    SUBDIR += nocatsplash
     SUBDIR += norm
     SUBDIR += nph
     SUBDIR += ns3
@@ -550,7 +542,6 @@
     SUBDIR += nsscache
     SUBDIR += ntimed
     SUBDIR += ntlmaps
-    SUBDIR += ntop
     SUBDIR += ntopng
     SUBDIR += ntp
     SUBDIR += ntpa
@@ -1042,6 +1033,7 @@
     SUBDIR += pxe-pdhcp
     SUBDIR += py-GeoIP
     SUBDIR += py-GeoIP2
+    SUBDIR += py-aiohttp-socks
     SUBDIR += py-amqp
     SUBDIR += py-amqplib
     SUBDIR += py-avahi
@@ -1076,7 +1068,6 @@
     SUBDIR += py-libdnet
     SUBDIR += py-libfte
     SUBDIR += py-libnet
-    SUBDIR += py-libstorj
     SUBDIR += py-magic-wormhole
     SUBDIR += py-matrix-synapse-ldap3
     SUBDIR += py-maxminddb
@@ -1146,6 +1137,7 @@
     SUBDIR += py-socketio-client
     SUBDIR += py-softlayer
     SUBDIR += py-speedtest-cli
+    SUBDIR += py-sshtunnel
     SUBDIR += py-sshuttle
     SUBDIR += py-stomp.py
     SUBDIR += py-suds
@@ -1177,6 +1169,7 @@
     SUBDIR += qoauth-qt5
     SUBDIR += qt4-network
     SUBDIR += qt5-network
+    SUBDIR += qt5-networkauth
     SUBDIR += qtweetlib
     SUBDIR += quagga
     SUBDIR += queso
@@ -1368,7 +1361,6 @@
     SUBDIR += scapy
     SUBDIR += scnc
     SUBDIR += scr_ipfm
-    SUBDIR += scribe
     SUBDIR += sdl2_net
     SUBDIR += sdl_net
     SUBDIR += seda
@@ -1531,7 +1523,6 @@
     SUBDIR += wireshark-qt5
     SUBDIR += wizd
     SUBDIR += wlan2eth
-    SUBDIR += wmlj
     SUBDIR += wmnd
     SUBDIR += wmnet
     SUBDIR += wmnet2
@@ -1548,7 +1539,6 @@
     SUBDIR += x11vnc
     SUBDIR += x2goclient
     SUBDIR += x2goclient-cli
-    SUBDIR += xferstats
     SUBDIR += xipmsg
     SUBDIR += xisp
     SUBDIR += xmlrpc-c
