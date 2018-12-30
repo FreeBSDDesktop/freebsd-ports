@@ -24,6 +24,7 @@
     SUBDIR += R-cran-udunits2
     SUBDIR += abinit
     SUBDIR += afni
+    SUBDIR += agrum
     SUBDIR += aircraft-datcom
     SUBDIR += antioch
     SUBDIR += atom
@@ -281,6 +282,7 @@
     SUBDIR += rubygem-rgeo-shapefile
     SUBDIR += rubygem-ruby-dcl
     SUBDIR += rubygem-ruby-netcdf
+    SUBDIR += scidavis
     SUBDIR += siesta
     SUBDIR += sigrok-cli
     SUBDIR += sigrok-firmware
@@ -303,6 +305,7 @@
     SUBDIR += triqs
     SUBDIR += udunits
     SUBDIR += v_sim
+    SUBDIR += vipster
     SUBDIR += vmd
     SUBDIR += voro++
     SUBDIR += wannier90
