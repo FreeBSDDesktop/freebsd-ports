@@ -20,7 +20,6 @@
     SUBDIR += calligraplan
     SUBDIR += chexedit
     SUBDIR += codelite
-    SUBDIR += conglomerate
     SUBDIR += cooledit
     SUBDIR += cream
     SUBDIR += deforaos-editor
@@ -53,7 +52,6 @@
     SUBDIR += ghostwriter
     SUBDIR += gmanedit
     SUBDIR += gnome-latex
-    SUBDIR += gnotepad+
     SUBDIR += gobby
     SUBDIR += gomate
     SUBDIR += gwrite
@@ -74,11 +72,7 @@
     SUBDIR += kak-lsp
     SUBDIR += kakoune
     SUBDIR += kate
-    SUBDIR += kate-kde4
-    SUBDIR += kate-plugin-pate-kde4
     SUBDIR += kile
-    SUBDIR += kile-kde4
-    SUBDIR += klat4
     SUBDIR += komodo-edit
     SUBDIR += lazarus
     SUBDIR += lazarus-qt4
@@ -191,7 +185,6 @@
     SUBDIR += linux-sublime
     SUBDIR += linux-sublime3
     SUBDIR += madedit
-    SUBDIR += manedit
     SUBDIR += medit
     SUBDIR += mg
     SUBDIR += micro

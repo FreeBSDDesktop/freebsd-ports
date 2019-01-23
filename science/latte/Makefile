@@ -3,6 +3,7 @@
 PORTNAME=	latte
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.2.1
+PORTREVISION=	1
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -11,7 +12,7 @@ COMMENT=	Quantum chemistry: Density functional tight binding molecular dynamics
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE_GPL-2.0
 
-USES=		blaslapack:openblas cmake:outsource,noninja fortran shebangfix
+USES=		blaslapack:openblas cmake:noninja fortran shebangfix
 SHEBANG_FILES=	tests/run_test.sh
 USE_GITHUB=	yes
 GH_ACCOUNT=	lanl
@@ -40,5 +41,7 @@ MPI_PLIST_FILES=	bin/LATTE_MPI_DOUBLE
 MPI_PLIST_FILES_OFF=	bin/LATTE_DOUBLE
 
 PLIST_FILES=	lib/liblatte.so
+
+CONFLICTS_INSTALL=	latte-integrale
 
 .include <bsd.port.mk>

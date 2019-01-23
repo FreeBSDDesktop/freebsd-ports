@@ -3,6 +3,7 @@
 
 PORTNAME=	physfs
 PORTVERSION=	3.0.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://icculus.org/${PORTNAME}/downloads/
 PKGNAMESUFFIX=	-devel
@@ -12,7 +13,11 @@ COMMENT=	Library to provide abstract access to various archives
 
 CONFLICTS_INSTALL=	physfs-[0-9]*
 
-USES=		cmake tar:bzip2
+IGNORE=		use devel/physfs
+DEPRECATED=	is the same as devel/physfs, serving no purpose
+EXPIRATION_DATE=2019-03-12
+
+USES=		cmake:insource readline tar:bzip2
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>

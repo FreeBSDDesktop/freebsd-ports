@@ -3,7 +3,7 @@
 
 PORTNAME=	apache-openoffice
 PORTVERSION=	${AOOVERSION1}.${AOOVERSION2}.${SVNREVISION}
-PORTREVISION=	2
+PORTREVISION=	5
 PORTEPOCH=	4
 CATEGORIES=	editors java
 MASTER_SITES=	https://dist.apache.org/repos/dist/dev/openoffice/${AOOVERSION}-${AOORC}-r${SVNREVISION}/source/ \
@@ -83,7 +83,7 @@ LIB_DEPENDS=								\
 		libfreetype.so:print/freetype2				\
 		libnss3.so:security/nss					\
 		libexpat.so:textproc/expat2				\
-		libhunspell-1.6.so:textproc/hunspell			\
+		libhunspell-1.7.so:textproc/hunspell			\
 		libhyphen.so:textproc/hyphen				\
 		libtextcat.so:textproc/libtextcat			\
 		libmythes-1.2.so:textproc/mythes			\
@@ -196,9 +196,10 @@ MYSQL_USES=			mysql
 SDK_CONFIGURE_ENABLE=		odk
 SDK_DISTFILES=			unowinreg.dll:unoreg
 
+# The current version of openoffice is not compatible with the changed API and
+# requirements of popller-0.7x. Switch to using bundled version for now.
+CONFIGURE_ARGS+=		--without-system-poppler
 PDFIMPORT_CONFIGURE_ENABLE=	pdfimport
-PDFIMPORT_CONFIGURE_WITH=	system-poppler
-PDFIMPORT_LIB_DEPENDS=		libpoppler.so:graphics/poppler
 
 REPORT_BUILDER_BROKEN=		REPORT_BUILDER option requires additional .jar files
 REPORT_BUILDER_CONFIGURE_ENABLE=	report-builder
@@ -241,7 +242,7 @@ CONFIGURE_ARGS+=	--without-commons-logging
 
 .include <${FILESDIR}/Makefile.localized>
 
-.if ${COMPILER_TYPE} == clang
+.if ${CHOSEN_COMPILER_TYPE} == clang
 CPPFLAGS+=		-I${LOCALBASE}/include
 .endif
 

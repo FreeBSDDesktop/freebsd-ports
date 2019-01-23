@@ -1,3 +1,5 @@
-TIMESTAMP = 1541116935
-SHA256 (hashicorp-vault-v0.11.4_GH0.tar.gz) = b8045403cdffd40c86d4de45a340d004e15acb56f537deecf365a82fe69892c0
-SIZE (hashicorp-vault-v0.11.4_GH0.tar.gz) = 25456828
+TIMESTAMP = 1547739045
+SHA256 (hashicorp-vault-v1.0.2_GH0.tar.gz) = 4896d48e7f0d9a9a8229eb13a38bbf84b461641545427c449b326b791a820a0e
+SIZE (hashicorp-vault-v1.0.2_GH0.tar.gz) = 25834864
+SHA256 (swills-vaultui-v1.0.2_GH0.tar.gz) = c165bfd5a6eac8400b373064f6fd94635fb94897fab58cdbdad45fa722abbd7f
+SIZE (swills-vaultui-v1.0.2_GH0.tar.gz) = 950326

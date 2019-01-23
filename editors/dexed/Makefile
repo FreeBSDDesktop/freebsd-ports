@@ -3,6 +3,7 @@
 PORTNAME=	dexed
 PORTVERSION=	3.6.21
 DISTVERSIONPREFIX=v
+PORTREVISION=	1
 CATEGORIES=	editors
 PKGNAMESUFFIX=	${LAZARUS_PKGNAMESUFFIX}
 
@@ -13,6 +14,7 @@ LICENSE=	BSL
 
 BUILD_DEPENDS=	ldmd2:lang/ldc \
 		${LOCALBASE}/lib/d/libiz.a:devel/iz \
+		${LOCALBASE}/lib/d/libmir-core.a:devel/mir-core \
 		${LOCALBASE}/lib/d/libdparse.a:devel/libdparse \
 		${LOCALBASE}/lib/d/libstdx-allocator.a:devel/stdx-allocator
 RUN_DEPENDS=	ldmd2:lang/ldc \

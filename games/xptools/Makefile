@@ -2,13 +2,16 @@
 
 PORTNAME=	xptools
 DISTVERSION=	wed_161r1
-PORTREVISION=	5
+PORTREVISION=	7
 CATEGORIES=	games
 
 MAINTAINER=	mike.d.ft402@gmail.com
 COMMENT=	X-Plane Scenery Tools
 
 LICENSE=	MIT
+
+DEPRECATED=		Qt4 has been EOL since december 2015
+EXPIRATION_DATE=	2019-03-15
 
 # Platform-specific defines in patch-src_XESCore_Airports.cpp.
 # Somewhere on FlightGear wiki it is said WED would only work for AMD64 anyway.
@@ -30,11 +33,9 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libshp.so:devel/shapelib \
 		libsquish.so:graphics/squish \
 		libtiff.so:graphics/tiff \
-		lib3ds.so:graphics/lib3ds \
-		libGLw.so:graphics/libGLw \
-		libGLU.so:graphics/libGLU
+		lib3ds.so:graphics/lib3ds
 
-USES=		eigen:3 gmake jpeg qt:4 sqlite ssl
+USES=		eigen:3 gl gmake jpeg qt:4 sqlite ssl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	X-Plane
@@ -43,8 +44,8 @@ GH_TAGNAME=	982173e:xptools_libs
 
 USE_CXXSTD=	c++11
 USE_BINUTILS=	yes
+USE_GL=		gl glu glw
 USE_QT=		corelib gui moc opengl
-USE_GL+=	gl
 
 BINARIES=	DDSTool DSFTool MeshTool ObjConverter ObjView RenderFarm RenderFarmUI WED XGrinder XPlaneSupportLin.p
 

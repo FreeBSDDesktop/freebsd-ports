@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	wine
-DISTVERSION=	3.21
+DISTVERSION=	4.0-rc7
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
-		http://mirrors.ibiblio.org/wine/source/3.x/
+		http://mirrors.ibiblio.org/wine/source/4.0/
 PKGNAMESUFFIX?=	-devel
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
@@ -22,6 +22,8 @@ ONLY_FOR_ARCHS=	amd64 i386
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex \
 		prelink:sysutils/prelink
 LIB_DEPENDS=	libxml2.so:textproc/libxml2
+
+USES=		bison compiler:c11 desktop-file-utils gmake localbase shebangfix tar:xz
 
 CONFLICTS_INSTALL=	wine-[0-9]* wine-staging-[0-9]* i386-wine-[0-9]* \
 			i386-wine-staging-[0-9]* i386-wine-devel-[0-9]*
@@ -39,11 +41,11 @@ CONFIGURE_ARGS+=--verbose \
 		--with-oss \
 		--without-pulse \
 		--without-sane \
+		--without-sdl \
 		--without-tiff \
 		--without-udev
 CONFIGURE_ENV=	CPPBIN="${CPP}" FLEX="${LOCALBASE}/bin/flex"
 WINELIBDIR?=	${PREFIX}/lib
-USES=		bison compiler:c11 desktop-file-utils gmake localbase shebangfix tar:xz
 .if !defined(USE_LDCONFIG32)
 USE_LDCONFIG=	${WINELIBDIR} ${WINELIBDIR}/wine
 .endif
@@ -85,7 +87,7 @@ LDAP_USE=		OPENLDAP=yes
 LIBXSLT_CONFIGURE_WITH=	xslt
 LIBXSLT_LIB_DEPENDS=	libxslt.so:textproc/libxslt
 
-MONO_RUN_DEPENDS=	${DATADIR}/mono/wine-mono-4.7.3.msi:emulators/wine-mono-devel
+MONO_RUN_DEPENDS=	${DATADIR}/mono/wine-mono-4.7.5.msi:emulators/wine-mono-devel
 
 MPG123_CONFIGURE_WITH=	mpg123
 MPG123_LIB_DEPENDS=	libmpg123.so:audio/mpg123
@@ -107,7 +109,7 @@ VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 WINEMAKER_RUN_DEPENDS=	p5-XML-LibXML>0:textproc/p5-XML-LibXML
 
 X11_CONFIGURE_WITH=	x cms fontconfig freetype glu jpeg opengl png xinerama xinput2 xrandr xrender
-X11_USES=		jpeg
+X11_USES=		gl jpeg
 X11_USE=		GL=glu XORG=x11,xext,xcomposite,xcursor,xi,xinerama,xrandr,xrender
 X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 			libfreetype.so:print/freetype2 \

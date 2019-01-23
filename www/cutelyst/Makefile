@@ -3,6 +3,7 @@
 PORTNAME=	cutelyst
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.4.0
+PORTREVISION=	1
 CATEGORIES=	www
 
 MAINTAINER=	adridg@FreeBSD.org
@@ -11,7 +12,7 @@ COMMENT=	C++/Qt web framework
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cmake:outsource localbase qt:5
+USES=		cmake localbase qt:5
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 USE_QT=		qmake_build buildtools_build \

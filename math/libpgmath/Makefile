@@ -3,6 +3,7 @@
 
 PORTNAME=	libpgmath
 DISTVERSION=	g20180904
+PORTREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	jmd@FreeBSD.org
@@ -17,7 +18,7 @@ IGNORE_FreeBSD_11=	not supported on older than 12.0, no cpuid bit support
 BUILD_DEPENDS=	llvm60>=0:devel/llvm60
 RUN_DEPENDS=	llvm60>=0:devel/llvm60
 
-USES=		cmake:outsource compiler:c++11-lib
+USES=		cmake compiler:c++11-lib
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes

@@ -16,6 +16,7 @@
     SUBDIR += canu
     SUBDIR += cd-hit
     SUBDIR += cdbfasta
+    SUBDIR += checkm
     SUBDIR += chemeq
     SUBDIR += clustal-omega
     SUBDIR += clustalw
@@ -37,10 +38,13 @@
     SUBDIR += fluctuate
     SUBDIR += freebayes
     SUBDIR += garlic
+    SUBDIR += gatk
     SUBDIR += gff2ps
     SUBDIR += gmap
     SUBDIR += gperiodic
     SUBDIR += grappa
+    SUBDIR += groopm
+    SUBDIR += hisat2
     SUBDIR += hmmer
     SUBDIR += htslib
     SUBDIR += hyphy
@@ -68,7 +72,6 @@
     SUBDIR += ncbi-cxx-toolkit
     SUBDIR += ncbi-toolkit
     SUBDIR += ngs-sdk
-    SUBDIR += njplot
     SUBDIR += p5-AcePerl
     SUBDIR += p5-Bio-ASN1-EntrezGene
     SUBDIR += p5-Bio-Coordinate
@@ -104,6 +107,7 @@
     SUBDIR += py-biopython
     SUBDIR += py-bx-python
     SUBDIR += py-cutadapt
+    SUBDIR += py-fastTSNE
     SUBDIR += py-gffutils
     SUBDIR += py-gtfparse
     SUBDIR += py-loompy
@@ -144,6 +148,5 @@
     SUBDIR += vcftools
     SUBDIR += velvet
     SUBDIR += wise
-    SUBDIR += xmolwt
 
 .include <bsd.port.subdir.mk>

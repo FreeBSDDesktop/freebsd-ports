@@ -4,7 +4,7 @@
 PORTNAME=	GoldenCheetah
 PORTVERSION=	3.2
 DISTVERSIONPREFIX=	V
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	games
 
 MAINTAINER=	trebbu@googlemail.com
@@ -13,12 +13,16 @@ COMMENT=	Training software for cyclists
 LICENSE=	BSD3CLAUSE GPLv2 LGPL21
 LICENSE_COMB=	multi
 
+DEPRECATED=		Qt4 has been EOL since december 2015
+EXPIRATION_DATE=	2019-03-15
+
 BROKEN=		fails to build
 
 LIB_DEPENDS=	libical.so:devel/libical \
 		libqwtplot3d-qt4.so:math/qwtplot3d-qt4 \
-		libkqoauth.so:security/kqoauth \
-		libvlc.so:multimedia/vlc-qt4
+		libkqoauth.so:security/kqoauth
+		#vlc-qt4 is deprecated and has been removed
+		#libvlc.so:multimedia/vlc-qt4
 
 USE_GITHUB=	yes
 

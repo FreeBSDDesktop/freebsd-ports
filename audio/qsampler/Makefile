@@ -4,6 +4,7 @@
 PORTNAME=	qsampler
 DISTVERSIONPREFIX=	qsampler_
 DISTVERSION=	0_5_0
+PORTREVISION=	1
 CATEGORIES=	audio
 
 MAINTAINER=	ports@FreeBSD.org
@@ -47,6 +48,13 @@ QT5_USES=	qmake:no_env qt:5
 QT5_USE=	qt=core,gui,widgets,x11extras \
 		qt=buildtools_build,linguisttools_build,qmake_build
 QT5_CONFIGURE_ENABLE=	qt5
+
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MQT4}
+DEPRECATED=		Qt4 has been EOL since december 2015
+EXPIRATION_DATE=	2019-03-15
+.endif
 
 post-configure:
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${QMAKE} -o ${PORTNAME}.mak \

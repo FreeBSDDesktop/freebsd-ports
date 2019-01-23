@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	din
-PORTVERSION=	38
+PORTVERSION=	38a
 CATEGORIES=	multimedia
 MASTER_SITES=	https://archive.org/download/dinisnoise_source_code/
 
@@ -14,12 +14,11 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libasound.so:audio/alsa-lib \
-		libjack.so:audio/jack \
-		libtcl${TCL_SHLIB_VER}.so:lang/tcl${TCL_SHLIB_VER} \
-		libSDL.so:devel/sdl12 \
-		libGL.so:graphics/mesa-libs
+		libjack.so:audio/jack
 
-USES=		autoreconf tcl:86+
+USES=		autoreconf tcl:86+ gl gnome
+USE_GL=		gl
+USE_SDL=	sdl
 
 GNU_CONFIGURE=	yes
 

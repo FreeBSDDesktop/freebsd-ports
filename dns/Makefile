@@ -91,8 +91,8 @@
     SUBDIR += kadnode
     SUBDIR += kf5-kdnssd
     SUBDIR += knot-resolver
-    SUBDIR += knot1
     SUBDIR += knot2
+    SUBDIR += knot2-lib
     SUBDIR += ldapdns
     SUBDIR += ldns
     SUBDIR += libasr
@@ -113,6 +113,7 @@
     SUBDIR += namesilo_ddns
     SUBDIR += noip
     SUBDIR += nsd
+    SUBDIR += nsec3walker
     SUBDIR += nslint
     SUBDIR += nsnotifyd
     SUBDIR += nsping
@@ -179,10 +180,10 @@
     SUBDIR += pear-Net_DNS2
     SUBDIR += powerdns
     SUBDIR += powerdns-recursor
-    SUBDIR += powerdns-recursor40
     SUBDIR += public_suffix_list
     SUBDIR += py-adns
     SUBDIR += py-aiodns
+    SUBDIR += py-bonjour
     SUBDIR += py-cloudflare
     SUBDIR += py-dns
     SUBDIR += py-dns-lexicon

@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ejabberd
-PORTVERSION=	18.09
+PORTVERSION=	18.12.1
 CATEGORIES=	net-im
 
 MAINTAINER=	ashish@FreeBSD.org
@@ -18,11 +18,12 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libpng.so:graphics/png \
 		libwebp.so:graphics/webp
 
+USES=		cpe gmake pkgconfig shebangfix ssl jpeg autoreconf:build
+
 USERS=		ejabberd
 GROUPS=		${USERS}
 
 GNU_CONFIGURE=	yes
-USES=		cpe gmake pkgconfig shebangfix ssl jpeg autoreconf:build
 USE_RC_SUBR=	${PORTNAME}
 NOPRECIOUSMAKEVARS=	yes
 CPE_VENDOR=	process-one
@@ -43,7 +44,8 @@ GH_TUPLE=	erlang-lager:lager:${LAGER_VER}:lager/deps/lager \
 		processone:eimp:${EIMP_VER}:eimp/deps/eimp \
 		DeadZen:goldrush:${GOLDRUSH_VER}:goldrush/deps/goldrush \
 		dvv:base64url:f2c64ed8:base64url/deps/base64url \
-		processone:ezlib:${EZLIB_VER}:ezlib/deps/ezlib
+		processone:ezlib:${EZLIB_VER}:ezlib/deps/ezlib \
+		processone:pkix:${PKIX_VER}:pkix/deps/pkix
 
 OPTIONS_DEFINE=	ODBC PAM DOCS MYSQL PGSQL ICONV RIAK REDIS SIP SQLITE \
 		STUN TOOLS FULLXML
@@ -73,7 +75,7 @@ SUBS= 		PORTNAME=${PORTNAME} PORTVERSION=${PORTVERSION}		\
 		P1_MYSQL_VER=${P1_MYSQL_VER}				\
 		P1_OAUTH2_VER=${P1_OAUTH2_VER}				\
 		P1_PGSQL_VER=${P1_PGSQL_VER}				\
-		P1_UTILS_VER=${P1_UTILS_VER}				\
+		P1_UTILS_VER=${P1_UTILS_VER} PKIX_VER=${PKIX_VER}	\
 		RIAK_PB_VER=${RIAK_PB_VER} RIAKC_VER=${RIAKC_VER}	\
 		SQLITE3_VER=${SQLITE3_VER}				\
 		STRINGPREP_VER=${STRINGPREP_VER} STUN_VER=${STUN_VER}	\
@@ -88,13 +90,13 @@ SUB_LIST=	${SUBS} \
 SHEBANG_FILES=	${WRKSRC}/ejabberdctl.template
 
 BASE64URL_VER=	0.0.1
-CACHE_TAB_VER=	1.0.16
-EIMP_VER=	1.0.8
+CACHE_TAB_VER=	1.0.17
+EIMP_VER=	1.0.9
 EPAM_VER=	1.0.4
 EREDIS_VER=	1.0.8
-ESIP_VER=	1.0.26
+ESIP_VER=	1.0.27
 EZLIB_VER=	1.0.4
-FAST_TLS_VER=	1.0.25
+FAST_TLS_VER=	1.0.26
 FAST_XML_VER=	1.1.34
 FAST_YAML_VER=	1.0.17
 GOLDRUSH_VER=	0.1.9
@@ -102,19 +104,20 @@ HAMCREST_VER=	0.4.1
 ICONV_VER=	1.0.10
 JIFFY_VER=	0.14.8
 JOSE_VER=	1.8.4
-LAGER_VER=	3.6.5
+LAGER_VER=	3.6.7
 LUERL_VER=	0.3
-MECK_VER=	0.8.4
-P1_MYSQL_VER=	1.0.7
+MECK_VER=	0.8.12
+P1_MYSQL_VER=	1.0.8
 P1_OAUTH2_VER=	0.6.3
 P1_PGSQL_VER=	1.1.6
 P1_UTILS_VER=	1.0.13
+PKIX_VER=	1.0.0
 RIAK_PB_VER=	2.3.2
 RIAKC_VER=	2.5.3
 SQLITE3_VER=	1.1.6
 STRINGPREP_VER=	1.0.14
-STUN_VER=	1.0.25
-XMPP_VER=	1.2.5
+STUN_VER=	1.0.26
+XMPP_VER=	1.2.8
 
 OPTIONS_SUB=		yes
 RIAK_DESC=	Riak database support
@@ -152,6 +155,14 @@ SQLITE_USES=		sqlite
 ICONV_USES=		iconv:wchar_t
 ICONV_LDFLAGS=		${ICONV_LIB}
 DOCS_MAKE_ARGS_OFF=	NOPORTDOCS=yes
+
+pre-everything::
+	@if pkg query %n-%v net-im/ejabberd; then \
+		${ECHO_MSG} needs to be uninstalled, before this port build could proceed. ; \
+		${ECHO_MSG} For details: https://github.com/processone/ejabberd/issues/2194 ; \
+		${ECHO_MSG} Sorry for the inconvenience. ; \
+		exit 1; \
+	fi
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,^convert,${LOCALBASE}/bin/convert,' ${WRKSRC}/tools/captcha.sh

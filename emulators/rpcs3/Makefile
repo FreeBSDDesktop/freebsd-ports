@@ -2,8 +2,8 @@
 
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.5-1050
-DISTVERSIONSUFFIX=	-g7f1cbb113
+DISTVERSION=	0.0.5-7738 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-g688d5a991
 CATEGORIES=	emulators
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -26,7 +26,7 @@ ONLY_FOR_ARCHS_REASON=	requires int128 and SSE2
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	RPCS3
-GH_TUPLE=	RPCS3:hidapi:hidapi-0.8.0-rc1-26-g4c27501:hidapi/3rdparty/hidapi \
+GH_TUPLE=	RPCS3:hidapi:hidapi-0.8.0-rc1-27-g9220f5e:hidapi/3rdparty/hidapi \
 		RPCS3:llvm:5c906fd1694e:llvm/llvm \
 		Cyan4973:xxHash:v0.6.5:xxHash/3rdparty/xxHash \
 		jbeder:yaml-cpp:yaml-cpp-0.6.2-8-gc90c08c:yamlcpp/3rdparty/yaml-cpp \
@@ -36,7 +36,7 @@ GH_TUPLE=	RPCS3:hidapi:hidapi-0.8.0-rc1-26-g4c27501:hidapi/3rdparty/hidapi \
 		USCiLab:cereal:v1.2.0:cereal/3rdparty/cereal \
 		zeux:pugixml:v1.9:pugixml/3rdparty/pugixml
 
-USES=		cmake:outsource compiler:c++17-lang iconv:wchar_t localbase:ldflags \
+USES=		cmake compiler:c++17-lang iconv:wchar_t localbase:ldflags \
 		openal:soft pkgconfig qt:5
 USE_GL=		gl glew
 USE_QT=		qmake_build buildtools_build core dbus declarative gui network widgets

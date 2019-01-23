@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	facter
-PORTVERSION=	3.12.1
+PORTVERSION=	3.12.2
 CATEGORIES?=	sysutils
 MASTER_SITES=	https://downloads.puppetlabs.com/facter/
 
@@ -28,6 +28,7 @@ USES=		cmake:noninja compiler:c++11-lib ssl
 USE_LDCONFIG=	yes
 USE_RUBY=	yes
 CMAKE_ARGS+=	-DMAN_PATH=${MANPREFIX}/man
+CMAKE_OFF=	ENABLE_CXX_WERROR
 
 OPTIONS_DEFINE=	FACTER_JAVA
 FACTER_JAVA_DESC=	Build with Java bindings for puppetserver
@@ -52,7 +53,7 @@ post-install:
 
 test: build
 	cd ${WRKSRC}/lib && bundle install --path vendor
-	cd ${WRKSRC} && ${MAKE_CMD} test
+	cd ${CONFIGURE_WRKSRC} && ${MAKE_CMD} test
 
 .include <bsd.port.pre.mk>
 

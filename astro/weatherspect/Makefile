@@ -4,7 +4,7 @@
 PORTNAME=	weatherspect
 PORTVERSION=	1.11
 CATEGORIES=	astro
-MASTER_SITES=	http://www.robobunny.com/projects/weatherspect/ \
+MASTER_SITES=	https://robobunny.com/projects/weatherspect/ \
 		LOCAL/sunpoet
 DISTNAME=	${PORTNAME}_v${PORTVERSION}
 
@@ -14,14 +14,19 @@ COMMENT=	Weather simulation in ASCII art
 LICENSE=	GPLv2 GPLv3
 LICENSE_COMB=	dual
 
+DEPRECATED=	Weather Underground does not provide free API keys anymore
+EXPIRATION_DATE=2019-01-31
+
 RUN_DEPENDS=	p5-HTML-Parser>=0:www/p5-HTML-Parser \
 		p5-Term-Animation>=0:devel/p5-Term-Animation \
 		p5-libwww>=0:www/p5-libwww
 
 PORTSCOUT=	skipv:1.31
 
-NO_BUILD=	yes
 USES=		perl5
+
+NO_ARCH=	yes
+NO_BUILD=	yes
 
 PLIST_FILES=	bin/weatherspect
 

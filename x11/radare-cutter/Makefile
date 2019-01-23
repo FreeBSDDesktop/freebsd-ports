@@ -1,8 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	radare-cutter
-PORTVERSION=	1.7.2
+PORTVERSION=	1.7.3
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	swills@FreeBSD.org
@@ -13,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/../COPYING
 
 LIB_DEPENDS=	libr_bin.so:devel/radare2
 
-USES=		gl pkgconfig python:3.4+ qmake:outsource qt:5
+USES=		gl gmake pkgconfig python:3.4+ qmake:outsource qt:5
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	radareorg
@@ -26,8 +27,8 @@ USE_GL=		gl
 WRKSRC_SUBDIR=	src
 
 PLIST_FILES=	bin/Cutter \
-		share/appdata/Cutter.appdata.xml \
-		share/applications/Cutter.desktop \
+		share/metainfo/org.radare.Cutter.appdata.xml \
+		share/applications/org.radare.Cutter.desktop \
 		share/pixmaps/cutter.svg
 
 post-patch:

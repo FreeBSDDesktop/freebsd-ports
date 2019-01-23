@@ -4,7 +4,7 @@
 PORTNAME=	ceph
 DISTVERSIONPREFIX=	v
 DISTVERSION=	12.2.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net
 
 MAINTAINER=	wjw@digiware.nl
@@ -45,7 +45,7 @@ RUN_DEPENDS=	\
 CONFLICTS_INSTALL=	ceph-devel
 PORTSCOUT=	limit:^v12\.
 
-USES=		cmake:outsource,noninja fuse gettext-runtime gmake \
+USES=		cmake:noninja fuse gettext-runtime gmake \
 		pkgconfig python:2.7 shebangfix ssl
 USE_PYTHON=	cython
 USE_OPENLDAP=	yes

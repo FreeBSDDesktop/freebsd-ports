@@ -24,6 +24,7 @@
     SUBDIR += R-cran-udunits2
     SUBDIR += abinit
     SUBDIR += afni
+    SUBDIR += agrum
     SUBDIR += aircraft-datcom
     SUBDIR += antioch
     SUBDIR += atom
@@ -32,8 +33,8 @@
     SUBDIR += avogadro2
     SUBDIR += avogadrolibs
     SUBDIR += bagel
-    SUBDIR += berkeleygw
     SUBDIR += bddsolve
+    SUBDIR += berkeleygw
     SUBDIR += bodr
     SUBDIR += brian
     SUBDIR += buddy
@@ -65,11 +66,13 @@
     SUBDIR += dkh
     SUBDIR += dlib-cpp
     SUBDIR += dlpoly-classic
+    SUBDIR += drawxtl
     SUBDIR += eccodes
     SUBDIR += elk
     SUBDIR += epte
     SUBDIR += erd
     SUBDIR += erkale
+    SUBDIR += erkale-pseudopotentials
     SUBDIR += esys-particle
     SUBDIR += fastcap
     SUBDIR += fasthenry
@@ -94,6 +97,7 @@
     SUBDIR += gtamsanalyzer
     SUBDIR += gwyddion
     SUBDIR += h5utils
+    SUBDIR += h5z-zfp
     SUBDIR += harminv
     SUBDIR += hdf
     SUBDIR += hdf5
@@ -104,7 +108,6 @@
     SUBDIR += jdftx
     SUBDIR += jstrack
     SUBDIR += kalzium
-    SUBDIR += kalzium-kde4
     SUBDIR += kst2
     SUBDIR += lammps
     SUBDIR += lamprop
@@ -129,7 +132,6 @@
     SUBDIR += libsvm-python
     SUBDIR += libxc
     SUBDIR += liggghts
-    SUBDIR += linsmith
     SUBDIR += lm
     SUBDIR += luscus
     SUBDIR += madness
@@ -205,15 +207,17 @@
     SUBDIR += psychopy
     SUBDIR += pulseview
     SUBDIR += py-DendroPy
-    SUBDIR += py-PyFR
-    SUBDIR += py-lifelines
+    SUBDIR += py-GPy
+    SUBDIR += py-GPyOpt
     SUBDIR += py-MDAnalysis
     SUBDIR += py-MDAnalysisTests
     SUBDIR += py-OpenFermion
+    SUBDIR += py-PyFR
     SUBDIR += py-PyQuante
     SUBDIR += py-ScientificPython
     SUBDIR += py-SimpleSpectral
     SUBDIR += py-abipy
+    SUBDIR += py-asdf
     SUBDIR += py-ase
     SUBDIR += py-avogadrolibs
     SUBDIR += py-cdo
@@ -225,6 +229,7 @@
     SUBDIR += py-h5py
     SUBDIR += py-hcluster
     SUBDIR += py-kinematics
+    SUBDIR += py-lifelines
     SUBDIR += py-mdp
     SUBDIR += py-mlpy
     SUBDIR += py-mmtf-python
@@ -233,11 +238,13 @@
     SUBDIR += py-obspy
     SUBDIR += py-openpiv
     SUBDIR += py-paida
+    SUBDIR += py-paramz
     SUBDIR += py-phono3py
     SUBDIR += py-phonopy
     SUBDIR += py-pupynere
     SUBDIR += py-pyaixi
     SUBDIR += py-pydicom
+    SUBDIR += py-pygeodesy
     SUBDIR += py-pymatgen
     SUBDIR += py-pymol
     SUBDIR += py-pyosf
@@ -247,6 +254,7 @@
     SUBDIR += py-qspin
     SUBDIR += py-quantities
     SUBDIR += py-rmf
+    SUBDIR += py-rmsd
     SUBDIR += py-scikit-fuzzy
     SUBDIR += py-scikit-learn
     SUBDIR += py-scikit-sparse
@@ -276,6 +284,7 @@
     SUBDIR += rubygem-rgeo-shapefile
     SUBDIR += rubygem-ruby-dcl
     SUBDIR += rubygem-ruby-netcdf
+    SUBDIR += scidavis
     SUBDIR += siesta
     SUBDIR += sigrok-cli
     SUBDIR += sigrok-firmware
@@ -289,7 +298,6 @@
     SUBDIR += sparta
     SUBDIR += spglib
     SUBDIR += step
-    SUBDIR += step-kde4
     SUBDIR += svmlight
     SUBDIR += szip
     SUBDIR += teem
@@ -298,6 +306,7 @@
     SUBDIR += triqs
     SUBDIR += udunits
     SUBDIR += v_sim
+    SUBDIR += vipster
     SUBDIR += vmd
     SUBDIR += voro++
     SUBDIR += wannier90

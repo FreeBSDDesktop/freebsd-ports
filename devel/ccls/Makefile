@@ -1,31 +1,33 @@
 # $FreeBSD$
 
 PORTNAME=	ccls
-DISTVERSION=	0.20181111
+DISTVERSION=	0.20181225.7
 CATEGORIES=	devel
 
 MAINTAINER=	tobik@FreeBSD.org
 COMMENT=	C/C++/ObjC language server
 
 LICENSE=	APACHE20
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT} \
 		rapidjson>=1.1.0_4:devel/rapidjson
 LIB_DEPENDS=	libLLVM-${LLVM_DEFAULT:C/[0-9]$//}.so:devel/llvm${LLVM_DEFAULT}
 
-USES=		cmake:outsource compiler:c++17-lang localbase
+USES=		cmake compiler:c++17-lang localbase
 USE_GITHUB=	yes
 GH_ACCOUNT=	MaskRay
+# Commit matching 0.20181225.7:
+#GH_TAGNAME=	3810fb0a78d399a0a1916a1c59850b9b89f24b44
 
 CMAKE_ARGS=	-DCLANG_ROOT:String="${LOCALBASE}/llvm${LLVM_DEFAULT}"
 CMAKE_ON=	SYSTEM_CLANG USE_SHARED_LLVM
-LLVM_DEFAULT?=	70
 
 PLIST_FILES=	bin/ccls
 
 OPTIONS_DEFINE=	DOCS
 
-DOCS_DISTFILES=		MaskRay-ccls.wiki-20181026.tar.gz:docs
+DOCS_DISTFILES=		MaskRay-ccls.wiki-20181210.tar.gz:docs
 DOCS_MASTER_SITES=	LOCAL/tobik:docs
 PORTDOCS=		*
 

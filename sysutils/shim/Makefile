@@ -3,9 +3,10 @@
 
 PORTNAME=	shim
 PORTVERSION=	0.9
+PORTREVISION=	2
 CATEGORIES=	sysutils
 
-MAINTAINER=	egypcio@googlemail.com
+MAINTAINER=	egypcio@FreeBSD.org
 COMMENT=	UEFI Secure Boot shim loader
 
 LICENSE=	BSD2CLAUSE
@@ -15,7 +16,7 @@ BUILD_DEPENDS=	${LOCALBASE}/lib/libgnuefi.a:devel/gnu-efi \
 		bash:shells/bash
 
 USES=		compiler gmake shebangfix
-USE_CSTD=	gnu89
+USE_CSTD=	gnu99
 USE_GCC=	yes
 
 SHEBANG_FILES=	make-certs

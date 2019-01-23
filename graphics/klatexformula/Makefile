@@ -2,6 +2,7 @@
 
 PORTNAME=	klatexformula
 PORTVERSION=	4.0.0
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -10,9 +11,12 @@ COMMENT=	Convert LaTeX formula to image
 
 LICENSE=	GPLv2
 
+DEPRECATED=		Qt4 has been EOL since december 2015
+EXPIRATION_DATE=	2019-03-15
+
 BUILD_DEPENDS=	help2man:misc/help2man
 
-USES=		cmake:outsource desktop-file-utils ghostscript:run \
+USES=		cmake desktop-file-utils ghostscript:run \
 		qt:5 shared-mime-info tar:bzip2 localbase
 USE_QT=		core dbus gui sql svg widgets x11extras xml \
 		buildtools_build designer_build linguisttools_build \

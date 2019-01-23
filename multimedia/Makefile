@@ -42,17 +42,17 @@
     SUBDIR += clutter-gst
     SUBDIR += clutter-gst3
     SUBDIR += cmrt
+    SUBDIR += cmrtlib
     SUBDIR += cuse4bsd-kmod
     SUBDIR += cx88
+    SUBDIR += dav1d
     SUBDIR += deforaos-player
     SUBDIR += devede
     SUBDIR += din
     SUBDIR += dirac
     SUBDIR += dragon
-    SUBDIR += dragon-kde4
     SUBDIR += dtv-scan-tables
     SUBDIR += dumpmpeg
-    SUBDIR += dv2jpg
     SUBDIR += dv2sub
     SUBDIR += dvb-apps
     SUBDIR += dvbcut
@@ -103,7 +103,6 @@
     SUBDIR += gstreamer-plugins-all
     SUBDIR += gstreamer-plugins-annodex
     SUBDIR += gstreamer-plugins-bad
-    SUBDIR += gstreamer-plugins-buzztard
     SUBDIR += gstreamer-plugins-bz2
     SUBDIR += gstreamer-plugins-core
     SUBDIR += gstreamer-plugins-dts
@@ -158,6 +157,7 @@
     SUBDIR += gstreamer1-plugins-x265
     SUBDIR += gstreamer1-qt
     SUBDIR += gstreamer1-rtsp-server
+    SUBDIR += gstreamer1-transcoder
     SUBDIR += gstreamer1-vaapi
     SUBDIR += gstreamer1-validate
     SUBDIR += gstreamermm
@@ -170,25 +170,19 @@
     SUBDIR += iriverter
     SUBDIR += iso2mkv
     SUBDIR += jmref
-    SUBDIR += k9copy-kde4
     SUBDIR += kaffeine
     SUBDIR += kamoso
     SUBDIR += kdemultimedia
     SUBDIR += kdemultimedia-ffmpegthumbs
-    SUBDIR += kdemultimedia-ffmpegthumbs-kde4
-    SUBDIR += kdemultimedia-kde4
-    SUBDIR += kdemultimedia-mplayerthumbs-kde4
     SUBDIR += kdenlive
-    SUBDIR += kdenlive-kde4
     SUBDIR += kf5-kmediaplayer
     SUBDIR += kissdx
-    SUBDIR += kmplayer-kde4
+    SUBDIR += kmplayer
     SUBDIR += kodi
     SUBDIR += kodi-addon-peripheral-joystick
     SUBDIR += kodi-addon-pvr-hts
     SUBDIR += kodi-addon-pvr-iptvsimple
     SUBDIR += kodi-devel
-    SUBDIR += kplayer-kde4
     SUBDIR += kvazaar
     SUBDIR += l-smash
     SUBDIR += libaacs
@@ -290,6 +284,7 @@
     SUBDIR += msdl
     SUBDIR += msopenh264
     SUBDIR += mswebrtc
+    SUBDIR += musikcube
     SUBDIR += mxflib
     SUBDIR += mythtv
     SUBDIR += mythtv-frontend
@@ -303,10 +298,7 @@
     SUBDIR += ogmtools
     SUBDIR += omxplayer
     SUBDIR += openh264
-    SUBDIR += openquicktime
     SUBDIR += openshot
-    SUBDIR += oqtencoder
-    SUBDIR += oqtplayer
     SUBDIR += oscam
     SUBDIR += p5-Audio-M4P
     SUBDIR += p5-FFmpeg-Command
@@ -317,7 +309,6 @@
     SUBDIR += p5-Net-UPnP
     SUBDIR += p5-Subtitles
     SUBDIR += p5-Umph-Prompt
-    SUBDIR += p5-Video-OpenQuicktime
     SUBDIR += pHash
     SUBDIR += phonon
     SUBDIR += phonon-designerplugin
@@ -373,11 +364,11 @@
     SUBDIR += qt4-mobility
     SUBDIR += qt4-multimedia
     SUBDIR += qt5-multimedia
-    SUBDIR += quark
     SUBDIR += quodlibet
     SUBDIR += quvi
     SUBDIR += quvi09
     SUBDIR += rage
+    SUBDIR += rav1e
     SUBDIR += recmpeg
     SUBDIR += recordmydesktop
     SUBDIR += replex
@@ -405,7 +396,6 @@
     SUBDIR += spigot
     SUBDIR += spook
     SUBDIR += subtitlecomposer
-    SUBDIR += subtitlecomposer-kde4
     SUBDIR += subtitleeditor
     SUBDIR += subtitleoffsetmodifier
     SUBDIR += subtitleripper
@@ -461,8 +451,6 @@
     SUBDIR += vdr-plugins
     SUBDIR += vid.stab
     SUBDIR += vlc
-    SUBDIR += vlc-qt4
-    SUBDIR += vlc3
     SUBDIR += vtkmpeg2encode
     SUBDIR += w_scan
     SUBDIR += webcamd
@@ -476,14 +464,9 @@
     SUBDIR += xawtv
     SUBDIR += xfce4-parole
     SUBDIR += xine
-    SUBDIR += xmms
-    SUBDIR += xmms-skins
-    SUBDIR += xmms-skins-huge
     SUBDIR += xporthdmv
-    SUBDIR += xtheater
     SUBDIR += xvid
     SUBDIR += yamdi
     SUBDIR += zoneminder
-    SUBDIR += zoneminder-h264
 
 .include <bsd.port.subdir.mk>

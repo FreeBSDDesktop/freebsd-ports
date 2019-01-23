@@ -30,7 +30,6 @@
     SUBDIR += gftp
     SUBDIR += gnustep-ftp
     SUBDIR += gstreamer1-plugins-curl
-    SUBDIR += gwget
     SUBDIR += horde-gollem
     SUBDIR += hs-curl
     SUBDIR += hsftp
@@ -63,10 +62,6 @@
     SUBDIR += pear-Net_FTP
     SUBDIR += pftpd
     SUBDIR += php-fastdfs
-    SUBDIR += php56-curl
-    SUBDIR += php56-ftp
-    SUBDIR += php70-curl
-    SUBDIR += php70-ftp
     SUBDIR += php71-curl
     SUBDIR += php71-ftp
     SUBDIR += php72-curl
@@ -74,7 +69,6 @@
     SUBDIR += php73-curl
     SUBDIR += php73-ftp
     SUBDIR += phpwebftp
-    SUBDIR += plasma-applet-ftpmonitor
     SUBDIR += proftpd
     SUBDIR += proftpd-mod_geoip
     SUBDIR += profxp

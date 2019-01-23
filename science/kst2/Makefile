@@ -3,6 +3,7 @@
 
 PORTNAME=	kst
 DISTVERSION=	${KST_VERSION}.${KST_DATE}
+PORTREVISION=	2
 CATEGORIES=	science kde
 
 MAINTAINER=	makc@FreeBSD.org
@@ -20,7 +21,7 @@ LIB_DEPENDS=	libgsl.so:math/gsl \
 KST_VERSION=	2.0.8
 KST_DATE=	20181123
 
-USES=		cmake:outsource desktop-file-utils pkgconfig \
+USES=		cmake desktop-file-utils pkgconfig \
 		shared-mime-info
 _USE_QT4=	corelib gui xml designer network svg linguisttools_build \
 		qmake_build moc_build rcc_build uic_build
@@ -62,8 +63,15 @@ NETCDF_CMAKE_OFF=	-DCMAKE_DISABLE_FIND_PACKAGE_Netcdf=ON
 TOOLKIT_DESC=	Qt toolkit
 QT4_USES=	qt:4
 QT4_USE=	${_USE_QT4:S/^/QT=/}
-QT5_USES=	qt:5
+QT5_USES=	compiler:c++11-lang qt:5
 QT5_USE=	${_USE_QT5:S/^/QT=/}
 QT5_CMAKE_ON=	-Dkst_qt5=on
+
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MQT4}
+DEPRECATED=		Qt4 has been EOL since december 2015
+EXPIRATION_DATE=	2019-03-15
+.endif
 
 .include <bsd.port.mk>

@@ -2,10 +2,14 @@
 
 PORTNAME=	ktp-accounts-kcm
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	net-im kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE instant messaging account management module
+
+LICENSE=	LGPL21+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libaccounts-qt5.so:net-im/libaccounts-qt5 \
 		libkaccounts.so:net-im/kaccounts-integration \
@@ -14,11 +18,11 @@ LIB_DEPENDS=	libaccounts-qt5.so:net-im/libaccounts-qt5 \
 		libKTpCommonInternals.so:net-im/ktp-common-internals \
 		libKF5AkonadiPrivate.so:databases/akonadi \
 		libsignon-qt5.so:sysutils/signon-qt5
-
 RUN_DEPENDS=	${KDE_PREFIX}/bin/ktp-contactlist:net-im/ktp-contact-list  \
 		${QT_PLUGINDIR}/kaccounts/ui/owncloud_plugin_kaccounts.so:net-im/kaccounts-providers
 
-USES=		cmake:outsource gettext kde:5 pkgconfig qt:5 tar:xz
+USES=		compiler:c++11-lang cmake gettext gnome kde:5 \
+		pkgconfig qt:5 tar:xz
 USE_GNOME=	intltool
 USE_KDE=	auth codecs config configwidgets coreaddons ecm i18n \
 		iconthemes itemviews kcmutils kio notifications notifyconfig \

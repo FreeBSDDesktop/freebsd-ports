@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wine
-DISTVERSION=	3.0.3
+DISTVERSION=	3.0.4
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	emulators
@@ -121,13 +121,6 @@ X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 # --libdir is required since Wine defaults to "${PREFIX}/lib64" on amd64.
 CONFIGURE_ARGS+=	--enable-win64 --libdir=${PREFIX}/lib
 PLIST_SUB+=		WINE32="@comment " WINE64=""
-
-.if ${CHOSEN_COMPILER_TYPE} == clang && ${COMPILER_VERSION} < 38
-CPPFLAGS+=		-D__builtin_ms_va_list=__builtin_va_list \
-			-D__builtin_ms_va_start=__builtin_va_start \
-			-D__builtin_ms_va_end=__builtin_va_end \
-			-D__builtin_ms_va_copy=__builtin_va_copy
-.endif
 
 # Wine assumes a WoW64 package is available, however WoW64 is not yet
 # available on FreeBSD. Also fix the desktop file.

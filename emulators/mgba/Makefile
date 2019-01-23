@@ -2,7 +2,7 @@
 
 PORTNAME=	mgba
 DISTVERSION=	0.6.1
-PORTREVISION=	5
+PORTREVISION=	7
 CATEGORIES=	emulators
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -21,7 +21,7 @@ LICENSE_FILE_MPL20=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
 		libpng.so:graphics/png
 
-USES=		cmake:outsource compiler:c++11-lang localbase:ldflags pkgconfig sqlite:3
+USES=		cmake compiler:c++11-lang localbase:ldflags pkgconfig sqlite:3
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mgba-emu

@@ -5,6 +5,7 @@ PORTNAME=	speedcrunch
 PORTVERSION=	0.12.0
 PORTRVISION=	1
 DISTVERSIONSUFFIX=	-${BB_COMMIT}
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	https://bitbucket.org/${BB_ACCOUNT}/${BB_PROJECT}/get/${BB_COMMIT}.tar.gz?dummy=/
 
@@ -13,7 +14,7 @@ COMMENT=	Keyboard-oriented desktop scientific calculator
 
 LICENSE=	GPLv2+
 
-USES=		cmake:outsource qt:5
+USES=		cmake qt:5
 
 BB_ACCOUNT=	heldercorreia
 BB_PROJECT=	${PORTNAME}

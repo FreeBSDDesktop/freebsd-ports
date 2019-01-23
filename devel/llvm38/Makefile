@@ -2,7 +2,7 @@
 
 PORTNAME=	llvm
 DISTVERSION=	3.8.1
-PORTREVISION=	13
+PORTREVISION=	14
 CATEGORIES=	devel lang
 MASTER_SITES=	http://llvm.org/${PRE_}releases/${LLVM_RELEASE}/${RCDIR}
 DISTNAME=	${PORTNAME}-${DISTVERSION}.src
@@ -25,7 +25,7 @@ LLVM_PREFIX=	${PREFIX}/llvm${LLVM_SUFFIX}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${LLVM_SUFFIX}
 DATADIR=	${PREFIX}/share/${PORTNAME}${LLVM_SUFFIX}
 
-USES=		cmake:outsource,noninja compiler:c++11-lib libedit perl5 tar:xz \
+USES=		cmake:noninja compiler:c++11-lib libedit perl5 tar:xz \
 		shebangfix
 USE_LDCONFIG=	${LLVM_PREFIX}/lib
 SHEBANG_FILES=	utils/lit/lit.py utils/llvm-lit/llvm-lit.in \
@@ -61,7 +61,6 @@ CLANG_EXTRA_PATCHES= \
 	${PATCHDIR}/clang-patch-tools_clang_lib_Headers_CMakeLists.txt \
 	${PATCHDIR}/clang-patch-tools_clang_tools_clang-format_clang-format.py \
 	${PATCHDIR}/clang-patch-tools_clang_tools_scan-build_libexec_ccc-analyzer
-CLANG_CONFLICTS_INSTALL=	clang-devel-3.[1234567]*
 CLANG_DISTFILES=	cfe-${DISTVERSION}.src${EXTRACT_SUFX}
 CLANG_CMAKE_ON=		-DCLANG_DEFAULT_OPENMP_RUNTIME=libomp
 CLANG_PORTDOCS=		clang
@@ -103,8 +102,6 @@ _CRTLIBDIR=    ${LLVM_PREFIX:S|${PREFIX}/||}/lib/clang/${LLVM_RELEASE}/lib/freeb
 .for option in CLANG COMPILER_RT EXTRAS LLD LLDB OPENMP
 WRKSRC_${option:tl}=		${WRKDIR}/${${option}_DISTFILES:S/${EXTRACT_SUFX}//}
 .endfor
-
-OPTIONS_SUB=	yes
 
 DOCS_BUILD_DEPENDS=		sphinx-build:textproc/py-sphinx
 

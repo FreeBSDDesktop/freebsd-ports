@@ -48,7 +48,6 @@
     SUBDIR += belier
     SUBDIR += bfbtester
     SUBDIR += binwalk
-    SUBDIR += bitwarden-ruby
     SUBDIR += blindelephant
     SUBDIR += boringssl
     SUBDIR += botan110
@@ -101,7 +100,6 @@
     SUBDIR += cp2fwb
     SUBDIR += cracklib
     SUBDIR += crackpkcs12
-    SUBDIR += crank
     SUBDIR += create-cert
     SUBDIR += cryptlib
     SUBDIR += cryptopp
@@ -176,7 +174,7 @@
     SUBDIR += gcr
     SUBDIR += git-crypt
     SUBDIR += git-remote-gcrypt
-    SUBDIR += gnome-gpg
+    SUBDIR += git-secret
     SUBDIR += gnome-keyring
     SUBDIR += gnome-keyring-sharp
     SUBDIR += gnome-password-generator
@@ -192,8 +190,6 @@
     SUBDIR += gorilla
     SUBDIR += govpn
     SUBDIR += gpa
-    SUBDIR += gpasman
-    SUBDIR += gpass
     SUBDIR += gpgdir
     SUBDIR += gpgme
     SUBDIR += gpgme-cpp
@@ -205,7 +201,6 @@
     SUBDIR += gsasl
     SUBDIR += gss
     SUBDIR += gstreamer1-plugins-dtls
-    SUBDIR += gtk-knocker
     SUBDIR += gtkpasman
     SUBDIR += gwee
     SUBDIR += hackbot
@@ -308,7 +303,6 @@
     SUBDIR += keyprint
     SUBDIR += kf5-kdesu
     SUBDIR += kgpg
-    SUBDIR += kgpg-kde4
     SUBDIR += kickpass
     SUBDIR += klee
     SUBDIR += kleopatra
@@ -319,15 +313,14 @@
     SUBDIR += kqoauth
     SUBDIR += kr
     SUBDIR += krb5
-    SUBDIR += krb5-114
     SUBDIR += krb5-115
     SUBDIR += krb5-116
+    SUBDIR += krb5-117
     SUBDIR += krb5-appl
     SUBDIR += krb5-devel
     SUBDIR += kripp
     SUBDIR += kstart
     SUBDIR += kwalletmanager
-    SUBDIR += kwalletmanager-kde4
     SUBDIR += l0pht-watch
     SUBDIR += l0phtcrack
     SUBDIR += l5
@@ -343,7 +336,6 @@
     SUBDIR += libfprint
     SUBDIR += libgcrypt
     SUBDIR += libgnome-keyring
-    SUBDIR += libgnomesu
     SUBDIR += libgpg-error
     SUBDIR += libgringotts
     SUBDIR += libhijack
@@ -828,7 +820,6 @@
     SUBDIR += pear-LiveUser_Admin
     SUBDIR += pear-Net_Portscan
     SUBDIR += pear-Text_Password
-    SUBDIR += pecl-crack
     SUBDIR += pecl-crypto
     SUBDIR += pecl-gnupg
     SUBDIR += pecl-krb5
@@ -837,20 +828,11 @@
     SUBDIR += pecl-pam
     SUBDIR += pecl-scrypt
     SUBDIR += pecl-ssh2
-    SUBDIR += pecl-ssh2-0
+    SUBDIR += peda
     SUBDIR += pev
     SUBDIR += pgpdump
     SUBDIR += pgpgpg
     SUBDIR += pgpin
-    SUBDIR += php-suhosin
-    SUBDIR += php56-filter
-    SUBDIR += php56-hash
-    SUBDIR += php56-mcrypt
-    SUBDIR += php56-openssl
-    SUBDIR += php70-filter
-    SUBDIR += php70-hash
-    SUBDIR += php70-mcrypt
-    SUBDIR += php70-openssl
     SUBDIR += php71-filter
     SUBDIR += php71-hash
     SUBDIR += php71-mcrypt
@@ -863,7 +845,6 @@
     SUBDIR += php73-hash
     SUBDIR += php73-openssl
     SUBDIR += php73-sodium
-    SUBDIR += phpdeadlock
     SUBDIR += phpsecinfo
     SUBDIR += pidentd
     SUBDIR += pidgin-encryption
@@ -988,6 +969,7 @@
     SUBDIR += py-mhash
     SUBDIR += py-mixbox
     SUBDIR += py-mnemonic
+    SUBDIR += py-msoffcrypto-tool
     SUBDIR += py-netmiko
     SUBDIR += py-ntlm-auth
     SUBDIR += py-oauth2client
@@ -995,6 +977,7 @@
     SUBDIR += py-obfsproxy-tor
     SUBDIR += py-onetime
     SUBDIR += py-openssl
+    SUBDIR += py-ospd
     SUBDIR += py-paramiko
     SUBDIR += py-paramiko1
     SUBDIR += py-passlib
@@ -1065,7 +1048,6 @@
     SUBDIR += py-vulndb
     SUBDIR += py-yara
     SUBDIR += py-yubikey-manager
-    SUBDIR += py-yubioath-desktop
     SUBDIR += py-zope.app.authentication
     SUBDIR += py-zope.app.localpermission
     SUBDIR += py-zope.app.principalannotation
@@ -1085,6 +1067,7 @@
     SUBDIR += quantis
     SUBDIR += quantis-kmod
     SUBDIR += racoon2
+    SUBDIR += racoon2-legacy
     SUBDIR += radamsa
     SUBDIR += ranpwd
     SUBDIR += ratproxy
@@ -1228,6 +1211,7 @@
     SUBDIR += scanssh
     SUBDIR += scrypt
     SUBDIR += seahorse
+    SUBDIR += seal
     SUBDIR += seccure
     SUBDIR += secpanel
     SUBDIR += sectok
@@ -1289,7 +1273,6 @@
     SUBDIR += ssss
     SUBDIR += sst
     SUBDIR += starttls
-    SUBDIR += stegdetect
     SUBDIR += steghide
     SUBDIR += stoken
     SUBDIR += strobe
@@ -1297,7 +1280,6 @@
     SUBDIR += stud
     SUBDIR += stunnel
     SUBDIR += subversion-gnome-keyring
-    SUBDIR += subversion-kwallet
     SUBDIR += subweb
     SUBDIR += sudo
     SUBDIR += sudoscript
@@ -1368,8 +1350,10 @@
     SUBDIR += ykclient
     SUBDIR += ykpers
     SUBDIR += yubico-piv-tool
+    SUBDIR += yubikey-manager-qt
     SUBDIR += yubikey-personalization-gui
     SUBDIR += yubikey-piv-manager
+    SUBDIR += yubioath-desktop
     SUBDIR += zebedee
     SUBDIR += zenmap
     SUBDIR += zeronet

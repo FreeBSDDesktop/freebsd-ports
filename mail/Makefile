@@ -99,8 +99,6 @@
     SUBDIR += dovecot-pigeonhole
     SUBDIR += dovecot-pigeonhole04
     SUBDIR += dovecot22
-    SUBDIR += drac
-    SUBDIR += dracmail
     SUBDIR += dspam
     SUBDIR += ecartis
     SUBDIR += elm
@@ -133,9 +131,9 @@
     SUBDIR += fastforward
     SUBDIR += fdm
     SUBDIR += fetchmail
+    SUBDIR += fetchmailconf
     SUBDIR += filtermail
     SUBDIR += findmaildirs
-    SUBDIR += gbuffy
     SUBDIR += geary
     SUBDIR += gensig
     SUBDIR += getmail
@@ -182,8 +180,6 @@
     SUBDIR += jmba
     SUBDIR += junkfilter
     SUBDIR += jwsmtp
-    SUBDIR += kbiff
-    SUBDIR += kshowmail
     SUBDIR += lbdb
     SUBDIR += lens
     SUBDIR += libcmime
@@ -320,6 +316,7 @@
     SUBDIR += p5-Email-Address
     SUBDIR += p5-Email-Address-List
     SUBDIR += p5-Email-Address-Loose
+    SUBDIR += p5-Email-Address-UseXS
     SUBDIR += p5-Email-Address-XS
     SUBDIR += p5-Email-AddressParser
     SUBDIR += p5-Email-Date
@@ -482,13 +479,9 @@
     SUBDIR += pear-Net_IMAP
     SUBDIR += pear-Net_LMTP
     SUBDIR += pecl-mailparse
-    SUBDIR += pecl-mailparse2
-    SUBDIR += pecl-pop3
     SUBDIR += perdition
     SUBDIR += pflogsumm
     SUBDIR += pfqueue
-    SUBDIR += php56-imap
-    SUBDIR += php70-imap
     SUBDIR += php71-imap
     SUBDIR += php72-imap
     SUBDIR += php73-imap
@@ -498,7 +491,6 @@
     SUBDIR += pine-pgp-filters
     SUBDIR += pm-lib
     SUBDIR += policyd2
-    SUBDIR += pop3lite
     SUBDIR += pop3proxy
     SUBDIR += popa3d
     SUBDIR += popa3d-before-sendmail
@@ -633,13 +625,14 @@
     SUBDIR += rubygem-premailer
     SUBDIR += rubygem-premailer-rails
     SUBDIR += rubygem-premailer-rails-rails5
-    SUBDIR += rubygem-premailer-rails19
+    SUBDIR += rubygem-premailer-rails19-rails50
     SUBDIR += rubygem-rmail
     SUBDIR += rubygem-roadie
     SUBDIR += rubygem-roadie-rails
     SUBDIR += rubygem-ruby-qmail
     SUBDIR += rubygem-tmail
     SUBDIR += rubygem-vmail
+    SUBDIR += s-nail
     SUBDIR += sa-stats
     SUBDIR += sa-utils
     SUBDIR += scam-backscatter
@@ -661,6 +654,7 @@
     SUBDIR += smtpfeed
     SUBDIR += smtpmail
     SUBDIR += smtprc
+    SUBDIR += smtprelay
     SUBDIR += smtptrapd
     SUBDIR += sortmail
     SUBDIR += spamass-ixhash

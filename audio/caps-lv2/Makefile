@@ -12,8 +12,6 @@ COMMENT=	LV2 version of the C* Audio Plugin Suite
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN_powerpc64=	fails to build: cc1plus: unrecognized command line option -std=c++11
-
 BUILD_DEPENDS=	lv2>0:audio/lv2
 
 USES=		gmake localbase
@@ -27,6 +25,11 @@ BUILD_DEPENDS+=	clang${LLVM_VER}:devel/llvm${LLVM_VER}
 CPP=		clang-cpp${LLVM_VER}
 CC=		clang${LLVM_VER}
 CXX=		clang++${LLVM_VER}
+
+.if exists(/usr/lib/libstdc++.so)
+CXXFLAGS+=	-stdlib=libstdc++
+LDFLAGS+=	-stdlib=libstdc++
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|__APPLE__|__FreeBSD__|" \
