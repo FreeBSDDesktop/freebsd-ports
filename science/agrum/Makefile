@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	agrum
-DISTVERSION=	0.13.4
-PORTREVISION=	2
+DISTVERSION=	0.13.6
 CATEGORIES=	science math
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -15,7 +14,7 @@ USES=		cmake
 USE_GITLAB=	yes
 GL_ACCOUNT=	agrumery
 GL_PROJECT=	aGrUM
-GL_COMMIT=	7fb897064bd26e2844164bad191c97173c71262e
+GL_COMMIT=	df4f236e671e12fc887e9967eb74f5fb0c6cec52
 USE_LDCONFIG=	yes
 
 CMAKE_OFF=	USE_SWIG
@@ -33,6 +32,7 @@ OPENMP_LIB_DEPENDS=	libomp.so:devel/openmp
 
 PYTHON_CMAKE_BOOL=	BUILD_PYTHON
 PYTHON_USES=		python
+PYTHON_PLIST_SUB=	PYTHON_VER_MAJ=${PYTHON_VER:R}
 
 # use clang from ports because cmake can't find OpenMP with base clang, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=223678
 BUILD_DEPENDS+=	clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}

@@ -85,6 +85,7 @@
     SUBDIR += gnustep-app
     SUBDIR += gpctool
     SUBDIR += grabc
+    SUBDIR += grim
     SUBDIR += gromit
     SUBDIR += gskrab
     SUBDIR += gstreamer1-plugins-x
@@ -109,16 +110,9 @@
     SUBDIR += imwheel
     SUBDIR += innerspace
     SUBDIR += ipager
-    SUBDIR += kactivities
-    SUBDIR += kactivitymanagerd
     SUBDIR += kb2mb2
     SUBDIR += kde-baseapps
-    SUBDIR += kde-baseapps-kde4
-    SUBDIR += kde-runtime-kde4
-    SUBDIR += kde-workspace-kde4
-    SUBDIR += kde4
     SUBDIR += kde5
-    SUBDIR += kdelibs-kde4
     SUBDIR += keybinder
     SUBDIR += keybinder-gtk3
     SUBDIR += keyboardcast
@@ -135,9 +129,7 @@
     SUBDIR += kf5-kwayland
     SUBDIR += kf5-kwindowsystem
     SUBDIR += kf5-plasma-framework
-    SUBDIR += kgamma-kde4
     SUBDIR += konsole
-    SUBDIR += konsole-kde4
     SUBDIR += leechcraft
     SUBDIR += lemonbar
     SUBDIR += libICE
@@ -181,7 +173,6 @@
     SUBDIR += libgnomekbd
     SUBDIR += libgnomemm26
     SUBDIR += libinput
-    SUBDIR += libkonq-kde4
     SUBDIR += libmatekbd
     SUBDIR += liboldX
     SUBDIR += libsx
@@ -261,8 +252,6 @@
     SUBDIR += perwindowlayoutd
     SUBDIR += pipeglade
     SUBDIR += pixman
-    SUBDIR += plasma-scriptengine-python-kde4
-    SUBDIR += plasma-scriptengine-ruby-kde4
     SUBDIR += plasma5-kactivitymanagerd
     SUBDIR += plasma5-kgamma5
     SUBDIR += plasma5-kscreen
@@ -315,6 +304,7 @@
     SUBDIR += slim
     SUBDIR += slock
     SUBDIR += slop
+    SUBDIR += slurp
     SUBDIR += smproxy
     SUBDIR += sselp
     SUBDIR += stalonetray
@@ -322,6 +312,8 @@
     SUBDIR += sterm
     SUBDIR += stjerm
     SUBDIR += swarp
+    SUBDIR += swayidle
+    SUBDIR += swaylock
     SUBDIR += sxhkd
     SUBDIR += sxpc
     SUBDIR += tabbed
@@ -379,6 +371,7 @@
     SUBDIR += xcb-proto
     SUBDIR += xcb-util
     SUBDIR += xcb-util-cursor
+    SUBDIR += xcb-util-errors
     SUBDIR += xcb-util-image
     SUBDIR += xcb-util-keysyms
     SUBDIR += xcb-util-renderutil
@@ -532,7 +525,6 @@
     SUBDIR += xzoom
     SUBDIR += yad
     SUBDIR += yakuake
-    SUBDIR += yakuake-kde4
     SUBDIR += yalias
     SUBDIR += yeahconsole
     SUBDIR += yelp

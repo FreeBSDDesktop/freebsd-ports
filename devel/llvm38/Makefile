@@ -61,7 +61,6 @@ CLANG_EXTRA_PATCHES= \
 	${PATCHDIR}/clang-patch-tools_clang_lib_Headers_CMakeLists.txt \
 	${PATCHDIR}/clang-patch-tools_clang_tools_clang-format_clang-format.py \
 	${PATCHDIR}/clang-patch-tools_clang_tools_scan-build_libexec_ccc-analyzer
-CLANG_CONFLICTS_INSTALL=	clang-devel-3.[1234567]*
 CLANG_DISTFILES=	cfe-${DISTVERSION}.src${EXTRACT_SUFX}
 CLANG_CMAKE_ON=		-DCLANG_DEFAULT_OPENMP_RUNTIME=libomp
 CLANG_PORTDOCS=		clang
@@ -103,8 +102,6 @@ _CRTLIBDIR=    ${LLVM_PREFIX:S|${PREFIX}/||}/lib/clang/${LLVM_RELEASE}/lib/freeb
 .for option in CLANG COMPILER_RT EXTRAS LLD LLDB OPENMP
 WRKSRC_${option:tl}=		${WRKDIR}/${${option}_DISTFILES:S/${EXTRACT_SUFX}//}
 .endfor
-
-OPTIONS_SUB=	yes
 
 DOCS_BUILD_DEPENDS=		sphinx-build:textproc/py-sphinx
 

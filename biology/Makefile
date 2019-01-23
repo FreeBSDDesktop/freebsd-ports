@@ -44,6 +44,7 @@
     SUBDIR += gperiodic
     SUBDIR += grappa
     SUBDIR += groopm
+    SUBDIR += hisat2
     SUBDIR += hmmer
     SUBDIR += htslib
     SUBDIR += hyphy

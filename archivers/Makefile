@@ -10,7 +10,6 @@
     SUBDIR += arc
     SUBDIR += arj
     SUBDIR += ark
-    SUBDIR += ark-kde4
     SUBDIR += atool
     SUBDIR += bicom
     SUBDIR += brotli
@@ -151,10 +150,6 @@
     SUBDIR += pecl-rar
     SUBDIR += php-horde_lz4
     SUBDIR += php-snappy
-    SUBDIR += php56-bz2
-    SUBDIR += php56-phar
-    SUBDIR += php56-zip
-    SUBDIR += php56-zlib
     SUBDIR += php71-bz2
     SUBDIR += php71-phar
     SUBDIR += php71-zip

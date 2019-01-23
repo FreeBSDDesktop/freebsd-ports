@@ -109,7 +109,6 @@
     SUBDIR += SCIP
     SUBDIR += SoPlex
     SUBDIR += aamath
-    SUBDIR += abakus
     SUBDIR += abs
     SUBDIR += acalc
     SUBDIR += add
@@ -122,7 +121,6 @@
     SUBDIR += amath
     SUBDIR += ambit
     SUBDIR += analitza
-    SUBDIR += analitza-kde4
     SUBDIR += ann
     SUBDIR += antic
     SUBDIR += apc
@@ -132,6 +130,7 @@
     SUBDIR += armadillo
     SUBDIR += arpack++
     SUBDIR += arpack-ng
+    SUBDIR += ascent
     SUBDIR += aspcud
     SUBDIR += asymptote
     SUBDIR += atlas
@@ -151,7 +150,6 @@
     SUBDIR += calcoo
     SUBDIR += calctool
     SUBDIR += cantor
-    SUBDIR += cantor-kde4
     SUBDIR += cbc
     SUBDIR += cblas
     SUBDIR += ccmath
@@ -273,6 +271,7 @@
     SUBDIR += hs-contravariant
     SUBDIR += hs-data-lens
     SUBDIR += hs-data-lens-template
+    SUBDIR += hs-dense-linear-algebra
     SUBDIR += hs-distributive
     SUBDIR += hs-erf
     SUBDIR += hs-fixed
@@ -288,8 +287,8 @@
     SUBDIR += hs-semigroups
     SUBDIR += hs-statistics
     SUBDIR += hs-vector-space
-    SUBDIR += igraph
     SUBDIR += ignition-math
+    SUBDIR += igraph
     SUBDIR += intervaltree
     SUBDIR += ipopt
     SUBDIR += ised
@@ -303,24 +302,19 @@
     SUBDIR += jtransforms
     SUBDIR += jts
     SUBDIR += kalgebra
-    SUBDIR += kalgebra-kde4
     SUBDIR += kbruch
-    SUBDIR += kbruch-kde4
     SUBDIR += kcalc
-    SUBDIR += kcalc-kde4
     SUBDIR += kig
-    SUBDIR += kig-kde4
     SUBDIR += kktdirect
     SUBDIR += kmplot
-    SUBDIR += kmplot-kde4
     SUBDIR += labplot
-    SUBDIR += latte-integrale
     SUBDIR += lambda
     SUBDIR += lapack
     SUBDIR += lapack++
     SUBDIR += lapack95
     SUBDIR += lapacke
     SUBDIR += laspack
+    SUBDIR += latte-integrale
     SUBDIR += ldouble
     SUBDIR += lean
     SUBDIR += lemon
@@ -654,11 +648,8 @@
     SUBDIR += pear-Math_BigInteger
     SUBDIR += pear-Math_Combinatorics
     SUBDIR += pecl-bitset
-    SUBDIR += pecl-bitset2
     SUBDIR += pecl-stats2
     SUBDIR += petiga
-    SUBDIR += php56-bcmath
-    SUBDIR += php56-gmp
     SUBDIR += php71-bcmath
     SUBDIR += php71-gmp
     SUBDIR += php72-bcmath
@@ -695,11 +686,13 @@
     SUBDIR += py-apgl
     SUBDIR += py-basemap
     SUBDIR += py-basemap-data
+    SUBDIR += py-bayesian-optimization
     SUBDIR += py-bitmath
     SUBDIR += py-bitvector
     SUBDIR += py-bottleneck
     SUBDIR += py-cdecimal
     SUBDIR += py-chaospy
+    SUBDIR += py-cma
     SUBDIR += py-colormath
     SUBDIR += py-cryptominisat
     SUBDIR += py-cvxopt
@@ -731,6 +724,7 @@
     SUBDIR += py-mpmath
     SUBDIR += py-munkres
     SUBDIR += py-networkx
+    SUBDIR += py-networkx1
     SUBDIR += py-numarray
     SUBDIR += py-numeric
     SUBDIR += py-numexpr
@@ -811,7 +805,6 @@
     SUBDIR += rkward-kde
     SUBDIR += rngstreams
     SUBDIR += rocs
-    SUBDIR += rocs-kde4
     SUBDIR += rpcalc
     SUBDIR += rpy
     SUBDIR += rubygem-algebra

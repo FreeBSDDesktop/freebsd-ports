@@ -82,9 +82,7 @@
     SUBDIR += bacula9-client-static
     SUBDIR += bacula9-docs
     SUBDIR += bacula9-server
-    SUBDIR += baloo-kde4
     SUBDIR += baloo-widgets
-    SUBDIR += baloo-widgets-kde4
     SUBDIR += bamf
     SUBDIR += bareos-client
     SUBDIR += bareos-client-static
@@ -331,7 +329,6 @@
     SUBDIR += file
     SUBDIR += filedupe
     SUBDIR += filelight
-    SUBDIR += filelight-kde4
     SUBDIR += fileprune
     SUBDIR += fileschanged
     SUBDIR += filetype
@@ -479,6 +476,7 @@
     SUBDIR += heirloom
     SUBDIR += helm
     SUBDIR += hextools
+    SUBDIR += hexyl
     SUBDIR += hfm
     SUBDIR += hfsexplorer
     SUBDIR += hfsutils
@@ -545,44 +543,34 @@
     SUBDIR += jkill
     SUBDIR += jobd
     SUBDIR += jps
+    SUBDIR += jruls
     SUBDIR += jstest-gtk
     SUBDIR += jtop
     SUBDIR += jtopen
     SUBDIR += jvmtop
     SUBDIR += jx
     SUBDIR += k3b
-    SUBDIR += k3b-kde4
     SUBDIR += k8temp
     SUBDIR += kbackup
-    SUBDIR += kcm-polkit-kde
     SUBDIR += kcron
-    SUBDIR += kcron-kde4
     SUBDIR += kdeadmin
-    SUBDIR += kdeadmin-kde4
     SUBDIR += kdebugsettings
     SUBDIR += kdf
-    SUBDIR += kdf-kde4
     SUBDIR += kdialog
     SUBDIR += kdirstat
     SUBDIR += keyboard-daemon
     SUBDIR += kf5-baloo
     SUBDIR += kf5-kwallet
-    SUBDIR += kfilemetadata-kde4
     SUBDIR += kfloppy
-    SUBDIR += kfloppy-kde4
     SUBDIR += khelpcenter
     SUBDIR += kiconvtool
     SUBDIR += kldfind
     SUBDIR += kldpatch
-    SUBDIR += knutclient-kde4
     SUBDIR += kops
     SUBDIR += krename
     SUBDIR += kshutdown
-    SUBDIR += ksysguardd-kde4
     SUBDIR += ksystemlog
-    SUBDIR += ksystemlog-kde4
     SUBDIR += kubectl
-    SUBDIR += kuser-kde4
     SUBDIR += lava
     SUBDIR += lbl-cf
     SUBDIR += lbl-hf
@@ -635,6 +623,7 @@
     SUBDIR += lsof
     SUBDIR += lsop
     SUBDIR += lsyncd
+    SUBDIR += ltfs
     SUBDIR += ltrace
     SUBDIR += lttng-tools
     SUBDIR += lttng-ust
@@ -751,8 +740,6 @@
     SUBDIR += ncdu
     SUBDIR += ndmpd
     SUBDIR += neofetch
-    SUBDIR += nepomuk-core-kde4
-    SUBDIR += nepomuk-widgets-kde4
     SUBDIR += nfcutils
     SUBDIR += nfsping
     SUBDIR += nitrogen
@@ -807,6 +794,7 @@
     SUBDIR += p5-Iterator-File
     SUBDIR += p5-Lchown
     SUBDIR += p5-Linux-Cpuinfo
+    SUBDIR += p5-Log-Colorize-Helper
     SUBDIR += p5-Log-Syslog-Constants
     SUBDIR += p5-Log-Syslog-Fast
     SUBDIR += p5-MogileFS-Client
@@ -818,6 +806,7 @@
     SUBDIR += p5-Plugtools-Plugins-HomeOU
     SUBDIR += p5-Probe-Perl
     SUBDIR += p5-Proc-PidUtil
+    SUBDIR += p5-Proc-ProcessTable-Colorizer
     SUBDIR += p5-Proclet
     SUBDIR += p5-Quota
     SUBDIR += p5-Rex
@@ -897,8 +886,6 @@
     SUBDIR += pftables
     SUBDIR += pftop
     SUBDIR += phantom
-    SUBDIR += php56-fileinfo
-    SUBDIR += php56-posix
     SUBDIR += php71-fileinfo
     SUBDIR += php71-posix
     SUBDIR += php72-fileinfo
@@ -929,7 +916,6 @@
     SUBDIR += policykit-qt
     SUBDIR += polkit
     SUBDIR += polkit-gnome
-    SUBDIR += polkit-kde
     SUBDIR += polkit-qt
     SUBDIR += pot
     SUBDIR += potnet
@@ -1086,13 +1072,13 @@
     SUBDIR += rubygem-capistrano-ext
     SUBDIR += rubygem-capistrano-harrow
     SUBDIR += rubygem-chef
-    SUBDIR += rubygem-chef12
     SUBDIR += rubygem-chef-api
     SUBDIR += rubygem-chef-config
     SUBDIR += rubygem-chef-config12
     SUBDIR += rubygem-chef-dk
     SUBDIR += rubygem-chef-zero
     SUBDIR += rubygem-chef-zero5
+    SUBDIR += rubygem-chef12
     SUBDIR += rubygem-facter
     SUBDIR += rubygem-fluent-mixin-plaintextformatter
     SUBDIR += rubygem-fluent-plugin-config-expander
@@ -1249,7 +1235,6 @@
     SUBDIR += swapexd
     SUBDIR += swapmon
     SUBDIR += sweeper
-    SUBDIR += sweeper-kde4
     SUBDIR += symlinks
     SUBDIR += symon
     SUBDIR += synergy
@@ -1350,9 +1335,9 @@
     SUBDIR += u-boot-pinebook
     SUBDIR += u-boot-riotboard
     SUBDIR += u-boot-rpi
+    SUBDIR += u-boot-rpi-0-w
     SUBDIR += u-boot-rpi2
     SUBDIR += u-boot-rpi3
-    SUBDIR += u-boot-rpi-0-w
     SUBDIR += u-boot-sinovoip-bpi-m3
     SUBDIR += u-boot-sopine
     SUBDIR += u-boot-tools
@@ -1501,6 +1486,7 @@
     SUBDIR += zrep
     SUBDIR += zrepl
     SUBDIR += zsd
+    SUBDIR += zsm
     SUBDIR += zxfer
 
 .include <bsd.port.subdir.mk>

@@ -48,7 +48,6 @@
     SUBDIR += belier
     SUBDIR += bfbtester
     SUBDIR += binwalk
-    SUBDIR += bitwarden-ruby
     SUBDIR += blindelephant
     SUBDIR += boringssl
     SUBDIR += botan110
@@ -175,6 +174,7 @@
     SUBDIR += gcr
     SUBDIR += git-crypt
     SUBDIR += git-remote-gcrypt
+    SUBDIR += git-secret
     SUBDIR += gnome-keyring
     SUBDIR += gnome-keyring-sharp
     SUBDIR += gnome-password-generator
@@ -303,7 +303,6 @@
     SUBDIR += keyprint
     SUBDIR += kf5-kdesu
     SUBDIR += kgpg
-    SUBDIR += kgpg-kde4
     SUBDIR += kickpass
     SUBDIR += klee
     SUBDIR += kleopatra
@@ -316,12 +315,12 @@
     SUBDIR += krb5
     SUBDIR += krb5-115
     SUBDIR += krb5-116
+    SUBDIR += krb5-117
     SUBDIR += krb5-appl
     SUBDIR += krb5-devel
     SUBDIR += kripp
     SUBDIR += kstart
     SUBDIR += kwalletmanager
-    SUBDIR += kwalletmanager-kde4
     SUBDIR += l0pht-watch
     SUBDIR += l0phtcrack
     SUBDIR += l5
@@ -829,16 +828,11 @@
     SUBDIR += pecl-pam
     SUBDIR += pecl-scrypt
     SUBDIR += pecl-ssh2
-    SUBDIR += pecl-ssh2-0
     SUBDIR += peda
     SUBDIR += pev
     SUBDIR += pgpdump
     SUBDIR += pgpgpg
     SUBDIR += pgpin
-    SUBDIR += php56-filter
-    SUBDIR += php56-hash
-    SUBDIR += php56-mcrypt
-    SUBDIR += php56-openssl
     SUBDIR += php71-filter
     SUBDIR += php71-hash
     SUBDIR += php71-mcrypt
@@ -1286,7 +1280,6 @@
     SUBDIR += stud
     SUBDIR += stunnel
     SUBDIR += subversion-gnome-keyring
-    SUBDIR += subversion-kwallet
     SUBDIR += subweb
     SUBDIR += sudo
     SUBDIR += sudoscript

@@ -95,6 +95,7 @@
     SUBDIR += adacurses
     SUBDIR += adaid
     SUBDIR += aegis
+    SUBDIR += agar
     SUBDIR += ahven
     SUBDIR += aifad
     SUBDIR += ald
@@ -215,6 +216,7 @@
     SUBDIR += bison
     SUBDIR += blame
     SUBDIR += blitz
+    SUBDIR += bloaty
     SUBDIR += bmake
     SUBDIR += bmkdep
     SUBDIR += bnf
@@ -283,7 +285,6 @@
     SUBDIR += cdialog
     SUBDIR += cdk
     SUBDIR += cervisia
-    SUBDIR += cervisia-kde4
     SUBDIR += cflow
     SUBDIR += cflow2vcg
     SUBDIR += cgdb
@@ -475,7 +476,6 @@
     SUBDIR += docopt.cpp
     SUBDIR += doctorj
     SUBDIR += dolphin-plugins
-    SUBDIR += dolphin-plugins-kde4
     SUBDIR += dotconf
     SUBDIR += doxygen
     SUBDIR += dparser
@@ -744,8 +744,8 @@
     SUBDIR += geany-plugin-treebrowser
     SUBDIR += geany-plugin-updatechecker
     SUBDIR += geany-plugin-utilslib
-    SUBDIR += geany-plugin-vimode
     SUBDIR += geany-plugin-vc
+    SUBDIR += geany-plugin-vimode
     SUBDIR += geany-plugin-webhelper
     SUBDIR += geany-plugin-workbench
     SUBDIR += geany-plugin-xmlsnippets
@@ -780,6 +780,7 @@
     SUBDIR += git-lite
     SUBDIR += git-merge-changelog
     SUBDIR += git-modes
+    SUBDIR += git-remote-hg
     SUBDIR += git-review
     SUBDIR += git-subversion
     SUBDIR += git-town
@@ -974,6 +975,7 @@
     SUBDIR += hs-basement
     SUBDIR += hs-basic-prelude
     SUBDIR += hs-bifunctors
+    SUBDIR += hs-bitarray
     SUBDIR += hs-bits-atomic
     SUBDIR += hs-blaze-builder
     SUBDIR += hs-blaze-textual
@@ -1269,8 +1271,10 @@
     SUBDIR += jech-dht
     SUBDIR += jenkins
     SUBDIR += jenkins-lts
+    SUBDIR += jetbrains-phpstorm
     SUBDIR += jfrog-cli
     SUBDIR += jiic
+    SUBDIR += jiri
     SUBDIR += jline
     SUBDIR += jna
     SUBDIR += jrtplib
@@ -1287,34 +1291,19 @@
     SUBDIR += k8048
     SUBDIR += kBuild
     SUBDIR += kapptemplate
-    SUBDIR += kapptemplate-kde4
     SUBDIR += kaptain
     SUBDIR += kcachegrind
-    SUBDIR += kcachegrind-kde4
     SUBDIR += kcov
     SUBDIR += kdbg
     SUBDIR += kde-dev-scripts
-    SUBDIR += kde-dev-scripts-kde4
     SUBDIR += kde-dev-utils
-    SUBDIR += kde-dev-utils-kde4
-    SUBDIR += kdebindings-kde4
     SUBDIR += kdesdk
-    SUBDIR += kdesdk-kde4
-    SUBDIR += kdesdk-kioslaves-kde4
-    SUBDIR += kdesdk-strigi-analyzers-kde4
     SUBDIR += kdesdk-thumbnailers
-    SUBDIR += kdesdk-thumbnailers-kde4
     SUBDIR += kdesvn
-    SUBDIR += kdesvn-kde4
     SUBDIR += kdev-php
     SUBDIR += kdev-python
     SUBDIR += kdevelop
-    SUBDIR += kdevelop-kde4
     SUBDIR += kdevelop-pg-qt
-    SUBDIR += kdevelop-pg-qt-kde4
-    SUBDIR += kdevelop-php-docs-kde4
-    SUBDIR += kdevelop-php-kde4
-    SUBDIR += kdevplatform-kde4
     SUBDIR += kf5-extra-cmake-modules
     SUBDIR += kf5-kapidox
     SUBDIR += kf5-kauth
@@ -1413,6 +1402,7 @@
     SUBDIR += libddoc
     SUBDIR += libdevq
     SUBDIR += libdfui
+    SUBDIR += libdill
     SUBDIR += libdisasm
     SUBDIR += libdisorder
     SUBDIR += libdispatch
@@ -1497,9 +1487,7 @@
     SUBDIR += libixp
     SUBDIR += libjson++
     SUBDIR += libk8055
-    SUBDIR += libkgapi-kde4
     SUBDIR += libklel
-    SUBDIR += libkolab
     SUBDIR += liblangtag
     SUBDIR += liblas
     SUBDIR += liblas12
@@ -1638,6 +1626,7 @@
     SUBDIR += libversion
     SUBDIR += libvhdi
     SUBDIR += libvirt
+    SUBDIR += libvirt-dbus
     SUBDIR += libvirt-glib
     SUBDIR += libvirt-java
     SUBDIR += libvmdk
@@ -1714,7 +1703,6 @@
     SUBDIR += log4sh
     SUBDIR += log4shib
     SUBDIR += lokalize
-    SUBDIR += lokalize-kde4
     SUBDIR += loki
     SUBDIR += looks
     SUBDIR += love
@@ -1893,7 +1881,6 @@
     SUBDIR += ode
     SUBDIR += ois
     SUBDIR += okteta
-    SUBDIR += okteta-kde4
     SUBDIR += omake
     SUBDIR += omniNotify
     SUBDIR += omniORB
@@ -2266,6 +2253,7 @@
     SUBDIR += p5-Data-ACL
     SUBDIR += p5-Data-Alias
     SUBDIR += p5-Data-Average
+    SUBDIR += p5-Data-Binary
     SUBDIR += p5-Data-Bind
     SUBDIR += p5-Data-Capture
     SUBDIR += p5-Data-ClearSilver-HDF
@@ -3010,6 +2998,7 @@
     SUBDIR += p5-MooX-ConfigFromFile
     SUBDIR += p5-MooX-File-ConfigDir
     SUBDIR += p5-MooX-HandlesVia
+    SUBDIR += p5-MooX-Locale-Passthrough
     SUBDIR += p5-MooX-Options
     SUBDIR += p5-MooX-StrictConstructor
     SUBDIR += p5-MooX-Thunking
@@ -3725,6 +3714,7 @@
     SUBDIR += p5-Time-Local
     SUBDIR += p5-Time-Mock
     SUBDIR += p5-Time-Moment
+    SUBDIR += p5-Time-Moment-Role-TimeZone
     SUBDIR += p5-Time-Object
     SUBDIR += p5-Time-Out
     SUBDIR += p5-Time-ParseDate
@@ -3846,8 +3836,6 @@
     SUBDIR += p5-namespace-sweep
     SUBDIR += p5-orz
     SUBDIR += p5-parent
-    SUBDIR += p5-perlkde-kde4
-    SUBDIR += p5-perlqt-kde4
     SUBDIR += p5-pip
     SUBDIR += p5-prefork
     SUBDIR += p5-relative
@@ -4061,14 +4049,12 @@
     SUBDIR += pear-pdepend-staticReflection
     SUBDIR += pear-phing
     SUBDIR += pecl-APCu
-    SUBDIR += pecl-APCu4
     SUBDIR += pecl-dio
     SUBDIR += pecl-eio
     SUBDIR += pecl-ev
     SUBDIR += pecl-event
     SUBDIR += pecl-grpc
     SUBDIR += pecl-hrtime
-    SUBDIR += pecl-intl
     SUBDIR += pecl-jsmin
     SUBDIR += pecl-json_post
     SUBDIR += pecl-jsond
@@ -4101,15 +4087,6 @@
     SUBDIR += php-ice37
     SUBDIR += php-libawl
     SUBDIR += php-maxminddb
-    SUBDIR += php56-gettext
-    SUBDIR += php56-json
-    SUBDIR += php56-pcntl
-    SUBDIR += php56-readline
-    SUBDIR += php56-shmop
-    SUBDIR += php56-sysvmsg
-    SUBDIR += php56-sysvsem
-    SUBDIR += php56-sysvshm
-    SUBDIR += php56-tokenizer
     SUBDIR += php71-gettext
     SUBDIR += php71-intl
     SUBDIR += php71-json
@@ -4172,7 +4149,6 @@
     SUBDIR += powerpc64-gcc
     SUBDIR += powerpc64-xtoolchain-gcc
     SUBDIR += poxml
-    SUBDIR += poxml-kde4
     SUBDIR += ppl
     SUBDIR += pprof
     SUBDIR += pragmarcs
@@ -4308,6 +4284,7 @@
     SUBDIR += py-XStatic-tv4
     SUBDIR += py-ZopeUndo
     SUBDIR += py-adb
+    SUBDIR += py-aenum
     SUBDIR += py-aioice
     SUBDIR += py-aiorpcX
     SUBDIR += py-aiortc
@@ -4476,6 +4453,7 @@
     SUBDIR += py-datrie
     SUBDIR += py-dbus
     SUBDIR += py-ddt
+    SUBDIR += py-ddtrace
     SUBDIR += py-debtcollector
     SUBDIR += py-decorator
     SUBDIR += py-decoratortools
@@ -4578,6 +4556,7 @@
     SUBDIR += py-gdbgui
     SUBDIR += py-gearman
     SUBDIR += py-generate
+    SUBDIR += py-genty
     SUBDIR += py-geojson
     SUBDIR += py-geotypes
     SUBDIR += py-gevent
@@ -4636,7 +4615,9 @@
     SUBDIR += py-isort
     SUBDIR += py-iterpipes
     SUBDIR += py-itypes
+    SUBDIR += py-jaraco
     SUBDIR += py-jaraco.classes
+    SUBDIR += py-jaraco.context
     SUBDIR += py-jaraco.functools
     SUBDIR += py-jaraco.itertools
     SUBDIR += py-jaraco.logging
@@ -4658,6 +4639,7 @@
     SUBDIR += py-json-py
     SUBDIR += py-json-sempai
     SUBDIR += py-json_tricks
+    SUBDIR += py-jsonform
     SUBDIR += py-jsonlib
     SUBDIR += py-jsonlib2
     SUBDIR += py-jsonlines
@@ -4684,7 +4666,6 @@
     SUBDIR += py-kjbuckets
     SUBDIR += py-knack
     SUBDIR += py-kqueue
-    SUBDIR += py-krosspython-kde4
     SUBDIR += py-lazr.config
     SUBDIR += py-lazr.delegates
     SUBDIR += py-lazy
@@ -4714,6 +4695,7 @@
     SUBDIR += py-logutils
     SUBDIR += py-louie
     SUBDIR += py-lxml
+    SUBDIR += py-macholib
     SUBDIR += py-magic
     SUBDIR += py-mailcap-fix
     SUBDIR += py-manuel
@@ -4732,7 +4714,6 @@
     SUBDIR += py-mock
     SUBDIR += py-molecule
     SUBDIR += py-mondrian
-    SUBDIR += py-mongoengine
     SUBDIR += py-mongokit
     SUBDIR += py-monotonic
     SUBDIR += py-monty
@@ -4760,6 +4741,7 @@
     SUBDIR += py-ncurses
     SUBDIR += py-nose
     SUBDIR += py-nose-cov
+    SUBDIR += py-nose-timer
     SUBDIR += py-nose2
     SUBDIR += py-noseofyeti
     SUBDIR += py-notifier
@@ -4778,12 +4760,14 @@
     SUBDIR += py-openapi-codec
     SUBDIR += py-opendht
     SUBDIR += py-openstacksdk
+    SUBDIR += py-opentracing
     SUBDIR += py-opster
     SUBDIR += py-optik
     SUBDIR += py-option_merge
     SUBDIR += py-orbit
     SUBDIR += py-ordered-set
     SUBDIR += py-ordereddict
+    SUBDIR += py-orderedmultidict
     SUBDIR += py-os-brick
     SUBDIR += py-os-client-config
     SUBDIR += py-os-service-types
@@ -4909,8 +4893,6 @@
     SUBDIR += py-pyicu
     SUBDIR += py-pyinotify
     SUBDIR += py-pyinstaller
-    SUBDIR += py-pykde4-kde4
-    SUBDIR += py-pykdeuic4-kde4
     SUBDIR += py-pyke
     SUBDIR += py-pylibsrtp
     SUBDIR += py-pylru
@@ -5165,6 +5147,7 @@
     SUBDIR += py-typechecks
     SUBDIR += py-typed-ast
     SUBDIR += py-typing
+    SUBDIR += py-typing-extensions
     SUBDIR += py-tzlocal
     SUBDIR += py-u-msgpack-python
     SUBDIR += py-ua_parser
@@ -5317,6 +5300,7 @@
     SUBDIR += py-zope.testing
     SUBDIR += py-zope.traversing
     SUBDIR += py-zope.viewlet
+    SUBDIR += py-zsm-lib
     SUBDIR += py_static_check
     SUBDIR += pybind11
     SUBDIR += pybugz
@@ -5400,6 +5384,7 @@
     SUBDIR += qt5-qdoc
     SUBDIR += qt5-qdoc-data
     SUBDIR += qt5-qmake
+    SUBDIR += qt5-remoteobjects
     SUBDIR += qt5-script
     SUBDIR += qt5-scripttools
     SUBDIR += qt5-scxml
@@ -5427,6 +5412,7 @@
     SUBDIR += readline
     SUBDIR += rebar
     SUBDIR += rebar3
+    SUBDIR += redo
     SUBDIR += regexx
     SUBDIR += regexxer
     SUBDIR += relx
@@ -5445,6 +5431,7 @@
     SUBDIR += root-doc
     SUBDIR += rote
     SUBDIR += rpc2
+    SUBDIR += rpclib
     SUBDIR += rpm-spec-mode.el
     SUBDIR += rsvndump
     SUBDIR += rth
@@ -5452,9 +5439,6 @@
     SUBDIR += ruby-bsearch
     SUBDIR += ruby-build
     SUBDIR += ruby-gems
-    SUBDIR += ruby-korundum-kde4
-    SUBDIR += ruby-krossruby-kde4
-    SUBDIR += ruby-qtruby-kde4
     SUBDIR += ruby-rbprof
     SUBDIR += ruby-sdl
     SUBDIR += ruby-setup.rb
@@ -5551,6 +5535,7 @@
     SUBDIR += rubygem-clio
     SUBDIR += rubygem-cliprompt
     SUBDIR += rubygem-cloudfiles
+    SUBDIR += rubygem-cms_scanner
     SUBDIR += rubygem-cocaine
     SUBDIR += rubygem-coercible
     SUBDIR += rubygem-coffee-rails-rails5
@@ -5585,6 +5570,7 @@
     SUBDIR += rubygem-daemon_controller
     SUBDIR += rubygem-daemons
     SUBDIR += rubygem-ddplugin
+    SUBDIR += rubygem-ddtrace
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-debugger-linecache
     SUBDIR += rubygem-debugger-ruby_core_source
@@ -5696,12 +5682,12 @@
     SUBDIR += rubygem-googleapis-common-protos-types
     SUBDIR += rubygem-graf
     SUBDIR += rubygem-grape
-    SUBDIR += rubygem-grape11
     SUBDIR += rubygem-grape-entity
     SUBDIR += rubygem-grape-path-helpers
     SUBDIR += rubygem-grape-route-helpers
     SUBDIR += rubygem-grape-swagger
     SUBDIR += rubygem-grape0
+    SUBDIR += rubygem-grape11
     SUBDIR += rubygem-grape_logging
     SUBDIR += rubygem-graphiql-rails
     SUBDIR += rubygem-graphql
@@ -5750,10 +5736,10 @@
     SUBDIR += rubygem-jquery-ui-themes
     SUBDIR += rubygem-jruby-jars
     SUBDIR += rubygem-json
+    SUBDIR += rubygem-json-schema
     SUBDIR += rubygem-json1
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-json_pure1
-    SUBDIR += rubygem-json-schema
     SUBDIR += rubygem-jsonapi-renderer
     SUBDIR += rubygem-kafo
     SUBDIR += rubygem-kafo_parsers
@@ -5846,6 +5832,7 @@
     SUBDIR += rubygem-omniauth_crowd22
     SUBDIR += rubygem-open3_backport
     SUBDIR += rubygem-open4
+    SUBDIR += rubygem-opentracing
     SUBDIR += rubygem-opt_parse_validator
     SUBDIR += rubygem-optimist
     SUBDIR += rubygem-orm_adapter
@@ -5859,13 +5846,15 @@
     SUBDIR += rubygem-parser
     SUBDIR += rubygem-pastel
     SUBDIR += rubygem-patch_finder
+    SUBDIR += rubygem-pathspec
     SUBDIR += rubygem-pathutil
+    SUBDIR += rubygem-pdk
     SUBDIR += rubygem-peek
-    SUBDIR += rubygem-peek-rails50
     SUBDIR += rubygem-peek-gc-rails50
     SUBDIR += rubygem-peek-host
     SUBDIR += rubygem-peek-performance_bar
     SUBDIR += rubygem-peek-rails4
+    SUBDIR += rubygem-peek-rails50
     SUBDIR += rubygem-peek-rblineprof-rails50
     SUBDIR += rubygem-peek-redis-rails50
     SUBDIR += rubygem-pkg-config
@@ -6078,6 +6067,7 @@
     SUBDIR += rubygem-trollop
     SUBDIR += rubygem-trollop1
     SUBDIR += rubygem-tty
+    SUBDIR += rubygem-tty-box
     SUBDIR += rubygem-tty-color
     SUBDIR += rubygem-tty-command
     SUBDIR += rubygem-tty-config
@@ -6087,6 +6077,7 @@
     SUBDIR += rubygem-tty-font
     SUBDIR += rubygem-tty-markdown
     SUBDIR += rubygem-tty-pager
+    SUBDIR += rubygem-tty-pie
     SUBDIR += rubygem-tty-platform
     SUBDIR += rubygem-tty-progressbar
     SUBDIR += rubygem-tty-prompt
@@ -6184,9 +6175,6 @@
     SUBDIR += smack
     SUBDIR += smake
     SUBDIR += smc
-    SUBDIR += smokegen-kde4
-    SUBDIR += smokekde-kde4
-    SUBDIR += smokeqt-kde4
     SUBDIR += smv
     SUBDIR += soapui
     SUBDIR += socket_wrapper
@@ -6312,7 +6300,6 @@
     SUBDIR += uid_wrapper
     SUBDIR += ultragetopt
     SUBDIR += umbrello
-    SUBDIR += umbrello-kde4
     SUBDIR += umem
     SUBDIR += umlgraph
     SUBDIR += unibilium
