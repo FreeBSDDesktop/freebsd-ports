@@ -1247,6 +1247,7 @@
     SUBDIR += php73-xmlreader
     SUBDIR += php73-xmlwriter
     SUBDIR += php73-xsl
+    SUBDIR += pict
     SUBDIR += plover
     SUBDIR += po4a
     SUBDIR += pocketreader
@@ -1355,6 +1356,7 @@
     SUBDIR += py-pdfminer.six
     SUBDIR += py-pdfminer3k
     SUBDIR += py-pdfrw
+    SUBDIR += py-precis_i18n
     SUBDIR += py-pss
     SUBDIR += py-pyPEG2
     SUBDIR += py-pyahocorasick
@@ -1879,6 +1881,7 @@
     SUBDIR += yould
     SUBDIR += zenxml
     SUBDIR += zorba
+    SUBDIR += zsh-autosuggestions
     SUBDIR += zsh-syntax-highlighting
     SUBDIR += zu-aspell
     SUBDIR += zu-hunspell
