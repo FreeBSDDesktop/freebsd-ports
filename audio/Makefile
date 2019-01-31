@@ -43,7 +43,6 @@
     SUBDIR += aubio
     SUBDIR += aucatctl
     SUBDIR += audacity
-    SUBDIR += audex
     SUBDIR += audiere
     SUBDIR += audiocd-kio
     SUBDIR += audiotag
@@ -53,6 +52,7 @@
     SUBDIR += autozen
     SUBDIR += avldrums-lv2
     SUBDIR += aylet
+    SUBDIR += bambootracker
     SUBDIR += baresip
     SUBDIR += baudline
     SUBDIR += bcg729
@@ -364,20 +364,13 @@
     SUBDIR += jmusic
     SUBDIR += jokosher
     SUBDIR += juk
-    SUBDIR += juk-kde4
     SUBDIR += juke
     SUBDIR += julius
     SUBDIR += kexis
-    SUBDIR += kid3-kde4
     SUBDIR += kid3-kf5
-    SUBDIR += kid3-qt4
     SUBDIR += kid3-qt5
-    SUBDIR += kio-audiocd-kde4
     SUBDIR += kmix
-    SUBDIR += kmix-kde4
-    SUBDIR += kscd-kde4
     SUBDIR += ksmp3play
-    SUBDIR += kstreamripper
     SUBDIR += kwave
     SUBDIR += ladspa
     SUBDIR += lame
@@ -415,9 +408,7 @@
     SUBDIR += libid3tag
     SUBDIR += libinstpatch
     SUBDIR += libkcddb
-    SUBDIR += libkcddb-kde4
     SUBDIR += libkcompactdisc
-    SUBDIR += libkcompactdisc-kde4
     SUBDIR += liblastfm
     SUBDIR += liblastfm-qt5
     SUBDIR += liblo
@@ -767,7 +758,6 @@
     SUBDIR += sidplay
     SUBDIR += sidplay2
     SUBDIR += sidplayer
-    SUBDIR += simon
     SUBDIR += simplemod
     SUBDIR += siren
     SUBDIR += skype-call-recorder
@@ -800,6 +790,7 @@
     SUBDIR += spiralsynthmodular
     SUBDIR += splay
     SUBDIR += splaytk
+    SUBDIR += spotifyd
     SUBDIR += squash
     SUBDIR += sratom
     SUBDIR += stk
@@ -851,6 +842,7 @@
     SUBDIR += umurmur
     SUBDIR += vagalume
     SUBDIR += vamp-plugin-sdk
+    SUBDIR += vgmplay
     SUBDIR += virtual_oss
     SUBDIR += virtual_oss_ctl
     SUBDIR += vitunes

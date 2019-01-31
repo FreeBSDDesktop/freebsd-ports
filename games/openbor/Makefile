@@ -2,9 +2,9 @@
 
 PORTNAME=	openbor
 # Hint: svn revision is git rev-list --count ${GH_TAGNAME}
-PORTVERSION?=	6560
+PORTVERSION?=	6662
 .ifndef PKGNAMESUFFIX
-PORTREVISION=	0
+PORTREVISION=	1
 .endif
 CATEGORIES=	games
 
@@ -31,7 +31,7 @@ PORTSCOUT=	ignore:1
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	DCurrent
-GH_TAGNAME?=	5026dd18
+GH_TAGNAME?=	545b4f94
 
 USES+=		gmake pkgconfig
 .if ${PORTVERSION} < 4433
@@ -39,8 +39,10 @@ USE_CSTD=	gnu89
 .endif
 .if ${PORTVERSION} < 4108
 USE_SDL=	gfx
-.else
+.elif ${PORTVERSION} < 6639
 USE_SDL=	gfx2
+.else
+USE_SDL=	sdl2
 .endif
 WRKSRC_SUBDIR=	engine
 MAKE_ENV=	BUILD_LINUX=1 SDKPATH="${LOCALBASE}" \

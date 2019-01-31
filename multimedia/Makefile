@@ -51,7 +51,6 @@
     SUBDIR += din
     SUBDIR += dirac
     SUBDIR += dragon
-    SUBDIR += dragon-kde4
     SUBDIR += dtv-scan-tables
     SUBDIR += dumpmpeg
     SUBDIR += dv2sub
@@ -93,6 +92,7 @@
     SUBDIR += gnome-mplayer
     SUBDIR += gnome-mpv
     SUBDIR += gnome-subtitles
+    SUBDIR += gnome-twitch
     SUBDIR += gpac-libgpac
     SUBDIR += gpac-mp4box
     SUBDIR += gpodder
@@ -171,16 +171,11 @@
     SUBDIR += iriverter
     SUBDIR += iso2mkv
     SUBDIR += jmref
-    SUBDIR += k9copy-kde4
     SUBDIR += kaffeine
     SUBDIR += kamoso
     SUBDIR += kdemultimedia
     SUBDIR += kdemultimedia-ffmpegthumbs
-    SUBDIR += kdemultimedia-ffmpegthumbs-kde4
-    SUBDIR += kdemultimedia-kde4
-    SUBDIR += kdemultimedia-mplayerthumbs-kde4
     SUBDIR += kdenlive
-    SUBDIR += kdenlive-kde4
     SUBDIR += kf5-kmediaplayer
     SUBDIR += kissdx
     SUBDIR += kmplayer
@@ -189,7 +184,6 @@
     SUBDIR += kodi-addon-pvr-hts
     SUBDIR += kodi-addon-pvr-iptvsimple
     SUBDIR += kodi-devel
-    SUBDIR += kplayer-kde4
     SUBDIR += kvazaar
     SUBDIR += l-smash
     SUBDIR += libaacs
@@ -291,6 +285,7 @@
     SUBDIR += msdl
     SUBDIR += msopenh264
     SUBDIR += mswebrtc
+    SUBDIR += musikcube
     SUBDIR += mxflib
     SUBDIR += mythtv
     SUBDIR += mythtv-frontend
@@ -402,7 +397,6 @@
     SUBDIR += spigot
     SUBDIR += spook
     SUBDIR += subtitlecomposer
-    SUBDIR += subtitlecomposer-kde4
     SUBDIR += subtitleeditor
     SUBDIR += subtitleoffsetmodifier
     SUBDIR += subtitleripper
@@ -458,8 +452,6 @@
     SUBDIR += vdr-plugins
     SUBDIR += vid.stab
     SUBDIR += vlc
-    SUBDIR += vlc-qt4
-    SUBDIR += vlc3
     SUBDIR += vtkmpeg2encode
     SUBDIR += w_scan
     SUBDIR += webcamd
@@ -477,6 +469,5 @@
     SUBDIR += xvid
     SUBDIR += yamdi
     SUBDIR += zoneminder
-    SUBDIR += zoneminder-h264
 
 .include <bsd.port.subdir.mk>

@@ -3,11 +3,12 @@
 
 PORTNAME=	kmplayer
 PORTVERSION=	0.12.0b
+PORTREVISION=	1
 PORTEPOCH=	3
 CATEGORIES=	multimedia audio kde
 
 MAINTAINER=	jhale@FreeBSD.org
-COMMENT=	KDE frontend to Phonon / KDE4
+COMMENT=	KDE frontend to Phonon / KDE5
 
 LICENSE=	GPLv2 LGPL21
 LICENSE_COMB=	multi
@@ -28,7 +29,7 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libxcb-util.so:x11/xcb-util
 RUN_DEPENDS=	mplayer:multimedia/mplayer
 
-USES=		cmake desktop-file-utils gettext-runtime \
+USES=		cmake compiler:c++11-lang desktop-file-utils gettext-runtime \
 		kde:5 pkgconfig qt:5
 USE_GNOME=	cairo gdkpixbuf2 gtk20
 USE_QT=		concurrent core dbus gui network phonon4 printsupport \

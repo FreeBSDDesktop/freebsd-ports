@@ -100,7 +100,6 @@
     SUBDIR += mmake
     SUBDIR += mx4j
     SUBDIR += netbeans
-    SUBDIR += netbeans-devel
     SUBDIR += netcomponents
     SUBDIR += netrexx
     SUBDIR += netty
@@ -129,6 +128,7 @@
     SUBDIR += wildfly12
     SUBDIR += wildfly13
     SUBDIR += wildfly14
+    SUBDIR += wildfly15
     SUBDIR += wildfly90
     SUBDIR += xdoclet
 

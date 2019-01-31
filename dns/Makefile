@@ -113,6 +113,7 @@
     SUBDIR += namesilo_ddns
     SUBDIR += noip
     SUBDIR += nsd
+    SUBDIR += nsec3walker
     SUBDIR += nslint
     SUBDIR += nsnotifyd
     SUBDIR += nsping
@@ -197,6 +198,7 @@
     SUBDIR += py-publicsuffix
     SUBDIR += py-publicsuffixlist
     SUBDIR += py-py3dns
+    SUBDIR += py-pybonjour
     SUBDIR += py-pycares
     SUBDIR += py-pydnstable
     SUBDIR += py-pywdns

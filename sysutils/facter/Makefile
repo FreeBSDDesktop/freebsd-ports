@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	facter
-PORTVERSION=	3.12.2
+PORTVERSION=	3.12.3
 CATEGORIES?=	sysutils
 MASTER_SITES=	https://downloads.puppetlabs.com/facter/
 
@@ -53,7 +53,7 @@ post-install:
 
 test: build
 	cd ${WRKSRC}/lib && bundle install --path vendor
-	cd ${WRKSRC} && ${MAKE_CMD} test
+	cd ${CONFIGURE_WRKSRC} && ${MAKE_CMD} test
 
 .include <bsd.port.pre.mk>
 

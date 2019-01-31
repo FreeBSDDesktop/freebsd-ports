@@ -25,6 +25,7 @@
     SUBDIR += cytoscape
     SUBDIR += ddocent
     SUBDIR += diamond
+    SUBDIR += dsr-pdb
     SUBDIR += emboss
     SUBDIR += exonerate
     SUBDIR += fasta
@@ -44,6 +45,7 @@
     SUBDIR += gperiodic
     SUBDIR += grappa
     SUBDIR += groopm
+    SUBDIR += hisat2
     SUBDIR += hmmer
     SUBDIR += htslib
     SUBDIR += hyphy

@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	qbittorrent
-DISTVERSION=	4.1.4
-PORTREVISION=	2
+DISTVERSION=	4.1.5
+PORTREVISION=	3
 CATEGORIES=	net-p2p ipv6
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -18,9 +18,8 @@ LIB_DEPENDS=	libtorrent-rasterbar.so:net-p2p/libtorrent-rasterbar \
 
 FLAVORS=	default nox
 FLAVOR?=	${FLAVORS:[1]}
-default_LIB_DEPENDS=	libGeoIP.so:net/GeoIP
 nox_PKGNAMESUFFIX=	-nox
-nox_PLIST=		${NONEXISTENT}
+nox_PLIST=		${MASTERDIR}/pkg-plist-nox
 
 USES=			compiler:c++11-lib pkgconfig qmake:no_env qt:5 tar:xz
 GNU_CONFIGURE=		yes
@@ -38,8 +37,11 @@ USE_GL=			gl
 SUFFIX=			-nox
 COMMENT+=		(web UI version)
 CONFIGURE_ARGS+=	--disable-gui
-PLIST_FILES=		bin/qbittorrent${SUFFIX} \
-			man/man1/qbittorrent${SUFFIX}.1.gz
+USERS=			qbittorrent
+GROUPS=			qbittorrent
+USE_RC_SUBR=		qbittorrent
+SUB_LIST=		USER=${USERS} GROUP=${GROUPS}
+PLIST_SUB=		USER=${USERS} GROUP=${GROUPS}
 .endif
 
 OPTIONS_DEFINE=		DBUS DEBUG DOCS
@@ -56,6 +58,9 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/qbittorrent${SUFFIX}.1 \
 		${STAGEDIR}${MAN1PREFIX}/man/man1/
 	@${RM} -r ${STAGEDIR}${PREFIX}/share/man
+.if ${FLAVOR} == nox
+	@${MKDIR} ${STAGEDIR}/var/db/qbittorrent/conf ${STAGEDIR}/var/db/qbittorrent/Downloads
+.endif
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

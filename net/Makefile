@@ -322,19 +322,14 @@
     SUBDIR += kdav
     SUBDIR += kdenetwork
     SUBDIR += kdenetwork-filesharing
-    SUBDIR += kdenetwork-filesharing-kde4
-    SUBDIR += kdenetwork-kde4
-    SUBDIR += kdenetwork-strigi-analyzers-kde4
     SUBDIR += kea
     SUBDIR += kf5-kholidays
     SUBDIR += kf5-kxmlrpcclient
     SUBDIR += kf5-syndication
     SUBDIR += kget
-    SUBDIR += kget-kde4
     SUBDIR += kidentitymanagement
     SUBDIR += kimap
     SUBDIR += kio-gdrive
-    SUBDIR += kio-upnp-ms
     SUBDIR += kippo
     SUBDIR += kissd
     SUBDIR += kitinerary
@@ -346,12 +341,10 @@
     SUBDIR += kontactinterface
     SUBDIR += kpimtextedit
     SUBDIR += krdc
-    SUBDIR += krdc-kde4
     SUBDIR += krfb
-    SUBDIR += krfb-kde4
     SUBDIR += ksmtp
     SUBDIR += ktnef
-    SUBDIR += kwooty
+    SUBDIR += kube-controller-manager
     SUBDIR += l2tpd
     SUBDIR += ladvd
     SUBDIR += lambdamoo
@@ -380,18 +373,15 @@
     SUBDIR += libgweather
     SUBDIR += libilbc
     SUBDIR += libjson-rpc-cpp 
-    SUBDIR += libkfbapi
     SUBDIR += libkgapi
     SUBDIR += libksieve
     SUBDIR += libkvkontakte
-    SUBDIR += libkvkontakte-kde4
     SUBDIR += liblinphone
     SUBDIR += libmaia
     SUBDIR += libmateweather
     SUBDIR += libmaxminddb
     SUBDIR += libmdf
     SUBDIR += libmediawiki
-    SUBDIR += libmediawiki-kde4
     SUBDIR += libmms
     SUBDIR += libmxp
     SUBDIR += libnatpmp
@@ -467,6 +457,7 @@
     SUBDIR += mgen
     SUBDIR += micro_inetd
     SUBDIR += micro_proxy
+    SUBDIR += microsocks
     SUBDIR += minidlna
     SUBDIR += mininet
     SUBDIR += minisapserver
@@ -621,6 +612,7 @@
     SUBDIR += p5-IO-Socket-Multicast
     SUBDIR += p5-IO-Socket-Multicast6
     SUBDIR += p5-IO-Socket-Socks
+    SUBDIR += p5-IO-Socket-Socks-Wrapper
     SUBDIR += p5-IO-Socket-Timeout
     SUBDIR += p5-IO-Socket-UNIX-Util
     SUBDIR += p5-IP-Anonymous
@@ -828,7 +820,6 @@
     SUBDIR += p5-OAI-Harvester
     SUBDIR += p5-OurNet-BBS
     SUBDIR += p5-OurNet-BBSAgent
-    SUBDIR += p5-Parse-Netstat
     SUBDIR += p5-POE-Component-Client-Ident
     SUBDIR += p5-POE-Component-Client-Keepalive
     SUBDIR += p5-POE-Component-Client-Ping
@@ -846,6 +837,7 @@
     SUBDIR += p5-POSIX-Socket
     SUBDIR += p5-POSIX-getpeername
     SUBDIR += p5-Parallel-Pvm
+    SUBDIR += p5-Parse-Netstat
     SUBDIR += p5-Phone-Info
     SUBDIR += p5-PlRPC
     SUBDIR += p5-Queue-Beanstalk
@@ -914,6 +906,7 @@
     SUBDIR += packetdrill
     SUBDIR += packter-agent
     SUBDIR += panoptis
+    SUBDIR += parpd
     SUBDIR += passlogd
     SUBDIR += pathneck
     SUBDIR += pbnc
@@ -977,10 +970,6 @@
     SUBDIR += pen
     SUBDIR += pfinger
     SUBDIR += phamm
-    SUBDIR += php56-ldap
-    SUBDIR += php56-soap
-    SUBDIR += php56-sockets
-    SUBDIR += php56-xmlrpc
     SUBDIR += php71-ldap
     SUBDIR += php71-soap
     SUBDIR += php71-sockets
@@ -1035,6 +1024,7 @@
     SUBDIR += py-cjdns
     SUBDIR += py-cloudflare-scrape
     SUBDIR += py-coherence
+    SUBDIR += py-confluent-kafka
     SUBDIR += py-cymruwhois
     SUBDIR += py-dpkt
     SUBDIR += py-dugong
@@ -1047,6 +1037,7 @@
     SUBDIR += py-haproxy-log-analysis
     SUBDIR += py-haproxyctl
     SUBDIR += py-httpstat
+    SUBDIR += py-ifaddr
     SUBDIR += py-impacket
     SUBDIR += py-ipaddress
     SUBDIR += py-iplib
@@ -1281,6 +1272,7 @@
     SUBDIR += rubygem-iproto
     SUBDIR += rubygem-lita-gems
     SUBDIR += rubygem-macaddr
+    SUBDIR += rubygem-maxmind-db
     SUBDIR += rubygem-mqtt
     SUBDIR += rubygem-net-ldap
     SUBDIR += rubygem-net-netrc
@@ -1330,6 +1322,7 @@
     SUBDIR += rubygem-rubytter
     SUBDIR += rubygem-rudy
     SUBDIR += rubygem-rye
+    SUBDIR += rubygem-serverengine
     SUBDIR += rubygem-simple_oauth
     SUBDIR += rubygem-stompserver
     SUBDIR += rubygem-t
@@ -1377,7 +1370,6 @@
     SUBDIR += skstream
     SUBDIR += sl2tps
     SUBDIR += slurm
-    SUBDIR += smb4k-kde4
     SUBDIR += smbldap-tools
     SUBDIR += smcroute
     SUBDIR += smm++
@@ -1404,8 +1396,6 @@
     SUBDIR += sshping
     SUBDIR += ssldump
     SUBDIR += sslh
-    SUBDIR += ssltunnel-client
-    SUBDIR += ssltunnel-server
     SUBDIR += ssmping
     SUBDIR += ssspl
     SUBDIR += ssvnc
@@ -1451,6 +1441,7 @@
     SUBDIR += throttled
     SUBDIR += tigervnc
     SUBDIR += tightvnc
+    SUBDIR += timed
     SUBDIR += tintin++
     SUBDIR += tiny-network-utilities
     SUBDIR += tinyfugue
@@ -1552,7 +1543,6 @@
     SUBDIR += zebra
     SUBDIR += zebra-server
     SUBDIR += zeroconf-ioslave
-    SUBDIR += zeroconf-ioslave-kde4
     SUBDIR += zerotier
     SUBDIR += zillion
     SUBDIR += zmap

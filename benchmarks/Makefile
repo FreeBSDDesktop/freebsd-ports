@@ -28,6 +28,7 @@
     SUBDIR += himenobench
     SUBDIR += hpl
     SUBDIR += hs-criterion
+    SUBDIR += hs-criterion-measurement
     SUBDIR += httperf
     SUBDIR += imb
     SUBDIR += interbench
@@ -64,6 +65,7 @@
     SUBDIR += polygraph
     SUBDIR += postal
     SUBDIR += postmark
+    SUBDIR += py-locust
     SUBDIR += py-naarad
     SUBDIR += py-throughpy
     SUBDIR += py-zopkio

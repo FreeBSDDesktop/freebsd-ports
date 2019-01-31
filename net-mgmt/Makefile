@@ -40,6 +40,7 @@
     SUBDIR += centreon-clib
     SUBDIR += check_ipmi_sensor
     SUBDIR += check_logfiles
+    SUBDIR += check_mk_agent
     SUBDIR += check_multi
     SUBDIR += check_mysql_health
     SUBDIR += check_ssl_cert
@@ -126,6 +127,7 @@
     SUBDIR += mbrowse
     SUBDIR += mdata-client
     SUBDIR += metronome
+    SUBDIR += midpoint
     SUBDIR += mk-livestatus
     SUBDIR += monitoring-plugins
     SUBDIR += mrtg
@@ -207,6 +209,7 @@
     SUBDIR += nsca27-client
     SUBDIR += nstat
     SUBDIR += nstreams
+    SUBDIR += nvidia_gpu_prometheus_exporter
     SUBDIR += observium
     SUBDIR += ocsinventory-agent
     SUBDIR += ocsinventory-ocsreports
@@ -229,6 +232,7 @@
     SUBDIR += p5-GRNOC-TL1
     SUBDIR += p5-MRTG-Parse
     SUBDIR += p5-Mon
+    SUBDIR += p5-Monitoring-Livestatus
     SUBDIR += p5-Monitoring-Plugin
     SUBDIR += p5-NSNMP
     SUBDIR += p5-Nagios-Object
@@ -283,7 +287,6 @@
     SUBDIR += pdagent-integrations
     SUBDIR += percona-monitoring-plugins
     SUBDIR += pftabled
-    SUBDIR += php56-snmp
     SUBDIR += php71-snmp
     SUBDIR += php72-snmp
     SUBDIR += php73-snmp
