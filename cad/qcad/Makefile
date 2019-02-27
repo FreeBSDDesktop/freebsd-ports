@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	qcad
-PORTVERSION=	3.21.3.11
+PORTVERSION=	3.21.3.15
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
-#PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	cad
 DIST_SUBDIR=	${PORTNAME}
 
@@ -49,6 +48,9 @@ SHRDIR=		fonts libraries linetypes patterns plugins scripts themes ts
 QSCRIPTS=	bbox dwg2bmp dwg2pdf dwg2svg
 
 OPTIONS_DEFINE=	EXAMPLES
+
+CFLAGS_i386= -fPIC
+CXXFLAGS_i386= -fPIC
 
 pre-configure:
 	${REINPLACE_CMD} -e "s|%%DATADIR%%|${DATADIR}|"	\

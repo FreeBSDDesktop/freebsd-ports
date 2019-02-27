@@ -51,6 +51,7 @@
     SUBDIR += gnome-icons-iris
     SUBDIR += gnome-icons-jini
     SUBDIR += gnome-icons-lila
+    SUBDIR += gnome-icons-luv
     SUBDIR += gnome-icons-noia-full
     SUBDIR += gnome-icons-noia-warm
     SUBDIR += gnome-icons-refined
@@ -138,6 +139,7 @@
     SUBDIR += numix-theme
     SUBDIR += openbox-arc-theme
     SUBDIR += openbox-themes
+    SUBDIR += papirus-icon-theme
     SUBDIR += plank-theme-moka
     SUBDIR += plasma5-breeze
     SUBDIR += plasma5-breeze-gtk

@@ -1,3 +1,5 @@
-TIMESTAMP = 1548090097
-SHA256 (swaywm-wlroots-0.2-147-gb619ab4d_GH0.tar.gz) = d6192b51757cf020597d2fb7fd4565d159d5fb055c6f4c28ef329acd9514c768
-SIZE (swaywm-wlroots-0.2-147-gb619ab4d_GH0.tar.gz) = 473386
+TIMESTAMP = 1551055210
+SHA256 (swaywm-wlroots-0.4_GH0.tar.gz) = f9308d4c9a0dbcf0009f5577e390c11b1bffdc38fa92681cc37dc2ec7ab927f0
+SIZE (swaywm-wlroots-0.4_GH0.tar.gz) = 480114
+SHA256 (0b336431757c.patch) = 45435984e6c8573c22961b890bfe4ae9912c6eb96db8fcfa7bf534a19a039a36
+SIZE (0b336431757c.patch) = 792

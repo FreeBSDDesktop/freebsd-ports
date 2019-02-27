@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	swayidle
-DISTVERSION=	1.1-14
-DISTVERSIONSUFFIX=	-g72d15f8
+DISTVERSION=	1.2
 CATEGORIES=	x11
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -26,9 +25,7 @@ OPTIONS_DEFINE=	MANPAGES
 OPTIONS_DEFAULT=MANPAGES
 
 MANPAGES_BUILD_DEPENDS=	scdoc:textproc/scdoc
+MANPAGES_MESON_ENABLED=	man-pages
 MANPAGES_PLIST_FILES=	man/man1/${PORTNAME}.1.gz
-
-post-patch-MANPAGES-off:
-	@${REINPLACE_CMD} -i '' "s/'scdoc/&-disabled/" ${WRKSRC}/meson.build
 
 .include <bsd.port.mk>

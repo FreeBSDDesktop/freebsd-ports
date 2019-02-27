@@ -72,12 +72,13 @@
     SUBDIR += ez-ipupdate
     SUBDIR += fastresolve
     SUBDIR += firedns
+    SUBDIR += flamethrower
     SUBDIR += fpdns
     SUBDIR += gdnsd
     SUBDIR += gdnsd2
+    SUBDIR += gdnsd3
     SUBDIR += gen6dns
     SUBDIR += getdns
-    SUBDIR += go-geodns
     SUBDIR += hesiod
     SUBDIR += hostdb
     SUBDIR += hs-dns
@@ -172,7 +173,6 @@
     SUBDIR += p5-Stanford-DNSserver
     SUBDIR += p5-Tie-DNS
     SUBDIR += p5-URBL-Prepare
-    SUBDIR += p5-pgeodns
     SUBDIR += packetq
     SUBDIR += pdnsd
     SUBDIR += pear-File_DNS
@@ -183,7 +183,6 @@
     SUBDIR += public_suffix_list
     SUBDIR += py-adns
     SUBDIR += py-aiodns
-    SUBDIR += py-bonjour
     SUBDIR += py-cloudflare
     SUBDIR += py-dns
     SUBDIR += py-dns-lexicon
@@ -199,6 +198,7 @@
     SUBDIR += py-publicsuffix
     SUBDIR += py-publicsuffixlist
     SUBDIR += py-py3dns
+    SUBDIR += py-pybonjour
     SUBDIR += py-pycares
     SUBDIR += py-pydnstable
     SUBDIR += py-pywdns

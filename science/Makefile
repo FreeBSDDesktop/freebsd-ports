@@ -67,6 +67,7 @@
     SUBDIR += dlib-cpp
     SUBDIR += dlpoly-classic
     SUBDIR += drawxtl
+    SUBDIR += dvc
     SUBDIR += eccodes
     SUBDIR += elk
     SUBDIR += epte
@@ -102,10 +103,12 @@
     SUBDIR += hdf
     SUBDIR += hdf5
     SUBDIR += hdf5-18
+    SUBDIR += healpix
     SUBDIR += hypre
     SUBDIR += iboview
     SUBDIR += isaac-cfd
     SUBDIR += jdftx
+    SUBDIR += jmol
     SUBDIR += jstrack
     SUBDIR += kalzium
     SUBDIR += kst2
@@ -149,9 +152,10 @@
     SUBDIR += metaphysicl
     SUBDIR += minc2
     SUBDIR += mmdb2
-    SUBDIR += mmtf
+    SUBDIR += mmtf-cpp
     SUBDIR += mol2ps
     SUBDIR += molgif
+    SUBDIR += molscript
     SUBDIR += molsketch
     SUBDIR += mpb
     SUBDIR += mpqc
@@ -163,12 +167,14 @@
     SUBDIR += netcdf-fortran
     SUBDIR += nifticlib
     SUBDIR += nwchem
+    SUBDIR += nwchem-data
     SUBDIR += octopus
     SUBDIR += openbabel
     SUBDIR += openkim
     SUBDIR += openmx
     SUBDIR += opensim-core
     SUBDIR += openstructure
+    SUBDIR += opsin
     SUBDIR += p5-Algorithm-SVMLight
     SUBDIR += p5-Chemistry-3DBuilder
     SUBDIR += p5-Chemistry-Bond-Find
@@ -236,6 +242,7 @@
     SUBDIR += py-molmod
     SUBDIR += py-netCDF4
     SUBDIR += py-obspy
+    SUBDIR += py-oddt
     SUBDIR += py-openpiv
     SUBDIR += py-paida
     SUBDIR += py-paramz

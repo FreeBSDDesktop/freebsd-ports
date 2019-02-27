@@ -20,6 +20,8 @@ share/doc/HTML/de/systemsettings/index.cache.bz2
 share/doc/HTML/de/systemsettings/index.docbook
 share/doc/HTML/en/systemsettings/index.cache.bz2
 share/doc/HTML/en/systemsettings/index.docbook
+share/doc/HTML/id/systemsettings/index.cache.bz2
+share/doc/HTML/id/systemsettings/index.docbook
 share/doc/HTML/it/systemsettings/index.cache.bz2
 share/doc/HTML/it/systemsettings/index.docbook
 share/doc/HTML/nl/systemsettings/index.cache.bz2
@@ -78,7 +80,6 @@ share/kservicetypes5/systemsettingsexternalapp.desktop
 share/kservicetypes5/systemsettingsview.desktop
 share/kxmlgui5/systemsettings/systemsettingsui.rc
 share/locale/ar/LC_MESSAGES/systemsettings.mo
-share/locale/ast/LC_MESSAGES/systemsettings.mo
 share/locale/be/LC_MESSAGES/systemsettings.mo
 share/locale/be@latin/LC_MESSAGES/systemsettings.mo
 share/locale/bg/LC_MESSAGES/systemsettings.mo

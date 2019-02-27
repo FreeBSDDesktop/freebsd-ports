@@ -5,6 +5,84 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20190227:
+  AFFECTS: users of security/softether, security/softether-devel
+  AUTHOR: meta@FreeBSD.org
+
+  These ports' bridge, client, server daemon unintendedly had spit out
+  chain_certs (certificate chain) directory on libexec directory until
+  r494024.
+
+  If your ${PREFIX}/libexec/softether/chain_certs directory is empty, you
+  can remove the directory safely. If the directory is not empty, move it
+  to ${SE_DBDIR} when upgrading softether. Following commands should help:
+
+      service softether_(bridge|cleint|server) stop
+      (portmaster, portupgrade or pkg upgrade)
+      mv ${PREFIX}/libexec/softether/chain_certs ${SE_DBDIR}/
+      service softether_(bridge|cleint|server) start
+
+  With the default Makefile settings, ${SE_DBDIR} is set to /var/db/softether.
+
+20190224:
+  AFFECTS: users of security/gnutls
+  AUTHOR: tijl@FreeBSD.org
+
+  GnuTLS now looks for its configuration files in PREFIX/etc (/usr/local/etc)
+  instead of /etc.  If the following files exist they have to be moved.  On a
+  default installation these files do not exist.
+
+  /etc/gnutls/default-priorities
+  /etc/gnutls/pkcs11.conf
+  /etc/tpasswd
+  /etc/tpasswd.conf
+
+20190215:
+  AFFECTS: users of net-im/ejabberd
+  AUTHOR: ashish@FreeBSD.org
+
+  If you've mod_mam enabled with compress_xml set to true, then you're affected
+  by bug where the XML namespace, and tag elements get interchanged in the MAM cache
+  which results in invalid XML, and causing XMPP clients to disconnect. For more details,
+  please refer to: https://github.com/processone/ejabberd/issues/2744
+
+  This upgrade contains the patch that fixes the problem going forward. For fixing already
+  affected users, you'll need to wipe off the MAM cache for the affected users:
+
+      sudo -u ejabberd -H ejabberdctl remove_mam_for_user <user> <server>
+
+20190207:
+  AFFECTS: users of net-mgmt/mk-livestatus
+  AUTHOR: egypcio@FreeBSD.org
+
+  The default Nagios version supported by net-mgmt/mk-livestatus changed
+  from Nagios 3 to Nagios 4 - the respective Nagios package was added to
+  net-mgmt/mk-livestatus' runtime dependencies.
+
+  If you still need support for Nagios 3 you just need to change the
+  options for net-mgmt/mk-livestatus and compile the port yourself.
+
+20190202:
+  AFFECTS: users of archivers/urbackup-server
+  AUTHOR: freebsd@coombscloud.com
+
+  Some of the port's sources previously included absolute references to /etc/urbackup.  
+  The upgrade now changes these references to ${PREFIX}/etc/urbackup. If you have placed 
+  any configuration files within /etc/urbackup, these should be relocated to 
+  ${PREFIX}/etc/urbackup.
+
+20190124:
+  AFFECTS: users of sysutils/rubygem-fluentd, sysutils/fluent-bit
+  AUTHOR: girgen@FreeBSD.org
+
+  The fluentd port has been upgraded from the 0.12 line to 1.3.3.  The upgrade
+  is mostly non-disruptive since there is a backward compatibility with 0.12
+  plugins and configuration files, but care should be taken about the order of
+  server upgrades since fluentd 1.x is unable to send it's data to version 0.12
+  instances.  You should carefully read
+  https://docs.fluentd.org/v1.0/articles/update-from-v0.12 before performing
+  any upgrade activities.
+
 20190120:
   AFFECTS: users of mail/fetchmail
   AUTHOR: mandree@FreeBSD.org
@@ -2975,6 +3053,11 @@ you update your ports collection, before attempting any port upgrades.
 
 	portupgrade -f `pkg shlib -qR libperl.so.5.20`
 
+	  If, for some reason, this command fails at one point, it is safe to
+	  run it again, it will not rebuild what it already rebuilt, as the
+	  ports that have been rebuilt no longer depend on libperl.so.5.20 but
+	  on libperl.so.5.24.
+
   Portmaster users:
 	portmaster -o lang/perl5.24 lang/perl5.20
 
@@ -2985,6 +3068,11 @@ you update your ports collection, before attempting any port upgrades.
 	  can do so with:
 
 	portmaster -f `pkg shlib -qR libperl.so.5.20`
+
+	  If, for some reason, this command fails at one point, it is safe to
+	  run it again, it will not rebuild what it already rebuilt, as the
+	  ports that have been rebuilt no longer depend on libperl.so.5.20 but
+	  on libperl.so.5.24.
 
 20161102:
   AFFECTS: users of security/acme-client

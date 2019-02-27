@@ -40,6 +40,7 @@
     SUBDIR += centreon-clib
     SUBDIR += check_ipmi_sensor
     SUBDIR += check_logfiles
+    SUBDIR += check_mk_agent
     SUBDIR += check_multi
     SUBDIR += check_mysql_health
     SUBDIR += check_ssl_cert
@@ -82,9 +83,6 @@
     SUBDIR += gsnmp
     SUBDIR += guifi-snpservices
     SUBDIR += hastmon
-    SUBDIR += icinga
-    SUBDIR += icinga-classicweb
-    SUBDIR += icinga-core
     SUBDIR += icinga2
     SUBDIR += icingaweb2
     SUBDIR += icingaweb2-module-businessprocess
@@ -97,7 +95,6 @@
     SUBDIR += icingaweb2-module-graphite
     SUBDIR += icingaweb2-module-map
     SUBDIR += icingaweb2-module-vsphere
-    SUBDIR += icli
     SUBDIR += icmpmonitor
     SUBDIR += icmpquery
     SUBDIR += iftop
@@ -207,7 +204,9 @@
     SUBDIR += nsca27
     SUBDIR += nsca27-client
     SUBDIR += nstat
+    SUBDIR += nsd_exporter
     SUBDIR += nstreams
+    SUBDIR += nvidia_gpu_prometheus_exporter
     SUBDIR += observium
     SUBDIR += ocsinventory-agent
     SUBDIR += ocsinventory-ocsreports
@@ -294,7 +293,6 @@
     SUBDIR += pktstat
     SUBDIR += pmacct
     SUBDIR += pnp
-    SUBDIR += pnp-icinga
     SUBDIR += pnp-icinga2
     SUBDIR += portmon
     SUBDIR += prometheus-collectd-exporter
@@ -320,10 +318,10 @@
     SUBDIR += py-pynsca
     SUBDIR += py-pynxos
     SUBDIR += py-pysmi
+    SUBDIR += py-pysnmp
+    SUBDIR += py-pysnmp-apps
+    SUBDIR += py-pysnmp-mibs
     SUBDIR += py-pyzabbix
-    SUBDIR += py-snmp4
-    SUBDIR += py-snmp4-apps
-    SUBDIR += py-snmp4-mibs
     SUBDIR += py-snmp_passpersist
     SUBDIR += py-yapsnmp
     SUBDIR += qkismet

@@ -92,6 +92,7 @@
     SUBDIR += gnome-mplayer
     SUBDIR += gnome-mpv
     SUBDIR += gnome-subtitles
+    SUBDIR += gnome-twitch
     SUBDIR += gpac-libgpac
     SUBDIR += gpac-mp4box
     SUBDIR += gpodder
@@ -354,7 +355,6 @@
     SUBDIR += py-soco
     SUBDIR += py-subliminal
     SUBDIR += py-tvnamer
-    SUBDIR += pyjama
     SUBDIR += pymp
     SUBDIR += qmmp
     SUBDIR += qmmp-plugin-pack
@@ -400,6 +400,9 @@
     SUBDIR += subtitleoffsetmodifier
     SUBDIR += subtitleripper
     SUBDIR += subtools
+    SUBDIR += svt-av1
+    SUBDIR += svt-hevc
+    SUBDIR += svt-vp9
     SUBDIR += swfdec-gnome
     SUBDIR += syncplay
     SUBDIR += szap-s2

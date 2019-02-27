@@ -4,6 +4,7 @@
     COMMENT = Shells
 
     SUBDIR += 44bsd-csh
+    SUBDIR += ammonite
     SUBDIR += bash
     SUBDIR += bash-completion
     SUBDIR += bash-static
@@ -51,6 +52,7 @@
     SUBDIR += xonsh
     SUBDIR += zsh
     SUBDIR += zsh-antigen
+    SUBDIR += zsh-completions
     SUBDIR += zsh-navigation-tools
 
 .include <bsd.port.subdir.mk>

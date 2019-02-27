@@ -38,7 +38,7 @@
     SUBDIR += emacs
     SUBDIR += emacs-devel
     SUBDIR += encryptpad
-    SUBDIR += featherpad 
+    SUBDIR += featherpad
     SUBDIR += fileobj
     SUBDIR += flim
     SUBDIR += focuswriter
@@ -207,6 +207,7 @@
     SUBDIR += p5-Proc-InvokeEditor
     SUBDIR += p5-Vimana
     SUBDIR += paredit-mode.el
+    SUBDIR += parinfer-rust
     SUBDIR += pdfedit
     SUBDIR += pico-alpine
     SUBDIR += picpas
@@ -250,6 +251,7 @@
     SUBDIR += web-mode
     SUBDIR += with-editor
     SUBDIR += wordgrinder
+    SUBDIR += wxhexeditor
     SUBDIR += xcoral
     SUBDIR += xed
     SUBDIR += xi-core

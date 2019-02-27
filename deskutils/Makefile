@@ -52,7 +52,6 @@
     SUBDIR += flameshot
     SUBDIR += freemind
     SUBDIR += freeplane
-    SUBDIR += fusenshi
     SUBDIR += ganttproject
     SUBDIR += ganyremote
     SUBDIR += gbirthday
@@ -233,6 +232,7 @@
     SUBDIR += sugarcrm
     SUBDIR += synapse
     SUBDIR += syncthing-gtk
+    SUBDIR += sysctlview
     SUBDIR += systempreferences
     SUBDIR += taskcoach
     SUBDIR += taskd
