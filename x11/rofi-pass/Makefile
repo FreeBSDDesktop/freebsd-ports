@@ -2,6 +2,7 @@
 
 PORTNAME=	rofi-pass
 DISTVERSION=	2.0.2
+PORTREVISION=	2
 CATEGORIES=	x11
 
 MAINTAINER=	alex@xanderio.de
@@ -10,9 +11,7 @@ COMMENT=	Rofi frontend for pass
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-xRUN_DEPENDS=	bash:shells/bash \
-		gawk:lang/gawk \
-		${LOCALBASE}/bin/grep:textproc/gnugrep \
+RUN_DEPENDS=	bash:shells/bash \
 		pass:sysutils/password-store \
 		pwgen:sysutils/pwgen \
 		qrencode:graphics/libqrencode \
