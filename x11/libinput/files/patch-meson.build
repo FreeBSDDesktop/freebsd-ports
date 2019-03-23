@@ -1,6 +1,6 @@
---- meson.build.orig	2019-01-21 01:28:48 UTC
+--- meson.build.orig	2019-03-21 05:35:12 UTC
 +++ meson.build
-@@ -145,6 +145,8 @@ endif
+@@ -143,6 +143,8 @@ endif
  
  ############ udev bits ############
  
@@ -9,21 +9,12 @@
  executable('libinput-device-group',
  	   'udev/libinput-device-group.c',
  	   dependencies : [dep_udev, dep_libwacom],
-@@ -182,6 +184,8 @@ litest_model_quirks_file = configure_file(input : 'ude
+@@ -179,6 +181,8 @@ litest_model_quirks_file = configure_file(input : 'ude
+ 					  output : '90-libinput-model-quirks-litest.rules',
  					  install : false,
  					  configuration : litest_udev_rules_config)
- 
-+endif
 +
++endif
+ 
  ############ libepoll-shim (BSD) ############
  
- if cc.has_header_symbol('sys/epoll.h', 'epoll_create1', prefix : prefix)
-@@ -634,7 +638,7 @@ executable('test-build-std-gnuc90',
- 	   'test/build-pedantic.c',
- 	   dependencies : [dep_udev],
- 	   include_directories : [includes_src, includes_include],
--	   c_args : ['-std=gnu90', '-Werror'],
-+	   c_args : ['-std=gnu89', '-Werror'],
- 	   install : false)
- # test for linking with the minimal linker flags
- executable('test-build-linker',
