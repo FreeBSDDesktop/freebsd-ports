@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	wine
-DISTVERSION=	4.0
+DISTVERSION=	4.4
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
-		http://mirrors.ibiblio.org/wine/source/4.0/
+		http://mirrors.ibiblio.org/wine/source/4.x/
 PKGNAMESUFFIX?=	-devel
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
@@ -21,7 +21,8 @@ ONLY_FOR_ARCHS=	amd64 i386
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex \
 		prelink:sysutils/prelink
-LIB_DEPENDS=	libxml2.so:textproc/libxml2
+LIB_DEPENDS=	libFAudio.so:audio/faudio \
+		libxml2.so:textproc/libxml2
 
 USES=		bison desktop-file-utils gmake localbase shebangfix tar:xz
 

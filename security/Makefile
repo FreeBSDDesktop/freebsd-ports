@@ -1,4 +1,5 @@
 # $FreeBSD$
+PORTREVISION=	1
 #
 
     COMMENT = Security tools
@@ -206,7 +207,6 @@
     SUBDIR += gtkpasman
     SUBDIR += gwee
     SUBDIR += hackbot
-    SUBDIR += hamachi
     SUBDIR += hardening-check
     SUBDIR += hashcat
     SUBDIR += hashcat-legacy
@@ -215,6 +215,7 @@
     SUBDIR += hitch
     SUBDIR += hlfl
     SUBDIR += hmap
+    SUBDIR += hockeypuck
     SUBDIR += honeybadger
     SUBDIR += honggfuzz
     SUBDIR += hotssh
@@ -290,14 +291,12 @@
     SUBDIR += john
     SUBDIR += kbfs
     SUBDIR += kbfsd
-    SUBDIR += kc
     SUBDIR += kc24
     SUBDIR += kdbx-viewer
     SUBDIR += kedpm
     SUBDIR += keepass
     SUBDIR += keepass-plugin-keepassrpc
     SUBDIR += keepassx-devel
-    SUBDIR += keepassx2
     SUBDIR += keepassxc
     SUBDIR += keybase
     SUBDIR += keychain
@@ -312,7 +311,6 @@
     SUBDIR += knocker
     SUBDIR += kpcli
     SUBDIR += kpkpass
-    SUBDIR += kqoauth
     SUBDIR += kr
     SUBDIR += krb5
     SUBDIR += krb5-115
@@ -335,6 +333,7 @@
     SUBDIR += libcryptui
     SUBDIR += libdecaf
     SUBDIR += libecc
+    SUBDIR += libfido2
     SUBDIR += libfprint
     SUBDIR += libgcrypt
     SUBDIR += libgnome-keyring
@@ -417,6 +416,7 @@
     SUBDIR += mhash
     SUBDIR += mindterm-binary
     SUBDIR += minisign
+    SUBDIR += mkp224o
     SUBDIR += modsecurity3
     SUBDIR += monkeysphere
     SUBDIR += morphis
@@ -856,7 +856,6 @@
     SUBDIR += pinentry-fltk
     SUBDIR += pinentry-gnome3
     SUBDIR += pinentry-gtk2
-    SUBDIR += pinentry-qt4
     SUBDIR += pinentry-qt5
     SUBDIR += pinentry-tty
     SUBDIR += pixiewps
@@ -926,11 +925,13 @@
     SUBDIR += py-certbot-nginx
     SUBDIR += py-certifi
     SUBDIR += py-certstream
+    SUBDIR += py-ckcc-protocol
     SUBDIR += py-cpe
     SUBDIR += py-cracklib
     SUBDIR += py-cryptkit
     SUBDIR += py-cryptlib_py
     SUBDIR += py-cryptography
+    SUBDIR += py-cryptography-vectors
     SUBDIR += py-cybox
     SUBDIR += py-dfdatetime
     SUBDIR += py-dfvfs
@@ -959,6 +960,7 @@
     SUBDIR += py-htpasswd
     SUBDIR += py-itsdangerous
     SUBDIR += py-josepy
+    SUBDIR += py-keepkey
     SUBDIR += py-kerberos
     SUBDIR += py-keyczar
     SUBDIR += py-keyring
@@ -982,6 +984,7 @@
     SUBDIR += py-ospd
     SUBDIR += py-paramiko
     SUBDIR += py-paramiko1
+    SUBDIR += py-pass-audit
     SUBDIR += py-passlib
     SUBDIR += py-pbkdf2
     SUBDIR += py-pgpdump
@@ -1042,6 +1045,7 @@
     SUBDIR += py-stix
     SUBDIR += py-stix2
     SUBDIR += py-stix2-patterns
+    SUBDIR += py-taxii2-client
     SUBDIR += py-tlslite
     SUBDIR += py-trezor
     SUBDIR += py-trustedpickle
@@ -1103,6 +1107,7 @@
     SUBDIR += rifiuti2
     SUBDIR += rkhunter
     SUBDIR += rndpassw
+    SUBDIR += ruby-bitwarden
     SUBDIR += ruby-camellia
     SUBDIR += rubygem-aes_key_wrap
     SUBDIR += rubygem-airbrussh
@@ -1198,6 +1203,7 @@
     SUBDIR += rubygem-signet
     SUBDIR += rubygem-six
     SUBDIR += rubygem-sshkey
+    SUBDIR += rubygem-sshkey1
     SUBDIR += rubygem-sshkit
     SUBDIR += rubygem-timfel-krb5
     SUBDIR += rubygem-twitter_oauth
@@ -1222,7 +1228,6 @@
     SUBDIR += sectok
     SUBDIR += secure_delete
     SUBDIR += setaudit
-    SUBDIR += sguil
     SUBDIR += sha
     SUBDIR += sha1collisiondetection
     SUBDIR += sha2wordlist
@@ -1253,6 +1258,7 @@
     SUBDIR += snuffleupagus
     SUBDIR += softether
     SUBDIR += softether-devel
+    SUBDIR += softether5
     SUBDIR += softhsm
     SUBDIR += softhsm2
     SUBDIR += sops
@@ -1270,6 +1276,8 @@
     SUBDIR += sshguard
     SUBDIR += sshpass
     SUBDIR += ssl-admin
+    SUBDIR += ssllabs-scan
+    SUBDIR += sslproxy
     SUBDIR += sslscan
     SUBDIR += sslsniffer
     SUBDIR += sslsplit
@@ -1305,11 +1313,9 @@
     SUBDIR += titus
     SUBDIR += tls-check
     SUBDIR += tlswrap
-    SUBDIR += tmux-cssh
     SUBDIR += tor
     SUBDIR += tor-devel
     SUBDIR += tpm-tools
-    SUBDIR += tpmmanager
     SUBDIR += trezord
     SUBDIR += trinokiller
     SUBDIR += tripwire
@@ -1357,7 +1363,6 @@
     SUBDIR += yubico-piv-tool
     SUBDIR += yubikey-manager-qt
     SUBDIR += yubikey-personalization-gui
-    SUBDIR += yubikey-piv-manager
     SUBDIR += yubioath-desktop
     SUBDIR += zebedee
     SUBDIR += zenmap

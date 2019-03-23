@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	gitaly
-DISTVERSION=	1.7.1
+DISTVERSION=	1.20.0
 CATEGORIES=	devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -11,8 +11,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # define dependencies that are required for build and run under MY_DEPENDS
-MY_DEPENDS=	git>=2.17:devel/git \
-		rubygem-i18n>=0:devel/rubygem-i18n \
+MY_DEPENDS=	git>=2.18:devel/git \
 		rubygem-bundler>=1.16.5:sysutils/rubygem-bundler \
 		rubygem-rugged>=0.27.4:devel/rubygem-rugged \
 		rubygem-github-linguist>=6.1:textproc/rubygem-github-linguist \
@@ -25,10 +24,11 @@ MY_DEPENDS=	git>=2.17:devel/git \
 		rubygem-grpc>=1.15.0:net/rubygem-grpc \
 		rubygem-sentry-raven>=2.7.2:devel/rubygem-sentry-raven \
 		rubygem-faraday>=0.12:www/rubygem-faraday \
+		rubygem-rbtrace>0:devel/rubygem-rbtrace \
 		rubygem-licensee8>=8.9.0:devel/rubygem-licensee8 \
 		rubygem-google-protobuf>=3.6:devel/rubygem-google-protobuf
 
-BUILD_DEPENDS=	go>=1.9:lang/go \
+BUILD_DEPENDS=	go>=1.10:lang/go \
 		gem:devel/ruby-gems \
 		${MY_DEPENDS}
 
@@ -41,7 +41,7 @@ USE_RUBY=	yes
 USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 # Find this here: https://gitlab.com/gitlab-org/gitaly/tags
-GL_COMMIT=	8a89c4a6e20ff92193cdabd1bb9964b8e817d6b2
+GL_COMMIT=	b9c89add404cc106906f9e9ce5cec58224ae40bc
 
 post-patch:
 	${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|" ${WRKSRC}/config.toml.example

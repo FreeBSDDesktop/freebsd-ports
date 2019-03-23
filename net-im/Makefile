@@ -1,4 +1,5 @@
 # $FreeBSD$
+PORTREVISION=	1
 #
 
     COMMENT = Instant messaging
@@ -12,10 +13,10 @@
     SUBDIR += corebird
     SUBDIR += cutegram
     SUBDIR += diligent
+    SUBDIR += dino
     SUBDIR += echat
     SUBDIR += ejabberd
     SUBDIR += ekiga
-    SUBDIR += emesene
     SUBDIR += empathy
     SUBDIR += farsight2
     SUBDIR += farstream
@@ -53,17 +54,16 @@
     SUBDIR += ktp-text-ui
     SUBDIR += libaccounts-glib
     SUBDIR += libaccounts-qt5
-    SUBDIR += libjreen
     SUBDIR += libmesode
     SUBDIR += libnice
     SUBDIR += libnice-gst010
     SUBDIR += libnice-gst1
     SUBDIR += libpurple
+    SUBDIR += libqmatrixclient
     SUBDIR += libqtelegram-ae
     SUBDIR += libsignon-glib
     SUBDIR += libstrophe
     SUBDIR += libtelepathy
-    SUBDIR += libyahoo2
     SUBDIR += licq
     SUBDIR += licq-icq
     SUBDIR += licq-jabber
@@ -96,8 +96,6 @@
     SUBDIR += p5-Net-XMPP2
     SUBDIR += p5-Protocol-XMPP
     SUBDIR += p5-SOAP-Transport-JABBER
-    SUBDIR += papyon
-    SUBDIR += pebrot
     SUBDIR += pecl-stomp2
     SUBDIR += pidgin
     SUBDIR += pidgin-birthday-reminder
@@ -114,7 +112,6 @@
     SUBDIR += pidgin-privacy-please
     SUBDIR += pidgin-rocketchat
     SUBDIR += pidgin-sipe
-    SUBDIR += pidgin-skype
     SUBDIR += pidgin-skypeweb
     SUBDIR += pidgin-twitter
     SUBDIR += pidgin-window_merge
@@ -124,7 +121,6 @@
     SUBDIR += prosody-modules
     SUBDIR += proxy65
     SUBDIR += psi
-    SUBDIR += psimedia
     SUBDIR += purple-discord
     SUBDIR += purple-facebook
     SUBDIR += purple-hangouts
@@ -146,12 +142,10 @@
     SUBDIR += py-unmessage
     SUBDIR += py-xmpppy
     SUBDIR += py-xmpppy-irc
-    SUBDIR += py-xmpppy-yahoo
     SUBDIR += qTox
     SUBDIR += qq
-    SUBDIR += qxmpp
+    SUBDIR += quaternion
     SUBDIR += qxmpp-qt5
-    SUBDIR += ramblercontacts
     SUBDIR += ricochet
     SUBDIR += rubygem-discordrb-webhooks-blackst0ne
     SUBDIR += rubygem-hipchat
@@ -162,10 +156,9 @@
     SUBDIR += sayaka
     SUBDIR += scudcloud
     SUBDIR += sendxmpp
-    SUBDIR += skype
-    SUBDIR += skype-devel
     SUBDIR += skype4
     SUBDIR += slack-term
+    SUBDIR += spectral
     SUBDIR += ssh-chat
     SUBDIR += talkatu
     SUBDIR += teamwords
@@ -174,7 +167,6 @@
     SUBDIR += telegram-purple
     SUBDIR += telegramqml
     SUBDIR += telepathy-accounts-signon
-    SUBDIR += telepathy-butterfly
     SUBDIR += telepathy-farsight
     SUBDIR += telepathy-farstream
     SUBDIR += telepathy-gabble
@@ -182,7 +174,6 @@
     SUBDIR += telepathy-haze
     SUBDIR += telepathy-idle
     SUBDIR += telepathy-logger
-    SUBDIR += telepathy-logger-qt4
     SUBDIR += telepathy-logger-qt5
     SUBDIR += telepathy-mission-control
     SUBDIR += telepathy-python
@@ -197,11 +188,9 @@
     SUBDIR += toxbot
     SUBDIR += toxic
     SUBDIR += toxins
-    SUBDIR += turpial
     SUBDIR += twirssi
     SUBDIR += twitmail
     SUBDIR += uTox
-    SUBDIR += vacuum-im
     SUBDIR += vqcc-gtk
     SUBDIR += xmpp-client
     SUBDIR += yoono

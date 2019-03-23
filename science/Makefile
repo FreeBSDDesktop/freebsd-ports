@@ -6,7 +6,6 @@
     SUBDIR += 2d-rewriter
     SUBDIR += ALPSCore
     SUBDIR += InsightToolkit
-    SUBDIR += MOOSE-neural-simulator
     SUBDIR += PETSc
     SUBDIR += R-cran-AMORE
     SUBDIR += R-cran-DCluster
@@ -29,7 +28,6 @@
     SUBDIR += antioch
     SUBDIR += atom
     SUBDIR += atompaw
-    SUBDIR += avogadro
     SUBDIR += avogadro2
     SUBDIR += avogadrolibs
     SUBDIR += bagel
@@ -61,12 +59,12 @@
     SUBDIR += datawarrior
     SUBDIR += dcl
     SUBDIR += devisor
-    SUBDIR += dft_tools
     SUBDIR += dftbplus
     SUBDIR += dkh
     SUBDIR += dlib-cpp
     SUBDIR += dlpoly-classic
     SUBDIR += drawxtl
+    SUBDIR += dvc
     SUBDIR += eccodes
     SUBDIR += elk
     SUBDIR += epte
@@ -107,6 +105,7 @@
     SUBDIR += iboview
     SUBDIR += isaac-cfd
     SUBDIR += jdftx
+    SUBDIR += jmol
     SUBDIR += jstrack
     SUBDIR += kalzium
     SUBDIR += kst2
@@ -150,9 +149,10 @@
     SUBDIR += metaphysicl
     SUBDIR += minc2
     SUBDIR += mmdb2
-    SUBDIR += mmtf
+    SUBDIR += mmtf-cpp
     SUBDIR += mol2ps
     SUBDIR += molgif
+    SUBDIR += molscript
     SUBDIR += molsketch
     SUBDIR += mpb
     SUBDIR += mpqc
@@ -170,7 +170,7 @@
     SUBDIR += openkim
     SUBDIR += openmx
     SUBDIR += opensim-core
-    SUBDIR += openstructure
+    SUBDIR += opsin
     SUBDIR += p5-Algorithm-SVMLight
     SUBDIR += p5-Chemistry-3DBuilder
     SUBDIR += p5-Chemistry-Bond-Find
@@ -226,6 +226,7 @@
     SUBDIR += py-chempy
     SUBDIR += py-coards
     SUBDIR += py-dlib
+    SUBDIR += py-geometer
     SUBDIR += py-gpaw
     SUBDIR += py-gsd
     SUBDIR += py-h5py
@@ -238,6 +239,7 @@
     SUBDIR += py-molmod
     SUBDIR += py-netCDF4
     SUBDIR += py-obspy
+    SUBDIR += py-oddt
     SUBDIR += py-openpiv
     SUBDIR += py-paida
     SUBDIR += py-paramz
@@ -272,7 +274,6 @@
     SUBDIR += qbox
     SUBDIR += qcl
     SUBDIR += qmcpack
-    SUBDIR += qtresistors
     SUBDIR += quantum-espresso
     SUBDIR += quantum-espresso-pseudopotentials
     SUBDIR += qwalk
@@ -305,7 +306,6 @@
     SUBDIR += teem
     SUBDIR += tfel
     SUBDIR += tinker
-    SUBDIR += triqs
     SUBDIR += udunits
     SUBDIR += v_sim
     SUBDIR += vipster

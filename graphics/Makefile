@@ -54,17 +54,14 @@
     SUBDIR += apngdis
     SUBDIR += appleseed
     SUBDIR += apvlv
-    SUBDIR += aqsis
     SUBDIR += argyllcms
     SUBDIR += asciio
     SUBDIR += aseprite
     SUBDIR += atril
     SUBDIR += atril-lite
     SUBDIR += autopano-sift-c
-    SUBDIR += autoq3d
     SUBDIR += autotrace
     SUBDIR += aview
-    SUBDIR += ayam
     SUBDIR += azpainter
     SUBDIR += backfract
     SUBDIR += barbecue
@@ -76,8 +73,8 @@
     SUBDIR += bmp2html
     SUBDIR += box
     SUBDIR += boxer
+    SUBDIR += bsd-plotutils
     SUBDIR += bugle
-    SUBDIR += burplex
     SUBDIR += c-a-i-r
     SUBDIR += cadubi
     SUBDIR += caffe
@@ -96,7 +93,6 @@
     SUBDIR += cinepaint
     SUBDIR += cloudcompare
     SUBDIR += clutter
-    SUBDIR += clutter-gtk
     SUBDIR += clutter-gtk3
     SUBDIR += cluttermm
     SUBDIR += cogl
@@ -114,7 +110,6 @@
     SUBDIR += cthumb
     SUBDIR += curator
     SUBDIR += cuttlefish
-    SUBDIR += darknock
     SUBDIR += darktable
     SUBDIR += dataplot
     SUBDIR += dc20pack
@@ -139,7 +134,6 @@
     SUBDIR += dilay
     SUBDIR += ditaa
     SUBDIR += djview4
-    SUBDIR += djview4-qt4
     SUBDIR += djvulibre
     SUBDIR += djvusmooth
     SUBDIR += dmtx-utils
@@ -153,7 +147,6 @@
     SUBDIR += dspdfviewer
     SUBDIR += duhdraw
     SUBDIR += dynamechs
-    SUBDIR += easypaint
     SUBDIR += edje_viewer
     SUBDIR += electricsheep
     SUBDIR += electrix
@@ -164,7 +157,6 @@
     SUBDIR += eog
     SUBDIR += eog-plugins
     SUBDIR += eom
-    SUBDIR += eos-movrec
     SUBDIR += epdfview
     SUBDIR += ephoto
     SUBDIR += epix
@@ -266,13 +258,11 @@
     SUBDIR += giram
     SUBDIR += gkrellkam2
     SUBDIR += gle
-    SUBDIR += gle-graphics
     SUBDIR += glee
     SUBDIR += glew
     SUBDIR += glexcess
     SUBDIR += glfw
     SUBDIR += glfw2
-    SUBDIR += glitz
     SUBDIR += gliv
     SUBDIR += glosm
     SUBDIR += glpng
@@ -358,7 +348,6 @@
     SUBDIR += icc-profiles-adobe-cs4
     SUBDIR += icc-profiles-basiccolor
     SUBDIR += icc-profiles-openicc
-    SUBDIR += iccexamin
     SUBDIR += iccxml
     SUBDIR += icon-slicer
     SUBDIR += icontact
@@ -491,6 +480,7 @@
     SUBDIR += libpcd
     SUBDIR += libpgf
     SUBDIR += libpillowfight
+    SUBDIR += libplacebo
     SUBDIR += libpotrace
     SUBDIR += libprojectm
     SUBDIR += libpuzzle
@@ -538,14 +528,16 @@
     SUBDIR += linux-c7-sdl_ttf
     SUBDIR += linux-c7-tiff
     SUBDIR += llpp
-    SUBDIR += lprof-devel
     SUBDIR += lua-gd
-    SUBDIR += luminance
     SUBDIR += luminance-qt5
     SUBDIR += luxrender
     SUBDIR += luxrender14
     SUBDIR += lximage-qt
     SUBDIR += lximageqt-l10n
+    SUBDIR += magnum
+    SUBDIR += magnum-examples
+    SUBDIR += magnum-extras
+    SUBDIR += magnum-plugins
     SUBDIR += mahotas
     SUBDIR += maim
     SUBDIR += makehuman
@@ -558,10 +550,10 @@
     SUBDIR += mesa-demos
     SUBDIR += mesa-dri
     SUBDIR += mesa-libs
-    SUBDIR += meshviewer
     SUBDIR += metacam
     SUBDIR += metapixel
     SUBDIR += mhgui
+    SUBDIR += milton
     SUBDIR += minder
     SUBDIR += ming
     SUBDIR += mirage
@@ -576,7 +568,6 @@
     SUBDIR += mypaint
     SUBDIR += mypaint-brushes
     SUBDIR += nathive
-    SUBDIR += natron
     SUBDIR += netpbm
     SUBDIR += nip2
     SUBDIR += nomacs
@@ -589,6 +580,7 @@
     SUBDIR += ocrad
     SUBDIR += ocre
     SUBDIR += ogre3d
+    SUBDIR += oidn
     SUBDIR += okular
     SUBDIR += open3d
     SUBDIR += opencollada
@@ -601,7 +593,6 @@
     SUBDIR += opendx
     SUBDIR += openexr
     SUBDIR += openfx-arena
-    SUBDIR += openfx-io
     SUBDIR += openfx-misc
     SUBDIR += opengl-man
     SUBDIR += opengv
@@ -620,6 +611,7 @@
     SUBDIR += osg
     SUBDIR += osg-devel
     SUBDIR += osgearth
+    SUBDIR += ossim
     SUBDIR += oyranos
     SUBDIR += p5-Acme-Steganography-Image-Png
     SUBDIR += p5-Algorithm-Line-Bresenham
@@ -741,9 +733,9 @@
     SUBDIR += pear-Image_GraphViz
     SUBDIR += pear-Image_Transform
     SUBDIR += pecl-imagick
+    SUBDIR += pecl-imagick-im7
     SUBDIR += pecl-qrencode
     SUBDIR += pecomato
-    SUBDIR += pencil
     SUBDIR += pencil2d
     SUBDIR += peps
     SUBDIR += perceptualdiff
@@ -802,7 +794,6 @@
     SUBDIR += pqiv
     SUBDIR += preview
     SUBDIR += price
-    SUBDIR += prison
     SUBDIR += processing
     SUBDIR += proj
     SUBDIR += pstoedit
@@ -834,6 +825,7 @@
     SUBDIR += py-gimp
     SUBDIR += py-gizeh
     SUBDIR += py-glewpy
+    SUBDIR += py-glfw
     SUBDIR += py-goocanvas
     SUBDIR += py-gphoto2
     SUBDIR += py-graph-core
@@ -841,9 +833,12 @@
     SUBDIR += py-graphy
     SUBDIR += py-gvgen
     SUBDIR += py-imageio
+    SUBDIR += py-imageio-ffmpeg
+    SUBDIR += py-imageio24
     SUBDIR += py-imagesize
     SUBDIR += py-imgurpython
     SUBDIR += py-leather
+    SUBDIR += py-mapclassify
     SUBDIR += py-mayavi
     SUBDIR += py-mcomix
     SUBDIR += py-ming
@@ -857,7 +852,7 @@
     SUBDIR += py-paint
     SUBDIR += py-photocollage
     SUBDIR += py-pillow
-    SUBDIR += py-pivy
+    SUBDIR += py-pivy-devel
     SUBDIR += py-plotly
     SUBDIR += py-png
     SUBDIR += py-poppler
@@ -876,7 +871,6 @@
     SUBDIR += py-pyproj
     SUBDIR += py-pyqtgraph
     SUBDIR += py-python-poppler-qt5
-    SUBDIR += py-qt4-svg
     SUBDIR += py-qt5-svg
     SUBDIR += py-sane
     SUBDIR += py-scikit-image
@@ -897,13 +891,9 @@
     SUBDIR += pysvg
     SUBDIR += qcomicbook
     SUBDIR += qgis
+    SUBDIR += qgis-ltr
     SUBDIR += qiv
     SUBDIR += qslim
-    SUBDIR += qt4-iconengines
-    SUBDIR += qt4-imageformats
-    SUBDIR += qt4-opengl
-    SUBDIR += qt4-pixeltool
-    SUBDIR += qt4-svg
     SUBDIR += qt5-3d
     SUBDIR += qt5-graphicaleffects
     SUBDIR += qt5-imageformats
@@ -917,7 +907,6 @@
     SUBDIR += quat-gui
     SUBDIR += quesa
     SUBDIR += quesoglc
-    SUBDIR += qxv
     SUBDIR += radiance
     SUBDIR += radius-engine
     SUBDIR += raster3d
@@ -975,7 +964,6 @@
     SUBDIR += sane-epkowa
     SUBDIR += sane-frontends
     SUBDIR += scale2x
-    SUBDIR += scantailor
     SUBDIR += scr2png
     SUBDIR += scrot
     SUBDIR += scwm-icons
@@ -987,11 +975,11 @@
     SUBDIR += sdl_ttf
     SUBDIR += sdump
     SUBDIR += seejpeg
-    SUBDIR += seexpr
     SUBDIR += sekrit-twc-zimg
     SUBDIR += seom
     SUBDIR += separate
     SUBDIR += seq2gif
+    SUBDIR += shaderc
     SUBDIR += shared-color-profiles
     SUBDIR += sharpconstruct
     SUBDIR += shotwell
@@ -1002,14 +990,12 @@
     SUBDIR += sk1
     SUBDIR += sk1libs
     SUBDIR += skanlite
-    SUBDIR += smillaenlarger
     SUBDIR += spectacle
     SUBDIR += springgraph
     SUBDIR += squish
     SUBDIR += ssocr
     SUBDIR += sswf
     SUBDIR += stamp
-    SUBDIR += structuresynth
     SUBDIR += svg2pdf
     SUBDIR += svg2png
     SUBDIR += svgalib
@@ -1085,6 +1071,7 @@
     SUBDIR += xnview
     SUBDIR += xoris
     SUBDIR += xournal
+    SUBDIR += xournalpp
     SUBDIR += xpaint
     SUBDIR += xpdf
     SUBDIR += xpdf3
@@ -1099,7 +1086,6 @@
     SUBDIR += xwpick
     SUBDIR += xzgv
     SUBDIR += yafaray
-    SUBDIR += yagf
     SUBDIR += yed
     SUBDIR += yukon
     SUBDIR += zathura

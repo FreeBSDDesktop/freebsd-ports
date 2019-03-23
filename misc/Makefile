@@ -29,6 +29,7 @@
     SUBDIR += birthday
     SUBDIR += bogosort
     SUBDIR += bottlerocket
+    SUBDIR += box2d
     SUBDIR += boxes
     SUBDIR += brs
     SUBDIR += bsod
@@ -66,6 +67,7 @@
     SUBDIR += dahdi
     SUBDIR += dahdi-kmod
     SUBDIR += dahdi-kmod26
+    SUBDIR += dartsim
     SUBDIR += ddate
     SUBDIR += deco
     SUBDIR += dejagnu
@@ -216,6 +218,7 @@
     SUBDIR += lesspipe
     SUBDIR += libeatmydata
     SUBDIR += libemos
+    SUBDIR += libiio
     SUBDIR += libisocodes
     SUBDIR += libkeduvocdocument
     SUBDIR += liblxi
@@ -367,11 +370,13 @@
     SUBDIR += py-YABT
     SUBDIR += py-cinder
     SUBDIR += py-colorbrewer
+    SUBDIR += py-colored
     SUBDIR += py-crudini
     SUBDIR += py-emoji
     SUBDIR += py-fast-histogram
     SUBDIR += py-fuzzy
     SUBDIR += py-glance
+    SUBDIR += py-huepy
     SUBDIR += py-kartograph
     SUBDIR += py-molequeue
     SUBDIR += py-orange3-associate
@@ -391,8 +396,6 @@
     SUBDIR += py-pyprind
     SUBDIR += py-python-geohash
     SUBDIR += py-python-utils
-    SUBDIR += py-qt4-demo
-    SUBDIR += py-qt4-doc
     SUBDIR += py-qt5-demo
     SUBDIR += py-scikit-fusion
     SUBDIR += py-serverfiles
@@ -408,11 +411,6 @@
     SUBDIR += pyobd
     SUBDIR += qbrew
     SUBDIR += qlas
-    SUBDIR += qmetro
-    SUBDIR += qt4-doc
-    SUBDIR += qt4-l10n
-    SUBDIR += qt4-qtconfig
-    SUBDIR += qt4-qtdemo
     SUBDIR += qt5-doc
     SUBDIR += qt5-examples
     SUBDIR += qt5-l10n
@@ -441,7 +439,6 @@
     SUBDIR += rubygem-rabbit
     SUBDIR += rubygem-vpim
     SUBDIR += rump
-    SUBDIR += saaghar
     SUBDIR += sdformat
     SUBDIR += seabios
     SUBDIR += sent
@@ -457,6 +454,7 @@
     SUBDIR += smssend
     SUBDIR += snakemake
     SUBDIR += soapysdr
+    SUBDIR += soapysdr-rtlsdr
     SUBDIR += solarized
     SUBDIR += spamcalc
     SUBDIR += sshbuddy

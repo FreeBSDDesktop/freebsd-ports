@@ -8,6 +8,7 @@
     SUBDIR += afterstep-stable
     SUBDIR += amiwm
     SUBDIR += antiwm
+    SUBDIR += aphelia
     SUBDIR += awesome
     SUBDIR += awesome-vicious
     SUBDIR += bbkeys
@@ -32,7 +33,6 @@
     SUBDIR += e-module-cpu
     SUBDIR += e-module-deskshow
     SUBDIR += e-module-everything-places
-    SUBDIR += e-module-everything-websearch
     SUBDIR += e-module-mem
     SUBDIR += e-module-rmb
     SUBDIR += e-module-wlan
@@ -82,6 +82,7 @@
     SUBDIR += mcwm
     SUBDIR += metacity
     SUBDIR += muffin
+    SUBDIR += musca
     SUBDIR += mutter
     SUBDIR += nickleby
     SUBDIR += obapps
@@ -104,7 +105,6 @@
     SUBDIR += plasma5-kwin
     SUBDIR += plwm
     SUBDIR += pwm
-    SUBDIR += qlwm
     SUBDIR += qtile
     SUBDIR += ratmen
     SUBDIR += ratmenu

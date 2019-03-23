@@ -27,7 +27,6 @@
     SUBDIR += calcurse
     SUBDIR += calibre
     SUBDIR += cartotheque
-    SUBDIR += cdcat
     SUBDIR += charmtimetracker
     SUBDIR += chart
     SUBDIR += clipit
@@ -52,7 +51,6 @@
     SUBDIR += flameshot
     SUBDIR += freemind
     SUBDIR += freeplane
-    SUBDIR += fusenshi
     SUBDIR += ganttproject
     SUBDIR += ganyremote
     SUBDIR += gbirthday
@@ -140,7 +138,6 @@
     SUBDIR += korganizer
     SUBDIR += kruler
     SUBDIR += latte-dock
-    SUBDIR += launchy
     SUBDIR += libkdepim
     SUBDIR += libopensync-plugin-vformat-devel
     SUBDIR += ljcharm
@@ -212,10 +209,7 @@
     SUBDIR += pybookreader
     SUBDIR += pypanel
     SUBDIR += qlipper
-    SUBDIR += qorganizer
     SUBDIR += qownnotes
-    SUBDIR += qrfcview
-    SUBDIR += qtm
     SUBDIR += recoll
     SUBDIR += rednotebook
     SUBDIR += remind
@@ -233,6 +227,7 @@
     SUBDIR += sugarcrm
     SUBDIR += synapse
     SUBDIR += syncthing-gtk
+    SUBDIR += sysctlview
     SUBDIR += systempreferences
     SUBDIR += taskcoach
     SUBDIR += taskd
@@ -253,11 +248,9 @@
     SUBDIR += tpb
     SUBDIR += treeline
     SUBDIR += treesheets
-    SUBDIR += tuxcards
     SUBDIR += virt-manager
     SUBDIR += vit
     SUBDIR += vnc2flv
-    SUBDIR += vym
     SUBDIR += wammu
     SUBDIR += when
     SUBDIR += wmpinboard

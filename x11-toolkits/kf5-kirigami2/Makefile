@@ -3,7 +3,6 @@
 
 PORTNAME=	kirigami2
 PORTVERSION=	${KDE_FRAMEWORKS_VERSION}
-PORTREVISION=	1
 CATEGORIES=	x11-toolkits kde kde-frameworks
 
 MAINTAINER=	kde@FreeBSD.org
@@ -14,5 +13,8 @@ USE_KDE=	ecm kdeclarative
 USE_QT=		core dbus declarative gui linguisttools network \
 		quickcontrols2 svg testlib widgets \
 		buildtools_build qmake_build
+
+# Respin
+KDE_FRAMEWORKS_VERSION=	5.56.1
 
 .include <bsd.port.mk>
