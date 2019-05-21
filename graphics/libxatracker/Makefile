@@ -12,12 +12,17 @@ USE_XORG=	xorgproto
 .include <bsd.port.options.mk>
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"
 
-CONFIGURE_ARGS+=	--disable-dri --disable-egl --disable-gbm \
-			--disable-gles2 --disable-opengl --disable-glx \
-			--with-gallium-drivers= --with-platforms= \
-			--disable-shared-glapi
+CONFIGURE_ARGS+=	--disable-dri \
+			--disable-egl \
+			--disable-gbm \
+			--disable-gles2 \
+			--disable-glx \
+			--disable-opengl \
+			--disable-shared-glapi \
+			--with-gallium-drivers= \
+			--with-platforms=
 
-MESA_BUILD_WRKSRC=	src/util src/compiler
+MESA_BUILD_WRKSRC=	src/compiler src/util
 LDFLAGS_i386=		-Wl,-znotext
 
 CONFIGURE_ARGS+=	--enable-xa
