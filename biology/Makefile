@@ -33,6 +33,7 @@
     SUBDIR += fastahack
     SUBDIR += fastdnaml
     SUBDIR += fastool
+    SUBDIR += fastp
     SUBDIR += fastqc
     SUBDIR += fasttree
     SUBDIR += fastx-toolkit
@@ -41,12 +42,14 @@
     SUBDIR += freebayes
     SUBDIR += garlic
     SUBDIR += gatk
+    SUBDIR += gemma
     SUBDIR += gff2ps
     SUBDIR += gmap
     SUBDIR += gperiodic
     SUBDIR += graphlan
     SUBDIR += grappa
     SUBDIR += groopm
+    SUBDIR += hhsuite
     SUBDIR += hisat2
     SUBDIR += hmmer
     SUBDIR += htslib
@@ -69,6 +72,7 @@
     SUBDIR += minimap2
     SUBDIR += molden
     SUBDIR += mopac
+    SUBDIR += mothur
     SUBDIR += mrbayes
     SUBDIR += mummer
     SUBDIR += muscle
@@ -157,6 +161,7 @@
     SUBDIR += vcflib
     SUBDIR += vcftools
     SUBDIR += velvet
+    SUBDIR += vsearch
     SUBDIR += wise
 
 .include <bsd.port.subdir.mk>

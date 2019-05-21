@@ -10,7 +10,6 @@
     SUBDIR += aegisub
     SUBDIR += aom
     SUBDIR += aravis
-    SUBDIR += asdcplib
     SUBDIR += assimp
     SUBDIR += atomicparsley
     SUBDIR += audacious
@@ -146,6 +145,9 @@
     SUBDIR += gstreamer1-plugins-resindvd
     SUBDIR += gstreamer1-plugins-rtmp
     SUBDIR += gstreamer1-plugins-smoothstreaming
+    SUBDIR += gstreamer1-plugins-svt-av1
+    SUBDIR += gstreamer1-plugins-svt-hevc
+    SUBDIR += gstreamer1-plugins-svt-vp9
     SUBDIR += gstreamer1-plugins-theora
     SUBDIR += gstreamer1-plugins-ttml
     SUBDIR += gstreamer1-plugins-ugly
@@ -177,6 +179,7 @@
     SUBDIR += kissdx
     SUBDIR += kmplayer
     SUBDIR += kodi
+    SUBDIR += kodi-addon-inputstream.adaptive-devel
     SUBDIR += kodi-addon-peripheral-joystick
     SUBDIR += kodi-addon-pvr-hts
     SUBDIR += kodi-addon-pvr-iptvsimple
@@ -330,6 +333,7 @@
     SUBDIR += py-av
     SUBDIR += py-cec
     SUBDIR += py-enzyme
+    SUBDIR += py-ffmpeg-python
     SUBDIR += py-flvlib
     SUBDIR += py-gstreamer
     SUBDIR += py-gstreamer1
@@ -385,6 +389,7 @@
     SUBDIR += snappy
     SUBDIR += spigot
     SUBDIR += spook
+    SUBDIR += subsync
     SUBDIR += subtitlecomposer
     SUBDIR += subtitleeditor
     SUBDIR += subtitleoffsetmodifier
@@ -435,7 +440,6 @@
     SUBDIR += vdr-plugin-softhddevice
     SUBDIR += vdr-plugin-streamdev
     SUBDIR += vdr-plugin-ttxtsubs
-    SUBDIR += vdr-plugin-upnp
     SUBDIR += vdr-plugin-vdrmanager
     SUBDIR += vdr-plugin-vnsiserver
     SUBDIR += vdr-plugin-wirbelscan

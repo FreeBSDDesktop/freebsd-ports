@@ -37,6 +37,7 @@
     SUBDIR += cint
     SUBDIR += cjs
     SUBDIR += cling
+    SUBDIR += clips
     SUBDIR += clisp
     SUBDIR += clojure
     SUBDIR += clojure-mode.el
@@ -100,6 +101,7 @@
     SUBDIR += gawk
     SUBDIR += gcc
     SUBDIR += gcc-ecj45
+    SUBDIR += gcc10-devel
     SUBDIR += gcc48
     SUBDIR += gcc5
     SUBDIR += gcc6
@@ -129,6 +131,7 @@
     SUBDIR += gnustep-base
     SUBDIR += go
     SUBDIR += go14
+    SUBDIR += gomacro
     SUBDIR += gprolog
     SUBDIR += gravity
     SUBDIR += groovy
@@ -264,9 +267,9 @@
     SUBDIR += pbasic
     SUBDIR += pcc
     SUBDIR += perl5-devel
-    SUBDIR += perl5.24
     SUBDIR += perl5.26
     SUBDIR += perl5.28
+    SUBDIR += perl5.30
     SUBDIR += petite-chez
     SUBDIR += pfe
     SUBDIR += phantomjs
@@ -304,7 +307,6 @@
     SUBDIR += python35
     SUBDIR += python36
     SUBDIR += python37
-    SUBDIR += qore
     SUBDIR += qscheme
     SUBDIR += quack
     SUBDIR += racket
@@ -320,6 +322,7 @@
     SUBDIR += rubinius
     SUBDIR += ruby24
     SUBDIR += ruby25
+    SUBDIR += ruby26
     SUBDIR += runawk
     SUBDIR += rust
     SUBDIR += rust-nightly

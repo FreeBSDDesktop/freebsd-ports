@@ -75,6 +75,7 @@
     SUBDIR += R-cran-memisc
     SUBDIR += R-cran-minqa
     SUBDIR += R-cran-miscTools
+    SUBDIR += R-cran-mitools
     SUBDIR += R-cran-mvtnorm
     SUBDIR += R-cran-nloptr
     SUBDIR += R-cran-nnls
@@ -184,6 +185,7 @@
     SUBDIR += coq
     SUBDIR += crlibm
     SUBDIR += cryptominisat
+    SUBDIR += curv
     SUBDIR += cvc3
     SUBDIR += cvc4
     SUBDIR += dbcsr
@@ -259,7 +261,6 @@
     SUBDIR += gnuplot
     SUBDIR += gnuplot-lite
     SUBDIR += gnuplot-tex-extras
-    SUBDIR += goblin
     SUBDIR += gotoblas
     SUBDIR += grace
     SUBDIR += gracetmpl
@@ -271,31 +272,9 @@
     SUBDIR += gsl
     SUBDIR += hexcalc
     SUBDIR += hipmcl
+    SUBDIR += hmat-oss
     SUBDIR += hs-Agda
-    SUBDIR += hs-Agda-stdlib
-    SUBDIR += hs-NumInstances
-    SUBDIR += hs-adjunctions
-    SUBDIR += hs-categories
-    SUBDIR += hs-comonad
-    SUBDIR += hs-contravariant
-    SUBDIR += hs-data-lens
-    SUBDIR += hs-data-lens-template
-    SUBDIR += hs-dense-linear-algebra
-    SUBDIR += hs-distributive
-    SUBDIR += hs-erf
-    SUBDIR += hs-fixed
-    SUBDIR += hs-half
-    SUBDIR += hs-ieee754
-    SUBDIR += hs-integer-logarithms
-    SUBDIR += hs-kan-extensions
-    SUBDIR += hs-math-functions
-    SUBDIR += hs-mwc-random
-    SUBDIR += hs-pointed
-    SUBDIR += hs-probability
-    SUBDIR += hs-semigroupoids
     SUBDIR += hs-semigroups
-    SUBDIR += hs-statistics
-    SUBDIR += hs-vector-space
     SUBDIR += ignition-math
     SUBDIR += igraph
     SUBDIR += intervaltree
@@ -377,7 +356,6 @@
     SUBDIR += mlpack
     SUBDIR += moab
     SUBDIR += moo
-    SUBDIR += mosesdecoder
     SUBDIR += mpc
     SUBDIR += mpexpr
     SUBDIR += mpfr
@@ -497,6 +475,7 @@
     SUBDIR += openlibm
     SUBDIR += openmesh
     SUBDIR += opensolaris-libm
+    SUBDIR += optpp
     SUBDIR += orpie
     SUBDIR += osi
     SUBDIR += osqp
@@ -676,6 +655,7 @@
     SUBDIR += plplot-ada
     SUBDIR += polylib
     SUBDIR += primegen
+    SUBDIR += primesieve
     SUBDIR += primme
     SUBDIR += prng
     SUBDIR += proofgeneral
@@ -780,6 +760,7 @@
     SUBDIR += py-random2
     SUBDIR += py-rapi
     SUBDIR += py-roman
+    SUBDIR += py-rpy
     SUBDIR += py-rpy2
     SUBDIR += py-scientific
     SUBDIR += py-scikit-umfpack
@@ -794,7 +775,6 @@
     SUBDIR += py-svgmath
     SUBDIR += py-sym
     SUBDIR += py-symcxx
-    SUBDIR += py-symeig
     SUBDIR += py-sympy
     SUBDIR += py-theano
     SUBDIR += py-ufl
@@ -821,7 +801,6 @@
     SUBDIR += rngstreams
     SUBDIR += rocs
     SUBDIR += rpcalc
-    SUBDIR += rpy
     SUBDIR += rubygem-algebra
     SUBDIR += rubygem-expression_parser
     SUBDIR += rubygem-fftw3

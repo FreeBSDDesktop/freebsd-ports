@@ -2,6 +2,7 @@
 
 PORTNAME=	gabedit
 DISTVERSION=	2.5.1
+PORTREVISION=	1
 CATEGORIES=	science
 #MASTER_SITES=	http://prdownloads.sourceforge.net/${PORTNAME}/ # old SF-based source
 #DISTNAME=	GabeditSrc${DISTVERSION:S/.//g}
@@ -39,7 +40,7 @@ PLIST_FILES+=	share/icons/hicolor/${SZ}x${SZ}/apps/${PORTNAME}.png
 OPTIONS_DEFINE=		OPENMP
 OPTIONS_DEFAULT=	OPENMP
 
-OPENMP_LIB_DEPENDS=	libomp.so:devel/openmp
+OPENMP_LIB_DEPENDS=	libgomp.so:devel/openmp
 
 post-patch:
 	@${REINPLACE_CMD} 's|/usr/|${PREFIX}/|; s| -O2| ${CFLAGS}|; s|gcc|${CC}|' ${WRKSRC}/CONFIG

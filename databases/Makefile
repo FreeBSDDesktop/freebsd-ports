@@ -106,12 +106,6 @@
     SUBDIR += hashtypes
     SUBDIR += hbase
     SUBDIR += hiredis
-    SUBDIR += hs-esqueleto
-    SUBDIR += hs-hedis
-    SUBDIR += hs-mysql
-    SUBDIR += hs-persistent
-    SUBDIR += hs-persistent-sqlite
-    SUBDIR += hs-persistent-template
     SUBDIR += hsqldb
     SUBDIR += influxdb
     SUBDIR += innotop
@@ -739,7 +733,6 @@
     SUBDIR += proftpd-mod_sql_sqlite
     SUBDIR += proftpd-mod_sql_tds
     SUBDIR += pspg
-    SUBDIR += puppetdb-cli
     SUBDIR += puppetdb-terminus5
     SUBDIR += puppetdb-terminus6
     SUBDIR += puppetdb5
@@ -787,11 +780,11 @@
     SUBDIR += py-leveldb
     SUBDIR += py-lmdb
     SUBDIR += py-marshmallow-sqlalchemy
+    SUBDIR += py-minidb
     SUBDIR += py-mongoengine
     SUBDIR += py-motor
     SUBDIR += py-mycli
     SUBDIR += py-mysql-connector-python
-    SUBDIR += py-mysql-connector-python2
     SUBDIR += py-mysql2pgsql
     SUBDIR += py-mysqlclient
     SUBDIR += py-oops
@@ -799,7 +792,6 @@
     SUBDIR += py-peewee
     SUBDIR += py-pg8000
     SUBDIR += py-pg8000-112
-    SUBDIR += py-pg_pqueue
     SUBDIR += py-pgcli
     SUBDIR += py-pgdbconn
     SUBDIR += py-pglast
@@ -850,6 +842,7 @@
     SUBDIR += py-sybase
     SUBDIR += py-tableschema
     SUBDIR += py-tarantool
+    SUBDIR += py-tiledb
     SUBDIR += py-umemcache
     SUBDIR += py-unqlite
     SUBDIR += py-varstack
@@ -886,7 +879,6 @@
     SUBDIR += rrdtool
     SUBDIR += rrdtool12
     SUBDIR += ruby-bdb
-    SUBDIR += ruby-odbc
     SUBDIR += ruby-qdbm
     SUBDIR += ruby-tokyocabinet
     SUBDIR += ruby-xapian
@@ -917,11 +909,11 @@
     SUBDIR += rubygem-data_objects
     SUBDIR += rubygem-datamapper
     SUBDIR += rubygem-dbd-mysql
-    SUBDIR += rubygem-dbd-odbc
     SUBDIR += rubygem-dbd-pg
     SUBDIR += rubygem-dbd-sqlite3
     SUBDIR += rubygem-dbf
     SUBDIR += rubygem-dbi
+    SUBDIR += rubygem-dbm
     SUBDIR += rubygem-dm-aggregates
     SUBDIR += rubygem-dm-chunked_query
     SUBDIR += rubygem-dm-constraints
@@ -970,7 +962,9 @@
     SUBDIR += rubygem-pghero
     SUBDIR += rubygem-pghero-rails5
     SUBDIR += rubygem-pghero-rails50
+    SUBDIR += rubygem-pl-puppetdb-ruby
     SUBDIR += rubygem-postgres_ext
+    SUBDIR += rubygem-puppetdb_cli
     SUBDIR += rubygem-rbase
     SUBDIR += rubygem-redis
     SUBDIR += rubygem-redis-actionpack
@@ -1024,6 +1018,7 @@
     SUBDIR += tdb
     SUBDIR += tdbc
     SUBDIR += tile38
+    SUBDIR += tiledb
     SUBDIR += timescaledb
     SUBDIR += tinycdb
     SUBDIR += tokyocabinet
@@ -1049,8 +1044,6 @@
     SUBDIR += xtrabackup
     SUBDIR += zabbix22-libzbxpgsql
     SUBDIR += zabbix3-libzbxpgsql
-    SUBDIR += zabbix32-libzbxpgsql
-    SUBDIR += zabbix34-libzbxpgsql
     SUBDIR += zodb3
 
 .include <bsd.port.subdir.mk>

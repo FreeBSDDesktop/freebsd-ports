@@ -3,7 +3,7 @@
 
 PORTNAME=	gromacs
 DISTVERSION=	2019.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science
 MASTER_SITES=	ftp://ftp.gromacs.org/pub/gromacs/
 
@@ -12,6 +12,8 @@ COMMENT=	Compute molecular dynamics
 
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+BROKEN_i386=	undefined reference to `__atomic_load' and `__atomic_compare_exchange'
 
 BUILD_DEPENDS=	boost-libs>=1.44:devel/boost-libs
 LIB_DEPENDS=	libhwloc.so:devel/hwloc
