@@ -12,7 +12,6 @@
     SUBDIR += abcselect
     SUBDIR += abgate-lv2
     SUBDIR += abraca
-    SUBDIR += acoustid-fingerprinter
     SUBDIR += adplay
     SUBDIR += afsp
     SUBDIR += aften
@@ -96,7 +95,6 @@
     SUBDIR += csoundqt
     SUBDIR += ctronome
     SUBDIR += cue2toc
-    SUBDIR += cueplayer
     SUBDIR += cuetools
     SUBDIR += cutmp3
     SUBDIR += dagrab
@@ -117,7 +115,6 @@
     SUBDIR += dir2ogg
     SUBDIR += discid
     SUBDIR += dpf-plugins-lv2
-    SUBDIR += dream
     SUBDIR += drumgizmo
     SUBDIR += drumkv1-lv2
     SUBDIR += drumpiler
@@ -136,15 +133,13 @@
     SUBDIR += enscribe
     SUBDIR += epos-devel
     SUBDIR += eq10q-lv2
-    SUBDIR += esound
     SUBDIR += espeak
-    SUBDIR += esperanza
+    SUBDIR += espressivo-lv2
     SUBDIR += etcd
     SUBDIR += eteroj-lv2
     SUBDIR += etktab
     SUBDIR += exaile
     SUBDIR += exaile-devel
-    SUBDIR += extace
     SUBDIR += ezstream
     SUBDIR += faac
     SUBDIR += faad
@@ -229,7 +224,6 @@
     SUBDIR += gmpc-mdcover
     SUBDIR += gmpc-mserver
     SUBDIR += gmpc-shout
-    SUBDIR += gmpc-wikipedia
     SUBDIR += gmsynth-lv2
     SUBDIR += gmtp
     SUBDIR += gmusicbrowser
@@ -254,7 +248,6 @@
     SUBDIR += gstreamer-plugins-amrwbdec
     SUBDIR += gstreamer-plugins-cdaudio
     SUBDIR += gstreamer-plugins-cdparanoia
-    SUBDIR += gstreamer-plugins-esound
     SUBDIR += gstreamer-plugins-faac
     SUBDIR += gstreamer-plugins-faad
     SUBDIR += gstreamer-plugins-flac
@@ -331,9 +324,6 @@
     SUBDIR += harp
     SUBDIR += herrie
     SUBDIR += hexter
-    SUBDIR += hs-ALUT
-    SUBDIR += hs-OpenAL
-    SUBDIR += hs-libmpd
     SUBDIR += hts_engine-API
     SUBDIR += hvl2wav
     SUBDIR += hydrogen
@@ -377,7 +367,6 @@
     SUBDIR += ladspa
     SUBDIR += lame
     SUBDIR += lash
-    SUBDIR += lastfm-desktop
     SUBDIR += liba52
     SUBDIR += libaacplus
     SUBDIR += libadplug
@@ -411,7 +400,6 @@
     SUBDIR += libinstpatch
     SUBDIR += libkcddb
     SUBDIR += libkcompactdisc
-    SUBDIR += liblastfm
     SUBDIR += liblastfm-qt5
     SUBDIR += liblo
     SUBDIR += liblscp
@@ -432,6 +420,7 @@
     SUBDIR += libogg
     SUBDIR += liboggz
     SUBDIR += libopenmpt
+    SUBDIR += libopenshot-audio
     SUBDIR += libopenspc
     SUBDIR += libopusenc
     SUBDIR += libsamplerate
@@ -480,7 +469,6 @@
     SUBDIR += linux-c7-pulseaudio-utils
     SUBDIR += linux-c7-sdl_mixer
     SUBDIR += linux-laudio
-    SUBDIR += linux-skype_oss_wrapper
     SUBDIR += linuxsampler
     SUBDIR += listener
     SUBDIR += lmms
@@ -496,6 +484,7 @@
     SUBDIR += luppp
     SUBDIR += lv2
     SUBDIR += lv2file
+    SUBDIR += lv2lint
     SUBDIR += lvtk
     SUBDIR += lxmusic
     SUBDIR += mac
@@ -513,11 +502,10 @@
     SUBDIR += midipp
     SUBDIR += mikmod
     SUBDIR += milkytracker
-    SUBDIR += minitunes
+    SUBDIR += mio2jack
     SUBDIR += mixer.app
     SUBDIR += mixmos
     SUBDIR += mixxx
-    SUBDIR += mixxx20
     SUBDIR += mixxx21
     SUBDIR += mma
     SUBDIR += moc
@@ -560,6 +548,7 @@
     SUBDIR += mps
     SUBDIR += mumble
     SUBDIR += murmur
+    SUBDIR += muse-sequencer
     SUBDIR += musepack
     SUBDIR += musescore
     SUBDIR += musicbox-tag-editor
@@ -575,11 +564,12 @@
     SUBDIR += noise-repellent-lv2
     SUBDIR += normalize
     SUBDIR += nosefart
+    SUBDIR += noson-app
     SUBDIR += nspmod
     SUBDIR += nuvolaplayer
     SUBDIR += oaml
     SUBDIR += ocp
-    SUBDIR += openal
+    SUBDIR += ogg2mp3
     SUBDIR += openal-soft
     SUBDIR += opencore-amr
     SUBDIR += openspc
@@ -644,6 +634,7 @@
     SUBDIR += pear-Text_Spell_Audio
     SUBDIR += penguinsap
     SUBDIR += pianobar
+    SUBDIR += pianod2
     SUBDIR += picard
     SUBDIR += picard-plugins
     SUBDIR += pithos
@@ -660,10 +651,10 @@
     SUBDIR += praat
     SUBDIR += pragha
     SUBDIR += protracker
-    SUBDIR += puddletag
     SUBDIR += pulseaudio
     SUBDIR += pulseaudio-module-sndio
     SUBDIR += pulseaudio-module-xrdp
+    SUBDIR += pulseaudio-qt
     SUBDIR += pulseeffects
     SUBDIR += py-SoundFile
     SUBDIR += py-al
@@ -704,16 +695,15 @@
     SUBDIR += py-tagpy
     SUBDIR += py-vorbis
     SUBDIR += py-wavio
+    SUBDIR += py-webrtcvad
     SUBDIR += py-xmms2
     SUBDIR += pytone
     SUBDIR += qjackctl
     SUBDIR += qmidiarp
     SUBDIR += qmidictl
-    SUBDIR += qmpdclient
     SUBDIR += qsampler
     SUBDIR += qsynth
     SUBDIR += quimup
-    SUBDIR += raop_play
     SUBDIR += raul
     SUBDIR += rawrec
     SUBDIR += re
@@ -765,7 +755,6 @@
     SUBDIR += sidplayer
     SUBDIR += simplemod
     SUBDIR += siren
-    SUBDIR += skype-call-recorder
     SUBDIR += slv2
     SUBDIR += snack
     SUBDIR += snd
@@ -782,7 +771,6 @@
     SUBDIR += soundtouch
     SUBDIR += sox
     SUBDIR += spc2it
-    SUBDIR += specimen
     SUBDIR += spectrogram
     SUBDIR += speech-denoiser-lv2
     SUBDIR += speex
@@ -823,6 +811,7 @@
     SUBDIR += teamspeak3-server
     SUBDIR += tempest_for_eliza
     SUBDIR += thunar-media-tags-plugin
+    SUBDIR += timely-lv2
     SUBDIR += timemachine
     SUBDIR += timidity
     SUBDIR += timidity++
@@ -836,6 +825,7 @@
     SUBDIR += tkeca
     SUBDIR += toolame
     SUBDIR += tosha
+    SUBDIR += traverso
     SUBDIR += triceratops-lv2
     SUBDIR += trommler
     SUBDIR += tse3
@@ -850,6 +840,7 @@
     SUBDIR += vagalume
     SUBDIR += vamp-plugin-sdk
     SUBDIR += vgmplay
+    SUBDIR += vimpc
     SUBDIR += virtual_oss
     SUBDIR += virtual_oss_ctl
     SUBDIR += vitunes

@@ -23,8 +23,6 @@
     SUBDIR += cpmtools
     SUBDIR += cpmtools2
     SUBDIR += darcnes
-    SUBDIR += dboxfe
-    SUBDIR += desmume
     SUBDIR += dgen-sdl
     SUBDIR += dolphin-emu
     SUBDIR += dosbox
@@ -33,6 +31,7 @@
     SUBDIR += dynagui
     SUBDIR += dynamips-community
     SUBDIR += e-uae
+    SUBDIR += edumips64
     SUBDIR += emulationstation
     SUBDIR += fceux
     SUBDIR += fmsx
@@ -47,7 +46,6 @@
     SUBDIR += gens
     SUBDIR += gngb
     SUBDIR += gngeo
-    SUBDIR += gns3
     SUBDIR += gxemul
     SUBDIR += hatari
     SUBDIR += hercules
@@ -102,18 +100,16 @@
     SUBDIR += openmsx
     SUBDIR += p5-Acme-6502
     SUBDIR += parallels-tools
+    SUBDIR += pcem
     SUBDIR += pcemu
     SUBDIR += pcsxr
     SUBDIR += pearpc
     SUBDIR += pipelight
     SUBDIR += playonbsd
     SUBDIR += ppsspp
-    SUBDIR += ppsspp-devel
     SUBDIR += ppsspp-qt5
-    SUBDIR += ppsspp-qt5-devel
     SUBDIR += py-gns3-converter
     SUBDIR += py-unicorn
-    SUBDIR += q4wine
     SUBDIR += qemu
     SUBDIR += qemu-cheri
     SUBDIR += qemu-devel
@@ -122,8 +118,8 @@
     SUBDIR += qemu-sbruno
     SUBDIR += qemu-user-static
     SUBDIR += qemu-utils
+    SUBDIR += qemu2
     SUBDIR += qmc2
-    SUBDIR += qtemu
     SUBDIR += quasi88
     SUBDIR += riscv-fesvr
     SUBDIR += riscv-isa-sim
@@ -136,7 +132,6 @@
     SUBDIR += spim
     SUBDIR += stella
     SUBDIR += stonx
-    SUBDIR += swine
     SUBDIR += teo
     SUBDIR += tiemu3
     SUBDIR += tilem
@@ -179,8 +174,6 @@
     SUBDIR += xhomer
     SUBDIR += xsystem35
     SUBDIR += xzx
-    SUBDIR += yabause
-    SUBDIR += yape
     SUBDIR += zsnes
 
 .include <bsd.port.subdir.mk>

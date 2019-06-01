@@ -27,9 +27,9 @@
     SUBDIR += calcurse
     SUBDIR += calibre
     SUBDIR += cartotheque
-    SUBDIR += cdcat
     SUBDIR += charmtimetracker
     SUBDIR += chart
+    SUBDIR += cherrytree
     SUBDIR += clipit
     SUBDIR += conduit
     SUBDIR += conkyemail
@@ -95,6 +95,7 @@
     SUBDIR += gnote
     SUBDIR += gnustep-wrapper
     SUBDIR += go-for-it
+    SUBDIR += goesimage
     SUBDIR += gourmet
     SUBDIR += gpicker
     SUBDIR += grantlee-editor
@@ -117,7 +118,6 @@
     SUBDIR += horde-nag
     SUBDIR += hot-babe
     SUBDIR += howm
-    SUBDIR += hs-fdo-notify
     SUBDIR += ical
     SUBDIR += jjclient
     SUBDIR += jlj
@@ -139,7 +139,6 @@
     SUBDIR += korganizer
     SUBDIR += kruler
     SUBDIR += latte-dock
-    SUBDIR += launchy
     SUBDIR += libkdepim
     SUBDIR += libopensync-plugin-vformat-devel
     SUBDIR += ljcharm
@@ -165,6 +164,7 @@
     SUBDIR += mdh
     SUBDIR += mencal
     SUBDIR += menumaker
+    SUBDIR += meteo
     SUBDIR += moregroupware
     SUBDIR += mozo
     SUBDIR += myitcrm
@@ -201,6 +201,7 @@
     SUBDIR += py-bugwarrior
     SUBDIR += py-khal
     SUBDIR += py-khard
+    SUBDIR += py-paperless
     SUBDIR += py-py3status
     SUBDIR += py-pystash
     SUBDIR += py-send2trash
@@ -211,12 +212,8 @@
     SUBDIR += pybookreader
     SUBDIR += pypanel
     SUBDIR += qlipper
-    SUBDIR += qorganizer
     SUBDIR += qownnotes
-    SUBDIR += qrfcview
-    SUBDIR += qtm
     SUBDIR += recoll
-    SUBDIR += rednotebook
     SUBDIR += remind
     SUBDIR += rolo
     SUBDIR += rox-memo
@@ -253,11 +250,9 @@
     SUBDIR += tpb
     SUBDIR += treeline
     SUBDIR += treesheets
-    SUBDIR += tuxcards
     SUBDIR += virt-manager
     SUBDIR += vit
     SUBDIR += vnc2flv
-    SUBDIR += vym
     SUBDIR += wammu
     SUBDIR += when
     SUBDIR += wmpinboard

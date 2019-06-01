@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	e2guardian
-PORTVERSION=	5.3.1
+PORTVERSION=	5.3.2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 
@@ -56,7 +56,8 @@ NTLM_CONFIGURE_ENABLE=		ntlm
 NTLM_USES=			iconv
 DNS_CONFIGURE_ENABLE=		dnsauth
 EMAIL_CONFIGURE_ENABLE=		email
-DEBUG_CONFIGURE_WITH=		dgdebug
+DEBUG_CONFIGURE_OFF=		--with-dgdebug=off --with-newdebug=off
+DEBUG_CONFIGURE_ON=		--with-dgdebug=on --with-newdebug=on
 SSL_MITM_USES=			ssl
 SSL_MITM_CONFIGURE_ENABLE=	sslmitm
 SSL_MITM_CONFIGURE_ENV=		OPENSSL_LIBS="-lssl -lcrypto" \

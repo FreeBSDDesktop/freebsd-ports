@@ -10,6 +10,7 @@
     SUBDIR += coccinella
     SUBDIR += convey
     SUBDIR += corebird
+    SUBDIR += coyim
     SUBDIR += cutegram
     SUBDIR += diligent
     SUBDIR += dino
@@ -27,7 +28,6 @@
     SUBDIR += gajim
     SUBDIR += gitterdone
     SUBDIR += gloox
-    SUBDIR += hotot
     SUBDIR += icmpchat
     SUBDIR += icqlib
     SUBDIR += jabber.el
@@ -37,6 +37,7 @@
     SUBDIR += jitsi
     SUBDIR += kaccounts-integration
     SUBDIR += kaccounts-providers
+    SUBDIR += kaidan
     SUBDIR += kde-telepathy
     SUBDIR += kopete
     SUBDIR += ktp-accounts-kcm
@@ -53,7 +54,6 @@
     SUBDIR += ktp-text-ui
     SUBDIR += libaccounts-glib
     SUBDIR += libaccounts-qt5
-    SUBDIR += libjreen
     SUBDIR += libmesode
     SUBDIR += libnice
     SUBDIR += libnice-gst010
@@ -77,7 +77,9 @@
     SUBDIR += mcabber
     SUBDIR += meanwhile
     SUBDIR += mikutter
+    SUBDIR += mtxclient
     SUBDIR += mu-conference
+    SUBDIR += nheko
     SUBDIR += openfire
     SUBDIR += oysttyer
     SUBDIR += p5-AnyEvent-XMPP
@@ -112,7 +114,6 @@
     SUBDIR += pidgin-privacy-please
     SUBDIR += pidgin-rocketchat
     SUBDIR += pidgin-sipe
-    SUBDIR += pidgin-skype
     SUBDIR += pidgin-skypeweb
     SUBDIR += pidgin-twitter
     SUBDIR += pidgin-window_merge
@@ -122,7 +123,6 @@
     SUBDIR += prosody-modules
     SUBDIR += proxy65
     SUBDIR += psi
-    SUBDIR += psimedia
     SUBDIR += purple-discord
     SUBDIR += purple-facebook
     SUBDIR += purple-hangouts
@@ -145,25 +145,19 @@
     SUBDIR += py-xmpppy
     SUBDIR += py-xmpppy-irc
     SUBDIR += qTox
-    SUBDIR += qq
     SUBDIR += quaternion
-    SUBDIR += qxmpp
     SUBDIR += qxmpp-qt5
-    SUBDIR += ramblercontacts
     SUBDIR += ricochet
     SUBDIR += rubygem-discordrb-webhooks-blackst0ne
     SUBDIR += rubygem-hipchat
-    SUBDIR += rubygem-hipchat15
     SUBDIR += rubygem-lita
     SUBDIR += rubygem-termtter
     SUBDIR += rubygem-tinder
     SUBDIR += sayaka
     SUBDIR += scudcloud
     SUBDIR += sendxmpp
-    SUBDIR += skype
-    SUBDIR += skype-devel
-    SUBDIR += skype4
     SUBDIR += slack-term
+    SUBDIR += spectral
     SUBDIR += ssh-chat
     SUBDIR += talkatu
     SUBDIR += teamwords
@@ -179,7 +173,6 @@
     SUBDIR += telepathy-haze
     SUBDIR += telepathy-idle
     SUBDIR += telepathy-logger
-    SUBDIR += telepathy-logger-qt4
     SUBDIR += telepathy-logger-qt5
     SUBDIR += telepathy-mission-control
     SUBDIR += telepathy-python
@@ -194,11 +187,9 @@
     SUBDIR += toxbot
     SUBDIR += toxic
     SUBDIR += toxins
-    SUBDIR += turpial
     SUBDIR += twirssi
     SUBDIR += twitmail
     SUBDIR += uTox
-    SUBDIR += vacuum-im
     SUBDIR += vqcc-gtk
     SUBDIR += xmpp-client
     SUBDIR += yoono

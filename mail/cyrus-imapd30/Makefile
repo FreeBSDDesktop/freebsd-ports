@@ -1,12 +1,10 @@
 # $FreeBSD$
 
 PORTNAME=	cyrus-imapd
-PORTVERSION=	3.0.8
-PORTREVISION=	2
+PORTVERSION=	3.0.10
 #PORTREVISION=	0
 CATEGORIES=	mail ipv6
-MASTER_SITES=	ftp://ftp.cyrusimap.org/cyrus-imapd/ \
-		https://www.cyrusimap.org/releases/
+MASTER_SITES=	https://www.cyrusimap.org/releases/
 PKGNAMESUFFIX=	30
 
 MAINTAINER=	ume@FreeBSD.org
@@ -141,7 +139,7 @@ CYRUS_MAN8=	arbitron backupd chk_cyrus ctl_backups ctl_conversationsdb \
 		cyr_buildinfo cyr_dbtool cyr_deny cyr_df cyr_expire cyr_info \
 		cyr_synclog cyr_virusscan deliver fud idled imapd ipurge lmtpd \
 		master mbexamine mbpath mbtool notifyd pop3d quota reconstruct \
-		restore rmnews smmapd timsieved tls_prune unexpunge
+		restore smmapd timsieved tls_prune unexpunge
 CYRUS_PERL_MAN1=cyradm
 CYRUS_PERL_MAN3=Cyrus::Annotator::Daemon Cyrus::Annotator::Message \
 		Cyrus::IMAP Cyrus::IMAP::Admin Cyrus::IMAP::IMSP \

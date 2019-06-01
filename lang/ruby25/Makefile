@@ -57,7 +57,6 @@ RDOC_DESC=		Build and install Rdoc indexes
 EDIT_DESC=		Which line editing lib to use
 LIBEDIT_DESC=		Use libedit
 READLINE_DESC=		Use libreadline
-CAPIDOCS_BROKEN=	bad plist
 CAPIDOCS_BUILD_DEPENDS=	doxygen>=1.8.13,2:devel/doxygen \
 			dot:graphics/graphviz
 CAPIDOCS_CONFIGURE_ENABLE=	install-capi
@@ -134,11 +133,9 @@ RB_SET_CONF_VAR=${SH} -c '${REINPLACE_CMD} -E -e "s,(CONFIG\[\"$$0\"\][[:space:]
 post-patch:
 	@${FIND} ${WRKSRC}/ -name "*.orig" -delete
 # We get these from other ports
-.for d in bin/rake doc/rake lib/rake test/rake man/rake.1 lib/rake.rb ext/win32ole bin/gem
+.for d in bin/rake doc/rake lib/rake test/rake man/rake.1 lib/rake.rb ext/win32ole bin/gem ext/dbm ext/gdbm
 	@${RM} -r ${BUILD_WRKSRC}/${d}
 .endfor
-# Used by databases/ruby-gdbm port
-	@${MV} ${BUILD_WRKSRC}/ext/gdbm ${WRKDIR}/
 
 post-build:
 #

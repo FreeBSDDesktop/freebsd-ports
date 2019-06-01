@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	obs-studio
-DISTVERSION=	23.0.1
+DISTVERSION=	23.1.0
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -34,7 +35,7 @@ LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 USES=		cmake compiler:c++11-lib gl lua pkgconfig python:3.4+ qt:5
 USE_GITHUB=	yes
 GH_ACCOUNT=	obsproject
-USE_QT=		core gui widgets x11extras buildtools_build imageformats_run qmake_build
+USE_QT=		core gui svg widgets x11extras buildtools_build imageformats_run qmake_build
 USE_GL=		gl
 USE_XORG=	ice sm x11 xcb xcomposite xext xfixes xinerama xrandr
 USE_LDCONFIG=	yes

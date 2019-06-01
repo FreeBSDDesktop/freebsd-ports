@@ -22,15 +22,16 @@
     SUBDIR += codelite
     SUBDIR += cooledit
     SUBDIR += cream
+    SUBDIR += cudatext
     SUBDIR += deforaos-editor
     SUBDIR += dexed
     SUBDIR += dhex
     SUBDIR += diakonos
     SUBDIR += dkns
-    SUBDIR += dlangide
     SUBDIR += drjava
     SUBDIR += dte
     SUBDIR += e3
+    SUBDIR += e93
     SUBDIR += ecce
     SUBDIR += ecrire
     SUBDIR += edith
@@ -54,7 +55,6 @@
     SUBDIR += gnome-latex
     SUBDIR += gobby
     SUBDIR += gomate
-    SUBDIR += gwrite
     SUBDIR += heme
     SUBDIR += hexcurse
     SUBDIR += hexedit
@@ -75,13 +75,10 @@
     SUBDIR += kile
     SUBDIR += komodo-edit
     SUBDIR += lazarus
-    SUBDIR += lazarus-qt4
     SUBDIR += lazarus-qt5
     SUBDIR += le
     SUBDIR += leafpad
     SUBDIR += led
-    SUBDIR += leo
-    SUBDIR += lfhex
     SUBDIR += libreoffice
     SUBDIR += libreoffice-af
     SUBDIR += libreoffice-am
@@ -101,6 +98,7 @@
     SUBDIR += libreoffice-cy
     SUBDIR += libreoffice-da
     SUBDIR += libreoffice-dgo
+    SUBDIR += libreoffice-dsb
     SUBDIR += libreoffice-dz
     SUBDIR += libreoffice-el
     SUBDIR += libreoffice-en_GB
@@ -125,6 +123,7 @@
     SUBDIR += libreoffice-is
     SUBDIR += libreoffice-it
     SUBDIR += libreoffice-ka
+    SUBDIR += libreoffice-kab
     SUBDIR += libreoffice-kk
     SUBDIR += libreoffice-km
     SUBDIR += libreoffice-kmr_Latn
@@ -212,11 +211,11 @@
     SUBDIR += pico-alpine
     SUBDIR += picpas
     SUBDIR += pluma
-    SUBDIR += plume-creator-devel
     SUBDIR += poedit
     SUBDIR += psgml
     SUBDIR += puff
     SUBDIR += py-editorconfig
+    SUBDIR += py-pynvim
     SUBDIR += py-room
     SUBDIR += rox-edit
     SUBDIR += rubygem-neovim
@@ -235,7 +234,6 @@
     SUBDIR += texmacs
     SUBDIR += texmaker
     SUBDIR += texstudio
-    SUBDIR += textroom
     SUBDIR += texworks
     SUBDIR += the
     SUBDIR += thoteditor
@@ -255,10 +253,10 @@
     SUBDIR += xcoral
     SUBDIR += xed
     SUBDIR += xi-core
+    SUBDIR += xi-term
     SUBDIR += xmlcopyeditor
     SUBDIR += xvile
     SUBDIR += yudit
-    SUBDIR += yzis
     SUBDIR += zile
     SUBDIR += zoinks
 

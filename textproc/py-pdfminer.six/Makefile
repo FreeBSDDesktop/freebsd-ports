@@ -2,6 +2,7 @@
 
 PORTNAME=	pdfminer.six
 PORTVERSION=	20170720
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,7 +19,6 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${PY_FLAVOR} \
 USES=		python shebangfix dos2unix
 USE_PYTHON=	distutils concurrent autoplist
 SHEBANG_FILES=	tools/dumppdf.py tools/pdf2txt.py tools/latin2ascii.py
-DOS2UNIXGLOB=	*.py
 
 CONFLICTS_INSTALL=	py??-pdfminer-* py??-pdfminer3k-*
 NO_ARCH=		yes

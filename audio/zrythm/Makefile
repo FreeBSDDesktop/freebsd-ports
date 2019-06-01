@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	zrythm
-DISTVERSION=	g20190216
-PORTREVISION=	1
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.4.151
 CATEGORIES=	audio
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -13,8 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	kf5-breeze-icons>0:x11-themes/kf5-breeze-icons
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
-		libcyaml.so:textproc/libcyaml \
-		libdazzle-1.0.so:x11-toolkits/libdazzle \
+		libgtop-2.0.so:devel/libgtop \
 		libjack.so:audio/jack \
 		liblilv-0.so:audio/lilv \
 		libportaudio.so:audio/portaudio \
@@ -30,23 +29,16 @@ LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
 		kf5-breeze-icons>0:x11-themes/kf5-breeze-icons
 
-USES=		autoreconf gettext-runtime gmake python:3.5+,build gettext-runtime gnome pkgconfig
+USES=		autoreconf gettext-tools gmake python:3.5+,build gettext-runtime gnome libtool pkgconfig
 USE_GITLAB=	yes
 GL_SITE=	https://git.zrythm.org
-GL_COMMIT=	fd92153c1c2552b54ac9ea2b5981bbb880da04f8
+GL_COMMIT=	c587a4c1b7da0273e3003940ce2a4ea00079f6b0
 GNU_CONFIGURE=	yes
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk30 libxml2 pango
+USE_XORG=	x11
 GLIB_SCHEMAS=	org.zrythm.gschema.xml
-ALL_TARGET=	${PORTNAME}
 INSTALLS_ICONS=	yes
 
-BINARY_ALIAS=	python3=${PYTHON_CMD}
-
-MAKE_ARGS=	RELEASE=1
-
-PLIST_FILES=	bin/zrythm \
-		share/applications/zrythm.desktop \
-		share/fonts/zrythm/Segment7Standard/OFL.txt \
-		share/icons/hicolor/scalable/apps/z.svg
+BINARY_ALIAS=	python3=${PYTHON_CMD} make=${GMAKE}
 
 .include <bsd.port.mk>

@@ -2,10 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	bsdgames
-PORTVERSION=	5.2.2
+PORTVERSION=	5.5.0
+DISTVERSIONPREFIX=	v
 PORTEPOCH=	1
 CATEGORIES=	games
-MASTER_SITES=	LOCAL/swills
+MASTER_SITES=	https://deb.debian.org/debian/pool/main/b/bsdgames/:deb
+DISTFILES=	${PORTNAME}_2.17.orig.tar.gz:deb
 
 MAINTAINER=	jockl@pianojockl.org
 COMMENT=	Traditional BSD games taken from DragonFly BSD
@@ -13,6 +15,9 @@ COMMENT=	Traditional BSD games taken from DragonFly BSD
 LICENSE=	BSD3CLAUSE
 
 USES=		ncurses tar:xz uidfix
+USE_GITHUB=	nodefault
+GH_ACCOUNT=	DragonFlyBSD:bsd
+GH_PROJECT=	DragonFlyBSD:bsd
 
 CONFLICTS=	hangman-[0-9]*
 
@@ -43,7 +48,10 @@ GAMESPATH_FILES=backgammon/backgammon/backgammon.6 \
 		phantasia/pathnames.h \
 		wargames/wargames.sh
 
-.include <bsd.port.pre.mk>
+post-extract:
+	${MV} ${WRKSRC_bsd}/games  ${WRKSRC}
+	${MV} ${WRKDIR}/bsd-games-2.17/sail/*.[ch] ${WRKSRC}/sail/
+	${MV} ${WRKDIR}/bsd-games-2.17/sail/pathnames.h.in ${WRKSRC}/sail/pathnames.h
 
 post-patch:
 	@for f in ${SHAREPATH_FILES}; do \
@@ -73,17 +81,4 @@ post-install:
 	@${TOUCH} ${STAGEDIR}/var/games/atc_score
 	@${FIND} ${STAGEDIR}/var/games -type f -exec ${MV} {} {}.sample \;
 
-dist:
-	${FETCH_CMD} -o- https://github.com/DragonFlyBSD/DragonFlyBSD/archive/v${PORTVERSION}.zip | \
-		${TAR_CMD} xfv - DragonFlyBSD-${PORTVERSION}/games/\*
-	${MV} DragonFlyBSD-${PORTVERSION}/games bsdgames-${PORTVERSION}
-	${RMDIR} DragonFlyBSD-${PORTVERSION}
-	${TAR_CMD} -cvf bsdgames-${PORTVERSION}.tar bsdgames-${PORTVERSION}
-	${XZ_CMD} -v bsdgames-${PORTVERSION}.tar
-	@${ECHO_CMD}
-	@${ECHO_CMD} '======================================='
-	@${ECHO_CMD} ' UPLOAD THE DISTFILE BEFORE YOU FORGET '
-	@${ECHO_CMD} '======================================='
-	@${ECHO_CMD} 'bsdgames-${PORTVERSION} can be deleted!'
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

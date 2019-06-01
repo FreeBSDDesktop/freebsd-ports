@@ -1,6 +1,6 @@
---- content/renderer/media/audio/audio_device_factory.cc.orig	2019-02-06 23:09:19.538251000 +0100
-+++ content/renderer/media/audio/audio_device_factory.cc	2019-02-06 23:09:35.343662000 +0100
-@@ -33,7 +33,7 @@
+--- content/renderer/media/audio/audio_device_factory.cc.orig	2019-04-30 22:22:47 UTC
++++ content/renderer/media/audio/audio_device_factory.cc
+@@ -34,7 +34,7 @@ AudioDeviceFactory* AudioDeviceFactory::factory_ = nul
  
  namespace {
  

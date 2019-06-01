@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	centreon-clib
-PORTVERSION=	18.10.0
+PORTVERSION=	19.04.0
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	bofh@FreeBSD.org
@@ -10,7 +10,7 @@ COMMENT=	Common library of all Centreon projects written in C or C++
 
 LICENSE=	AGPLv3
 
-USES=		cmake
+USES=		cmake compiler:c++11-lang
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	centreon

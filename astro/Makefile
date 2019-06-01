@@ -16,6 +16,7 @@
     SUBDIR += garmindev
     SUBDIR += geographiclib
     SUBDIR += gkrellmoon2
+    SUBDIR += gnuastro
     SUBDIR += google-earth
     SUBDIR += gpsbabel
     SUBDIR += gpsbabel14
@@ -70,8 +71,10 @@
     SUBDIR += p5-GPS
     SUBDIR += p5-GPS-Babel
     SUBDIR += p5-GPS-OID
+    SUBDIR += p5-GPS-Point
     SUBDIR += p5-Geo-METAR
     SUBDIR += p5-Misc-Quality
+    SUBDIR += p5-Net-GPSD3
     SUBDIR += p5-Starlink-AST
     SUBDIR += p5-Weather-Underground
     SUBDIR += phoon
@@ -91,7 +94,6 @@
     SUBDIR += py-spacetrack
     SUBDIR += pyephem
     SUBDIR += pyweather
-    SUBDIR += qlandkartegt
     SUBDIR += qmapshack
     SUBDIR += readosm
     SUBDIR += rmap
@@ -106,7 +108,6 @@
     SUBDIR += starplot
     SUBDIR += stars
     SUBDIR += stellarium
-    SUBDIR += stellarium-qt4
     SUBDIR += sunclock
     SUBDIR += sunwait
     SUBDIR += swe
@@ -124,7 +125,6 @@
     SUBDIR += xearth
     SUBDIR += xeartk
     SUBDIR += xephem
-    SUBDIR += xglobe
     SUBDIR += xmoontool
     SUBDIR += xphoon
     SUBDIR += xplanet

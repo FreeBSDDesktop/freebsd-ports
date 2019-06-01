@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	xen
-PORTVERSION=	4.11.1
-PORTREVISION=	0
+PORTVERSION=	4.12.0
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://downloads.xenproject.org/release/xen/${PORTVERSION}/
 PKGNAMESUFFIX=	-kernel
@@ -22,29 +22,21 @@ MAKE_ARGS=	clang=y PYTHON=${PYTHON_CMD} ARCH=x86_64
 NO_MTREE=	yes
 STRIP=		#
 PLIST_FILES=	/boot/xen \
-		/boot/xen.4th \
 		lib/debug/boot/xen.debug
 
-# IOMMU fixes
-EXTRA_PATCHES=	${FILESDIR}/0001-pci-treat-class-0-devices-as-endpoints.patch:-p1
-# vPCI MSI fixes
-EXTRA_PATCHES+=	${FILESDIR}/0001-vpci-msi-split-code-to-bind-pirq.patch:-p1 \
-		${FILESDIR}/0002-vpci-msi-fix-update-of-bound-MSI-interrupts.patch:-p1
-# Add extra RAM regions to Dom0 memory map as UNUSABNLE
-EXTRA_PATCHES+=	${FILESDIR}/0001-x86-dom0-add-extra-RAM-regions-as-UNUSABLE-for-PVH-m.patch:-p1
-# MTRR guest setup for PVH
-EXTRA_PATCHES+=	${FILESDIR}/0001-x86-mtrr-introduce-mask-to-get-VCNT-from-MTRRcap-MSR.patch:-p1 \
-		${FILESDIR}/0001-x86-HVM-improve-MTRR-load-checks.patch:-p1 \
-		${FILESDIR}/0002-x86-mtrr-split-enabled-field-into-two-boolean-flags.patch:-p1 \
-		${FILESDIR}/0003-hvm-mtrr-add-emacs-local-variables-block-with-format.patch:-p1 \
-		${FILESDIR}/0004-hvm-mtrr-use-the-hardware-number-of-variable-ranges-.patch:-p1 \
-		${FILESDIR}/0005-hvm-mtrr-copy-hardware-state-for-Dom0.patch:-p1 \
-		${FILESDIR}/0006-libxc-pvh-set-default-MTRR-type-to-write-back.patch:-p1 \
-		${FILESDIR}/0007-docs-pvh-document-initial-MTRR-state.patch:-p1
-# Build with lld (LLVM linker)
-EXTRA_PATCHES+=	${FILESDIR}/0001-x86-replace-usage-in-the-linker-script.patch:-p1
-# Fix PVH Dom0 build with shadow paging
-EXTRA_PATCHES+= ${FILESDIR}/0001-x86-pvh-change-the-order-of-the-iommu-initialization.patch:-p1
+# Pre-patches for XSA-297 to apply cleanly
+EXTRA_PATCHES+=	${PATCHDIR}/0001-x86-tsx-Implement-controls-for-RTM-force-abort-mode.patch:-p1 \
+		${PATCHDIR}/0001-x86-msr-Shorten-ARCH_CAPABILITIES_-constants.patch:-p1 \
+		${PATCHDIR}/0002-x86-spec-ctrl-Extend-repoline-safey-calcuations-for-.patch:-p1
+
+# Fixes for XSA-297 (MDS)
+EXTRA_PATCHES+=	${PATCHDIR}/xsa297-4.12-1.patch:-p1 \
+		${PATCHDIR}/xsa297-4.12-2.patch:-p1 \
+		${PATCHDIR}/xsa297-4.12-3.patch:-p1 \
+		${PATCHDIR}/xsa297-4.12-4.patch:-p1 \
+		${PATCHDIR}/xsa297-4.12-5.patch:-p1 \
+		${PATCHDIR}/xsa297-4.12-6.patch:-p1 \
+		${PATCHDIR}/xsa297-4.12-7.patch:-p1
 
 .include <bsd.port.options.mk>
 
@@ -65,7 +57,6 @@ do-install:
 	${MKDIR} ${STAGEDIR}/boot
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/debug/boot/
 	${INSTALL_PROGRAM} ${WRKSRC}/xen/xen ${STAGEDIR}/boot
-	${INSTALL_DATA} ${FILESDIR}/xen.4th ${STAGEDIR}/boot
 	${INSTALL_DATA} ${WRKSRC}/xen/xen-syms ${STAGEDIR}${PREFIX}/lib/debug/boot/xen.debug
 
 .include <bsd.port.mk>

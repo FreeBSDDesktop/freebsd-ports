@@ -1,11 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	poppler
-PORTVERSION=	3.3.2
+PORTVERSION=	3.3.6
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Ruby binding for Poppler
 
 LICENSE=	LGPL21+

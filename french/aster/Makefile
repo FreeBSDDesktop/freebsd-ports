@@ -3,7 +3,7 @@
 
 PORTNAME=	aster
 DISTVERSION=	${ASTER_DISTVERSION}
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	french cad
 
 MAINTAINER=	thierry@FreeBSD.org
@@ -118,12 +118,12 @@ RUN_DEPENDS+=	${PYNUMPY}
 .if !defined(WITH_MPI)
 MPISEQ=		-lmpiseq
 MUMPSLIB=	-L${LOCALBASE}/lib -ldmumps -lzmumps -lsmumps -lcmumps -lmumps_common -lpord ${MPISEQ}
-LIB_DEPENDS+=	libmpiseq.so.5:math/mumps-edf
+LIB_DEPENDS+=	libmpiseq.so.5:math/mumps
 .else
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libblacs.a:math/blacs	\
 		${LOCALBASE}/lib/libscalapack.a:math/scalapack
 MUMPSLIB=	-L${LOCALBASE}/lib -ldmumps -lzmumps -lsmumps -lcmumps -lmumps_common -lpord -lscalapack -lblacs -lblacsc -lblacs -L${LOCALBASE}/lib -lmpich -lmpl
-LIB_DEPENDS+=	libcmumps.so.5:math/mumps-edf
+LIB_DEPENDS+=	libcmumps.so.5:math/mumps
 .endif
 
 .if defined(WITH_MPI)

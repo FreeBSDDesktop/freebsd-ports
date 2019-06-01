@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	artifacts
-PORTVERSION=	20190227
+PORTVERSION=	20190320
+PORTREVISION=	1
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP \
 		https://github.com/ForensicArtifacts/artifacts/releases/download/${PORTVERSION}/

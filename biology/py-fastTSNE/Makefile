@@ -2,6 +2,7 @@
 
 PORTNAME=	fastTSNE
 DISTVERSION=	0.2.13
+PORTREVISION=	1
 CATEGORIES=	biology python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -21,5 +22,7 @@ RUN_DEPENDS=	${PYNUMPY} \
 
 USES=		localbase:ldflags python:3.5+
 USE_PYTHON=	distutils autoplist
+
+PORTSCOUT=	skipv:0.2.14 # no such version, not sure where does portscout see it
 
 .include <bsd.port.mk>

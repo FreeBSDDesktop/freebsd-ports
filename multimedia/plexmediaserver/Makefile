@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	plexmediaserver
-PORTVERSION?=	1.14.1.5488
-DISTVERSIONSUFFIX?=cc260c476
-PORTREVISION?=	1
+PORTVERSION?=	1.15.6.1079
+DISTVERSIONSUFFIX?=78232c603
+PORTREVISION?=	0
 CATEGORIES=	multimedia
-MASTER_SITES?=	https://downloads.plex.tv/plex-media-server/${DISTVERSION}-${DISTVERSIONSUFFIX}/
-DISTNAME?=	PlexMediaServer-${DISTVERSION}-${DISTVERSIONSUFFIX}-freebsd-${ARCH}
+MASTER_SITES?=	https://downloads.plex.tv/plex-media-server-new/${DISTVERSION}-${DISTVERSIONSUFFIX}/freebsd/
+DISTNAME?=	PlexMediaServer-${DISTVERSION}-${DISTVERSIONSUFFIX}-FreeBSD-${ARCH}
 
 MAINTAINER?=	feld@FreeBSD.org
 COMMENT=	Plex Media Server component
@@ -39,19 +39,11 @@ RELAY_DESC=	Install Plex Relay daemon
 
 .include <bsd.port.pre.mk>
 
-.if ${OPSYS} == FreeBSD
-RUN_DEPENDS?=	${LOCALBASE}/lib/compat/libstdc++.so.6:misc/compat9x
-.endif
-
 post-patch:
 	# binaries don't come pre-stripped
 	${FIND} ${WRKSRC}/Resources -type f -name '*.so' -exec ${STRIP_CMD} {} \+
 	${FIND} ${WRKSRC} ${WRKSRC}/Resources -type f -name 'Plex*' -depth 1 -exec ${STRIP_CMD} {} \+
 	${FIND} ${WRKSRC} -depth 1 -type f -name 'lib*' -exec ${STRIP_CMD} {} \+
-	${RM} ${WRKSRC}/start.sh ${WRKSRC}/Resources/start.sh
-	# Older verisons of Plex we have to create a symlink
-	# Newer versions of Plex ship a duplicate file; we'll just symlink
-	${RM} ${WRKSRC}/libpython2.7.so
 
 post-patch-RELAY-off:
 	${RM} ${WRKSRC}/Plex\ Relay

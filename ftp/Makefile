@@ -31,7 +31,6 @@
     SUBDIR += gnustep-ftp
     SUBDIR += gstreamer1-plugins-curl
     SUBDIR += horde-gollem
-    SUBDIR += hs-curl
     SUBDIR += hsftp
     SUBDIR += jftp
     SUBDIR += jftpgw
@@ -70,10 +69,12 @@
     SUBDIR += php73-ftp
     SUBDIR += phpwebftp
     SUBDIR += proftpd
+    SUBDIR += proftpd-mod_vroot
     SUBDIR += profxp
     SUBDIR += puf
     SUBDIR += pure-ftpd
     SUBDIR += pureadmin
+    SUBDIR += py-aioftp
     SUBDIR += py-ftputil
     SUBDIR += py-pycurl
     SUBDIR += py-pyftpdlib
@@ -83,7 +84,6 @@
     SUBDIR += quftp
     SUBDIR += rexx-curl
     SUBDIR += rubygem-curb
-    SUBDIR += scythia
     SUBDIR += smbftpd
     SUBDIR += spegla
     SUBDIR += tftp-hpa

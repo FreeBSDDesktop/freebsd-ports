@@ -1,0 +1,12 @@
+Portfmt is a collection of tools for editing, formatting, and linting
+FreeBSD Ports Collection Makefiles.
+
+It comes with several tools:
+
+- portfmt formats Makefiles
+- portclippy is a linter that checks if variables are in the correct
+  order in a more comprehensive way than portlint
+- portedit edits Makefiles.  At the moment it only comes with a
+  bump-revision command
+
+WWW: https://github.com/t6/portfmt

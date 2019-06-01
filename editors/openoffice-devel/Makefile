@@ -3,6 +3,7 @@
 
 PORTNAME=	apache-openoffice
 PORTVERSION=	${AOOVERSION1}.${AOOVERSION2}.${SVNREVISION}
+PORTREVISION=	2
 #PORTREVISION=	1
 PORTEPOCH=	4
 CATEGORIES=	editors java
@@ -119,7 +120,7 @@ AOOVERSION2=	2
 AOOVERSION3=	0
 # From solenv/inc/minor.mk SOURCEREVISION LAST_MINOR BUILD
 AOOTAG=		AOO420m1\(Build:9820\)
-SVNREVISION=	1853744
+SVNREVISION=	1856382
 #AOORC=rc3
 EXTSRC=		ApacheOpenOffice.ext_sources.${AOOVERSION1}.x.x.20150707.tar.gz
 
@@ -159,7 +160,7 @@ DEBUG_DESC=		Compile with -O0, sets WITH_DEBUG
 GNOME_DESC=		GConf + screensaver presentation control via DBUS
 GNOMEVFS_DESC=		Use GNOME Virtual File System instead of gio
 MMEDIA_DESC=		Multimedia backend for impress
-MYSQL_DESCR=		Build MySQL Connector extension
+MYSQL_DESC=		Build MySQL Connector extension
 PDFIMPORT_DESC=		Build and install PDF import extension
 REPORT_BUILDER_DESC=	Build and install Report builder extension (Broken)
 SDK_DESC=		Build and install software development kit

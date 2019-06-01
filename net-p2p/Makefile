@@ -10,7 +10,6 @@
     SUBDIR += bitcoin-daemon
     SUBDIR += bitcoin-utils
     SUBDIR += bitflu
-    SUBDIR += bitmessage
     SUBDIR += bnbt
     SUBDIR += btpd
     SUBDIR += couchpotato
@@ -28,13 +27,11 @@
     SUBDIR += eiskaltdcpp-data
     SUBDIR += eiskaltdcpp-gtk
     SUBDIR += eiskaltdcpp-lib
-    SUBDIR += eiskaltdcpp-qt
     SUBDIR += frost
     SUBDIR += gkremldk
     SUBDIR += go-ethereum
     SUBDIR += gtk-gnutella
     SUBDIR += gtorrentviewer
-    SUBDIR += hs-torrent
     SUBDIR += jackett
     SUBDIR += jigdo
     SUBDIR += ktorrent
@@ -92,7 +89,6 @@
     SUBDIR += transmission-remote-gui
     SUBDIR += tribler
     SUBDIR += uhub
-    SUBDIR += valknut
     SUBDIR += vuze
     SUBDIR += xmrig
     SUBDIR += zetacoin

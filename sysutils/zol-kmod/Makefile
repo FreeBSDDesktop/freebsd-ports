@@ -1,13 +1,13 @@
 # $FreeBSD$
 
 PORTNAME=	zol
-PORTVERSION=	2019030100
+PORTVERSION=	2019053000
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
-PKGNAMESUFFIX=	-kmod
+PKGNAMESUFFIX?=	-kmod
 
 MAINTAINER=	kmoore@FreeBSD.org
-COMMENT=	ZFS
+COMMENT=	ZFS on Linux kernel module for FreeBSD
 
 LICENSE=	CDDL
 
@@ -15,9 +15,10 @@ USES=		kmod
 USE_GITHUB=	yes
 GH_ACCOUNT=	zfsonfreebsd
 GH_PROJECT=	ZoF
-GH_TAGNAME=	e10a5fb
+GH_TAGNAME=	a67416d
+KMODTARGET?=	zfs.ko
 
-PLIST_FILES=	${KMODDIR}/zfs.ko
+PLIST_FILES=	${KMODDIR}/${KMODTARGET}
 
 OPTIONS_DEFINE=	DEBUG GCOV
 OPTIONS_SUB=	yes
@@ -25,12 +26,13 @@ GCOV_DESC=	Build kernel module with GCOV support (Requires gcc)
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 1300013
-IGNORE=      needs FreeBSD 13 with AES-CCM support
+.if (${OSVERSION} < 1200504) || (${OSVERSION} >= 1300000 && ${OSVERSION} < 1300013)
+IGNORE=      needs FreeBSD 12/13 with AES-CCM support
 .endif
 
 .if ${PORT_OPTIONS:MDEBUG}
 MAKE_OPTS+=	WITH_DEBUG=true
+PLIST_FILES+=	${KMODDIR}/${KMODTARGET}.debug
 .endif
 
 .if ${PORT_OPTIONS:MGCOV}
@@ -45,6 +47,9 @@ do-build:
 	(cd ${WRKSRC}/module/ && make -f Makefile.bsd CC=${CC} ${MAKE_OPTS})
 
 do-install:
-	${INSTALL} ${WRKSRC}/module/zfs.ko ${STAGEDIR}${KMODDIR}
+	${INSTALL} ${WRKSRC}/module/zfs.ko ${STAGEDIR}${KMODDIR}/${KMODTARGET}
+.if ${PORT_OPTIONS:MDEBUG}
+	${INSTALL} ${WRKSRC}/module/zfs.ko.debug ${STAGEDIR}${KMODDIR}/${KMODTARGET}.debug
+.endif
 
 .include <bsd.port.post.mk>

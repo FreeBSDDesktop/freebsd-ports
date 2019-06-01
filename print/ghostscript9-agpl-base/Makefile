@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	ghostscript
-PORTVERSION=	9.26
+PORTVERSION=	9.27
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	https://github.com/ArtifexSoftware/ghostpdl-downloads/releases/download/gs${PORTVERSION:S/.//}/
 PKGNAMESUFFIX=	9-agpl-base
@@ -11,6 +12,7 @@ COMMENT=	PostScript and PDF interpreter
 
 LICENSE=	AGPLv3
 
+BUILD_DEPENDS=	jbig2dec>=0.16:graphics/jbig2dec
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libidn.so:dns/libidn \

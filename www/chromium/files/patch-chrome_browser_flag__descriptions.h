@@ -1,6 +1,6 @@
---- chrome/browser/flag_descriptions.h.orig	2018-12-12 22:56:03.000000000 +0100
-+++ chrome/browser/flag_descriptions.h	2018-12-28 16:55:56.425688000 +0100
-@@ -2167,12 +2167,12 @@
+--- chrome/browser/flag_descriptions.h.orig	2019-04-30 22:22:33 UTC
++++ chrome/browser/flag_descriptions.h
+@@ -2100,19 +2100,19 @@ extern const char kAshNotificationStackingBarRedesignD
  
  // Random platform combinations -----------------------------------------------
  
@@ -13,9 +13,18 @@
 -#endif  // defined(OS_WIN) || defined(OS_LINUX)
 +#endif  // defined(OS_WIN) || defined(OS_LINUX) || defined(OS_BSD)
  
+-#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS)
++#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+ 
+ extern const char kWebGL2ComputeContextName[];
+ extern const char kWebGL2ComputeContextDescription[];
+ 
+-#endif  // defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS)
++#endif  // defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+ 
  extern const char kExperimentalUiName[];
  extern const char kExperimentalUiDescription[];
-@@ -2184,12 +2184,12 @@
+@@ -2124,12 +2124,12 @@ extern const char kAutomaticTabDiscardingDescription[]
  
  #endif  // defined(OS_WIN) || defined(OS_MACOSX)
  
@@ -28,5 +37,5 @@
 -#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
 +#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
  
- // Feature flags --------------------------------------------------------------
+ #if defined(OS_MACOSX) || defined(OS_CHROMEOS)
  

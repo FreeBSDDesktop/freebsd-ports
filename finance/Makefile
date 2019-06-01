@@ -21,12 +21,10 @@
     SUBDIR += R-cran-urca
     SUBDIR += R-cran-vars
     SUBDIR += alkimia
-    SUBDIR += alkimia-qt4
     SUBDIR += aqbanking
-    SUBDIR += aqmoney
     SUBDIR += beancount
     SUBDIR += beanie
-    SUBDIR += bitcoin-armory
+    SUBDIR += bitcoinnodestats
     SUBDIR += cbb
     SUBDIR += cointop
     SUBDIR += electrum
@@ -49,7 +47,6 @@
     SUBDIR += moneymanagerex
     SUBDIR += mybudget
     SUBDIR += myphpmoney
-    SUBDIR += openhbci
     SUBDIR += p5-Business-CreditCard
     SUBDIR += p5-Business-MaxMind-CreditCardFraudDetection
     SUBDIR += p5-Business-OCV
@@ -97,12 +94,12 @@
     SUBDIR += prestashop
     SUBDIR += py-bitcoin
     SUBDIR += py-pycoin
+    SUBDIR += py-python-bitcoinlib
     SUBDIR += py-python-obelisk
     SUBDIR += py-stripe
     SUBDIR += py-ta-lib
     SUBDIR += py-vatnumber
     SUBDIR += py-ystockquote
-    SUBDIR += qhacc
     SUBDIR += qtbitcointrader
     SUBDIR += quantlib
     SUBDIR += quickfix

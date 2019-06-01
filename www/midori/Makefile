@@ -3,6 +3,7 @@
 
 PORTNAME=	midori
 PORTVERSION=	8.0
+DISTVERSIONPREFIX=	v
 CATEGORIES=	www xfce
 
 MAINTAINER=	xfce@FreeBSD.org
@@ -23,8 +24,8 @@ LIB_DEPENDS=	libnotify.so:devel/libnotify \
 		libwebkit2gtk-4.0.so:www/webkit2-gtk3
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
-USES=		cmake desktop-file-utils gettext gnome libarchive localbase:ldflags \
-		pkgconfig sqlite tar:bzip2
+USES=		cmake compiler:c++11-lang desktop-file-utils gettext gnome \
+		libarchive localbase:ldflags pkgconfig sqlite tar:bzip2
 USE_GNOME=	cairo glib20 gtk30 intltool introspection libxml2
 USE_XORG=	xscrnsaver
 
@@ -39,7 +40,6 @@ PLIST_SUB=	VERSION="${PORTVERSION:R}"
 USE_GITHUB=	yes
 GH_ACCOUNT=	midori-browser
 GH_PROJECT=	core
-GH_TAGNAME=	v${PORTVERSION}
 
 OPTIONS_DEFINE=		ZEITGEIST
 OPTIONS_SUB=		yes

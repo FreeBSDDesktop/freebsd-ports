@@ -35,7 +35,6 @@
     SUBDIR += anacron
     SUBDIR += and
     SUBDIR += android-file-transfer
-    SUBDIR += android-file-transfer-qt4
     SUBDIR += android-file-transfer-qt5
     SUBDIR += ansible
     SUBDIR += ansible1
@@ -57,8 +56,8 @@
     SUBDIR += asmon
     SUBDIR += asusoled
     SUBDIR += atf-master
-    SUBDIR += atf-sun50i_a64
     SUBDIR += atf-rk3399
+    SUBDIR += atf-sun50i_a64
     SUBDIR += atitvout
     SUBDIR += atop
     SUBDIR += auto-admin
@@ -75,7 +74,6 @@
     SUBDIR += backuppc-devel
     SUBDIR += backuppc4
     SUBDIR += backupuser
-    SUBDIR += bacula9-bat
     SUBDIR += bacula9-client
     SUBDIR += bacula9-client-static
     SUBDIR += bacula9-docs
@@ -83,15 +81,16 @@
     SUBDIR += baloo-widgets
     SUBDIR += bamf
     SUBDIR += bareos-client
-    SUBDIR += bareos-client-static
     SUBDIR += bareos-docs
     SUBDIR += bareos-server
     SUBDIR += bareos-traymonitor
-    SUBDIR += bareos16-bat
     SUBDIR += bareos16-client
     SUBDIR += bareos16-client-static
     SUBDIR += bareos16-server
-    SUBDIR += bareos16-traymonitor
+    SUBDIR += bareos17-client
+    SUBDIR += bareos17-client-static
+    SUBDIR += bareos17-server
+    SUBDIR += barrier
     SUBDIR += bastille
     SUBDIR += batmon
     SUBDIR += battmond
@@ -107,7 +106,6 @@
     SUBDIR += biosfont
     SUBDIR += bkpupsd
     SUBDIR += bksh
-    SUBDIR += boxbackup
     SUBDIR += boxbackup-devel
     SUBDIR += brasero
     SUBDIR += bsd-splash-changer
@@ -122,6 +120,7 @@
     SUBDIR += btsixad
     SUBDIR += bulk_extractor
     SUBDIR += burp
+    SUBDIR += burp-devel
     SUBDIR += busybox
     SUBDIR += bvm
     SUBDIR += byobu
@@ -218,7 +217,6 @@
     SUBDIR += cronolog
     SUBDIR += cronolog-devel
     SUBDIR += ctop
-    SUBDIR += curly
     SUBDIR += currtime
     SUBDIR += cw
     SUBDIR += daa2iso
@@ -254,7 +252,6 @@
     SUBDIR += diskscrub
     SUBDIR += disktool
     SUBDIR += disktype
-    SUBDIR += djmount
     SUBDIR += dmg2img
     SUBDIR += dmidecode
     SUBDIR += docker
@@ -273,6 +270,7 @@
     SUBDIR += dsbmc
     SUBDIR += dsbmc-cli
     SUBDIR += dsbmd
+    SUBDIR += dsbsu
     SUBDIR += dsbwrtsysctl
     SUBDIR += dt
     SUBDIR += dtc
@@ -305,6 +303,7 @@
     SUBDIR += env4801
     SUBDIR += envconsul
     SUBDIR += epazote
+    SUBDIR += etc_os-release
     SUBDIR += etcmerge
     SUBDIR += etcupdate
     SUBDIR += eventlog
@@ -451,8 +450,6 @@
     SUBDIR += graylog
     SUBDIR += grub2
     SUBDIR += grub2-bhyve
-    SUBDIR += grub2-efi
-    SUBDIR += grub2-pcbsd
     SUBDIR += gsh
     SUBDIR += gsmartcontrol
     SUBDIR += gstopd
@@ -489,10 +486,6 @@
     SUBDIR += hpacucli
     SUBDIR += hploscripts
     SUBDIR += hptcli
-    SUBDIR += hs-cpu
-    SUBDIR += hs-disk-free-space
-    SUBDIR += hs-ekg-core
-    SUBDIR += hs-mountpoints
     SUBDIR += hstr
     SUBDIR += htop
     SUBDIR += httplog
@@ -667,7 +660,6 @@
     SUBDIR += mcollective-shell-client
     SUBDIR += mcron
     SUBDIR += mcweject
-    SUBDIR += mdcp
     SUBDIR += mdf2iso
     SUBDIR += megacli
     SUBDIR += megarc
@@ -681,6 +673,7 @@
     SUBDIR += mgeupsd
     SUBDIR += minikube
     SUBDIR += minimunin
+    SUBDIR += minipro
     SUBDIR += minirsyslogd
     SUBDIR += mixer
     SUBDIR += mkdesktop
@@ -750,6 +743,7 @@
     SUBDIR += npadmin
     SUBDIR += nq
     SUBDIR += nrg2iso
+    SUBDIR += nsysctl
     SUBDIR += ntfy
     SUBDIR += nut
     SUBDIR += nvclock
@@ -916,7 +910,6 @@
     SUBDIR += pmt
     SUBDIR += policykit
     SUBDIR += policykit-gnome
-    SUBDIR += policykit-qt
     SUBDIR += polkit
     SUBDIR += polkit-gnome
     SUBDIR += polkit-qt
@@ -1011,7 +1004,9 @@
     SUBDIR += py-azure-cli-vm
     SUBDIR += py-bcfg2
     SUBDIR += py-bitrot
+    SUBDIR += py-borgmatic
     SUBDIR += py-cdmi
+    SUBDIR += py-cpuinfo
     SUBDIR += py-croniter
     SUBDIR += py-crontab
     SUBDIR += py-diffoscope
@@ -1033,6 +1028,8 @@
     SUBDIR += py-honcho
     SUBDIR += py-hpilo
     SUBDIR += py-iowait
+    SUBDIR += py-leviathan
+    SUBDIR += py-mitogen
     SUBDIR += py-mqttwarn
     SUBDIR += py-nagiosplugin
     SUBDIR += py-packet-python
@@ -1071,15 +1068,12 @@
     SUBDIR += qdirstat
     SUBDIR += qjail
     SUBDIR += qlogtools
-    SUBDIR += qpxtool
     SUBDIR += qsudo
-    SUBDIR += qsynergy
     SUBDIR += qt5-qtdiag
     SUBDIR += qt5-qtpaths
     SUBDIR += qt5-qtplugininfo
     SUBDIR += qtpass
     SUBDIR += quicksynergy
-    SUBDIR += qzeitgeist
     SUBDIR += racktables
     SUBDIR += radeontool
     SUBDIR += radeontop
@@ -1124,8 +1118,10 @@
     SUBDIR += rsyslog8
     SUBDIR += rtty
     SUBDIR += rubygem-backup
+    SUBDIR += rubygem-bolt
     SUBDIR += rubygem-bosh-gen
     SUBDIR += rubygem-bundler
+    SUBDIR += rubygem-bundler1
     SUBDIR += rubygem-bundler_ext
     SUBDIR += rubygem-capistrano
     SUBDIR += rubygem-capistrano-ext
@@ -1224,7 +1220,6 @@
     SUBDIR += savelogs
     SUBDIR += sb16config
     SUBDIR += sbase
-    SUBDIR += sbsigntool
     SUBDIR += scalpel
     SUBDIR += scan_ffs
     SUBDIR += scanbuttond
@@ -1236,7 +1231,6 @@
     SUBDIR += scterc
     SUBDIR += sd-agent
     SUBDIR += sdparm
-    SUBDIR += searchmonkey
     SUBDIR += seatools
     SUBDIR += sec
     SUBDIR += serf
@@ -1293,6 +1287,7 @@
     SUBDIR += swapd
     SUBDIR += swapexd
     SUBDIR += swapmon
+    SUBDIR += swapusage
     SUBDIR += sweeper
     SUBDIR += symlinks
     SUBDIR += symon
@@ -1314,6 +1309,7 @@
     SUBDIR += syslog-ng318
     SUBDIR += syslog-ng319
     SUBDIR += syslog-ng320
+    SUBDIR += syslog-ng321
     SUBDIR += syslog-ng39
     SUBDIR += syslogger
     SUBDIR += sysrc
@@ -1375,15 +1371,18 @@
     SUBDIR += u-boot-cubieboard2
     SUBDIR += u-boot-cubox-hummingboard
     SUBDIR += u-boot-duovero
-    SUBDIR += u-boot-imx-serial-loader
     SUBDIR += u-boot-firefly-rk3399
+    SUBDIR += u-boot-imx-serial-loader
     SUBDIR += u-boot-master
     SUBDIR += u-boot-nanopi-a64
     SUBDIR += u-boot-nanopi-m1plus
     SUBDIR += u-boot-nanopi-neo
     SUBDIR += u-boot-nanopi-neo-air
+    SUBDIR += u-boot-nanopi-neo2
     SUBDIR += u-boot-olimex-a20-som-evb
     SUBDIR += u-boot-olinuxino-lime
+    SUBDIR += u-boot-olinuxino-lime2
+    SUBDIR += u-boot-olinuxino-lime2-emmc
     SUBDIR += u-boot-orangepi-one
     SUBDIR += u-boot-orangepi-pc
     SUBDIR += u-boot-orangepi-pc-plus
@@ -1417,6 +1416,8 @@
     SUBDIR += udfclient
     SUBDIR += uefi-edk2-bhyve
     SUBDIR += uefi-edk2-bhyve-csm
+    SUBDIR += uefi-edk2-bhyve-devel
+    SUBDIR += uefi-edk2-qemu
     SUBDIR += ufs_copy
     SUBDIR += uhidd
     SUBDIR += uif2iso
@@ -1527,6 +1528,7 @@
     SUBDIR += xvidcap
     SUBDIR += yadm
     SUBDIR += yank
+    SUBDIR += z
     SUBDIR += zap
     SUBDIR += zbackup
     SUBDIR += zeitgeist

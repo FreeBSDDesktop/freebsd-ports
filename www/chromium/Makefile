@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	chromium
-PORTVERSION=	72.0.3626.121
+PORTVERSION=	74.0.3729.157
 PORTREVISION=	1
 CATEGORIES?=	www
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/ \
@@ -216,7 +216,7 @@ PLIST_SUB+=	NOT_AARCH64=""
 .endif
 
 # Make better javascript with java
-.if (${ARCH} == amd64 || ${ARCH} == i386) && !defined(GN_ONLY)
+.if !defined(GN_ONLY)
 JAVA_BUILD=	yes
 JAVA_VERSION=	1.8
 USE_JAVA=	yes
@@ -283,7 +283,6 @@ do-configure:
 .endif
 
 do-test-TEST-on:
-	cd ${WRKSRC}/out/${BUILDTYPE}/gn_build && ./gn_unittests
 .for t in ${TEST_TARGETS}
 	cd ${WRKSRC}/out/${BUILDTYPE} && ${SETENV} LC_ALL=en_US.UTF-8 \
 		./${t} --gtest_filter=-${EXCLUDE_${t}:ts:} || ${TRUE}

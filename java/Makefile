@@ -7,6 +7,7 @@
     SUBDIR += avis
     SUBDIR += berkeley-db
     SUBDIR += bluej
+    SUBDIR += bootstrap-openjdk11
     SUBDIR += bootstrap-openjdk6
     SUBDIR += bootstrap-openjdk8
     SUBDIR += bouncycastle
@@ -69,6 +70,8 @@
     SUBDIR += jd-gui
     SUBDIR += jdbcpool
     SUBDIR += jdk10-doc
+    SUBDIR += jdk11-doc
+    SUBDIR += jdk12-doc
     SUBDIR += jdk8-doc
     SUBDIR += jdk9-doc
     SUBDIR += jdom
@@ -103,6 +106,8 @@
     SUBDIR += netcomponents
     SUBDIR += netrexx
     SUBDIR += netty
+    SUBDIR += openjdk11
+    SUBDIR += openjdk12
     SUBDIR += openjdk6
     SUBDIR += openjdk6-jre
     SUBDIR += openjdk7
@@ -129,6 +134,7 @@
     SUBDIR += wildfly13
     SUBDIR += wildfly14
     SUBDIR += wildfly15
+    SUBDIR += wildfly16
     SUBDIR += wildfly90
     SUBDIR += xdoclet
 

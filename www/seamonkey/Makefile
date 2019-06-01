@@ -3,7 +3,7 @@
 
 PORTNAME=	seamonkey
 DISTVERSION=	2.49.4
-PORTREVISION=	24
+PORTREVISION=	27
 MOZILLA_VER=	52 # above + 3
 CATEGORIES?=	www mail news editors irc ipv6
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/source \
@@ -13,13 +13,14 @@ DISTFILES=	${DISTNAME}.source${EXTRACT_SUFX}
 MAINTAINER=	gecko@FreeBSD.org
 COMMENT=	The open source, standards compliant web browser
 
+BROKEN_FreeBSD_13_amd64=	xpcshell crashes after base Clang updated to 8.0.0
+
 BUILD_DEPENDS=	nspr>=4.13.1:devel/nspr \
 		nss>=3.28.6:security/nss \
 		libevent>=2.0.21_2:devel/libevent \
 		harfbuzz>=1.4.1:print/harfbuzz \
 		graphite2>=1.3.8:graphics/graphite2 \
 		png>=1.6.25:graphics/png \
-		libvorbis>=1.3.5,3:audio/libvorbis \
 		libvpx>=1.5.0:multimedia/libvpx \
 		sqlite3>=3.17.0:databases/sqlite3 \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
