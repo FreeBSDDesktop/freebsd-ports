@@ -15,7 +15,7 @@ LICENSE=	MIT
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
 LIB_DEPENDS=	libpciaccess.so:devel/libpciaccess
 
-USES=		libtool pkgconfig tar:bzip2
+USES=		gnome libtool pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
