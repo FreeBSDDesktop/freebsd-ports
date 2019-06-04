@@ -4368,6 +4368,7 @@
     SUBDIR += py-flake8-polyfill
     SUBDIR += py-flake8-quotes
     SUBDIR += py-flask-babel
+    SUBDIR += py-flatbuffers
     SUBDIR += py-flex
     SUBDIR += py-flexmock
     SUBDIR += py-fluent-logger
@@ -5977,6 +5978,7 @@
     SUBDIR += rubygem-wisper
     SUBDIR += rubygem-wmi-lite
     SUBDIR += rubygem-xdg
+    SUBDIR += rubygem-xdg2
     SUBDIR += rubygem-xpath
     SUBDIR += rubygem-yajl-ruby
     SUBDIR += rubygem-yui-compressor
