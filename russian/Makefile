@@ -13,7 +13,6 @@
     SUBDIR += gimp-help
     SUBDIR += hunspell
     SUBDIR += hyphen
-    SUBDIR += ircd-hybrid
     SUBDIR += koi2koi
     SUBDIR += koi8r-ps
     SUBDIR += libreoffice
@@ -38,7 +37,6 @@
     SUBDIR += tidyup-mail
     SUBDIR += wordpress
     SUBDIR += xcode
-    SUBDIR += xpi-tabextensions
     SUBDIR += xruskb
 
 .include <bsd.port.subdir.mk>

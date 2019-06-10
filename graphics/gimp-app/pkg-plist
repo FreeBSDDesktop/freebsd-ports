@@ -232,6 +232,7 @@ include/gimp-2.0/libgimpwidgets/gimpruler.h
 include/gimp-2.0/libgimpwidgets/gimpscaleentry.h
 include/gimp-2.0/libgimpwidgets/gimpscrolledpreview.h
 include/gimp-2.0/libgimpwidgets/gimpsizeentry.h
+include/gimp-2.0/libgimpwidgets/gimpspinbutton.h
 include/gimp-2.0/libgimpwidgets/gimpstringcombobox.h
 include/gimp-2.0/libgimpwidgets/gimpunitcombobox.h
 include/gimp-2.0/libgimpwidgets/gimpunitmenu.h
@@ -315,6 +316,7 @@ libexec/gimp/2.2/plug-ins/file-cel/file-cel
 libexec/gimp/2.2/plug-ins/file-compressor/file-compressor
 libexec/gimp/2.2/plug-ins/file-csource/file-csource
 libexec/gimp/2.2/plug-ins/file-darktable/file-darktable
+libexec/gimp/2.2/plug-ins/file-dds/file-dds
 libexec/gimp/2.2/plug-ins/file-desktop-link/file-desktop-link
 libexec/gimp/2.2/plug-ins/file-dicom/file-dicom
 %%OPENEXR%%libexec/gimp/2.2/plug-ins/file-exr/file-exr
@@ -371,7 +373,6 @@ libexec/gimp/2.2/plug-ins/gradient-map/gradient-map
 libexec/gimp/2.2/plug-ins/grid/grid
 libexec/gimp/2.2/plug-ins/guillotine/guillotine
 libexec/gimp/2.2/plug-ins/help/help
-%%HELPBROWSER%%libexec/gimp/2.2/plug-ins/help-browser/help-browser
 libexec/gimp/2.2/plug-ins/hot/hot
 libexec/gimp/2.2/plug-ins/ifs-compose/ifs-compose
 libexec/gimp/2.2/plug-ins/imagemap/imagemap
@@ -407,7 +408,6 @@ libexec/gimp/2.2/plug-ins/van-gogh-lic/van-gogh-lic
 libexec/gimp/2.2/plug-ins/warp/warp
 libexec/gimp/2.2/plug-ins/wavelet-decompose/wavelet-decompose
 libexec/gimp/2.2/plug-ins/web-browser/web-browser
-%%HELPBROWSER%%libexec/gimp/2.2/plug-ins/web-page/web-page
 man/man1/gimp-2.10.1.gz
 man/man1/gimp.1.gz
 man/man1/gimptool-2.0.1.gz
@@ -721,6 +721,7 @@ share/doc/gimp/libgimpwidgets/GimpUnitMenu.html
 share/doc/gimp/libgimpwidgets/GimpUnitStore.html
 share/doc/gimp/libgimpwidgets/GimpZoomModel.html
 share/doc/gimp/libgimpwidgets/api-index-2-10-4.html
+share/doc/gimp/libgimpwidgets/api-index-2-10-10.html
 share/doc/gimp/libgimpwidgets/api-index-2-10.html
 share/doc/gimp/libgimpwidgets/api-index-2-2.html
 share/doc/gimp/libgimpwidgets/api-index-2-4.html

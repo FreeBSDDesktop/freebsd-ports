@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	kodi
-DISTVERSION=	18.0
-DISTVERSIONSUFFIX=	-Leia
+DISTVERSION=	19.0.a20190518
+PORTREVISION=	1
 CATEGORIES=	multimedia
 PKGNAMESUFFIX=	-devel
 
@@ -45,16 +45,18 @@ LIB_DEPENDS=	libass.so:multimedia/libass \
 		libtinyxml.so:textproc/tinyxml \
 		libudev.so:devel/libudev-devd \
 		libuuid.so:misc/e2fsprogs-libuuid
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
 # Building libcpluff.a requires autoreconf and gmake.  Using ninja
 # leads to dependency problems where libcpluff.a is not yet finished
 # building when it's required.
-USES=		autoreconf:build cmake:noninja compiler:c++11-lib \
-		gettext gmake gnome iconv:wchar_t jpeg libtool pkgconfig \
-		python:2.7 ssl sqlite
+USES=		autoreconf:build cmake:noninja compiler:c++11-lang gettext \
+		gmake gnome iconv:wchar_t jpeg libtool pkgconfig python:3.5+ \
+		sqlite ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	xbmc
 GH_PROJECT=	xbmc
+GH_TAGNAME=	131485167f53d09e068430d2cb5656a03ca76697
 USE_GNOME=	libxslt libxml2
 USE_JAVA=	yes
 JAVA_BUILD=	yes
@@ -79,7 +81,7 @@ PLIST_SUB=	ARCH=${KODIARCH_${ARCH}:U${ARCH}} OPSYS=${OPSYS:tl}
 PORTDATA=	*
 
 OPTIONS_DEFINE=	AVAHI CEC DBUS LIBBLURAY MYSQL NFS SMB SSE UPNP VAAPI VDPAU WEBSERVER
-OPTIONS_DEFAULT=	GBM LIBBLURAY UPNP VAAPI VDPAU WEBSERVER WAYLAND X11
+OPTIONS_DEFAULT=	DBUS GBM LIBBLURAY UPNP VAAPI VDPAU WEBSERVER WAYLAND X11
 OPTIONS_DEFAULT_amd64=	SSE
 OPTIONS_MULTI=	PLATFORM
 OPTIONS_MULTI_PLATFORM=	GBM RPI WAYLAND X11
@@ -108,8 +110,6 @@ DBUS_CMAKE_BOOL=	ENABLE_DBUS
 
 KODI_GBM_ARGS=		-DCORE_PLATFORM_NAME:STRING="gbm" \
 			-DGBM_RENDER_SYSTEM:STRING="gl"
-GBM_CFLAGS=		-I${LOCALBASE}/include/libepoll-shim
-GBM_LDFLAGS=		-L${LOCALBASE}/lib -lepoll-shim -lpthread -lrt
 GBM_BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto
 GBM_LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim \
 			libinput.so:x11/libinput \

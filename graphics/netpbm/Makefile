@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	netpbm
-DISTVERSION=	10.85.01
+DISTVERSION=	10.86.03
 CATEGORIES=	graphics
 MASTER_SITES=	https://github.com/t6/netpbm/releases/download/v${DISTVERSION}/ \
-		https://gitlab.com/tobiask/netpbm/uploads/2780c2f59fe3a808d2fe37c60ebcbea4/ \
+		https://gitlab.com/tobiask/netpbm/uploads/4289d10d566221cabdbb0ba39f37e593/ \
 		LOCAL/tobik
 
 MAINTAINER=	tobik@FreeBSD.org
@@ -109,6 +109,8 @@ post-install:
 	@${RM} ${STAGEDIR}${PREFIX}/bin/manweb
 	${INSTALL_DATA} ${WRKSRC}/lib/util/pm_c_util.h ${WRKSRC}/pm_config.h \
 		${STAGEDIR}${PREFIX}/include/netpbm
+	${MV} ${STAGEDIR}${PREFIX}/staticlink/libnetpbm.a ${STAGEDIR}${PREFIX}/lib
+	${RMDIR} ${STAGEDIR}${PREFIX}/sharedlink ${STAGEDIR}${PREFIX}/staticlink
 
 post-install-MANPAGES-on:
 	${INSTALL_MAN} ${WRKSRC}/man/*.1 ${STAGEDIR}${PREFIX}/man/man1

@@ -14,4 +14,10 @@ USE_KDE=	completion config coreaddons ecm i18n jobwidgets kio \
 USE_QT=		buildtools_build core dbus gui network phonon4 \
 		qmake_build widgets
 
+OPTIONS_DEFINE=		AUDIO
+OPTIONS_DEFAULT=	AUDIO
+
+AUDIO_DESC=		Audio notifications/text-to-speech support
+AUDIO_USE=		QT=speech
+
 .include <bsd.port.mk>

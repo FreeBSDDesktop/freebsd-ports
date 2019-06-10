@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	vim
-PORTVERSION=	8.1.0676
+PORTVERSION=	8.1.1439
 DISTVERSIONPREFIX=	v
 CATEGORIES=	editors
 
@@ -14,10 +14,10 @@ LICENSE_NAME=	VIM License
 LICENSE_FILE=	${WRKSRC}/runtime/doc/uganda.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-CONFLICTS_INSTALL?=	vim-console vim-tiny
-
 USES=		cpe iconv ncurses pkgconfig shebangfix
 USE_GITHUB=	yes
+
+CONFLICTS_INSTALL?=	vim-console vim-tiny
 
 CONFIGURE_ARGS=	--enable-gui=${GUI} \
 		--enable-multibyte \
@@ -38,7 +38,7 @@ VIM_VER=	${PORTNAME}${PORTVERSION:R:S|.||g}
 
 # OPTIONS
 # ### Make sure any new options are excluded below in CONSOLE/TINY
-OPTIONS_DEFAULT=	CSCOPE DEFAULT_VIMRC CTAGS_EXUBERANT GTK2 PERL PYTHON2 RUBY
+OPTIONS_DEFAULT=	CSCOPE DEFAULT_VIMRC CTAGS_EXUBERANT GTK3 PERL PYTHON3 RUBY
 OPTIONS_DEFINE=		CSCOPE DEFAULT_VIMRC NLS XTERM_SAVE
 OPTIONS_SINGLE=		CTAGS UI
 OPTIONS_SINGLE_CTAGS=	CTAGS_BASE CTAGS_EXUBERANT CTAGS_UNIVERSAL
@@ -47,17 +47,10 @@ OPTIONS_GROUP=		LANGBIND
 OPTIONS_GROUP_LANGBIND=	LUA PERL PYTHON2 PYTHON3 RUBY SCHEME TCL
 OPTIONS_SUB=		yes
 
-.if defined(CONSOLE)
-OPTIONS_DEFAULT=	DEFAULT_VIMRC
+.if defined(CONSOLE) || defined(TINY)
 OPTIONS_SLAVE=		CONSOLE
 # Exclude everything except the two options above
 OPTIONS_EXCLUDE:=	${OPTIONS_DEFINE:NDEFAULT_VIMRC} \
-			${OPTIONS_SINGLE_UI:NCONSOLE} \
-			${OPTIONS_GROUP_LANGBIND} \
-			${OPTIONS_SINGLE_CTAGS}
-.elif defined(TINY)
-OPTIONS_SLAVE=		CONSOLE
-OPTIONS_EXCLUDE:=	${OPTIONS_DEFINE} \
 			${OPTIONS_SINGLE_UI:NCONSOLE} \
 			${OPTIONS_GROUP_LANGBIND} \
 			${OPTIONS_SINGLE_CTAGS}
@@ -103,17 +96,17 @@ CONSOLE_VARS=		GUI=no
 GNOME_PLIST_SUB=	GUI="" DESKTOP=""
 GNOME_IMPLIES=		NLS
 GNOME_USE=		GNOME=gdkpixbuf2,libgnomeui XORG=ice,sm,xorgproto,x11,xpm,xt
-GNOME_USES=		desktop-file-utils
+GNOME_USES=		desktop-file-utils gnome
 GNOME_VARS=		GUI=gnome2 INSTALLS_ICONS=yes
 
 GTK2_PLIST_SUB=		GUI="" DESKTOP=""
 GTK2_USE=		GNOME=gdkpixbuf2,gtk20 XORG=ice,sm,x11,xpm,xt
-GTK2_USES=		desktop-file-utils
+GTK2_USES=		desktop-file-utils gnome
 GTK2_VARS=		GUI=gtk2 INSTALLS_ICONS=yes
 
 GTK3_PLIST_SUB=		GUI="" DESKTOP=""
 GTK3_USE=		GNOME=cairo,gdkpixbuf2,gtk30 XORG=ice,sm,x11,xpm,xt
-GTK3_USES=		desktop-file-utils
+GTK3_USES=		desktop-file-utils gnome
 GTK3_VARS=		GUI=gtk3 INSTALLS_ICONS=yes
 
 MOTIF_CONFIGURE_ENV=	MOTIFHOME=${LOCALBASE}
@@ -171,6 +164,10 @@ post-configure:
 # Needed when devel/libsysinfo is installed:
 	@${REINPLACE_CMD} -e '/#define HAVE_SYSINFO 1/ d' ${WRKSRC}/src/auto/config.h
 
+post-install-DEFAULT_VIMRC-on:
+	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/vimrc ${STAGEDIR}${ETCDIR}/vimrc.sample
+
 .if !defined(TINY)
 post-install:
 	@${RM} ${STAGEDIR}${PREFIX}/bin/ex
@@ -196,11 +193,6 @@ post-patch-LUA-on:
 
 post-patch-XTERM_SAVE-on:
 	@${REINPLACE_CMD} -e '/FEAT_XTERM_SAVE/ s|.*|#define FEAT_XTERM_SAVE|' ${WRKSRC}/src/feature.h
-
-post-install-DEFAULT_VIMRC-on:
-	@${MKDIR} ${STAGEDIR}${ETCDIR}
-	${SED} -e '/set nocompatible/d' ${FILESDIR}/vimrc > ${STAGEDIR}${ETCDIR}/gvimrc.sample
-	${INSTALL_DATA} ${FILESDIR}/vimrc ${STAGEDIR}${ETCDIR}/vimrc.sample
 
 post-install-NLS-off:
 	@${MKDIR} ${STAGEDIR}${DATADIR}/${VIM_VER}/lang

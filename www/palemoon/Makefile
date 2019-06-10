@@ -4,11 +4,13 @@
 PORTNAME=	palemoon
 DISTVERSION=	27.9.4
 DISTVERSIONSUFFIX=_Release
-PORTREVISION=	3
+PORTREVISION=	6
 CATEGORIES=	www ipv6
 
 MAINTAINER=	lichray@gmail.com
 COMMENT=	Open Source Goanna-based web browser
+
+BROKEN_FreeBSD_13_amd64=	xpcshell crashes after base Clang updated to 8.0.0
 
 BUILD_DEPENDS=	nspr>=4.15:devel/nspr \
 		nss>=3.31.1:security/nss \
@@ -40,7 +42,7 @@ MOZ_OPTIONS=	--enable-application=browser \
 		--enable-jemalloc-lib
 
 OPTIONS_DEFAULT=	GTK2
-OPTIONS_EXCLUDE=	DTRACE JACK TEST WAYLAND
+OPTIONS_EXCLUDE=	JACK TEST WAYLAND
 
 .include "${.CURDIR}/../../www/firefox/Makefile.options"
 

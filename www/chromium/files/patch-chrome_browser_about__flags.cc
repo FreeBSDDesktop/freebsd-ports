@@ -1,15 +1,22 @@
---- chrome/browser/about_flags.cc.orig	2018-12-12 22:56:02.000000000 +0100
-+++ chrome/browser/about_flags.cc	2018-12-28 16:40:37.628497000 +0100
-@@ -884,7 +884,7 @@
-     {"(Black on GoogleYellow050)", kAutofillPreviewStyleBlackOnYellow050,
-      base::size(kAutofillPreviewStyleBlackOnYellow050), nullptr}};
- 
--#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN)
-+#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN) || defined(OS_BSD)
- const FeatureEntry::FeatureParam kAutofillPrimaryInfoStyleMedium[] = {
-     {autofill::kAutofillForcedFontWeightParameterName,
-      autofill::kAutofillForcedFontWeightParameterMedium},
-@@ -2609,12 +2609,12 @@
+--- chrome/browser/about_flags.cc.orig	2019-04-30 22:22:32 UTC
++++ chrome/browser/about_flags.cc
+@@ -1615,13 +1615,13 @@ const FeatureEntry kFeatureEntries[] = {
+      SINGLE_VALUE_TYPE(
+          spellcheck::switches::kEnableSpellingFeedbackFieldTrial)},
+ #endif  // ENABLE_SPELLCHECK
+-#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS)
++#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+     {"enable-webgl2-compute-context",
+      flag_descriptions::kWebGL2ComputeContextName,
+      flag_descriptions::kWebGL2ComputeContextDescription,
+      kOsWin | kOsLinux | kOsCrOS,
+      SINGLE_VALUE_TYPE(switches::kEnableWebGL2ComputeContext)},
+-#endif  // defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS)
++#endif  // defined(OS_WIN) || defined(OS_LINUX) || defined(OS_CHROMEOS) || defined(OS_BSD)
+     {"enable-webgl-draft-extensions",
+      flag_descriptions::kWebglDraftExtensionsName,
+      flag_descriptions::kWebglDraftExtensionsDescription, kOsAll,
+@@ -2128,12 +2128,12 @@ const FeatureEntry kFeatureEntries[] = {
      {"force-text-direction", flag_descriptions::kForceTextDirectionName,
       flag_descriptions::kForceTextDirectionDescription, kOsAll,
       MULTI_VALUE_TYPE(kForceTextDirectionChoices)},
@@ -24,9 +31,9 @@
      {"enable-origin-trials", flag_descriptions::kOriginTrialsName,
       flag_descriptions::kOriginTrialsDescription, kOsAll,
       FEATURE_VALUE_TYPE(features::kOriginTrials)},
-@@ -2813,12 +2813,12 @@
-      FEATURE_VALUE_TYPE(
-          password_manager::features::kPasswordsKeyboardAccessory)},
+@@ -2321,12 +2321,12 @@ const FeatureEntry kFeatureEntries[] = {
+      FEATURE_VALUE_TYPE(chrome::android::kAndroidNightMode)},
+ #endif  // BUILDFLAG(ENABLE_ANDROID_NIGHT_MODE)
  #endif  // OS_ANDROID
 -#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
 +#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
@@ -36,28 +43,28 @@
       FEATURE_VALUE_TYPE(password_manager::features::kMigrateLinuxToLoginDB)},
 -#endif  // defined(OS_LINUX) && !defined(OS_CHROMEOS)
 +#endif  // (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
- #if defined(OS_CHROMEOS)
      {"enable-experimental-accessibility-features",
       flag_descriptions::kExperimentalAccessibilityFeaturesName,
-@@ -3225,7 +3225,7 @@
-      flag_descriptions::kLeftToRightUrlsDescription, kOsDesktop,
-      FEATURE_VALUE_TYPE(features::kLeftToRightUrls)},
+      flag_descriptions::kExperimentalAccessibilityFeaturesDescription, kOsCrOS,
+@@ -2685,7 +2685,7 @@ const FeatureEntry kFeatureEntries[] = {
+      flag_descriptions::kOmniboxRichEntitySuggestionsDescription, kOsAll,
+      FEATURE_VALUE_TYPE(omnibox::kOmniboxRichEntitySuggestions)},
  
 -#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN)
 +#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN) || defined(OS_BSD)
-     {"omnibox-new-answer-layout",
-      flag_descriptions::kOmniboxNewAnswerLayoutName,
-      flag_descriptions::kOmniboxNewAnswerLayoutDescription, kOsDesktop,
-@@ -3257,7 +3257,7 @@
-      flag_descriptions::kOmniboxDriveSuggestionsName,
-      flag_descriptions::kOmniboxDriveSuggestionsDescriptions, kOsDesktop,
-      FEATURE_VALUE_TYPE(omnibox::kDocumentProvider)},
+     {"omnibox-experimental-keyword-mode",
+      flag_descriptions::kOmniboxExperimentalKeywordModeName,
+      flag_descriptions::kOmniboxExperimentalKeywordModeDescription, kOsDesktop,
+@@ -2716,7 +2716,7 @@ const FeatureEntry kFeatureEntries[] = {
+      flag_descriptions::kOmniboxDeduplicateDriveUrlsName,
+      flag_descriptions::kOmniboxDeduplicateDriveUrlsDescription, kOsDesktop,
+      FEATURE_VALUE_TYPE(omnibox::kDedupeGoogleDriveURLs)},
 -#endif  // defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN)
 +#endif  // defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN) || defined(OS_BSD)
  
- #if defined(OS_ANDROID)
-     {"enable-custom-feedback-ui",
-@@ -3566,13 +3566,13 @@
+     {"enable-speculative-service-worker-start-on-query-input",
+      flag_descriptions::kSpeculativeServiceWorkerStartOnQueryInputName,
+@@ -3040,7 +3040,7 @@ const FeatureEntry kFeatureEntries[] = {
       flag_descriptions::kClickToOpenPDFDescription, kOsAll,
       FEATURE_VALUE_TYPE(features::kClickToOpenPDFPlaceholder)},
  
@@ -66,46 +73,46 @@
      {"direct-manipulation-stylus",
       flag_descriptions::kDirectManipulationStylusName,
       flag_descriptions::kDirectManipulationStylusDescription,
+@@ -3057,7 +3057,7 @@ const FeatureEntry kFeatureEntries[] = {
+      flag_descriptions::kLinkManagedNoticeToChromeUIManagementURLDescription,
       kOsWin | kOsMac | kOsLinux,
-      FEATURE_VALUE_TYPE(features::kDirectManipulationStylus)},
+      FEATURE_VALUE_TYPE(features::kLinkManagedNoticeToChromeUIManagementURL)},
 -#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
 +#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
  
- #if defined(OS_ANDROID)
-     {"third-party-doodles", flag_descriptions::kThirdPartyDoodlesName,
-@@ -4021,7 +4021,7 @@
-      flag_descriptions::kAutofillCacheQueryResponsesDescription, kOsAll,
-      FEATURE_VALUE_TYPE(autofill::features::kAutofillCacheQueryResponses)},
+ #if !defined(OS_ANDROID)
+     {"doodles-on-local-ntp", flag_descriptions::kDoodlesOnLocalNtpName,
+@@ -3940,7 +3940,7 @@ const FeatureEntry kFeatureEntries[] = {
+      FEATURE_VALUE_TYPE(features::kForceEnableSystemAec)},
+ #endif  // defined(OS_MACOSX) || defined(OS_CHROMEOS)
  
--#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN)
-+#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN) || defined(OS_BSD)
-     {"autofill-primary-info-style",
-      flag_descriptions::kAutofillPrimaryInfoStyleExperimentName,
-      flag_descriptions::kAutofillPrimaryInfoStyleExperimentDescription,
-@@ -4030,7 +4030,7 @@
-          autofill::kAutofillPrimaryInfoStyleExperiment,
-          kAutofillPrimaryInfoStyleVariations,
-          "AutofillPrimaryInfoStyleExperiment")},
--#endif  // defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN)
-+#endif  // defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_WIN) || defined(OS_BSD)
+-#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
++#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
+     {"autofill-always-show-server-cards-in-sync-transport",
+      flag_descriptions::kAutofillAlwaysShowServerCardsInSyncTransportName,
+      flag_descriptions::
+@@ -3948,7 +3948,7 @@ const FeatureEntry kFeatureEntries[] = {
+      kOsMac | kOsWin | kOsLinux,
+      FEATURE_VALUE_TYPE(
+          autofill::features::kAutofillAlwaysShowServerCardsInSyncTransport)},
+-#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
++#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
  
-     {"autofill-enable-company-name",
-      flag_descriptions::kAutofillEnableCompanyNameName,
-@@ -4082,7 +4082,7 @@
-      FEATURE_VALUE_TYPE(ash::features::kOverviewSwipeToClose)},
+ #if BUILDFLAG(ENABLE_PRINT_PREVIEW) && defined(OS_MACOSX)
+     {"enable-custom-mac-paper-sizes",
+@@ -3993,13 +3993,13 @@ const FeatureEntry kFeatureEntries[] = {
+      FEATURE_VALUE_TYPE(features::kCrostiniAppSearch)},
  #endif  // OS_CHROMEOS
  
 -#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
 +#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
-     {"ntp-backgrounds", flag_descriptions::kNtpBackgroundsName,
-      flag_descriptions::kNtpBackgroundsDescription, kOsDesktop,
-      FEATURE_VALUE_TYPE(features::kNtpBackgrounds)},
-@@ -4098,7 +4098,7 @@
-     {"ntp-ui-md", flag_descriptions::kNtpUIMdName,
-      flag_descriptions::kNtpUIMdDescription, kOsDesktop,
-      FEATURE_VALUE_TYPE(features::kNtpUIMd)},
--#endif  // OS_WIN || OS_MACOSX || OS_LINUX
-+#endif  // OS_WIN || OS_MACOSX || OS_LINUX || defined(OS_BSD)
+     {"autofill-settings-split-by-card-type",
+      flag_descriptions::kAutofillSettingsSplitByCardTypeName,
+      flag_descriptions::kAutofillSettingsSplitByCardTypeDescription,
+      kOsMac | kOsWin | kOsLinux,
+      FEATURE_VALUE_TYPE(autofill::features::kAutofillSettingsCardTypeSplit)},
+-#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
++#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
  
- #if defined(OS_ANDROID)
-     {"enable-display-cutout-api", flag_descriptions::kDisplayCutoutAPIName,
+ #if !defined(OS_ANDROID)
+     {"hardware-media-key-handling",

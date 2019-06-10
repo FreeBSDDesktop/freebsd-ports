@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME?=	mariadb
-PORTVERSION=	10.1.37
-PORTREVISION=	2
+PORTVERSION=	10.1.40
+PORTREVISION=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	http://ftp.osuosl.org/pub/${SITESDIR}/ \
 		http://mirrors.supportex.net/${SITESDIR}/ \
@@ -22,9 +22,6 @@ LICENSE_NAME_PerconaFT=	PerconaFT patents license
 LICENSE_FILE_PerconaFT=	${WRKSRC}/storage/tokudb/PerconaFT/PATENTS
 LICENSE_PERMS_PerconaFT=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-BROKEN_SSL=		openssl111
-BROKEN_SSL_REASON_openssl111=	Does not support OpenSSL 1.1, use MariaDB 10.2 or 10.3
-
 SUB_FILES=	pkg-message
 
 SLAVEDIRS=	databases/mariadb101-client
@@ -42,7 +39,7 @@ OPTIONS_DEFAULT=	GSSAPI_BASE
 
 FASTMTX_DESC=		Replace mutexes with spinlocks
 
-.if !defined(CLIENT_ONLY)
+.if ${PKGNAMESUFFIX:M*-server}
 # MySQL-Server options
 OPTIONS_DEFINE+=	CONNECT_EXTRA MAXKEY DOCS
 OPTIONS_DEFAULT+=	MAXKEY SPHINX SPIDER
@@ -67,10 +64,6 @@ TOKUDB_DESC=	Fractal tree index tree data structure engine
 ZMQ_DESC=	ZeroMQ support
 .endif
 
-GSSAPI_BASE_USES=	gssapi
-GSSAPI_HEIMDAL_USES=	gssapi:heimdal
-GSSAPI_MIT_USES=	gssapi:mit
-
 CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 		-DINSTALL_DOCREADMEDIR="share/doc/mysql" \
 		-DINSTALL_INCLUDEDIR="include/mysql" \
@@ -86,11 +79,11 @@ CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 		-DINSTALL_SHAREDIR="share" \
 		-DINSTALL_SQLBENCHDIR= \
 		-DINSTALL_SUPPORTFILESDIR="share/mysql" \
-		-DWITH_UNIT_TESTS=0 \
-		-DWITH_LIBWRAP=1 \
 		-DWITH_SSL=${OPENSSLBASE} \
 		-DKRB5_CONFIG=${KRB5CONFIG} \
 		-DCOMPILATION_COMMENT="FreeBSD Ports"
+CMAKE_ON+=	WITH_LIBWRAP
+CMAKE_OFF+=	WITH_UNIT_TESTS
 
 DATADIR=	${PREFIX}/share/mysql
 
@@ -104,27 +97,29 @@ CONFLICTS_INSTALL=	mariadb5*-${PKGNAMESUFFIX:C/^[0-9]*-//}-* \
 			mysqlwsrep* \
 			percona[0-9]*-${PKGNAMESUFFIX:C/^[0-9]*-//}-*
 
-FASTMTX_CMAKE_ON=	-DWITH_FAST_MUTEXES=1
+FASTMTX_CMAKE_BOOL=	WITH_FAST_MUTEXES
+GSSAPI_BASE_USES=	gssapi
+GSSAPI_HEIMDAL_USES=	gssapi:heimdal
+GSSAPI_MIT_USES=	gssapi:mit
 OPTIONS_SUB=		yes
 
-.if defined(CLIENT_ONLY)
+.if ${PKGNAMESUFFIX:M*-client}
 # MySQL-Client part
 USES+=		readline
+USE_LDCONFIG=	${PREFIX}/lib/mysql
+CMAKE_ON+=	WITHOUT_SERVER
 GSSAPI_NONE_CMAKE_ON=	-DPLUGIN_AUTH_GSSAPI_CLIENT=NO
 .else
 # MySQL-Server part
 BROKEN_powerpc64=	Does not build: fatal error: sys/platform/ppc.h: No such file or directory
-#LIB_DEPENDS=	libevent.so:devel/libevent
 USES+=		mysql:101m
 USE_GNOME=	libxml2
 USE_LDCONFIG+=	${PREFIX}/lib/mysql/plugin
 USE_RC_SUBR=	mysql-server
 USERS=		mysql
 GROUPS=		mysql
-CMAKE_ARGS+=	-DWITH_EMBEDDED_SERVER="ON" \
-		-DPLUGIN_AUTH_GSSAPI_CLIENT=NO \
-		-DCMAKE_SKIP_BUILD_RPATH:BOOL=YES \
-		-DWITHOUT_EXAMPLE_STORAGE_ENGINE=1
+CMAKE_ARGS+=	-DPLUGIN_AUTH_GSSAPI_CLIENT=NO
+CMAKE_ON+=	WITH_EMBEDDED_SERVER CMAKE_SKIP_BUILD_RPATH WITHOUT_EXAMPLE_STORAGE_ENGINE
 
 .for ENGINE in ${OPTIONS_GROUP_ENGINES}
 ${ENGINE}_CMAKE_OFF=	-DPLUGIN_${ENGINE}=NO
@@ -132,13 +127,12 @@ ${ENGINE}_CMAKE_ON=	-DPLUGIN_${ENGINE}=DYNAMIC
 .endfor
 
 CONNECT_EXTRA_LIB_DEPENDS=	libodbc.so:databases/unixODBC
+CONNECT_EXTRA_USES=	gnome
 CONNECT_EXTRA_USE=	gnome=libxml2
 GSSAPI_NONE_CMAKE_ON=	-DPLUGIN_AUTH_GSSAPI=NO
-LZ4_CMAKE_OFF=		-DGRN_WITH_LZ4=OFF -DWITH_INNODB_LZ4=OFF
-LZ4_CMAKE_ON=		-DGRN_WITH_LZ4=${LOCALBASE}/lib -DWITH_INNODB_LZ4=${LOCALBASE}/lib
+LZ4_CMAKE_BOOL=		GRN_WITH_LZ4 WITH_INNODB_LZ4
 LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
-LZO_CMAKE_OFF=		-DWITH_INNODB_LZO=OFF
-LZO_CMAKE_ON=		-DWITH_INNODB_LZO=${LOCALBASE}/lib
+LZO_CMAKE_BOOL=		WITH_INNODB_LZO
 LZO_LIB_DEPENDS=	liblzo2.so:archivers/lzo2
 MAXKEY_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-include_my__compare.h
 MROONGA_LIB_DEPENDS=	liblz4.so:archivers/liblz4
@@ -146,14 +140,50 @@ MROONGA_VARS=		LICENSE+=LGPL20 LICENSE_COMB=multi
 MSGPACK_LIB_DEPENDS=	libmsgpackc.so:devel/msgpack
 OQGRAPH_LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 			libJudy.so:devel/judy
-SNAPPY_CMAKE_OFF=	-DWITH_INNODB_SNAPPY=OFF
-SNAPPY_CMAKE_ON=	-DWITH_INNODB_SNAPPY=${LOCALBASE}/lib
+SNAPPY_CMAKE_BOOL=	WITH_INNODB_SNAPPY
 SNAPPY_LIB_DEPENDS=	libsnappy.so:archivers/snappy
 TOKUDB_IMPLIES=		SNAPPY
 TOKUDB_PORTDOCS=	README.md
 TOKUDB_VARS=		LICENSE+=PerconaFT LICENSE_COMB=multi
 ZMQ_LIB_DEPENDS=	libzmq.so:net/libzmq4
+.endif # ${PKGNAMESUFFIX:M*-client}
 
+.include <bsd.port.options.mk>
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1200057
+SUB_LIST+=	LEGACY_LIMITS="@comment " MODERN_LIMITS=""
+.else
+SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "
+.endif
+
+.include <bsd.port.pre.mk>
+
+.if ${SSL_DEFAULT} != base && ${PORT_OPTIONS:MGSSAPI_BASE}
+IGNORE=		BASE_GSSAPI is not compatible with OpenSSL from ports. Use other GSSAPI options or OpenSSL from base system
+.endif
+
+.if ${OPSYS} == FreeBSD
+CMAKE_ARGS+=	-DWITH_JEMALLOC="system"
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} 's/*.1/${MAN1}/' ${WRKSRC}/man/CMakeLists.txt
+	@${REINPLACE_CMD} 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/mysys/my_default.c
+	@${REINPLACE_CMD} 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/scripts/mysql_config.sh
+.if ${OPSYS} == DragonFly
+	${CP} ${WRKSRC}/cmake/os/FreeBSD.cmake \
+		${WRKSRC}/cmake/os/DragonFly.cmake
+.endif
+
+
+.if ${PKGNAMESUFFIX:M*-client}
+post-install:
+	${RM} ${STAGEDIR}${PREFIX}/bin/wsrep*
+	${RM} ${STAGEDIR}${PREFIX}/bin/mysqld_safe_helper
+	${RM} ${STAGEDIR}${PREFIX}/share/aclocal/mysql.m4
+	${RM} -r ${STAGEDIR}${PREFIX}/share/pkgconfig
+	${RM} -r ${STAGEDIR}${PREFIX}/include/mysql/private
+.else
 post-install:
 # Remove programs to avoid conflict with mariadb101-client
 # These are "client" components, so there should be a switch that
@@ -175,36 +205,6 @@ post-install-MROONGA-on:
 	${MV} ${STAGEDIR}${PREFIX}/share/groonga-normalizer-mysql \
 		${STAGEDIR}${PREFIX}/share/groonga \
 		${STAGEDIR}${PREFIX}/share/mysql
-.endif # defined(CLIENT_ONLY)
-
-.include <bsd.port.options.mk>
-
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1200057
-SUB_LIST+=	LEGACY_LIMITS="@comment " MODERN_LIMITS=""
-.else
-SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "
-.endif
-
-.include <bsd.port.pre.mk>
-
-.if ${SSL_DEFAULT} != base && ${PORT_OPTIONS:MGSSAPI_BASE}
-IGNORE=		BASE_GSSAPI is not compatible with OpenSSL from ports. Use other GSSAPI options or OpenSSL from base system
-.endif
-
-.if ${OPSYS} == FreeBSD
-CMAKE_ARGS+=	-DWITH_JEMALLOC="system"
-. if ${OSVERSION} >= 1200085 && ${SSL_DEFAULT} == base
-BROKEN=	${BROKEN_SSL_REASON_openssl111}
-. endif
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} 's/*.1/${MAN1}/' ${WRKSRC}/man/CMakeLists.txt
-	@${REINPLACE_CMD} 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/mysys/my_default.c
-	@${REINPLACE_CMD} 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/scripts/mysql_config.sh
-.if ${OPSYS} == DragonFly
-	${CP} ${WRKSRC}/cmake/os/FreeBSD.cmake \
-		${WRKSRC}/cmake/os/DragonFly.cmake
-.endif
+.endif # ${PKGNAMESUFFIX:M*-client}
 
 .include <bsd.port.post.mk>

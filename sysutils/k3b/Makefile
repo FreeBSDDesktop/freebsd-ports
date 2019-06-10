@@ -2,7 +2,6 @@
 
 PORTNAME=	k3b
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
-PORTREVISION=	1
 CATEGORIES=	sysutils multimedia kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
@@ -35,7 +34,7 @@ USE_QT=		core dbus gui network webkit widgets xml \
 # The ffmpeg-plugin needs patching
 CMAKE_ARGS=	-DK3B_BUILD_FFMPEG_DECODER_PLUGIN:BOOL=FALSE
 
-OPTIONS_DEFINE=		CDRDAO DVDPLUSRW EMOVIX VCDIMAGER DOCS
+OPTIONS_DEFINE=		CDRDAO CDRSKIN DVDPLUSRW EMOVIX VCDIMAGER DOCS
 OPTIONS_DEFAULT=	${OPTIONS_DEFINE}
 
 CDRDAO_DESC=		Burning: cdrdao
@@ -49,5 +48,8 @@ EMOVIX_RUN_DEPENDS=	mkmovixiso:multimedia/emovix
 
 VCDIMAGER_DESC=		Burning: VCDImager (video CDs)
 VCDIMAGER_RUN_DEPENDS=	vcdxrip:multimedia/vcdimager
+
+CDRSKIN_DESC=		Burning: cdrskin (improved performance)
+CDRSKIN_RUN_DEPENDS=	cdrskin:devel/libburn
 
 .include <bsd.port.mk>

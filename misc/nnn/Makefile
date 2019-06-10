@@ -2,7 +2,7 @@
 
 PORTNAME=	nnn
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.2
+DISTVERSION=	2.5
 CATEGORIES=	misc shells
 
 MAINTAINER=	dg@syrec.org
@@ -11,15 +11,17 @@ COMMENT=	Missing terminal file browser for X
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		gmake localbase ncurses
+USES=		gmake localbase ncurses readline
 USE_GITHUB=	yes
 GH_ACCOUNT=	jarun
 
-MAKE_ARGS=	PREFIX=${PREFIX} MANPREFIX=${PREFIX}/man LDLIBS_CURSES=-lncursesw
+MAKE_ARGS=	PREFIX=${PREFIX} MANPREFIX=${PREFIX}/man \
+		LDLIBS_CURSES=-lncursesw CFLAGS_OPTIMIZATION=
 CFLAGS+=	-D_WITH_DPRINTF # enable dprintf prototype
 
 OPTIONS_DEFINE=	ATOOL DOCS EXAMPLES MEDIAINFO XDG
 OPTIONS_DEFAULT=	ATOOL MEDIAINFO XDG
+
 ATOOL_DESC=	List and extract archives
 XDG_DESC=	Open files with xdg-open
 MEDIAINFO_DESC=	Show media information
@@ -54,8 +56,9 @@ post-install-DOCS-on:
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 
 post-install-EXAMPLES-on:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	cd ${WRKSRC}/scripts && ${COPYTREE_SHARE} "copier quitcd natool nlay" \
-		${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/scripts
+	cd ${WRKSRC}/scripts && ${COPYTREE_SHARE} "clipboard-copier natool nlaunch nlay quitcd" \
+		${STAGEDIR}${EXAMPLESDIR}/scripts
+	cd ${WRKSRC} && ${COPYTREE_SHARE} plugins ${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>

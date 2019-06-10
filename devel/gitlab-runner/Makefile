@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	gitlab-runner
-PORTVERSION=	11.7.0
+PORTVERSION=	11.11.1
 CATEGORIES=	devel
 MASTER_SITES=	\
 		https://gitlab-runner-downloads.s3.amazonaws.com/master/docker/:dockerx64 \
@@ -25,10 +25,14 @@ RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss \
 		git:devel/git
 
 USE_GITLAB=	yes
+
+# Find tags here:
+# https://gitlab.com/gitlab-org/gitlab-runner/tags
 GL_ACCOUNT=	gitlab-org
-GL_COMMIT=	8bb608ff3a677132022502b07dae8a3ea679f3d1
-GITBRANCH=	11-7-stable
-BUILT=		2019-01-15T15:24:23+0000
+GL_COMMIT=	5a147c9271bc1f6114ed4e32d3ba3eb9ea372cda
+GITBRANCH=	11-11-stable
+# https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-freebsd-amd64
+BUILT=		2019-05-24T12:47:07+0000
 
 GO_LDFLAGS=	-X gitlab.com/gitlab-org/gitlab-runner/common.VERSION=${PORTVERSION} \
 		-X gitlab.com/gitlab-org/gitlab-runner/common.REVISION=${GL_COMMIT:C/^(........).*/\1/} \
@@ -47,6 +51,7 @@ post-extract:
 	@${MKDIR} ${WRKSRC}/out/docker/
 	@${CP} ${DISTDIR}/${DIST_SUBDIR}/prebuilt-x86_64.tar.xz ${WRKSRC}/out/docker/
 	@${CP} ${DISTDIR}/${DIST_SUBDIR}/prebuilt-arm.tar.xz ${WRKSRC}/out/docker/
+	@${MV} ${WRKSRC}/vendor ${WRKSRC}/src
 
 do-build:
 	@cd ${WRKSRC} && go-bindata \
@@ -59,7 +64,6 @@ do-build:
 		out/docker/prebuilt-x86_64.tar.xz \
 		out/docker/prebuilt-arm.tar.xz
 	@cd ${WRKSRC} && go fmt executors/docker/bindata.go
-	@${MV} ${WRKSRC}/vendor ${WRKSRC}/src
 	@${MKDIR} ${WRKSRC}/src/gitlab.com/gitlab-org
 	@${LN} -s ${WRKSRC} ${WRKSRC}/src/gitlab.com/gitlab-org/gitlab-runner
 	@cd ${WRKSRC} && \

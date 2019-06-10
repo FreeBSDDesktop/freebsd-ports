@@ -16,8 +16,8 @@ _INCLUDE_BSD_DEFAULT_VERSIONS_MK=	yes
 LOCALBASE?=	/usr/local
 
 .for lang in APACHE BDB COROSYNC EMACS FIREBIRD FORTRAN FPC GCC GHOSTSCRIPT \
-	LAZARUS LINUX LLVM LUA MYSQL PERL5 PGSQL PHP PYTHON PYTHON2 PYTHON3 \
-	RUBY RUST SAMBA SSL TCLTK VARNISH
+	JULIA LAZARUS LINUX LLVM LUA MYSQL PERL5 PGSQL PHP PYTHON PYTHON2 \
+	PYTHON3 RUBY RUST SAMBA SSL TCLTK VARNISH
 .if defined(${lang}_DEFAULT)
 ERROR+=	"The variable ${lang}_DEFAULT is set and it should only be defined through DEFAULT_VERSIONS+=${lang:tl}=${${lang}_DEFAULT} in /etc/make.conf"
 .endif
@@ -29,7 +29,7 @@ _l=		${lang:C/=.*//g}
 ${_l:tu}_DEFAULT=	${lang:C/.*=//g}
 .endfor
 
-# Possible values: 2.2, 2.4
+# Possible values: 2.4
 APACHE_DEFAULT?=	2.4
 # Possible values: 48, 5, 6
 BDB_DEFAULT?=		5
@@ -43,12 +43,14 @@ FIREBIRD_DEFAULT?=	2.5
 FORTRAN_DEFAULT?=	gfortran
 # Possible values: 3.0.4
 FPC_DEFAULT?=		3.0.4
-# Possible values: 5, 6, 7, 8
+# Possible values: 6, 7, 8
 GCC_DEFAULT?=		8
 # Possible values: 7, 8, 9, agpl
 GHOSTSCRIPT_DEFAULT?=	agpl
-# Possible values: 1.8.4
-LAZARUS_DEFAULT?=	1.8.4
+# Possible values: 0.6, 0.7, 1.0, 1.1
+JULIA_DEFAULT?=		1.0
+# Possible values: 2.0.0
+LAZARUS_DEFAULT?=	2.0.0
 .if ${ARCH} == amd64
 # Possible values: c6, c6_64, c7
 LINUX_DEFAULT?=		c6_64
@@ -56,13 +58,13 @@ LINUX_DEFAULT?=		c6_64
 # Possible values: c6
 LINUX_DEFAULT?=		c6
 .endif
-# Possible values: 50, 60, 70 (to be used when non-base compiler is required)
-LLVM_DEFAULT?=		70
+# Possible values: 60, 70, 80, -devel (to be used when non-base compiler is required)
+LLVM_DEFAULT?=		80
 # Possible values: 5.1, 5.2, 5.3
 LUA_DEFAULT?=		5.2
 # Possible values: 5.5, 5.6, 5.7, 8.0, 5.5m, 10.0m, 10.1m, 10.2m, 10.3m, 5.5p, 5.6p, 5.7p, 5.6w
 MYSQL_DEFAULT?=		5.6
-# Possible values: 5.24, 5.26, 5.28, devel
+# Possible values: 5.26, 5.28, 5.30, devel
 .if !exists(${LOCALBASE}/bin/perl) || (!defined(_PORTS_ENV_CHECK) && \
     defined(PACKAGE_BUILDING))
 PERL5_DEFAULT?=		5.28
@@ -82,13 +84,13 @@ PGSQL_DEFAULT?=		9.5
 # Possible values: 7.1, 7.2, 7.3
 PHP_DEFAULT?=		7.2
 # Possible values: 2.7, 3.5, 3.6, 3.7
-PYTHON_DEFAULT?=	2.7
+PYTHON_DEFAULT?=	3.6
 # Possible values: 2.7
 PYTHON2_DEFAULT?=	2.7
 # Possible values: 3.5, 3.6, 3.7
 PYTHON3_DEFAULT?=	3.6
-# Possible values: 2.3, 2.4, 2.5
-RUBY_DEFAULT?=		2.4
+# Possible values: 2.4, 2.5, 2.6
+RUBY_DEFAULT?=		2.5
 # Possible values: rust, rust-nightly
 RUST_DEFAULT?=		rust
 # Possible values: 4.6, 4.7, 4.8

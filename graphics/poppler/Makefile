@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	poppler
-DISTVERSION=	0.72.0
+DISTVERSION=	0.77.0
 CATEGORIES=	graphics print
-MASTER_SITES=	http://poppler.freedesktop.org/
+MASTER_SITES=	https://poppler.freedesktop.org/
 
 MAINTAINER?=	gnome@FreeBSD.org
 COMMENT?=	PDF rendering library
@@ -29,7 +29,7 @@ USE_LDCONFIG=	yes
 CMAKE_ON=	ENABLE_LIBJPEG  \
 		ENABLE_LIBPNG \
 		ENABLE_LIBTIFF \
-		ENABLE_XPDF_HEADERS \
+		ENABLE_UNSTABLE_API_ABI_HEADERS \
 		ENABLE_ZLIB \
 		ENABLE_NSS \
 		ENABLE_SPLASH

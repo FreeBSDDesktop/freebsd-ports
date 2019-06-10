@@ -3,7 +3,7 @@
 
 PORTNAME=	nimble
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.9.0
+DISTVERSION=	0.10.0
 CATEGORIES=	devel
 
 MAINTAINER=	ports@nicandneal.net
@@ -21,7 +21,7 @@ GH_ACCOUNT=	nim-lang
 PLIST_FILES=	bin/nimble
 
 do-build:
-	@cd ${WRKSRC} && nim c --parallelBuild=${MAKE_JOBS_NUMBER} --path:${LOCALBASE}/nim src/nimble
+	@cd ${WRKSRC} && nim c --parallelBuild=${MAKE_JOBS_NUMBER} --path:${LOCALBASE}/nim --nimcache:${WRKSRC}/nimcache src/nimble
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/nimble ${STAGEDIR}${PREFIX}/bin

@@ -11,14 +11,14 @@ COMMENT=	Virtual globe and world atlas for KDE
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-LIB_DEPENDS=	libquazip5.so:archivers/quazip@qt5
+LIB_DEPENDS=	libquazip5.so:archivers/quazip
 
 USES=		cmake compiler:c++11-lang desktop-file-utils gettext \
 		kde:5 qt:5 tar:xz
 USE_KDE=	attica auth codecs completion config configwidgets coreaddons \
 		crash doctools ecm i18n jobwidgets kio newstuff package parts \
-		plasma-framework runner service sonnet textwidgets wallet \
-		widgetsaddons xmlgui
+		plasma-framework plasma-workspace-wallpapers runner service \
+		sonnet textwidgets wallet widgetsaddons xmlgui
 USE_QT=		concurrent core dbus declarative designer gui location network opengl \
 		phonon4 printsupport script sql svg webchannel widgets xml \
 		buildtools_build qmake_build

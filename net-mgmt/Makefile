@@ -43,6 +43,7 @@
     SUBDIR += check_mk_agent
     SUBDIR += check_multi
     SUBDIR += check_mysql_health
+    SUBDIR += check_nwc_health
     SUBDIR += check_ssl_cert
     SUBDIR += chillispot
     SUBDIR += choparp
@@ -50,6 +51,7 @@
     SUBDIR += ciscoconf
     SUBDIR += clog
     SUBDIR += cnagios
+    SUBDIR += cnagios4
     SUBDIR += collectd5
     SUBDIR += confregdecode
     SUBDIR += coovachilli
@@ -83,9 +85,6 @@
     SUBDIR += gsnmp
     SUBDIR += guifi-snpservices
     SUBDIR += hastmon
-    SUBDIR += icinga
-    SUBDIR += icinga-classicweb
-    SUBDIR += icinga-core
     SUBDIR += icinga2
     SUBDIR += icingaweb2
     SUBDIR += icingaweb2-module-businessprocess
@@ -96,9 +95,13 @@
     SUBDIR += icingaweb2-module-generictts
     SUBDIR += icingaweb2-module-grafana
     SUBDIR += icingaweb2-module-graphite
+    SUBDIR += icingaweb2-module-idoreports
+    SUBDIR += icingaweb2-module-ipl
     SUBDIR += icingaweb2-module-map
+    SUBDIR += icingaweb2-module-pdfexport
+    SUBDIR += icingaweb2-module-reactbundle
+    SUBDIR += icingaweb2-module-reporting
     SUBDIR += icingaweb2-module-vsphere
-    SUBDIR += icli
     SUBDIR += icmpmonitor
     SUBDIR += icmpquery
     SUBDIR += iftop
@@ -137,7 +140,6 @@
     SUBDIR += nagcon
     SUBDIR += nagios
     SUBDIR += nagios-certexp-plugin
-    SUBDIR += nagios-check_bacula
     SUBDIR += nagios-check_bacula9
     SUBDIR += nagios-check_clamav
     SUBDIR += nagios-check_cpu_usage
@@ -163,7 +165,6 @@
     SUBDIR += nagios-snmp-plugins-extras
     SUBDIR += nagios-spamd-plugin
     SUBDIR += nagios4
-    SUBDIR += nagiosagent
     SUBDIR += nagiosgraph
     SUBDIR += nagiosql
     SUBDIR += nagircbot
@@ -207,6 +208,7 @@
     SUBDIR += nsca-ng-client
     SUBDIR += nsca27
     SUBDIR += nsca27-client
+    SUBDIR += nsd_exporter
     SUBDIR += nstat
     SUBDIR += nstreams
     SUBDIR += nvidia_gpu_prometheus_exporter
@@ -296,7 +298,6 @@
     SUBDIR += pktstat
     SUBDIR += pmacct
     SUBDIR += pnp
-    SUBDIR += pnp-icinga
     SUBDIR += pnp-icinga2
     SUBDIR += portmon
     SUBDIR += prometheus-collectd-exporter
@@ -314,6 +315,7 @@
     SUBDIR += py-napalm
     SUBDIR += py-napalm-logs
     SUBDIR += py-ncclient
+    SUBDIR += py-nxapi-plumbing
     SUBDIR += py-pdagent
     SUBDIR += py-prometheus-client
     SUBDIR += py-pyIOSXR
@@ -322,13 +324,12 @@
     SUBDIR += py-pynsca
     SUBDIR += py-pynxos
     SUBDIR += py-pysmi
+    SUBDIR += py-pysnmp
+    SUBDIR += py-pysnmp-mibs
     SUBDIR += py-pyzabbix
-    SUBDIR += py-snmp4
-    SUBDIR += py-snmp4-apps
-    SUBDIR += py-snmp4-mibs
     SUBDIR += py-snmp_passpersist
+    SUBDIR += py-snmpclitools
     SUBDIR += py-yapsnmp
-    SUBDIR += qkismet
     SUBDIR += rackmonkey
     SUBDIR += rancid3
     SUBDIR += rate
@@ -347,6 +348,11 @@
     SUBDIR += rubygem-oxidized
     SUBDIR += rubygem-oxidized-script
     SUBDIR += rubygem-oxidized-web
+    SUBDIR += rubygem-riemann-client
+    SUBDIR += rubygem-riemann-dash
+    SUBDIR += rubygem-riemann-rabbitmq
+    SUBDIR += rubygem-riemann-tail
+    SUBDIR += rubygem-riemann-tools
     SUBDIR += rubygem-snmp
     SUBDIR += rubygem-visage-app
     SUBDIR += sblim-wbemcli
@@ -403,20 +409,15 @@
     SUBDIR += zabbix3-java
     SUBDIR += zabbix3-proxy
     SUBDIR += zabbix3-server
-    SUBDIR += zabbix32-agent
-    SUBDIR += zabbix32-frontend
-    SUBDIR += zabbix32-java
-    SUBDIR += zabbix32-proxy
-    SUBDIR += zabbix32-server
-    SUBDIR += zabbix34-agent
-    SUBDIR += zabbix34-frontend
-    SUBDIR += zabbix34-java
-    SUBDIR += zabbix34-proxy
-    SUBDIR += zabbix34-server
     SUBDIR += zabbix4-agent
     SUBDIR += zabbix4-frontend
     SUBDIR += zabbix4-java
     SUBDIR += zabbix4-proxy
     SUBDIR += zabbix4-server
+    SUBDIR += zabbix42-agent
+    SUBDIR += zabbix42-frontend
+    SUBDIR += zabbix42-java
+    SUBDIR += zabbix42-proxy
+    SUBDIR += zabbix42-server
 
 .include <bsd.port.subdir.mk>

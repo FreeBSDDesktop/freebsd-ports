@@ -3,7 +3,7 @@
 
 PORTNAME=	mpeg4ip
 PORTVERSION=	1.6.1
-PORTREVISION=	43
+PORTREVISION=	46
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	LOCAL/ahze
 # http://sourceforge.net/forum/forum.php?thread_id=1839453&forum_id=59136
@@ -11,6 +11,9 @@ MASTER_SITES=	LOCAL/ahze
 
 MAINTAINER=	multimedia@FreeBSD.org
 COMMENT=	Standards-based system to encode, stream, and play MPEG-4 audio/video
+
+DEPRECATED=	old, unmaintained version; superseded by multimedia/ffmpeg
+EXPIRATION_DATE=	2019-06-15
 
 BUILD_DEPENDS=	mp4v2>=1.9.1:multimedia/mp4v2 \
 		${LOCALBASE}/include/linux/videodev.h:multimedia/v4l_compat
@@ -37,7 +40,7 @@ CONFIGURE_ARGS=	--enable-ffmpeg=${LOCALBASE} \
 		--enable-mp4live \
 		--disable-static
 
-OPTIONS_DEFINE=		ESOUND IPV6 NAS OPTIMIZED_CFLAGS XVID DOCS
+OPTIONS_DEFINE=		IPV6 NAS OPTIMIZED_CFLAGS XVID DOCS
 OPTIONS_DEFAULT=	XVID
 
 DOC_FILES=	${PORTDOCS}
@@ -48,13 +51,6 @@ PORTDOCS=	MAINREADME.html MP4LIVE_INTERNALS.html MPEG4IP_Guide.pdf \
 
 .include <bsd.port.options.mk>
 
-###
-## Auto detect possible extensions
-###
-# esound
-.if exists(${LOCALBASE}/bin/esd-config) && empty(PORT_OPTIONS:MESOUND)
-PORT_OPTIONS+=	ESOUND
-.endif
 # nas
 .if exists(${LOCALBASE}/lib/libaudio.so) && empty(PORT_OPTIONS:MNAS)
 PORT_OPTIONS+=	NAS
@@ -64,13 +60,6 @@ PORT_OPTIONS+=	NAS
 PORT_OPTIONS+=	XVID
 .endif
 
-###
-## Enable extensions based on user choices
-###
-# esound
-.if ${PORT_OPTIONS:MESOUND}
-USE_GNOME+=	esound
-.endif
 # nas
 .if ${PORT_OPTIONS:MNAS}
 LIB_DEPENDS+=	libaudio.so:audio/nas

@@ -15,4 +15,10 @@ USE_KDE=	auth codecs completion config configwidgets \
 		widgetsaddons windowsystem
 USE_QT=		buildtools_build core dbus gui qmake_build widgets xml
 
+OPTIONS_DEFINE=		AUDIO
+OPTIONS_DEFAULT=	AUDIO
+
+AUDIO_DESC=		Audio notifications/speech support
+AUDIO_USE=		QT=speech
+
 .include <bsd.port.mk>

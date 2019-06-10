@@ -2,6 +2,7 @@
 
 PORTNAME=	0ad
 PORTVERSION=	0.0.23b
+PORTREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	http://releases.wildfiregames.com/ \
 		SF/zero-ad/releases
@@ -26,9 +27,9 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libtiff.so:graphics/tiff \
 		libsodium.so:security/libsodium
 
-USES=		compiler:c++11-lib desktop-file-utils dos2unix gmake iconv jpeg openal:al \
-		pkgconfig python:2.7,build tar:xz
-USE_GNOME=	libxml2 gtk20
+USES=		compiler:c++11-lib desktop-file-utils dos2unix gl gmake gnome iconv \
+		jpeg openal:al pkgconfig python:2.7,build sdl tar:xz
+USE_GNOME=	libxml2
 USE_GL=		gl
 USE_SDL=	sdl2
 USE_XORG=	x11 xcursor

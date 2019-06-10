@@ -2,11 +2,12 @@
 
 PORTNAME=	napalm-logs
 DISTVERSION=	0.7.0
+PORTREVISION=	1
 CATEGORIES=	net-mgmt python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	freebsd_ports@k-worx.org
+MAINTAINER=	kai@FreeBSD.org
 COMMENT=	Cross-vendor normalisation for network syslog messages
 
 LICENSE=	APACHE20

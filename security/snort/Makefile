@@ -3,7 +3,7 @@
 
 PORTNAME=	snort
 PORTVERSION=	2.9.12
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	https://snort.org/downloads/snort/ \
 		ZI
@@ -22,7 +22,7 @@ LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libpcap.so:net/libpcap
 RUN_DEPENDS=	daq>=2.0.0:net/daq
 
-USES=			cpe libtool pathfix shebangfix ssl
+USES=			bison cpe libtool pathfix shebangfix ssl
 USE_RC_SUBR=		snort
 USE_LDCONFIG=		yes
 
@@ -84,11 +84,6 @@ APPID_CONFIGURE_ENV+=	luajit_CFLAGS="-I${LOCALBASE}/include/luajit-2.0" \
 			luajit_LIBS="-L${LOCALBASE}/lib -lluajit-5.1"
 
 .include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MBARNYARD}
-DEPRECATED=     Uses legacy GeoIP 1 format which no longer works; switch to GeoIP 2 where possible
-EXPIRATION_DATE=2019-02-15
-.endif
 
 CONFIG_FILES=	classification.config gen-msg.map reference.config \
 		snort.conf threshold.conf unicode.map file_magic.conf

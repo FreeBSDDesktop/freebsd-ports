@@ -34,7 +34,6 @@
     SUBDIR += gcab
     SUBDIR += gcpio
     SUBDIR += gnome-autoar
-    SUBDIR += go-compress
     SUBDIR += grzip
     SUBDIR += gtar
     SUBDIR += gzip
@@ -43,10 +42,6 @@
     SUBDIR += hffzip
     SUBDIR += hlextract
     SUBDIR += hpack.non-usa.only
-    SUBDIR += hs-tar
-    SUBDIR += hs-zip-archive
-    SUBDIR += hs-zlib
-    SUBDIR += hs-zlib-bindings
     SUBDIR += innoextract
     SUBDIR += javatar
     SUBDIR += jzlib
@@ -75,6 +70,7 @@
     SUBDIR += libunrar
     SUBDIR += libunrar5
     SUBDIR += libzip
+    SUBDIR += lizard
     SUBDIR += lrzip
     SUBDIR += lua-lzlib
     SUBDIR += lua51-zlib
@@ -148,8 +144,11 @@
     SUBDIR += peazip
     SUBDIR += pecl-lzf
     SUBDIR += pecl-rar
+    SUBDIR += php-brotli
     SUBDIR += php-horde_lz4
+    SUBDIR += php-lz4
     SUBDIR += php-snappy
+    SUBDIR += php-zstd
     SUBDIR += php71-bz2
     SUBDIR += php71-phar
     SUBDIR += php71-zip
@@ -174,6 +173,7 @@
     SUBDIR += py-backports.lzma
     SUBDIR += py-borgbackup
     SUBDIR += py-brotli
+    SUBDIR += py-brotlipy
     SUBDIR += py-bup
     SUBDIR += py-bz2file
     SUBDIR += py-czipfile
@@ -190,6 +190,7 @@
     SUBDIR += py-rjsmin
     SUBDIR += py-warctools
     SUBDIR += py-xopen
+    SUBDIR += py-zopfli
     SUBDIR += py-zstandard
     SUBDIR += py-zstd
     SUBDIR += qpress

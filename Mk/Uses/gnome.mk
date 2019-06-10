@@ -67,7 +67,7 @@ IGNORE=	USES=gnome takes no arguments
 .endif
 
 # non-version specific components
-_USE_GNOME_ALL= esound intlhack intltool introspection \
+_USE_GNOME_ALL= intlhack intltool introspection \
 		referencehack gnomemimedata \
 		gnomeprefix
 
@@ -76,7 +76,7 @@ _USE_GNOME_ALL+= atk cairo \
 		gdkpixbuf2 gconf2 glib20 \
 		gnomedocutils gnomesharp20 \
 		gnomevfs2 gtk-update-icon-cache gtk20 gtkhtml3 \
-		gtksharp20 gtksourceview gtksourceview2 gvfs libartlgpl2 libbonobo \
+		gtksharp20 gtksourceview2 gvfs libartlgpl2 libbonobo \
 		libbonoboui libglade2 libgnome \
 		libgnomecanvas libgnomekbd libgnomeprint libgnomeprintui \
 		libgnomeui libgsf libgtkhtml libidl librsvg2 libwnck \
@@ -164,11 +164,6 @@ libsigc++20_LIB_DEPENDS=	libsigc-2.0.so:devel/libsigc++20
 
 pangomm_LIB_DEPENDS=	libpangomm-1.4.so:x11-toolkits/pangomm
 pangomm_USE_GNOME_IMPL=	pango glibmm cairomm
-
-ESD_CONFIG?=		${LOCALBASE}/bin/esd-config
-esound_LIB_DEPENDS=	libesd.so:audio/esound
-esound_CONFIGURE_ENV=	ESD_CONFIG="${ESD_CONFIG}"
-esound_MAKE_ENV=	ESD_CONFIG="${ESD_CONFIG}"
 
 gnomemimedata_BUILD_DEPENDS=${LOCALBASE}/libdata/pkgconfig/gnome-mime-data-2.0.pc:misc/gnome-mime-data
 gnomemimedata_RUN_DEPENDS=${LOCALBASE}/libdata/pkgconfig/gnome-mime-data-2.0.pc:misc/gnome-mime-data
@@ -293,9 +288,6 @@ libgda5_USE_GNOME_IMPL=	glib20 libxslt
 
 libgda5-ui_LIB_DEPENDS=	libgda-ui-5.0.so:databases/libgda5-ui
 libgda5-ui_USE_GNOME_IMPL=glib20 libxslt libgda5
-
-gtksourceview_LIB_DEPENDS=	libgtksourceview-1.0.so:x11-toolkits/gtksourceview
-gtksourceview_USE_GNOME_IMPL=libgnome libgnomeprintui
 
 gtksourceview2_LIB_DEPENDS=	libgtksourceview-2.0.so:x11-toolkits/gtksourceview2
 gtksourceview2_USE_GNOME_IMPL=gtk20 libxml2

@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	setuptools_scm
-PORTVERSION=	3.1.0
+PORTVERSION=	3.3.3
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	freebsd_ports@k-worx.org
+MAINTAINER=	kai@FreeBSD.org
 COMMENT=	Setuptools plugin to manage your versions by scm tags
 
 LICENSE=	MIT

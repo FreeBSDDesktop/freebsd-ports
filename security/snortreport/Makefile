@@ -6,7 +6,7 @@ PORTVERSION=	1.3.4
 CATEGORIES=	security www
 MASTER_SITES=	http://symmetrixtech.com/download/
 
-MAINTAINER=	vvelox@vvelox.net
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Add-on module for snort to generate real-time web reports
 
 LICENSE=	GPLv2
@@ -26,14 +26,9 @@ FTYPES=		css html js php phps png sample
 
 USES=		php:web
 
-MYSQL_USE=	php=mysql
+MYSQL_BROKEN=	USE_PHP=mysql no longer supported
+#MYSQL_USE=	php=mysql
 PGSQL_USE=	php=pgsql
-
-.include <bsd.port.options.mk>
-.if ${PORT_OPTIONS:MBARNYARD}
-DEPRECATED=     Uses legacy GeoIP 1 format which no longer works; switch to GeoIP 2 where possible
-EXPIRATION_DATE=2019-02-15
-.endif
 
 pre-everything::
 	@${ECHO} ""

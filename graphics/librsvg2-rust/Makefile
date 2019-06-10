@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	librsvg
-PORTVERSION=	2.45.4
+PORTVERSION=	2.45.6
 PORTREVISION=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
@@ -14,7 +14,7 @@ COMMENT=	Library for parsing and rendering SVG vector-graphic files
 
 LICENSE=	LGPL20
 
-BUILD_DEPENDS=	${RUST_DEFAULT}>=1.27.0:lang/${RUST_DEFAULT} \
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.30.0:lang/${RUST_DEFAULT} \
 		valac:lang/vala
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig \
@@ -45,5 +45,8 @@ post-patch:
 # Disable vendor checksums
 	@${REINPLACE_CMD} -e 's/"files":{[^}]*}/"files":{}/' \
 		${WRKSRC}/vendor/*/.cargo-checksum.json
+
+pre-configure:
+	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${LOCALBASE}/bin/cargo update
 
 .include <bsd.port.mk>

@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	octave-forge-dicom
-PORTVERSION=	0.2.1
-PORTREVISION=	6
+PORTVERSION=	0.2.2
+PORTREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	stephen@FreeBSD.org

@@ -12,13 +12,13 @@
     SUBDIR += bind-tools
     SUBDIR += bind9-devel
     SUBDIR += bind911
-    SUBDIR += bind912
-    SUBDIR += bind913
+    SUBDIR += bind914
     SUBDIR += bindgraph
     SUBDIR += bundy
     SUBDIR += c-ares
     SUBDIR += checkdns
     SUBDIR += cli53
+    SUBDIR += coredns
     SUBDIR += credns
     SUBDIR += crossip
     SUBDIR += curvedns
@@ -72,16 +72,15 @@
     SUBDIR += ez-ipupdate
     SUBDIR += fastresolve
     SUBDIR += firedns
+    SUBDIR += flamethrower
     SUBDIR += fpdns
     SUBDIR += gdnsd
     SUBDIR += gdnsd2
+    SUBDIR += gdnsd3
     SUBDIR += gen6dns
     SUBDIR += getdns
-    SUBDIR += go-geodns
     SUBDIR += hesiod
     SUBDIR += hostdb
-    SUBDIR += hs-dns
-    SUBDIR += hs-gnuidn
     SUBDIR += idnkit
     SUBDIR += idnkit2
     SUBDIR += inadyn
@@ -90,6 +89,7 @@
     SUBDIR += ironsides
     SUBDIR += kadnode
     SUBDIR += kf5-kdnssd
+    SUBDIR += knock
     SUBDIR += knot-resolver
     SUBDIR += knot2
     SUBDIR += knot2-lib
@@ -172,7 +172,6 @@
     SUBDIR += p5-Stanford-DNSserver
     SUBDIR += p5-Tie-DNS
     SUBDIR += p5-URBL-Prepare
-    SUBDIR += p5-pgeodns
     SUBDIR += packetq
     SUBDIR += pdnsd
     SUBDIR += pear-File_DNS
@@ -195,6 +194,7 @@
     SUBDIR += py-ldns
     SUBDIR += py-localzone
     SUBDIR += py-namebench
+    SUBDIR += py-ns1-python
     SUBDIR += py-publicsuffix
     SUBDIR += py-publicsuffixlist
     SUBDIR += py-py3dns
@@ -223,6 +223,7 @@
     SUBDIR += sheerdns
     SUBDIR += sleuth
     SUBDIR += sshfp
+    SUBDIR += subfinder
     SUBDIR += tinystats
     SUBDIR += totd
     SUBDIR += udns

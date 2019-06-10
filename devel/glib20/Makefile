@@ -3,7 +3,7 @@
 
 PORTNAME=	glib
 PORTVERSION=	2.56.3
-PORTREVISION=	2
+PORTREVISION=	5
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -35,6 +35,7 @@ CONFIGURE_ARGS=	--disable-gtk-doc --with-html-dir=${PREFIX}/share/doc \
 		--with-pcre=system \
 		--disable-fam
 CONFIGURE_ENV=	ac_cv_header_sys_inotify_h=
+SSP_CFLAGS?=	-fstack-protector # XXX -strong crashes qemu-user-static
 INSTALL_TARGET=	install-strip
 
 SHEBANG_FILES=	*/*.pl
@@ -72,7 +73,7 @@ CONFIGURE_ARGS+=	--with-libiconv=gnu
 .endif
 
 .if ${ARCH} == powerpc64
-EXTRA_PATCHES=	${FILESDIR}/extra-arch-powerpc64
+EXTRA_PATCHES+=	${FILESDIR}/extra-arch-powerpc64
 .endif
 
 # Let glib use asm code for implementing atomic ops on i386 and amd64.

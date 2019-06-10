@@ -1,6 +1,6 @@
---- net/socket/udp_socket_posix.cc.orig	2018-12-12 22:56:10.000000000 +0100
-+++ net/socket/udp_socket_posix.cc	2019-01-09 23:47:20.865195000 +0100
-@@ -68,7 +68,7 @@
+--- net/socket/udp_socket_posix.cc.orig	2019-04-30 22:22:55 UTC
++++ net/socket/udp_socket_posix.cc
+@@ -69,7 +69,7 @@ const int kActivityMonitorMinimumSamplesForThroughputE
  const base::TimeDelta kActivityMonitorMsThreshold =
      base::TimeDelta::FromMilliseconds(100);
  
@@ -9,7 +9,7 @@
  // When enabling multicast using setsockopt(IP_MULTICAST_IF) MacOS
  // requires passing IPv4 address instead of interface index. This function
  // resolves IPv4 address by interface index. The |address| is returned in
-@@ -97,7 +97,7 @@
+@@ -98,7 +98,7 @@ int GetIPv4AddressFromIndex(int socket, uint32_t index
    return OK;
  }
  
@@ -18,7 +18,7 @@
  
  #if defined(OS_MACOSX) && !defined(OS_IOS)
  
-@@ -632,13 +632,13 @@
+@@ -645,13 +645,13 @@ int UDPSocketPosix::SetDoNotFragment() {
  }
  
  void UDPSocketPosix::SetMsgConfirm(bool confirm) {
@@ -34,7 +34,7 @@
  }
  
  int UDPSocketPosix::AllowAddressReuse() {
-@@ -653,17 +653,20 @@
+@@ -666,17 +666,20 @@ int UDPSocketPosix::SetBroadcast(bool broadcast) {
    DCHECK_CALLED_ON_VALID_THREAD(thread_checker_);
    int value = broadcast ? 1 : 0;
    int rv;
@@ -57,10 +57,10 @@
    rv = setsockopt(socket_, SOL_SOCKET, SO_BROADCAST, &value, sizeof(value));
  
    return rv == 0 ? OK : MapSystemError(errno);
-@@ -901,19 +904,24 @@
-   if (multicast_interface_ != 0) {
-     switch (addr_family_) {
-       case AF_INET: {
+@@ -945,19 +948,23 @@ int UDPSocketPosix::SetMulticastOptions() {
+         return OK;
+ #endif
+ 
 -#if defined(OS_MACOSX)
 +#if defined(OS_MACOSX) || defined(OS_BSD)
          ip_mreq mreq = {};
@@ -76,16 +76,15 @@
 -#endif  //  !defined(OS_MACOSX)
 +#endif  //  !defined(OS_MACOSX) || defined(OS_BSD)
          int rv = setsockopt(socket_, IPPROTO_IP, IP_MULTICAST_IF,
-+#ifdef defined(OS_BSD)
-+                            reinterpret_cast<const char*>(&mreq.imr_interface.s_addr),
-+                            sizeof(mreq.imr_interface.s_addr));
++#if defined(OS_BSD)
++			    reinterpret_cast<const char*>(&mreq.imr_interface.s_addr), sizeof(mreq.imr_interface.s_addr));
 +#else
                              reinterpret_cast<const char*>(&mreq), sizeof(mreq));
 +#endif
          if (rv)
            return MapSystemError(errno);
          break;
-@@ -975,7 +983,7 @@
+@@ -1019,7 +1026,7 @@ int UDPSocketPosix::JoinGroup(const IPAddress& group_a
        if (addr_family_ != AF_INET)
          return ERR_ADDRESS_INVALID;
  
@@ -94,7 +93,7 @@
        ip_mreq mreq = {};
        int error = GetIPv4AddressFromIndex(socket_, multicast_interface_,
                                            &mreq.imr_interface.s_addr);
-@@ -1023,9 +1031,18 @@
+@@ -1067,9 +1074,18 @@ int UDPSocketPosix::LeaveGroup(const IPAddress& group_
      case IPAddress::kIPv4AddressSize: {
        if (addr_family_ != AF_INET)
          return ERR_ADDRESS_INVALID;

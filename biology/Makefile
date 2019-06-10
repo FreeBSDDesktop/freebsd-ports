@@ -3,6 +3,7 @@
 
     COMMENT = Biology
 
+    SUBDIR += abyss
     SUBDIR += artemis
     SUBDIR += avida
     SUBDIR += babel
@@ -10,6 +11,7 @@
     SUBDIR += bcftools
     SUBDIR += bedtools
     SUBDIR += biococoa
+    SUBDIR += bolt-lmm
     SUBDIR += bowtie
     SUBDIR += bowtie2
     SUBDIR += bwa
@@ -20,8 +22,8 @@
     SUBDIR += chemeq
     SUBDIR += clustal-omega
     SUBDIR += clustalw
-    SUBDIR += clustalx
     SUBDIR += consed
+    SUBDIR += cufflinks
     SUBDIR += cytoscape
     SUBDIR += ddocent
     SUBDIR += diamond
@@ -33,18 +35,23 @@
     SUBDIR += fastahack
     SUBDIR += fastdnaml
     SUBDIR += fastool
+    SUBDIR += fastp
     SUBDIR += fastqc
     SUBDIR += fasttree
     SUBDIR += fastx-toolkit
+    SUBDIR += figtree
     SUBDIR += fluctuate
     SUBDIR += freebayes
     SUBDIR += garlic
     SUBDIR += gatk
+    SUBDIR += gemma
     SUBDIR += gff2ps
     SUBDIR += gmap
     SUBDIR += gperiodic
+    SUBDIR += graphlan
     SUBDIR += grappa
     SUBDIR += groopm
+    SUBDIR += hhsuite
     SUBDIR += hisat2
     SUBDIR += hmmer
     SUBDIR += htslib
@@ -64,8 +71,10 @@
     SUBDIR += mafft
     SUBDIR += mapm3
     SUBDIR += migrate
+    SUBDIR += minimap2
     SUBDIR += molden
     SUBDIR += mopac
+    SUBDIR += mothur
     SUBDIR += mrbayes
     SUBDIR += mummer
     SUBDIR += muscle
@@ -75,6 +84,7 @@
     SUBDIR += ngs-sdk
     SUBDIR += p5-AcePerl
     SUBDIR += p5-Bio-ASN1-EntrezGene
+    SUBDIR += p5-Bio-Cluster
     SUBDIR += p5-Bio-Coordinate
     SUBDIR += p5-Bio-Das
     SUBDIR += p5-Bio-Das-Lite
@@ -101,6 +111,8 @@
     SUBDIR += phyml
     SUBDIR += plinkseq
     SUBDIR += primer3
+    SUBDIR += prodigal
+    SUBDIR += prodigy-lig
     SUBDIR += protomol
     SUBDIR += psi88
     SUBDIR += py-Genesis-PyAPI
@@ -108,6 +120,7 @@
     SUBDIR += py-biopython
     SUBDIR += py-bx-python
     SUBDIR += py-cutadapt
+    SUBDIR += py-dnaio
     SUBDIR += py-fastTSNE
     SUBDIR += py-gffutils
     SUBDIR += py-gtfparse
@@ -117,6 +130,7 @@
     SUBDIR += py-orange3-single-cell
     SUBDIR += py-pyfaidx
     SUBDIR += py-pysam
+    SUBDIR += py-xenaPython
     SUBDIR += pycogent
     SUBDIR += pyfasta
     SUBDIR += python-nexus
@@ -136,6 +150,7 @@
     SUBDIR += slclust
     SUBDIR += smithwaterman
     SUBDIR += stacks
+    SUBDIR += star
     SUBDIR += stringtie
     SUBDIR += tRNAscan-SE
     SUBDIR += t_coffee
@@ -148,6 +163,7 @@
     SUBDIR += vcflib
     SUBDIR += vcftools
     SUBDIR += velvet
+    SUBDIR += vsearch
     SUBDIR += wise
 
 .include <bsd.port.subdir.mk>

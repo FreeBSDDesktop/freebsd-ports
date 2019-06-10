@@ -2,7 +2,7 @@
 
 PORTNAME=	telegram-desktop
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.5.4
+DISTVERSION=	1.6.7
 PORTREVISION=	1
 CATEGORIES=	net-im
 
@@ -11,6 +11,9 @@ COMMENT=	Telegram Desktop messaging app
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+NOT_FOR_ARCHS=		powerpc powerpc64 powerpcspe
+NOT_FOR_ARCHS_REASON=	Please add support for your architecture in base/build_config.h
 
 BUILD_DEPENDS=	dee>0:devel/dee \
 		gyp:devel/py-gyp@${PY_FLAVOR} \
@@ -31,8 +34,8 @@ GH_PROJECT=	tdesktop
 GH_TUPLE=	catchorg:Catch2:5ca44b68:catch/Telegram/ThirdParty/Catch \
 		mapbox:variant:550ac2f:variant/Telegram/ThirdParty/variant \
 		Microsoft:GSL:d846fe5:gsl/Telegram/ThirdParty/GSL \
-		telegramdesktop:libtgvoip:78e584c:libtgvoip/Telegram/ThirdParty/libtgvoip \
-		telegramdesktop:crl:4291015:crl/Telegram/ThirdParty/crl \
+		telegramdesktop:libtgvoip:e701050:libtgvoip/Telegram/ThirdParty/libtgvoip \
+		telegramdesktop:crl:84072fb:crl/Telegram/ThirdParty/crl \
 		Cyan4973:xxHash:7cc9639:xxhash/Telegram/ThirdParty/xxHash
 USE_GNOME=	glib20
 USE_QT=		core gui imageformats network widgets buildtools_build qmake_build dbus

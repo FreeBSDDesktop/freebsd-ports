@@ -1,15 +1,15 @@
---- ui/base/ui_base_features.cc.orig	2018-12-28 17:00:26.368000000 +0100
-+++ ui/base/ui_base_features.cc	2018-12-28 17:01:57.144030000 +0100
-@@ -115,7 +115,7 @@
-     "PrecisionTouchpadScrollPhase", base::FEATURE_ENABLED_BY_DEFAULT};
- #endif  // defined(OS_WIN)
+--- ui/base/ui_base_features.cc.orig	2019-04-30 22:23:41 UTC
++++ ui/base/ui_base_features.cc
+@@ -118,7 +118,7 @@ const base::Feature kEnableAutomaticUiAdjustmentsForTo
+     "EnableAutomaticUiAdjustmentsForTouch", base::FEATURE_ENABLED_BY_DEFAULT};
+ #endif  // defined(OS_WIN) || defined(OS_CHROMEOS)
  
 -#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
 +#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
  // Enables stylus appearing as touch when in contact with digitizer.
  const base::Feature kDirectManipulationStylus = {
      "DirectManipulationStylus",
-@@ -125,7 +125,7 @@
+@@ -128,7 +128,7 @@ const base::Feature kDirectManipulationStylus = {
      base::FEATURE_DISABLED_BY_DEFAULT
  #endif
  };

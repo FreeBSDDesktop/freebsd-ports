@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	avogadrolibs
-DISTVERSION=	1.92.0
-PORTREVISION=	4
+DISTVERSION=	1.92.1
 CATEGORIES=	science
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${PORTNAME}/commit/
@@ -15,7 +14,7 @@ COMMENT=	Avogadro2 libraries for chemical editor and visualization applications
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${LOCALBASE}/include/mmtf.hpp:science/mmtf
+BUILD_DEPENDS=	${LOCALBASE}/include/mmtf.hpp:science/mmtf-cpp
 
 USES=		cmake compiler:c++11-lang eigen:3,build,run # eigen needs to be 'run' because it is written into cmake files
 USE_GITHUB=	yes

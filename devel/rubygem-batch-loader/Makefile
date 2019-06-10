@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	batch-loader
-PORTVERSION=	1.2.2
+PORTVERSION=	1.4.1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 

@@ -1,3 +1,9 @@
-TIMESTAMP = 1537705721
-SHA256 (emby-server-freebsd_3.5.3.0_amd64.tar.xz) = 522497d0539f1ad5176ab3a3406d6d9dfaa9e292bdee5ccf17286b55a487df5d
-SIZE (emby-server-freebsd_3.5.3.0_amd64.tar.xz) = 14279500
+TIMESTAMP = 1557337717
+SHA256 (emby-server/embyserver-netframework_4.1.1.0.zip) = 261d9648d2dda0504707f520227dee4c3ece7cba4c8579570e92f537d091ce33
+SIZE (emby-server/embyserver-netframework_4.1.1.0.zip) = 29833871
+SHA256 (emby-server/ffmpeg-2019_04_09.tar.gz) = d2081fd92e92ee90561c91edbd28ccba4beb1d72bdd38cd94c338726020e2e62
+SIZE (emby-server/ffmpeg-2019_04_09.tar.gz) = 12414424
+SHA256 (emby-server/ffdetect_4.0.3_x64_freebsd12.tar.xz) = ca65f0018e8f5fa4418f4a39ec2f8c181733221b2f81ebb5dfaa73822155e967
+SIZE (emby-server/ffdetect_4.0.3_x64_freebsd12.tar.xz) = 83144
+SHA256 (emby-server/license.docx) = a6d7ea65dcb06392479a85e1a10a7aeb872d803da6f784f6935fcd4ee63008c6
+SIZE (emby-server/license.docx) = 18373

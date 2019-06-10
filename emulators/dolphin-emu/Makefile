@@ -3,7 +3,7 @@
 
 PORTNAME=	dolphin-emu
 PORTVERSION=	5.0.9209
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators
 
 MAINTAINER=	martymac@FreeBSD.org
@@ -11,6 +11,8 @@ COMMENT=	Gamecube and Wii Emulator
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/license.txt
+
+BROKEN_aarch64=	fails to build: Source/Core/Common/ArmCPUDetect.cpp:5:10: fatal error: 'asm/hwcap.h' file not found
 
 # Notes on dependencies:
 # - alsa support disabled (not optimal)
@@ -40,7 +42,7 @@ LIB_DEPENDS=	libpulse.so:audio/pulseaudio \
 		libhidapi.so:comms/hidapi
 
 USES=		cmake compiler:c++17-lang desktop-file-utils gl iconv \
-		pkgconfig qmake qt:5
+		pkgconfig qmake qt:5 sdl
 
 USE_GITHUB=	yes
 GH_PROJECT=	dolphin

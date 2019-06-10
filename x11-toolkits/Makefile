@@ -6,8 +6,6 @@
     SUBDIR += SoXt
     SUBDIR += Xaw3d
     SUBDIR += Xmt
-    SUBDIR += attica
-    SUBDIR += bakery
     SUBDIR += blt
     SUBDIR += bwidget
     SUBDIR += c++-gtk-utils
@@ -15,7 +13,6 @@
     SUBDIR += diorite
     SUBDIR += flowcanvas
     SUBDIR += fltk
-    SUBDIR += fltk-devel
     SUBDIR += fox14
     SUBDIR += fox16
     SUBDIR += fox17
@@ -44,7 +41,7 @@
     SUBDIR += gtkada
     SUBDIR += gtkada3
     SUBDIR += gtkdatabox
-    SUBDIR += gtkextra2
+    SUBDIR += gtkextra
     SUBDIR += gtkglarea2
     SUBDIR += gtkglext
     SUBDIR += gtkglextmm
@@ -56,8 +53,6 @@
     SUBDIR += gtkmm24-reference
     SUBDIR += gtkmm30
     SUBDIR += gtkmm30-reference
-    SUBDIR += gtksourceview
-    SUBDIR += gtksourceview-reference
     SUBDIR += gtksourceview2
     SUBDIR += gtksourceview2-reference
     SUBDIR += gtksourceview3
@@ -65,16 +60,6 @@
     SUBDIR += gtksourceview4
     SUBDIR += gtksourceviewmm3
     SUBDIR += hippo-canvas
-    SUBDIR += hs-GLURaw
-    SUBDIR += hs-GLUT
-    SUBDIR += hs-OpenGL
-    SUBDIR += hs-OpenGLRaw
-    SUBDIR += hs-gtk
-    SUBDIR += hs-gtk2hs
-    SUBDIR += hs-gtksourceview2
-    SUBDIR += hs-pango
-    SUBDIR += hs-vte
-    SUBDIR += hs-wxdirect
     SUBDIR += irrlicht
     SUBDIR += itk
     SUBDIR += iwidgets
@@ -103,6 +88,7 @@
     SUBDIR += libgnomeui
     SUBDIR += libgnomeui-reference
     SUBDIR += libgnomeuimm26
+    SUBDIR += libhandy
     SUBDIR += libsexy
     SUBDIR += libsexymm
     SUBDIR += libunique3
@@ -190,7 +176,6 @@
     SUBDIR += pangomm
     SUBDIR += pangox-compat
     SUBDIR += pangoxsl
-    SUBDIR += phat
     SUBDIR += plasma5-kdeplasma-addons
     SUBDIR += plib
     SUBDIR += pure-gtk
@@ -198,6 +183,7 @@
     SUBDIR += py-AnyQt
     SUBDIR += py-Pmw
     SUBDIR += py-SquareMap
+    SUBDIR += py-easygui
     SUBDIR += py-fltk
     SUBDIR += py-gnome2
     SUBDIR += py-gtk2
@@ -206,7 +192,6 @@
     SUBDIR += py-gui
     SUBDIR += py-kivy
     SUBDIR += py-kiwi-gtk
-    SUBDIR += py-qt4-gui
     SUBDIR += py-qt5-gui
     SUBDIR += py-qt5-quick
     SUBDIR += py-qt5-quickwidgets
@@ -223,9 +208,6 @@
     SUBDIR += py-xlib
     SUBDIR += pypy-tkinter
     SUBDIR += qml-box2d
-    SUBDIR += qt4-declarative
-    SUBDIR += qt4-gui
-    SUBDIR += qt4pas
     SUBDIR += qt5-canvas3d
     SUBDIR += qt5-charts
     SUBDIR += qt5-datavis3d
@@ -240,9 +222,6 @@
     SUBDIR += qt5-widgets
     SUBDIR += qt5pas
     SUBDIR += qtermwidget
-    SUBDIR += qtermwidget-l10n
-    SUBDIR += qwt5
-    SUBDIR += qwt5-designerplugin
     SUBDIR += qwt5-qt5
     SUBDIR += qwt6
     SUBDIR += rep-gtk2
@@ -262,7 +241,7 @@
     SUBDIR += shared-desktop-ontologies
     SUBDIR += skinlf
     SUBDIR += slingshot
-    SUBDIR += soqt
+    SUBDIR += soqt-devel
     SUBDIR += swt
     SUBDIR += swt-devel
     SUBDIR += tepl

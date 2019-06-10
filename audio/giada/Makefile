@@ -3,6 +3,7 @@
 PORTNAME=	giada
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.15.3
+PORTREVISION=	2
 CATEGORIES=	audio
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -28,7 +29,7 @@ USES=		autoreconf compiler:c++11-lang gmake localbase
 USE_GITHUB=	yes
 GH_ACCOUNT=	monocasual
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--target=freebsd
+CONFIGURE_ARGS=	--target=${OPSYS:tl}
 USE_XORG=	x11 xext xft xpm
 LDFLAGS+=	-lfltk
 

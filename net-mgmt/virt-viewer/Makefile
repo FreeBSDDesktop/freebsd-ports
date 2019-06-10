@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	virt-viewer
-PORTVERSION=	7.0
+PORTVERSION=	8.0
 PORTREVISION=	1
 CATEGORIES=	net-mgmt
-MASTER_SITES=	http://virt-manager.org/download/sources/${PORTNAME}/
+MASTER_SITES=	https://virt-manager.org/download/sources/${PORTNAME}/
 
 MAINTAINER=	novel@FreeBSD.org
 COMMENT=	Provides a graphical viewer for a guest OS display

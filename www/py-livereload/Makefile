@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	livereload
-DISTVERSION=	2.6.0
+DISTVERSION=	2.6.1
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	freebsd_ports@k-worx.org
+MAINTAINER=	kai@FreeBSD.org
 COMMENT=	WSGI for web developers to watch changes in realtime
 
 LICENSE=	BSD3CLAUSE

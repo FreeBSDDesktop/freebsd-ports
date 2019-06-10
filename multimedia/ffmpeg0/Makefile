@@ -3,7 +3,7 @@
 
 PORTNAME=	ffmpeg
 PORTVERSION=	0.7.17
-PORTREVISION=	15
+PORTREVISION=	17
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	http://ffmpeg.org/releases/
@@ -17,13 +17,17 @@ LICENSE_COMB=		multi
 LICENSE_FILE_GPLv2=	${WRKSRC}/COPYING.GPLv2
 LICENSE_FILE_LGPL21=	${WRKSRC}/COPYING.LGPLv2.1
 
+DEPRECATED=	vulnerable and old version; use multimedia/ffmpeg instead
+EXPIRATION_DATE=	2019-06-15
+
 BUILD_DEPENDS=	yasm:devel/yasm \
 		${LOCALBASE}/bin/as:devel/binutils \
 		${LOCALBASE}/bin/texi2html:textproc/texi2html
 
 PORTSCOUT=	limit:^0\.7.*
 
-USES=		cpe gmake perl5 pkgconfig tar:bzip2 shebangfix
+USES=		compiler:c++11-lang cpe gmake perl5 pkgconfig tar:bzip2 \
+		shebangfix
 USE_LDCONFIG=	${PREFIX}/lib/ffmpeg${FFMPEG_SUFFIX}
 USE_PERL5=	build
 SHEBANG_FILES=	doc/texi2pod.pl

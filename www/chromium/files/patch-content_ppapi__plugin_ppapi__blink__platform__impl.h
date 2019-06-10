@@ -1,5 +1,5 @@
---- content/ppapi_plugin/ppapi_blink_platform_impl.h.orig	2018-12-29 00:40:09.590096000 +0100
-+++ content/ppapi_plugin/ppapi_blink_platform_impl.h	2018-12-29 00:41:23.439801000 +0100
+--- content/ppapi_plugin/ppapi_blink_platform_impl.h.orig	2019-03-11 22:00:58 UTC
++++ content/ppapi_plugin/ppapi_blink_platform_impl.h
 @@ -13,7 +13,7 @@
  #include "build/build_config.h"
  #include "content/child/blink_platform_impl.h"
@@ -9,8 +9,13 @@
  #include "components/services/font/public/cpp/font_loader.h"
  #include "third_party/skia/include/core/SkRefCnt.h"
  #endif
-@@ -47,7 +47,7 @@
-   std::unique_ptr<SandboxSupport> sandbox_support_;
+@@ -42,11 +42,11 @@ class PpapiBlinkPlatformImpl : public BlinkPlatformImp
+                          bool sync_dir) override;
+ 
+  private:
+-#if defined(OS_LINUX) || defined(OS_MACOSX)
++#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_BSD)
+   std::unique_ptr<blink::WebSandboxSupport> sandbox_support_;
  #endif
  
 -#if defined(OS_LINUX)

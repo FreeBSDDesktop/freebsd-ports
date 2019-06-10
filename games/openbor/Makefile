@@ -2,9 +2,9 @@
 
 PORTNAME=	openbor
 # Hint: svn revision is git rev-list --count ${GH_TAGNAME}
-PORTVERSION?=	6662
+PORTVERSION?=	7032
 .ifndef PKGNAMESUFFIX
-PORTREVISION=	1
+PORTREVISION=	0
 .endif
 CATEGORIES=	games
 
@@ -31,7 +31,7 @@ PORTSCOUT=	ignore:1
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	DCurrent
-GH_TAGNAME?=	545b4f94
+GH_TAGNAME?=	0afa1f0d
 
 USES+=		gmake pkgconfig
 .if ${PORTVERSION} < 4433
@@ -81,6 +81,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's/ -O[0-9]//; s/ -g//; s/ -Werror//' \
 		-e 's/ -fomit-frame-pointer//' \
 		-e 's/ -freorder-blocks//' \
+		-e 's/ -Wno-unused-result//' \
 		-e 's/ -Wl,-rpath,$$(LIBRARIES)//' \
 		-e '/echo/!s/	@/	/' \
 		-e 's/@echo/@$$(ECHO)/' \
@@ -91,11 +92,11 @@ post-patch:
 	@${GREP} -Flr 'malloc.h' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} \
 		's,malloc\.h,stdlib.h,'
 	@${REINPLACE_CMD} -e 's/^function \(.*\) {/\1() {/' \
-		-e 's/^get_revnum$$/VERSION_BUILD=${PORTVERSION}/' \
 		${WRKSRC}/version.sh
 
 do-configure:
-	(cd ${WRKSRC} && ${SH} ./version.sh)
+	(cd ${WRKSRC} && VERSION_BUILD=${PORTVERSION} VERSION_COMMIT=${GH_TAGNAME} \
+		${SH} ./version.sh)
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/OpenBOR.elf \

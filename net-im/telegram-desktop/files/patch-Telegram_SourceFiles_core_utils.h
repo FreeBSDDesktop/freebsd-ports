@@ -1,6 +1,6 @@
---- Telegram/SourceFiles/core/utils.h.orig	2018-12-24 08:16:05 UTC
+--- Telegram/SourceFiles/core/utils.h.orig	2019-04-13 06:46:58 UTC
 +++ Telegram/SourceFiles/core/utils.h
-@@ -378,6 +378,7 @@ enum DBIPlatform {
+@@ -347,6 +347,7 @@ enum DBIPlatform {
  	dbipLinux64 = 2,
  	dbipLinux32 = 3,
  	dbipMacOld = 4,

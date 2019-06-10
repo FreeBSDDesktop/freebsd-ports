@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	kio-gdrive
-DISTVERSION=	1.2.5
-PORTREVISION=	1
+DISTVERSION=	1.2.6
 CATEGORIES=	net kde
 MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}/src
 DIST_SUBDIR=	KDE/${PORTNAME}
@@ -13,7 +12,7 @@ COMMENT=	KDE IOSlave for accessing gdrive
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libqt5keychain.so:security/qtkeychain@qt5 \
+LIB_DEPENDS=	libqt5keychain.so:security/qtkeychain \
 		libaccounts-qt5.so:net-im/libaccounts-qt5 \
 		libkaccounts.so:net-im/kaccounts-integration
 RUN_DEPENDS=	kaccounts-providers>=0:net-im/kaccounts-providers

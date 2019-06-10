@@ -8,7 +8,7 @@
 
 PORTNAME=	ipsec-tools
 PORTVERSION=	0.8.2
-PORTREVISION=	7
+PORTREVISION=	9
 CATEGORIES=	security
 MASTER_SITES=	SF
 
@@ -17,11 +17,10 @@ COMMENT=	KAME racoon IKE daemon, ipsec-tools version
 
 LICENSE=	BSD3CLAUSE
 
-CONFLICTS=	racoon-[0-9]*
-
-INSTALL_TARGET=	install-strip
-
 USES=		libtool tar:bzip2 ssl
+
+CONFLICTS=	racoon-[0-9]*
+INSTALL_TARGET=	install-strip
 USE_RC_SUBR=	racoon
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -30,7 +29,7 @@ CONFIGURE_ARGS=	--enable-shared --sysconfdir=${PREFIX}/etc/racoon \
 		--with-pkgversion=freebsd-${PORTVERSION}
 
 STATEDIR=	/var/db/racoon
-SUB_LIST+=	STATEDIR=${STATEDIR}
+SUB_LIST+=	STATEDIR=${STATEDIR} REQUIREMOD=${REQUIREMOD}
 PLIST_SUB+=	STATEDIR=${STATEDIR}
 
 OPTIONS_DEFINE=	DEBUG IPV6 ADMINPORT STATS DPD NATT NATTF FRAG HYBRID PAM \
@@ -83,10 +82,14 @@ NATT_EXTRA_PATCHES=		${FILESDIR}/natt.diff
 
 .include <bsd.port.pre.mk>
 
+.if ${OPSYS} == FreeBSD && ${OSVERSION} > 1100510
+REQUIREMOD?=	ipsec
+.endif
+
 # Need to be patched for openssl-1.1.1 (default after 1200080)
 .if ${OPSYS} == FreeBSD
-.  if ${OSVERSION} >= 1200085 && ${SSL_DEFAULT} == base
-BUILD_DEPENDS=	automake>=0:devel/automake
+.  if ${OSVERSION} >= 1200085 && ${SSL_DEFAULT} != openssl
+BUILD_DEPENDS+=	automake>=0:devel/automake
 .  endif
 .endif
 
@@ -95,7 +98,7 @@ post-patch:
 
 # Need to be patched for openssl-1.1.1 (default after 1200080)
 .if ${OPSYS} == FreeBSD
-.  if ${OSVERSION} >= 1200085 && ${SSL_DEFAULT} == base
+.  if ${OSVERSION} >= 1200085 && ${SSL_DEFAULT} != openssl
 post-configure:
 	@${REINPLACE_CMD} -e "s/automake-1.14/automake-1.16/g" ${WRKSRC}/Makefile ${WRKSRC}/*/Makefile \
 				${WRKSRC}/*/*/Makefile
@@ -121,7 +124,7 @@ post-install-DOCS-on:
 	${INSTALL_DATA} ${WRKSRC}/src/racoon/doc/* ${STAGEDIR}/${DOCSDIR}
 
 .if ${OPSYS} == FreeBSD
-.  if ${OSVERSION} >= 1200085 && ${SSL_DEFAULT} == base
+.  if ${OSVERSION} >= 1200085 && ${SSL_DEFAULT} != openssl
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-aclocal.m4
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-ipsec-tools
 PLIST_FILES+=	include/racoon/openssl_compat.h

@@ -22,4 +22,6 @@ GNU_CONFIGURE=	yes
 
 USES=		perl5 autoreconf
 
+MAKE_JOBS_UNSAFE=	yes
+
 .include <bsd.port.mk>

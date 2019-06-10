@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME?=	gimp-app
-PORTVERSION=	2.10.8
-PORTREVISION=	1
+PORTVERSION=	2.10.10
+PORTREVISION=	2
 PORTEPOCH?=	1
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
@@ -35,6 +35,9 @@ RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
 		glib-networking>=0:net/glib-networking \
 		mypaint-brushes>0:graphics/mypaint-brushes
 
+LIB_DEPENDS+=	libjson-glib-1.0.so:devel/json-glib \
+		libunwind.so:devel/libunwind
+
 GNU_CONFIGURE=	yes
 USES+=		compiler:c++14-lang cpe gettext gmake gnome jpeg libtool \
 		localbase pkgconfig shebangfix tar:bzip2
@@ -59,6 +62,7 @@ CONFIGURE_ARGS?=--with-html-dir=${PREFIX}/share/doc/gimp \
 		--with-desktop-dir=${PREFIX}/share \
 		--docdir=${PREFIX}/share/doc/gimp \
 		--with-icc-directory=${LOCALBASE}/share/color/icc \
+		--without-webkit \
 		--enable-default-binary
 CONFIGURE_ENV=	GIMP_THREAD_LIBS=-lpthread
 LIBS+=		-lexecinfo
@@ -73,7 +77,7 @@ PLIST_SUB+=	LIBVER=0.1000.${PORTVERSION:E}
 
 USES+=		desktop-file-utils
 
-OPTIONS_DEFINE?=	AA GHOSTSCRIPT HELPBROWSER \
+OPTIONS_DEFINE?=	AA GHOSTSCRIPT \
 			LIBHEIF LIBMNG OPENEXR OPENJPEG SIMD WEBP WMF
 OPTIONS_DEFAULT=	AA LIBMNG OPENEXR OPENJPEG SIMD WEBP WMF
 OPTIONS_SUB=		yes
@@ -102,11 +106,6 @@ LIBHEIF_CONFIGURE_WITH=	libheif
 
 GHOSTSCRIPT_USES=		ghostscript
 GHOSTSCRIPT_CONFIGURE_WITH=	gs
-
-HELPBROWSER_DESC=		Internal help browser and web page plugin
-HELPBROWSER_LIB_DEPENDS=	libwebkitgtk-1.0.so:www/webkit-gtk2 \
-				libsoup-2.4.so:devel/libsoup
-HELPBROWSER_CONFIGURE_WITH=	webkit
 
 LIBMNG_LIB_DEPENDS=	libmng.so:graphics/libmng
 LIBMNG_CONFIGURE_WITH=	libmng

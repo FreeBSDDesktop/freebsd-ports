@@ -1,7 +1,7 @@
---- content/public/common/content_switches.cc.orig	2017-06-05 19:03:07 UTC
+--- content/public/common/content_switches.cc.orig	2019-04-30 22:22:47 UTC
 +++ content/public/common/content_switches.cc
-@@ -1006,7 +1006,7 @@ const char kDisableVaapiAcceleratedVideoEncode[] =
-     "disable-vaapi-accelerated-video-encode";
+@@ -974,7 +974,7 @@ const char kDisableAudioSupportForDesktopShare[] =
+ const char kDisablePanelFitting[]           = "disable-panel-fitting";
  #endif
  
 -#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
