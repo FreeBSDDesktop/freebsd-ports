@@ -32,7 +32,6 @@
     SUBDIR += cacti88-spine
     SUBDIR += carbon-relay-ng
     SUBDIR += carbonzipper
-    SUBDIR += ccnet-client
     SUBDIR += ccnet-server
     SUBDIR += cdpd
     SUBDIR += cdpr
@@ -43,6 +42,7 @@
     SUBDIR += check_mk_agent
     SUBDIR += check_multi
     SUBDIR += check_mysql_health
+    SUBDIR += check_nwc_health
     SUBDIR += check_ssl_cert
     SUBDIR += chillispot
     SUBDIR += choparp
@@ -347,6 +347,11 @@
     SUBDIR += rubygem-oxidized
     SUBDIR += rubygem-oxidized-script
     SUBDIR += rubygem-oxidized-web
+    SUBDIR += rubygem-riemann-client
+    SUBDIR += rubygem-riemann-dash
+    SUBDIR += rubygem-riemann-rabbitmq
+    SUBDIR += rubygem-riemann-tail
+    SUBDIR += rubygem-riemann-tools
     SUBDIR += rubygem-snmp
     SUBDIR += rubygem-visage-app
     SUBDIR += sblim-wbemcli

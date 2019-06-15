@@ -256,6 +256,7 @@
     SUBDIR += ilbc
     SUBDIR += imapproxy
     SUBDIR += incidenceeditor
+    SUBDIR += inlets
     SUBDIR += intel-em-kmod
     SUBDIR += intel-ix-kmod
     SUBDIR += intel-ixl-kmod
@@ -487,7 +488,6 @@
     SUBDIR += netstrain
     SUBDIR += nettest
     SUBDIR += netwib
-    SUBDIR += neubot
     SUBDIR += nfs-ganesha
     SUBDIR += nfs-ganesha-kmod
     SUBDIR += nfsshell
@@ -511,6 +511,7 @@
     SUBDIR += ntlmaps
     SUBDIR += ntopng
     SUBDIR += ntp
+    SUBDIR += ntp-devel
     SUBDIR += ntpa
     SUBDIR += ntraceroute
     SUBDIR += nusoap
@@ -527,6 +528,7 @@
     SUBDIR += opal
     SUBDIR += open-isns
     SUBDIR += openbgpd
+    SUBDIR += openbgpd6
     SUBDIR += openbsc
     SUBDIR += openggsn
     SUBDIR += openldap24-client
@@ -1151,6 +1153,7 @@
     SUBDIR += radsecproxy
     SUBDIR += radvd
     SUBDIR += rclone
+    SUBDIR += rclone-browser
     SUBDIR += rdapper
     SUBDIR += rdesktop
     SUBDIR += rdist6
@@ -1193,6 +1196,7 @@
     SUBDIR += rubygem-aws-ses
     SUBDIR += rubygem-azure
     SUBDIR += rubygem-azure-core
+    SUBDIR += rubygem-beefcake
     SUBDIR += rubygem-bunny
     SUBDIR += rubygem-connection_pool
     SUBDIR += rubygem-docker-api

@@ -12,13 +12,13 @@
     SUBDIR += bind-tools
     SUBDIR += bind9-devel
     SUBDIR += bind911
-    SUBDIR += bind912
     SUBDIR += bind914
     SUBDIR += bindgraph
     SUBDIR += bundy
     SUBDIR += c-ares
     SUBDIR += checkdns
     SUBDIR += cli53
+    SUBDIR += coredns
     SUBDIR += credns
     SUBDIR += crossip
     SUBDIR += curvedns
@@ -194,6 +194,7 @@
     SUBDIR += py-ldns
     SUBDIR += py-localzone
     SUBDIR += py-namebench
+    SUBDIR += py-ns1-python
     SUBDIR += py-publicsuffix
     SUBDIR += py-publicsuffixlist
     SUBDIR += py-py3dns

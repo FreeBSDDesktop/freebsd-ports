@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	drm-legacy-kmod
-PORTVERSION=	g20190213
+PORTVERSION=	g20190523
 CATEGORIES=	graphics
 
 MAINTAINER=	jmd@FreeBSD.org
@@ -27,9 +27,15 @@ CONFLICTS_INSTALL=	drm-devel-kmod \
 USE_GITHUB=	yes
 GH_ACCOUNT=	FreeBSDDesktop
 GH_PROJECT=	drm-legacy
-GH_TAGNAME=	3c8c990
+GH_TAGNAME=	12bd551
 
 .include <bsd.port.options.mk>
+
+.if ${ARCH} == amd64 || ${ARCH} == i386
+PLIST_SUB+=	X86=""
+.else
+PLIST_SUB+=	X86="@comment "
+.endif
 
 .if ${OPSYS} == FreeBSD && ${OSVERSION} < 1200080
 IGNORE=		only for 12.0 or higher after removal of base components

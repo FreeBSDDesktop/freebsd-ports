@@ -210,6 +210,7 @@
     SUBDIR += ess
     SUBDIR += eukleides
     SUBDIR += eval
+    SUBDIR += exprtk
     SUBDIR += facile
     SUBDIR += fann
     SUBDIR += fcl
@@ -263,7 +264,6 @@
     SUBDIR += gnuplot-tex-extras
     SUBDIR += gotoblas
     SUBDIR += grace
-    SUBDIR += gracetmpl
     SUBDIR += graphthing
     SUBDIR += gretl
     SUBDIR += gri
@@ -475,6 +475,7 @@
     SUBDIR += openlibm
     SUBDIR += openmesh
     SUBDIR += opensolaris-libm
+    SUBDIR += openturns
     SUBDIR += optpp
     SUBDIR += orpie
     SUBDIR += osi
@@ -722,7 +723,6 @@
     SUBDIR += py-networkx
     SUBDIR += py-networkx1
     SUBDIR += py-nevergrad
-    SUBDIR += py-numarray
     SUBDIR += py-numeric
     SUBDIR += py-numexpr
     SUBDIR += py-numpy
@@ -805,11 +805,13 @@
     SUBDIR += rubygem-expression_parser
     SUBDIR += rubygem-fftw3
     SUBDIR += rubygem-mathn
+    SUBDIR += rubygem-mtrc
     SUBDIR += rubygem-narray
     SUBDIR += rubygem-narray_miss
     SUBDIR += rubygem-numru-misc
     SUBDIR += rubygem-numru-units
     SUBDIR += rubygem-rb-gsl
+    SUBDIR += rumur
     SUBDIR += saga
     SUBDIR += sage
     SUBDIR += sc
