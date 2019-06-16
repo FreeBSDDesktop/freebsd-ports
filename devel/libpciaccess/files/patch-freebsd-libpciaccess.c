@@ -1,5 +1,5 @@
-diff --git a/configure.ac b/configure.ac
-index e67623ecff7bb9eab68094f1ded02b6dc51a98c9..96f46a7ef89a883e0ff4f5f29705e9e7ba826d82 100644
+diff --git configure.ac configure.ac
+index e67623e..96f46a7 100644
 --- configure.ac
 +++ configure.ac
 @@ -133,14 +133,6 @@ if test "x$have_mtrr_h" = xyes; then
@@ -17,8 +17,8 @@ index e67623ecff7bb9eab68094f1ded02b6dc51a98c9..96f46a7ef89a883e0ff4f5f29705e9e7
  AC_SUBST(PCIACCESS_CFLAGS)
  AC_SUBST(PCIACCESS_LIBS)
  
-diff --git a/src/common_init.c b/src/common_init.c
-index f7b59bd3f046b640878951a27cda7933282e51b2..18f717d82cd1b0bba0a7833c3aa3bc072616a5db 100644
+diff --git src/common_init.c src/common_init.c
+index f7b59bd..18f717d 100644
 --- src/common_init.c
 +++ src/common_init.c
 @@ -77,7 +77,9 @@ pci_system_init( void )
@@ -32,8 +32,8 @@ index f7b59bd3f046b640878951a27cda7933282e51b2..18f717d82cd1b0bba0a7833c3aa3bc07
      pci_system_openbsd_init_dev_mem(fd);
  #endif
  }
-diff --git a/src/freebsd_pci.c b/src/freebsd_pci.c
-index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db0ae95418 100644
+diff --git src/freebsd_pci.c src/freebsd_pci.c
+index f9c1476..3794328 100644
 --- src/freebsd_pci.c
 +++ src/freebsd_pci.c
 @@ -43,6 +43,11 @@
@@ -218,7 +218,7 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
      bar.pbi_sel.pc_bus = dev->bus;
      bar.pbi_sel.pc_dev = dev->dev;
      bar.pbi_sel.pc_func = dev->func;
-@@ -397,307 +413,179 @@ pci_device_freebsd_probe( struct pci_device * dev )
+@@ -397,307 +413,191 @@ pci_device_freebsd_probe( struct pci_device * dev )
       return 0;
  }
  
@@ -237,7 +237,9 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
 -/** Returns the size of a region based on the all-ones test value */
 -static int
 -get_test_val_size( uint32_t testval )
--{
++static void
++pci_system_freebsd_destroy( void )
+ {
 -    if (testval == 0)
 -	return 0;
 -
@@ -245,8 +247,11 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
 -    testval = get_map_base( testval );
 -
 -    return 1 << (ffs(testval) - 1);
--}
--
++    close(freebsd_pci_sys->pcidev);
++    free(freebsd_pci_sys->pci_sys.devices);
++    freebsd_pci_sys = NULL;
+ }
+ 
 -/**
 - * Sets the address and size information for the region from config space
 - * registers.
@@ -255,11 +260,10 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
 - *
 - * \return 0 on success, or an errno value.
 - */
--static int
+ static int
 -pci_device_freebsd_get_region_info( struct pci_device * dev, int region,
 -				    int bar )
-+static void
-+pci_system_freebsd_destroy( void )
++pci_device_freebsd_has_kernel_driver( struct pci_device *dev )
  {
 -    uint32_t addr, testval;
 -    uint16_t cmd;
@@ -269,7 +273,8 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
 -    err = pci_device_cfg_read_u32( dev, &addr, bar );
 -    if (err != 0)
 -	return err;
--
++    struct pci_io io;
+ 
 -    /*
 -     * We are going to be doing evil things to the registers here
 -     * so disable them via the command register first.
@@ -323,17 +328,26 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
 -					  get_map_base(addr);
 -    } else {
 -	dev->regions[region].base_addr = get_map_base(addr);
--    }
--
++    io.pi_sel.pc_domain = dev->domain;
++    io.pi_sel.pc_bus = dev->bus;
++    io.pi_sel.pc_dev = dev->dev;
++    io.pi_sel.pc_func = dev->func;
++    
++    if ( ioctl( freebsd_pci_sys->pcidev, PCIOCATTACHED, &io ) < 0 ) {
++	return 0;
+     }
+ 
 -    return 0;
-+    close(freebsd_pci_sys->pcidev);
-+    free(freebsd_pci_sys->pci_sys.devices);
-+    freebsd_pci_sys = NULL;
++    /* if io.pi_data is 0, no driver is attached */
++    return io.pi_data == 0 ? 0 : 1;
  }
  
- static int
+-static int
 -pci_device_freebsd_probe( struct pci_device * dev )
-+pci_device_freebsd_has_kernel_driver( struct pci_device *dev )
++static struct pci_io_handle *
++pci_device_freebsd_open_legacy_io( struct pci_io_handle *ret,
++				   struct pci_device *dev, pciaddr_t base,
++				   pciaddr_t size )
  {
 -    struct pci_device_private *priv = (struct pci_device_private *) dev;
 -    uint32_t reg, size;
@@ -377,27 +391,26 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
 -	    return errno;
 -	pci_device_cfg_read_u32( dev, &size, PCIR_BIOS );
 -	pci_device_cfg_write_u32( dev, reg, PCIR_BIOS );
-+    struct pci_io io;
- 
+-
 -	if ((reg & PCIM_BIOS_ADDR_MASK) != 0) {
 -	    priv->rom_base = (reg & PCIM_BIOS_ADDR_MASK);
 -	    dev->rom_size = -(size & PCIM_BIOS_ADDR_MASK);
 -	}
-+    io.pi_sel.pc_domain = dev->domain;
-+    io.pi_sel.pc_bus = dev->bus;
-+    io.pi_sel.pc_dev = dev->dev;
-+    io.pi_sel.pc_func = dev->func;
-+    
-+    if ( ioctl( freebsd_pci_sys->pcidev, PCIOCATTACHED, &io ) < 0 ) {
-+	return 0;
-     }
- 
+-    }
+-
 -    return 0;
-+    /* if io.pi_data is 0, no driver is attached */
-+    return io.pi_data == 0 ? 0 : 1;
- }
- 
--#endif
+-}
+-
++#if defined(__sparc64__)
++    ret->memory = mmap( NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED,
++	screenfd, base );
++    if ( ret->memory == MAP_FAILED )
++	return NULL;
++#else
++    ret->fd = open( "/dev/io", O_RDWR | O_CLOEXEC );
++    if ( ret->fd < 0 )
++	return NULL;
+ #endif
 -
 -static void
 -pci_system_freebsd_destroy(void)
@@ -405,8 +418,12 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
 -    close(freebsd_pci_sys->pcidev);
 -    free(freebsd_pci_sys->pci_sys.devices);
 -    freebsd_pci_sys = NULL;
--}
--
++    ret->base = base;
++    ret->size = size;
++    ret->is_legacy = 1;
++    return ret;
+ }
+ 
 -#if defined(__i386__) || defined(__amd64__)
 -#include <machine/cpufunc.h>
 -#endif
@@ -414,9 +431,9 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
  static struct pci_io_handle *
 -pci_device_freebsd_open_legacy_io(struct pci_io_handle *ret,
 -    struct pci_device *dev, pciaddr_t base, pciaddr_t size)
-+pci_device_freebsd_open_legacy_io( struct pci_io_handle *ret,
-+				   struct pci_device *dev, pciaddr_t base,
-+				   pciaddr_t size )
++pci_device_freebsd_open_io( struct pci_io_handle *ret,
++			    struct pci_device *dev, int bar,
++			    pciaddr_t base, pciaddr_t size )
  {
 -#if defined(__i386__) || defined(__amd64__)
 -	ret->fd = open("/dev/io", O_RDWR | O_CLOEXEC);
@@ -438,19 +455,12 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
 -	ret->size = size;
 -	ret->is_legacy = 1;
 -	return ret;
-+#if defined(__sparc64__)
-+    ret->memory = mmap( NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED,
-+	screenfd, base );
-+    if ( ret->memory == MAP_FAILED )
-+	return NULL;
- #else
-+    ret->fd = open( "/dev/io", O_RDWR | O_CLOEXEC );
-+    if ( ret->fd < 0 )
- 	return NULL;
- #endif
-+    ret->base = base;
-+    ret->size = size;
-+    ret->is_legacy = 1;
+-#else
+-	return NULL;
+-#endif
++    ret = pci_device_freebsd_open_legacy_io( ret, dev, base, size );
++    if ( ret != NULL )
++	ret->is_legacy = 0;
 +    return ret;
  }
  
@@ -594,23 +604,23 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
  {
 -	struct pci_device_mapping map;
 -	int err;
--
++    struct pci_device_mapping map;
++    int err;
+ 
 -	map.base = base;
 -	map.size = size;
 -	map.flags = map_flags;
 -	map.memory = NULL;
 -	err = pci_device_freebsd_map_range(dev, &map);
 -	*addr = map.memory;
-+    struct pci_device_mapping map;
-+    int err;
- 
--	return err;
 +    map.base = base;
 +    map.size = size;
 +    map.flags = map_flags;
 +    map.memory = NULL;
 +    err = pci_device_freebsd_map_range( dev, &map );
 +    *addr = map.memory;
+ 
+-	return err;
 +    return err;
  }
  
@@ -634,7 +644,7 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
  }
  
  static const struct pci_system_methods freebsd_pci_methods = {
-@@ -707,19 +595,25 @@ static const struct pci_system_methods freebsd_pci_methods = {
+@@ -707,19 +607,25 @@ static const struct pci_system_methods freebsd_pci_methods = {
      .probe = pci_device_freebsd_probe,
      .map_range = pci_device_freebsd_map_range,
      .unmap_range = pci_device_freebsd_unmap_range,
@@ -647,7 +657,7 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
 +    .boot_vga = NULL,
 +    .has_kernel_driver = pci_device_freebsd_has_kernel_driver,
 +
-+    .open_device_io = NULL,
++    .open_device_io = pci_device_freebsd_open_io,
      .open_legacy_io = pci_device_freebsd_open_legacy_io,
 -#if defined(__i386__) || defined(__amd64__)
      .close_io = pci_device_freebsd_close_io,
@@ -662,7 +672,7 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
      .map_legacy = pci_device_freebsd_map_legacy,
      .unmap_legacy = pci_device_freebsd_unmap_legacy,
  };
-@@ -775,11 +669,7 @@ pci_system_freebsd_create( void )
+@@ -775,11 +681,7 @@ pci_system_freebsd_create( void )
      for ( i = 0; i < pciconfio.num_matches; i++ ) {
  	struct pci_conf *p = &pciconf[ i ];
  
@@ -674,7 +684,7 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
  	pci_sys->devices[ i ].base.bus = p->pc_sel.pc_bus;
  	pci_sys->devices[ i ].base.dev = p->pc_sel.pc_dev;
  	pci_sys->devices[ i ].base.func = p->pc_sel.pc_func;
-@@ -795,3 +685,11 @@ pci_system_freebsd_create( void )
+@@ -795,3 +697,11 @@ pci_system_freebsd_create( void )
  
      return 0;
  }
@@ -686,8 +696,8 @@ index f9c14762b64257865f627841cf348d82cae3ff10..bff9fe68661f844f185b50ed6de924db
 +    screenfd = fd;
 +#endif
 +}
-diff --git a/src/pciaccess_private.h b/src/pciaccess_private.h
-index 2f05b29f607eafe84e6b2fc594a9b3cb04653095..a45b093b69339541558e15dcdbdc8c58baa8b772 100644
+diff --git src/pciaccess_private.h src/pciaccess_private.h
+index 2f05b29..a45b093 100644
 --- src/pciaccess_private.h
 +++ src/pciaccess_private.h
 @@ -185,6 +185,7 @@ extern struct pci_system * pci_sys;
