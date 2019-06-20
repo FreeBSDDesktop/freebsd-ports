@@ -14,6 +14,8 @@ lib/cmake/KF5Package/KF5PackageConfigVersion.cmake
 lib/cmake/KF5Package/KF5PackageMacros.cmake
 lib/cmake/KF5Package/KF5PackageTargets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/KF5Package/KF5PackageTargets.cmake
+lib/cmake/KF5Package/KF5PackageToolsTargets-%%CMAKE_BUILD_TYPE%%.cmake
+lib/cmake/KF5Package/KF5PackageToolsTargets.cmake
 lib/cmake/KF5Package/qrc.cmake
 lib/libKF5Package.so
 lib/libKF5Package.so.5
@@ -32,7 +34,6 @@ share/kservicetypes5/kpackage-generic.desktop
 share/kservicetypes5/kpackage-genericqml.desktop
 share/kservicetypes5/kpackage-packagestructure.desktop
 share/locale/ar/LC_MESSAGES/libkpackage5.mo
-share/locale/ast/LC_MESSAGES/libkpackage5.mo
 share/locale/bs/LC_MESSAGES/libkpackage5.mo
 share/locale/ca/LC_MESSAGES/libkpackage5.mo
 share/locale/ca@valencia/LC_MESSAGES/libkpackage5.mo

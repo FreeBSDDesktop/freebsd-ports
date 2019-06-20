@@ -1,30 +1,16 @@
---- aclocal.m4.orig	2018-01-16 09:35:31 UTC
+--- aclocal.m4.orig	2019-04-20 15:06:07 UTC
 +++ aclocal.m4
-@@ -78,15 +78,18 @@ AC_DEFUN(AC_PATH_EMACS,
- 
-   AC_MSG_CHECKING([what a flavor does ${EMACS} have])
-   AC_EMACS_LISP(flavor,
--    (if (featurep (quote xemacs))
--	\"XEmacs\"
--      (concat \"Emacs \"
--	      (mapconcat (function identity)
--			 (nreverse
--			  (cdr (nreverse
--				(split-string emacs-version
--					      (concat (vector 92 46))))))
--			 \".\"))),
-+    (cond ((featurep (quote xemacs))
-+	   \"XEmacs\")
-+	  ((= (length (split-string emacs-version (concat (vector 92 46)))) 2)
-+	   (concat \"Emacs \" emacs-version))
-+	  (t
-+	   (concat \"Emacs \"
-+		   (mapconcat (function identity)
-+			      (nreverse
-+			       (cdr (nreverse
-+				     (split-string emacs-version
-+						   (concat (vector 92 46))))))
-+			      \".\")))),
-     noecho)
-   case "${flavor}" in
-   XEmacs)
+@@ -27,10 +27,10 @@ fi
+ AC_CACHE_VAL(EMACS_cv_SYS_$1,[
+ 	OUTPUT=./conftest-$$
+ 	EL=./conftest-$$.el
+-	echo "(let ((x ${elisp})) (write-region (format \"%s\" x) nil \"${OUTPUT}\" nil 5) (delete-file \"${EL}\"))" >& ${EL} 2>&1
+-	eval "${XEMACSDEBUG} '${EMACS}' ${VANILLA_FLAG} -batch -l ${EL}" >& AC_FD_CC 2>&1
++	echo "(let ((x ${elisp})) (write-region (format \"%s\" x) nil \"${OUTPUT}\" nil 5) (delete-file \"${EL}\"))" > ${EL} 2>&1
++	eval "${XEMACSDEBUG} '${EMACS}' ${VANILLA_FLAG} -batch -l ${EL}" > AC_FD_CC 2>&1
+ 	retval="`cat ${OUTPUT}`"
+-	echo "=> ${retval}" >& AC_FD_CC 2>&1
++	echo "=> ${retval}" > AC_FD_CC 2>&1
+ 	rm -f ${OUTPUT}
+ 	EMACS_cv_SYS_$1="${retval}"
+ ])

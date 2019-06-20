@@ -3,6 +3,7 @@
 PORTNAME=	jdftx
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.4.2-74
+PORTREVISION=	6
 DISTVERSIONSUFFIX=	-gba743849
 CATEGORIES=	science
 
@@ -12,6 +13,7 @@ COMMENT=	Software for joint density functional theory in chemistry
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libblas.so:math/blas \
 		libcblas.so:math/cblas \
 		libfftw3.so:math/fftw3 \
@@ -20,7 +22,7 @@ LIB_DEPENDS=	libblas.so:math/blas \
 RUN_DEPENDS=	bash:shells/bash
 TEST_DEPENDS=	bash:shells/bash
 
-USES=		cmake:outsource fortran localbase:ldflags shebangfix
+USES=		compiler:c++11-lang cmake fortran localbase:ldflags shebangfix
 SHEBANG_GLOB=	*.sh
 SHEBANG_FILES=	scripts/*
 SHEBANG_LANG=	octave
@@ -38,7 +40,7 @@ OPTIONS_DEFINE=		MPI LIBXC HDF5 SCALAPACK OCTAVE
 OPTIONS_DEFAULT=	MPI LIBXC
 
 MPI_CMAKE_BOOL=		EnableMPI
-MPI_LIB_DEPENDS=	libmpich.so:net/mpich2
+MPI_LIB_DEPENDS=	libmpich.so:net/mpich
 
 LIBXC_DESC=		Use LibXC for additional exchange-correlation functionals
 LIBXC_CMAKE_BOOL=	EnableLibXC
@@ -53,6 +55,6 @@ SCALAPACK_CMAKE_BOOL=	EnableScaLAPACK
 SCALAPACK_LIB_DEPENDS=	libscalapack.so:math/scalapack
 
 OCTAVE_DESC=		With Octave support (only for one script: dryRunToPDB)
-OCTAVE_USES=		octave
+OCTAVE_RUN_DEPENDS=	octave:math/octave
 
 .include <bsd.port.mk>

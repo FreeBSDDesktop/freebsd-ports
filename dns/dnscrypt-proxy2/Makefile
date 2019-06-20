@@ -1,12 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	dnscrypt-proxy
-PORTVERSION=	2.0.16
-PORTREVISION=	1
+PORTVERSION=	2.0.25
 CATEGORIES=	dns security ipv6
 PKGNAMESUFFIX=	2
 
-MAINTAINER=	egypcio@googlemail.com
+MAINTAINER=	egypcio@FreeBSD.org
 COMMENT=	Flexible DNS proxy with support for encrypted protocols
 
 LICENSE=	ISCL
@@ -14,12 +13,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	ca_root_nss>=3.35:security/ca_root_nss
 
-USE_RC_SUBR=	${PORTNAME}
-
 USES=		go
+USE_RC_SUBR=	${PORTNAME}
 USE_GITHUB=	yes
+
 GH_ACCOUNT=	jedisct1
-GH_TAGNAME=	c53b28d
+
 USERS=		_dnscrypt-proxy
 GROUPS=		_dnscrypt-proxy
 
@@ -36,6 +35,7 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 
 do-build:
 	${RLN} ${WRKSRC}/vendor ${WRKSRC}/src
+	${RM} ${WRKSRC}/go.mod
 	cd ${WRKSRC}/${PORTNAME} && \
 	  ${SETENV} ${MAKE_ENV} ${GO_ENV} GOPATH=${WRKSRC} \
 	  ${GO_CMD} build ${GO_BUILDFLAGS} -o ${WRKDIR}/sbin/${PORTNAME}

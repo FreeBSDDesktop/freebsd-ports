@@ -2,8 +2,7 @@
 
 PORTNAME=	z3
 DISTVERSIONPREFIX=	${PORTNAME}-
-DISTVERSION=	4.7.1
-PORTREVISION=	1
+DISTVERSION=	4.8.4
 CATEGORIES=	math
 
 MAINTAINER=	arrowd@FreeBSD.org
@@ -12,9 +11,13 @@ COMMENT=	Z3 Theorem Prover
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		python:2.7,build
+USES=		compiler:c++11-lang python:2.7,build
 USE_GITHUB=	yes
 GH_ACCOUNT=	Z3Prover
+
+HAS_CONFIGURE=		yes
+CONFIGURE_ARGS=		--prefix=${PREFIX}
+USE_LDCONFIG=		yes
 
 OPTIONS_DEFINE=		DEBUG STATIC GMP
 
@@ -28,13 +31,10 @@ STATIC_CONFIGURE_ON=	--staticlib
 
 GMP_DESC=		Use GMP library for AP arithmetic
 GMP_CONFIGURE_ON=	--gmp
-GMP_CXXFLAGS=		-I${LOCALBASE}/include
-GMP_LDFLAGS=		-L${LOCALBASE}/lib
+GMP_USES=		localbase:ldflags
 GMP_LIB_DEPENDS=	libgmp.so:math/gmp
 
-HAS_CONFIGURE=		yes
-CONFIGURE_ARGS=		--prefix=${PREFIX}
-USE_LDCONFIG=		yes
+LDFLAGS_i386=		-Wl,-znotext
 BUILD_WRKSRC=		${WRKSRC}/build
 INSTALL_WRKSRC=		${WRKSRC}/build
 

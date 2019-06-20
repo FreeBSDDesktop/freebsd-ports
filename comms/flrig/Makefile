@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	flrig
-PORTVERSION=	1.3.39 
+PORTVERSION=	1.3.43
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SF/fldigi/${PORTNAME}
 
@@ -14,6 +14,7 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libfltk.so:x11-toolkits/fltk
 
 USES=		gmake
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	FLTK_CONFIG="${LOCALBASE}/bin/fltk-config"
 PLIST_FILES=	bin/flrig share/applications/flrig.desktop \
@@ -24,5 +25,7 @@ NATIVE_OPT_DESC=	Enable Native Optimizations
 
 NATIVE_OPT_CONFIGURE_ON+=	--enable-optimizations=native
 NATIVE_OPT_CONFIGURE_OFF+=	--enable-optimizations=none
+
+CFLAGS_powerpc64=	-mminimal-toc
 
 .include <bsd.port.mk>

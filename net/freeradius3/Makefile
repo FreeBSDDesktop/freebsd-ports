@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	freeradius
-DISTVERSION=	3.0.17
-PORTREVISION=	2
+DISTVERSION=	3.0.19
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	ftp://ftp.freeradius.org/pub/freeradius/%SUBDIR%/ \
 		ftp://ftp.ntua.gr/pub/net/radius/freeradius/%SUBDIR%/ \
@@ -17,10 +17,6 @@ MAINTAINER=	zi@FreeBSD.org
 COMMENT=	Free RADIUS server implementation
 
 LICENSE=	GPLv2
-
-BROKEN_mips=		fails to compile: unrecognized command line option "-Wno-date-time"
-BROKEN_mips64=		fails to compile: unrecognized command line option "-Wno-date-time"
-BROKEN_powerpc64=	fails to compile: unrecognized command line option "-Wno-date-time"
 
 LIB_DEPENDS=	libgdbm.so:databases/gdbm \
 		libtalloc.so:devel/talloc

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tornado
-PORTVERSION=	5.1
+PORTVERSION=	5.1.1
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,7 +12,7 @@ COMMENT=	Python Web Server from FriendFeed
 
 LICENSE=	APACHE20
 
-CONFLICTS=	py[0-9]*-tornado4-*
+CONFLICTS=	py[0-9]*-tornado[46]-*
 
 USES=		python
 USE_PYTHON=	autoplist distutils

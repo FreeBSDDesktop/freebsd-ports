@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	cdecl
-PORTVERSION=	4.7
+PORTVERSION=	6.4
+PORTREVISION=	1
 DISTVERSIONPREFIX=	${PORTNAME}-
 CATEGORIES=	devel
 
@@ -13,9 +14,9 @@ LICENSE=	GPLv3
 
 BUILD_DEPENDS=	flex:textproc/flex
 
-CONFLICTS=	cutils-[0-9]*
-
 USES=		autoreconf bison ncurses readline
+
+CONFLICTS=	cutils-[0-9]*
 
 USE_GITHUB=	yes
 

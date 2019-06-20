@@ -21,6 +21,10 @@ COMMENT=	Sphinx Full-Text Search Engine
 
 LICENSE=	GPLv2
 
+BROKEN=		fails to build
+DEPRECATED=	Broken for more than 6 months
+EXPIRATION_DATE=	2019-05-08
+
 # If expat is present on the system and configure finds it, it will
 # unconditionally link the output binary against it.  There's no way
 # of turning this off.  So for consistency, make sure it's always on.

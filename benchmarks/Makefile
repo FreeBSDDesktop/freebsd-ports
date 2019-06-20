@@ -27,8 +27,8 @@
     SUBDIR += hey
     SUBDIR += himenobench
     SUBDIR += hpl
-    SUBDIR += hs-criterion
     SUBDIR += httperf
+    SUBDIR += hyperfine
     SUBDIR += imb
     SUBDIR += interbench
     SUBDIR += iorate
@@ -36,7 +36,9 @@
     SUBDIR += iozone21
     SUBDIR += iperf
     SUBDIR += iperf3
+    SUBDIR += libcelero
     SUBDIR += libmicro
+    SUBDIR += linux-vdbench
     SUBDIR += lmbench
     SUBDIR += lzbench
     SUBDIR += mdtest
@@ -62,6 +64,7 @@
     SUBDIR += polygraph
     SUBDIR += postal
     SUBDIR += postmark
+    SUBDIR += py-locust
     SUBDIR += py-naarad
     SUBDIR += py-throughpy
     SUBDIR += py-zopkio

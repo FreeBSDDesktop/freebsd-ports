@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	murmur
-PORTVERSION=	1.2.19
-PORTREVISION=	15
+DISTVERSION=	1.3.0-rc1
+PORTREVISION=	4
 CATEGORIES=	audio net
 
 MAINTAINER=	feld@FreeBSD.org
@@ -17,8 +17,9 @@ LIB_DEPENDS=	libprotobuf.so:devel/protobuf
 
 USERS=		murmur
 GROUPS=		murmur
-USES=		compiler:c++11-lang qmake pkgconfig qt:4 ssl
-USE_QT=		moc_build corelib network sql xml
+USES=		compiler:c++11-lang qmake pkgconfig python:2.7 qt:5 ssl
+USE_CXXSTD=	c++11
+USE_QT=		buildtools_build core network sql xml
 
 USE_GITHUB=	YES
 GH_ACCOUNT=	mumble-voip

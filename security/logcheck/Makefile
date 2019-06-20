@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	logcheck
-PORTVERSION=	1.3.19
+PORTVERSION=	1.3.20
 CATEGORIES=	security
 MASTER_SITES=	DEBIAN_POOL
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -17,6 +17,9 @@ BUILD_DEPENDS=	docbook-to-man>0:textproc/docbook-to-man
 RUN_DEPENDS=	mime-construct:mail/mime-construct \
 		lockfile-create:sysutils/lockfile-progs \
 		bash:shells/bash
+
+# Enable Perl dependency for logtail script
+USES=		perl5 shebangfix tar:xz
 
 LOGCHECK_USER=	logcheck
 LOGCHECK_GROUP=	${LOGCHECK_USER}
@@ -33,10 +36,7 @@ CRON_DESC=	Install cron script automatically
 OPTIONS_DEFAULT=CRON
 .endif
 
-# Enable Perl dependency for logtail script
-USES=		perl5 shebangfix tar:xz
-
-WRKSRC=		${WRKDIR}/${DISTNAME:S!_!-!}
+WRKSRC=		${WRKDIR}/${PORTNAME}
 BINMODE=	755
 SUB_LIST+=	LOGCHECK_USER=${LOGCHECK_USER} \
 		LOGCHECK_GROUP=${LOGCHECK_GROUP} \

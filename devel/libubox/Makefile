@@ -3,7 +3,7 @@
 
 PORTNAME=	libubox
 PORTVERSION=	20180803
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	mm@FreeBSD.org
@@ -14,6 +14,7 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libjson-c.so:devel/json-c
 
 USES=		cmake pkgconfig lua:51
+USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	mmatuska
 GH_TAGNAME=	c83a84af

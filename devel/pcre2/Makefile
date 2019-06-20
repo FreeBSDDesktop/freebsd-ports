@@ -2,14 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	pcre2
-PORTVERSION=	10.31
+PORTVERSION=	10.32
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/pcre/${PORTNAME}/${PORTVERSION} \
 		ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/ \
 		ftp://ftp.fu-berlin.de/unix/misc/pcre/ \
 		ftp://ftp.tin.org/pub/libs/pcre/
 
-MAINTAINER=	feld@FreeBSD.org
+MAINTAINER=	krion@FreeBSD.org
 COMMENT=	Perl Compatible Regular Expressions library, version 2
 
 LICENSE=	BSD3CLAUSE

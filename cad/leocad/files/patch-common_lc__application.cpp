@@ -4,13 +4,13 @@ common/lc_application.cpp:209:23: error: no matching literal operator for call t
                                 printf("Compiled "__DATE__"\n");
                                                   ^
 
---- common/lc_application.cpp.orig	2018-08-25 03:56:08 UTC
+--- common/lc_application.cpp.orig	2019-05-17 23:24:38 UTC
 +++ common/lc_application.cpp
-@@ -206,7 +206,6 @@ bool lcApplication::Initialize(int argc, char* argv[],
- 			else if ((strcmp(Param, "-v") == 0) || (strcmp(Param, "--version") == 0))
- 			{
- 				printf("LeoCAD Version " LC_VERSION_TEXT "\n");
--				printf("Compiled "__DATE__"\n");
+@@ -375,7 +375,6 @@ bool lcApplication::Initialize(QList<QPair<QString, bo
+ 			printf("LeoCAD Version " LC_VERSION_TEXT "\n");
+ #endif
+ 			printf("LeoCAD Version " LC_VERSION_TEXT "\n");
+-			printf("Compiled " __DATE__ "\n");
  
- 				return false;
- 			}
+ 			ShowWindow = false;
+ 			return true;

@@ -16,16 +16,14 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libmaxminddb.so:net/libmaxminddb
 RUN_DEPENDS=	${PY_IPADDRESS}
 
-USES=		localbase python
+USES=		compiler:c11 localbase python
 USE_GITHUB=	yes
 GH_ACCOUNT=	maxmind
 GH_PROJECT=	MaxMind-DB-Reader-python
 
 USE_PYTHON=	autoplist distutils
 
-.include <bsd.port.pre.mk>
-
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/maxminddb/extension.so
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

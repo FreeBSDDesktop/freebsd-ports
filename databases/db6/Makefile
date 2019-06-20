@@ -59,7 +59,7 @@ JAVA_CONFIGURE_ENABLE=	java
 JAVA_CPPFLAGS=		-I"${JAVA_HOME}/include"
 JAVA_CONFIGURE_ENV=	JAVAC="${JAVAC}" JAR="${JAR}" JAVA="${JAVA}"
 TCL_CONFIGURE_ENABLE=	tcl
-TCL_USES=		tcl:85+
+TCL_USES=		tcl
 TCL_CONFIGURE_WITH=	tcl=${TCL_LIBDIR}
 TCL_VARS=		DBLIBS+=libdb_tcl
 DOCS_INSTALL_TARGET=	install_docs
@@ -67,11 +67,7 @@ DOCS_INSTALL_TARGET=	install_docs
 .include <bsd.port.options.mk>
 
 .if ${ARCH} == aarch64
-. if ${OSVERSION} > 1100100
 CONFIGURE_ARGS+=	--with-mutex=POSIX/pthreads
-. else
-CONFIGURE_ARGS+=	--enable-posixmutexes
-. endif
 .endif
 
 post-patch:

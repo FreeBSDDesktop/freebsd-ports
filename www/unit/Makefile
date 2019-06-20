@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	unit
-PORTVERSION=	1.3
-PORTREVISION=	1
+PORTVERSION=	1.9.0
 CATEGORIES=	www
 MASTER_SITES=	https://unit.nginx.org/download/
 
@@ -13,9 +12,7 @@ COMMENT?=	Dynamic web application server
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_powerpc64=	fails to build: nxt_conf_validation.c:275: undefined reference to __builtin_popcount
-
-USES+=		cpe
+USES+=		compiler:c11 cpe
 
 CPE_VENDOR=	nginx
 CPE_PRODUCT=	unit

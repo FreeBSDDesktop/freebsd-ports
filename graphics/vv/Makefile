@@ -4,6 +4,7 @@ PORTNAME=	vv
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.4.0-271
 DISTVERSIONSUFFIX=	-g24b75af3
+PORTREVISION=	6
 CATEGORIES=	graphics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -17,12 +18,12 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libgdcmCommon.so:devel/gdcm \
 		libhdf5_cpp.so:science/hdf5 \
 		libITKLabelMap-4.13.so:science/InsightToolkit \
-		libpng16.so:graphics/png \
+		libpng.so:graphics/png \
 		libsz.so:science/szip \
 		libtiff.so:graphics/tiff \
 		libvtkIOSQL-8.1.so:math/vtk8
 
-USES=		cmake:outsource compiler:c++11-lang jpeg qt:5
+USES=		cmake compiler:c++11-lang jpeg qt:5
 USE_GITHUB=	yes
 GH_ACCOUNT=	open-vv
 USE_QT=		core designer gui network sql widgets xml buildtools_build qmake_build

@@ -2,12 +2,12 @@
 
 PORTNAME=	gcc
 PORTVERSION=	6.4.0
-PORTREVISION=	2
+PORTREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
 PKGNAMEPREFIX?=	powerpc64-
 
-MAINTAINER=	kan@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Cross GNU Compiler Collection for ${PKGNAMEPREFIX:C/-//g}
 
 LICENSE=	GPLv3 GPLv3RLE
@@ -19,25 +19,21 @@ LIB_DEPENDS=	libgmp.so:math/gmp \
 BUILD_DEPENDS=	${BU_PREFIX}-as:devel/${PKGNAMEPREFIX}binutils
 RUN_DEPENDS=	${BU_PREFIX}-as:devel/${PKGNAMEPREFIX}binutils
 
-USES=	gmake iconv libtool tar:xz makeinfo compiler
+USES=	gmake iconv libtool tar:xz makeinfo compiler:c++11-lang
 PLIST_SUB=	TARGETARCH=${PKGNAMEPREFIX:C/-//g} \
 		OPSYS=${OPSYS:tl} \
 		GCC_TARGET=${GCC_TARGET} \
 		GCC_VERSION=${PORTVERSION}
 
+TARGETARCH=	${PKGNAMEPREFIX:C/-//g}
+
 .if empty(GCC_TARGET)
 # We are building for a FreeBSD target
-GCC_TARGET?=	${PKGNAMEPREFIX}unknown-${OPSYS:tl}${OSREL}
-BU_PREFIX?=	${PKGNAMEPREFIX}unknown-${OPSYS:tl}${OSREL}
-EXTRA_PATCHES+= ${FILESDIR}/freebsd-format-extensions
-.else
+GCC_TARGET=	${PKGNAMEPREFIX:S/amd64/x86_64/}unknown-${OPSYS:tl}${OSREL}
+EXTRA_PATCHES+= ${FILESDIR}/freebsd-format-extensions \
+		${FILESDIR}/freebsd-libdir
+.endif
 BU_PREFIX?=	${GCC_TARGET}
-.if defined(FREEBSD_EXTENSION)
-EXTRA_PATCHES+= ${FILESDIR}/freebsd-format-extensions
-.endif
-.endif
-
-TARGETARCH=${PKGNAMEPREFIX:C/-//g}
 
 GNU_CONFIGURE=	yes
 CONFIGURE_OUTSOURCE=	yes
@@ -54,9 +50,6 @@ CONFIGURE_ARGS+=--target=${GCC_TARGET} --disable-nls --enable-languages=c,c++ \
 
 ALL_TARGET?=	all-gcc
 INSTALL_TARGET?=	install-gcc
-
-# Force build of a cross compiler even if the target matches the host.
-CFLAGS+=	-DCROSS_DIRECTORY_STRUCTURE
 
 .include <bsd.port.options.mk>
 .include <bsd.port.pre.mk>
@@ -107,7 +100,7 @@ post-install:
 	@${RM} ${STAGEDIR}${PREFIX}/man/man1/$f.1
 	@${RM} ${STAGEDIR}${PREFIX}/man/man1/$f.1.gz
 .endfor
-	@${RM} ${STAGEDIR}${PREFIX}/info/*
+	@${RM} ${STAGEDIR}${PREFIX}/share/info/*
 	@${RM} ${STAGEDIR}${PREFIX}/man/man7/*
 .if empty(PKGNAMEPREFIX:M*-*-)
 	@${RM} -r ${STAGEDIR}${PREFIX}/lib/gcc/${GCC_TARGET}/${PORTVERSION}/include-fixed

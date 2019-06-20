@@ -3,7 +3,7 @@
 
 PORTNAME=	pure
 PORTVERSION=	0.64
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	lang
 MASTER_SITES=	https://bitbucket.org/purelang/pure-lang/downloads/
 EXTRACT_ONLY=	${DISTNAME}.tar.gz
@@ -13,6 +13,9 @@ COMMENT=	Modern-style functional programming language
 
 LICENSE=	GPLv3 LGPL3
 LICENSE_COMB=	dual
+
+DEPRECATED=	Depends on expiring devel/llvm35
+EXPIRATION_DATE=2019-08-31
 
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \

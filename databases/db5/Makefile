@@ -63,7 +63,7 @@ JAVA_CONFIGURE_ENABLE=	java
 JAVA_CPPFLAGS=		-I"${JAVA_HOME}/include"
 JAVA_CONFIGURE_ENV=	JAVAC="${JAVAC}" JAR="${JAR}" JAVA="${JAVA}" JAVACFLAGS="-Xlint:unchecked"
 TCL_CONFIGURE_ENABLE=	tcl
-TCL_USES=		tcl:85+
+TCL_USES=		tcl
 TCL_CONFIGURE_WITH=	tcl=${TCL_LIBDIR}
 TCL_VARS=		DBLIBS+=libdb_tcl
 DOCS_INSTALL_TARGET=	install_docs
@@ -74,11 +74,8 @@ DOCS_INSTALL_TARGET=	install_docs
 # db5 uses a deprecated instruction for mutexes on ARM, fbsd bug#197227
 # and also bug#205001
 CONFIGURE_ARGS+=	--enable-posixmutexes
-. if ${OSVERSION} > 1100100
-#                 ^ leave that as ">" it really is greater than but NOT equal
 # force POSIX mutexes - the OS supports PTHREAD_PROCESS_SHARED
 CONFIGURE_ARGS+=	--with-mutex=POSIX/pthreads
-. endif
 .endif
 
 post-patch:

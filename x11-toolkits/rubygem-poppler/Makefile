@@ -1,11 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	poppler
-PORTVERSION=	3.2.9
+PORTVERSION=	3.3.6
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Ruby binding for Poppler
 
 LICENSE=	LGPL21+
@@ -15,8 +16,9 @@ LIB_DEPENDS=	libpoppler-glib.so:graphics/poppler-glib
 RUN_DEPENDS=	rubygem-cairo-gobject>=${PORTVERSION}:devel/rubygem-cairo-gobject \
 		rubygem-gio2>=${PORTVERSION}:devel/rubygem-gio2
 
-NO_ARCH=	yes
-USE_RUBY=	yes
 USES=		gem
+USE_RUBY=	yes
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

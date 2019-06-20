@@ -2,7 +2,7 @@
 
 PORTNAME=	mkl-dnn
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.16
+DISTVERSION=	0.19
 CATEGORIES=	math
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -11,25 +11,26 @@ COMMENT=	Intel(R) Math Kernel Library for Deep Neural Networks
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_FreeBSD_10=	invalid value 'internal' in '-fvisibility internal'
+ONLY_FOR_ARCHS=		amd64 i386
+ONLY_FOR_ARCHS_REASON=	Intel MKL-DNN supports Intel 64 architecture and compatible architectures
 BROKEN_i386=	error: shift count >= width of type (and other errors), see https://github.com/intel/mkl-dnn/issues/315
 
 TEST_DEPENDS=	bash:shells/bash
 
-USES=		cmake:outsource compiler:c++11-lib
+USES=		cmake compiler:c++11-lang
 USE_GITHUB=	yes
 GH_ACCOUNT=	intel
 USE_LDCONFIG=	yes
 
-PLIST_FILES=	include/mkldnn.h \
-		include/mkldnn.hpp \
-		include/mkldnn_debug.h \
-		include/mkldnn_types.h \
-		lib/libmkldnn.so \
-		lib/libmkldnn.so.0 \
-		lib/libmkldnn.so.0.16.0
+OPTIONS_DEFINE=		OPENMP
 
-do-test:
+OPENMP_CMAKE_BOOL=	USE_OPENMP
+OPENMP_LIB_DEPENDS=	libomp.so:devel/openmp
+
+post-install:
+	@${RM} -r ${STAGEDIR}${PREFIX}/share/doc
+
+do-test: # some tests are known to fail: https://github.com/intel/mkl-dnn/issues/350
 	@${REINPLACE_CMD} 's| /bin/bash | ${LOCALBASE}/bin/bash |' ${WRKSRC}/tests/CMakeLists.txt
 	@cd ${BUILD_WRKSRC} && \
 		${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} -DBUILD_TESTS=ON ${CMAKE_SOURCE_PATH} && \

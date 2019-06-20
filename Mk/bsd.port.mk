@@ -119,9 +119,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  ${DISTDIR} (see below).  Also they will be fetched in this
 #				  subdirectory from FreeBSD mirror sites.
 # ALLFILES		- All of ${DISTFILES} and ${PATCHFILES}.
-# NOFETCHFILES	- If set, don't download these files from the ${MASTER_SITES}
-#				  or ${MASTER_SITE_BACKUP} (but do from
-#				  ${MASTER_SITE_OVERRIDE})
 # EXTRACT_ONLY	- If set, a subset of ${DISTFILES} you want to
 #				  actually extract.
 #
@@ -363,8 +360,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # CXXFLAGS_${ARCH}
 #				 Append the cxxflags to CXXFLAGS only on the specified architecture
 ##
-# USE_SDL		- If set, this port uses the sdl libraries.
-#				  See bsd.sdl.mk for more information.
+# LDFLAGS_${ARCH} Append the ldflags to LDFLAGS only on the specified architecture
 ##
 # USE_OPENLDAP	- If set, this port uses the OpenLDAP libraries.
 #				  Implies: WANT_OPENLDAP_VER?=24
@@ -390,17 +386,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 ##
 # USE_WX		- If set, this port uses the WxWidgets library and related
 #				  components. See bsd.wx.mk for more details.
-##
-#
-# USE_QT4		- A list of the Qt 4 dependencies the port has (e.g,
-#				  corelib, webkit).  Implies that the port needs Qt.
-#				  Implies the inclusion of bsd.qt.mk.  See bsd.qt.mk
-#				  for more details.
-#
-# USE_QT5		- A list of the Qt 5 dependencies the port has (e.g,
-#				  core, webkit).  Implies that the port needs Qt.
-#				  Implies the inclusion of bsd.qt.mk.  See bsd.qt.mk
-#				  for more details.
 ##
 # USE_LINUX_PREFIX
 #				- Controls the action of PREFIX (see above).  Only use this
@@ -528,7 +513,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  Installs all directories and files from ${WRKSRC}/doc
 #				  to ${DOCSDIR} except sed(1) backup files.
 #
-# MANPREFIX		- The directory prefix for ${MAN<sect>} and ${MLINKS}.
+# MANPREFIX		- The directory prefix for manual pages.
 #				  Default: ${PREFIX}
 # MAN<sect>PREFIX
 #				- If manual pages of some sections install in different
@@ -542,8 +527,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  the path relative to ${INFO_PATH}.
 # INFO_PATH		- Path, where all .info files will be installed by your
 #				  port, relative to ${PREFIX}
-#				  Default: "share/info" if ${PREFIX} is equal to /usr
-#				  and "info" otherwise.
 #
 # Set the following to specify all documentation your port installs into
 # ${DOCSDIR}
@@ -1179,7 +1162,7 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${SRC
 .endif
 _EXPORTED_VARS+=	OSVERSION
 
-.if (${OPSYS} == FreeBSD && (${OSVERSION} < 1004000 || (${OSVERSION} >= 1100000 && ${OSVERSION} < 1101001))) || \
+.if (${OPSYS} == FreeBSD && ${OSVERSION} < 1102000) || \
     (${OPSYS} == DragonFly && ${DFLYVERSION} < 400400)
 _UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
 								are guaranteed to build on this system. Please upgrade to a supported release.
@@ -1344,15 +1327,7 @@ _SUF2=	,${PORTEPOCH}
 PKGVERSION=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
 PKGNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PKGVERSION}
 DISTVERSIONFULL=	${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
-.if defined(USE_GITHUB) && empty(MASTER_SITES:MGHC) && empty(USE_GITHUB:Mnodefault)
-.  if empty(DISTNAME)
-_GITHUB_MUST_SET_DISTNAME=		yes
-.  else
-DEV_WARNING+=	"You are using USE_GITHUB and DISTNAME is set which is wrong.  Set GH_ACCOUNT/GH_PROJECT/GH_TAGNAME correctly and remove WRKSRC entirely."
-.  endif
-.else
 DISTNAME?=	${PORTNAME}-${DISTVERSIONFULL}
-.endif
 
 INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}
 
@@ -1422,8 +1397,13 @@ USES+=	mate
 .endif
 
 .if defined(USE_GL) && (!defined(USES) || !${USES:Mgl})
-DEV_WARNING+=	"Setting USE_GL without USES=gl is deprecated"
+DEV_WARNING+=	"Using USE_GL alone is deprecated, please add USES=gl."
 USES+=	gl
+.endif
+
+.if defined(USE_SDL) && (!defined(USES) || !${USES:Msdl})
+DEV_WARNING+=	"Using USE_SDL alone is deprecated, please add USES=sdl."
+USES+=	sdl
 .endif
 
 .if defined(USE_MYSQL)
@@ -1444,10 +1424,6 @@ USES+=mysql:${USE_MYSQL}
 
 .if defined(WANT_GSTREAMER) || defined(USE_GSTREAMER) || defined(USE_GSTREAMER1)
 .include "${PORTSDIR}/Mk/bsd.gstreamer.mk"
-.endif
-
-.if defined(USE_SDL)
-.include "${PORTSDIR}/Mk/bsd.sdl.mk"
 .endif
 
 .if !defined(UID)
@@ -1799,9 +1775,9 @@ MAKE_ENV+=		SHELL=${MAKE_SHELL} NO_LINT=YES
 PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:archivers/unzip
 .endif
 
-# Check the compatibility layer for amd64/ia64
+# Check the compatibility layer for amd64
 
-.if ${ARCH} == "amd64" || ${ARCH} =="ia64"
+.if ${ARCH} == "amd64"
 .if exists(/usr/lib32)
 HAVE_COMPAT_IA32_LIBS?=  YES
 .endif
@@ -1815,7 +1791,7 @@ HAVE_COMPAT_IA32_KERN!= if ${SYSCTL} -n compat.ia32.maxvmem >/dev/null 2>&1; the
 _EXPORTED_VARS+=	HAVE_COMPAT_IA32_KERN
 
 .if defined(IA32_BINARY_PORT) && ${ARCH} != "i386"
-.if ${ARCH} == "amd64" || ${ARCH} == "ia64"
+.if ${ARCH} == "amd64"
 .if !defined(HAVE_COMPAT_IA32_KERN)
 IGNORE=		requires a kernel with compiled-in IA32 compatibility
 .elif !defined(HAVE_COMPAT_IA32_LIBS)
@@ -1945,10 +1921,6 @@ _FORCE_POST_PATTERNS=	rmdir kldxref mkfontscale mkfontdir fc-cache \
 .include "${PORTSDIR}/Mk/bsd.ocaml.mk"
 .endif
 
-.if defined(USE_SDL)
-.include "${PORTSDIR}/Mk/bsd.sdl.mk"
-.endif
-
 .if defined(USE_PHP) && (!defined(USES) || ( defined(USES) && !${USES:Mphp*} ))
 DEV_WARNING+=		"Using USE_PHP alone is deprecated, please use USES=php"
 _USES_POST+=	php
@@ -2045,10 +2017,10 @@ CFLAGS+=       -fno-strict-aliasing
 ${lang}FLAGS:=	${${lang}FLAGS:N-std=*} -std=${USE_${lang}STD}
 .endif
 
-.if defined(${lang}FLAGS_${ARCH})
 ${lang}FLAGS+=	${${lang}FLAGS_${ARCH}}
-.endif
 .endfor
+
+LDFLAGS+=	${LDFLAGS_${ARCH}}
 
 # Multiple make jobs support
 .if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
@@ -2190,7 +2162,6 @@ PLIST?=			${PKGDIR}/pkg-plist
 PKGHELP?=		${PKGDIR}/pkg-help
 PKGINSTALL?=	${PKGDIR}/pkg-install
 PKGDEINSTALL?=	${PKGDIR}/pkg-deinstall
-PKGREQ?=		${PKGDIR}/pkg-req
 PKGMESSAGE?=	${PKGDIR}/pkg-message
 _PKGMESSAGES+=	${PKGMESSAGE}
 
@@ -2201,7 +2172,7 @@ PKG_SUFX?=		.tar
 .else
 PKG_SUFX?=		.txz
 .endif
-# where pkg_add records its dirty deeds.
+# where pkg(8) stores its data
 PKG_DBDIR?=		/var/db/pkg
 
 ALL_TARGET?=		all
@@ -2438,8 +2409,6 @@ _MASTER_SITE_OVERRIDE=	${MASTER_SITE_OVERRIDE}
 _MASTER_SITE_BACKUP=	${MASTER_SITE_BACKUP}
 .endif
 
-NOFETCHFILES?=
-
 # Organize DISTFILES, PATCHFILES, _MASTER_SITES_ALL, _PATCH_SITES_ALL
 # according to grouping rules (:something)
 DISTFILES?=		${DISTNAME}${EXTRACT_SUFX}
@@ -2671,12 +2640,7 @@ MAN${sect}PREFIX?=	${MANPREFIX}
 .endfor
 MANLPREFIX?=	${MANPREFIX}
 MANNPREFIX?=	${MANPREFIX}
-
-.if ${PREFIX} == /usr
 INFO_PATH?=	share/info
-.else
-INFO_PATH?=	info
-.endif
 
 .if defined(INFO)
 RUN_DEPENDS+=	indexinfo:print/indexinfo
@@ -3448,7 +3412,7 @@ install-package:
 .if !target(check-already-installed)
 .if !defined(NO_PKG_REGISTER) && !defined(FORCE_PKG_REGISTER)
 check-already-installed:
-		@${ECHO_MSG} "===>  Checking if ${PKGBASE} already installed"; \
+		@${ECHO_MSG} "===>  Checking if ${PKGBASE} is already installed"; \
 		pkgname=`${PKG_INFO} -q -O ${PKGBASE}`; \
 		if [ -n "$${pkgname}" ]; then \
 			v=`${PKG_VERSION} -t $${pkgname} ${PKGNAME}`; \
@@ -3878,7 +3842,7 @@ _CHECKSUM_INIT_ENV= \
 # the options consistent when fetching and when makesum'ing.
 # As we're fetching new distfiles, that are not in the distinfo file, disable
 # checksum and sizes checks.
-makesum:
+makesum: check-sanity
 .if !empty(DISTFILES)
 	@${SETENV} \
 			${_DO_FETCH_ENV} ${_MASTER_SITES_ENV} \
@@ -4594,7 +4558,7 @@ check-man: stage
 .endif
 
 # Compress all manpage not already compressed which are not hardlinks
-# Find all manpages which are not compressed and are hadlinks, and only get the list of inodes concerned, for each of them compress the first one found and recreate the hardlinks for the others
+# Find all manpages which are not compressed and are hardlinks, and only get the list of inodes concerned, for each of them compress the first one found and recreate the hardlinks for the others
 # Fixes all dead symlinks left by the previous round
 .if !target(compress-man)
 compress-man:
@@ -4718,7 +4682,8 @@ PORTS_ENV_VARS+=	${_EXPORTED_VARS}
 
 .if !target(pre-check-config)
 pre-check-config:
-_CHECK_OPTIONS_NAMES=	OPTIONS_DEFINE
+_CHECK_OPTIONS_NAMES=	OPTIONS_DEFINE OPTIONS_GROUP OPTIONS_MULTI \
+			OPTIONS_RADIO OPTIONS_SINGLE
 _CHECK_OPTIONS_NAMES+=	${OPTIONS_GROUP:S/^/OPTIONS_GROUP_/}
 _CHECK_OPTIONS_NAMES+=	${OPTIONS_MULTI:S/^/OPTIONS_MULTI_/}
 _CHECK_OPTIONS_NAMES+=	${OPTIONS_RADIO:S/^/OPTIONS_RADIO_/}
@@ -5023,7 +4988,7 @@ showconfig: check-config
 
 .if !target(showconfig-recursive)
 showconfig-recursive:
-	@${ECHO_MSG} "===> The following configuration options are available for ${PKGNAME} and dependencies";
+	@${ECHO_MSG} "===> The following configuration options are available for ${PKGNAME} and its dependencies";
 	@recursive_cmd="showconfig"; \
 	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
@@ -5050,7 +5015,7 @@ rmconfig:
 
 .if !target(rmconfig-recursive)
 rmconfig-recursive:
-	@${ECHO_MSG} "===> Removing user-specified options for ${PKGNAME} and dependencies";
+	@${ECHO_MSG} "===> Removing user-specified options for ${PKGNAME} and its dependencies";
 	@recursive_cmd="rmconfig"; \
 	    recursive_dirs="${.CURDIR} $$(${ALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	embree
-PORTVERSION=	2.17.5
-PORTREVISION=	1
+PORTVERSION=	2.17.6
 DISTVERSIONPREFIX=	v
 CATEGORIES=	graphics
 
@@ -11,6 +10,8 @@ MAINTAINER=	danfe@FreeBSD.org
 COMMENT=	Collection of high-performance ray tracing kernels
 
 LICENSE=	APACHE20
+
+BROKEN=		fails to link
 
 ONLY_FOR_ARCHS=	i386 amd64
 ONLY_FOR_ARCHS_REASON=	heavy use of SSE instructions
@@ -32,7 +33,7 @@ OPTIONS_DEFAULT=	ISPC
 OPTIONS_SUB=	yes
 
 IMAGEMAGICK_DESC=	BMP, GIF, PNG, TGA, TIFF image formats support
-IMAGEMAGICK_LIB_DEPENDS=	libMagick++-6.so:graphics/ImageMagick
+IMAGEMAGICK_LIB_DEPENDS=	libMagick++-6.so:graphics/ImageMagick6
 IMAGEMAGICK_CMAKE_ON=	-DEMBREE_TUTORIALS_IMAGE_MAGICK:BOOL=ON
 
 ISPC_DESC=		ISPC applications support

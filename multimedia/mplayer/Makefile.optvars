@@ -54,6 +54,7 @@ GSM_CONFIGURE_OFF=	--disable-libgsm
 
 GUI_CONFIGURE_ENABLE=	gui
 GUI_USE=		GNOME=gtk20
+GUI_USES=		gnome
 GUI_DESKTOP_ENTRIES=	"MPlayer" "High performance media player" "mplayer" "gmplayer" "" false
 GUI_IMPLIES=		ASS X11
 
@@ -82,6 +83,7 @@ OPENAL_USES=		openal:soft
 OPENAL_CONFIGURE_OFF=	--disable-openal
 
 OPENGL_USE=		GL=gl
+OPENGL_USES=		gl
 OPENGL_CONFIGURE_OFF=	--disable-gl
 OPENGL_IMPLIES=		X11
 
@@ -104,6 +106,7 @@ RTMP_LIB_DEPENDS=	librtmp.so:multimedia/librtmp
 RTMP_CONFIGURE_OFF=	--disable-librtmp
 
 SDL_USE=		SDL=sdl
+SDL_USES=		sdl
 SDL_LIB_DEPENDS=	libaa.so:graphics/aalib
 SDL_CONFIGURE_OFF=	--disable-sdl
 

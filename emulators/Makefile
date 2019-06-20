@@ -23,8 +23,6 @@
     SUBDIR += cpmtools
     SUBDIR += cpmtools2
     SUBDIR += darcnes
-    SUBDIR += dboxfe
-    SUBDIR += desmume
     SUBDIR += dgen-sdl
     SUBDIR += dolphin-emu
     SUBDIR += dosbox
@@ -33,6 +31,8 @@
     SUBDIR += dynagui
     SUBDIR += dynamips-community
     SUBDIR += e-uae
+    SUBDIR += edumips64
+    SUBDIR += emulationstation
     SUBDIR += fceux
     SUBDIR += fmsx
     SUBDIR += frodo
@@ -43,12 +43,9 @@
     SUBDIR += fuse-utils
     SUBDIR += gbe
     SUBDIR += gem5
-    SUBDIR += generator
-    SUBDIR += generator-cbiere
     SUBDIR += gens
     SUBDIR += gngb
     SUBDIR += gngeo
-    SUBDIR += gns3
     SUBDIR += gxemul
     SUBDIR += hatari
     SUBDIR += hercules
@@ -68,6 +65,7 @@
     SUBDIR += libspectrum
     SUBDIR += linux-c6
     SUBDIR += linux-c7
+    SUBDIR += linux-power9-functional-sim
     SUBDIR += linux_base-c6
     SUBDIR += linux_base-c7
     SUBDIR += lisaem
@@ -102,6 +100,7 @@
     SUBDIR += openmsx
     SUBDIR += p5-Acme-6502
     SUBDIR += parallels-tools
+    SUBDIR += pcem
     SUBDIR += pcemu
     SUBDIR += pcsxr
     SUBDIR += pearpc
@@ -110,19 +109,17 @@
     SUBDIR += ppsspp
     SUBDIR += ppsspp-qt5
     SUBDIR += py-gns3-converter
-    SUBDIR += py-nova
     SUBDIR += py-unicorn
-    SUBDIR += q4wine
     SUBDIR += qemu
     SUBDIR += qemu-cheri
     SUBDIR += qemu-devel
-    SUBDIR += qemu-ppcnv
+    SUBDIR += qemu-powernv
     SUBDIR += qemu-riscv
     SUBDIR += qemu-sbruno
     SUBDIR += qemu-user-static
     SUBDIR += qemu-utils
+    SUBDIR += qemu2
     SUBDIR += qmc2
-    SUBDIR += qtemu
     SUBDIR += quasi88
     SUBDIR += riscv-fesvr
     SUBDIR += riscv-isa-sim
@@ -135,7 +132,7 @@
     SUBDIR += spim
     SUBDIR += stella
     SUBDIR += stonx
-    SUBDIR += swine
+    SUBDIR += teo
     SUBDIR += tiemu3
     SUBDIR += tilem
     SUBDIR += tme
@@ -149,7 +146,6 @@
     SUBDIR += vgb-bin
     SUBDIR += vgba-bin
     SUBDIR += vice
-    SUBDIR += virtio-kmod
     SUBDIR += virtualbox-ose
     SUBDIR += virtualbox-ose-additions
     SUBDIR += virtualbox-ose-additions-nox11
@@ -173,13 +169,11 @@
     SUBDIR += x49gp
     SUBDIR += xbraitenberg
     SUBDIR += xcpc
-    SUBDIR += xen-kernel411
+    SUBDIR += xen-kernel
     SUBDIR += xen-kernel47
     SUBDIR += xhomer
     SUBDIR += xsystem35
     SUBDIR += xzx
-    SUBDIR += yabause
-    SUBDIR += yape
     SUBDIR += zsnes
 
 .include <bsd.port.subdir.mk>

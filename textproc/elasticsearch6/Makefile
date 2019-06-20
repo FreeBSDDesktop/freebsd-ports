@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	elasticsearch
-PORTVERSION=	6.3.2
+PORTVERSION=	6.5.4
 PORTREVISION=	0
 CATEGORIES=	textproc java devel
 MASTER_SITES=	https://artifacts.elastic.co/downloads/${PORTNAME}/ \
@@ -27,6 +27,7 @@ NO_BUILD=	yes
 JAVA_VERSION=	1.8+
 USE_RC_SUBR=	${PORTNAME}
 SHEBANG_FILES=	bin/elasticsearch \
+		bin/elasticsearch-cli \
 		bin/elasticsearch-env \
 		bin/elasticsearch-plugin
 
@@ -36,6 +37,7 @@ OPTIONS_DEFINE=	DOCS
 
 CONFIG_FILES=	elasticsearch.yml log4j2.properties jvm.options
 BINS=		elasticsearch \
+		elasticsearch-cli \
 		elasticsearch-env \
 		elasticsearch-plugin
 

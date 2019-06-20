@@ -3,19 +3,17 @@
 
 PORTNAME=	libcec
 PORTVERSION=	4.0.2
-PORTREVISION=	5
+PORTREVISION=	7
 DISTVERSIONPREFIX=	${PORTNAME}-
 CATEGORIES=	multimedia
 
-MAINTAINER=	mikael.urankar@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Library to control Pulse-Eight's HDMI-CEC adapter
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libp8-platform.so:devel/p8-platform
-
-BROKEN_powerpc64=	fails to compile: cecloader.h: converting to 'bool' from 'std::nullptr_t' requires direct-initialization
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Pulse-Eight

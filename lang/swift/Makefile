@@ -4,14 +4,18 @@ PORTNAME=	swift
 PORTVERSION=	3.1.1
 DISTVERSIONPREFIX=	swift-
 DISTVERSIONSUFFIX=	-RELEASE
-PORTREVISION=	6
+PORTREVISION=	11
 CATEGORIES=	lang
 
-MAINTAINER=	swills@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Swift programing language
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/swift/LICENSE.txt
+
+BROKEN=		fails to build
+DEPRECATED=	Broken for more than 6 months
+EXPIRATION_DATE=	2019-05-08
 
 BUILD_DEPENDS=	cmake:devel/cmake \
 		bash:shells/bash \
@@ -25,12 +29,11 @@ REL_SNAP=	2017-04-22-a
 USE_GITHUB=	yes
 BINARY_ALIAS=	swig=swig3.0 python=${PYTHON_CMD}
 
-GH_ACCOUNT=	apple:DEFAULT,llvm,clang,dispatch,lldb,cmark,llbuild,swiftpm,xctest,xcfound
-GH_PROJECT=	swift:DEFAULT swift-llvm:llvm swift-clang:clang swift-lldb:lldb \
+GH_ACCOUNT=	apple
+GH_PROJECT=	swift swift-llvm:llvm swift-clang:clang swift-lldb:lldb \
 		swift-cmark:cmark swift-llbuild:llbuild swift-package-manager:swiftpm \
 		swift-corelibs-xctest:xctest swift-corelibs-foundation:xcfound \
 		swift-corelibs-libdispatch:dispatch
-GH_TAGNAME=	swift-${PORTVERSION}-RELEASE:llbuild,swiftpm,xctest,xcfound,dispatch
 GH_SUBDIR=	llvm:llvm clang:clang lldb:lldb cmark:cmark llbuild:llbuild \
 		swiftpm:swiftpm swift-corelibs-xctest:xctest \
 		swift-corelibs-foundation:xcfound \
@@ -43,7 +46,6 @@ USES=		autoreconf:build compiler:c++14-lang libtool localbase:ldflags iconv libe
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 ONLY_FOR_ARCHS=	amd64
-BROKEN_FreeBSD_10=	Builds but does not work
 CONFLICTS_BUILD=	googletest
 LDFLAGS+=	-lobjc
 

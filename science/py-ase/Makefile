@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	ase
-DISTVERSION=	3.16.2
+DISTVERSION=	3.17.0
+PORTREVISION=	2
 CATEGORIES=	science python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,12 +15,13 @@ LICENSE_FILE=	${WRKSRC}/COPYING.LESSER
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Flask>0:www/py-flask@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR} \
 		${PYNUMPY} \
 		nwchem:science/nwchem
 
 USES=		python
 USE_PYTHON=	distutils concurrent autoplist
+
 NO_ARCH=	yes
 
 .include <bsd.port.mk>

@@ -3,7 +3,7 @@
 PORTNAME=	l-smash-works
 DISTVERSION=	0.0-935 # git rev-list --count HEAD
 DISTVERSIONSUFFIX=	-g3edd194
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 PKGNAMEPREFIX=	vapoursynth-
 
@@ -52,6 +52,7 @@ post-patch:
 		-e 's/pushd/cd/; s/popd/cd -/' \
 		-e 's/-Os //; /=.*-fexcess-precision/d' \
 		${WRKSRC}/configure
+	@${REINPLACE_CMD} 's/ -msse2 -g0//' ${WRKSRC}/${MAKEFILE}
 
 post-install:
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} \

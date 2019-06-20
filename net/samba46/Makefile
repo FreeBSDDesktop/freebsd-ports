@@ -3,7 +3,7 @@
 
 PORTNAME?=			${SAMBA4_BASENAME}46
 PORTVERSION?=			${SAMBA4_VERSION}
-PORTREVISION?=			0
+PORTREVISION?=			2
 CATEGORIES?=			net
 MASTER_SITES=			SAMBA/samba/stable SAMBA/samba/rc
 DISTNAME=			${SAMBA4_DISTNAME}
@@ -11,8 +11,11 @@ DISTNAME=			${SAMBA4_DISTNAME}
 MAINTAINER?=			timur@FreeBSD.org
 COMMENT?=			Free SMB/CIFS and AD/DC server and client for Unix
 
-LICENSE=			GPLv3
+LICENSE=			GPLv3+
+LICENSE_FILE=			${WRKSRC}/COPYING
 
+DEPRECATED=			yes
+EXPIRATION_DATE=		2019-08-19
 BROKEN_powerpc64=		fails to compile: unrecognized command line option "-Wno-format-truncation"
 
 IGNORE_NONTHREAD_PYTHON=	needs port lang/python${PYTHON_SUFFIX} to be build with THREADS support

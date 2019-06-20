@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	R
-DISTVERSION=	3.5.1
+DISTVERSION=	3.6.0
 PORTREVISION=	1
 CATEGORIES=	math lang
 MASTER_SITES=	CRAN/src/base/R-${PORTVERSION:C|\..*||}
@@ -12,8 +12,7 @@ COMMENT=	Language for statistical computing and graphics
 
 LICENSE=	GPLv2
 
-BROKEN_FreeBSD_10_armv6=	Fails to build
-ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386
+ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 powerpc64
 
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libpcre.so:devel/pcre
@@ -26,7 +25,8 @@ RUN_DEPENDS=	gmake:devel/gmake # R packages may require GNU make
 # - Create ports for each of the recommended packages
 # - Create a meta-port for the recommended packages
 
-USES=		gmake iconv libtool localbase pathfix perl5 readline:port
+USES=		compiler:c++11-lang gmake iconv libtool localbase pathfix \
+		perl5 readline:port
 USE_LDCONFIG=	${PREFIX}/lib/R/lib
 USE_PERL5=	build
 
@@ -73,7 +73,7 @@ ATLAS_USES=		blaslapack:atlas
 ATLAS_CONFIGURE_ON=	--disable-BLAS-shlib
 CAIROPANGO_IMPLIES=	X11
 CAIROPANGO_CONFIGURE_WITH=	cairo
-CAIROPANGO_USES=	gettext jpeg pkgconfig
+CAIROPANGO_USES=	gettext gnome jpeg pkgconfig
 CAIROPANGO_USE=		GNOME=pango,cairo
 FLANG_USES=		fortran:flang
 FLANG_USES_OFF=		fortran
@@ -126,7 +126,6 @@ X11_USE=		xorg=ice,sm,x11,xext,xmu,xscrnsaver,xt
 LIBVER=		${PORTVERSION:R}
 
 .include <bsd.port.options.mk>
-.include "compiler.mk"
 
 # LLVM, which gets pulled in with FLANG, provides libomp.  So, only depend on
 # devel/openmp when GFORTRAN and OPENMP are on.

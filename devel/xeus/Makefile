@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	xeus
-DISTVERSION=	0.13.0
-PORTREVISION=	3
+DISTVERSION=	0.19.2
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -18,9 +17,10 @@ LIB_DEPENDS=	libcryptopp.so:security/cryptopp \
 		libuuid.so:misc/e2fsprogs-libuuid \
 		libzmq.so:net/libzmq4
 
-USES=		cmake:outsource compiler:c++14-lang localbase:ldflags pkgconfig
+USES=		cmake compiler:c++14-lang localbase:ldflags pkgconfig ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	QuantStack
+CMAKE_OFF=	BUILD_STATIC_LIBS
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>

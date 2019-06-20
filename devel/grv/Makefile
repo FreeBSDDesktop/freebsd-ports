@@ -2,7 +2,8 @@
 
 PORTNAME=	grv
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.2.0
+DISTVERSION=	0.3.2
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	dg@syrec.org
@@ -17,22 +18,22 @@ LIB_DEPENDS=	libgit2.so:devel/libgit2
 USES=		ncurses pkgconfig readline:port
 USE_GITHUB=	yes
 GH_ACCOUNT=	rgburke
-GH_SUBDIR=	src/github.com/${GH_ACCOUNT}/${PORTNAME}
-GH_TUPLE=	bradfitz:slice:d9036e2:slice/src/github.com/bradfitz/slice \
-		camlistore:go4:9599cf2:reflectutil/src/go4.org \
-		davecgh:go-spew:8991bc2:spew/src/github.com/davecgh/go-spew \
-		gobwas:glob:f00a739:glob/src/github.com/gobwas/glob \
-		golang:crypto:a49355c:crypto/src/golang.org/x/crypto \
-		golang:sys:63fc586:sys/src/golang.org/x/sys \
-		mattn:go-runewidth:ce7b0b5:runewidth/src/github.com/mattn/go-runewidth \
-		pmezard:go-difflib:792786c:difflib/src/github.com/pmezard/go-difflib \
+GH_SUBDIR=	src/github.com/rgburke/grv
+GH_TUPLE=	bradfitz:slice:2b758aa:slice/src/github.com/bradfitz/slice \
+		camlistore:go4:94abd69:reflectutil/src/go4.org \
+		davecgh:go-spew:d8f796a:spew/src/github.com/davecgh/go-spew \
+		gobwas:glob:e7a84e9:glob/src/github.com/gobwas/glob \
+		golang:crypto:a1f597e:crypto/src/golang.org/x/crypto \
+		golang:sys:fead790:sys/src/golang.org/x/sys \
+		mattn:go-runewidth:703b5e6:runewidth/src/github.com/mattn/go-runewidth \
+		pmezard:go-difflib:5d4384e:difflib/src/github.com/pmezard/go-difflib \
 		rgburke:goncurses:74f667a:goncurses/src/github.com/rgburke/goncurses \
-		rjeczalik:notify:d152f3c:notify/src/github.com/rjeczalik/notify \
-		Sirupsen:logrus:75068be:logrus/src/github.com/Sirupsen/logrus \
-		stretchr:objx:0ab728f:objx/src/github.com/stretchr/objx \
-		stretchr:testify:f35b8ab:testify/src/github.com/stretchr/testify \
-		tchap:go-patricia:5ad6cdb:patricia/src/github.com/tchap/go-patricia \
-		libgit2:git2go:9abc050:git2go/src/gopkg.in/libgit2/git2go.v27 # Keep git2go branch in sync with devel/libgit2 version
+		rjeczalik:notify:629144b:notify/src/github.com/rjeczalik/notify \
+		Sirupsen:logrus:v1.4.0:logrus/src/github.com/Sirupsen/logrus \
+		stretchr:objx:c61a9df:objx/src/github.com/stretchr/objx \
+		stretchr:testify:34c6fa2:testify/src/github.com/stretchr/testify \
+		tchap:go-patricia:v2.3.0:patricia/src/github.com/tchap/go-patricia \
+		libgit2:git2go:ecaeb7a:git2go/src/gopkg.in/libgit2/git2go.v27 # Keep git2go branch in sync with devel/libgit2 version
 
 PLIST_FILES=	bin/grv
 
@@ -41,10 +42,10 @@ OPTIONS_DEFINE=	DOCS
 PORTDOCS=	*
 
 do-build:
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} GOPATH=${WRKSRC} go build ./cmd/${PORTNAME}
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} GOPATH=${WRKSRC} go build ./cmd/${PORTNAME}
 
 do-test:
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} GOPATH=${WRKSRC} go test ./cmd/${PORTNAME}
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} GOPATH=${WRKSRC} go test ./cmd/${PORTNAME}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin

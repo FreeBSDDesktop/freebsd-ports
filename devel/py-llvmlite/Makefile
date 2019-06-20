@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	llvmlite
-DISTVERSION=	0.23.0
-PORTREVISION=	1
+DISTVERSION=	0.25.0
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -22,7 +22,7 @@ LIB_DEPENDS=	libLLVM-6.0.so:devel/llvm60
 
 # Python 2.7,3.4+
 USES=		python fortran
-USE_PYTHON=	concurrent distutils autoplist
+USE_PYTHON=	distutils autoplist
 
 # devel/llvm60 required as of version 0.23.0
 LLVM_VER=	60

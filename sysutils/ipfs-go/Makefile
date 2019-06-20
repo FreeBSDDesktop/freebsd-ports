@@ -2,11 +2,12 @@
 
 PORTNAME=	ipfs
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.4.17
+DISTVERSION=	0.4.18
+PORTREVISION=	2
 CATEGORIES=	sysutils
-MASTER_SITES=	LOCAL/yuri:gx
+MASTER_SITES=	https://github.com/ipfs/go-ipfs/releases/download/v${DISTVERSION}/
 PKGNAMESUFFIX=	-go
-DISTFILES=	${FULLNAME}-gx-${DISTVERSION}.tar.xz:gx
+DISTNAME=	go-ipfs-source
 
 MAINTAINER=	jhixson@FreeBSD.org
 COMMENT=	IPFS implementation in Go
@@ -16,46 +17,34 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/go:lang/go
+USES=		go
 
-USE_GITHUB=	yes
-GH_PROJECT=	go-ipfs
-GH_SUBDIR=	src/github.com/ipfs/go-ipfs
+GO_PKGNAME=	github.com/ipfs/go-ipfs
+GO_TARGET=	./cmd/ipfs
+
+NO_WRKSUBDIR=	yes
 
 USE_RC_SUBR=	${PORTNAME}${PKGNAMESUFFIX}
 
 SUB_FILES=	${FULLNAME}
 SUB_LIST=	IPFS_USER=${IPFS_USER} \
 		IPFS_GROUP=${IPFS_GROUP} \
-		IPFS_LOGDIR=${IPFS_LOGDIR}
+		IPFS_HOME=${IPFS_HOME}
 PLIST_SUB=	IPFS_USER=${IPFS_USER} \
 		IPFS_GROUP=${IPFS_GROUP} \
-		IPFS_HOME=${IPFS_HOME} \
-		IPFS_LOGDIR=${IPFS_LOGDIR}
+		IPFS_HOME=${IPFS_HOME}
 
-IPFS_USER=	${FULLNAME}
-IPFS_GROUP=	${FULLNAME}
-IPFS_HOME=	/var/db/${PORTNAME}${PKGNAMESUFFIX}
-IPFS_LOGDIR=	/var/log/${PORTNAME}${PKGNAMESUFFIX}
+IPFS_USER?=	${FULLNAME}
+IPFS_GROUP?=	${FULLNAME}
+IPFS_HOME?=	/var/db/${FULLNAME}
 
 USERS=		${IPFS_USER}
 GROUPS=		${IPFS_GROUP}
 
 FULLNAME=	${PORTNAME}${PKGNAMESUFFIX}
 
-post-patch:
-	@${RLN} ${WRKDIR}/gx ${WRKSRC}/src
-
-do-build:
-	# To update ipfs-go-gx-${DISTVERSION}.tar.xz deps bundle:
-	# comment out post-patch, run the command below, tar ${WRKSRC}/src/gx and re-upload .tar.xz
-	# cd ${WRKSRC}/${GH_SUBDIR} && ${SETENV} ${MAKE_ENV} GOPATH=${WRKSRC} gx install
-	@cd ${WRKSRC}/${GH_SUBDIR} && \
-		${SETENV} ${MAKE_ENV} GOPATH=${WRKSRC} go build ./cmd/ipfs
-
 do-install:
 	@${MKDIR} ${STAGEDIR}${IPFS_HOME}
-	@${MKDIR} ${STAGEDIR}${IPFS_LOGDIR}
-	${INSTALL_PROGRAM} ${WRKSRC}/ipfs ${STAGEDIR}${PREFIX}/bin/${PORTNAME}${PKGNAMESUFFIX}
+	${INSTALL_PROGRAM} ${GO_WRKDIR_BIN}/ipfs ${STAGEDIR}${PREFIX}/bin/${PORTNAME}${PKGNAMESUFFIX}
 
 .include <bsd.port.mk>

@@ -3,7 +3,7 @@
 
 PORTNAME=	beets
 PORTVERSION=	1.4.7
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	audio python
 MASTER_SITES=	CHEESESHOP
 
@@ -14,7 +14,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}jellyfish>=0:devel/py-jellyfish@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}munkres>=0:math/py-munkres@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}munkres10>=0:math/py-munkres10@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}musicbrainzngs>=0.4:audio/py-musicbrainzngs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mutagen>=1.33:audio/py-mutagen@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>=1.9:devel/py-six@${PY_FLAVOR} \
@@ -76,7 +76,7 @@ EMBYUPDATE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_
 FETCHART_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR}
 FFMPEG_RUN_DEPENDS=	ffmpeg>=2:multimedia/ffmpeg
 GMUSIC_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gmusicapi>=0:audio/py-gmusicapi@${PY_FLAVOR}
-IMAGEMAGICK_RUN_DEPENDS=	convert:graphics/ImageMagick
+IMAGEMAGICK_RUN_DEPENDS=	convert:graphics/ImageMagick6
 IPFS_RUN_DEPENDS=	ipfs-go:sysutils/ipfs-go
 KODIUPDATE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR}
 LASTFM_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pylast>=0:audio/py-pylast@${PY_FLAVOR}

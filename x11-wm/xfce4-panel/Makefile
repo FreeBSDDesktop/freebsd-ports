@@ -4,7 +4,7 @@
 PORTNAME=	xfce4-panel
 PORTVERSION=	4.12.2
 CATEGORIES=	x11-wm xfce
-MASTER_SITES=	XFCE/src/xfce/${PORTNAME}/${PORTVERSION:R}
+MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	xfce@FreeBSD.org
@@ -20,28 +20,30 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
-PORTSCOUT=	limit:^4\.12\.
-
-USES=		desktop-file-utils gmake libtool pathfix gettext-tools perl5 \
-		pkgconfig tar:bzip2
-GNU_CONFIGURE=	yes
-INSTALLS_ICONS=	yes
-USE_GNOME=	glib20 gtk20 intltool intlhack libwnck cairo
+USES=		desktop-file-utils gettext-tools gmake gnome libtool pathfix \
+		perl5 pkgconfig tar:bzip2
+USE_GNOME=	cairo glib20 gtk20 intlhack intltool libwnck
 USE_LDCONFIG=	yes
 USE_XFCE=	garcon libexo
 USE_XORG=	ice sm x11 xext
-INSTALL_TARGET=	install-strip
 
+GNU_CONFIGURE=	yes
+INSTALLS_ICONS=	yes
+INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS+=--enable-gio-unix --without-html-dir
+
+PORTSCOUT=	limit:^4\.12\.
 
 OPTIONS_DEFINE=		GTK3 NLS
 OPTIONS_DEFAULT=	GTK3
-GTK3_USES=		xfce:gtk3
-GTK3_USE=		gnome=gtk30
-GTK3_CONFIGURE_ENABLE=	gtk3
-GTK3_USES_OFF=		xfce
-NLS_USES=		gettext-runtime
-NLS_CONFIGURE_ENABLE=	nls
 OPTIONS_SUB=		yes
+
+GTK3_CONFIGURE_ENABLE=	gtk3
+GTK3_USE=		gnome=gtk30
+GTK3_USES_OFF=		xfce
+GTK3_USES=		xfce:gtk3
+
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext-runtime
 
 .include <bsd.port.mk>

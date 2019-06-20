@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	www
-PORTVERSION=	1.1.1
+PORTVERSION=	2.0.0
 CATEGORIES=	www
 PKGNAMEPREFIX=	go-
 
@@ -15,8 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USES=		go
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	nbari:DEFAULT
-GH_TUPLE=	golang:crypto:847319b:crypto/src/golang.org/x/crypto
+GH_ACCOUNT=	nbari
+GH_TUPLE=	golang:crypto:505ab14:crypto/src/golang.org/x/crypto
 GH_SUBDIR=	src/github.com/nbari/${PORTNAME}
 
 PLIST_FILES=	bin/www

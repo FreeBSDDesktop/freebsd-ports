@@ -4,17 +4,12 @@ MAKE_CMD=	bjam
 MAKEFILE=	#
 MAKE_FLAGS=	#
 ALL_TARGET=	stage
-# XXX Drop conditional after 10.4 EOL as both libstdc++ 7 and libc++ 6
-#     have near complete C++17 support.
-.if exists(/usr/lib/libstdc++.so) || exists(/usr/include/c++/v1/__undef_macros)
 USES+=		compiler:c++17-lang
 USE_CXXSTD=	gnu++17
-.else
-USES+=		compiler:c++14-lang
-USE_CXXSTD=	gnu++14
-.endif
 
-PLIST_SUB+=	BOOST_SHARED_LIB_VER=${PORTVERSION}
+PLIST_SUB+=	MAJOR_VER=${PORTVERSION:R:R} \
+		MINOR_VER=${PORTVERSION:R:E} \
+		BOOST_SHARED_LIB_VER=${PORTVERSION}
 
 PKG_MESSAGE_FILE_THREADS=	${PORTSDIR}/devel/boost-all/pkg-message.threads
 PKG_MESSAGE_FILE_PYTHON=	${PORTSDIR}/devel/boost-all/pkg-message.python

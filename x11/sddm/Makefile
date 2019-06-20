@@ -3,7 +3,7 @@
 PORTNAME=	sddm
 PORTVERSION=	0.17.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTREVISION=	6
 CATEGORIES=	x11
 
 MAINTAINER=	kde@FreeBSD.org
@@ -18,26 +18,27 @@ LICENSE_COMB=	multi
 LICENSE_FILE_GPLv2+=	${WRKSRC}/LICENSE
 LICENSE_FILE_CC-BY-3.0=	${WRKSRC}/LICENSE.CC-BY-3.0
 
+BUILD_DEPENDS=	rst2man.py-${PYTHON_VER}:textproc/py-docutils@${PY_FLAVOR}
 RUN_DEPENDS=	dbus-run-session:devel/dbus
 
-USES=		cmake:outsource kde:5 qt:5
+USES=		cmake compiler:c++11-lang kde:5 python:2.7,build qt:5
+USE_GITHUB=	yes
 USE_KDE=	ecm
-USE_QT=		concurrent core dbus gui linguisttools multimedia network \
-		printsupport qml quick script sql webkit widgets \
-		buildtools_build qmake_build
+USE_QT=		core declarative dbus gui network \
+		buildtools_build linguisttools_build qmake_build
 USE_XORG=	xcb
 
 CMAKE_ARGS=	-DUID_MIN=1000 \
 		-DUID_MAX=65000 \
-		-DCMAKE_INSTALL_SYSCONFDIR:PATH=${LOCALBASE}/etc
+		-DCMAKE_INSTALL_SYSCONFDIR:PATH=${LOCALBASE}/etc \
+		-DBUILD_MAN_PAGES=ON \
+		-DRST2MAN_EXECUTABLE=${LOCALBASE}/bin/rst2man.py-${PYTHON_VER}
 
 USE_RC_SUBR=	sddm
 SUB_FILES=	xinitrc.desktop
 
 USERS=		sddm
 GROUPS=		sddm
-
-USE_GITHUB=	yes
 
 # There are multiple patches that apply to Display.cpp,
 # fixing CVE-2018-14345 and backported from 0.18.

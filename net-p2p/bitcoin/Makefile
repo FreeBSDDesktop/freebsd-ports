@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	bitcoin
-PORTVERSION=	0.16.2
-PORTREVISION?=	0
+PORTVERSION=	0.18.0
 CATEGORIES=	net-p2p finance
-MASTER_SITES=	https://bitcoincore.org/bin/bitcoin-core-${PORTVERSION}/:DEFAULT \
+MASTER_SITES=	https://bitcoincore.org/bin/bitcoin-core-${PORTVERSION}/ \
 		LOCAL/swills:icon
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} bitcoin128.png:icon
 DIST_SUBDIR=	${PORTNAME}
@@ -19,9 +18,8 @@ LICENSE=	MIT
 LIB_DEPENDS=	libboost_date_time.so:devel/boost-libs \
 		libevent.so:devel/libevent
 
-BROKEN_powerpc64=	fails to compile: util.cpp: undefined reference to boost::program_options::to_internal
-
 USES=		autoreconf compiler:c++11-lib gmake libtool pkgconfig qt:5 shebangfix ssl
+
 GNU_CONFIGURE=	yes
 
 SLAVE_PORT?=	no
@@ -43,7 +41,7 @@ TESTS_PLIST_FILES=	bin/test_bitcoin-qt \
 OPTIONS_DEFINE?=	DBUS DEBUG HARDENING QRCODES TESTS UPNP ZMQ
 OPTIONS_RADIO?=		WALLET
 OPTIONS_RADIO_WALLET?=	WALLET_BDB48 WALLET_BDBMODERN
-OPTIONS_DEFAULT?=	DBUS HARDENING QRCODES UPNP WALLET_BDBMODERN
+OPTIONS_DEFAULT?=	DBUS HARDENING QRCODES UPNP WALLET_BDBMODERN ZMQ
 OPTIONS_SUB=		yes
 
 HARDENING_DESC=	Attempt to harden binaries (PIE for ASLR, NX Stack)
@@ -113,10 +111,6 @@ CONFIGURE_ARGS+=	--disable-wallet
 .if ${PORT_OPTIONS:MWALLET_BDB48} || ${PORT_OPTIONS:MWALLET_BDBMODERN}
 CPPFLAGS+=	-I${BDB_INCLUDE_DIR}
 LIBS+=		-L${BDB_LIB_DIR}
-.endif
-
-.if ${OSVERSION} < 1100000
-CONFIGURE_ARGS+=--disable-asm
 .endif
 
 .if defined(SLAVE_PORT) && ${SLAVE_PORT} == "no"

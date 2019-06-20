@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pyelftools
-PORTVERSION=	0.24
+PORTVERSION=	0.25
 PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
@@ -15,6 +15,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NO_ARCH=	yes
+STRIP=
 USES=		python
 USE_PYTHON=	distutils autoplist concurrent
 

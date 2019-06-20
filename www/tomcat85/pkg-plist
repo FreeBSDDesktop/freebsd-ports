@@ -1,12 +1,13 @@
+%%T%%/BUILDING.txt
+%%T%%/CONTRIBUTING.md
 %%T%%/LICENSE
 %%T%%/NOTICE
+%%T%%/README.md
 %%T%%/RELEASE-NOTES
 %%T%%/RUNNING.txt
 %%T%%/bin/bootstrap.jar
 %%T%%/bin/catalina-tasks.xml
 %%T%%/bin/catalina.sh
-%%T%%/bin/commons-daemon-native.tar.gz
-%%T%%/bin/commons-daemon.jar
 %%T%%/bin/configtest.sh
 %%T%%/bin/daemon.sh
 %%T%%/bin/digest.sh
@@ -14,7 +15,6 @@
 %%T%%/bin/shutdown.sh
 %%T%%/bin/startup.sh
 %%T%%/bin/tomcat-juli.jar
-%%T%%/bin/tomcat-native.tar.gz
 %%T%%/bin/tool-wrapper.sh
 %%T%%/bin/version.sh
 %%T%%/lib/annotations-api.jar
@@ -36,6 +36,7 @@
 %%T%%/lib/tomcat-i18n-es.jar
 %%T%%/lib/tomcat-i18n-fr.jar
 %%T%%/lib/tomcat-i18n-ja.jar
+%%T%%/lib/tomcat-i18n-ru.jar
 %%T%%/lib/tomcat-jdbc.jar
 %%T%%/lib/tomcat-jni.jar
 %%T%%/lib/tomcat-util-scan.jar
@@ -281,8 +282,6 @@
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/examples/FooTagExtraInfo.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/examples/LogTag.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/examples/LogTag.java
-%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/examples/ShowSource.class
-%%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/examples/ShowSource.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/examples/ValuesTag.class
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/examples/ValuesTag.java
 %%EXAMPLES%%%%T%%/webapps/examples/WEB-INF/classes/filters/ExampleFilter.class
@@ -555,8 +554,6 @@
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/snp/snoop.html
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/snp/snoop.jsp
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/snp/snoop.jsp.html
-%%EXAMPLES%%%%T%%/webapps/examples/jsp/source.jsp
-%%EXAMPLES%%%%T%%/webapps/examples/jsp/source.jsp.html
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/tagplugin/choose.html
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/tagplugin/choose.jsp
 %%EXAMPLES%%%%T%%/webapps/examples/jsp/tagplugin/choose.jsp.html

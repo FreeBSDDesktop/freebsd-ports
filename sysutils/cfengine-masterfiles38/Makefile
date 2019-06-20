@@ -14,6 +14,9 @@ COMMENT=	cfengine sample policies for installations and upgrades
 
 LICENSE=	GPLv3
 
+DEPRECATED=		No longer supported upstream
+EXPIRATION_DATE=	2019-06-30
+
 CPE_VENDOR=	gnu
 
 CONFLICTS=	cfengine-masterfiles3[0-79]-* cfengine-masterfiles31[0-9]-*
@@ -25,8 +28,6 @@ CONFLICTS+=	cfengine-masterfiles-3.*
 RUN_DEPENDS=	cf-agent:sysutils/cfengine${PKGNAMESUFFIX}
 
 FETCH_BEFORE_ARGS=	-o ${DISTDIR}/${DISTFILES}
-
-CONFLICTS=	cfengine-masterfiles[1679]*
 
 MAKE_JOBS_UNSAFE=	yes
 USES=		cpe python:build shebangfix

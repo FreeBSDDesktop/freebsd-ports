@@ -1,9 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	kodi
+DISTVERSION=	19.0.a20190604
 CATEGORIES=	multimedia
-DISTVERSION=	18.0.g201809092101
-PKGNAMESUFFIX?=	-devel
+PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	tobik@FreeBSD.org
 COMMENT=	Award winning media center application
@@ -44,17 +44,18 @@ LIB_DEPENDS=	libass.so:multimedia/libass \
 		libtinyxml.so:textproc/tinyxml \
 		libudev.so:devel/libudev-devd \
 		libuuid.so:misc/e2fsprogs-libuuid
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
 # Building libcpluff.a requires autoreconf and gmake.  Using ninja
 # leads to dependency problems where libcpluff.a is not yet finished
 # building when it's required.
-USES=		autoreconf:build cmake:outsource,noninja compiler:c++11-lib \
-		gettext gmake gnome iconv:wchar_t jpeg libtool pkgconfig \
-		python:2.7 ssl sqlite
+USES=		autoreconf:build cmake:noninja compiler:c++11-lang gettext \
+		gmake gnome iconv:wchar_t jpeg libtool pkgconfig python:3.5+ \
+		sqlite ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	xbmc
 GH_PROJECT=	xbmc
-GH_TAGNAME=	18.0b2-Leia
+GH_TAGNAME=	d14a5bf1066d3412f488b2ce9e286fc9b30d2c8f
 USE_GNOME=	libxslt libxml2
 USE_JAVA=	yes
 JAVA_BUILD=	yes
@@ -76,15 +77,16 @@ KODIARCH_i386=	x86
 KODIARCH_amd64=	x86_64
 
 PLIST_SUB=	ARCH=${KODIARCH_${ARCH}:U${ARCH}} OPSYS=${OPSYS:tl}
+PORTDATA=	*
 
-OPTIONS_DEFINE=	AVAHI CEC DBUS LIBBLURAY MYSQL NFS SMB UPNP VAAPI VDPAU WEBSERVER
-OPTIONS_DEFINE_amd64=	SSE
-OPTIONS_DEFINE_i386=	SSE
-OPTIONS_DEFAULT=	LIBBLURAY UPNP VAAPI VDPAU WEBSERVER X11
+OPTIONS_DEFINE=	AVAHI CEC DBUS LIBBLURAY MYSQL NFS SMB SSE UPNP VAAPI VDPAU WEBSERVER
+OPTIONS_DEFAULT=	DBUS GBM LIBBLURAY UPNP VAAPI VDPAU WEBSERVER WAYLAND X11
 OPTIONS_DEFAULT_amd64=	SSE
-OPTIONS_SINGLE=	PLATFORM
-OPTIONS_SINGLE_PLATFORM=	GBM RPI WAYLAND X11
+OPTIONS_MULTI=	PLATFORM
+OPTIONS_MULTI_PLATFORM=	GBM RPI WAYLAND X11
 OPTIONS_EXCLUDE_amd64=	RPI
+OPTIONS_EXCLUDE_armv6=	SSE
+OPTIONS_EXCLUDE_armv7=	SSE
 OPTIONS_EXCLUDE_i386=	RPI
 OPTIONS_SUB=	yes
 
@@ -105,11 +107,13 @@ CEC_CMAKE_BOOL=		ENABLE_CEC
 DBUS_LIB_DEPENDS=	libdbus-1.so:devel/dbus
 DBUS_CMAKE_BOOL=	ENABLE_DBUS
 
-GBM_BUILD_DEPENDS=	v4l_compat>=0:multimedia/v4l_compat
-GBM_CMAKE_ON=		-DCORE_PLATFORM_NAME:STRING="gbm" \
+KODI_GBM_ARGS=		-DCORE_PLATFORM_NAME:STRING="gbm" \
 			-DGBM_RENDER_SYSTEM:STRING="gl"
-GBM_LIB_DEPENDS=	libinput.so:x11/libinput \
+GBM_BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto
+GBM_LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim \
+			libinput.so:x11/libinput \
 			libxkbcommon.so:x11/libxkbcommon
+GBM_VARS=		KODI_PLATFORMS+=GBM
 
 LIBBLURAY_LIB_DEPENDS=	libbluray.so:multimedia/libbluray
 LIBBLURAY_CMAKE_BOOL=	ENABLE_BLURAY
@@ -126,11 +130,13 @@ PULSEAUDIO_CMAKE_BOOL=	ENABLE_PULSEAUDIO
 # For RPI, disable VAAPI in multimedia/ffmpeg too, so that mesa-libs
 # is *not* installed via libva in the build environment.  Both
 # mesa-libs and raspberrypi-userland conflict with each other.
-RPI_CMAKE_ON=		-DCORE_PLATFORM_NAME:STRING="rbpi"
+KODI_RBPI_ARGS=		-DCORE_PLATFORM_NAME:STRING="rbpi"
 RPI_LIB_DEPENDS=	libbrcmEGL.so:misc/raspberrypi-userland
 RPI_LIB_DEPENDS_OFF=	libdrm.so:graphics/libdrm
-RPI_PREVENTS=		VAAPI VDPAU
+RPI_PREVENTS=		GBM VAAPI VDPAU WAYLAND X11
+RPI_USES_OFF=		gl
 RPI_USE_OFF=		GL=egl,gl,glu
+RPI_VARS=		KODI_PLATFORMS+=RBPI
 
 SMB_USES=		samba:lib
 SMB_CMAKE_BOOL=		ENABLE_SMBCLIENT
@@ -159,26 +165,25 @@ VAAPI_LIB_DEPENDS=	libva.so:multimedia/libva
 VDPAU_CMAKE_BOOL=	ENABLE_VDPAU
 VDPAU_LIB_DEPENDS=	libvdpau.so:multimedia/libvdpau
 
-WAYLAND_BUILD_DEPENDS=	v4l_compat>=0:multimedia/v4l_compat \
-			wayland-protocols>=0:graphics/wayland-protocols
-WAYLAND_CMAKE_ON=	-DCORE_PLATFORM_NAME:STRING="wayland" \
+KODI_WAYLAND_ARGS=	-DCORE_PLATFORM_NAME:STRING="wayland" \
 			-DWAYLAND_RENDER_SYSTEM:STRING="gl"
+WAYLAND_BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
+			wayland-protocols>=0:graphics/wayland-protocols
 WAYLAND_LIB_DEPENDS=	libinput.so:x11/libinput \
 			libwayland-client++.so:graphics/waylandpp \
 			libwayland-client.so:graphics/wayland \
 			libxkbcommon.so:x11/libxkbcommon
+WAYLAND_VARS=		KODI_PLATFORMS+=WAYLAND
 
 WEBSERVER_LIB_DEPENDS=	libmicrohttpd.so:www/libmicrohttpd
 WEBSERVER_CMAKE_BOOL=	ENABLE_MICROHTTPD
 
-X11_CMAKE_ON=		-DCORE_PLATFORM_NAME:STRING="x11"
+KODI_X11_ARGS=		-DCORE_PLATFORM_NAME:STRING="x11"
+KODI_X11_BINS=		kodi-x11 kodi-xrandr
 X11_USE=		XORG=x11,xext,xrandr
+X11_VARS=		KODI_PLATFORMS+=X11
 
 .include <bsd.port.options.mk>
-
-.if ${SLAVE_PORT} == no
-PORTDATA=	*
-.endif
 
 post-patch:
 # Do not try to download dvdnav/dvdread during the build, instead
@@ -190,9 +195,42 @@ post-patch:
 # upstream devs do not sync them
 	@${CP} ${WRKSRC}/system/settings/linux.xml \
 		${WRKSRC}/system/settings/freebsd.xml
+# Make sure Kodi can find keyboard layouts from xkeyboard-config
+	@${REINPLACE_CMD} 's,/usr/share/X11/xkb/rules/,${LOCALBASE}/share/X11/xkb/rules/,g' \
+		${WRKSRC}/xbmc/platform/linux/input/LibInputSettings.cpp
 
-.if ${SLAVE_PORT} == no
-post-install:
+do-configure:
+.for platform in ${KODI_PLATFORMS:O}
+	@${ECHO_MSG} "===> Performing out-of-source build for ${platform}"
+	${MKDIR} ${CONFIGURE_WRKSRC}/${platform}
+	@cd ${CONFIGURE_WRKSRC}/${platform} && ${SETENV} ${CONFIGURE_ENV} \
+		${CMAKE_BIN} ${CMAKE_ARGS} ${KODI_${platform}_ARGS} \
+		${CMAKE_SOURCE_PATH}
+.endfor
+
+do-build:
+# build in reverse to avoid touching some source files in later
+# builds and triggering rebuilds/relinks in the first platform
+# install phase.
+.for platform in ${KODI_PLATFORMS:O:[-1..1]}
+	@${ECHO_MSG} "===>  Building for ${platform}"
+	@${DO_MAKE_BUILD} -C ${BUILD_WRKSRC}/${platform} ${ALL_TARGET}
+.endfor
+
+do-install:
+# Do a full install for the first platform including shared data files...
+.for platform in ${KODI_PLATFORMS:O:[1]}
+	@${ECHO_MSG} "===>  Installing for ${platform}"
+	@cd ${INSTALL_WRKSRC}/${platform} && ${SETENV} ${MAKE_ENV} ${FAKEROOT} \
+		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${INSTALL_TARGET}
+.endfor
+# ... followed by only the other platform binaries
+.for platform in ${KODI_PLATFORMS:O:[2..-1]}
+	@${ECHO_MSG} "===>  Installing for ${platform}"
+	cd ${INSTALL_WRKSRC}/${platform} && \
+		${INSTALL_PROGRAM} ${KODI_${platform}_BINS:Ukodi-${platform:tl}} \
+		${STAGEDIR}${PREFIX}/lib/kodi
+.endfor
 	${INSTALL_MAN} ${WRKSRC}/docs/manpages/kodi.bin.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
 	@cd ${STAGEDIR}${MAN1PREFIX}/man/man1 && ${LN} -sf kodi.bin.1.gz kodi.1.gz
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/TexturePacker
@@ -201,6 +239,5 @@ post-install:
 	@${RM} -r ${STAGEDIR}${DOCSDIR}
 # No firewalld on FreeBSD...
 	@${RM} -r ${STAGEDIR}${PREFIX}/lib/firewalld
-.endif
 
 .include <bsd.port.mk>

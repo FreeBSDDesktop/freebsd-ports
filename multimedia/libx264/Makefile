@@ -13,6 +13,9 @@ PLIST=		${.CURDIR}/pkg-plist
 LIB_DEPENDS=	#
 
 USES=		pathfix
+LDFLAGS_i386=	-Wl,-znotext
+LDFLAGS_armv6=	-Wl,-znotext
+LDFLAGS_armv7=	-Wl,-znotext
 
 OPTIONS_DEFINE=		ASM OPENCL
 OPTIONS_DEFAULT=	ASM OPENCL

@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	cryptominisat
-DISTVERSION=	5.6.3
+DISTVERSION=	5.6.8
 PORTREVISION=	1
 CATEGORIES=	math
 
@@ -13,11 +13,9 @@ LICENSE_COMB=	multi
 LICENSE_FILE_LGPL21=	${WRKSRC}/LICENSE.txt
 LICENSE_FILE_MIT=	${WRKSRC}/LICENSE.txt
 
-BROKEN_powerpc64=	fails to compile: main.cpp: undefined reference to boost::program_options::abstract_variables_map::operator[]
-
 LIB_DEPENDS=	libboost_program_options.so:devel/boost-libs
 
-USES=		cmake:outsource compiler:c++11-lib
+USES=		cmake compiler:c++11-lib
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes

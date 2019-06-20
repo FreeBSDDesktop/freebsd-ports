@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gitlab-shell
-PORTVERSION=	8.1.1
+PORTVERSION=	9.1.0
 CATEGORIES=	devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -16,7 +16,7 @@ BUILD_DEPENDS=	gem:devel/ruby-gems \
 USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 # Find the commit hash here: https://gitlab.com/gitlab-org/gitlab-shell/tags
-GL_COMMIT=	5287eee65e7f29e8d5296eb3ef24a06a9a60b3f1
+GL_COMMIT=	0e3052be5642c90ee173ff9af1e28358f227fbed
 
 USERS=		git
 GROUPS=		git
@@ -37,8 +37,5 @@ do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR})
 	@${MKDIR} ${STAGEDIR}/var/log/gitlab-shell
-	${STRIP_CMD} ${STAGEDIR}${DATADIR}/bin/gitaly-upload-pack
-	${STRIP_CMD} ${STAGEDIR}${DATADIR}/bin/gitaly-receive-pack
-	${STRIP_CMD} ${STAGEDIR}${DATADIR}/bin/gitaly-upload-archive
 
 .include <bsd.port.mk>

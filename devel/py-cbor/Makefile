@@ -12,10 +12,17 @@ COMMENT=	RFC 7049 - Concise Binary Object Representation
 
 LICENSE=	APACHE20
 
-USE_PYTHON=	autoplist concurrent distutils
 USES=		python
+USE_PYTHON=	autoplist concurrent distutils
+
+.include <bsd.port.pre.mk>
+
+post-patch:
+.if ${ARCH:Mmips*} || ${ARCH:Mpowerpc*} || ${ARCH} == sparc64
+	@${REINPLACE_CMD} -e '/pragma/d' ${WRKSRC}/c/cbormodule.c
+.endif
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/cbor/_cbor.so
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

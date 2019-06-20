@@ -3,7 +3,7 @@
 
 PORTNAME=	deadbeef
 PORTVERSION=	0.7.2
-PORTREVISION=	11
+PORTREVISION=	13
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME}/
 
@@ -13,7 +13,6 @@ COMMENT=	Ultimate music player for Unix-like systems
 LICENSE=	GPLv2 LGPL21
 LICENSE_COMB=	dual
 
-BROKEN_aarch64=		Fails to compile: error: invalid conversion between vector type and integer type
 BROKEN_armv6=		Fails to compile: error: invalid conversion between vector type and integer type
 BROKEN_armv7=		Fails to compile: error: invalid conversion between vector type and integer type
 
@@ -26,6 +25,8 @@ CPPFLAGS+=	-I../dumb/dumb-kode54/include -I../../plugins/libmp4ff \
 		-I../../plugins/gme/game-music-emu-0.6pre \
 		-I./sidplay-libs/libsidplay/include/sidplay \
 		-I${LOCALBASE}/include
+CFLAGS+=	-Wno-narrowing
+LDFLAGS_i386=	-Wl,-z,notext
 LIBS+=		-L${LOCALBASE}/lib -lexecinfo -lintl
 USE_GNOME=	intltool
 INSTALLS_ICONS=	yes

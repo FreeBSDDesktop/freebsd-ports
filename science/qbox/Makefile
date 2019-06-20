@@ -2,7 +2,7 @@
 
 PORTNAME=	qbox
 DISTVERSIONPREFIX=	rel
-DISTVERSION=	1_65_0
+DISTVERSION=	1_67_2
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -15,12 +15,12 @@ LIB_DEPENDS=	libblas.so:math/blas \
 		libfftw3.so:math/fftw3 \
 		libgcc_s.so:lang/gcc${GCC_DEFAULT} \
 		liblapack.so:math/lapack \
-		libmpich.so:net/mpich2 \
+		libmpich.so:net/mpich \
 		libscalapack.so:math/scalapack \
 		libuuid.so:misc/e2fsprogs-libuuid \
 		libxerces-c.so:textproc/xerces-c3
 
-USES=		gmake iconv:wchar_t localbase:ldflags
+USES=		compiler:c++11-lang gmake iconv:wchar_t localbase:ldflags
 USE_GITHUB=	yes
 GH_ACCOUNT=	qboxcode
 GH_PROJECT=	qbox-public

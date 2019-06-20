@@ -3,7 +3,7 @@
 
 PORTNAME=	p4
 PORTVERSION=	${YEAR}.${MAJOR}.${MINOR}
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 # Perforce stupidly rerolls their distfiles on a regular basis, updating the
 # files' timestamps when they do, which changes the zip file's checksum.  Work
@@ -40,6 +40,7 @@ PLIST_FILES=	bin/p4
 do-build:
 	cd ${WRKSRC} && ${SETENV} C++="${CXX}" C++FLAGS="${CXXFLAGS}" \
 		CCFLAGS="${CFLAGS}" \
+		HDRS="${OPENSSLINC}" \
 		LINKFLAGS="${LDFLAGS}" \
 		OSVER=${OSVER} \
 		SSL="yes" \

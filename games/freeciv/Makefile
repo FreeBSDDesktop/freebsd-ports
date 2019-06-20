@@ -3,11 +3,12 @@
 
 PORTNAME=	freeciv
 PORTVERSION=	2.5.10
+PORTREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	SF/freeciv/Freeciv%20${PORTVERSION:R}/${PORTVERSION} \
 		http://download.gna.org/freeciv/stable/
 
-MAINTAINER=	johans@FreeBSD.org
+MAINTAINER=	tobik@FreeBSD.org
 COMMENT=	Free turn-based multiplayer strategy
 
 LICENSE=	GPLv2+
@@ -19,9 +20,13 @@ LIB_DEPENDS=	libltdl.so:devel/libltdl \
 USES=		gmake iconv libtool localbase pkgconfig tar:bzip2 python \
 		sqlite readline
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	${ICONV_CONFIGURE_ARG} --program-transform-name= \
-		--enable-aimodules --enable-shared \
-		--enable-fcdb=sqlite3
+CONFIGURE_ARGS=	${ICONV_CONFIGURE_ARG} \
+		--enable-aimodules \
+		--enable-fcdb=sqlite3 \
+		--enable-shared \
+		--program-transform-name= \
+		--without-ggz-client \
+		--without-ggz-server
 
 PORTDATA=	*
 
@@ -32,7 +37,7 @@ SDL_CONFIGURE_ON=	--enable-client=gtk,sdl
 SDL_USE=		SDL=sdl,image,ttf,gfx
 MYSQL_CONFIGURE_ON=	--enable-fcdb=mysql --with-mysql-prefix=${LOCALBASE}
 MYSQL_USES=		mysql
-IPV6_CONFIGURE_EANBALE=	ipv6
+IPV6_CONFIGURE_ENABLE=	ipv6
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
 
@@ -46,11 +51,7 @@ IGNORE=		cannot use SDL without X11: re-run make config
 LIB_DEPENDS+=	libtiff.so:graphics/tiff \
 		libpng.so:graphics/png \
 		libfontconfig.so:x11-fonts/fontconfig \
-		libfreetype.so:print/freetype2 \
-		libggz.so:games/libggz \
-		libggz-gtk.so:games/ggz-gtk-client \
-		libggzcore.so:games/ggz-client-libs \
-		libggzmod.so:games/ggz-client-libs
+		libfreetype.so:print/freetype2
 USE_XORG=	xpm
 USE_SDL+=	mixer
 USE_GNOME=	gtk20 cairo

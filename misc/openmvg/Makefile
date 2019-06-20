@@ -3,6 +3,7 @@
 PORTNAME=	openmvg
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.4
+PORTREVISION=	2
 CATEGORIES=	misc science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -18,7 +19,7 @@ LIB_DEPENDS=	libflann_cpp.so:math/flann \
 		libpng.so:graphics/png \
 		libtiff.so:graphics/tiff
 
-USES=		cmake:outsource eigen:3 jpeg qt:5
+USES=		cmake eigen:3 jpeg qt:5
 USE_GITHUB=	yes
 GH_ACCOUNT=	openMVG
 GH_PROJECT=	openMVG
@@ -36,14 +37,14 @@ CMAKE_OFF=	OpenMVG_BUILD_EXAMPLES
 CXXFLAGS+=	-fPIC \
 		-I${LOCALBASE}/include # because flann is looked for in a wrong directiory: https://github.com/openMVG/openMVG/issues/1284
 
-OPTIONS_SINGLE=			SIMD_${ARCH}
-OPTIONS_SINGLE_SIMD_amd64=	K8 CORE MEROM NEHALEM
-OPTIONS_SINGLE_SIMD_i386=	${OPTIONS_SINGLE_SIMD_amd64}
+OPTIONS_SINGLE=			SIMD_${ARCH:tu}
+OPTIONS_SINGLE_SIMD_AMD64=	K8 CORE MEROM NEHALEM
+OPTIONS_SINGLE_SIMD_I386=	${OPTIONS_SINGLE_SIMD_AMD64}
 OPTIONS_DEFAULT_amd64=		K8
 OPTIONS_DEFAULT_i386=		K8
 
-SIMD_amd64_DESC=		Use SSE SIMD optimizations for
-SIMD_i386_DESC=			${SIMD_amd64_DESC}
+SIMD_AMD64_DESC=		Use SSE SIMD optimizations for
+SIMD_I386_DESC=			${SIMD_AMD64_DESC}
 K8_DESC=			K8 architecture (SSE2)
 CORE_DESC=			Core architecture (up to SSE3)
 MEROM_DESC=			Merom architecture (up to SSSE3)

@@ -8,7 +8,7 @@ CATEGORIES=	textproc
 MASTER_SITES=	http://download.netsurf-browser.org/libs/releases/
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/.3$//}${DISTVERSIONSUFFIX}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	neel@neelc.org
 COMMENT=	UTF8 Processing library
 
 LICENSE=	MIT
@@ -20,6 +20,8 @@ USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}
 MAKE_ENV+=	COMPONENT_TYPE="lib-shared"
 PLIST_SUB+=	VERSION=${PORTVERSION:S/.3$//}
+
+CONFLICTS=	utf8proc-[0-9]*
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libutf8proc.so*

@@ -1,5 +1,5 @@
-TIMESTAMP = 1531281934
-SHA256 (monocasual-giada-v0.15.1_GH0.tar.gz) = 8eb70a38ed6a74ed42e301b72dd8bf6ecabbc4e000249d8e4c614959b0de5f3e
-SIZE (monocasual-giada-v0.15.1_GH0.tar.gz) = 450292
-SHA256 (6712086d9d64c95dbf919ac74d14ca2e40fe18a5.patch) = 9f28ad585ca0a523c6e127db55638ef1e23d2c3c99814905f8b482294026ca6b
-SIZE (6712086d9d64c95dbf919ac74d14ca2e40fe18a5.patch) = 16245
+TIMESTAMP = 1547545001
+SHA256 (monocasual-giada-v0.15.3_GH0.tar.gz) = e2ee3d2f787e9dcd6a57fbf454c1aa2f9ecd2f3172a4b83de726de692c15a2de
+SIZE (monocasual-giada-v0.15.3_GH0.tar.gz) = 456011
+SHA256 (ea7a3a8c300cf24cee50a834aa0f579fada5f660.patch) = a9951add4c151d5f43fbce8c4d5613c6281a32fa519632eb79d3b7ff061f27aa
+SIZE (ea7a3a8c300cf24cee50a834aa0f579fada5f660.patch) = 15156

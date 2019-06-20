@@ -3,7 +3,7 @@
 
 PORTNAME=	pure-stllib
 PORTVERSION=	0.6
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	https://bitbucket.org/purelang/pure-lang/downloads/
 DIST_SUBDIR=	pure
@@ -13,6 +13,9 @@ COMMENT=	Pure interface to C++ STL map and vectors
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+DEPRECATED=	Depends on expiring devel/llvm35
+EXPIRATION_DATE=2019-08-31
 
 USES=		compiler:c++11-lib pkgconfig pure
 

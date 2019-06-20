@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	inkscape
-PORTVERSION=	0.92.3
-PORTREVISION=	3
+PORTVERSION=	0.92.4
+PORTREVISION=	2
 CATEGORIES=	graphics gnome
-MASTER_SITES=	https://inkscape.org/en/gallery/item/12187/
+MASTER_SITES=	https://media.inkscape.org/dl/resources/file/
 
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	Full featured open source SVG editor
@@ -15,8 +15,6 @@ LICENSE_COMB=	multi
 LICENSE_FILE_GPLv2=	${WRKSRC}/GPL2.txt
 LICENSE_FILE_GPLv3=	${WRKSRC}/GPL3.txt
 LICENSE_FILE_LGPL21=	${WRKSRC}/LGPL2.1.txt
-
-BROKEN_powerpc64=	fails to build: lib/libinkscape_base.so: undefined reference to Magick::Image::read(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
 
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/concept_check.hpp:devel/boost-libs
 LIB_DEPENDS=	libpopt.so:devel/popt \
@@ -30,12 +28,12 @@ LIB_DEPENDS=	libpopt.so:devel/popt \
 		libfreetype.so:print/freetype2 \
 		libpotrace.so:graphics/libpotrace \
 		libpng.so:graphics/png \
-		libMagick++-6.so:graphics/ImageMagick
+		libMagick++-6.so:graphics/ImageMagick6
 
-USE_GNOME=	gtkmm24 libxml2 libxslt
 USES=		compiler:c++11-lib cmake cpe desktop-file-utils gnome \
 		iconv:wchar_t jpeg pathfix pkgconfig python:2.7,build \
 		shebangfix tar:bzip2
+USE_GNOME=	gtkmm24 libxml2 libxslt
 USE_XORG=	x11
 INSTALLS_ICONS=	yes
 CMAKE_ARGS+=	-DWITH_GNOME_VFS:BOOL=NO
@@ -84,5 +82,11 @@ USES+=			gettext
 post-patch:
 	@${REINPLACE_CMD} -e 's|COMMAND python|COMMAND ${PYTHON_VERSION}|g' \
 		${WRKSRC}/share/*/CMakeLists.txt
+	# Obtained from Arch Linux
+	@${REINPLACE_CMD} -e 's|gTrue|true|g' -e 's|gFalse|false|g' -e 's|GBool|bool|g' \
+		${WRKSRC}/src/extension/internal/pdfinput/pdf-parser.*
+	# Fix with poppler 0.73
+	@${REINPLACE_CMD} -E '/#include "goo\/gtypes.h"/d' \
+		${WRKSRC}/src/extension/internal/pdfinput/pdf-parser.h
 
 .include <bsd.port.mk>
