@@ -1,167 +1,77 @@
-#-*- tab-width: 4; -*-
-# ex:ts=4
-#
-# bsd.xorg.mk - Support for X.Org ports and dependencies
-#
-# Created by: Florent Thoumie <flz@FreeBSD.org>
-#
-# !!! Here be dragons !!! (yeah, here as well...)
-#
 # $FreeBSD$
 #
-
-.if !defined(_POSTMKINCLUDED) && !defined(Xorg_Pre_Include)
-
-Xorg_Include_MAINTAINER=	x11@FreeBSD.org
-Xorg_Pre_Include=		bsd.xorg.mk
-
-# Some notes:
+# Originally from bsd.xorg.mk
+# Created by: Florent Thoumie <flz@FreeBSD.org>
 #
-# app - Installs applications, no shared libraries.
-# data - Installs only data.
-# doc - no particular notes
-# driver - depends on xorgproto at least
-# font - don't install .pc file
-# lib - various dependencies, install .pc file, needs pathfix
-# proto - install .pc file, needs pathfix, most only needed at build time.
-# xserver - there's only one atm, I guess everything can fit into the port itself
+# Feature:		xorg
+# Usage:		USES=xorg
+# 			USE_XORG=<component>
+#
+# 			Not specifying USE_XORG with USES=xorg is an error.
+#
+#
+# MAINTAINER:	x11@FreeBSD.org
 
-.if defined(XORG_CAT)
-# Default variables, common to all new modular xorg ports.
-.if !defined(USES) || ! ${USES:Mtar*}
-USES+=		tar:bzip2
-.endif
-GNU_CONFIGURE= 	yes
-# for some reason this makes mkfontscale and others fail in the install target
-#INSTALL_TARGET=	install-strip
-DIST_SUBDIR=	xorg/${XORG_CAT}
-
-MASTER_SITES?=	${MASTER_SITE_XORG}
-MASTER_SITE_SUBDIR?=	individual/${XORG_CAT}
-
-# All xorg ports needs pkgconfig to build, but some ports look for pkgconfig and
-# then continues the build.
-USES+=		pkgconfig
-
-# All xorg ports needs xorg-macros.
-. if ${PORTNAME} != xorg-macros
-USE_XORG+=      xorg-macros
-. endif
-
-. if ${XORG_CAT} == "app"
-# Nothing at the moment
-. endif
-
-. if ${XORG_CAT} == "data"
-# Nothing at the moment.
-. endif
-
-. if ${XORG_CAT} == "driver"
-USE_XORG+=	xorg-server xorgproto xi
-CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
-USES+=		libtool
-INSTALL_TARGET=	install-strip
-. endif
-
-. if ${XORG_CAT} == "font"
-FONTNAME?=	${PORTNAME:C/.*-//g:S/type/Type/:S/ttf/TTF/:S/speedo/Speedo/}
-CONFIGURE_ARGS+=	--with-fontrootdir=${PREFIX}/share/fonts
-CONFIGURE_ENV+=	FONTROOTDIR=${PREFIX}/share/fonts
-.    if !defined(NOFONT)
-USES+=	fonts
-BUILD_DEPENDS+=	mkfontscale>=0:x11-fonts/mkfontscale \
-				bdftopcf:x11-fonts/bdftopcf
-PLIST_FILES+=	"@comment ${FONTSDIR}/fonts.dir" \
-				"@comment ${FONTSDIR}/fonts.scale"
-.    endif
-.  endif
-
-. if ${XORG_CAT} == "lib"
-USES+=		pathfix libtool
-USE_LDCONFIG=	yes
-CONFIGURE_ARGS+=--enable-malloc0returnsnull
-. endif
-
-. if ${XORG_CAT} == "proto"
-USES+=	pathfix
-. endif
-
-. if ${XORG_CAT} == "xserver"
-DISTFILES?=	xorg-server-${PORTVERSION}.tar.bz2
-WRKSRC=		${WRKDIR}/xorg-server-${PORTVERSION}
-USES+=	pathfix
-CONFIGURE_ARGS+=	--with-xkb-path=${LOCALBASE}/share/X11/xkb \
-					--with-fontrootdir=${LOCALBASE}/share/fonts
-
-LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
-USE_XORG+=	fontutil:build
-. endif
-
-.endif
-
-.endif
-
-.if defined(_POSTMKINCLUDED) && !defined(Xorg_Post_Include)
-
-Xorg_Post_Include=		bsd.xorg.mk
+.if !defined(_INCLUDE_USES_XORG_MK)
+_INCLUDE_USES_XORG_MK=yes
 
 # Register all xorg .pc files here.
 # foo_LIB_PC_DEPENDS means it should go to BUILD_DEPENDS *and* RUN_DEPENDS.
 
 XORG_MODULES=	dmx \
-				fontenc \
-				fontutil \
-				ice \
-				libfs \
-				oldx \
-				pciaccess \
-				pixman \
-				sm \
-				x11 \
-				xau \
-				xaw \
-				xaw6 \
-				xaw7 \
-				xbitmaps \
-				xcb \
-				xcomposite \
-				xcursor \
-				xdamage \
-				xdmcp \
-				xevie \
-				xext \
-				xfixes \
-				xfont \
-				xfont2 \
-				xfontcache \
-				xft \
-				xi \
-				xinerama \
-				xkbfile \
-				xkbui \
-				xmu \
-				xmuu \
-				xorg-macros \
-				xorg-server \
-				xorgproto \
-				xp \
-				xpm \
-				xprintapputil \
-				xprintutil \
-				xrandr \
-				xrender \
-				xres \
-				xscrnsaver \
-				xshmfence \
-				xt \
-				xtrans \
-				xtrap \
-				xtst \
-				xv \
-				xvmc \
-				xxf86dga \
-				xxf86misc \
-				xxf86vm
+		fontenc \
+		fontutil \
+		ice \
+		libfs \
+		oldx \
+		pciaccess \
+		pixman \
+		sm \
+		x11 \
+		xau \
+		xaw \
+		xaw6 \
+		xaw7 \
+		xbitmaps \
+		xcb \
+		xcomposite \
+		xcursor \
+		xdamage \
+		xdmcp \
+		xevie \
+		xext \
+		xfixes \
+		xfont \
+		xfont2 \
+		xfontcache \
+		xft \
+		xi \
+		xinerama \
+		xkbfile \
+		xkbui \
+		xmu \
+		xmuu \
+		xorg-macros \
+		xorg-server \
+		xorgproto \
+		xp \
+		xpm \
+		xprintapputil \
+		xprintutil \
+		xrandr \
+		xrender \
+		xres \
+		xscrnsaver \
+		xshmfence \
+		xt \
+		xtrans \
+		xtrap \
+		xtst \
+		xv \
+		xvmc \
+		xxf86dga \
+		xxf86misc \
+		xxf86vm
 
 dmx_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/dmx.pc:x11/libdmx
 fontenc_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/fontenc.pc:x11-fonts/libfontenc
@@ -198,7 +108,7 @@ xmu_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xmu.pc:x11-toolkits/libXmu
 xmuu_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xmuu.pc:x11-toolkits/libXmu
 xorg-macros_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xorg-macros.pc:devel/xorg-macros
 xorg-server_LIB_PC_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xorg-server.pc:x11-servers/xorg-server
-xorgproto_BUILD_DEPENDS=		xorgproto>=0:x11/xorgproto
+xorgproto_BUILD_DEPENDS=	xorgproto>=0:x11/xorgproto
 xp_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xp.pc:x11/libXp
 xpm_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xpm.pc:x11/libXpm
 xprintapputil_LIB_PC_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xprintapputil.pc:x11/libXprintAppUtil
@@ -218,22 +128,27 @@ xxf86dga_LIB_PC_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xxf86dga.pc:x11/libXxf86
 xxf86misc_LIB_PC_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xxf86misc.pc:x11/libXxf86misc
 xxf86vm_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xxf86vm.pc:x11/libXxf86vm
 
+# Add explicit X options to avoid problems with false positives in configure
+.if defined(GNU_CONFIGURE)
+CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
+.endif
+
 .for _module in ${USE_XORG:M*\:both:C/\:.*//g}
 . if ${XORG_MODULES:M${_module}} == ""
-IGNORE=				requires unknown xorg module (${_module})
+IGNORE=		requires unknown xorg module (${_module})
 . endif
-RUN_DEPENDS+=			${${_module}_BUILD_DEPENDS}
+RUN_DEPENDS+=	${${_module}_BUILD_DEPENDS}
 .endfor
 
 .for _module in ${USE_XORG:C/\:.*//g}
 . if ${XORG_MODULES:M${_module}} == ""
-IGNORE=				requires unknown xorg module (${_module})
+IGNORE=		requires unknown xorg module (${_module})
 . endif
-LIB_PC_DEPENDS+=		${${_module}_LIB_PC_DEPENDS}
-BUILD_DEPENDS+=			${${_module}_BUILD_DEPENDS}
+LIB_PC_DEPENDS+=${${_module}_LIB_PC_DEPENDS}
+BUILD_DEPENDS+=	${${_module}_BUILD_DEPENDS}
 .endfor
 
-RUN_DEPENDS+=			${LIB_PC_DEPENDS}
-BUILD_DEPENDS+=			${LIB_PC_DEPENDS}
+RUN_DEPENDS+=	${LIB_PC_DEPENDS}
+BUILD_DEPENDS+=	${LIB_PC_DEPENDS}
 
 .endif
