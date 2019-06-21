@@ -20,7 +20,7 @@
 .if !defined(_INCLUDE_USES_XORG_CAT_MK)
 _INCLUDE_USES_XORG_CAT_MK=yes
 
-_XORG_CATEGORIES=	app data doc driver font lib proto xserver
+_XORG_CATEGORIES=	app data doc driver font lib proto util xserver
 _XORG_BUILDSYSTEMS=	autotools meson
 
 _XORG_CAT=		# empty
