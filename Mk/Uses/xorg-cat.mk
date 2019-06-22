@@ -70,7 +70,7 @@ MASTER_SITE_SUBDIR?=	individual/${_XORG_CAT}
 .endif
 
 .if ${_XORG_BUILDSYS} == "meson"
-# set up meson stuff here
+.include "${USESDIR}/meson.mk"
 .elif ${_XORG_BUILDSYS} == "autotools"
 GNU_CONFIGURE=		yes
 .else
