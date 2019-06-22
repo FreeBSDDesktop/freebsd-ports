@@ -60,15 +60,6 @@ EXTRACT_SUFX?=		.tar.bz2
 
 DIST_SUBDIR=	xorg/${_XORG_CAT}
 
-.if defined(USE_GITLAB)
-# this needs more work
-GL_SITE?=		https://gitlab.freedesktop.org
-GL_ACCOUNT?=		xorg
-.else
-MASTER_SITES?=		${MASTER_SITE_XORG}
-MASTER_SITE_SUBDIR?=	individual/${_XORG_CAT}
-.endif
-
 .if ${_XORG_BUILDSYS} == "meson"
 .include "${USESDIR}/meson.mk"
 .elif ${_XORG_BUILDSYS} == "autotools"
@@ -76,6 +67,15 @@ GNU_CONFIGURE=		yes
 .else
 # This should not happen
 IGNORE=		unknown build system specified via xorg_cat:${xorg-cat_ARGS:S/ /,/gW}
+.endif
+
+.if defined(USE_GITLAB)
+# this needs more work
+GL_SITE?=		https://gitlab.freedesktop.org
+GL_ACCOUNT?=		xorg
+.else
+MASTER_SITES?=		${MASTER_SITE_XORG}
+MASTER_SITE_SUBDIR?=	individual/${_XORG_CAT}
 .endif
 
 # set up things for includes below
