@@ -91,6 +91,7 @@
     SUBDIR += corkscrew
     SUBDIR += corosync2
     SUBDIR += corosync3
+    SUBDIR += coturn
     SUBDIR += courier-authlib-ldap
     SUBDIR += cppzmq
     SUBDIR += cryptcat
@@ -1218,6 +1219,7 @@
     SUBDIR += rubygem-fog-brightbox
     SUBDIR += rubygem-fog-brightbox0
     SUBDIR += rubygem-fog-cloudatcost
+    SUBDIR += rubygem-fog-cloudstack
     SUBDIR += rubygem-fog-digitalocean
     SUBDIR += rubygem-fog-dnsimple
     SUBDIR += rubygem-fog-dynect

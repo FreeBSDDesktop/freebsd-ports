@@ -326,6 +326,7 @@
     SUBDIR += clazy
     SUBDIR += cld2
     SUBDIR += clewn
+    SUBDIR += cli11
     SUBDIR += clig
     SUBDIR += cligen
     SUBDIR += clinfo
@@ -1079,6 +1080,7 @@
     SUBDIR += kimwitu
     SUBDIR += kio-extras
     SUBDIR += kiwix-lib
+    SUBDIR += kms-cmake-utils
     SUBDIR += kodi-platform
     SUBDIR += kore
     SUBDIR += kronosnet
@@ -4118,6 +4120,7 @@
     SUBDIR += py-aws-sam-translator
     SUBDIR += py-aws-xray-sdk
     SUBDIR += py-azure-batch
+    SUBDIR += py-azure-cosmos
     SUBDIR += py-azure-datalake-store
     SUBDIR += py-azure-graphrbac
     SUBDIR += py-azure-keyvault
@@ -4769,7 +4772,6 @@
     SUBDIR += py-pydevd
     SUBDIR += py-pydispatcher
     SUBDIR += py-pydocstyle
-    SUBDIR += py-pydocumentdb
     SUBDIR += py-pydoop
     SUBDIR += py-pydrive
     SUBDIR += py-pyechonest
@@ -5367,7 +5369,6 @@
     SUBDIR += rubygem-bacon
     SUBDIR += rubygem-baf
     SUBDIR += rubygem-batch-loader
-    SUBDIR += rubygem-batch-loader12
     SUBDIR += rubygem-benelux
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
@@ -6119,6 +6120,7 @@
     SUBDIR += tablist
     SUBDIR += tailor
     SUBDIR += talloc
+    SUBDIR += talloc1
     SUBDIR += tass64
     SUBDIR += tbb
     SUBDIR += tcl-memchan
@@ -6142,6 +6144,7 @@
     SUBDIR += template-glib
     SUBDIR += terminality
     SUBDIR += tevent
+    SUBDIR += tevent1
     SUBDIR += tex-kpathsea
     SUBDIR += tex-libtexlua
     SUBDIR += tex-libtexluajit
