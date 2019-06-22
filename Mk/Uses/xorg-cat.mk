@@ -1,19 +1,36 @@
 # $FreeBSD$
 # 
-# xorg ports categories and internal stuff
+# xorg ports categories and other things needed to build xorg ports.
+# This is intended only for ports of xorg and freedesktop.org applications.
+#
+# Use Mk/Uses/xorg.mk and USES=xorg to depend on various xorg components.
 #
 # Feature:	xorg-cat
-# Usage:	USES=xorg-cat:<category>
-# 		<category> is one of:
+# Usage:	USES=xorg-cat:category[,buildsystem]
 #
-# 		* app - Installs applications, no shared libraries.
-# 		* data - Installs only data.
-# 		* doc - no particular notes
-# 		* driver - depends on xorgproto at least
-# 		* font - don't install .pc file
-# 		* lib - various dependencies, install .pc file, needs pathfix
-# 		* proto - install .pc file, needs pathfix, most only needed at build time.
-# 		* xserver - there's only one atm, I guess everything can fit into the port itself
+# 		category is one of:
+# 		* app      Installs applications, no shared libraries.
+# 		* data     Installs only data.
+# 		* doc      no particular notes
+# 		* driver   depends on xorgproto at least
+# 		* font     don't install .pc file
+# 		* lib      various dependencies, install .pc file, needs
+# 		           pathfix
+# 		* proto    install .pc file, needs pathfix, most only needed at
+# 		           build time.
+# 		* util     no particular notes
+# 		* xserver  xorg x servers
+#
+# 		These categories has to match upstream categories.  Don't invent
+# 		your own.
+#
+# 		builsystem is one of:
+# 		* autotools (default)
+# 		* meson (experimental)
+#
+#
+# By defining USE_GITLAB and GL_COMMIT, it is possible to pull code straigt from
+# the freedesktop.org gitlab, instead of official release tarballs.
 #
 #.MAINTAINER:	x11@FreeBSD.org
 
@@ -70,8 +87,8 @@ IGNORE=		unknown build system specified via xorg_cat:${xorg-cat_ARGS:S/ /,/gW}
 .endif
 
 .if defined(USE_GITLAB)
-# Set up things for fetching from freedesktop.org override.
-# This can be overridden using normal GL_* macros in the port Makefile.
+# Set up things for fetching from freedesktop.org gitlab.
+# This can be overridden using normal GL_* macros in the ports Makefile.
 # We make a best guess for GL_ACCOUNT and GL_PROJECT.
 GL_SITE?=		https://gitlab.freedesktop.org
 GL_ACCOUNT?=		xorg/${_XORG_CAT}

@@ -8,7 +8,11 @@
 # 			USE_XORG=<component>
 #
 # 			Not specifying USE_XORG with USES=xorg is an error.
+#			
+#			Components can be found in the XORG_MODULES list below.
 #
+#
+# If you feel something is missing from the list, please let us know.
 #
 # MAINTAINER:	x11@FreeBSD.org
 
@@ -17,6 +21,9 @@ _INCLUDE_USES_XORG_MK=		yes
 _USES_POST+=	xorg
 .endif
 
+# Set up things after bsd.port.post.mk.
+# This way ports can add things to USE_XORG even after bsd.port.pre.mk is
+# included.
 .if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_XORG_POST_MK)
 _INCLUDE_USES_XORG_POST_MK=	yes
 
