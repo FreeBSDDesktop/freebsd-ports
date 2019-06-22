@@ -13,11 +13,14 @@
 # MAINTAINER:	x11@FreeBSD.org
 
 .if !defined(_INCLUDE_USES_XORG_MK)
-_INCLUDE_USES_XORG_MK=yes
+_INCLUDE_USES_XORG_MK=		yes
+_USES_POST+=	xorg
+.endif
 
-# Register all xorg .pc files here.
-# foo_LIB_PC_DEPENDS means it should go to BUILD_DEPENDS *and* RUN_DEPENDS.
+.if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_XORG_POST_MK)
+_INCLUDE_USES_XORG_POST_MK=	yes
 
+# List of xorg modules
 XORG_MODULES=	dmx \
 		fontenc \
 		fontutil \
@@ -73,6 +76,8 @@ XORG_MODULES=	dmx \
 		xxf86misc \
 		xxf86vm
 
+# Register all xorg .pc files here.
+# foo_LIB_PC_DEPENDS means it should go to BUILD_DEPENDS *and* RUN_DEPENDS.
 dmx_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/dmx.pc:x11/libdmx
 fontenc_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/fontenc.pc:x11-fonts/libfontenc
 fontutil_LIB_PC_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/fontutil.pc:x11-fonts/font-util
