@@ -70,9 +70,19 @@ IGNORE=		unknown build system specified via xorg_cat:${xorg-cat_ARGS:S/ /,/gW}
 .endif
 
 .if defined(USE_GITLAB)
-# this needs more work
+# Set up things for fetching from freedesktop.org override.
+# This can be overridden using normal GL_* macros in the port Makefile.
+# We make a best guess for GL_ACCOUNT and GL_PROJECT.
 GL_SITE?=		https://gitlab.freedesktop.org
-GL_ACCOUNT?=		xorg
+GL_ACCOUNT?=		xorg/${_XORG_CAT}
+GL_PROJECT?=		${PORTNAME:tl}
+.  if ${_XORG_BUILDSYS} == "meson"
+# set up meson stuff here
+.  else
+# Things from GL doesn't come with pre-generated configure, add dependency on
+# autoreconf and run it, if we're using autotools.
+.include "${USESDIR}/autoreconf.mk"
+.  endif
 .else
 MASTER_SITES?=		${MASTER_SITE_XORG}
 MASTER_SITE_SUBDIR?=	individual/${_XORG_CAT}
