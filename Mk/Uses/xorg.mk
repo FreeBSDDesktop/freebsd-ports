@@ -87,7 +87,7 @@ XORG_MODULES=	dmx \
 # foo_LIB_PC_DEPENDS means it should go to BUILD_DEPENDS *and* RUN_DEPENDS.
 dmx_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/dmx.pc:x11/libdmx
 fontenc_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/fontenc.pc:x11-fonts/libfontenc
-fontutil_LIB_PC_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/fontutil.pc:x11-fonts/font-util
+fontutil_BUILD_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/fontutil.pc:x11-fonts/font-util
 ice_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/ice.pc:x11/libICE
 libfs_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/libfs.pc:x11-fonts/libFS
 oldx_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/oldx.pc:x11/liboldX
