@@ -145,6 +145,14 @@ xxf86vm_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xxf86vm.pc:x11/libXxf86v
 CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
 .endif
 
+.if !empty(xorg_ARGS)
+IGNORE=		USES=xorg takes no arguments
+.endif
+
+.if !defined(USE_XORG)
+IGNORE=		need to specify xorg module with USE_XORG
+.endif
+
 .for _module in ${USE_XORG:M*\:both:C/\:.*//g}
 . if ${XORG_MODULES:M${_module}} == ""
 IGNORE=		requires unknown xorg module (${_module})
