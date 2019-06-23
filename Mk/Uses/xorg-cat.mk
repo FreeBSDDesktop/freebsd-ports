@@ -109,8 +109,8 @@ MASTER_SITE_SUBDIR?=	individual/${_XORG_CAT}
 libtool_ARGS?=	# empty
 
 #
-## All xorg ports needs pkgconfig to build, but some ports look for pkgconfig and
-## then continues the build.
+## All xorg ports needs pkgconfig to build, but some ports look for pkgconfig
+## and then continues the build.
 .include "${USESDIR}/pkgconfig.mk"
 
 #
