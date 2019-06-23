@@ -181,7 +181,7 @@ CONFIGURE_ARGS+=	--with-xkb-path=${LOCALBASE}/share/X11/xkb \
 			--with-fontrootdir=${LOCALBASE}/share/fonts
 .  endif
 LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
-USE_XORG+=	fontutil:build
+USE_XORG+=	fontutil
 .endif
 
 .include "${USESDIR}/xorg.mk"
