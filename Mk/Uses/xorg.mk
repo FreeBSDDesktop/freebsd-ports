@@ -160,7 +160,7 @@ IGNORE=		requires unknown xorg module (${_module})
 RUN_DEPENDS+=	${${_module}_BUILD_DEPENDS}
 .endfor
 
-.for _module in ${USE_XORG:C/\:.*//g}
+.for _module in ${USE_XORG:C/\:both$//g}
 . if ${XORG_MODULES:M${_module}} == ""
 IGNORE=		requires unknown xorg module (${_module})
 . endif
