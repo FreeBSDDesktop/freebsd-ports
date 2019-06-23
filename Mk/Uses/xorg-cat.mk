@@ -184,6 +184,9 @@ LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
 USE_XORG+=	fontutil
 .endif
 
+# We onlu need USES=xorg if we want USE_XORG modules
+.if defined(USE_XORG) && !empty(USE_XORG)
 .include "${USESDIR}/xorg.mk"
+.endif
 
 .endif
