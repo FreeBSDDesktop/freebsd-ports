@@ -3,7 +3,7 @@
 # xorg ports categories and other things needed to build xorg ports.
 # This is intended only for ports of xorg and freedesktop.org applications.
 #
-# Use Mk/Uses/xorg.mk and USES=xorg to depend on various xorg components.
+# Use USES=xorg and USE_XORG to depend on various xorg components.
 #
 # Feature:	xorg-cat
 # Usage:	USES=xorg-cat:category[,buildsystem]
@@ -29,8 +29,8 @@
 # 		* meson (experimental)
 #
 #
-# By defining USE_GITLAB and GL_COMMIT, it is possible to pull code straigt from
-# the freedesktop.org gitlab, instead of official release tarballs.
+# By defining USE_GITLAB and GL_COMMIT, it is possible to pull code straight
+# from the freedesktop.org gitlab, instead of official release tarballs.
 #
 #.MAINTAINER:	x11@FreeBSD.org
 
