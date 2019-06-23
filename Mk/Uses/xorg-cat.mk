@@ -52,16 +52,16 @@ IGNORE=		no arguments specified to xorg-cat
 .    if empty(_XORG_CAT)
 _XORG_CAT=	${_arg}
 .    else
-IGNORE=		multipe xorg categories specified via xorg-cat:${xorg-cat_ARGS:S/ /,/gW}
+IGNORE=		multipe xorg categories specified via xorg-cat:${xorg-cat_ARGS:ts,}
 .    endif
 .  elif ${_XORG_BUILDSYSTEMS:M${_arg}}
 .    if empty(_XORG_BUILDSYS)
 _XORG_BUILDSYS=	${_arg}
 .    else
-IGNORE=		multipe xorg build systems specified via xorg-cat:${xorg-cat_ARGS:S/ /,/gW}
+IGNORE=		multipe xorg build systems specified via xorg-cat:${xorg-cat_ARGS:ts,}
 .    endif
 .  else
-IGNORE=		unknown argument specified via xorg-cat:${xorg-cat_ARGS:S/ /,/gW}
+IGNORE=		unknown argument specified via xorg-cat:${xorg-cat_ARGS:ts,}
 .  endif
 .endfor
 
@@ -83,7 +83,7 @@ DIST_SUBDIR=	xorg/${_XORG_CAT}
 GNU_CONFIGURE=		yes
 .else
 # This should not happen
-IGNORE=		unknown build system specified via xorg-cat:${xorg-cat_ARGS:S/ /,/gW}
+IGNORE=		unknown build system specified via xorg-cat:${xorg-cat_ARGS:ts,}
 .endif
 
 .if defined(USE_GITLAB)
