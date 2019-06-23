@@ -150,7 +150,7 @@ IGNORE=		USES=xorg takes no arguments
 .endif
 
 .if !defined(USE_XORG)
-IGNORE=		need to specify xorg module with USE_XORG
+IGNORE=		need to specify xorg modules with USE_XORG
 .endif
 
 .for _module in ${USE_XORG:M*\:both:C/\:.*//g}
