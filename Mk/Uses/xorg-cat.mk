@@ -106,7 +106,6 @@ MASTER_SITES?=		XORG/individual/${_XORG_CAT}
 .  endif
 
 # set up things for includes below
-libtool_ARGS?=	# empty
 
 #
 ## All xorg ports needs pkgconfig to build, but some ports look for pkgconfig
@@ -131,7 +130,11 @@ USE_XORG+=	xi xorg-server xorgproto
 # Put special stuff for meson here
 .    else
 CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
+libtool_ARGS?=	# empty
 .include "${USESDIR}/libtool.mk"
+.if ${USES:Mautoreconf}
+.include "${USESDIR}/autoreconf.mk"
+.endif
 INSTALL_TARGET=	install-strip
 .    endif
 
@@ -156,7 +159,11 @@ PLIST_FILES+=	"@comment ${FONTSDIR}/fonts.dir" \
 .    if ${_XORG_BUILDSYS} == meson
 # put meson stuff here
 .    else
+libtool_ARGS?=	# empty
 .include "${USESDIR}/libtool.mk"
+.if ${USES:Mautoreconf}
+.include "${USESDIR}/autoreconf.mk"
+.endif
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS+=--enable-malloc0returnsnull
 .    endif
