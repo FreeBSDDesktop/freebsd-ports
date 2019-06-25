@@ -99,13 +99,11 @@ GL_PROJECT?=		${PORTNAME:tl}
 .    else
 # Things from GL doesn't come with pre-generated configure, add dependency on
 # autoreconf and run it, if we're using autotools.
-.include "${USESDIR}/autoreconf.mk"
+_XORG_CAT_WANT_AUTORECONF=	yes
 .    endif
 .  else
 MASTER_SITES?=		XORG/individual/${_XORG_CAT}
 .  endif
-
-# set up things for includes below
 
 #
 ## All xorg ports needs pkgconfig to build, but some ports look for pkgconfig
@@ -130,11 +128,7 @@ USE_XORG+=	xi xorg-server xorgproto
 # Put special stuff for meson here
 .    else
 CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
-libtool_ARGS?=	# empty
-.include "${USESDIR}/libtool.mk"
-.if ${USES:Mautoreconf}
-.include "${USESDIR}/autoreconf.mk"
-.endif
+_XORG_CAT_WANT_LIBTOOL=	yes
 INSTALL_TARGET=	install-strip
 .    endif
 
@@ -159,11 +153,7 @@ PLIST_FILES+=	"@comment ${FONTSDIR}/fonts.dir" \
 .    if ${_XORG_BUILDSYS} == meson
 # put meson stuff here
 .    else
-libtool_ARGS?=	# empty
-.include "${USESDIR}/libtool.mk"
-.if ${USES:Mautoreconf}
-.include "${USESDIR}/autoreconf.mk"
-.endif
+_XORG_CAT_WANT_LIBTOOL=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS+=--enable-malloc0returnsnull
 .    endif
@@ -185,6 +175,15 @@ LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
 USE_XORG+=	fontutil
 
 .  endif # ${_XORG_CAT} == <category>
+
+.  if defined(_XORG_CAT_WANT_LIBTOOL)
+libtool_ARGS?=	# empty
+.include <${USESDIR}/libtool.mk>
+.  endif
+
+.  if defined(_XORG_CAT_WANT_AUTORECONF) || ${USES:Mautoreconf}
+.include <${USESDIR}/autoreconf.mk>
+.  endif
 
 # We onlu need USES=xorg if we want USE_XORG modules
 .  if defined(USE_XORG) && !empty(USE_XORG)
