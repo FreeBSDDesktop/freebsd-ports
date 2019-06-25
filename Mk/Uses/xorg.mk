@@ -27,6 +27,14 @@ _USES_POST+=	xorg
 .if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_XORG_POST_MK)
 _INCLUDE_USES_XORG_POST_MK=	yes
 
+.if !empty(xorg_ARGS)
+IGNORE=		USES=xorg takes no arguments
+.endif
+
+.if !defined(USE_XORG)
+IGNORE=		need to specify xorg modules with USE_XORG
+.endif
+
 # List of xorg modules
 XORG_MODULES=	dmx \
 		fontenc \
@@ -143,14 +151,6 @@ xxf86vm_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xxf86vm.pc:x11/libXxf86v
 # Add explicit X options to avoid problems with false positives in configure
 .if defined(GNU_CONFIGURE)
 CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
-.endif
-
-.if !empty(xorg_ARGS)
-IGNORE=		USES=xorg takes no arguments
-.endif
-
-.if !defined(USE_XORG)
-IGNORE=		need to specify xorg modules with USE_XORG
 .endif
 
 .for _module in ${USE_XORG:M*\:both:C/\:.*//g}

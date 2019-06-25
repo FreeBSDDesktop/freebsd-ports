@@ -77,9 +77,10 @@ EXTRACT_SUFX?=		.tar.bz2
 
 DIST_SUBDIR=	xorg/${_XORG_CAT}
 
-.if ${_XORG_BUILDSYS} == "meson"
+.if ${_XORG_BUILDSYS} == meson
+IGNORE=		meson build not supported yet
 .include "${USESDIR}/meson.mk"
-.elif ${_XORG_BUILDSYS} == "autotools"
+.elif ${_XORG_BUILDSYS} == autotools
 GNU_CONFIGURE=		yes
 .else
 # This should not happen
@@ -90,10 +91,10 @@ IGNORE=		unknown build system specified via xorg-cat:${xorg-cat_ARGS:ts,}
 # Set up things for fetching from freedesktop.org gitlab.
 # This can be overridden using normal GL_* macros in the ports Makefile.
 # We make a best guess for GL_ACCOUNT and GL_PROJECT.
-GL_SITE?=		https://gitlab.freedesktop.org
-GL_ACCOUNT?=		xorg/${_XORG_CAT}
+GL_SITE?=		https://gitlab.freedesktop.org/xorg
+GL_ACCOUNT?=		${_XORG_CAT}
 GL_PROJECT?=		${PORTNAME:tl}
-.  if ${_XORG_BUILDSYS} == "meson"
+.  if ${_XORG_BUILDSYS} == meson
 # set up meson stuff here
 .  else
 # Things from GL doesn't come with pre-generated configure, add dependency on
@@ -101,8 +102,7 @@ GL_PROJECT?=		${PORTNAME:tl}
 .include "${USESDIR}/autoreconf.mk"
 .  endif
 .else
-MASTER_SITES?=		${MASTER_SITE_XORG}
-MASTER_SITE_SUBDIR?=	individual/${_XORG_CAT}
+MASTER_SITES?=		XORG/individual/${_XORG_CAT}
 .endif
 
 # set up things for includes below
@@ -119,28 +119,25 @@ libtool_ARGS?=	# empty
 USE_XORG+=      xorg-macros
 .endif
 
-.if ${_XORG_CAT} == "app"
+.if ${_XORG_CAT} == app
 # Nothing at the moment
-.endif
 
-.if ${_XORG_CAT} == "data"
+.elif ${_XORG_CAT} == data
 # Nothing at the moment.
-.endif
 
-.if ${_XORG_CAT} == "driver"
+.elif ${_XORG_CAT} == driver
 USE_XORG+=	xi xorg-server xorgproto
-.  if ${_XORG_BUILDSYS} == "meson"
+.  if ${_XORG_BUILDSYS} == meson
 # Put special stuff for meson here
 .  else
 CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
 .include "${USESDIR}/libtool.mk"
 INSTALL_TARGET=	install-strip
 .  endif
-.endif
 
-.if ${_XORG_CAT} == "font"
+.elif ${_XORG_CAT} == font
 FONTNAME?=	${PORTNAME:C/.*-//g:S/type/Type/:S/ttf/TTF/:S/speedo/Speedo/}
-.  if ${_XORG_BUILDSYS} == "meson"
+.  if ${_XORG_BUILDSYS} == meson
 # Put special stuff for meson here
 .  else
 CONFIGURE_ARGS+=	--with-fontrootdir=${PREFIX}/share/fonts
@@ -153,28 +150,25 @@ BUILD_DEPENDS+=	mkfontscale>=0:x11-fonts/mkfontscale \
 PLIST_FILES+=	"@comment ${FONTSDIR}/fonts.dir" \
 		"@comment ${FONTSDIR}/fonts.scale"
 .  endif
-.endif
 
-.if ${_XORG_CAT} == "lib"
+.elif ${_XORG_CAT} == lib
 .include "${USESDIR}/pathfix.mk"
-.  if ${_XORG_BUILDSYS} == "meson"
+.  if ${_XORG_BUILDSYS} == meson
 # put meson stuff here
 .  else
 .include "${USESDIR}/libtool.mk"
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS+=--enable-malloc0returnsnull
 .  endif
-.endif
 
-.if ${_XORG_CAT} == "proto"
+.elif ${_XORG_CAT} == proto
 .include "${USESDIR}/pathfix.mk"
-.endif
 
-.if ${_XORG_CAT} == "xserver"
-DISTFILES?=	xorg-server-${PORTVERSION}.tar.bz2
+.elif ${_XORG_CAT} == xserver
+DISTNAME?=	xorg-server-${PORTVERSION}
 WRKSRC=		${WRKDIR}/xorg-server-${PORTVERSION}
 .include "${USESDIR}/pathfix.mk"
-.  if ${_XORG_BUILDSYS} == "meson"
+.  if ${_XORG_BUILDSYS} == meson
 # put meson stuff here
 .  else
 CONFIGURE_ARGS+=	--with-xkb-path=${LOCALBASE}/share/X11/xkb \
@@ -182,7 +176,8 @@ CONFIGURE_ARGS+=	--with-xkb-path=${LOCALBASE}/share/X11/xkb \
 .  endif
 LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
 USE_XORG+=	fontutil
-.endif
+
+.endif # ${_XORG_CAT} == <category>
 
 # We onlu need USES=xorg if we want USE_XORG modules
 .if defined(USE_XORG) && !empty(USE_XORG)
