@@ -27,13 +27,13 @@ _USES_POST+=	xorg
 .if defined(_POSTMKINCLUDED) && !defined(_INCLUDE_USES_XORG_POST_MK)
 _INCLUDE_USES_XORG_POST_MK=	yes
 
-.if !empty(xorg_ARGS)
+.  if !empty(xorg_ARGS)
 IGNORE=		USES=xorg takes no arguments
-.endif
+.  endif
 
-.if !defined(USE_XORG)
+.  if !defined(USE_XORG)
 IGNORE=		need to specify xorg modules with USE_XORG
-.endif
+.  endif
 
 # List of xorg modules
 XORG_MODULES=	dmx \
@@ -149,24 +149,24 @@ xxf86misc_LIB_PC_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/xxf86misc.pc:x11/libXxf
 xxf86vm_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xxf86vm.pc:x11/libXxf86vm
 
 # Add explicit X options to avoid problems with false positives in configure
-.if defined(GNU_CONFIGURE)
+.  if defined(GNU_CONFIGURE)
 CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
-.endif
+.  endif
 
-.for _module in ${USE_XORG:M*\:both:C/\:.*//g}
-. if ${XORG_MODULES:M${_module}} == ""
+.  for _module in ${USE_XORG:M*\:both:C/\:.*//g}
+.    if ${XORG_MODULES:M${_module}} == ""
 IGNORE=		requires unknown xorg module (${_module})
-. endif
+.    endif
 RUN_DEPENDS+=	${${_module}_BUILD_DEPENDS}
-.endfor
+.  endfor
 
-.for _module in ${USE_XORG:C/\:both$//g}
-. if ${XORG_MODULES:M${_module}} == ""
+.  for _module in ${USE_XORG:C/\:both$//g}
+.    if ${XORG_MODULES:M${_module}} == ""
 IGNORE=		requires unknown xorg module (${_module})
-. endif
+.    endif
 LIB_PC_DEPENDS+=${${_module}_LIB_PC_DEPENDS}
 BUILD_DEPENDS+=	${${_module}_BUILD_DEPENDS}
-.endfor
+.  endfor
 
 RUN_DEPENDS+=	${LIB_PC_DEPENDS}
 BUILD_DEPENDS+=	${LIB_PC_DEPENDS}

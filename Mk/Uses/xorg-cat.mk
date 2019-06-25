@@ -43,67 +43,67 @@ _XORG_BUILDSYSTEMS=	autotools meson
 _XORG_CAT=		# empty
 _XORG_BUILDSYS=		# empty
 
-.if empty(xorg-cat_ARGS)
+.  if empty(xorg-cat_ARGS)
 IGNORE=		no arguments specified to xorg-cat
-.endif
-
-.for _arg in ${xorg-cat_ARGS}
-.  if ${_XORG_CATEGORIES:M${_arg}}
-.    if empty(_XORG_CAT)
-_XORG_CAT=	${_arg}
-.    else
-IGNORE=		multipe xorg categories specified via xorg-cat:${xorg-cat_ARGS:ts,}
-.    endif
-.  elif ${_XORG_BUILDSYSTEMS:M${_arg}}
-.    if empty(_XORG_BUILDSYS)
-_XORG_BUILDSYS=	${_arg}
-.    else
-IGNORE=		multipe xorg build systems specified via xorg-cat:${xorg-cat_ARGS:ts,}
-.    endif
-.  else
-IGNORE=		unknown argument specified via xorg-cat:${xorg-cat_ARGS:ts,}
 .  endif
-.endfor
+
+.  for _arg in ${xorg-cat_ARGS}
+.    if ${_XORG_CATEGORIES:M${_arg}}
+.      if empty(_XORG_CAT)
+_XORG_CAT=	${_arg}
+.      else
+IGNORE=		multipe xorg categories specified via xorg-cat:${xorg-cat_ARGS:ts,}
+.      endif
+.    elif ${_XORG_BUILDSYSTEMS:M${_arg}}
+.      if empty(_XORG_BUILDSYS)
+_XORG_BUILDSYS=	${_arg}
+.      else
+IGNORE=		multipe xorg build systems specified via xorg-cat:${xorg-cat_ARGS:ts,}
+.      endif
+.    else
+IGNORE=		unknown argument specified via xorg-cat:${xorg-cat_ARGS:ts,}
+.    endif
+.  endfor
 
 # Default to the autotools build system
-.if empty(_XORG_BUILDSYS)
+.  if empty(_XORG_BUILDSYS)
 _XORG_BUILDSYS=		autotools
-.endif
+.  endif
 
 # Default variables, common to all new modular xorg ports.
-.if empty(USES:Mtar)
+.  if empty(USES:Mtar)
 EXTRACT_SUFX?=		.tar.bz2
-.endif
+.  endif
 
 DIST_SUBDIR=	xorg/${_XORG_CAT}
 
-.if ${_XORG_BUILDSYS} == meson
+.  if ${_XORG_BUILDSYS} == meson
 IGNORE=		meson build not supported yet
 .include "${USESDIR}/meson.mk"
-.elif ${_XORG_BUILDSYS} == autotools
+.  elif ${_XORG_BUILDSYS} == autotools
 GNU_CONFIGURE=		yes
-.else
+.  else
 # This should not happen
 IGNORE=		unknown build system specified via xorg-cat:${xorg-cat_ARGS:ts,}
-.endif
+.  endif
 
-.if defined(USE_GITLAB)
+.  if defined(USE_GITLAB)
 # Set up things for fetching from freedesktop.org gitlab.
 # This can be overridden using normal GL_* macros in the ports Makefile.
 # We make a best guess for GL_ACCOUNT and GL_PROJECT.
 GL_SITE?=		https://gitlab.freedesktop.org/xorg
 GL_ACCOUNT?=		${_XORG_CAT}
 GL_PROJECT?=		${PORTNAME:tl}
-.  if ${_XORG_BUILDSYS} == meson
+.    if ${_XORG_BUILDSYS} == meson
 # set up meson stuff here
-.  else
+.    else
 # Things from GL doesn't come with pre-generated configure, add dependency on
 # autoreconf and run it, if we're using autotools.
 .include "${USESDIR}/autoreconf.mk"
-.  endif
-.else
+.    endif
+.  else
 MASTER_SITES?=		XORG/individual/${_XORG_CAT}
-.endif
+.  endif
 
 # set up things for includes below
 libtool_ARGS?=	# empty
@@ -115,73 +115,73 @@ libtool_ARGS?=	# empty
 
 #
 ## All xorg ports needs xorg-macros.
-.if ${PORTNAME} != xorg-macros
+.  if ${PORTNAME} != xorg-macros
 USE_XORG+=      xorg-macros
-.endif
+.  endif
 
-.if ${_XORG_CAT} == app
+.  if ${_XORG_CAT} == app
 # Nothing at the moment
 
-.elif ${_XORG_CAT} == data
+.  elif ${_XORG_CAT} == data
 # Nothing at the moment.
 
-.elif ${_XORG_CAT} == driver
+.  elif ${_XORG_CAT} == driver
 USE_XORG+=	xi xorg-server xorgproto
-.  if ${_XORG_BUILDSYS} == meson
+.    if ${_XORG_BUILDSYS} == meson
 # Put special stuff for meson here
-.  else
+.    else
 CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
 .include "${USESDIR}/libtool.mk"
 INSTALL_TARGET=	install-strip
-.  endif
+.    endif
 
-.elif ${_XORG_CAT} == font
+.  elif ${_XORG_CAT} == font
 FONTNAME?=	${PORTNAME:C/.*-//g:S/type/Type/:S/ttf/TTF/:S/speedo/Speedo/}
-.  if ${_XORG_BUILDSYS} == meson
+.    if ${_XORG_BUILDSYS} == meson
 # Put special stuff for meson here
-.  else
+.    else
 CONFIGURE_ARGS+=	--with-fontrootdir=${PREFIX}/share/fonts
 CONFIGURE_ENV+=	FONTROOTDIR=${PREFIX}/share/fonts
-.  endif
-.  if !defined(NOFONT)
+.    endif
+.    if !defined(NOFONT)
 .include "${USESDIR}/fonts.mk"
 BUILD_DEPENDS+=	mkfontscale>=0:x11-fonts/mkfontscale \
 		bdftopcf:x11-fonts/bdftopcf
 PLIST_FILES+=	"@comment ${FONTSDIR}/fonts.dir" \
 		"@comment ${FONTSDIR}/fonts.scale"
-.  endif
+.    endif
 
-.elif ${_XORG_CAT} == lib
+.  elif ${_XORG_CAT} == lib
 .include "${USESDIR}/pathfix.mk"
-.  if ${_XORG_BUILDSYS} == meson
+.    if ${_XORG_BUILDSYS} == meson
 # put meson stuff here
-.  else
+.    else
 .include "${USESDIR}/libtool.mk"
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS+=--enable-malloc0returnsnull
-.  endif
+.    endif
 
-.elif ${_XORG_CAT} == proto
+.  elif ${_XORG_CAT} == proto
 .include "${USESDIR}/pathfix.mk"
 
-.elif ${_XORG_CAT} == xserver
+.  elif ${_XORG_CAT} == xserver
 DISTNAME?=	xorg-server-${PORTVERSION}
 WRKSRC=		${WRKDIR}/xorg-server-${PORTVERSION}
 .include "${USESDIR}/pathfix.mk"
-.  if ${_XORG_BUILDSYS} == meson
+.    if ${_XORG_BUILDSYS} == meson
 # put meson stuff here
-.  else
+.    else
 CONFIGURE_ARGS+=	--with-xkb-path=${LOCALBASE}/share/X11/xkb \
 			--with-fontrootdir=${LOCALBASE}/share/fonts
-.  endif
+.    endif
 LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
 USE_XORG+=	fontutil
 
-.endif # ${_XORG_CAT} == <category>
+.  endif # ${_XORG_CAT} == <category>
 
 # We onlu need USES=xorg if we want USE_XORG modules
-.if defined(USE_XORG) && !empty(USE_XORG)
+.  if defined(USE_XORG) && !empty(USE_XORG)
 .include "${USESDIR}/xorg.mk"
-.endif
+.  endif
 
 .endif
