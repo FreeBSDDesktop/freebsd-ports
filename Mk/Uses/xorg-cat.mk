@@ -165,7 +165,6 @@ CONFIGURE_ARGS+=--enable-malloc0returnsnull
 
 .  elif ${_XORG_CAT} == xserver
 DISTNAME?=	xorg-server-${PORTVERSION}
-WRKSRC=		${WRKDIR}/xorg-server-${PORTVERSION}
 .include "${USESDIR}/pathfix.mk"
 .    if ${_XORG_BUILDSYS} == meson
 # put meson stuff here
