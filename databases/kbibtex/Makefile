@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	kbibtex
-DISTVERSION=	0.8.91
+DISTVERSION=	0.9
 PORTREVISION=	1
 CATEGORIES=	databases kde
-MASTER_SITES=	KDE/unstable/KBibTeX/
+MASTER_SITES=	KDE/stable/KBibTeX/${DISTVERSION}
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Bibliography editor for KDE

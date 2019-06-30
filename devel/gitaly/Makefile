@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	gitaly
-DISTVERSION=	1.42.0
-PORTREVISION=	1
+DISTVERSION=	1.42.4
+PORTREVISION=	0
 CATEGORIES=	devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -28,19 +28,18 @@ MY_DEPENDS=	git>=2.21:devel/git \
 		rubygem-rbtrace>0:devel/rubygem-rbtrace \
 		rubygem-licensee8>=8.9.0:devel/rubygem-licensee8 \
 		rubygem-google-protobuf371>=3.7.1:devel/rubygem-google-protobuf371
-BUILD_DEPENDS=	go>=1.11:lang/go \
-		gem:devel/ruby-gems \
+BUILD_DEPENDS=	gem:devel/ruby-gems \
 		${MY_DEPENDS}
 RUN_DEPENDS=	${MY_DEPENDS} \
 		gitlab-shell>=6.0.4:devel/gitlab-shell
 
-USES=		gmake
+USES=		gmake go:no_targets
 USE_RUBY=	yes
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 # Find this here: https://gitlab.com/gitlab-org/gitaly/tags
-GL_COMMIT=	6f8f5ae53799e8275ed1f83a99cdaa96467125b2
+GL_COMMIT=	0046cd32638921f2730e06bc7c4bbf194b8ac17d
 
 post-patch:
 	${REINPLACE_CMD} -e "s|%%PREFIX%%|${PREFIX}|" ${WRKSRC}/config.toml.example

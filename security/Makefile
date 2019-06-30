@@ -16,6 +16,7 @@
     SUBDIR += aescrypt
     SUBDIR += aespipe
     SUBDIR += afl
+    SUBDIR += afl++
     SUBDIR += afterglow
     SUBDIR += aide
     SUBDIR += akmos
@@ -133,7 +134,6 @@
     SUBDIR += dsniff
     SUBDIR += duo
     SUBDIR += easy-rsa
-    SUBDIR += easy-rsa2
     SUBDIR += elixir-comeonin
     SUBDIR += elixir-comeonin_i18n
     SUBDIR += elixir-jose
@@ -409,6 +409,7 @@
     SUBDIR += openconnect-gui
     SUBDIR += opencryptoki
     SUBDIR += openct
+    SUBDIR += openfortivpn
     SUBDIR += openiked
     SUBDIR += opensaml
     SUBDIR += opensc
@@ -860,7 +861,6 @@
     SUBDIR += py-backports.ssl_match_hostname
     SUBDIR += py-bcrypt
     SUBDIR += py-borg.localrole
-    SUBDIR += py-bro-pkg
     SUBDIR += py-btchip-python
     SUBDIR += py-cerealizer
     SUBDIR += py-certbot
@@ -972,6 +972,7 @@
     SUBDIR += py-pysaml2
     SUBDIR += py-pyscard
     SUBDIR += py-pysha3
+    SUBDIR += py-pysodium
     SUBDIR += py-python-axolotl
     SUBDIR += py-python-axolotl-curve25519
     SUBDIR += py-python-gnupg
@@ -995,6 +996,7 @@
     SUBDIR += py-service_identity
     SUBDIR += py-signedjson
     SUBDIR += py-slowaes
+    SUBDIR += py-social-auth-core
     SUBDIR += py-spake2
     SUBDIR += py-ssh
     SUBDIR += py-ssh-audit
@@ -1017,6 +1019,7 @@
     SUBDIR += py-xmlsec
     SUBDIR += py-yara
     SUBDIR += py-yubikey-manager
+    SUBDIR += py-zkg
     SUBDIR += py-zope.app.authentication
     SUBDIR += py-zope.app.localpermission
     SUBDIR += py-zope.app.principalannotation

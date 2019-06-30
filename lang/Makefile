@@ -125,9 +125,11 @@
     SUBDIR += gnatdroid-sysroot
     SUBDIR += gnatdroid-sysroot-x86
     SUBDIR += gnatdroid-x86
+    SUBDIR += gnu-apl
     SUBDIR += gnu-cobol
     SUBDIR += gnustep-base
     SUBDIR += go
+    SUBDIR += go-devel
     SUBDIR += go14
     SUBDIR += gomacro
     SUBDIR += gprolog
@@ -284,6 +286,7 @@
     SUBDIR += php73
     SUBDIR += php73-extensions
     SUBDIR += picoc
+    SUBDIR += plexil
     SUBDIR += pocl
     SUBDIR += polyml
     SUBDIR += ponyc
@@ -308,6 +311,7 @@
     SUBDIR += python35
     SUBDIR += python36
     SUBDIR += python37
+    SUBDIR += qmasm
     SUBDIR += qscheme
     SUBDIR += quack
     SUBDIR += racket
