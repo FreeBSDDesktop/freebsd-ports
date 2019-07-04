@@ -26,7 +26,7 @@ USE_LDCONFIG=	yes
 XORG_CAT=	driver
 USE_XORG=	pciaccess pixman x11 xcb xext xrender xv xvmc
 
-USES+=		cpe autoreconf
+USES+=		cpe
 CPE_VENDOR=	x
 
 OPTIONS_SINGLE=	ACCEL
