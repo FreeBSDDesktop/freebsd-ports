@@ -129,6 +129,7 @@
     SUBDIR += vtwm
     SUBDIR += w9wm
     SUBDIR += weewm
+    SUBDIR += weston
     SUBDIR += windowlab
     SUBDIR += windowmaker
     SUBDIR += wm2

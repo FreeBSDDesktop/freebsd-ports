@@ -1,0 +1,6 @@
+Weston is a reference implementation of a Wayland compositor. Weston can
+run as an X client or under KMS and ships with a few demo clients. The Weston
+compositor is a minimal and fast compositor and is suitable for many embedded
+and mobile use cases
+
+WWW: http://wayland.freedesktop.org
