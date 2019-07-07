@@ -80,6 +80,7 @@ GROUPS=		weston-launch
 GNU_CONFIGURE=	YES
 
 CONFIGURE_ARGS=		--enable-weston-launch
+CONFIGURE_ARGS+=	--enable-autotools
 CONFIGURE_ARGS+=	--disable-fbdev-compositor
 CONFIGURE_ARGS+=	--disable-vaapi-recorder
 #CONFIGURE_ARGS+=	--disable-xwayland-test
