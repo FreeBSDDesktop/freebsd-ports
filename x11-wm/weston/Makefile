@@ -32,7 +32,7 @@ LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon \
 		libmtdev.so:devel/libmtdev \
 		liblcms2.so:graphics/lcms2
 
-USES=	autoreconf alias gmake pathfix jpeg libtool pkgconfig tar:xz \
+USES=	autoreconf alias gl gmake gnome pathfix jpeg libtool pkgconfig tar:xz \
 	localbase:ldflags
 
 USE_XORG=	x11 xcb xcursor
