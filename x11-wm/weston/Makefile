@@ -12,7 +12,8 @@ COMMENT=	Wayland Reference Compositor
 LICENSE=	MIT
 
 BUILD_DEPENDS=	wayland-protocols>=1.7:graphics/wayland-protocols \
-		${LOCALBASE}/include/linux/input.h:devel/evdev-proto
+		${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
+		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
 LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon \
 		libpixman-1.so:x11/pixman \
 		libcairo.so:graphics/cairo \
