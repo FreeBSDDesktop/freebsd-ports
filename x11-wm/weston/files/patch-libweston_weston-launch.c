@@ -1,4 +1,4 @@
---- libweston/weston-launch.c.orig	2017-08-08 18:57:03 UTC
+--- libweston/weston-launch.c.orig	2019-06-24 15:46:26 UTC
 +++ libweston/weston-launch.c
 @@ -33,7 +33,6 @@
  #include <poll.h>
@@ -8,52 +8,40 @@
  #include <getopt.h>
  
  #include <sys/types.h>
-@@ -42,15 +41,40 @@
- #include <sys/wait.h>
- #include <sys/socket.h>
- #include <sys/signalfd.h>
--#include <sys/sysmacros.h>
-+/* #include <sys/sysmacros.h> */
- #include <signal.h>
+@@ -46,10 +45,29 @@
  #include <unistd.h>
  #include <fcntl.h>
  
 -#include <linux/vt.h>
 -#include <linux/major.h>
 -#include <linux/kd.h>
++/* #include <linux/vt.h> */
++/* #include <linux/major.h> */
++/* #include <linux/kd.h> */
 +#include <termios.h>
 +#include <sys/consio.h>
 +#include <sys/kbio.h>
-+#define TTY_BASENAME    "/dev/ttyv"
-+#define TTY_0           "/dev/ttyv0"
-+#define error(s,e,...)									\
-+	do {												\
-+		if(e)											\
++#define error(s,e,...)							\
++	do {								\
++		if(e)							\
 +			fprintf(stderr, "errno: %s\r\n",strerror(e));	\
-+        fprintf(stderr, __VA_ARGS__);					\
-+        fprintf(stderr, "\r\n");							\
-+		if (s != 0) {									\
-+			exit(-1);									\
-+		}												\
++		fprintf(stderr, __VA_ARGS__);				\
++		fprintf(stderr, "\r\n");				\
++		if (s != 0) {						\
++			exit(-1);					\
++		}							\
 +	} while(false)
+ 
 +static inline int clearenv(void) {
 +	extern char **environ;
 +	environ[0] = NULL;
 +	return 0;
 +}
- 
-+/* #include <error.h> */
-+/* #include <linux/kd.h> */
-+/* #include <linux/major.h> */
-+/* #include <linux/vt.h> */
-+/* #define TTY_BASENAME "/dev/tty" */
-+/* #define TTY_0        "/dev/tty0" */
-+
 +
  #include <pwd.h>
  #include <grp.h>
  #include <security/pam_appl.h>
-@@ -61,12 +85,13 @@
+@@ -60,12 +78,13 @@
  
  #include "weston-launch.h"
  
@@ -71,44 +59,25 @@
  #ifndef EVIOCREVOKE
  #define EVIOCREVOKE _IOW('E', 0x91, int)
  #endif
-@@ -122,7 +147,7 @@ read_groups(void)
+@@ -129,7 +148,7 @@ read_groups(int *ngroups)
  	n = getgroups(0, NULL);
  
  	if (n < 0) {
--		fprintf(stderr, "Unable to retrieve groups: %m\n");
-+		fprintf(stderr, "Unable to retrieve groups: %m\r\n");
+-		fprintf(stderr, "Unable to retrieve groups: %s\n",
++		fprintf(stderr, "Unable to retrieve groups: %s\r\n",
+ 			strerror(errno));
  		return NULL;
  	}
- 
-@@ -131,7 +156,7 @@ read_groups(void)
+@@ -139,7 +158,7 @@ read_groups(int *ngroups)
  		return NULL;
  
  	if (getgroups(n, groups) < 0) {
--		fprintf(stderr, "Unable to retrieve groups: %m\n");
-+		fprintf(stderr, "Unable to retrieve groups: %m\r\n");
+-		fprintf(stderr, "Unable to retrieve groups: %s\n",
++		fprintf(stderr, "Unable to retrieve groups: %s\r\n",
+ 			strerror(errno));
  		free(groups);
  		return NULL;
- 	}
-@@ -143,7 +168,7 @@ weston_launch_allowed(struct weston_launch *wl)
- {
- 	struct group *gr;
- 	gid_t *groups;
--	int i;
-+	int i,n;
- #ifdef HAVE_SYSTEMD_LOGIN
- 	char *session, *seat;
- 	int err;
-@@ -156,7 +181,8 @@ weston_launch_allowed(struct weston_launch *wl)
- 	if (gr) {
- 		groups = read_groups();
- 		if (groups) {
--			for (i = 0; groups[i]; ++i) {
-+			n = getgroups(0, NULL);
-+			for (i = 0; i<n; ++i) {
- 				if (groups[i] == gr->gr_gid) {
- 					free(groups);
- 					return true;
-@@ -201,21 +227,21 @@ setup_pam(struct weston_launch *wl)
+@@ -212,21 +231,21 @@ setup_pam(struct weston_launch *wl)
  
  	err = pam_start("login", wl->pw->pw_name, &wl->pc, &wl->ph);
  	if (err != PAM_SUCCESS) {
@@ -133,16 +102,16 @@
  			err, pam_strerror(wl->ph, err));
  		return -1;
  	}
-@@ -311,7 +337,7 @@ handle_open(struct weston_launch *wl, struct msghdr *m
+@@ -322,7 +341,7 @@ handle_open(struct weston_launch *wl, struct msghdr *m
  
  	fd = open(message->path, message->flags);
  	if (fd < 0) {
--		fprintf(stderr, "Error opening device %s: %m\n",
-+		fprintf(stderr, "Error opening device %s: %m\r\n",
- 			message->path);
+-		fprintf(stderr, "Error opening device %s: %s\n",
++		fprintf(stderr, "Error opening device %s: %s\r\n",
+ 			message->path, strerror(errno));
  		goto err0;
  	}
-@@ -319,18 +345,18 @@ handle_open(struct weston_launch *wl, struct msghdr *m
+@@ -330,18 +349,18 @@ handle_open(struct weston_launch *wl, struct msghdr *m
  	if (fstat(fd, &s) < 0) {
  		close(fd);
  		fd = -1;
@@ -170,7 +139,7 @@
  
  err0:
  	memset(&nmsg, 0, sizeof nmsg);
-@@ -351,8 +377,8 @@ err0:
+@@ -362,8 +381,8 @@ err0:
  	iov.iov_base = &ret;
  	iov.iov_len = sizeof ret;
  
@@ -181,7 +150,7 @@
  			message->path, ret, fd);
  	do {
  		len = sendmsg(wl->sock[0], &nmsg, 0);
-@@ -361,10 +387,9 @@ err0:
+@@ -372,10 +391,9 @@ err0:
  	if (len < 0)
  		return -1;
  
@@ -194,7 +163,7 @@
  		wl->last_input_fd = fd;
  
  	return 0;
-@@ -418,17 +443,26 @@ quit(struct weston_launch *wl, int status)
+@@ -429,18 +447,26 @@ quit(struct weston_launch *wl, int status)
  	if (wl->new_user) {
  		err = pam_close_session(wl->ph, 0);
  		if (err)
@@ -206,10 +175,10 @@
  
 -	if (ioctl(wl->tty, KDSKBMUTE, 0) &&
 -	    ioctl(wl->tty, KDSKBMODE, wl->kb_mode))
--		fprintf(stderr, "failed to restore keyboard mode: %m\n");
-+	/* if (ioctl(wl->tty, KDSKBMODE, wl->kb_mode)) */
+-		fprintf(stderr, "failed to restore keyboard mode: %s\n",
 +	if (ioctl(wl->tty, KDSKBMODE, K_XLATE))
-+		fprintf(stderr, "Could not restore keyboard\r\n");
++		fprintf(stderr, "failed to restore keyboard mode: %s\r\n",
+ 			strerror(errno));
  
 +	struct termios tios;
 +	if (tcgetattr(wl->tty, &tios)) {
@@ -221,12 +190,12 @@
 +	}
 +
  	if (ioctl(wl->tty, KDSETMODE, KD_TEXT))
--		fprintf(stderr, "failed to set KD_TEXT mode on tty: %m\n");
-+		fprintf(stderr, "failed to set KD_TEXT mode on tty: %m\r\n");
+-		fprintf(stderr, "failed to set KD_TEXT mode on tty: %s\n",
++		fprintf(stderr, "failed to set KD_TEXT mode on tty: %s\r\n",
+ 			strerror(errno));
  
  	/* We have to drop master before we switch the VT back in
- 	 * VT_AUTO, so we don't risk switching to a VT with another
-@@ -436,8 +470,9 @@ quit(struct weston_launch *wl, int status)
+@@ -449,8 +475,9 @@ quit(struct weston_launch *wl, int status)
  	drmDropMaster(wl->drm_fd);
  
  	mode.mode = VT_AUTO;
@@ -237,7 +206,7 @@
  
  	exit(status);
  }
-@@ -445,15 +480,24 @@ quit(struct weston_launch *wl, int status)
+@@ -458,15 +485,24 @@ quit(struct weston_launch *wl, int status)
  static void
  close_input_fds(struct weston_launch *wl)
  {
@@ -263,7 +232,7 @@
  		}
  	}
  }
-@@ -464,13 +508,17 @@ handle_signal(struct weston_launch *wl)
+@@ -477,13 +513,17 @@ handle_signal(struct weston_launch *wl)
  	struct signalfd_siginfo sig;
  	int pid, status, ret;
  
@@ -283,7 +252,7 @@
  		pid = waitpid(-1, &status, 0);
  		if (pid == wl->child) {
  			wl->child = 0;
-@@ -490,22 +538,32 @@ handle_signal(struct weston_launch *wl)
+@@ -503,22 +543,32 @@ handle_signal(struct weston_launch *wl)
  		}
  		break;
  	case SIGTERM:
@@ -317,7 +286,7 @@
  		return -1;
  	}
  
-@@ -528,7 +586,7 @@ setup_tty(struct weston_launch *wl, const char *tty)
+@@ -541,7 +591,7 @@ setup_tty(struct weston_launch *wl, const char *tty)
  		else
  			wl->tty = open(tty, O_RDWR | O_NOCTTY);
  	} else {
@@ -326,7 +295,7 @@
  		char filename[16];
  
  		if (tty0 < 0)
-@@ -537,7 +595,7 @@ setup_tty(struct weston_launch *wl, const char *tty)
+@@ -550,7 +600,7 @@ setup_tty(struct weston_launch *wl, const char *tty)
  		if (ioctl(tty0, VT_OPENQRY, &wl->ttynr) < 0 || wl->ttynr == -1)
  			error(1, errno, "failed to find non-opened console");
  
@@ -335,7 +304,7 @@
  		wl->tty = open(filename, O_RDWR | O_NOCTTY);
  		close(tty0);
  	}
-@@ -545,35 +603,36 @@ setup_tty(struct weston_launch *wl, const char *tty)
+@@ -558,35 +608,36 @@ setup_tty(struct weston_launch *wl, const char *tty)
  	if (wl->tty < 0)
  		error(1, errno, "failed to open tty");
  
@@ -386,7 +355,7 @@
  
  	return 0;
  }
-@@ -641,7 +700,7 @@ launch_compositor(struct weston_launch *wl, int argc, 
+@@ -654,7 +705,7 @@ launch_compositor(struct weston_launch *wl, int argc, 
  	int o, i;
  
  	if (wl->verbose)
@@ -395,24 +364,28 @@
  	if (wl->new_user) {
  		o = setup_session(wl, child_argv);
  	} else {
-@@ -675,11 +734,11 @@ launch_compositor(struct weston_launch *wl, int argc, 
+@@ -688,13 +739,13 @@ launch_compositor(struct weston_launch *wl, int argc, 
  static void
  help(const char *name)
  {
 -	fprintf(stderr, "Usage: %s [args...] [-- [weston args..]]\n", name);
--	fprintf(stderr, "  -u, --user      Start session as specified username\n");
--	fprintf(stderr, "  -t, --tty       Start session on alternative tty\n");
+-	fprintf(stderr, "  -u, --user      Start session as specified username,\n"
+-			"                  e.g. -u joe, requires root.\n");
+-	fprintf(stderr, "  -t, --tty       Start session on alternative tty,\n"
+-			"                  e.g. -t /dev/tty4, requires -u option.\n");
 -	fprintf(stderr, "  -v, --verbose   Be verbose\n");
 -	fprintf(stderr, "  -h, --help      Display this help message\n");
 +	fprintf(stderr, "Usage: %s [args...] [-- [weston args..]]\r\n", name);
-+	fprintf(stderr, "  -u, --user      Start session as specified username\r\n");
-+	fprintf(stderr, "  -t, --tty       Start session on alternative tty\r\n");
++	fprintf(stderr, "  -u, --user      Start session as specified username,\r\n"
++			"                  e.g. -u joe, requires root.\r\n");
++	fprintf(stderr, "  -t, --tty       Start session on alternative tty,\r\n"
++			"                  e.g. -t /dev/tty4, requires -u option.\r\n");
 +	fprintf(stderr, "  -v, --verbose   Be verbose\r\n");
 +	fprintf(stderr, "  -h, --help      Display this help message\r\n");
  }
  
  int
-@@ -730,13 +789,13 @@ main(int argc, char *argv[])
+@@ -748,13 +799,13 @@ main(int argc, char *argv[])
  		error(1, errno, "failed to get username");
  
  	if (!weston_launch_allowed(&wl))

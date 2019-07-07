@@ -1,6 +1,6 @@
---- libweston/pixel-formats.c.orig	2017-08-08 18:57:03 UTC
+--- libweston/pixel-formats.c.orig	2019-06-24 15:46:26 UTC
 +++ libweston/pixel-formats.c
-@@ -25,7 +25,7 @@
+@@ -26,7 +26,7 @@
  
  #include "config.h"
  

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	weston
-PORTVERSION=	3.0.0
+PORTVERSION=	6.0.1
 CATEGORIES=	x11-wm wayland
 MASTER_SITES=	http://wayland.freedesktop.org/releases/
 

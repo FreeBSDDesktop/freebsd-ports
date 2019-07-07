@@ -1,6 +1,6 @@
---- shared/file-util.c.orig	2017-08-08 18:57:03 UTC
+--- shared/file-util.c.orig	2019-06-24 15:46:26 UTC
 +++ shared/file-util.c
-@@ -34,6 +34,8 @@
+@@ -35,6 +35,8 @@
  
  #include "file-util.h"
  

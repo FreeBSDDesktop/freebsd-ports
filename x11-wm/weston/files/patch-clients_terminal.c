@@ -1,4 +1,4 @@
---- clients/terminal.c.orig	2017-08-08 18:57:02 UTC
+--- clients/terminal.c.orig	2019-06-24 15:46:26 UTC
 +++ clients/terminal.c
 @@ -32,7 +32,11 @@
  #include <unistd.h>
@@ -13,7 +13,7 @@
  #include <ctype.h>
  #include <cairo.h>
  #include <sys/epoll.h>
-@@ -3112,7 +3116,7 @@ int main(int argc, char *argv[])
+@@ -3136,7 +3140,7 @@ int main(int argc, char *argv[])
  
  	option_shell = getenv("SHELL");
  	if (!option_shell)

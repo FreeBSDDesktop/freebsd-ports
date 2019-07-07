@@ -1,33 +1,19 @@
---- libweston/launcher-weston-launch.c.orig	2017-08-08 18:57:03 UTC
+--- libweston/launcher-weston-launch.c.orig	2019-06-24 15:46:26 UTC
 +++ libweston/launcher-weston-launch.c
-@@ -34,26 +34,36 @@
- #include <errno.h>
- #include <signal.h>
- #include <sys/socket.h>
--#include <sys/sysmacros.h>
-+/* #include <sys/sysmacros.h> */
- #include <sys/types.h>
- #include <sys/stat.h>
- #include <sys/uio.h>
+@@ -40,19 +40,23 @@
  #include <sys/ioctl.h>
  #include <fcntl.h>
  #include <unistd.h>
 -#include <linux/vt.h>
 -#include <linux/kd.h>
 -#include <linux/major.h>
++/* #include <linux/vt.h> */
++/* #include <linux/kd.h> */
++/* #include <linux/major.h> */
  
 +#include <termios.h>
 +#include <sys/consio.h>
 +#include <sys/kbio.h>
-+#define TTY_BASENAME    "/dev/ttyv"
-+#define TTY_0           "/dev/ttyv0"
-+
-+/* #include <linux/kd.h> */
-+/* #include <linux/major.h> */
-+/* #include <linux/vt.h> */
-+/* #define TTY_BASENAME "/dev/tty" */
-+/* #define TTY_0        "/dev/tty0" */
-+
 +
  #include "compositor.h"
  #include "weston-launch.h"
@@ -45,17 +31,19 @@
  
  #ifdef BUILD_DRM_COMPOSITOR
  
-@@ -161,13 +171,24 @@ launcher_weston_launch_restore(struct weston_launcher 
+@@ -167,8 +171,7 @@ launcher_weston_launch_restore(struct weston_launcher 
  	struct launcher_weston_launch *launcher = wl_container_of(launcher_base, launcher, base);
  	struct vt_mode mode = { 0 };
  
 -	if (ioctl(launcher->tty, KDSKBMUTE, 0) &&
-+	if (/*ioctl(launcher->tty, KDSKBMUTE, 0) &&*/
- 	    ioctl(launcher->tty, KDSKBMODE, launcher->kb_mode))
- 		weston_log("failed to restore kb mode: %m\n");
+-	    ioctl(launcher->tty, KDSKBMODE, launcher->kb_mode))
++	if (ioctl(launcher->tty, KDSKBMODE, launcher->kb_mode))
+ 		weston_log("failed to restore kb mode: %s\n",
+ 			   strerror(errno));
  
- 	if (ioctl(launcher->tty, KDSETMODE, KD_TEXT))
- 		weston_log("failed to set KD_TEXT mode on tty: %m\n");
+@@ -176,6 +179,17 @@ launcher_weston_launch_restore(struct weston_launcher 
+ 		weston_log("failed to set KD_TEXT mode on tty: %s\n",
+ 			   strerror(errno));
  
 +	/* Restore sane mode */
 +	struct termios tios;
@@ -71,7 +59,7 @@
  	/* We have to drop master before we switch the VT back in
  	 * VT_AUTO, so we don't risk switching to a VT with another
  	 * display server, that will then fail to set drm master. */
-@@ -244,7 +265,9 @@ launcher_weston_launch_connect(struct weston_launcher 
+@@ -252,7 +266,9 @@ launcher_weston_launch_connect(struct weston_launcher 
  		/* We don't get a chance to read out the original kb
  		 * mode for the tty, so just hard code K_UNICODE here
  		 * in case we have to clean if weston-launch dies. */

@@ -1,6 +1,6 @@
---- clients/window.c.orig	2017-10-13 16:21:15 UTC
+--- clients/window.c.orig	2019-06-24 15:46:26 UTC
 +++ clients/window.c
-@@ -616,7 +616,7 @@ egl_window_surface_acquire(struct toysurface *base, EG
+@@ -610,7 +610,7 @@ egl_window_surface_acquire(struct toysurface *base, EG
  	cairo_device_acquire(device);
  	if (!eglMakeCurrent(surface->display->dpy, surface->egl_surface,
  			    surface->egl_surface, ctx))
@@ -9,7 +9,7 @@
  
  	return 0;
  }
-@@ -633,7 +633,7 @@ egl_window_surface_release(struct toysurface *base)
+@@ -627,7 +627,7 @@ egl_window_surface_release(struct toysurface *base)
  
  	if (!eglMakeCurrent(surface->display->dpy,
  			    EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT))
@@ -18,24 +18,24 @@
  
  	cairo_device_release(device);
  }
-@@ -746,14 +746,14 @@ make_shm_pool(struct display *display, int size, void 
+@@ -740,14 +740,14 @@ make_shm_pool(struct display *display, int size, void 
  
  	fd = os_create_anonymous_file(size);
  	if (fd < 0) {
--		fprintf(stderr, "creating a buffer file for %d B failed: %m\n",
-+		fprintf(stderr, "creating a buffer file for %d B failed: %m\r\n",
- 			size);
+-		fprintf(stderr, "creating a buffer file for %d B failed: %s\n",
++		fprintf(stderr, "creating a buffer file for %d B failed: %s\r\n",
+ 			size, strerror(errno));
  		return NULL;
  	}
  
  	*data = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
  	if (*data == MAP_FAILED) {
--		fprintf(stderr, "mmap failed: %m\n");
-+		fprintf(stderr, "mmap failed: %m\r\n");
+-		fprintf(stderr, "mmap failed: %s\n", strerror(errno));
++		fprintf(stderr, "mmap failed: %s\r\n", strerror(errno));
  		close(fd);
  		return NULL;
  	}
-@@ -935,7 +935,7 @@ check_size(struct rectangle *rect)
+@@ -929,7 +929,7 @@ check_size(struct rectangle *rect)
  		return 0;
  
  	fprintf(stderr, "tried to create surface of "
@@ -44,7 +44,7 @@
  	return -1;
  }
  
-@@ -1014,7 +1014,7 @@ shm_surface_buffer_state_debug(struct shm_surface *sur
+@@ -1008,7 +1008,7 @@ shm_surface_buffer_state_debug(struct shm_surface *sur
  	}
  
  	bufs[MAX_LEAVES] = '\0';
@@ -53,7 +53,7 @@
  #endif
  }
  
-@@ -1080,11 +1080,11 @@ shm_surface_prepare(struct toysurface *base, int dx, i
+@@ -1074,11 +1074,11 @@ shm_surface_prepare(struct toysurface *base, int dx, i
  		if (!leaf || surface->leaf[i].cairo_surface)
  			leaf = &surface->leaf[i];
  	}
@@ -67,7 +67,7 @@
  			__func__);
  		exit(1);
  		return NULL;
-@@ -1163,7 +1163,7 @@ shm_surface_swap(struct toysurface *base,
+@@ -1157,7 +1157,7 @@ shm_surface_swap(struct toysurface *base,
  			  server_allocation->width, server_allocation->height);
  	wl_surface_commit(surface->surface);
  
@@ -76,7 +76,7 @@
  		(int)(leaf - &surface->leaf[0]));
  
  	leaf->busy = 1;
-@@ -1198,7 +1198,7 @@ shm_surface_create(struct display *display, struct wl_
+@@ -1192,7 +1192,7 @@ shm_surface_create(struct display *display, struct wl_
  		   uint32_t flags, struct rectangle *rectangle)
  {
  	struct shm_surface *surface;
@@ -85,7 +85,7 @@
  
  	surface = xzalloc(sizeof *surface);
  	surface->base.prepare = shm_surface_prepare;
-@@ -1356,7 +1356,7 @@ create_cursors(struct display *display)
+@@ -1359,7 +1359,7 @@ create_cursors(struct display *display)
  
  	display->cursor_theme = wl_cursor_theme_load(theme, size, display->shm);
  	if (!display->cursor_theme) {
@@ -94,7 +94,7 @@
  		return;
  	}
  	free(theme);
-@@ -1370,7 +1370,7 @@ create_cursors(struct display *display)
+@@ -1373,7 +1373,7 @@ create_cursors(struct display *display)
  			    display->cursor_theme, cursors[i].names[j]);
  
  		if (!cursor)
@@ -103,7 +103,7 @@
  				cursors[i].names[0]);
  
  		display->cursors[i] = cursor;
-@@ -2012,7 +2012,7 @@ window_schedule_redraw_task(struct window *window);
+@@ -2003,7 +2003,7 @@ window_schedule_redraw_task(struct window *window);
  void
  widget_schedule_redraw(struct widget *widget)
  {
@@ -112,34 +112,7 @@
  	widget->surface->redraw_needed = 1;
  	window_schedule_redraw_task(widget->window);
  }
-@@ -2151,7 +2151,7 @@ tooltip_timer_reset(struct tooltip *tooltip)
- 	its.it_value.tv_sec = TOOLTIP_TIMEOUT / 1000;
- 	its.it_value.tv_nsec = (TOOLTIP_TIMEOUT % 1000) * 1000 * 1000;
- 	if (timerfd_settime(tooltip->tooltip_fd, 0, &its, NULL) < 0) {
--		fprintf(stderr, "could not set timerfd\n: %m");
-+		fprintf(stderr, "could not set timerfd\r\n: %m");
- 		return -1;
- 	}
- 
-@@ -2188,7 +2188,7 @@ widget_set_tooltip(struct widget *parent, char *entry,
- 	tooltip->entry = strdup(entry);
- 	tooltip->tooltip_fd = timerfd_create(CLOCK_MONOTONIC, TFD_CLOEXEC);
- 	if (tooltip->tooltip_fd < 0) {
--		fprintf(stderr, "could not create timerfd\n: %m");
-+		fprintf(stderr, "could not create timerfd\r\n: %m");
- 		return -1;
- 	}
- 
-@@ -2697,7 +2697,7 @@ cursor_delay_timer_reset(struct input *input, uint32_t
- 	its.it_value.tv_sec = duration / 1000;
- 	its.it_value.tv_nsec = (duration % 1000) * 1000 * 1000;
- 	if (timerfd_settime(input->cursor_delay_fd, 0, &its, NULL) < 0)
--		fprintf(stderr, "could not set cursor timerfd\n: %m");
-+		fprintf(stderr, "could not set cursor timerfd\r\n: %m");
- }
- 
- static void cancel_pointer_image_update(struct input *input)
-@@ -2739,7 +2739,7 @@ pointer_handle_enter(void *data, struct wl_pointer *po
+@@ -2703,7 +2703,7 @@ pointer_handle_enter(void *data, struct wl_pointer *po
  
  	window = wl_surface_get_user_data(surface);
  	if (surface != window->main_surface->surface) {
@@ -148,7 +121,7 @@
  		return;
  	}
  
-@@ -3018,14 +3018,14 @@ keyboard_handle_keymap(void *data, struct wl_keyboard 
+@@ -2969,14 +2969,14 @@ keyboard_handle_keymap(void *data, struct wl_keyboard 
  	close(fd);
  
  	if (!keymap) {
@@ -165,7 +138,7 @@
  		xkb_keymap_unref(keymap);
  		return;
  	}
-@@ -3053,13 +3053,13 @@ keyboard_handle_keymap(void *data, struct wl_keyboard 
+@@ -3004,13 +3004,13 @@ keyboard_handle_keymap(void *data, struct wl_keyboard 
  			input->xkb.compose_table = compose_table;
  		} else {
  			fprintf(stderr, "could not create XKB compose state.  "
@@ -181,7 +154,7 @@
  	}
  #endif
  
-@@ -3290,12 +3290,12 @@ touch_handle_down(void *data, struct wl_touch *wl_touc
+@@ -3237,12 +3237,12 @@ touch_handle_down(void *data, struct wl_touch *wl_touc
  	input->display->serial = serial;
  	input->touch_focus = wl_surface_get_user_data(surface);
  	if (!input->touch_focus) {
@@ -196,7 +169,7 @@
  		input->touch_focus = NULL;
  		return;
  	}
-@@ -3332,7 +3332,7 @@ touch_handle_up(void *data, struct wl_touch *wl_touch,
+@@ -3279,7 +3279,7 @@ touch_handle_up(void *data, struct wl_touch *wl_touch,
  	struct touch_point *tp, *tmp;
  
  	if (!input->touch_focus) {
@@ -205,7 +178,7 @@
  		return;
  	}
  
-@@ -3361,10 +3361,10 @@ touch_handle_motion(void *data, struct wl_touch *wl_to
+@@ -3308,10 +3308,10 @@ touch_handle_motion(void *data, struct wl_touch *wl_to
  	float sx = wl_fixed_to_double(x_w);
  	float sy = wl_fixed_to_double(y_w);
  
@@ -218,7 +191,7 @@
  		return;
  	}
  
-@@ -3388,10 +3388,10 @@ touch_handle_frame(void *data, struct wl_touch *wl_tou
+@@ -3335,10 +3335,10 @@ touch_handle_frame(void *data, struct wl_touch *wl_tou
  	struct input *input = data;
  	struct touch_point *tp, *tmp;
  
@@ -231,7 +204,7 @@
  		return;
  	}
  
-@@ -3408,10 +3408,10 @@ touch_handle_cancel(void *data, struct wl_touch *wl_to
+@@ -3355,10 +3355,10 @@ touch_handle_cancel(void *data, struct wl_touch *wl_to
  	struct input *input = data;
  	struct touch_point *tp, *tmp;
  
@@ -244,7 +217,7 @@
  		return;
  	}
  
-@@ -3760,7 +3760,7 @@ input_set_pointer_image_index(struct input *input, int
+@@ -3707,7 +3707,7 @@ input_set_pointer_image_index(struct input *input, int
  		return;
  
  	if (index >= (int) cursor->image_count) {
@@ -253,7 +226,7 @@
  		return;
  	}
  
-@@ -4192,7 +4192,7 @@ idle_resize(struct window *window)
+@@ -4136,7 +4136,7 @@ idle_resize(struct window *window)
  	window->resize_needed = 0;
  	window->redraw_needed = 1;
  
@@ -262,7 +235,7 @@
  	    window->main_surface->server_allocation.width,
  	    window->main_surface->server_allocation.height,
  	    window->pending_allocation.width,
-@@ -4209,7 +4209,7 @@ undo_resize(struct window *window)
+@@ -4153,7 +4153,7 @@ undo_resize(struct window *window)
  	window->pending_allocation.height =
  		window->main_surface->server_allocation.height;
  
@@ -271,7 +244,7 @@
  	    window->main_surface->server_allocation.width,
  	    window->main_surface->server_allocation.height);
  
-@@ -4219,7 +4219,7 @@ undo_resize(struct window *window)
+@@ -4163,7 +4163,7 @@ undo_resize(struct window *window)
  	    window->pending_allocation.height == 0) {
  		fprintf(stderr, "Error: Could not draw a surface, "
  			"most likely due to insufficient disk space in "
@@ -280,7 +253,7 @@
  		exit(EXIT_FAILURE);
  	}
  }
-@@ -4496,14 +4496,14 @@ frame_callback(void *data, struct wl_callback *callbac
+@@ -4440,14 +4440,14 @@ frame_callback(void *data, struct wl_callback *callbac
  	struct surface *surface = data;
  
  	assert(callback == surface->frame_cb);
@@ -297,7 +270,7 @@
  		window_schedule_redraw_task(surface->window);
  	}
  }
-@@ -4515,7 +4515,7 @@ static const struct wl_callback_listener listener = {
+@@ -4459,7 +4459,7 @@ static const struct wl_callback_listener listener = {
  static int
  surface_redraw(struct surface *surface)
  {
@@ -306,7 +279,7 @@
  
  	if (!surface->window->redraw_needed && !surface->redraw_needed)
  		return 0;
-@@ -4527,24 +4527,24 @@ surface_redraw(struct surface *surface)
+@@ -4471,24 +4471,24 @@ surface_redraw(struct surface *surface)
  		if (!surface->window->redraw_needed)
  			return 0;
  
@@ -336,7 +309,7 @@
  	return 0;
  }
  
-@@ -4556,7 +4556,7 @@ idle_redraw(struct task *task, uint32_t events)
+@@ -4500,7 +4500,7 @@ idle_redraw(struct task *task, uint32_t events)
  	int failed = 0;
  	int resized = 0;
  
@@ -345,7 +318,7 @@
  
  	wl_list_init(&window->redraw_task.link);
  	window->redraw_task_scheduled = 0;
-@@ -4564,7 +4564,7 @@ idle_redraw(struct task *task, uint32_t events)
+@@ -4508,7 +4508,7 @@ idle_redraw(struct task *task, uint32_t events)
  	if (window->resize_needed) {
  		/* throttle resizing to the main surface display */
  		if (window->main_surface->frame_cb) {
@@ -354,7 +327,7 @@
  			return;
  		}
  
-@@ -4618,7 +4618,7 @@ window_schedule_redraw(struct window *window)
+@@ -4562,7 +4562,7 @@ window_schedule_redraw(struct window *window)
  {
  	struct surface *surface;
  
@@ -363,7 +336,7 @@
  
  	wl_list_for_each(surface, &window->subsurface_list, link)
  		surface->redraw_needed = 1;
-@@ -6102,31 +6102,31 @@ init_egl(struct display *d)
+@@ -6054,31 +6054,31 @@ init_egl(struct display *d)
  						d->display, NULL);
  
  	if (!eglInitialize(d->dpy, &major, &minor)) {
@@ -400,15 +373,16 @@
  		return -1;
  	}
  
-@@ -6216,14 +6216,14 @@ display_create(int *argc, char *argv[])
+@@ -6168,7 +6168,7 @@ display_create(int *argc, char *argv[])
  
  	d->display = wl_display_connect(NULL);
  	if (d->display == NULL) {
--		fprintf(stderr, "failed to connect to Wayland display: %m\n");
-+		fprintf(stderr, "failed to connect to Wayland display: %m\r\n");
+-		fprintf(stderr, "failed to connect to Wayland display: %s\n",
++		fprintf(stderr, "failed to connect to Wayland display: %s\r\n",
+ 			strerror(errno));
  		free(d);
  		return NULL;
- 	}
+@@ -6176,7 +6176,7 @@ display_create(int *argc, char *argv[])
  
  	d->xkb_context = xkb_context_new(0);
  	if (d->xkb_context == NULL) {
@@ -417,15 +391,16 @@
  		free(d);
  		return NULL;
  	}
-@@ -6243,14 +6243,14 @@ display_create(int *argc, char *argv[])
+@@ -6196,7 +6196,7 @@ display_create(int *argc, char *argv[])
  	wl_registry_add_listener(d->registry, &registry_listener, d);
  
  	if (wl_display_roundtrip(d->display) < 0) {
--		fprintf(stderr, "Failed to process Wayland connection: %m\n");
-+		fprintf(stderr, "Failed to process Wayland connection: %m\r\n");
+-		fprintf(stderr, "Failed to process Wayland connection: %s\n",
++		fprintf(stderr, "Failed to process Wayland connection: %s\r\n",
+ 			strerror(errno));
  		return NULL;
  	}
- 
+@@ -6204,7 +6204,7 @@ display_create(int *argc, char *argv[])
  #ifdef HAVE_CAIRO_EGL
  	if (init_egl(d) < 0)
  		fprintf(stderr, "EGL does not seem to work, "
@@ -434,7 +409,7 @@
  #endif
  
  	create_cursors(d);
-@@ -6288,11 +6288,11 @@ void
+@@ -6242,11 +6242,11 @@ void
  display_destroy(struct display *display)
  {
  	if (!wl_list_empty(&display->window_list))
@@ -448,3 +423,39 @@
  
  	cairo_surface_destroy(display->dummy_surface);
  	free(display->dummy_surface_data);
+@@ -6523,7 +6523,7 @@ toytimer_fire(struct task *tsk, uint32_t events)
+ 	tt = container_of(tsk, struct toytimer, tsk);
+ 
+ 	if (events != EPOLLIN)
+-		fprintf(stderr, "unexpected timerfd events %x\n", events);
++		fprintf(stderr, "unexpected timerfd events %x\r\n", events);
+ 
+ 	if (!(events & EPOLLIN))
+ 		return;
+@@ -6533,7 +6533,7 @@ toytimer_fire(struct task *tsk, uint32_t events)
+ 		 * readable and getting here, there'll be nothing to
+ 		 * read and we get EAGAIN. */
+ 		if (errno != EAGAIN)
+-			fprintf(stderr, "timer read failed: %s\n",
++			fprintf(stderr, "timer read failed: %s\r\n",
+ 				strerror(errno));
+ 		return;
+ 	}
+@@ -6549,7 +6549,7 @@ toytimer_init(struct toytimer *tt, clockid_t clock, st
+ 
+ 	tt->fd = timerfd_create(clock, TFD_CLOEXEC | TFD_NONBLOCK);
+ 	if (tt->fd == -1) {
+-		fprintf(stderr, "creating timer failed: %s\n",
++		fprintf(stderr, "creating timer failed: %s\r\n",
+ 			strerror(errno));
+ 		abort();
+ 	}
+@@ -6575,7 +6575,7 @@ toytimer_arm(struct toytimer *tt, const struct itimers
+ 
+ 	ret = timerfd_settime(tt->fd, 0, its, NULL);
+ 	if (ret < 0) {
+-		fprintf(stderr, "timer setup failed: %s\n", strerror(errno));
++		fprintf(stderr, "timer setup failed: %s\r\n", strerror(errno));
+ 		abort();
+ 	}
+ }

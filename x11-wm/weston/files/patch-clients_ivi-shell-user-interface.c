@@ -1,6 +1,6 @@
---- clients/ivi-shell-user-interface.c.orig	2017-10-13 16:13:46 UTC
+--- clients/ivi-shell-user-interface.c.orig	2019-06-24 15:46:26 UTC
 +++ clients/ivi-shell-user-interface.c
-@@ -218,7 +218,7 @@ set_pointer_image(struct wlContextCommon *pCtx, uint32
+@@ -220,7 +220,7 @@ set_pointer_image(struct wlContextCommon *pCtx, uint32
  		return;
  
  	if (cursor->image_count <= index) {
@@ -9,7 +9,7 @@
  		return;
  	}
  
-@@ -250,7 +250,7 @@ PointerHandleEnter(void *data, struct wl_pointer *wlPo
+@@ -252,7 +252,7 @@ PointerHandleEnter(void *data, struct wl_pointer *wlPo
  	pCtx->enterSurface = wlSurface;
  	set_pointer_image(pCtx, 0);
  #ifdef _DEBUG
@@ -18,7 +18,7 @@
  #endif
  }
  
-@@ -263,7 +263,7 @@ PointerHandleLeave(void *data, struct wl_pointer *wlPo
+@@ -265,7 +265,7 @@ PointerHandleLeave(void *data, struct wl_pointer *wlPo
  	pCtx->enterSurface = NULL;
  
  #ifdef _DEBUG
@@ -27,7 +27,7 @@
  #endif
  }
  
-@@ -272,7 +272,7 @@ PointerHandleMotion(void *data, struct wl_pointer *wlP
+@@ -274,7 +274,7 @@ PointerHandleMotion(void *data, struct wl_pointer *wlP
  		    wl_fixed_t sx, wl_fixed_t sy)
  {
  #ifdef _DEBUG
@@ -36,7 +36,7 @@
  #endif
  }
  
-@@ -287,13 +287,13 @@ execute_process(char *path, char *argv[])
+@@ -289,13 +289,13 @@ execute_process(char *path, char *argv[])
  {
  	pid_t pid = fork();
  	if (pid < 0)
@@ -52,7 +52,7 @@
  		exit(1);
  	}
  
-@@ -408,7 +408,7 @@ PointerHandleButton(void *data, struct wl_pointer *wlP
+@@ -410,7 +410,7 @@ PointerHandleButton(void *data, struct wl_pointer *wlP
  		break;
  	}
  #ifdef _DEBUG
@@ -61,7 +61,7 @@
  	       button, state);
  #endif
  }
-@@ -418,7 +418,7 @@ PointerHandleAxis(void *data, struct wl_pointer *wlPoi
+@@ -420,7 +420,7 @@ PointerHandleAxis(void *data, struct wl_pointer *wlPoi
  		  uint32_t axis, wl_fixed_t value)
  {
  #ifdef _DEBUG
@@ -70,7 +70,7 @@
  #endif
  }
  
-@@ -766,7 +766,7 @@ create_cursors(struct wlContextCommon *cmm)
+@@ -768,7 +768,7 @@ create_cursors(struct wlContextCommon *cmm)
  		}
  
  		if (!cursor) {
@@ -79,34 +79,34 @@
  					cursors[i].names[0]);
  		}
  
-@@ -805,7 +805,7 @@ createShmBuffer(struct wlContextStruct *p_wlCtx)
+@@ -807,7 +807,7 @@ createShmBuffer(struct wlContextStruct *p_wlCtx)
  
  	fd = os_create_anonymous_file(size);
  	if (fd < 0) {
--		fprintf(stderr, "creating a buffer file for %d B failed: %m\n",
-+		fprintf(stderr, "creating a buffer file for %d B failed: %m\r\n",
- 			size);
+-		fprintf(stderr, "creating a buffer file for %d B failed: %s\n",
++		fprintf(stderr, "creating a buffer file for %d B failed: %s\r\n",
+ 			size, strerror(errno));
  		return ;
  	}
-@@ -814,7 +814,7 @@ createShmBuffer(struct wlContextStruct *p_wlCtx)
+@@ -816,7 +816,7 @@ createShmBuffer(struct wlContextStruct *p_wlCtx)
  		mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
  
  	if (MAP_FAILED == p_wlCtx->data) {
--		fprintf(stderr, "mmap failed: %m\n");
-+		fprintf(stderr, "mmap failed: %m\r\n");
+-		fprintf(stderr, "mmap failed: %s\n", strerror(errno));
++		fprintf(stderr, "mmap failed: %s\r\n", strerror(errno));
  		close(fd);
  		return;
  	}
-@@ -827,7 +827,7 @@ createShmBuffer(struct wlContextStruct *p_wlCtx)
+@@ -829,7 +829,7 @@ createShmBuffer(struct wlContextStruct *p_wlCtx)
  						      WL_SHM_FORMAT_ARGB8888);
  
  	if (NULL == p_wlCtx->wlBuffer) {
--		fprintf(stderr, "wl_shm_create_buffer failed: %m\n");
-+		fprintf(stderr, "wl_shm_create_buffer failed: %m\r\n");
+-		fprintf(stderr, "wl_shm_create_buffer failed: %s\n",
++		fprintf(stderr, "wl_shm_create_buffer failed: %s\r\n",
+ 			strerror(errno));
  		close(fd);
  		return;
- 	}
-@@ -866,7 +866,7 @@ createSurface(struct wlContextStruct *p_wlCtx)
+@@ -869,7 +869,7 @@ createSurface(struct wlContextStruct *p_wlCtx)
  	p_wlCtx->wlSurface =
  		wl_compositor_create_surface(p_wlCtx->cmm->wlCompositor);
  	if (NULL == p_wlCtx->wlSurface) {
@@ -115,7 +115,7 @@
  		destroyWLContextCommon(p_wlCtx->cmm);
  		abort();
  	}
-@@ -920,7 +920,7 @@ create_ivisurface(struct wlContextStruct *p_wlCtx,
+@@ -923,7 +923,7 @@ create_ivisurface(struct wlContextStruct *p_wlCtx,
  						 id_surface,
  						 p_wlCtx->wlSurface);
  	if (ivisurf == NULL) {
@@ -124,7 +124,7 @@
  		return;
  	}
  
-@@ -935,7 +935,7 @@ create_ivisurfaceFromFile(struct wlContextStruct *p_wl
+@@ -938,7 +938,7 @@ create_ivisurfaceFromFile(struct wlContextStruct *p_wl
  	cairo_surface_t *surface = load_cairo_surface(imageFile);
  
  	if (NULL == surface) {
@@ -133,7 +133,7 @@
  		return;
  	}
  
-@@ -1226,7 +1226,7 @@ int main(int argc, char **argv)
+@@ -1244,7 +1244,7 @@ int main(int argc, char **argv)
  
  	wlCtxCommon.wlDisplay = wl_display_connect(NULL);
  	if (NULL == wlCtxCommon.wlDisplay) {
@@ -142,7 +142,7 @@
  		return -1;
  	}
  
-@@ -1238,14 +1238,14 @@ int main(int argc, char **argv)
+@@ -1256,14 +1256,14 @@ int main(int argc, char **argv)
  	wl_display_roundtrip(wlCtxCommon.wlDisplay);
  
  	if (wlCtxCommon.wlShm == NULL) {

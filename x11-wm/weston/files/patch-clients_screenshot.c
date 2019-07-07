@@ -1,8 +1,8 @@
---- clients/screenshot.c.orig	2017-08-08 18:57:02 UTC
+--- clients/screenshot.c.orig	2019-06-24 15:46:26 UTC
 +++ clients/screenshot.c
-@@ -40,6 +40,8 @@
- #include "shared/os-compatibility.h"
+@@ -41,6 +41,8 @@
  #include "shared/xalloc.h"
+ #include "shared/file-util.h"
  
 +#define program_invocation_short_name getprogname()
 +

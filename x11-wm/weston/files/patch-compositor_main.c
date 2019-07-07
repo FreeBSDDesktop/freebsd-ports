@@ -1,17 +1,17 @@
---- compositor/main.c.orig	2017-08-08 18:57:02 UTC
+--- compositor/main.c.orig	2019-06-24 15:46:26 UTC
 +++ compositor/main.c
-@@ -41,7 +41,9 @@
- #include <sys/socket.h>
- #include <libinput.h>
+@@ -44,7 +44,9 @@
+ #include <libevdev/libevdev.h>
+ #include <linux/input.h>
  #include <sys/time.h>
 -#include <linux/limits.h>
 +/* #include <linux/limits.h> */
 +#include <limits.h>
 +#define PATH_MAX _POSIX_PATH_MAX
  
- #ifdef HAVE_LIBUNWIND
- #define UNW_LOCAL_ONLY
-@@ -61,6 +63,7 @@
+ #include "weston.h"
+ #include "compositor.h"
+@@ -59,6 +61,7 @@
  #include "compositor-headless.h"
  #include "compositor-rdp.h"
  #include "compositor-fbdev.h"
@@ -19,7 +19,7 @@
  #include "compositor-x11.h"
  #include "compositor-wayland.h"
  #include "windowed-output-api.h"
-@@ -99,7 +102,7 @@ static int weston_log_timestamp(void)
+@@ -141,7 +144,7 @@ static int weston_log_timestamp(void)
  
  	if (brokendown_time->tm_mday != cached_tm_mday) {
  		strftime(string, sizeof string, "%Y-%m-%d %Z", brokendown_time);
@@ -28,23 +28,23 @@
  
  		cached_tm_mday = brokendown_time->tm_mday;
  	}
-@@ -115,6 +118,7 @@ custom_handler(const char *fmt, va_list arg)
+@@ -161,6 +164,7 @@ custom_handler(const char *fmt, va_list arg)
  	weston_log_timestamp();
  	fprintf(weston_logfile, "libwayland: ");
- 	vfprintf(weston_logfile, fmt, arg);
+ 	vfprintf(weston_logfile, fmt, arg2);
 +	fprintf(weston_logfile, "\r");
- }
+ 	va_end(arg2);
  
- static void
-@@ -149,6 +153,7 @@ vlog(const char *fmt, va_list ap)
+ 	weston_debug_scope_printf(log_scope, "%s libwayland: ",
+@@ -212,6 +216,7 @@ vlog(const char *fmt, va_list ap)
  
  	l = weston_log_timestamp();
- 	l += vfprintf(weston_logfile, fmt, ap);
+ 	l += vfprintf(weston_logfile, fmt, ap2);
 +	l += fprintf(weston_logfile, "\r");
+ 	va_end(ap2);
  
  	return l;
- }
-@@ -538,6 +543,9 @@ usage(int error_code)
+@@ -632,6 +637,9 @@ usage(int error_code)
  #if defined(BUILD_FBDEV_COMPOSITOR)
  			"\t\t\t\tfbdev-backend.so\n"
  #endif
@@ -54,7 +54,7 @@
  #if defined(BUILD_HEADLESS_COMPOSITOR)
  			"\t\t\t\theadless-backend.so\n"
  #endif
-@@ -577,6 +585,14 @@ usage(int error_code)
+@@ -677,6 +685,14 @@ usage(int error_code)
  		"\n");
  #endif
  
@@ -67,9 +67,9 @@
 +#endif
 +
  #if defined(BUILD_HEADLESS_COMPOSITOR)
- 	fprintf(stderr,
+ 	fprintf(out,
  		"Options for headless-backend.so:\n\n"
-@@ -680,9 +696,9 @@ clock_name(clockid_t clk_id)
+@@ -748,9 +764,9 @@ clock_name(clockid_t clk_id)
  	static const char *names[] = {
  		[CLOCK_REALTIME] =		"CLOCK_REALTIME",
  		[CLOCK_MONOTONIC] =		"CLOCK_MONOTONIC",
@@ -82,10 +82,11 @@
  #ifdef CLOCK_BOOTTIME
  		[CLOCK_BOOTTIME] =		"CLOCK_BOOTTIME",
  #endif
-@@ -1579,6 +1595,57 @@ load_x11_backend(struct weston_compositor *c,
+@@ -2710,7 +2726,58 @@ load_x11_backend(struct weston_compositor *c,
+ 	return 0;
  }
  
- static void
++static void
 +scfb_backend_output_configure(struct wl_listener *listener, void *data)
 +{
 +	struct weston_output *output = data;
@@ -100,9 +101,9 @@
 +	weston_output_enable(output);
 +}
 +
-+static int
+ static int
 +load_scfb_backend(struct weston_compositor *c,
-+				  int *argc, char **argv, struct weston_config *wc)
++		  int *argc, char **argv, struct weston_config *wc)
 +{
 +	struct weston_scfb_backend_config config = {{ 0, }};
 +	int ret = 0;
@@ -136,11 +137,11 @@
 +
 +}
 +
-+static void
- wayland_backend_output_configure_hotplug(struct wl_listener *listener, void *data)
++static int
+ wayland_backend_output_configure(struct weston_output *output)
  {
- 	struct weston_output *output = data;
-@@ -1724,6 +1791,8 @@ load_backend(struct weston_compositor *compositor, con
+ 	struct wet_output_config defaults = {
+@@ -2856,6 +2923,8 @@ load_backend(struct weston_compositor *compositor, con
  		return load_rdp_backend(compositor, argc, argv, config);
  	else if (strstr(backend, "fbdev-backend.so"))
  		return load_fbdev_backend(compositor, argc, argv, config);
@@ -149,7 +150,7 @@
  	else if (strstr(backend, "drm-backend.so"))
  		return load_drm_backend(compositor, argc, argv, config);
  	else if (strstr(backend, "x11-backend.so"))
-@@ -1823,9 +1892,9 @@ int main(int argc, char *argv[])
+@@ -2970,9 +3039,9 @@ int main(int argc, char *argv[])
  	weston_log_set_handler(vlog, vlog_continue);
  	weston_log_file_open(log);
  

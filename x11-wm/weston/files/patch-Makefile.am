@@ -1,6 +1,6 @@
---- Makefile.am.orig	2017-10-13 15:26:13 UTC
+--- Makefile.am.orig	2019-07-07 18:30:51 UTC
 +++ Makefile.am
-@@ -85,6 +85,7 @@ libweston_@LIBWESTON_MAJOR@_la_SOURCES =			\
+@@ -72,6 +72,7 @@ libweston_@LIBWESTON_MAJOR@_la_SOURCES =			\
  	libweston/compositor.h				\
  	libweston/compositor-drm.h			\
  	libweston/compositor-fbdev.h			\
@@ -8,7 +8,7 @@
  	libweston/compositor-headless.h			\
  	libweston/compositor-rdp.h			\
  	libweston/compositor-wayland.h			\
-@@ -295,6 +296,7 @@ libwestoninclude_HEADERS =			\
+@@ -311,6 +312,7 @@ libwestoninclude_HEADERS =			\
  	libweston/compositor.h			\
  	libweston/compositor-drm.h		\
  	libweston/compositor-fbdev.h		\
@@ -16,7 +16,7 @@
  	libweston/compositor-headless.h		\
  	libweston/compositor-rdp.h		\
  	libweston/compositor-wayland.h		\
-@@ -459,6 +461,28 @@ fbdev_backend_la_CFLAGS =			\
+@@ -498,6 +500,28 @@ fbdev_backend_la_CFLAGS =			\
  fbdev_backend_la_SOURCES =			\
  	libweston/compositor-fbdev.c		\
  	libweston/compositor-fbdev.h		\

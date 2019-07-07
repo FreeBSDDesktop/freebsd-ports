@@ -1,6 +1,6 @@
---- clients/weston-info.c.orig	2017-08-08 18:57:02 UTC
+--- clients/weston-info.c.orig	2019-06-24 15:46:26 UTC
 +++ clients/weston-info.c
-@@ -605,9 +605,9 @@ clock_name(clockid_t clk_id)
+@@ -1714,9 +1714,9 @@ clock_name(clockid_t clk_id)
  	static const char *names[] = {
  		[CLOCK_REALTIME] =		"CLOCK_REALTIME",
  		[CLOCK_MONOTONIC] =		"CLOCK_MONOTONIC",

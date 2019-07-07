@@ -1,6 +1,6 @@
---- libweston/compositor-wayland.c.orig	2017-10-13 16:26:11 UTC
+--- libweston/compositor-wayland.c.orig	2019-06-24 15:46:26 UTC
 +++ libweston/compositor-wayland.c
-@@ -940,7 +940,7 @@ mode_feedback_successful(void *data,
+@@ -974,7 +974,7 @@ mode_feedback_successful(void *data,
  {
  	enum mode_status *value = data;
  
@@ -9,7 +9,7 @@
  
  	*value = MODE_STATUS_SUCCESS;
  }
-@@ -950,7 +950,7 @@ mode_feedback_failed(void *data, struct zwp_fullscreen
+@@ -984,7 +984,7 @@ mode_feedback_failed(void *data, struct zwp_fullscreen
  {
  	enum mode_status *value = data;
  
@@ -18,7 +18,7 @@
  
  	*value = MODE_STATUS_FAIL;
  }
-@@ -960,7 +960,7 @@ mode_feedback_cancelled(void *data, struct zwp_fullscr
+@@ -994,7 +994,7 @@ mode_feedback_cancelled(void *data, struct zwp_fullscr
  {
  	enum mode_status *value = data;
  
@@ -27,7 +27,7 @@
  
  	*value = MODE_STATUS_CANCEL;
  }
-@@ -2447,7 +2447,7 @@ create_cursor(struct wayland_backend *b,
+@@ -2677,7 +2677,7 @@ create_cursor(struct wayland_backend *b,
  					       config->cursor_size,
  					       b->parent.shm);
  	if (!b->cursor_theme) {
@@ -36,7 +36,7 @@
  		return;
  	}
  
-@@ -2456,7 +2456,7 @@ create_cursor(struct wayland_backend *b,
+@@ -2686,7 +2686,7 @@ create_cursor(struct wayland_backend *b,
  		b->cursor = wl_cursor_theme_get_cursor(b->cursor_theme,
  						       left_ptrs[i]);
  	if (!b->cursor) {

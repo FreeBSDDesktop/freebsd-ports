@@ -1,4 +1,4 @@
---- xwayland/launcher.c.orig	2017-08-08 18:57:03 UTC
+--- xwayland/launcher.c.orig	2019-06-24 15:46:26 UTC
 +++ xwayland/launcher.c
 @@ -42,6 +42,10 @@
  #include "shared/string-helpers.h"
@@ -34,12 +34,12 @@
 +			     SOCKET2_FMT, display);
  	size = offsetof(struct sockaddr_un, sun_path) + name_size;
  	if (bind(fd, (struct sockaddr *) &addr, size) < 0) {
--		weston_log("failed to bind to @%s: %m\n", addr.sun_path + 1);
-+		weston_log("failed to bind to '%s'\n", addr.sun_path);
+-		weston_log("failed to bind to @%s: %s\n", addr.sun_path + 1,
++		weston_log("failed to bind to '%s': %s\n", addr.sun_path + 1,
+ 			   strerror(errno));
  		close(fd);
  		return -1;
- 	}
-@@ -127,7 +133,7 @@ bind_to_unix_socket(int display)
+@@ -128,7 +134,7 @@ bind_to_unix_socket(int display)
  
  	addr.sun_family = AF_LOCAL;
  	name_size = snprintf(addr.sun_path, sizeof addr.sun_path,
@@ -48,7 +48,7 @@
  	size = offsetof(struct sockaddr_un, sun_path) + name_size;
  	unlink(addr.sun_path);
  	if (bind(fd, (struct sockaddr *) &addr, size) < 0) {
-@@ -154,7 +160,7 @@ create_lockfile(int display, char *lockfile, size_t ls
+@@ -156,7 +162,7 @@ create_lockfile(int display, char *lockfile, size_t ls
  	int fd, size;
  	pid_t other;
  

@@ -1,6 +1,6 @@
---- libweston/compositor-drm.c.orig	2017-08-08 18:57:03 UTC
+--- libweston/compositor-drm.c.orig	2019-06-24 15:46:26 UTC
 +++ libweston/compositor-drm.c
-@@ -34,7 +34,7 @@
+@@ -37,7 +37,7 @@
  #include <fcntl.h>
  #include <unistd.h>
  #include <linux/input.h>
@@ -9,16 +9,16 @@
  #include <assert.h>
  #include <sys/mman.h>
  #include <dlfcn.h>
-@@ -3189,6 +3189,8 @@ drm_device_is_kms(struct drm_backend *b, struct udev_d
+@@ -6794,6 +6794,8 @@ drm_device_is_kms(struct drm_backend *b, struct udev_d
  	drmModeRes *res;
- 	int id, fd;
+ 	int id = -1, fd;
  
 +	printf("%s] Got filename %s and sysnum %s\r\n", __func__, filename, sysnum);
 +	
  	if (!filename)
  		return false;
  
-@@ -3251,6 +3253,16 @@ find_primary_gpu(struct drm_backend *b, const char *se
+@@ -6856,6 +6858,16 @@ find_primary_gpu(struct drm_backend *b, const char *se
  	struct udev_device *device, *drm_device, *pci;
  
  	e = udev_enumerate_new(b->udev);
@@ -35,7 +35,7 @@
  	udev_enumerate_add_match_subsystem(e, "drm");
  	udev_enumerate_add_match_sysname(e, "card[0-9]*");
  
-@@ -3314,7 +3326,6 @@ find_primary_gpu(struct drm_backend *b, const char *se
+@@ -6919,7 +6931,6 @@ find_primary_gpu(struct drm_backend *b, const char *se
  	/* If we're returning a device to use, we must have an open FD for
  	 * it. */
  	assert(!!drm_device == (b->drm.fd >= 0));

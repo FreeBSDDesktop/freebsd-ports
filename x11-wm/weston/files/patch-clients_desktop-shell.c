@@ -1,6 +1,6 @@
---- clients/desktop-shell.c.orig	2017-08-08 18:57:02 UTC
+--- clients/desktop-shell.c.orig	2019-06-24 15:46:26 UTC
 +++ clients/desktop-shell.c
-@@ -41,6 +41,7 @@
+@@ -39,6 +39,7 @@
  #include <ctype.h>
  #include <time.h>
  #include <assert.h>
@@ -8,10 +8,10 @@
  
  #include <wayland-client.h>
  #include "window.h"
-@@ -49,6 +50,8 @@
- #include "shared/helpers.h"
+@@ -48,6 +49,8 @@
  #include "shared/xalloc.h"
  #include "shared/zalloc.h"
+ #include "shared/file-util.h"
 +
 +#define program_invocation_short_name getprogname()
  
