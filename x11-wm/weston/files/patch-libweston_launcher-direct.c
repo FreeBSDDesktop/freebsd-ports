@@ -1,6 +1,6 @@
 --- libweston/launcher-direct.c.orig	2019-06-24 15:46:26 UTC
 +++ libweston/launcher-direct.c
-@@ -35,17 +35,21 @@
+@@ -35,17 +35,23 @@
  #include <string.h>
  #include <sys/stat.h>
  #include <sys/ioctl.h>
@@ -14,6 +14,8 @@
 +#include <termios.h>
 +#include <sys/consio.h>
 +#include <sys/kbio.h>
++#define TTY_BASENAME    "/dev/ttyv"
++#define TTY_0           "/dev/ttyv0"
 +
  #include "launcher-impl.h"
  
@@ -29,7 +31,7 @@
  
  /* major()/minor() */
  #ifdef MAJOR_IN_MKDEV
-@@ -125,7 +129,7 @@ setup_tty(struct launcher_direct *launcher, int tty)
+@@ -125,7 +131,7 @@ setup_tty(struct launcher_direct *launcher, int tty)
  	struct vt_mode mode = { 0 };
  	struct stat buf;
  	char tty_device[32] ="<stdin>";
@@ -38,7 +40,7 @@
  
  	if (tty == 0) {
  		launcher->tty = dup(tty);
-@@ -135,7 +139,7 @@ setup_tty(struct launcher_direct *launcher, int tty)
+@@ -135,7 +141,7 @@ setup_tty(struct launcher_direct *launcher, int tty)
  			return -1;
  		}
  	} else {
@@ -47,7 +49,7 @@
  		launcher->tty = open(tty_device, O_RDWR | O_CLOEXEC);
  		if (launcher->tty == -1) {
  			weston_log("couldn't open tty %s: %s\n", tty_device,
-@@ -144,14 +148,20 @@ setup_tty(struct launcher_direct *launcher, int tty)
+@@ -144,14 +150,20 @@ setup_tty(struct launcher_direct *launcher, int tty)
  		}
  	}
  
@@ -74,7 +76,7 @@
  	ret = ioctl(launcher->tty, KDGETMODE, &kd_mode);
  	if (ret) {
  		weston_log("failed to get VT mode: %s\n", strerror(errno));
-@@ -163,8 +173,8 @@ setup_tty(struct launcher_direct *launcher, int tty)
+@@ -163,8 +175,8 @@ setup_tty(struct launcher_direct *launcher, int tty)
  		goto err_close;
  	}
  
@@ -85,7 +87,7 @@
  
  	if (ioctl(launcher->tty, KDGKBMODE, &launcher->kb_mode)) {
  		weston_log("failed to read keyboard mode: %s\n",
-@@ -172,13 +182,24 @@ setup_tty(struct launcher_direct *launcher, int tty)
+@@ -172,13 +184,24 @@ setup_tty(struct launcher_direct *launcher, int tty)
  		goto err_close;
  	}
  
@@ -113,7 +115,7 @@
  	ret = ioctl(launcher->tty, KDSETMODE, KD_GRAPHICS);
  	if (ret) {
  		weston_log("failed to set KD_GRAPHICS mode on tty: %s\n",
-@@ -197,10 +218,10 @@ setup_tty(struct launcher_direct *launcher, int tty)
+@@ -197,10 +220,10 @@ setup_tty(struct launcher_direct *launcher, int tty)
  		ret = -EINVAL;
  		goto err_close;
  	}
@@ -126,7 +128,7 @@
  	if (ioctl(launcher->tty, VT_SETMODE, &mode) < 0) {
  		weston_log("failed to take control of vt handling\n");
  		goto err_close;
-@@ -235,13 +256,11 @@ launcher_direct_open(struct weston_launcher *launcher_
+@@ -235,13 +258,11 @@ launcher_direct_open(struct weston_launcher *launcher_
  		return -1;
  	}
  
@@ -145,7 +147,7 @@
  	}
  
  	return fd;
-@@ -259,8 +278,7 @@ launcher_direct_restore(struct weston_launcher *launch
+@@ -259,8 +280,7 @@ launcher_direct_restore(struct weston_launcher *launch
  	struct launcher_direct *launcher = wl_container_of(launcher_base, launcher, base);
  	struct vt_mode mode = { 0 };
  
@@ -155,7 +157,7 @@
  		weston_log("failed to restore kb mode: %s\n",
  			   strerror(errno));
  
-@@ -268,6 +286,16 @@ launcher_direct_restore(struct weston_launcher *launch
+@@ -268,6 +288,16 @@ launcher_direct_restore(struct weston_launcher *launch
  		weston_log("failed to set KD_TEXT mode on tty: %s\n",
  			   strerror(errno));
  

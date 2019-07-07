@@ -8,7 +8,7 @@
  #include <getopt.h>
  
  #include <sys/types.h>
-@@ -46,10 +45,29 @@
+@@ -46,10 +45,32 @@
  #include <unistd.h>
  #include <fcntl.h>
  
@@ -21,6 +21,9 @@
 +#include <termios.h>
 +#include <sys/consio.h>
 +#include <sys/kbio.h>
++#define TTY_BASENAME    "/dev/ttyv"
++#define TTY_0           "/dev/ttyv0"
+ 
 +#define error(s,e,...)							\
 +	do {								\
 +		if(e)							\
@@ -31,7 +34,7 @@
 +			exit(-1);					\
 +		}							\
 +	} while(false)
- 
++
 +static inline int clearenv(void) {
 +	extern char **environ;
 +	environ[0] = NULL;
@@ -41,7 +44,7 @@
  #include <pwd.h>
  #include <grp.h>
  #include <security/pam_appl.h>
-@@ -60,12 +78,13 @@
+@@ -60,12 +81,13 @@
  
  #include "weston-launch.h"
  
@@ -59,7 +62,7 @@
  #ifndef EVIOCREVOKE
  #define EVIOCREVOKE _IOW('E', 0x91, int)
  #endif
-@@ -129,7 +148,7 @@ read_groups(int *ngroups)
+@@ -129,7 +151,7 @@ read_groups(int *ngroups)
  	n = getgroups(0, NULL);
  
  	if (n < 0) {
@@ -68,7 +71,7 @@
  			strerror(errno));
  		return NULL;
  	}
-@@ -139,7 +158,7 @@ read_groups(int *ngroups)
+@@ -139,7 +161,7 @@ read_groups(int *ngroups)
  		return NULL;
  
  	if (getgroups(n, groups) < 0) {
@@ -77,7 +80,7 @@
  			strerror(errno));
  		free(groups);
  		return NULL;
-@@ -212,21 +231,21 @@ setup_pam(struct weston_launch *wl)
+@@ -212,21 +234,21 @@ setup_pam(struct weston_launch *wl)
  
  	err = pam_start("login", wl->pw->pw_name, &wl->pc, &wl->ph);
  	if (err != PAM_SUCCESS) {
@@ -102,7 +105,7 @@
  			err, pam_strerror(wl->ph, err));
  		return -1;
  	}
-@@ -322,7 +341,7 @@ handle_open(struct weston_launch *wl, struct msghdr *m
+@@ -322,7 +344,7 @@ handle_open(struct weston_launch *wl, struct msghdr *m
  
  	fd = open(message->path, message->flags);
  	if (fd < 0) {
@@ -111,7 +114,7 @@
  			message->path, strerror(errno));
  		goto err0;
  	}
-@@ -330,18 +349,18 @@ handle_open(struct weston_launch *wl, struct msghdr *m
+@@ -330,18 +352,18 @@ handle_open(struct weston_launch *wl, struct msghdr *m
  	if (fstat(fd, &s) < 0) {
  		close(fd);
  		fd = -1;
@@ -139,7 +142,7 @@
  
  err0:
  	memset(&nmsg, 0, sizeof nmsg);
-@@ -362,8 +381,8 @@ err0:
+@@ -362,8 +384,8 @@ err0:
  	iov.iov_base = &ret;
  	iov.iov_len = sizeof ret;
  
@@ -150,7 +153,7 @@
  			message->path, ret, fd);
  	do {
  		len = sendmsg(wl->sock[0], &nmsg, 0);
-@@ -372,10 +391,9 @@ err0:
+@@ -372,10 +394,9 @@ err0:
  	if (len < 0)
  		return -1;
  
@@ -163,7 +166,7 @@
  		wl->last_input_fd = fd;
  
  	return 0;
-@@ -429,18 +447,26 @@ quit(struct weston_launch *wl, int status)
+@@ -429,18 +450,26 @@ quit(struct weston_launch *wl, int status)
  	if (wl->new_user) {
  		err = pam_close_session(wl->ph, 0);
  		if (err)
@@ -195,7 +198,7 @@
  			strerror(errno));
  
  	/* We have to drop master before we switch the VT back in
-@@ -449,8 +475,9 @@ quit(struct weston_launch *wl, int status)
+@@ -449,8 +478,9 @@ quit(struct weston_launch *wl, int status)
  	drmDropMaster(wl->drm_fd);
  
  	mode.mode = VT_AUTO;
@@ -206,7 +209,7 @@
  
  	exit(status);
  }
-@@ -458,15 +485,24 @@ quit(struct weston_launch *wl, int status)
+@@ -458,15 +488,24 @@ quit(struct weston_launch *wl, int status)
  static void
  close_input_fds(struct weston_launch *wl)
  {
@@ -232,7 +235,7 @@
  		}
  	}
  }
-@@ -477,13 +513,17 @@ handle_signal(struct weston_launch *wl)
+@@ -477,13 +516,17 @@ handle_signal(struct weston_launch *wl)
  	struct signalfd_siginfo sig;
  	int pid, status, ret;
  
@@ -252,7 +255,7 @@
  		pid = waitpid(-1, &status, 0);
  		if (pid == wl->child) {
  			wl->child = 0;
-@@ -503,22 +543,32 @@ handle_signal(struct weston_launch *wl)
+@@ -503,22 +546,32 @@ handle_signal(struct weston_launch *wl)
  		}
  		break;
  	case SIGTERM:
@@ -286,7 +289,7 @@
  		return -1;
  	}
  
-@@ -541,7 +591,7 @@ setup_tty(struct weston_launch *wl, const char *tty)
+@@ -541,7 +594,7 @@ setup_tty(struct weston_launch *wl, const char *tty)
  		else
  			wl->tty = open(tty, O_RDWR | O_NOCTTY);
  	} else {
@@ -295,7 +298,7 @@
  		char filename[16];
  
  		if (tty0 < 0)
-@@ -550,7 +600,7 @@ setup_tty(struct weston_launch *wl, const char *tty)
+@@ -550,7 +603,7 @@ setup_tty(struct weston_launch *wl, const char *tty)
  		if (ioctl(tty0, VT_OPENQRY, &wl->ttynr) < 0 || wl->ttynr == -1)
  			error(1, errno, "failed to find non-opened console");
  
@@ -304,7 +307,7 @@
  		wl->tty = open(filename, O_RDWR | O_NOCTTY);
  		close(tty0);
  	}
-@@ -558,35 +608,36 @@ setup_tty(struct weston_launch *wl, const char *tty)
+@@ -558,35 +611,36 @@ setup_tty(struct weston_launch *wl, const char *tty)
  	if (wl->tty < 0)
  		error(1, errno, "failed to open tty");
  
@@ -355,7 +358,7 @@
  
  	return 0;
  }
-@@ -654,7 +705,7 @@ launch_compositor(struct weston_launch *wl, int argc, 
+@@ -654,7 +708,7 @@ launch_compositor(struct weston_launch *wl, int argc, 
  	int o, i;
  
  	if (wl->verbose)
@@ -364,7 +367,7 @@
  	if (wl->new_user) {
  		o = setup_session(wl, child_argv);
  	} else {
-@@ -688,13 +739,13 @@ launch_compositor(struct weston_launch *wl, int argc, 
+@@ -688,13 +742,13 @@ launch_compositor(struct weston_launch *wl, int argc, 
  static void
  help(const char *name)
  {
@@ -385,7 +388,7 @@
  }
  
  int
-@@ -748,13 +799,13 @@ main(int argc, char *argv[])
+@@ -748,13 +802,13 @@ main(int argc, char *argv[])
  		error(1, errno, "failed to get username");
  
  	if (!weston_launch_allowed(&wl))
