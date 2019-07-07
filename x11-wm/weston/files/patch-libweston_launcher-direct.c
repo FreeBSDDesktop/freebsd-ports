@@ -94,7 +94,7 @@
 -	if (ioctl(launcher->tty, KDSKBMUTE, 1) &&
 -	    ioctl(launcher->tty, KDSKBMODE, K_OFF)) {
 -		weston_log("failed to set K_OFF keyboard mode: %s\n",
-+	if (ioctl(launcher->tty, KDSKBMUTE, K_RAW == - 1) {
++	if (ioctl(launcher->tty, KDSKBMODE, K_RAW == - 1)) {
 +		weston_log("failed to set K_RAW keyboard mode: %s\n",
  			   strerror(errno));
  		goto err_close;
