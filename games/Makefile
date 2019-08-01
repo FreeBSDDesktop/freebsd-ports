@@ -52,6 +52,7 @@
     SUBDIR += apricots
     SUBDIR += aquaria
     SUBDIR += arkanoidsb
+    SUBDIR += armagetronad
     SUBDIR += arx-libertatis
     SUBDIR += asc
     SUBDIR += ascii-invaders
@@ -189,6 +190,7 @@
     SUBDIR += cutemaze
     SUBDIR += cuyo
     SUBDIR += d2x
+    SUBDIR += dMagnetic
     SUBDIR += dangen
     SUBDIR += dangerdeep
     SUBDIR += dangerdeep-data
@@ -200,7 +202,6 @@
     SUBDIR += diaspora
     SUBDIR += digger-vgl
     SUBDIR += divide-and-succeed
-    SUBDIR += dMagnetic
     SUBDIR += dmjava
     SUBDIR += dodgindiamond2
     SUBDIR += domination
@@ -289,7 +290,6 @@
     SUBDIR += freecell-solver
     SUBDIR += freeciv
     SUBDIR += freeciv-nox11
-    SUBDIR += freeciv-sounds
     SUBDIR += freecol
     SUBDIR += freedink
     SUBDIR += freedink-data
@@ -324,11 +324,6 @@
     SUBDIR += gemdropx
     SUBDIR += gemrb
     SUBDIR += genact
-    SUBDIR += ggz-client-libs
-    SUBDIR += ggz-gtk-client
-    SUBDIR += ggz-gtk-games
-    SUBDIR += ggz-sdl-games
-    SUBDIR += ggz-txt-client
     SUBDIR += gigalomania
     SUBDIR += gillo
     SUBDIR += gl-117
@@ -507,7 +502,6 @@
     SUBDIR += legesmotus
     SUBDIR += lexter
     SUBDIR += lgeneral
-    SUBDIR += libggz
     SUBDIR += libgnome-games-support
     SUBDIR += libkdegames
     SUBDIR += libkmahjongg
@@ -1012,6 +1006,7 @@
     SUBDIR += vitetris
     SUBDIR += vkquake
     SUBDIR += vms-empire
+    SUBDIR += voadi
     SUBDIR += vodovod
     SUBDIR += volleyball
     SUBDIR += vor

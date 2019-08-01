@@ -27,6 +27,7 @@
     SUBDIR += calcurse
     SUBDIR += calibre
     SUBDIR += cartotheque
+    SUBDIR += cfiles
     SUBDIR += charmtimetracker
     SUBDIR += chart
     SUBDIR += cherrytree
@@ -185,6 +186,7 @@
     SUBDIR += p5-Goo
     SUBDIR += pal
     SUBDIR += parcellite
+    SUBDIR += pet
     SUBDIR += phpicalendar
     SUBDIR += pim-data-exporter
     SUBDIR += pim-sieve-editor

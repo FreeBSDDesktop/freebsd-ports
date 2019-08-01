@@ -27,6 +27,7 @@
     SUBDIR += arp-sk
     SUBDIR += arpdig
     SUBDIR += arping
+    SUBDIR += arpoison
     SUBDIR += arprelease
     SUBDIR += asio
     SUBDIR += aslookup
@@ -91,6 +92,7 @@
     SUBDIR += corkscrew
     SUBDIR += corosync2
     SUBDIR += corosync3
+    SUBDIR += coturn
     SUBDIR += courier-authlib-ldap
     SUBDIR += cppzmq
     SUBDIR += cryptcat
@@ -230,6 +232,7 @@
     SUBDIR += haproxy-devel
     SUBDIR += haproxy17
     SUBDIR += haproxy18
+    SUBDIR += haproxy19
     SUBDIR += hexinject
     SUBDIR += hidentd
     SUBDIR += hinfo
@@ -238,6 +241,7 @@
     SUBDIR += hostapd
     SUBDIR += howl
     SUBDIR += hping
+    SUBDIR += hping3
     SUBDIR += hs-network
     SUBDIR += hsflowd
     SUBDIR += htpdate
@@ -312,6 +316,7 @@
     SUBDIR += kmbox
     SUBDIR += kmime
     SUBDIR += knc
+    SUBDIR += knxd
     SUBDIR += kontactinterface
     SUBDIR += kpimtextedit
     SUBDIR += krdc
@@ -337,6 +342,7 @@
     SUBDIR += libcapn
     SUBDIR += libcmis
     SUBDIR += libcoap
+    SUBDIR += libdaq
     SUBDIR += libdmapsharing
     SUBDIR += libdnet
     SUBDIR += libexosip2
@@ -448,7 +454,6 @@
     SUBDIR += mod_amd
     SUBDIR += mono-zeroconf
     SUBDIR += mopd
-    SUBDIR += morebalance
     SUBDIR += mosh
     SUBDIR += mosquitto
     SUBDIR += motsognir
@@ -513,6 +518,7 @@
     SUBDIR += ntp
     SUBDIR += ntp-devel
     SUBDIR += ntpa
+    SUBDIR += ntpsec
     SUBDIR += ntraceroute
     SUBDIR += nusoap
     SUBDIR += nuster
@@ -941,6 +947,7 @@
     SUBDIR += pear-XML_RPC
     SUBDIR += pear-XML_RPC2
     SUBDIR += pecl-amqp
+    SUBDIR += pecl-mosquitto
     SUBDIR += pecl-oauth2
     SUBDIR += pecl-radius
     SUBDIR += pecl-rdkafka
@@ -1179,6 +1186,7 @@
     SUBDIR += ripe-whois
     SUBDIR += routinator
     SUBDIR += rp-pppoe
+    SUBDIR += rsocket-cpp
     SUBDIR += rsplib
     SUBDIR += rsync
     SUBDIR += rsync-bpc
@@ -1215,11 +1223,13 @@
     SUBDIR += rubygem-fog-brightbox
     SUBDIR += rubygem-fog-brightbox0
     SUBDIR += rubygem-fog-cloudatcost
+    SUBDIR += rubygem-fog-cloudstack
     SUBDIR += rubygem-fog-digitalocean
     SUBDIR += rubygem-fog-dnsimple
     SUBDIR += rubygem-fog-dynect
     SUBDIR += rubygem-fog-ecloud
     SUBDIR += rubygem-fog-google
+    SUBDIR += rubygem-fog-gridscale
     SUBDIR += rubygem-fog-internet-archive
     SUBDIR += rubygem-fog-joyent
     SUBDIR += rubygem-fog-local
@@ -1276,10 +1286,10 @@
     SUBDIR += rubygem-omniauth-oauth
     SUBDIR += rubygem-omniauth-oauth2
     SUBDIR += rubygem-omniauth-openid
-    SUBDIR += rubygem-omniauth_openid_connect
     SUBDIR += rubygem-omniauth-salesforce
     SUBDIR += rubygem-omniauth-twitter
     SUBDIR += rubygem-omniauth-ultraauth
+    SUBDIR += rubygem-omniauth_openid_connect
     SUBDIR += rubygem-open-uri-cached
     SUBDIR += rubygem-openid_connect
     SUBDIR += rubygem-opennebula
@@ -1325,6 +1335,7 @@
     SUBDIR += samba46
     SUBDIR += samba47
     SUBDIR += samba48
+    SUBDIR += samba410
     SUBDIR += samplicator
     SUBDIR += sbd
     SUBDIR += sbm
@@ -1423,7 +1434,6 @@
     SUBDIR += tftpgrab
     SUBDIR += thcrut
     SUBDIR += throttled
-    SUBDIR += tigervnc
     SUBDIR += tigervnc-server
     SUBDIR += tigervnc-viewer
     SUBDIR += tightvnc
@@ -1485,6 +1495,7 @@
     SUBDIR += wackamole
     SUBDIR += wackford-squeers
     SUBDIR += wakeonlan
+    SUBDIR += waypipe
     SUBDIR += whois
     SUBDIR += widentd
     SUBDIR += wireguard

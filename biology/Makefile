@@ -65,6 +65,7 @@
     SUBDIR += kallisto
     SUBDIR += lagan
     SUBDIR += lamarc
+    SUBDIR += libbigwig
     SUBDIR += libgtextutils
     SUBDIR += libsbml
     SUBDIR += linux-foldingathome
@@ -164,6 +165,7 @@
     SUBDIR += vcflib
     SUBDIR += vcftools
     SUBDIR += velvet
+    SUBDIR += viennarna
     SUBDIR += vsearch
     SUBDIR += wise
 

@@ -18,6 +18,7 @@
     SUBDIR += cascade
     SUBDIR += chipvault
     SUBDIR += cura-engine
+    SUBDIR += digital
     SUBDIR += dinotrace
     SUBDIR += dxf2fig
     SUBDIR += electric
@@ -45,6 +46,7 @@
     SUBDIR += k40-whisperer
     SUBDIR += kicad
     SUBDIR += kicad-devel
+    SUBDIR += kicad-doc
     SUBDIR += kicad-library-footprints
     SUBDIR += kicad-library-footprints-devel
     SUBDIR += kicad-library-packages3d

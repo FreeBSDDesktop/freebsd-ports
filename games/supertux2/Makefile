@@ -3,6 +3,7 @@
 PORTNAME=	supertux
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.6.0
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-Source
 CATEGORIES=	games
 MASTER_SITES=	https://github.com/SuperTux/supertux/releases/download/v${PORTVERSION}/
@@ -16,7 +17,7 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libfreetype.so:print/freetype2 \
 		libogg.so:audio/libogg \
 		libphysfs.so:devel/physfs \
-		libpng16.so:graphics/png \
+		libpng.so:graphics/png \
 		libcurl.so:ftp/curl \
 		libvorbis.so:audio/libvorbis
 

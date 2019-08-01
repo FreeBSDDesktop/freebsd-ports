@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	postgresql
-PORTREVISION=	2
+PORTREVISION=	1
 
 COMMENT=	PostgreSQL database (client)
 

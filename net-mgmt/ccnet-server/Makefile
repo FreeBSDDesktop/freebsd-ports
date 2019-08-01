@@ -3,6 +3,7 @@
 PORTNAME=	ccnet-server
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${SEAFILE_VER}
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-server
 CATEGORIES=	net-mgmt devel
 
@@ -20,8 +21,8 @@ LIB_DEPENDS=	libsearpc.so:devel/libsearpc \
 		libevent.so:devel/libevent \
 		libjansson.so:devel/jansson
 
-USES=		autoreconf gnome libtool localbase mysql:client pathfix \
-		pgsql pkgconfig python:-2.7 shebangfix ssl
+USES=		autoreconf compiler:c11 gnome libtool localbase mysql:client \
+		pathfix pgsql pkgconfig python:-2.7 shebangfix ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	haiwen
 USE_GNOME=	glib20

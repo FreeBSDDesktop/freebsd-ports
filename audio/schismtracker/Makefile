@@ -3,6 +3,7 @@
 
 PORTNAME=	schismtracker
 PORTVERSION=	20181223
+PORTREVISION=	1
 CATEGORIES=	audio
 
 MAINTAINER=	ehaupt@FreeBSD.org
@@ -29,6 +30,9 @@ PLIST_FILES=	bin/schismtracker man/man1/schismtracker.1.gz \
 		share/applications/schism.desktop \
 		share/pixmaps/schism-icon-128.png \
 		share/pixmaps/schism-itf-icon-128.png
+
+# changes only affect macOS
+PORTSCOUT=	ignore:20190614
 
 post-patch:
 	@${REINPLACE_CMD} \

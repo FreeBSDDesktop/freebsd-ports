@@ -217,6 +217,7 @@
     SUBDIR += py-editorconfig
     SUBDIR += py-pynvim
     SUBDIR += py-room
+    SUBDIR += quilter
     SUBDIR += rox-edit
     SUBDIR += rubygem-neovim
     SUBDIR += scite
@@ -251,7 +252,6 @@
     SUBDIR += wordgrinder
     SUBDIR += wxhexeditor
     SUBDIR += xcoral
-    SUBDIR += xed
     SUBDIR += xi-core
     SUBDIR += xi-term
     SUBDIR += xmlcopyeditor

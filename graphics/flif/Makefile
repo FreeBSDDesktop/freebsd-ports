@@ -3,6 +3,7 @@
 PORTNAME=	flif
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.3-96
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-g74ea92b
 CATEGORIES=	graphics
 
@@ -12,7 +13,7 @@ COMMENT=	Free Lossless Image Format
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/../LICENSE_Apache2
 
-LIB_DEPENDS=	libpng16.so:graphics/png
+LIB_DEPENDS=	libpng.so:graphics/png
 
 USES=		cmake compiler:c++11-lang gettext-runtime gnome localbase:ldflags pkgconfig sdl shared-mime-info
 USE_GITHUB=	yes

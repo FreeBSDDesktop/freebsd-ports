@@ -3,7 +3,7 @@
 
 PORTNAME=	xcoral
 PORTVERSION=	3.47
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	editors
 MASTER_SITES=	http://xcoral.free.fr/
 
@@ -16,7 +16,7 @@ COMMENT=	Multiwindow mouse-based text editor for X
 LICENSE=	GPLv2
 
 USE_XORG=	x11
-USES=		bison
+USES=		bison compiler:c11
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--libdir=${PREFIX}/share
 LIBS+=		-lgnuregex

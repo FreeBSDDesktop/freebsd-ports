@@ -141,6 +141,7 @@
     SUBDIR += barvinok
     SUBDIR += bcal
     SUBDIR += biggles
+    SUBDIR += bitwise
     SUBDIR += blacs
     SUBDIR += blas
     SUBDIR += blaze
@@ -338,6 +339,7 @@
     SUBDIR += ltl
     SUBDIR += ltl2ba
     SUBDIR += lybniz
+    SUBDIR += mandelbulber2
     SUBDIR += mate-calc
     SUBDIR += math77
     SUBDIR += mathgl
@@ -707,6 +709,7 @@
     SUBDIR += py-gnuplot
     SUBDIR += py-grandalf
     SUBDIR += py-graphillion
+    SUBDIR += py-gym
     SUBDIR += py-igakit
     SUBDIR += py-igraph
     SUBDIR += py-intspan

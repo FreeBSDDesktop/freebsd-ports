@@ -2,6 +2,7 @@
 
 PORTNAME=	devilutionX
 PORTVERSION=	0.4.0
+PORTREVISION=	1
 CATEGORIES=	games
 
 MAINTAINER=	benny.goemans@gmail.com
@@ -23,7 +24,6 @@ PLIST_FILES=	bin/devilutionx
 USE_GITHUB=	yes
 GH_ACCOUNT=	diasurgical
 GH_PROJECT=	devilutionX
-GH_TAGNAME=	${PORTVERSION}
 
 OPTIONS_DEFAULT=	RELEASE
 

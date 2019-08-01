@@ -63,6 +63,7 @@
     SUBDIR += boodler
     SUBDIR += bristol
     SUBDIR += bs2b-lv2
+    SUBDIR += bsequencer-lv2
     SUBDIR += cadence
     SUBDIR += calf-lv2
     SUBDIR += cam
@@ -240,6 +241,7 @@
     SUBDIR += gqradio
     SUBDIR += gradio
     SUBDIR += gramofile
+    SUBDIR += grip
     SUBDIR += gsequencer
     SUBDIR += gsm
     SUBDIR += gsound
@@ -661,6 +663,7 @@
     SUBDIR += py-ao
     SUBDIR += py-apetag
     SUBDIR += py-aubio
+    SUBDIR += py-audioread
     SUBDIR += py-cddb
     SUBDIR += py-discid
     SUBDIR += py-discogs-client
@@ -698,6 +701,7 @@
     SUBDIR += py-webrtcvad
     SUBDIR += py-xmms2
     SUBDIR += pytone
+    SUBDIR += qaudiosonar
     SUBDIR += qjackctl
     SUBDIR += qmidiarp
     SUBDIR += qmidictl
@@ -791,6 +795,7 @@
     SUBDIR += stk
     SUBDIR += streamripper
     SUBDIR += streamtranscoder
+    SUBDIR += string-machine-lv2
     SUBDIR += stymulator
     SUBDIR += suil
     SUBDIR += supercollider
