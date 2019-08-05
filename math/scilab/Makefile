@@ -3,7 +3,7 @@
 
 PORTNAME=	scilab
 PORTVERSION=	5.5.2
-PORTREVISION=	18
+PORTREVISION=	19
 CATEGORIES=	math cad java
 MASTER_SITES=	https://www.scilab.org/download/${PORTVERSION}/
 DISTFILES=	${DISTNAME}-src${EXTRACT_SUFX}
@@ -130,7 +130,7 @@ CONFIGURE_ARGS+=	--without-openmp
 
 .include <bsd.port.pre.mk>
 
-.if ${PORT_OPTIONS:MGUI} && ${JAVA_PORT_VERSION:M1.8.*}
+.if ${PORT_OPTIONS:MGUI} && ${JAVA_PORT_VERSION:M*8*}
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-Makefile.in
 .endif
 

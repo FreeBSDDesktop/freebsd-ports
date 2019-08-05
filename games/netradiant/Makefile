@@ -3,6 +3,7 @@
 
 PORTNAME=	netradiant
 PORTVERSION=	20150621
+PORTREVISION=	1
 CATEGORIES=	games cad
 MASTER_SITES=	http://ingar.intranifty.net/gtkradiant/files/ LOCAL/danfe \
 		http://ingar.intranifty.net/gtkradiant/files/gamepacks/:gp
@@ -34,7 +35,7 @@ MAKE_ENV=	BUILD=release DOWNLOAD_GAMEPACKS=no EXE=${ARCH} \
 		RADIANT_ABOUTMSG="For ${OPSYS} ${OSREL} (${ARCH})"
 
 SUB_FILES=	${PORTNAME}
-SUB_LIST=	ARCH=${ARCH:S/powerpc64/powerpc/}
+SUB_LIST=	ARCH=${ARCH}
 PLIST_SUB:=	${SUB_LIST}
 
 OPTIONS_DEFINE=	GAMEPACK

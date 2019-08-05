@@ -43,21 +43,20 @@ FIREBIRD_DEFAULT?=	2.5
 FORTRAN_DEFAULT?=	gfortran
 # Possible values: 3.0.4
 FPC_DEFAULT?=		3.0.4
-# Possible values: 7, 8, 9
+# Possible values: 7, 8, 9 (powerpcspe was dropped with GCC 9)
+.if ${ARCH} == "powerpcspe"
 GCC_DEFAULT?=		8
+.else
+GCC_DEFAULT?=		9
+.endif
 # Possible values: 7, 8, 9, agpl
 GHOSTSCRIPT_DEFAULT?=	agpl
 # Possible values: 0.6, 0.7, 1.0, 1.1
 JULIA_DEFAULT?=		1.0
 # Possible values: 2.0.0
 LAZARUS_DEFAULT?=	2.0.0
-.if ${ARCH} == amd64
-# Possible values: c6, c6_64, c7
-LINUX_DEFAULT?=		c6_64
-.else
-# Possible values: c6
-LINUX_DEFAULT?=		c6
-.endif
+# Possible values: c6, c7
+LINUX_DEFAULT?=		c7
 # Possible values: 60, 70, 80, -devel (to be used when non-base compiler is required)
 # Please give notice to the Graphics Team (x11@FreeBSD.org) in advance before 
 # bumping the LLVM version.
@@ -95,7 +94,7 @@ PYTHON3_DEFAULT?=	3.6
 RUBY_DEFAULT?=		2.5
 # Possible values: rust, rust-nightly
 RUST_DEFAULT?=		rust
-# Possible values: 4.6, 4.7, 4.8
+# Possible values: 4.6, 4.7, 4.8, 4.10
 SAMBA_DEFAULT?=		4.8
 # Possible values: base, openssl, openssl111, libressl, libressl-devel
 .if !defined(SSL_DEFAULT)

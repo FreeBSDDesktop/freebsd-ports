@@ -2,7 +2,7 @@
 
 PORTNAME=	knotifyconfig
 DISTVERSION=	${KDE_FRAMEWORKS_VERSION}
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	devel kde kde-frameworks
 
 MAINTAINER=	kde@FreeBSD.org

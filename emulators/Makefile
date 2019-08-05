@@ -14,6 +14,7 @@
     SUBDIR += bfe
     SUBDIR += bochs
     SUBDIR += bsvc
+    SUBDIR += cannonball
     SUBDIR += catapult
     SUBDIR += cinc
     SUBDIR += cingb
@@ -104,7 +105,6 @@
     SUBDIR += pcem
     SUBDIR += pcemu
     SUBDIR += pcsxr
-    SUBDIR += pearpc
     SUBDIR += pipelight
     SUBDIR += playonbsd
     SUBDIR += ppsspp

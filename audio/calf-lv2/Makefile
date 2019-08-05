@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	calf
-DISTVERSION=	0.90.1
-PORTREVISION=	3
+DISTVERSION=	0.90.3
 CATEGORIES=	audio
 MASTER_SITES=	http://calf-studio-gear.org/files/
 PKGNAMESUFFIX=	-lv2
@@ -21,7 +20,7 @@ LIB_DEPENDS=	libfluidsynth.so:audio/fluidsynth \
 		libjack.so:audio/jack \
 		libexpat.so:textproc/expat2
 
-USES=		autoreconf compiler:c++11-lang gmake libtool localbase pkgconfig
+USES=		autoreconf compiler:c++11-lang gmake gnome libtool localbase pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-lv2 --disable-static
 USE_GNOME=	cairo gtk20
@@ -29,6 +28,7 @@ USE_CXXSTD=	c++11
 INSTALL_TARGET=	install-strip
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
+USE_GCC=	yes # workaround for https://github.com/calf-studio-gear/calf/issues/227
 
 OPTIONS_DEFINE=		DOCS LASH
 OPTIONS_DEFAULT=	LASH

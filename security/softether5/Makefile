@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	softether
-DISTVERSION=	5.01.9670
-PORTREVISION=	1
+DISTVERSION=	5.01.9671
+#PORTREVISION=	0
 CATEGORIES=	security
 PKGNAMESUFFIX=	5
 
@@ -12,7 +12,8 @@ COMMENT=	SoftEther VPN 5 (Developer Edition)
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES+=		cmake:noninja dos2unix iconv:wchar_t localbase:ldflags ncurses readline ssl
+USES+=		cmake:noninja compiler:c11 dos2unix iconv:wchar_t \
+		localbase:ldflags ncurses readline ssl
 USE_RC_SUBR=	softether_bridge softether_client softether_server
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes

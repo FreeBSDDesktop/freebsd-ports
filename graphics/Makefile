@@ -867,6 +867,7 @@
     SUBDIR += py-pycollada
     SUBDIR += py-pydot
     SUBDIR += py-pyembree
+    SUBDIR += py-pyepsg
     SUBDIR += py-pygal
     SUBDIR += py-pyganim
     SUBDIR += py-pyglet
@@ -1005,6 +1006,7 @@
     SUBDIR += svg2pdf
     SUBDIR += svg2png
     SUBDIR += svgalib
+    SUBDIR += svgbob
     SUBDIR += swfdec
     SUBDIR += swfmill
     SUBDIR += swftools

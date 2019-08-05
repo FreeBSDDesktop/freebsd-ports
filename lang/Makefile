@@ -34,7 +34,6 @@
     SUBDIR += chicken
     SUBDIR += chicken5
     SUBDIR += cim
-    SUBDIR += cint
     SUBDIR += cjs
     SUBDIR += cling
     SUBDIR += clips
@@ -62,6 +61,7 @@
     SUBDIR += elixir
     SUBDIR += elixir-mode.el
     SUBDIR += elk
+    SUBDIR += elm
     SUBDIR += emacs-lisp-intro
     SUBDIR += erlang
     SUBDIR += erlang-doc

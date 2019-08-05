@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	virtualbox-ose
-PORTVERSION=	5.2.30
+PORTVERSION=	5.2.32
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.oracle.com/virtualbox/${PORTVERSION}/
 PKGNAMESUFFIX?=	-additions
@@ -90,13 +91,7 @@ KMK_CONFIG+=	VBOX_LIBPATH_X11=${LOCALBASE} VBOX_FREEBSD_SRC=${SRC_BASE}/sys
 
 .if ${PORT_OPTIONS:MOPENGL}
 VBOX_LIBS=	VBoxEGL.so \
-		VBoxOGL.so \
-		VBoxOGLarrayspu.so \
-		VBoxOGLcrutil.so \
-		VBoxOGLerrorspu.so \
-		VBoxOGLfeedbackspu.so \
-		VBoxOGLpackspu.so \
-		VBoxOGLpassthroughspu.so
+		VBoxOGL.so
 .endif
 
 .if ${PORT_OPTIONS:MX11}

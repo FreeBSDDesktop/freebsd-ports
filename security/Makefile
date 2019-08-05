@@ -91,6 +91,7 @@
     SUBDIR += clamfs
     SUBDIR += clamsmtp
     SUBDIR += clamtk
+    SUBDIR += cloak
     SUBDIR += clusterssh
     SUBDIR += cops
     SUBDIR += courier-authlib
@@ -277,6 +278,7 @@
     SUBDIR += l5
     SUBDIR += lasso
     SUBDIR += lastpass-cli
+    SUBDIR += lego
     SUBDIR += libadacrypt
     SUBDIR += libargon2
     SUBDIR += libassuan
@@ -371,6 +373,7 @@
     SUBDIR += mkp224o
     SUBDIR += modsecurity3
     SUBDIR += modsecurity3-apache
+    SUBDIR += modsecurity3-nginx
     SUBDIR += monkeysphere
     SUBDIR += morphis
     SUBDIR += munge
@@ -931,6 +934,7 @@
     SUBDIR += py-mixbox
     SUBDIR += py-mnemonic
     SUBDIR += py-msoffcrypto-tool
+    SUBDIR += py-muacrypt
     SUBDIR += py-netmiko
     SUBDIR += py-ntlm-auth
     SUBDIR += py-oauth2client
@@ -1091,7 +1095,6 @@
     SUBDIR += rubygem-encryptor
     SUBDIR += rubygem-ezcrypto
     SUBDIR += rubygem-googleauth
-    SUBDIR += rubygem-googleauth06
     SUBDIR += rubygem-gpgme
     SUBDIR += rubygem-gpgr
     SUBDIR += rubygem-gssapi
@@ -1212,7 +1215,6 @@
     SUBDIR += snort-rep
     SUBDIR += snort2pfcd
     SUBDIR += snort3
-    SUBDIR += snortreport
     SUBDIR += snortsam
     SUBDIR += snortsnarf
     SUBDIR += snuffleupagus
