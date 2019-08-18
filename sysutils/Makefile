@@ -348,6 +348,7 @@
     SUBDIR += fpc-users
     SUBDIR += fpc-utmp
     SUBDIR += fpc-uuid
+    SUBDIR += frand
     SUBDIR += freebsd-snapshot
     SUBDIR += freecolor
     SUBDIR += freedt
@@ -444,7 +445,6 @@
     SUBDIR += graid5
     SUBDIR += graveman
     SUBDIR += graylog
-    SUBDIR += grub2
     SUBDIR += grub2-bhyve
     SUBDIR += gsh
     SUBDIR += gsmartcontrol
