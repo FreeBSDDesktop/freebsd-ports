@@ -10,7 +10,7 @@ COMMENT=	X Window Protocol Viewer
 
 LICENSE=	MIT
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	xorgproto x11 xext
 
 PLIST_FILES=	bin/xscope man/man1/xscope.1.gz
