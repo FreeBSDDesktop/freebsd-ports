@@ -39,14 +39,15 @@
     SUBDIR += p5-Term-ShellUI
     SUBDIR += pdksh
     SUBDIR += pear-PHP_Shell
+    SUBDIR += poshinit
     SUBDIR += psh
     SUBDIR += rc
-    SUBDIR += rssh
     SUBDIR += rush
     SUBDIR += sash
     SUBDIR += scponly
     SUBDIR += shell-include
     SUBDIR += sparforte
+    SUBDIR += starship
     SUBDIR += tcsh_nls
     SUBDIR += tcshrc
     SUBDIR += v7sh
@@ -54,6 +55,7 @@
     SUBDIR += vshnu
     SUBDIR += wcd
     SUBDIR += xonsh
+    SUBDIR += yash
     SUBDIR += zsh
     SUBDIR += zsh-antigen
     SUBDIR += zsh-autosuggestions

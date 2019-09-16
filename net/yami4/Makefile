@@ -2,6 +2,7 @@
 
 PORTNAME=	yami4
 PORTVERSION=	1.11.0
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.inspirel.com/yami4/files/
 DISTNAME=	yami4-gpl-${PORTVERSION}
@@ -12,9 +13,9 @@ COMMENT=	Messaging library for distributed systems
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/gpl-3.0.txt
 
-USES=		zip
+USES=		compiler:c++11-lang zip
 
-MAKE_ARGS=	OPTIONS="${CXXFLAGS}"
+MAKE_ARGS=	COMPILER="${CXX}" OPTIONS="${CXXFLAGS}"
 CXXFLAGS+=	-D_GLIBCXX_USE_C99 # XXX ports/193528
 
 PORTDOCS=	*

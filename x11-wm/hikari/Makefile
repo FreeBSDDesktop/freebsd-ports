@@ -2,6 +2,7 @@
 
 PORTNAME=	hikari
 DISTVERSION=	0.1.3
+PORTREVISION=	1
 CATEGORIES=	x11-wm
 MASTER_SITES=	https://acmelabs.space/~raichoo/
 
@@ -15,7 +16,7 @@ LIB_DEPENDS=	libxcb-ewmh.so:x11/xcb-util-wm \
 		libxcb-icccm.so:x11/xcb-util-wm \
 		libxcb-keysyms.so:x11/xcb-util-keysyms
 
-USES=		localbase:ldflags
+USES=		compiler:c11 localbase:ldflags
 USE_XORG=	x11 xcb
 
 OPTIONS_DEFINE=	DOCS

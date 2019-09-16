@@ -2,12 +2,13 @@
 
 PORTNAME=	libcdb
 PORTVERSION=	g2019052401
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	swills@FreeBSD.org
 COMMENT=	Constant database library
 
-USES=		gmake libtool:build
+USES=		compiler:c11 gmake libtool:build
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	rmind

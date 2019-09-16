@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	pjsip
-PORTVERSION=	2.8
+PORTVERSION=	2.9
 PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.pjsip.org/release/${PORTVERSION}/

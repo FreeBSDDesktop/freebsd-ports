@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	azure-cli-storage
-PORTVERSION=	2.4.2
+PORTVERSION=	2.4.3
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,6 +10,9 @@ MAINTAINER=	dbaio@FreeBSD.org
 COMMENT=	Microsoft Azure Command-Line Tools Storage Command Module
 
 LICENSE=	MIT
+
+DEPRECATED=	Incorporated into azure-cli package
+EXPIRATION_DATE=2019-09-30
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-mgmt-storage>=3.3.0:devel/py-azure-mgmt-storage@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-multiapi-storage>=0.2.3:devel/py-azure-multiapi-storage@${PY_FLAVOR} \

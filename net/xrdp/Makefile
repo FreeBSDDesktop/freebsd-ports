@@ -2,10 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	xrdp
-#PORTREVISION=	0
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.9.10
-PORTREVISION=	1
+DISTVERSION=	0.9.11
 PORTEPOCH=	1
 CATEGORIES=	net
 DIST_SUBDIR?=	${PORTNAME}
@@ -31,7 +29,7 @@ USE_GITHUB=	yes
 GNU_CONFIGURE=	yes
 GH_ACCOUNT=	neutrinolabs
 GH_PROJECT=	xrdp librfxcodec:librfxcodec libpainter:libpainter
-GH_TAGNAME=	v0.1.4:librfxcodec v0.1.1:libpainter
+GH_TAGNAME=	v0.1.5:librfxcodec v0.1.1:libpainter
 
 CONFIGURE_ARGS=	--localstatedir=/var --enable-strict-locations \
 		--with-pkgconfigdir=${LOCALBASE}/libdata/pkgconfig \
@@ -43,7 +41,7 @@ SUB_FILES=	pkg-deinstall pkg-install pkg-message
 SUB_LIST=	OPENSSLBASE=${OPENSSLBASE}
 
 OPTIONS_DEFINE=	DEBUG FUSE IPV6
-OPTIONS_DEFAULT=	FDKAAC MP3LAME OPUS
+OPTIONS_DEFAULT=	FDKAAC OPUS
 OPTIONS_GROUP=	AUDIO_CODEC
 OPTIONS_GROUP_AUDIO_CODEC=	FDKAAC MP3LAME OPUS
 FDKAAC_DESC=	Enable Fraunhofer FDK AAC for audio redirection

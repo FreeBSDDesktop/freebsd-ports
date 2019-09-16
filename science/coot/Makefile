@@ -2,7 +2,7 @@
 
 PORTNAME=	coot
 DISTVERSION=	0.8.9.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science
 MASTER_SITES=	https://www2.mrc-lmb.cam.ac.uk/personal/pemsley/${PORTNAME}/source/releases/ \
 		https://www2.mrc-lmb.cam.ac.uk/personal/pemsley/${PORTNAME}/dependencies/:data
@@ -25,7 +25,7 @@ LIB_DEPENDS=	libccp4c.so:science/libccp4 \
 		libgtkglext-x11-1.0.so:x11-toolkits/gtkglext \
 		libgsl.so:math/gsl \
 		libmmdb2.so:science/mmdb2 \
-		libpng16.so:graphics/png \
+		libpng.so:graphics/png \
 		libsfftw.so:math/fftw-float \
 		libssm.so:science/libssm
 RUN_DEPENDS=	bash:shells/bash

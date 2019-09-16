@@ -32,7 +32,6 @@
     SUBDIR += cacti88-spine
     SUBDIR += carbon-relay-ng
     SUBDIR += carbonzipper
-    SUBDIR += ccnet-client
     SUBDIR += ccnet-server
     SUBDIR += cdpd
     SUBDIR += cdpr
@@ -382,6 +381,7 @@
     SUBDIR += tcpreplay
     SUBDIR += tcptrack
     SUBDIR += telegraf
+    SUBDIR += thanos
     SUBDIR += tornova
     SUBDIR += torrus
     SUBDIR += triton-guesttools

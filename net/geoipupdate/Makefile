@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	geoipupdate
-PORTVERSION=	4.0.2
+PORTVERSION=	4.0.5
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net geography
 
@@ -14,16 +14,21 @@ LICENSE_COMB=	dual
 LICENSE_FILE_APACHE20=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_MIT=	${WRKSRC}/LICENSE-MIT
 
-BUILD_DEPENDS=	go:lang/go
 RUN_DEPENDS=	ca_root_nss>=3:security/ca_root_nss
 
-USES=		gmake
+USES=		gmake go:no_targets
 USE_GITHUB=	yes
 GH_ACCOUNT=	maxmind
 
 MAKE_ENV+=	GOPATH=${WRKSRC} \
 		CONFFILE=${PREFIX}/etc/GeoIP.conf \
 		DATADIR=${PREFIX}/share/GeoIP
+
+GH_SUBDIR=	src/github.com/${GH_ACCOUNT_DEFAULT}/${PORTNAME}
+# Not needed: go-spew, pretty, testify
+GH_TUPLE=	gofrs:flock:v0.7.1:flock/src/github.com/gofrs/flock \
+		pkg:errors:v0.8.1:pkg/src/github.com/pkg/errors \
+		spf13:pflag:v1.0.3:pflag/src/github.com/spf13/pflag
 
 OPTIONS_DEFINE=	DOCS MANPAGES
 OPTIONS_DEFAULT=MANPAGES
@@ -37,8 +42,8 @@ PLIST_FILES=	bin/geoipupdate \
 		'@dir share/GeoIP'
 PORTDOCS=	GeoIP.conf.md geoipupdate.md
 
-post-extract:
-	${MV} ${WRKSRC}/vendor ${WRKSRC}/src
+post-patch:
+	${RM} ${WRKSRC}/go.mod
 	${REINPLACE_CMD} -e '/make-man-pages.pl/d' ${WRKSRC}/Makefile
 
 do-build-MANPAGES-on:
@@ -50,12 +55,12 @@ do-build-MANPAGES-on:
 		| ${SED} -e '1s/7/5/' > ${WRKSRC}/build/GeoIP.conf.5
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/share/GeoIP
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/GeoIP
 	${INSTALL_PROGRAM} ${WRKSRC}/build/geoipupdate ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/build/GeoIP.conf ${STAGEDIR}${PREFIX}/etc/GeoIP.conf.sample
 
 do-install-DOCS-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/build && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
 
 do-install-MANPAGES-on:

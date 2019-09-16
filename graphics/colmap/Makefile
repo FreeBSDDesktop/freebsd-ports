@@ -2,8 +2,11 @@
 
 PORTNAME=	colmap
 DISTVERSION=	3.5
-PORTREVISION=	7
+PORTREVISION=	9
 CATEGORIES=	graphics
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	b5ccc54e68e3.patch:-p1
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Structure from motion and multi-view stereo

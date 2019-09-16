@@ -4,7 +4,7 @@
 PORTNAME=	dnsperf
 PORTVERSION=	2.2.1
 DISTVERSIONPREFIX=v
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	dns benchmarks net
 
 MAINTAINER=	hrs@FreeBSD.org
@@ -17,7 +17,7 @@ LIB_DEPENDS=	liblmdb.so:databases/lmdb \
 		libjson-c.so:devel/json-c \
 		libxml2.so:textproc/libxml2
 
-USES=		autoreconf gnome iconv libtool ssl
+USES=		autoreconf compiler:c11 gnome iconv libtool ssl
 USE_GITHUB=	yes
 
 GH_ACCOUNT=	DNS-OARC

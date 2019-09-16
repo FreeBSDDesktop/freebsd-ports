@@ -3,7 +3,7 @@
 
 PORTNAME=	electricsheep
 DISTVERSION=	2.7 # configure.ac says that the version is 2.7b33
-PORTREVISION=	1
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	graphics
 
@@ -19,7 +19,7 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libavcodec.so:multimedia/ffmpeg \
 		libGLee.so:graphics/glee \
 		libgtop-2.0.so:devel/libgtop \
-		libpng16.so:graphics/png \
+		libpng.so:graphics/png \
 		libtinyxml.so:textproc/tinyxml
 RUN_DEPENDS=	flam3-animate:graphics/flam3
 

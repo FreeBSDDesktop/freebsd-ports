@@ -4,6 +4,7 @@ PORTNAME=	heaptrack
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.1.0-92
 DISTVERSIONSUFFIX=	-g987d9c4
+PORTREVISION=	2
 CATEGORIES=	devel kde
 
 MAINTAINER=	kde@FreeBSD.org
@@ -15,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libboost_regex.so:devel/boost-libs \
 		libKChart.so:graphics/kdiagram
 
-USES=		cmake desktop-file-utils kde:5 qt:5 tar:xz
+USES=		cmake compiler:c++11-lang desktop-file-utils kde:5 qt:5 tar:xz
 USE_GITHUB=	yes
 GH_ACCOUNT=	KDE
 USE_KDE=	auth auth codecs completion config config \

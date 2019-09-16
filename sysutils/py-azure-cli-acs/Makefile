@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	azure-cli-acs
-PORTVERSION=	2.4.2
+PORTVERSION=	2.4.4
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,6 +10,9 @@ MAINTAINER=	dbaio@FreeBSD.org
 COMMENT=	Microsoft Azure Command-Line Tools ACS Command Module
 
 LICENSE=	MIT
+
+DEPRECATED=	Incorporated into azure-cli package
+EXPIRATION_DATE=2019-09-30
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-mgmt-authorization>=0.50.0:devel/py-azure-mgmt-authorization@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-compute>=5.0.0:devel/py-azure-mgmt-compute@${PY_FLAVOR} \

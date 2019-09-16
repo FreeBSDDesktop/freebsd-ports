@@ -27,9 +27,11 @@
     SUBDIR += bitstream
     SUBDIR += blind
     SUBDIR += bsdbktr_tvtune
+    SUBDIR += butt
     SUBDIR += camserv
     SUBDIR += ccextractor
     SUBDIR += cclive
+    SUBDIR += celluloid
     SUBDIR += cheese
     SUBDIR += chilitags
     SUBDIR += cinelerra-gg
@@ -64,7 +66,6 @@
     SUBDIR += ffaudioconverter
     SUBDIR += ffdec
     SUBDIR += ffmpeg
-    SUBDIR += ffmpeg0
     SUBDIR += ffmpeg2theora
     SUBDIR += ffmpegthumbnailer
     SUBDIR += ffms2
@@ -86,7 +87,6 @@
     SUBDIR += gmp-api
     SUBDIR += gmtk
     SUBDIR += gnome-mplayer
-    SUBDIR += gnome-mpv
     SUBDIR += gnome-subtitles
     SUBDIR += gnome-twitch
     SUBDIR += gpac-libgpac
@@ -182,6 +182,7 @@
     SUBDIR += kodi-addon-peripheral-joystick
     SUBDIR += kodi-addon-pvr-hts
     SUBDIR += kodi-addon-pvr-iptvsimple
+    SUBDIR += kodi-addon-vfs.libarchive-devel
     SUBDIR += kodi-devel
     SUBDIR += kvazaar
     SUBDIR += l-smash
@@ -210,6 +211,7 @@
     SUBDIR += libmpeg2
     SUBDIR += libmpeg3
     SUBDIR += libmtp
+    SUBDIR += libopenshot
     SUBDIR += libquicktime
     SUBDIR += libquicktime-lame
     SUBDIR += libquvi
@@ -269,7 +271,6 @@
     SUBDIR += mpc-qt
     SUBDIR += mpeg2codec
     SUBDIR += mpeg2play
-    SUBDIR += mpeg4ip
     SUBDIR += mpeg_encode
     SUBDIR += mpeg_play
     SUBDIR += mpeg_stat
@@ -402,6 +403,7 @@
     SUBDIR += szap-s2
     SUBDIR += tautulli
     SUBDIR += tcmplex-panteltje
+    SUBDIR += termplay
     SUBDIR += tivodecode
     SUBDIR += totem
     SUBDIR += totem-pl-parser

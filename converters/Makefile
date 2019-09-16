@@ -11,7 +11,9 @@
     SUBDIR += ascii2binary
     SUBDIR += asr10
     SUBDIR += base64
+    SUBDIR += base91
     SUBDIR += bibtexconv
+    SUBDIR += bmfdec
     SUBDIR += bsdconv
     SUBDIR += btoa
     SUBDIR += chmview
@@ -44,6 +46,7 @@
     SUBDIR += libiconv
     SUBDIR += libticonv
     SUBDIR += libutf-8
+    SUBDIR += linux-c7-fribidi
     SUBDIR += lua-iconv
     SUBDIR += lua-json
     SUBDIR += lua51-iconv

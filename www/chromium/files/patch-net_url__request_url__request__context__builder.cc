@@ -1,6 +1,6 @@
---- net/url_request/url_request_context_builder.cc.orig	2019-04-30 22:22:55 UTC
+--- net/url_request/url_request_context_builder.cc.orig	2019-07-24 18:58:33 UTC
 +++ net/url_request/url_request_context_builder.cc
-@@ -497,7 +497,7 @@ std::unique_ptr<URLRequestContext> URLRequestContextBu
+@@ -534,7 +534,7 @@ std::unique_ptr<URLRequestContext> URLRequestContextBu
    }
  
    if (!proxy_resolution_service_) {
@@ -9,7 +9,7 @@
      // TODO(willchan): Switch to using this code when
      // ProxyResolutionService::CreateSystemProxyConfigService()'s signature
      // doesn't suck.
-@@ -506,7 +506,7 @@ std::unique_ptr<URLRequestContext> URLRequestContextBu
+@@ -543,7 +543,7 @@ std::unique_ptr<URLRequestContext> URLRequestContextBu
            ProxyResolutionService::CreateSystemProxyConfigService(
                base::ThreadTaskRunnerHandle::Get().get());
      }

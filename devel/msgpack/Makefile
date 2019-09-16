@@ -2,6 +2,7 @@
 
 PORTNAME=	msgpack
 PORTVERSION=	3.2.0
+PORTREVISION=	1
 DISTVERSIONPREFIX=	cpp-
 CATEGORIES=	devel
 
@@ -18,6 +19,7 @@ USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_PROJECT=	msgpack-c
 
+CMAKE_OFF=	MSGPACK_BUILD_EXAMPLES
 TEST_TARGET=	test
 
 .include <bsd.port.options.mk>

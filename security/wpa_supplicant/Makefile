@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	wpa_supplicant
-PORTVERSION=	2.8
+PORTVERSION=	2.9
 CATEGORIES=	security net
 MASTER_SITES=	https://w1.fi/releases/
 
@@ -25,6 +25,10 @@ SUB_FILES=	pkg-message
 PORTDOCS=	README ChangeLog
 
 CFG=		${BUILD_WRKSRC}/.config
+
+.if !exists(/etc/rc.d/wpa_supplicant)
+USE_RC_SUBR=	wpa_supplicant
+.endif
 
 OPTIONS_MULTI=		DRV EAP
 OPTIONS_MULTI_DRV=	BSD WIRED NDIS TEST NONE #ROBOSWITCH

@@ -143,6 +143,7 @@
     SUBDIR += drm-fbsd12.0-kmod
     SUBDIR += drm-kmod
     SUBDIR += drm-legacy-kmod
+    SUBDIR += drm_info
     SUBDIR += dspdfviewer
     SUBDIR += duhdraw
     SUBDIR += dynamechs
@@ -179,6 +180,7 @@
     SUBDIR += figurine
     SUBDIR += flam3
     SUBDIR += flasm
+    SUBDIR += flif
     SUBDIR += flphoto
     SUBDIR += fly
     SUBDIR += fortytwo
@@ -197,6 +199,7 @@
     SUBDIR += fpc-rsvg
     SUBDIR += fpc-svgalib
     SUBDIR += fracplanet
+    SUBDIR += fractgen
     SUBDIR += fraqtive
     SUBDIR += freeglut
     SUBDIR += freeimage
@@ -251,11 +254,11 @@
     SUBDIR += gimp-refocus-plugin
     SUBDIR += gimp-resynthesizer
     SUBDIR += gimp-save-for-web
-    SUBDIR += gimp-wavelet-decompose-plugin
     SUBDIR += gimp-wavelet-denoise-plugin
     SUBDIR += gimp-wavelet-sharpen-plugin
     SUBDIR += giram
     SUBDIR += gkrellkam2
+    SUBDIR += glad
     SUBDIR += gle
     SUBDIR += glee
     SUBDIR += glew
@@ -355,6 +358,7 @@
     SUBDIR += imc
     SUBDIR += imgtops
     SUBDIR += imgv
+    SUBDIR += imgvtopgm
     SUBDIR += imlib2
     SUBDIR += imlib2-webp
     SUBDIR += imlib2_loaders
@@ -376,6 +380,7 @@
     SUBDIR += jhead
     SUBDIR += jogamp-jogl
     SUBDIR += jogl
+    SUBDIR += jp
     SUBDIR += jp2a
     SUBDIR += jpatch
     SUBDIR += jpeg
@@ -399,7 +404,7 @@
     SUBDIR += kf5-prison
     SUBDIR += kgraphviewer
     SUBDIR += kimagemapeditor
-    SUBDIR += kipiplugins
+    SUBDIR += kipi-plugins
     SUBDIR += kix-kmod
     SUBDIR += klatexformula
     SUBDIR += kludge3d
@@ -489,6 +494,7 @@
     SUBDIR += librsvg2-rust
     SUBDIR += libsixel
     SUBDIR += libspiro
+    SUBDIR += libspng
     SUBDIR += libsvg
     SUBDIR += libsvg-cairo
     SUBDIR += libvisual
@@ -497,6 +503,7 @@
     SUBDIR += libwmf
     SUBDIR += libwmf-nox11
     SUBDIR += libwpg03
+    SUBDIR += libxatracker
     SUBDIR += libyuv
     SUBDIR += libzmf
     SUBDIR += lightzone
@@ -512,6 +519,7 @@
     SUBDIR += linux-c6-sdl_ttf
     SUBDIR += linux-c6-tiff
     SUBDIR += linux-c7-cairo
+    SUBDIR += linux-c7-cairo-gobject
     SUBDIR += linux-c7-dri
     SUBDIR += linux-c7-gdk-pixbuf2
     SUBDIR += linux-c7-glx-utils
@@ -519,14 +527,15 @@
     SUBDIR += linux-c7-jasper
     SUBDIR += linux-c7-jbigkit
     SUBDIR += linux-c7-jpeg
+    SUBDIR += linux-c7-libepoxy
+    SUBDIR += linux-c7-libglvnd
     SUBDIR += linux-c7-png
     SUBDIR += linux-c7-sdl_image
     SUBDIR += linux-c7-sdl_ttf
     SUBDIR += linux-c7-tiff
+    SUBDIR += linux-c7-wayland
     SUBDIR += lua-gd
     SUBDIR += luminance-qt5
-    SUBDIR += luxrender
-    SUBDIR += luxrender14
     SUBDIR += lximage-qt
     SUBDIR += magnum
     SUBDIR += magnum-examples
@@ -731,6 +740,7 @@
     SUBDIR += pecl-imagick
     SUBDIR += pecl-imagick-im7
     SUBDIR += pecl-qrencode
+    SUBDIR += pecl-vips
     SUBDIR += pecomato
     SUBDIR += pencil2d
     SUBDIR += peps
@@ -741,6 +751,7 @@
     SUBDIR += pho
     SUBDIR += photivo
     SUBDIR += photoflare
+    SUBDIR += photoflow
     SUBDIR += photopc
     SUBDIR += photoqt
     SUBDIR += phototonic
@@ -766,6 +777,7 @@
     SUBDIR += plasma-kmod
     SUBDIR += plotutils
     SUBDIR += png
+    SUBDIR += png++
     SUBDIR += png2html
     SUBDIR += png2ico
     SUBDIR += pngcheck
@@ -794,6 +806,7 @@
     SUBDIR += price
     SUBDIR += processing
     SUBDIR += proj
+    SUBDIR += proj5
     SUBDIR += pstoedit
     SUBDIR += pstoepsi
     SUBDIR += ptex
@@ -808,6 +821,7 @@
     SUBDIR += py-cairocffi
     SUBDIR += py-cartopy
     SUBDIR += py-chart
+    SUBDIR += py-descartes
     SUBDIR += py-django-easy-thumbnails
     SUBDIR += py-djvulibre
     SUBDIR += py-editobj
@@ -833,6 +847,7 @@
     SUBDIR += py-imageio-ffmpeg
     SUBDIR += py-imageio24
     SUBDIR += py-imagesize
+    SUBDIR += py-img2pdf
     SUBDIR += py-imgurpython
     SUBDIR += py-leather
     SUBDIR += py-mapclassify
@@ -857,6 +872,7 @@
     SUBDIR += py-pycollada
     SUBDIR += py-pydot
     SUBDIR += py-pyembree
+    SUBDIR += py-pyepsg
     SUBDIR += py-pygal
     SUBDIR += py-pyganim
     SUBDIR += py-pyglet
@@ -866,6 +882,7 @@
     SUBDIR += py-pyocr
     SUBDIR += py-pypillowfight
     SUBDIR += py-pyproj
+    SUBDIR += py-pyqrcode
     SUBDIR += py-pyqtgraph
     SUBDIR += py-python-poppler-qt5
     SUBDIR += py-qt5-svg
@@ -940,6 +957,7 @@
     SUBDIR += rubygem-gruff
     SUBDIR += rubygem-image_science
     SUBDIR += rubygem-imagesize
+    SUBDIR += rubygem-invisible_captcha
     SUBDIR += rubygem-mini_magick
     SUBDIR += rubygem-objectdetect
     SUBDIR += rubygem-opengl
@@ -994,6 +1012,7 @@
     SUBDIR += svg2pdf
     SUBDIR += svg2png
     SUBDIR += svgalib
+    SUBDIR += svgbob
     SUBDIR += swfdec
     SUBDIR += swfmill
     SUBDIR += swftools

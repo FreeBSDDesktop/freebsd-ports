@@ -1,6 +1,6 @@
---- chrome/test/BUILD.gn.orig	2019-04-30 22:22:38 UTC
+--- chrome/test/BUILD.gn.orig	2019-07-24 18:58:15 UTC
 +++ chrome/test/BUILD.gn
-@@ -5318,7 +5318,7 @@ test("chrome_app_unittests") {
+@@ -5475,7 +5475,7 @@ test("chrome_app_unittests") {
      "//components/crash/core/common",
      "//components/flags_ui:switches",
    ]

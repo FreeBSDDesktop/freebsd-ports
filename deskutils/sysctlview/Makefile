@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	sysctlview
-PORTVERSION=	1.2
+PORTVERSION=	1.4
+PORTREVISION=	1
 CATEGORIES=	deskutils
 
 MAINTAINER=	alfix86@gmail.com
@@ -18,7 +19,7 @@ USE_GNOME=	atk atkmm cairo cairomm gdkpixbuf2 glib20 glib20 glibmm glibmm \
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	alfix
-GL_COMMIT=	530198e752452ad6c088569718949c34c9e265eb
+GL_COMMIT=	98f202bc1b6922e3b9011d56d7715cb4c3b098a9
 
 INSTALLS_ICONS=	yes
 

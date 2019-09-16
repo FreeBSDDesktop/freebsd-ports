@@ -12,8 +12,8 @@ LICENSE=	EPL
 
 USES=		compiler:c11 meson ninja python:build
 
-HASH=		ea4c97c
-AST_COMMIT_DATE=	2019.05.21
+HASH=		657c587
+AST_COMMIT_DATE=	2019.09.03
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	att
@@ -23,9 +23,7 @@ GH_TAGNAME=	${HASH}
 KSH_CONFLICTS=		pdksh-*
 KSH93_CONFLICTS=	ksh93-2* ast-ksh-*
 
-LDFLAGS+=	-lm
 MESON_BUILD_DIR=	build
-MAKE_ENV=	CCFLAGS="${CFLAGS}"
 
 OPTIONS_DEFAULT=	KSH93
 OPTIONS_SINGLE=		BIN_KSH
@@ -34,7 +32,6 @@ KSH_DESC=		Install to ${PREFIX}/bin/ksh
 KSH93_DESC=		Install to ${PREFIX}/bin/ksh93
 
 KSH93_EXTRA_PATCHES=	${FILESDIR}/extra-patch-install-as-ksh93
-KSH93_DESC=	Install to ${PREFIX}/bin/ksh93
 
 KSH_PLIST_SUB=		93=""
 KSH93_PLIST_SUB=	93="93"
@@ -45,7 +42,7 @@ post-patch:
 	@${REINPLACE_CMD} -e '/for name in/ s|python.*|${PYTHON_CMD}|g' ${WRKSRC}/scripts/python.sh
 	@${REINPLACE_CMD} -e 's|SF_FLAGS|SFIO_FLAGS|g' ${WRKSRC}/src/lib/libast/include/sfio*.h ${WRKSRC}/src/lib/libast/sfio/*.c
 .if ${PORT_OPTIONS:MKSH93}
-	@${MV} ${WRKSRC}/src/cmd/ksh93/ksh.1 ${WRKSRC}/src/cmd/ksh93/ksh93.1
+	@${MV} ${WRKSRC}/src/cmd/ksh93/docs/ksh.1 ${WRKSRC}/src/cmd/ksh93/docs/ksh93.1
 .endif
 .if ${PORT_OPTIONS:MKSH}
 	@# Keep portlint happy

@@ -20,8 +20,6 @@ share/doc/HTML/de/systemsettings/index.cache.bz2
 share/doc/HTML/de/systemsettings/index.docbook
 share/doc/HTML/en/systemsettings/index.cache.bz2
 share/doc/HTML/en/systemsettings/index.docbook
-share/doc/HTML/es/systemsettings/index.cache.bz2
-share/doc/HTML/es/systemsettings/index.docbook
 share/doc/HTML/it/systemsettings/index.cache.bz2
 share/doc/HTML/it/systemsettings/index.docbook
 share/doc/HTML/nl/systemsettings/index.cache.bz2
@@ -160,6 +158,7 @@ share/locale/vi/LC_MESSAGES/systemsettings.mo
 share/locale/wa/LC_MESSAGES/systemsettings.mo
 share/locale/zh_CN/LC_MESSAGES/systemsettings.mo
 share/locale/zh_TW/LC_MESSAGES/systemsettings.mo
+share/metainfo/org.kde.systemsettings.metainfo.xml
 %%DATADIR%%/classic/main.html
 %%DATADIR%%/classic/systemsettings-classic.css
 %%DATADIR%%/systemsettings.kcfg

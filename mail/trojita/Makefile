@@ -3,7 +3,7 @@
 
 PORTNAME=	trojita
 PORTVERSION=	0.7
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	mail
 MASTER_SITES=	SF/${PORTNAME}/src/
 
@@ -15,7 +15,6 @@ LICENSE_COMB=	dual
 
 LIB_DEPENDS=	libqt5keychain.so:security/qtkeychain
 
-CONFLICTS_INSTALL=	trojita-qt4-[0-9]*
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 

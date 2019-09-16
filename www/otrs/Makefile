@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	otrs
-PORTVERSION=	6.0.10
+PORTVERSION=	6.0.19
 PORTREVISION=	1
 CATEGORIES=	www
 
@@ -47,6 +47,7 @@ BUILD_DEPENDS=	p5-Archive-Zip>=0:archivers/p5-Archive-Zip \
 		p5-Sisimai>=0:mail/p5-Sisimai \
 		p5-XML-Parser>=0:textproc/p5-XML-Parser \
 		p5-XML-LibXML>=0:textproc/p5-XML-LibXML \
+		p5-XML-LibXML-Simple>=0:textproc/p5-XML-LibXML-Simple \
 		p5-XML-LibXSLT>=0:textproc/p5-XML-LibXSLT
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
@@ -54,7 +55,7 @@ USES=		cpe shebangfix perl5 tar:bzip2
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	OTRS
-GH_TAGNAME=	51cbe50
+GH_TAGNAME=	b7b2693
 
 SHEBANG_FILES=	bin/cgi-bin/*.pl bin/cgi-bin/app.psgi bin/fcgi-bin/*.pl bin/*.pl \
 		scripts/tools/*.pl scripts/*.pl

@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	libqmatrixclient
-DISTVERSION=	0.5.1.2
+DISTVERSION=	0.5.2
+PORTREVISION=	1
 CATEGORIES=	net-im
 
 MAINTAINER=	adridg@FreeBSD.org
@@ -15,6 +16,9 @@ USE_QT=	core gui multimedia network \
 	buildtools_build qmake_build
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	QMatrixClient
+GH_ACCOUNT=	quotient-im
+GH_PROJECT=	libQuotient
+
+CMAKE_ARGS=	-DCMAKE_INSTALL_INCLUDEDIR=include/Quotient
 
 .include <bsd.port.mk>

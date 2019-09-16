@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	azure-cli-batchai
-PORTVERSION=	0.4.9
+PORTVERSION=	0.4.10
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,6 +10,9 @@ MAINTAINER=	dbaio@FreeBSD.org
 COMMENT=	Microsoft Azure Command-Line Tools Batch AI Command Module
 
 LICENSE=	MIT
+
+DEPRECATED=	Incorporated into azure-cli package
+EXPIRATION_DATE=2019-09-30
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-mgmt-storage>=3.3.0:devel/py-azure-mgmt-storage@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-batchai>=2.0.0:devel/py-azure-mgmt-batchai@${PY_FLAVOR} \

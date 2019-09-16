@@ -1,6 +1,6 @@
---- chrome/browser/ui/tab_helpers.cc.orig	2019-04-30 22:22:36 UTC
+--- chrome/browser/ui/tab_helpers.cc.orig	2019-07-24 18:58:12 UTC
 +++ chrome/browser/ui/tab_helpers.cc
-@@ -117,7 +117,7 @@
+@@ -119,7 +119,7 @@
  #include "components/zoom/zoom_controller.h"
  #endif  // defined(OS_ANDROID)
  
