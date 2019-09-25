@@ -23,8 +23,10 @@ LLVM_COMMANDS=	\
 		llvm-elfabi \
 		llvm-exegesis \
 		llvm-extract \
+		llvm-ifs \
 		llvm-jitlink \
 		llvm-link \
+		llvm-lipo \
 		llvm-mc \
 		llvm-modextract \
 		llvm-mt \
@@ -38,6 +40,7 @@ LLVM_COMMANDS=	\
 		llvm-rc \
 		llvm-readelf \
 		llvm-readobj \
+		llvm-reduce \
 		llvm-rtdyld \
 		llvm-size \
 		llvm-split \
@@ -61,6 +64,7 @@ CLANG_COMMANDS=	\
 		clang-format \
 		clang-import-test \
 		clang-offload-bundler \
+		clang-scan-deps \
 		clangd \
 		diagtool \
 		hmaptool \
@@ -95,6 +99,5 @@ LLDB_COMMANDS=	\
 		lldb \
 		lldb-argdumper \
 		lldb-instr \
-		lldb-mi \
 		lldb-server \
 		lldb-vscode

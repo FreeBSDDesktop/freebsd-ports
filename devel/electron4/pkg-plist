@@ -8,7 +8,6 @@ bin/electron
 %%DATADIR%%/icudtl.dat
 %%DATADIR%%/libEGL.so
 %%DATADIR%%/libGLESv2.so
-%%DATADIR%%/libVkICD_mock_icd.so
 %%DATADIR%%/locales/am.pak
 %%DATADIR%%/locales/ar.pak
 %%DATADIR%%/locales/bg.pak
@@ -64,6 +63,13 @@ bin/electron
 %%DATADIR%%/locales/zh-TW.pak
 %%DATADIR%%/mksnapshot
 %%DATADIR%%/natives_blob.bin
+%%DIST%%%%DATADIR%%/releases/SHASUMS256.txt
+%%DIST%%%%AMD64%%%%DATADIR%%/releases/chromedriver-v%%ELECTRON_VER%%-freebsd-x64.zip
+%%DIST%%%%I386%%%%DATADIR%%/releases/chromedriver-v%%ELECTRON_VER%%-freebsd-ia32.zip
+%%DIST%%%%AMD64%%%%DATADIR%%/releases/electron-v%%ELECTRON_VER%%-freebsd-x64.zip
+%%DIST%%%%I386%%%%DATADIR%%/releases/electron-v%%ELECTRON_VER%%-freebsd-ia32.zip
+%%DIST%%%%AMD64%%%%DATADIR%%/releases/mksnapshot-v%%ELECTRON_VER%%-freebsd-x64.zip
+%%DIST%%%%I386%%%%DATADIR%%/releases/mksnapshot-v%%ELECTRON_VER%%-freebsd-ia32.zip
 %%DATADIR%%/resources.pak
 %%DATADIR%%/resources/default_app.asar
 %%DATADIR%%/resources/electron.asar

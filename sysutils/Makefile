@@ -42,6 +42,7 @@
     SUBDIR += ansible24
     SUBDIR += ansible25
     SUBDIR += ansible26
+    SUBDIR += ansible27
     SUBDIR += anvil
     SUBDIR += apachetop
     SUBDIR += apcpwr
@@ -56,6 +57,7 @@
     SUBDIR += asmon
     SUBDIR += asusoled
     SUBDIR += atf-master
+    SUBDIR += atf-rk3328
     SUBDIR += atf-rk3399
     SUBDIR += atf-sun50i_a64
     SUBDIR += atitvout
@@ -95,7 +97,6 @@
     SUBDIR += batmon
     SUBDIR += battmond
     SUBDIR += battray
-    SUBDIR += bbcp
     SUBDIR += bchunk
     SUBDIR += beadm
     SUBDIR += beadm-devel
@@ -106,6 +107,7 @@
     SUBDIR += biosfont
     SUBDIR += bkpupsd
     SUBDIR += bksh
+    SUBDIR += boot-extract
     SUBDIR += boxbackup-devel
     SUBDIR += brasero
     SUBDIR += bsd-splash-changer
@@ -148,22 +150,12 @@
     SUBDIR += cfengine-masterfiles311
     SUBDIR += cfengine-masterfiles312
     SUBDIR += cfengine-masterfiles313
-    SUBDIR += cfengine-masterfiles36
-    SUBDIR += cfengine-masterfiles37
-    SUBDIR += cfengine-masterfiles38
-    SUBDIR += cfengine-masterfiles39
+    SUBDIR += cfengine-masterfiles314
     SUBDIR += cfengine310
     SUBDIR += cfengine311
     SUBDIR += cfengine312
     SUBDIR += cfengine313
-    SUBDIR += cfengine32
-    SUBDIR += cfengine33
-    SUBDIR += cfengine34
-    SUBDIR += cfengine35
-    SUBDIR += cfengine36
-    SUBDIR += cfengine37
-    SUBDIR += cfengine38
-    SUBDIR += cfengine39
+    SUBDIR += cfengine314
     SUBDIR += chgrep
     SUBDIR += chyves
     SUBDIR += cinnamon-control-center
@@ -213,6 +205,7 @@
     SUBDIR += cpupdate
     SUBDIR += cramfs
     SUBDIR += crashme
+    SUBDIR += crate
     SUBDIR += cronic
     SUBDIR += cronolog
     SUBDIR += cronolog-devel
@@ -224,6 +217,7 @@
     SUBDIR += daemonize
     SUBDIR += daemontools
     SUBDIR += daemontools-encore
+    SUBDIR += daggy
     SUBDIR += dar
     SUBDIR += dateutils
     SUBDIR += dc3dd
@@ -308,6 +302,7 @@
     SUBDIR += etcmerge
     SUBDIR += etcupdate
     SUBDIR += eventlog
+    SUBDIR += evhz
     SUBDIR += evtviewer
     SUBDIR += exa
     SUBDIR += exfat-utils
@@ -353,10 +348,10 @@
     SUBDIR += fpc-users
     SUBDIR += fpc-utmp
     SUBDIR += fpc-uuid
+    SUBDIR += frand
     SUBDIR += freebsd-snapshot
     SUBDIR += freecolor
     SUBDIR += freedt
-    SUBDIR += freefilesync
     SUBDIR += freeipmi
     SUBDIR += freesbie
     SUBDIR += froxlor
@@ -437,6 +432,7 @@
     SUBDIR += gnome-settings-daemon
     SUBDIR += gnome-system-monitor
     SUBDIR += gnome_subr
+    SUBDIR += go-wtf
     SUBDIR += goaccess
     SUBDIR += goawk
     SUBDIR += gomplate
@@ -449,7 +445,6 @@
     SUBDIR += graid5
     SUBDIR += graveman
     SUBDIR += graylog
-    SUBDIR += grub2
     SUBDIR += grub2-bhyve
     SUBDIR += gsh
     SUBDIR += gsmartcontrol
@@ -487,6 +482,7 @@
     SUBDIR += hpacucli
     SUBDIR += hploscripts
     SUBDIR += hptcli
+    SUBDIR += hs-cputype
     SUBDIR += hstr
     SUBDIR += htop
     SUBDIR += httplog
@@ -503,6 +499,7 @@
     SUBDIR += intel-pcm-devel
     SUBDIR += intel-qcu
     SUBDIR += intel-undervolt
+    SUBDIR += ioc
     SUBDIR += iocage
     SUBDIR += iocage-devel
     SUBDIR += iocell
@@ -532,6 +529,7 @@
     SUBDIR += javaservicewrapper
     SUBDIR += jdiskreport
     SUBDIR += jdupes
+    SUBDIR += jest
     SUBDIR += jkill
     SUBDIR += jobd
     SUBDIR += jps
@@ -583,7 +581,6 @@
     SUBDIR += libsunacl
     SUBDIR += libsysstat
     SUBDIR += liburcu
-    SUBDIR += libutempter
     SUBDIR += life-preserver
     SUBDIR += lineak-defaultplugin
     SUBDIR += lineak-xosdplugin
@@ -594,6 +591,7 @@
     SUBDIR += linux-c7-lttng-ust
     SUBDIR += linux-c7-userspace-rcu
     SUBDIR += linux-crashplan
+    SUBDIR += linux-rkbin
     SUBDIR += linuxfdisk
     SUBDIR += livecd
     SUBDIR += lizardfs
@@ -601,7 +599,6 @@
     SUBDIR += lmon
     SUBDIR += lnav
     SUBDIR += lockfile-progs
-    SUBDIR += log-courier
     SUBDIR += log_analysis
     SUBDIR += logrotate
     SUBDIR += logstalgia
@@ -716,6 +713,7 @@
     SUBDIR += mptd
     SUBDIR += msiklm
     SUBDIR += msktutil
+    SUBDIR += mstflint
     SUBDIR += msyslog
     SUBDIR += mtm
     SUBDIR += mtpfs
@@ -735,12 +733,14 @@
     SUBDIR += ncdu
     SUBDIR += ndmpd
     SUBDIR += neofetch
+    SUBDIR += netevent
     SUBDIR += nfcutils
     SUBDIR += nfsping
     SUBDIR += nitrogen
     SUBDIR += no-login
     SUBDIR += node_exporter
     SUBDIR += nomad
+    SUBDIR += nomad-pot-driver
     SUBDIR += npadmin
     SUBDIR += nq
     SUBDIR += nrg2iso
@@ -757,7 +757,6 @@
     SUBDIR += ohmu
     SUBDIR += omnibackup
     SUBDIR += open
-    SUBDIR += openhpi
     SUBDIR += openipmi
     SUBDIR += openupsd
     SUBDIR += openzfs
@@ -776,6 +775,7 @@
     SUBDIR += p5-File-Listing
     SUBDIR += p5-File-Log
     SUBDIR += p5-File-Next
+    SUBDIR += p5-File-Rename
     SUBDIR += p5-File-Signature
     SUBDIR += p5-File-Stat-Bits
     SUBDIR += p5-File-Stat-ModeString
@@ -892,6 +892,8 @@
     SUBDIR += php72-posix
     SUBDIR += php73-fileinfo
     SUBDIR += php73-posix
+    SUBDIR += php74-fileinfo
+    SUBDIR += php74-posix
     SUBDIR += phpfpm_exporter
     SUBDIR += phybs
     SUBDIR += pick
@@ -1028,6 +1030,7 @@
     SUBDIR += py-google-compute-engine
     SUBDIR += py-halite
     SUBDIR += py-hared
+    SUBDIR += py-hcloud
     SUBDIR += py-honcho
     SUBDIR += py-hpilo
     SUBDIR += py-iowait
@@ -1102,6 +1105,7 @@
     SUBDIR += reoback
     SUBDIR += reptyr
     SUBDIR += respond
+    SUBDIR += rest-server
     SUBDIR += restic
     SUBDIR += retail
     SUBDIR += rex
@@ -1230,12 +1234,14 @@
     SUBDIR += schedutils
     SUBDIR += screen
     SUBDIR += screenfetch
+    SUBDIR += screenfetch-nox11
     SUBDIR += screenie
     SUBDIR += scterc
     SUBDIR += sd-agent
     SUBDIR += sdparm
     SUBDIR += seatools
     SUBDIR += sec
+    SUBDIR += sensu-go
     SUBDIR += serf
     SUBDIR += setcdboot
     SUBDIR += setquota
@@ -1298,22 +1304,20 @@
     SUBDIR += synergy-1
     SUBDIR += sysadm
     SUBDIR += sysadm-client
+    SUBDIR += sysctlinfo-kmod
     SUBDIR += sysgather
     SUBDIR += sysinfo
     SUBDIR += syslinux
     SUBDIR += syslog-ng
-    SUBDIR += syslog-ng310
     SUBDIR += syslog-ng311
-    SUBDIR += syslog-ng312
-    SUBDIR += syslog-ng313
-    SUBDIR += syslog-ng314
     SUBDIR += syslog-ng315
     SUBDIR += syslog-ng317
     SUBDIR += syslog-ng318
     SUBDIR += syslog-ng319
     SUBDIR += syslog-ng320
     SUBDIR += syslog-ng321
-    SUBDIR += syslog-ng39
+    SUBDIR += syslog-ng322
+    SUBDIR += syslog-ng323
     SUBDIR += syslogger
     SUBDIR += sysrc
     SUBDIR += system-tools-backends
@@ -1330,6 +1334,7 @@
     SUBDIR += tenshi
     SUBDIR += tentakel
     SUBDIR += terraform
+    SUBDIR += terraform-provider-vultr
     SUBDIR += testdisk
     SUBDIR += thefish
     SUBDIR += timelimit
@@ -1399,6 +1404,8 @@
     SUBDIR += u-boot-pine64-lts
     SUBDIR += u-boot-pinebook
     SUBDIR += u-boot-riotboard
+    SUBDIR += u-boot-rock64
+    SUBDIR += u-boot-rockpro64
     SUBDIR += u-boot-rpi
     SUBDIR += u-boot-rpi-0-w
     SUBDIR += u-boot-rpi2
@@ -1421,6 +1428,7 @@
     SUBDIR += uefi-edk2-bhyve-csm
     SUBDIR += uefi-edk2-bhyve-devel
     SUBDIR += uefi-edk2-qemu
+    SUBDIR += ufetch
     SUBDIR += ufs_copy
     SUBDIR += uhidd
     SUBDIR += uif2iso
@@ -1504,7 +1512,6 @@
     SUBDIR += xe-guest-utilities
     SUBDIR += xen-guest-tools
     SUBDIR += xen-tools
-    SUBDIR += xen-tools47
     SUBDIR += xfburn
     SUBDIR += xfce4-battery-plugin
     SUBDIR += xfce4-bsdcpufreq-plugin
@@ -1515,6 +1522,7 @@
     SUBDIR += xfce4-kbdleds-plugin
     SUBDIR += xfce4-mount-plugin
     SUBDIR += xfce4-netload-plugin
+    SUBDIR += xfce4-places-plugin
     SUBDIR += xfce4-power-manager
     SUBDIR += xfce4-settings
     SUBDIR += xfce4-systemload-plugin

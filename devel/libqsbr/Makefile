@@ -2,6 +2,7 @@
 
 PORTNAME=	libqsbr
 PORTVERSION=	g2019052401
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	swills@FreeBSD.org
@@ -9,6 +10,8 @@ COMMENT=	QSBR and EBR library
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/../LICENSE
+
+BROKEN_i386=	fails to build
 
 USES=		compiler:c11 gmake libtool:build
 

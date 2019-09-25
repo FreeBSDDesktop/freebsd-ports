@@ -27,6 +27,7 @@
     SUBDIR += calcurse
     SUBDIR += calibre
     SUBDIR += cartotheque
+    SUBDIR += cfiles
     SUBDIR += charmtimetracker
     SUBDIR += chart
     SUBDIR += cherrytree
@@ -40,6 +41,7 @@
     SUBDIR += dailystrips
     SUBDIR += deforaos-todo
     SUBDIR += devd-notifier
+    SUBDIR += dfshow
     SUBDIR += dlume
     SUBDIR += docear
     SUBDIR += dosage
@@ -151,11 +153,10 @@
     SUBDIR += lumina-fileinfo
     SUBDIR += lumina-fm
     SUBDIR += lumina-mediaplayer
-    SUBDIR += lumina-notify
     SUBDIR += lumina-pdf
+    SUBDIR += lumina-photo
     SUBDIR += lumina-screenshot
     SUBDIR += lumina-textedit
-    SUBDIR += lumina-xdg-entry
     SUBDIR += lxqt-notificationd
     SUBDIR += mat
     SUBDIR += mate-notification-daemon
@@ -185,6 +186,7 @@
     SUBDIR += p5-Goo
     SUBDIR += pal
     SUBDIR += parcellite
+    SUBDIR += pet
     SUBDIR += phpicalendar
     SUBDIR += pim-data-exporter
     SUBDIR += pim-sieve-editor
@@ -229,6 +231,7 @@
     SUBDIR += sugarcrm
     SUBDIR += synapse
     SUBDIR += syncthing-gtk
+    SUBDIR += syncthingtray
     SUBDIR += sysctlview
     SUBDIR += systempreferences
     SUBDIR += taskcoach

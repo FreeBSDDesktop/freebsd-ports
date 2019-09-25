@@ -15,6 +15,7 @@ USES=		tar:xz
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX} --mandir=${MANPREFIX}/man
+CPPFLAGS+=	-std=c99
 
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes

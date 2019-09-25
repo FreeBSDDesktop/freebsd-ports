@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mandelbulber
-PORTVERSION=	2.17
+DISTVERSION=	2.19
 PORTREVISION=	1
 CATEGORIES=	graphics
 

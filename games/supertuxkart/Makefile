@@ -3,7 +3,7 @@
 
 PORTNAME=	supertuxkart
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	SF/supertuxkart/SuperTuxKart/${PORTVERSION}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -27,7 +27,6 @@ BROKEN_armv7=		invokes x86 assembler
 BROKEN_mips=		invokes x86 assembler
 BROKEN_mips64=		invokes x86 assembler
 BROKEN_sparc64=		invokes x86 assembler
-BROKEN_powerpc64=	invokes x86 assembler
 BROKEN_i386=		does not build (error: this directive must appear between .cfi_startproc and .cfi_endproc directives)
 
 USES=		alias cmake compiler:c++11-lib gettext gl \
