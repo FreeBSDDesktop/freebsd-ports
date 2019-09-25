@@ -2,6 +2,7 @@
 
 PORTNAME=	xorgproto
 PORTVERSION=	2019.1
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	x11@FreeBSD.org
@@ -12,8 +13,7 @@ XORG_CAT=	proto
 CONFIGURE_ARGS= --without-fop \
 		--without-xmlto \
 		--without-xsltproc \
-		--disable-specs \
-		--enable-legacy
+		--disable-specs
 
 pre-patch:
 	@${MKDIR} ${WRKSRC}/man
