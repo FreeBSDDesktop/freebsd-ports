@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake
 XORG_CAT=	lib
-USE_XORG=	x11 xau xext xmu xp xpm xorgproto xt
+USE_XORG=	x11 xau xext xmu xpm xorgproto xt
 CONFIGURE_ARGS=	--without-xmlto
 
 .include <bsd.port.mk>
