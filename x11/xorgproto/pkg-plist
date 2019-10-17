@@ -37,7 +37,6 @@ include/X11/extensions/XI2.h
 include/X11/extensions/XI2proto.h
 include/X11/extensions/XIproto.h
 include/X11/extensions/XKB.h
-include/X11/extensions/XKBgeom.h
 include/X11/extensions/XKBproto.h
 include/X11/extensions/XKBsrv.h
 include/X11/extensions/XKBstr.h
@@ -98,9 +97,6 @@ include/X11/extensions/shmstr.h
 include/X11/extensions/syncconst.h
 include/X11/extensions/syncproto.h
 include/X11/extensions/syncstr.h
-include/X11/extensions/vldXvMC.h
-include/X11/extensions/windowswm.h
-include/X11/extensions/windowswmstr.h
 include/X11/extensions/xcmiscproto.h
 include/X11/extensions/xcmiscstr.h
 include/X11/extensions/xf86bigfont.h
@@ -149,7 +145,6 @@ libdata/pkgconfig/renderproto.pc
 libdata/pkgconfig/resourceproto.pc
 libdata/pkgconfig/scrnsaverproto.pc
 libdata/pkgconfig/videoproto.pc
-libdata/pkgconfig/windowswmproto.pc
 libdata/pkgconfig/xcmiscproto.pc
 libdata/pkgconfig/xextproto.pc
 libdata/pkgconfig/xf86bigfontproto.pc
