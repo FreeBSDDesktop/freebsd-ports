@@ -8,6 +8,7 @@
     SUBDIR += R-cran-RPostgreSQL
     SUBDIR += R-cran-RSQLite
     SUBDIR += R-cran-RSQLite.extfuns
+    SUBDIR += R-cran-fastmap
     SUBDIR += R-cran-sqldf
     SUBDIR += WWWdb
     SUBDIR += adabase
@@ -15,6 +16,7 @@
     SUBDIR += adodb
     SUBDIR += adodb5
     SUBDIR += akonadi
+    SUBDIR += apache-commons-dbutils
     SUBDIR += apq
     SUBDIR += apq-mysql
     SUBDIR += apq-odbc
@@ -113,7 +115,6 @@
     SUBDIR += ipa_sdb
     SUBDIR += iplike
     SUBDIR += isql-viewer
-    SUBDIR += jakarta-commons-dbutils
     SUBDIR += jasperreports
     SUBDIR += jdb
     SUBDIR += jdbc-oracle11g
@@ -200,7 +201,6 @@
     SUBDIR += mongodb40
     SUBDIR += mongodb40-tools
     SUBDIR += mroonga
-    SUBDIR += mrtg-mysql-load
     SUBDIR += mtools-mongodb
     SUBDIR += mtop
     SUBDIR += mydbf2mysql
@@ -679,7 +679,6 @@
     SUBDIR += postgis23
     SUBDIR += postgis24
     SUBDIR += postgis25
-    SUBDIR += postgres-xl
     SUBDIR += postgresql-cstore_fdw
     SUBDIR += postgresql-jdbc
     SUBDIR += postgresql-libpgeasy
@@ -843,6 +842,7 @@
     SUBDIR += py-queries
     SUBDIR += py-rb
     SUBDIR += py-redis
+    SUBDIR += py-redis2
     SUBDIR += py-riak
     SUBDIR += py-rrdtool_lgpl
     SUBDIR += py-sispy
@@ -1060,7 +1060,6 @@
     SUBDIR += virtuoso
     SUBDIR += vsqlite
     SUBDIR += wfb2sql
-    SUBDIR += wmjsql
     SUBDIR += xapian-bindings
     SUBDIR += xapian-bindings12
     SUBDIR += xapian-core
