@@ -12921,7 +12921,6 @@ irc/irssi-otr||2019-09-05|Has expired: Broken for more than 6 months
 mail/p5-Mail-ClamAV||2019-09-05|Has expired: Broken for more than 6 months
 mail/qmail-ldap||2019-09-05|Has expired: Broken for more than 6 months
 math/fityk||2019-09-05|Has expired: Broken for more than 6 months
-math/octave-forge-econometrics||2019-09-05|Has expired: Broken for more than 6 months
 math/octave-forge-fits||2019-09-05|Has expired: Broken for more than 6 months
 math/octave-forge-linear-algebra||2019-09-05|Has expired: Broken for more than 6 months
 math/octave-forge-mechanics||2019-09-05|Has expired: Broken for more than 6 months
@@ -13079,7 +13078,6 @@ x11-clocks/xfce4-timer-out-plugin|x11-clocks/xfce4-time-out-plugin|2019-10-09|Po
 x11-toolkits/gai||2019-10-10|Abandonware since 2005
 palm/synce-libsynce||2019-10-14|Has expired: obsolete technology
 french/py-grammalecte|french/py-grammalecte-fr|2019-10-14|Port was incorrectly named different to upstream
-x11-wm/plank|x11/plank|2019-10-14|Port incorrectly labeled as Windows Manager, is an independent dock application.
 deskutils/xmaddressbook||2019-10-15|Depends on deprecated x11/liboldX
 x11/xsetmode||2019-10-15|Deprecatd upstream
 x11/xsetpointer||2019-10-15|Deprecatd upstream
@@ -13232,7 +13230,6 @@ japanese/skkfep||2019-10-16|Has expired: Unfetchable, unmaintained
 java/eclipse-log4e||2019-10-16|Has expired: Unfetchable, unmaintained
 java/eclipse-lomboz||2019-10-16|Has expired: Unfetchable, unmaintained
 java/java-checkstyle||2019-10-16|Has expired: Unfetchable, unmaintained
-korean/baekmukfonts-ttf||2019-10-16|Has expired: Unfetchable, unmaintained
 korean/gtkcomm||2019-10-16|Has expired: Unfetchable, unmaintained
 lang/arena||2019-10-16|Has expired: Unfetchable, unmaintained
 lang/diveintopython||2019-10-16|Has expired: Unfetchable, unmaintained
@@ -13414,3 +13411,9 @@ x11-wm/musca||2019-10-16|Has expired: Unfetchable, unmaintained
 x11-wm/weewm||2019-10-16|Has expired: Unfetchable, unmaintained
 x11-wm/windowlab||2019-10-16|Has expired: Unfetchable, unmaintained
 x11-wm/wmfs||2019-10-16|Has expired: Unfetchable, unmaintained
+x11-wm/plank|x11/plank|2019-10-17|Port incorrectly labeled as Windows Manager, is an independent dock application.
+net/kcontacts|net/kf5-kcontacts|2019-10-17|Became a KDE Framework
+net/kcalcore|net/kf5-kcalendarcore|2019-10-17|Became a KDE Framework
+java/linux-oracle-jre9|java/openjdk11|2019-10-18|Has expired: No longer maintained upstream, please migrate to openjdk11
+java/linux-oracle-jre10|java/openjdk11|2019-10-18|Has expired: No longer maintained upstream, please migrate to openjdk11
+www/glassfish5|www/glassfish|2019-10-20|glassfish5 became the default glassfish
