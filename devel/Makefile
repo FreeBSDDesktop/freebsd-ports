@@ -634,6 +634,7 @@
     SUBDIR += etcd31
     SUBDIR += etcd32
     SUBDIR += etcd33
+    SUBDIR += etcd34
     SUBDIR += etl
     SUBDIR += euca2ools
     SUBDIR += evdev-proto
@@ -4564,6 +4565,7 @@
     SUBDIR += py-jep
     SUBDIR += py-jinja2-time
     SUBDIR += py-jira
+    SUBDIR += py-jitterentropy
     SUBDIR += py-jmespath
     SUBDIR += py-joblib
     SUBDIR += py-jsbeautifier
