@@ -44,6 +44,7 @@
     SUBDIR += ansible26
     SUBDIR += ansible27
     SUBDIR += anvil
+    SUBDIR += apache-mesos
     SUBDIR += apachetop
     SUBDIR += apcpwr
     SUBDIR += apcupsd
@@ -757,6 +758,7 @@
     SUBDIR += open
     SUBDIR += opencorsairlink
     SUBDIR += openipmi
+    SUBDIR += opensbi
     SUBDIR += openupsd
     SUBDIR += openzfs
     SUBDIR += openzfs-kmod

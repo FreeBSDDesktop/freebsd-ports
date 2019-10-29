@@ -165,6 +165,7 @@
     SUBDIR += gone
     SUBDIR += gonvert
     SUBDIR += gplink
+    SUBDIR += gpsim
     SUBDIR += granulate
     SUBDIR += grc
     SUBDIR += gwhich
@@ -251,6 +252,7 @@
     SUBDIR += mtail
     SUBDIR += mtx
     SUBDIR += najitool
+    SUBDIR += netron
     SUBDIR += nms
     SUBDIR += nnn
     SUBDIR += nsf

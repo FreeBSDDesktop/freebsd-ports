@@ -190,6 +190,9 @@
     SUBDIR += linux-c7-libxkbcommon
     SUBDIR += linux-c7-pixman
     SUBDIR += linux-c7-xorg-libs
+    SUBDIR += linux-nvidia-libs
+    SUBDIR += linux-nvidia-libs-304
+    SUBDIR += linux-nvidia-libs-340
     SUBDIR += listres
     SUBDIR += lsw
     SUBDIR += luit
@@ -229,6 +232,7 @@
     SUBDIR += nvidia-driver
     SUBDIR += nvidia-driver-304
     SUBDIR += nvidia-driver-340
+    SUBDIR += nvidia-driver-390
     SUBDIR += nvidia-settings
     SUBDIR += nvidia-xconfig
     SUBDIR += nxcomp
