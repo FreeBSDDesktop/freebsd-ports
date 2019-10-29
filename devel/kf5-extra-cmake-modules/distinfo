@@ -1,3 +1,3 @@
-TIMESTAMP = 1559457447
-SHA256 (KDE/frameworks/5.59.0/extra-cmake-modules-5.59.0.tar.xz) = 1a630b242242ac32d20d14e7ae5645aa28a47676eae0e62ed76af8bc1f56c438
-SIZE (KDE/frameworks/5.59.0/extra-cmake-modules-5.59.0.tar.xz) = 326980
+TIMESTAMP = 1570450187
+SHA256 (KDE/frameworks/5.63.0/extra-cmake-modules-5.63.0.tar.xz) = 79926a0a2c6f5aa760a5a63209a7cad641476591b9bf4e51819f4fb752280792
+SIZE (KDE/frameworks/5.63.0/extra-cmake-modules-5.63.0.tar.xz) = 330556

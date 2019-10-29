@@ -3,11 +3,11 @@
 
 PORTNAME=	gearmand
 PORTVERSION=	1.0.6
-PORTREVISION=	18
+PORTREVISION=	21
 CATEGORIES=	devel
 MASTER_SITES=	http://launchpad.net/gearmand/1.0/${PORTVERSION}/+download/
 
-MAINTAINER=	bdrewery@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Gearman C Server and Library
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0:textproc/py-sphinx@${PY_FLAVOR}

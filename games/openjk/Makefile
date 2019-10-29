@@ -2,6 +2,7 @@
 
 PORTNAME=	openjk
 PORTVERSION=	g20190428
+PORTREVISION=	1
 CATEGORIES=	games
 
 MAINTAINER=	pkubaj@FreeBSD.org
@@ -21,7 +22,7 @@ USE_SDL=	sdl2
 USE_XORG=	x11
 
 CXXFLAGS+=	-DNDEBUG
-OPENJK_ARCH=	${ARCH:S/powerpc64/ppc64/}
+OPENJK_ARCH=	${ARCH:S/powerpc64/ppc64/:S/armv7/arm/}
 PLIST_SUB=	ARCH="${OPENJK_ARCH}"
 SUB_FILES=	jamp \
 		jasp

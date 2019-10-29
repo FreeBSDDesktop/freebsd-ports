@@ -1,8 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	node
-PORTVERSION=	10.16.0
+PORTVERSION=	10.16.3
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://nodejs.org/dist/v${PORTVERSION}/
 PKGNAMESUFFIX=	10
@@ -68,7 +69,7 @@ MAKE_ENV+=	CC.host=${CC} CFLAGS.host="${CFLAGS}" \
 
 BUILD_DEPENDS+=	c-ares>=1.15.0:dns/c-ares\
 		libuv>=1.28.0:devel/libuv \
-		libnghttp2>=1.34.0:www/libnghttp2
+		libnghttp2>=1.39.2:www/libnghttp2
 LIB_DEPENDS+=	libcares.so:dns/c-ares\
 		libuv.so:devel/libuv \
 		libnghttp2.so:www/libnghttp2
@@ -81,13 +82,6 @@ BROKEN_SSL+=	base
 
 .if ${PORT_OPTIONS:MBUNDLED_SSL} && ${ARCH} != amd64 && ${ARCH} != i386
 CONFIGURE_ARGS+=--openssl-no-asm
-.endif
-
-.include <bsd.port.pre.mk>
-
-.if ${CHOSEN_COMPILER_TYPE} == gcc
-# GCC does not expose std::snprintf() without this define
-CXXFLAGS+=	-D_GLIBCXX_USE_C99
 .endif
 
 post-patch:
@@ -107,4 +101,4 @@ post-configure:
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/node
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

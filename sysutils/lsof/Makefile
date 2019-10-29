@@ -3,7 +3,7 @@
 
 PORTNAME=	lsof
 DISTVERSION=	4.93.2
-PORTREVISION=	2
+PORTREVISION=	5
 PORTEPOCH=	8
 CATEGORIES=	sysutils
 
@@ -31,12 +31,13 @@ CONFIGURE_ARGS=	-n freebsd
 CONFIGURE_ENV=	LSOF_CC="${CC}" FREEBSD_SYS="${SRC_BASE}/sys"
 
 .if !exists(${SRC_BASE}/sys/kern/kern_lockf.c)
-IGNORE=		requires kernel sources
+IGNORE+=		requires kernel sources
 .endif
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/lsof ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_MAN} ${WRKSRC}/Lsof.8 ${STAGEDIR}${MAN8PREFIX}/man/man8/lsof.8
+	(cd ${WRKSRC} && ${SED} 's/\\$$/\\DUMMY/' Lsof.8 | mandoc -T man | ${SED} 's/DUMMY$$//' > ${WRKSRC}/lsof.8)
+	${INSTALL_MAN} ${WRKSRC}/lsof.8 ${STAGEDIR}${MAN8PREFIX}/man/man8/lsof.8
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/lsof
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/* ${STAGEDIR}${PREFIX}/share/lsof
 	@${CHMOD} 0444 ${STAGEDIR}${PREFIX}/share/lsof/00*

@@ -3,12 +3,12 @@
 
 PORTNAME=	gearmand
 PORTVERSION=	1.1.8
-PORTREVISION=	17
+PORTREVISION=	20
 CATEGORIES=	devel
 MASTER_SITES=	http://launchpad.net/gearmand/1.2/${PORTVERSION}/+download/
 PKGNAMESUFFIX=	-devel
 
-MAINTAINER=	bdrewery@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Gearman C Server and Library
 
 BUILD_DEPENDS=	boost-libs>=0:devel/boost-libs \

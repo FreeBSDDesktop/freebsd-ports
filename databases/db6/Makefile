@@ -5,7 +5,7 @@ PORTNAME=	db6
 PORTVERSION=	6.2.32
 PORTREVISION=	1
 CATEGORIES=	databases java
-MASTER_SITES=	http://download.oracle.com/berkeley-db/
+MASTER_SITES=	https://download.oracle.com/berkeley-db/
 PKGNAMEPREFIX?=
 #
 # the distfiles aren't named db6-* but db-*:
@@ -37,7 +37,7 @@ USE_LDCONFIG=	yes
 PLIST_SUB=	BDBMAJ=${BDBMAJ} BDBVER=${BDBVER}
 MAKE_ARGS+=	docdir=${DOCSDIR}
 
-OPTIONS_DEFINE=	CRYPTO L10N SQL JAVA TCL DOCS
+OPTIONS_DEFINE=	CRYPTO DEBUG L10N SQL JAVA TCL DOCS
 OPTIONS_DEFAULT=CRYPTO
 OPTIONS_SUB=	yes
 CRYPTO_DESC=	Cryptography support

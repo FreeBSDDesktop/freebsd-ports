@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	recoll
-DISTVERSION=	1.25.16
+DISTVERSION=	1.25.22
 CATEGORIES=	deskutils
 MASTER_SITES=	https://www.lesbonscomptes.com/recoll/
 
@@ -20,7 +20,8 @@ RUN_DEPENDS=	unrar:archivers/unrar \
 		wpd2html:textproc/libwpd010 \
 		unrtf:textproc/unrtf
 
-USES=		bison gmake gnome iconv libtool localbase python:2.7 shebangfix
+USES=		bison compiler:c++11-lang gmake gnome iconv libtool localbase \
+		python:2.7 shebangfix
 USE_GNOME=	libxslt
 USE_LDCONFIG=	yes
 USE_PYTHON=	py3kplist

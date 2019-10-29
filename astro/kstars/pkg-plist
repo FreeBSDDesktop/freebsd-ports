@@ -464,7 +464,6 @@ share/doc/HTML/en/kstars/viewops.png
 share/doc/HTML/en/kstars/wut.docbook
 share/doc/HTML/en/kstars/wut.png
 share/doc/HTML/en/kstars/zenith.docbook
-share/doc/HTML/es/kstars/aavso.png
 share/doc/HTML/es/kstars/ai-contents.docbook
 share/doc/HTML/es/kstars/altvstime.docbook
 share/doc/HTML/es/kstars/altvstime.png
@@ -1696,7 +1695,6 @@ share/knotifications5/kstars.notifyrc
 %%DATADIR%%/venus.R4.vsop
 %%DATADIR%%/venus.R5.vsop
 %%DATADIR%%/venus.orbit
-%%DATADIR%%/windi.png
 %%DATADIR%%/wzdownload.png
 %%DATADIR%%/wzekos.png
 %%DATADIR%%/wzgeo.png
@@ -1759,7 +1757,6 @@ share/locale/ro/LC_MESSAGES/kstars.mo
 share/locale/ru/LC_MESSAGES/kstars.mo
 share/locale/se/LC_MESSAGES/kstars.mo
 share/locale/si/LC_MESSAGES/kstars.mo
-share/locale/sk/LC_MESSAGES/kstars.mo
 share/locale/sl/LC_MESSAGES/kstars.mo
 share/locale/sq/LC_MESSAGES/kstars.mo
 share/locale/sv/LC_MESSAGES/kstars.mo

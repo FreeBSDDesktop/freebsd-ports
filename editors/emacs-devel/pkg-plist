@@ -701,6 +701,9 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/etc/images/splash.png
 %%DATADIR%%/%%EMACS_VER%%/etc/images/splash.svg
 %%DATADIR%%/%%EMACS_VER%%/etc/images/splash.xpm
+%%DATADIR%%/%%EMACS_VER%%/etc/images/tabs/README
+%%DATADIR%%/%%EMACS_VER%%/etc/images/tabs/close.xpm
+%%DATADIR%%/%%EMACS_VER%%/etc/images/tabs/new.xpm
 %%DATADIR%%/%%EMACS_VER%%/etc/images/tree-widget/default/README
 %%DATADIR%%/%%EMACS_VER%%/etc/images/tree-widget/default/close.png
 %%DATADIR%%/%%EMACS_VER%%/etc/images/tree-widget/default/close.xpm
@@ -851,6 +854,7 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/etc/srecode/getset-cpp.srt
 %%DATADIR%%/%%EMACS_VER%%/etc/srecode/java.srt
 %%DATADIR%%/%%EMACS_VER%%/etc/srecode/make.srt
+%%DATADIR%%/%%EMACS_VER%%/etc/srecode/proj-test.srt
 %%DATADIR%%/%%EMACS_VER%%/etc/srecode/template.srt
 %%DATADIR%%/%%EMACS_VER%%/etc/srecode/test.srt
 %%DATADIR%%/%%EMACS_VER%%/etc/srecode/texi.srt
@@ -1069,6 +1073,8 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/holidays.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/icalendar.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/icalendar.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/calendar/iso8601.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/calendar/iso8601.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/lunar.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/lunar.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/parse-time.el.gz
@@ -1523,8 +1529,6 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/cl-print.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/cl-seq.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/cl-seq.elc
-%%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/cl.el.gz
-%%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/cl.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/copyright.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/copyright.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/crm.el.gz
@@ -2156,8 +2160,12 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/image.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/image/compface.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/image/compface.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/image/exif.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/image/exif.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/image/gravatar.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/image/gravatar.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/image/image-converter.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/image/image-converter.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/imenu.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/imenu.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/indent.el.gz
@@ -2860,6 +2868,8 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/bruce.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/cc-compat.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/cc-compat.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/cl.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/cl.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/cl-compat.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/cl-compat.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/complete.el.gz
@@ -2900,6 +2910,8 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/lucid.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/mailpost.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/mailpost.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/mantemp.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/mantemp.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/meese.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/meese.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/messcompat.el
@@ -2949,6 +2961,8 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/tpu-extras.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/tpu-mapper.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/tpu-mapper.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/url-ns.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/url-ns.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/vc-arch.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/vc-arch.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/vi.el.gz
@@ -2957,8 +2971,6 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/vip.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/ws-mode.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/ws-mode.elc
-%%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/xesam.el.gz
-%%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/xesam.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/yow.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/obsolete/yow.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/org/ob-C.el.gz
@@ -3278,14 +3290,6 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/proced.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/profiler.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/profiler.elc
-%%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/ada-mode.el.gz
-%%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/ada-mode.elc
-%%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/ada-prj.el.gz
-%%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/ada-prj.elc
-%%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/ada-stmt.el.gz
-%%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/ada-stmt.elc
-%%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/ada-xref.el.gz
-%%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/ada-xref.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/antlr-mode.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/antlr-mode.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/asm-mode.el.gz
@@ -3404,8 +3408,6 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/m4-mode.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/make-mode.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/make-mode.elc
-%%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/mantemp.el.gz
-%%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/mantemp.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/meta-mode.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/meta-mode.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/progmodes/mixal-mode.el.gz
@@ -3517,6 +3519,8 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/simple.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/skeleton.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/skeleton.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/so-long.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/so-long.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/sort.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/sort.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/soundex.el.gz
@@ -3534,6 +3538,10 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/svg.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/t-mouse.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/t-mouse.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/tab-bar.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/tab-bar.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/tab-line.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/tab-line.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/tabify.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/tabify.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/talk.el.gz
@@ -3762,8 +3770,6 @@ share/metainfo/emacs.appdata.xml
 %%DATADIR%%/%%EMACS_VER%%/lisp/url/url-news.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/url/url-nfs.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/url/url-nfs.elc
-%%DATADIR%%/%%EMACS_VER%%/lisp/url/url-ns.el.gz
-%%DATADIR%%/%%EMACS_VER%%/lisp/url/url-ns.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/url/url-parse.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/url/url-parse.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/url/url-privacy.el.gz

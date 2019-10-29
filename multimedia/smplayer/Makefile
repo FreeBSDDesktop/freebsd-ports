@@ -2,12 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	smplayer
-DISTVERSION=	18.10.0
-PORTREVISION=	1
+DISTVERSION=	19.5.0
 CATEGORIES=	multimedia audio kde
 MASTER_SITES=	SF/${PORTNAME}/SMPlayer/${PORTVERSION}
 
-MAINTAINER=	kikadf.01@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Complete front-end based on Qt for mplayer
 
 LICENSE=	GPLv2+
@@ -35,7 +34,6 @@ OPTIONS_MULTI_ENGINE=	MPLAYER MPV
 OPTIONS_DEFINE=		DOCS DEBUG SKINS THEMES
 OPTIONS_DEFAULT=	MPV SKINS THEMES
 
-TOOLKIT_DESC=	Qt toolkit version
 ENGINE_DESC=	Multimedia engine
 MPLAYER_DESC=	Allow to use MPlayer as multimedia engine
 MPV_DESC=	Allow to use mpv as multimedia engine

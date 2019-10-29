@@ -1,3 +1,3 @@
-TIMESTAMP = 1560265578
-SHA256 (gitlab-org-gitlab-ce-e3eeb779d72006b9fbbaecf9f1d8fbd52a7d6383_GL0.tar.gz) = 2c2d4a58c5afc632b4da670d7f51e8bf1e876921e98c9a4b9ffb046fe05b7ce9
-SIZE (gitlab-org-gitlab-ce-e3eeb779d72006b9fbbaecf9f1d8fbd52a7d6383_GL0.tar.gz) = 77468850
+TIMESTAMP = 1571860432
+SHA256 (gitlab-org-gitlab-foss-1425a56c75beecaa289ad59587d636f8f469509e_GL0.tar.gz) = 6e5007c68af005794b4ba6cebefcf08e284568bc93cc4384572d6f3a35ec690d
+SIZE (gitlab-org-gitlab-foss-1425a56c75beecaa289ad59587d636f8f469509e_GL0.tar.gz) = 100104540

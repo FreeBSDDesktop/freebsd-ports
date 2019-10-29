@@ -10,7 +10,6 @@
     SUBDIR += aerc
     SUBDIR += akpop3d
     SUBDIR += alpine
-    SUBDIR += altermime
     SUBDIR += amavis-logwatch
     SUBDIR += anomy-sanitizer
     SUBDIR += antivirus-milter
@@ -23,9 +22,9 @@
     SUBDIR += ask
     SUBDIR += asmail
     SUBDIR += assp
+    SUBDIR += astroid
     SUBDIR += automx
     SUBDIR += autorespond
-    SUBDIR += autosig
     SUBDIR += avenger
     SUBDIR += balsa
     SUBDIR += batv-milter
@@ -35,6 +34,8 @@
     SUBDIR += bincimap
     SUBDIR += bmf
     SUBDIR += bogofilter
+    SUBDIR += bogofilter-kc
+    SUBDIR += bogofilter-lmdb
     SUBDIR += bogofilter-sqlite
     SUBDIR += bogofilter-tc
     SUBDIR += bsfilter
@@ -95,6 +96,7 @@
     SUBDIR += dma
     SUBDIR += dot-forward
     SUBDIR += dovecot
+    SUBDIR += dovecot-fts-xapian
     SUBDIR += dovecot-pigeonhole
     SUBDIR += dspam
     SUBDIR += ecartis
@@ -134,7 +136,6 @@
     SUBDIR += geary
     SUBDIR += gensig
     SUBDIR += getmail
-    SUBDIR += gkrellmmailwatch2
     SUBDIR += gmime2
     SUBDIR += gmime2-sharp
     SUBDIR += gmime24
@@ -216,7 +217,6 @@
     SUBDIR += mblaze
     SUBDIR += mbox2imap
     SUBDIR += mbox2mdir
-    SUBDIR += mboxcheck-applet
     SUBDIR += mboxgrep
     SUBDIR += mboxstats
     SUBDIR += mbx2mbox
@@ -256,7 +256,6 @@
     SUBDIR += neomutt
     SUBDIR += nextcloud-mail
     SUBDIR += nmh
-    SUBDIR += nmzmail
     SUBDIR += noattach
     SUBDIR += nocc
     SUBDIR += nohtml
@@ -376,7 +375,6 @@
     SUBDIR += p5-Mail-Box-Parser-C
     SUBDIR += p5-Mail-Bulkmail
     SUBDIR += p5-Mail-CheckUser
-    SUBDIR += p5-Mail-ClamAV
     SUBDIR += p5-Mail-DKIM
     SUBDIR += p5-Mail-DMARC
     SUBDIR += p5-Mail-DeliveryStatus-BounceParser
@@ -479,6 +477,7 @@
     SUBDIR += php71-imap
     SUBDIR += php72-imap
     SUBDIR += php73-imap
+    SUBDIR += php74-imap
     SUBDIR += phplist
     SUBDIR += phpmailer
     SUBDIR += phpmailer6
@@ -491,7 +490,6 @@
     SUBDIR += popfile
     SUBDIR += poppassd
     SUBDIR += poppwd
-    SUBDIR += poppy
     SUBDIR += popular
     SUBDIR += postfinger
     SUBDIR += postfix
@@ -511,14 +509,12 @@
     SUBDIR += prayer
     SUBDIR += prepflog
     SUBDIR += procmail
-    SUBDIR += prom-wl
     SUBDIR += proxsmtp
     SUBDIR += py-Products.MailHost
     SUBDIR += py-Products.SecureMailHost
     SUBDIR += py-afew
     SUBDIR += py-aiosmtpd
     SUBDIR += py-alot
-    SUBDIR += py-apolicy
     SUBDIR += py-authres
     SUBDIR += py-cyruslib
     SUBDIR += py-dkimpy
@@ -550,7 +546,6 @@
     SUBDIR += qmail-conf
     SUBDIR += qmail-contrib
     SUBDIR += qmail-dk
-    SUBDIR += qmail-ldap
     SUBDIR += qmail-mysql
     SUBDIR += qmail-notify
     SUBDIR += qmail-qfilter
@@ -605,6 +600,7 @@
     SUBDIR += rubygem-actionmailer4
     SUBDIR += rubygem-actionmailer5
     SUBDIR += rubygem-actionmailer50
+    SUBDIR += rubygem-actionmailer52
     SUBDIR += rubygem-email_reply_parser
     SUBDIR += rubygem-email_reply_parser-discourse
     SUBDIR += rubygem-email_reply_trimmer
@@ -619,6 +615,7 @@
     SUBDIR += rubygem-premailer-rails
     SUBDIR += rubygem-premailer-rails-rails5
     SUBDIR += rubygem-premailer-rails19-rails5
+    SUBDIR += rubygem-premailer-rails19-rails52
     SUBDIR += rubygem-rmail
     SUBDIR += rubygem-roadie
     SUBDIR += rubygem-roadie-rails
@@ -655,10 +652,10 @@
     SUBDIR += spamass-milter
     SUBDIR += spamass-rules
     SUBDIR += spamassassin
+    SUBDIR += spamassassin-dqs
     SUBDIR += spambnc
     SUBDIR += spamcup
     SUBDIR += spamd
-    SUBDIR += spamdb-curses
     SUBDIR += spamdyke
     SUBDIR += spamguard
     SUBDIR += spamilter
@@ -741,7 +738,6 @@
     SUBDIR += xcite
     SUBDIR += xfaces
     SUBDIR += xfce4-mailwatch-plugin
-    SUBDIR += xlbiff
     SUBDIR += xmail
     SUBDIR += xmailbox
     SUBDIR += xmailwatcher

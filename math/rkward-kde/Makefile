@@ -3,7 +3,7 @@
 
 PORTNAME=	rkward
 DISTVERSION=	0.7.0b
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	math
 MASTER_SITES=	KDE/stable/${PORTNAME}/${DISTVERSION:C/b//}/src
 PKGNAMESUFFIX=	-kde
@@ -15,7 +15,8 @@ LICENSE=	GPLv2
 
 LIB_DEPENDS=	libR.so:math/R
 
-USES=		cmake desktop-file-utils gettext fortran kde:5 php:cli qt:5 shared-mime-info
+USES=		cmake compiler:c++11-lang desktop-file-utils gettext fortran \
+		kde:5 php:cli qt:5 shared-mime-info
 USE_QT=		buildtools concurrent core dbus gui network printsupport qmake script webkit	\
 		widgets xml
 USE_XORG=	x11

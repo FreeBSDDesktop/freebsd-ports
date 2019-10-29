@@ -2,7 +2,8 @@
 
 PORTNAME=	mariadb-connector-c
 PORTVERSION=	3.0.10
-CATEGORIES=	databases ipv6
+PORTREVISION=	1
+CATEGORIES=	databases
 MASTER_SITES=	http://ftp.osuosl.org/pub/${SITESDIR}/ \
 		http://mirrors.supportex.net/${SITESDIR}/ \
 		http://mirror2.hs-esslingen.de/pub/Mirrors/${SITESDIR}/ \

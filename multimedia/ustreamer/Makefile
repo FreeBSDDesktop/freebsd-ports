@@ -2,8 +2,8 @@
 
 PORTNAME=	ustreamer
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.78
-CATEGORIES=	multimedia ipv6 net
+DISTVERSION=	1.9
+CATEGORIES=	multimedia net
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Lightweight and fast MJPG-HTTP streamer
@@ -18,6 +18,8 @@ LIB_DEPENDS=	libevent.so:devel/libevent \
 USES=		compiler:c11 gmake jpeg localbase:ldflags
 USE_GITHUB=	yes
 GH_ACCOUNT=	pi-kvm
+
+INSTALL_TARGET=	install-strip
 
 PLIST_FILES=	bin/ustreamer
 

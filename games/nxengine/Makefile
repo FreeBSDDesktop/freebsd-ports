@@ -2,7 +2,7 @@
 
 PORTNAME=	nxengine
 PORTVERSION=	2.6.4
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	games
 MASTER_SITES+=	https://www.cavestory.org/downloads/:data \
@@ -26,6 +26,8 @@ LICENSE_FILE_FREEWARE=	${WRKDIR}/CaveStory/Readme.txt
 LICENSE_PERMS_FREEWARE=	dist-mirror pkg-mirror auto-accept
 LICENSE_DISTFILES_GPLv3=	${DISTFILES:[3]}
 LICENSE_DISTFILES_FREEWARE=	${DISTFILES:[2]:S/:data//}
+
+BROKEN=		checksum and size mismatch
 
 LIB_DEPENDS=	libpng.so:graphics/png
 

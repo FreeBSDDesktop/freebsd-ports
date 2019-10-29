@@ -4,7 +4,7 @@
 PORTNAME=	echoping
 PORTVERSION=	6.0.2
 PORTREVISION=	6
-CATEGORIES=	net ipv6
+CATEGORIES=	net
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Ping-like program that uses TCP and/or HTTP
@@ -12,12 +12,10 @@ COMMENT=	Ping-like program that uses TCP and/or HTTP
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN=		fails to configure
-
 LIB_DEPENDS=	libpopt.so:devel/popt \
 		libidn.so:dns/libidn
 
-USES=		autoreconf cpe libtool ssl
+USES=		autoreconf cpe libtool pkgconfig ssl
 
 CPE_VENDOR=	echoping_project
 GNU_CONFIGURE=	yes

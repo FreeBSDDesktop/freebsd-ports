@@ -4,8 +4,8 @@
 PORTNAME=	hexchat
 PORTVERSION=	2.14.2
 DISTVERSIONPREFIX=	v
-PORTREVISION=	2
-CATEGORIES=	irc gnome ipv6
+PORTREVISION=	3
+CATEGORIES=	irc gnome
 
 MAINTAINER=	pkubaj@anongoth.pl
 COMMENT=	IRC chat program with GTK and Text Frontend

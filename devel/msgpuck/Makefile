@@ -2,7 +2,7 @@
 
 PORTNAME=	msgpuck
 PORTVERSION=	2.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -11,7 +11,8 @@ COMMENT=	Lightweight MessagePack library
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake
+USES=		cmake compiler:c11
+
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes

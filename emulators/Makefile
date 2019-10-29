@@ -7,13 +7,14 @@
     SUBDIR += advancemame
     SUBDIR += advancemenu
     SUBDIR += advancemess
-    SUBDIR += aftp
     SUBDIR += almostti
+    SUBDIR += anese 
     SUBDIR += aqemu
     SUBDIR += atari800
     SUBDIR += bfe
     SUBDIR += bochs
     SUBDIR += bsvc
+    SUBDIR += cannonball
     SUBDIR += catapult
     SUBDIR += cinc
     SUBDIR += cingb
@@ -53,7 +54,6 @@
     SUBDIR += hugo
     SUBDIR += i386-wine
     SUBDIR += i386-wine-devel
-    SUBDIR += ia64sim
     SUBDIR += ines
     SUBDIR += javatari
     SUBDIR += joytran
@@ -69,10 +69,10 @@
     SUBDIR += linux_base-c6
     SUBDIR += linux_base-c7
     SUBDIR += lisaem
-    SUBDIR += loemu
     SUBDIR += mame
     SUBDIR += mastergear
     SUBDIR += mednafen
+    SUBDIR += mesen
     SUBDIR += mess
     SUBDIR += mgba
     SUBDIR += mtools
@@ -103,8 +103,6 @@
     SUBDIR += pcem
     SUBDIR += pcemu
     SUBDIR += pcsxr
-    SUBDIR += pearpc
-    SUBDIR += pipelight
     SUBDIR += playonbsd
     SUBDIR += ppsspp
     SUBDIR += ppsspp-qt5
@@ -114,11 +112,11 @@
     SUBDIR += qemu-cheri
     SUBDIR += qemu-devel
     SUBDIR += qemu-powernv
-    SUBDIR += qemu-riscv
     SUBDIR += qemu-sbruno
     SUBDIR += qemu-user-static
     SUBDIR += qemu-utils
-    SUBDIR += qemu2
+    SUBDIR += qemu30
+    SUBDIR += qemu40
     SUBDIR += qmc2
     SUBDIR += quasi88
     SUBDIR += riscv-fesvr
@@ -170,10 +168,11 @@
     SUBDIR += xbraitenberg
     SUBDIR += xcpc
     SUBDIR += xen-kernel
-    SUBDIR += xen-kernel47
     SUBDIR += xhomer
     SUBDIR += xsystem35
     SUBDIR += xzx
+    SUBDIR += yuzu
+    SUBDIR += yuzu-qt5
     SUBDIR += zsnes
 
 .include <bsd.port.subdir.mk>

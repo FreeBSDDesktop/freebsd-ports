@@ -2,7 +2,7 @@
 
 PORTNAME=	keeperrl
 PORTVERSION=	0.0.${ALPHA_VERSION}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -28,7 +28,6 @@ USE_GL=		gl
 USE_SDL=	sdl2 image2
 
 ALPHA_VERSION=	23
-NO_CONFIGURE=	yes
 LIBS+=		-lexecinfo
 LLD_UNSAFE=	yes
 MAKE_ARGS=	DATA_DIR="${DATADIR}" GCC="${CXX}" \

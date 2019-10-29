@@ -1,9 +1,9 @@
 # $FreeBSD$
 
 PORTNAME?=	mariadb
-PORTVERSION=	10.1.40
-PORTREVISION=	0
-CATEGORIES=	databases ipv6
+PORTVERSION=	10.1.41
+PORTREVISION=	1
+CATEGORIES=	databases
 MASTER_SITES=	http://ftp.osuosl.org/pub/${SITESDIR}/ \
 		http://mirrors.supportex.net/${SITESDIR}/ \
 		http://mirror2.hs-esslingen.de/pub/Mirrors/${SITESDIR}/ \
@@ -111,7 +111,6 @@ CMAKE_ON+=	WITHOUT_SERVER
 GSSAPI_NONE_CMAKE_ON=	-DPLUGIN_AUTH_GSSAPI_CLIENT=NO
 .else
 # MySQL-Server part
-BROKEN_powerpc64=	Does not build: fatal error: sys/platform/ppc.h: No such file or directory
 USES+=		mysql:101m
 USE_GNOME=	libxml2
 USE_LDCONFIG+=	${PREFIX}/lib/mysql/plugin

@@ -49,12 +49,10 @@
     SUBDIR += ircproxy
     SUBDIR += ircservices
     SUBDIR += iroffer-dinoex
-    SUBDIR += iroffer-lamm
     SUBDIR += irssi
     SUBDIR += irssi-dcc_send_limiter
     SUBDIR += irssi-fish
     SUBDIR += irssi-icb
-    SUBDIR += irssi-otr
     SUBDIR += irssi-scripts
     SUBDIR += irssi-xmpp
     SUBDIR += irssistats
@@ -64,12 +62,12 @@
     SUBDIR += libircclient
     SUBDIR += lostirc
     SUBDIR += miau
-    SUBDIR += minbif
     SUBDIR += muh
     SUBDIR += nethirc
     SUBDIR += ngircd
     SUBDIR += ninja
     SUBDIR += onis
+    SUBDIR += oragono
     SUBDIR += p5-AnyEvent-IRC
     SUBDIR += p5-Bot-BasicBot
     SUBDIR += p5-IRC-Bot-Hangman

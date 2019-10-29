@@ -2,12 +2,10 @@
 
 PORTNAME=	svt-av1
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.5.0
+DISTVERSION=	0.7.0
+PORTREVISION=	2
 CATEGORIES=	multimedia
 PKGNAMEPREFIX=	gstreamer1-plugins-
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES=	c77dc3f81301.patch:-p2
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	GStreamer (svt-av1) plugin

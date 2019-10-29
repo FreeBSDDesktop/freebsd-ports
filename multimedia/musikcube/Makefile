@@ -2,7 +2,11 @@
 
 PORTNAME=	musikcube
 DISTVERSION=	0.65.1
+PORTREVISION=	3
 CATEGORIES=	multimedia audio
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	0c6c3f7a7bd5.patch:-p1
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Terminal-based music player, audio engine, metadata indexer, server

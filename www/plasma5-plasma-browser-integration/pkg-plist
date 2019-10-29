@@ -5,6 +5,8 @@ lib/mozilla/native-messaging-hosts/org.kde.plasma.browser_integration.json
 %%QT_PLUGINDIR%%/kf5/kded/browserintegrationreminder.so
 %%QT_PLUGINDIR%%/krunner_browsertabs.so
 share/kservices5/plasma-runner-browsertabs.desktop
+share/locale/ast/LC_MESSAGES/plasma-browser-integration-host.mo
+share/locale/ast/LC_MESSAGES/plasma-browser-integration-reminder.mo
 share/locale/ca/LC_MESSAGES/plasma-browser-integration-host.mo
 share/locale/ca/LC_MESSAGES/plasma-browser-integration-reminder.mo
 share/locale/ca/LC_MESSAGES/plasma_runner_browsertabs.mo
@@ -17,6 +19,7 @@ share/locale/cs/LC_MESSAGES/plasma_runner_browsertabs.mo
 share/locale/da/LC_MESSAGES/plasma-browser-integration-host.mo
 share/locale/da/LC_MESSAGES/plasma-browser-integration-reminder.mo
 share/locale/da/LC_MESSAGES/plasma_runner_browsertabs.mo
+share/locale/de/LC_MESSAGES/plasma-browser-integration-host.mo
 share/locale/de/LC_MESSAGES/plasma-browser-integration-reminder.mo
 share/locale/de/LC_MESSAGES/plasma_runner_browsertabs.mo
 share/locale/en_GB/LC_MESSAGES/plasma-browser-integration-host.mo
@@ -43,9 +46,6 @@ share/locale/id/LC_MESSAGES/plasma_runner_browsertabs.mo
 share/locale/it/LC_MESSAGES/plasma-browser-integration-host.mo
 share/locale/it/LC_MESSAGES/plasma-browser-integration-reminder.mo
 share/locale/it/LC_MESSAGES/plasma_runner_browsertabs.mo
-share/locale/ja/LC_MESSAGES/plasma-browser-integration-host.mo
-share/locale/ja/LC_MESSAGES/plasma-browser-integration-reminder.mo
-share/locale/ja/LC_MESSAGES/plasma_runner_browsertabs.mo
 share/locale/ko/LC_MESSAGES/plasma-browser-integration-host.mo
 share/locale/ko/LC_MESSAGES/plasma-browser-integration-reminder.mo
 share/locale/ko/LC_MESSAGES/plasma_runner_browsertabs.mo
@@ -83,6 +83,7 @@ share/locale/sr@latin/LC_MESSAGES/plasma_runner_browsertabs.mo
 share/locale/sv/LC_MESSAGES/plasma-browser-integration-host.mo
 share/locale/sv/LC_MESSAGES/plasma-browser-integration-reminder.mo
 share/locale/sv/LC_MESSAGES/plasma_runner_browsertabs.mo
+share/locale/tg/LC_MESSAGES/plasma-browser-integration-reminder.mo
 share/locale/tr/LC_MESSAGES/plasma_runner_browsertabs.mo
 share/locale/uk/LC_MESSAGES/plasma-browser-integration-host.mo
 share/locale/uk/LC_MESSAGES/plasma-browser-integration-reminder.mo

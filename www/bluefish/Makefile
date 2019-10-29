@@ -3,7 +3,7 @@
 
 PORTNAME=	bluefish
 PORTVERSION=	2.2.10
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www editors
 MASTER_SITES=	http://www.bennewitz.com/bluefish/stable/source/ \
 		http://bluefish.mrball.net/stable/source/
@@ -32,14 +32,13 @@ INSTALL_TARGET=	install-strip
 INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	DEBUG DOCS TIDY WEBLINT
+OPTIONS_DEFINE=	DEBUG DOCS TIDY
 OPTIONS_SINGLE=	TOOLKIT
 OPTIONS_SINGLE_TOOLKIT=	GTK2 GTK3
-OPTIONS_DEFAULT=GTK3 WEBLINT
+OPTIONS_DEFAULT=GTK3
 OPTIONS_SUB=	yes
 
 TOOLKIT_DESC=		GTK+ toolkit
-WEBLINT_DESC=		Weblint HTML checker support
 
 DEBUG_CONFIGURE_ENABLE=	debugging-output
 GTK2_USE=		gnome=gtk20
@@ -49,6 +48,5 @@ GTK2_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 GTK3_LIB_DEPENDS=	libgucharmap_2_90.so:deskutils/gucharmap
 GTK3_USE=		gnome=gtk30
 TIDY_RUN_DEPENDS=	tidy4:www/tidy
-WEBLINT_RUN_DEPENDS=	weblint:www/weblint
 
 .include <bsd.port.mk>
