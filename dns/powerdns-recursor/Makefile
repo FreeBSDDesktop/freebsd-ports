@@ -3,7 +3,7 @@
 
 PORTNAME=	recursor
 DISTVERSION=	4.2.0
-CATEGORIES=	dns ipv6
+CATEGORIES=	dns
 MASTER_SITES=	http://downloads.powerdns.com/releases/
 PKGNAMEPREFIX=	powerdns-
 DISTNAME=	pdns-${PORTNAME}-${DISTVERSION}
@@ -31,8 +31,6 @@ GNU_CONFIGURE=	YES
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/pdns \
 		--with-protobuf \
 		--without-net-snmp
-
-CXXFLAGS+=	-D_GLIBCXX_USE_C99
 
 SUB_FILES=	pkg-message
 

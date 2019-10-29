@@ -3,8 +3,8 @@
 
 PORTNAME=	ntp
 PORTVERSION=	4.3.99
-PORTREVISION=	2
-CATEGORIES=	net ipv6
+PORTREVISION=	4
+CATEGORIES=	net
 MASTER_SITES=	http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-dev/ \
 		http://archive.ntp.org/ntp4/ntp-dev/
 PKGNAMESUFFIX=	-devel
@@ -77,6 +77,9 @@ ${D}_CONFIGURE_ENABLE=	${D}
 post-extract:
 	@${TOUCH} ${WRKSRC}/scripts/build/checkHtmlFileDates
 	@${CHMOD} +x ${WRKSRC}/scripts/build/checkHtmlFileDates
+
+post-configure:
+	@${ECHO_CMD} '#define HAVE_CLOSEFROM        1' >> ${WRKSRC}/config.h
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}

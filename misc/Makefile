@@ -17,7 +17,6 @@
     SUBDIR += artikulate
     SUBDIR += asbutton
     SUBDIR += asr-manpages
-    SUBDIR += astrolog
     SUBDIR += auto-multiple-choice
     SUBDIR += bb
     SUBDIR += bbjd
@@ -39,7 +38,6 @@
     SUBDIR += cdcollect
     SUBDIR += chef
     SUBDIR += chmlib
-    SUBDIR += chord2html
     SUBDIR += cinnamon-translations
     SUBDIR += cldr-emoji-annotation
     SUBDIR += clex
@@ -59,7 +57,6 @@
     SUBDIR += console-bridge
     SUBDIR += countrycodes
     SUBDIR += cpuid
-    SUBDIR += crosspad
     SUBDIR += crosti
     SUBDIR += cryptoballot
     SUBDIR += cs
@@ -73,16 +70,13 @@
     SUBDIR += deco
     SUBDIR += dejagnu
     SUBDIR += delay
-    SUBDIR += detachtty
     SUBDIR += diction
     SUBDIR += digitemp
     SUBDIR += display
     SUBDIR += dive
     SUBDIR += dnetc
-    SUBDIR += dphys-config
     SUBDIR += dtach
     SUBDIR += dvorak7min
-    SUBDIR += dvorakng
     SUBDIR += e2fsprogs-libblkid
     SUBDIR += e2fsprogs-libuuid
     SUBDIR += elixir-mime
@@ -139,7 +133,6 @@
     SUBDIR += ftdi-eeprom
     SUBDIR += fxload
     SUBDIR += gcstar
-    SUBDIR += gctpc
     SUBDIR += geekcode
     SUBDIR += getopt
     SUBDIR += gimp-help-ca
@@ -154,12 +147,10 @@
     SUBDIR += gimp-help-sl
     SUBDIR += gimp-help-sv
     SUBDIR += gkrellm-gamma
-    SUBDIR += gkrellm-helium
     SUBDIR += gkrellm-xkb
     SUBDIR += gkrellmbgchg2
     SUBDIR += gkrellmlaunch2
     SUBDIR += gkrellshoot2
-    SUBDIR += gkrellweather2
     SUBDIR += gkx86info2
     SUBDIR += gnome-devel-docs
     SUBDIR += gnome-getting-started-docs
@@ -174,6 +165,7 @@
     SUBDIR += gone
     SUBDIR += gonvert
     SUBDIR += gplink
+    SUBDIR += gpsim
     SUBDIR += granulate
     SUBDIR += grc
     SUBDIR += gwhich
@@ -236,7 +228,6 @@
     SUBDIR += libutf
     SUBDIR += lifelines
     SUBDIR += lingoteach
-    SUBDIR += linm
     SUBDIR += localedata
     SUBDIR += logsurfer
     SUBDIR += loop
@@ -248,7 +239,6 @@
     SUBDIR += mate-user-guide
     SUBDIR += mbuffer
     SUBDIR += mc
-    SUBDIR += mc-light
     SUBDIR += mdp
     SUBDIR += metalink-checker
     SUBDIR += metalink-editor
@@ -262,7 +252,7 @@
     SUBDIR += mtail
     SUBDIR += mtx
     SUBDIR += najitool
-    SUBDIR += newer
+    SUBDIR += netron
     SUBDIR += nms
     SUBDIR += nnn
     SUBDIR += nsf
@@ -363,6 +353,7 @@
     SUBDIR += php71-calendar
     SUBDIR += php72-calendar
     SUBDIR += php73-calendar
+    SUBDIR += php74-calendar
     SUBDIR += phraze
     SUBDIR += pinfo
     SUBDIR += pipe
@@ -469,7 +460,6 @@
     SUBDIR += spamcalc
     SUBDIR += sshbuddy
     SUBDIR += sssnips
-    SUBDIR += survex
     SUBDIR += susv2
     SUBDIR += susv3
     SUBDIR += susv4
@@ -478,7 +468,6 @@
     SUBDIR += talkfilters
     SUBDIR += tdfiglet
     SUBDIR += team
-    SUBDIR += telbook
     SUBDIR += tellico
     SUBDIR += tempcontrol
     SUBDIR += termatrix
@@ -512,7 +501,6 @@
     SUBDIR += utftools
     SUBDIR += utouch-kmod
     SUBDIR += valentina
-    SUBDIR += valspeak
     SUBDIR += vdmfec
     SUBDIR += veles
     SUBDIR += vera
@@ -530,7 +518,6 @@
     SUBDIR += wmweather+
     SUBDIR += wmwork
     SUBDIR += wotsap
-    SUBDIR += xd
     SUBDIR += xdelta
     SUBDIR += xdelta3
     SUBDIR += xdg-menu
@@ -546,7 +533,5 @@
     SUBDIR += yaunc
     SUBDIR += ytree
     SUBDIR += zoneinfo
-    SUBDIR += zygrib
-    SUBDIR += zygrib-maps
 
 .include <bsd.port.subdir.mk>

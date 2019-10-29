@@ -3,10 +3,12 @@
 
 PORTNAME=	anthy
 PORTVERSION=	0.4
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	japanese
 MASTER_SITES=	DEBIAN
 DISTFILES=	${DISTNAME:S/-/_/}.orig${EXTRACT_SUFX}
+EXTRACT_ONLY=	${DISTNAME:S/-/_/}.orig${EXTRACT_SUFX}
 
 MAINTAINER=	nobutaka@FreeBSD.org
 COMMENT=	Another Kana-Kanji conversion system
@@ -16,7 +18,7 @@ LICENSE_COMB=	multi
 LICENSE_FILE_GPLv2=	${WRKSRC}/alt-cannadic/COPYING
 LICENSE_FILE_LGPL21=	${WRKSRC}/COPYING
 
-USES=		libtool pathfix pkgconfig
+USES=		iconv:patch libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
@@ -75,6 +77,8 @@ post-extract:
 post-patch:
 	${REINPLACE_CMD} -e \
 		's| install-lispLISP||g' ${WRKSRC}/src-util/Makefile.in
+	${CP} ${WRKSRC}/src-util/rkhelper.c ${WRKSRC}/src-util/rkhelper.c.orig
+	${ICONV_CMD} -f utf-8 -t euc-jp ${WRKSRC}/src-util/rkhelper.c.orig >  ${WRKSRC}/src-util/rkhelper.c
 
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/${ELISPDIR}

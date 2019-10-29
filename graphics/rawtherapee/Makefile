@@ -3,6 +3,7 @@
 
 PORTNAME=	rawtherapee
 PORTVERSION=	5.7
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://rawtherapee.com/shared/source/
 
@@ -30,12 +31,20 @@ USES=		cmake desktop-file-utils compiler:gcc-c++11-lib gnome \
 		jpeg localbase:ldflags pkgconfig tar:xz
 
 DOS2UNIX_REGEX=	.*\.(cc|h)
-LDFLAGS+=	-Wl,--as-needed # fontconfig, freetype, gettext, libX11
 USE_GNOME=	gtkmm30 librsvg2
 USE_GCC=	9+
 USE_BINUTILS=	yes
 
-_LTO_FLAGS=	-flto=${_MAKE_JOBS_NUMBER} -fuse-linker-plugin
+# gcc needs -flto=${MAKE_JOBS_NUMBER} for parallel link
+#   and does not understand -flto=thin
+#   
+# llvm/clang needs -flto=thin and will automatically parallelize the link
+#
+# As of 2019-09-29, this port is known to be micompiled by clang90 (SIGSEGV or SIBGUS)
+# FreeBSD 12.0's base clang 6.0.1 emits worse code with considerably higher
+# processing times.
+# so we shall stick to GCC 9.x for now
+_LTO_FLAGS=	-flto=${MAKE_JOBS_NUMBER}
 _AR=		${CC:S/gcc/gcc-ar/}
 _RANLIB=	${CC:S/gcc/gcc-ranlib/}
 CFLAGS+=	-I${LOCALBASE}/include -fPIC ${_LTO_FLAGS} ${_OPT_FLAGS}
@@ -62,6 +71,11 @@ INSTALLS_ICONS=	yes
 # and as of GCC 8.3, it appears that among FreeBSD's supported architectures,
 # only the three listed above support this GCC option.
 CMAKE_ARGS+=	-DPROC_TARGET_NUMBER="1"
+.endif
+
+.if "${WITH_CCACHE_BUILD}" == "yes" && !defined(NO_CCACHE)
+CMAKE_ARGS+=	-DCMAKE_C_COMPILER_LAUNCHER=${CCACHE_BIN} \
+		-DCMAKE_CXX_COMPILER_LAUNCHER=${CCACHE_BIN}
 .endif
 
 RTDIR=		${PREFIX}/libdata/${PORTNAME}
