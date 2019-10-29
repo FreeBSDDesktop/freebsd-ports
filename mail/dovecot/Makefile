@@ -9,7 +9,7 @@
 
 PORTNAME=	dovecot
 PORTVERSION=	2.3.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.3/
 
@@ -85,7 +85,7 @@ VPOPMAIL_CONFIGURE_WITH=vpopmail
 CDB_CONFIGURE_WITH=	cdb
 CDB_LIB_DEPENDS=	libcdb.so:databases/tinycdb
 
-LDAP_LIB_DEPENDS=	libldap.so:net/openldap24-client
+LDAP_USE=		OPENLDAP=yes
 LDAP_CONFIGURE_WITH=	ldap
 
 MYSQL_USES=		mysql
