@@ -9,14 +9,14 @@ MASTER_SITES=	ftp://ftp.eggheads.org/pub/eggdrop/source/1.6/
 DISTNAME=	${PORTNAME}${PORTVERSION}
 DISTFILES=	${PORTNAME}${PORTVERSION}.tar.bz2
 
-MAINTAINER=	bdrewery@FreeBSD.org
+MAINTAINER=	dbaio@FreeBSD.org
 COMMENT=	The most popular open source Internet Relay Chat bot
 
 LICENSE=	GPLv2
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		tcl:85+
+USES=		tcl
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-tcllib=${LOCALBASE}/lib/libtcl${TCL_SHLIB_VER}.so \
 		--with-tclinc=${LOCALBASE}/include/tcl${TCL_VER}/tcl.h

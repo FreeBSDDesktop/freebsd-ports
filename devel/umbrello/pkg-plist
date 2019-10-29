@@ -12,9 +12,6 @@ share/icons/hicolor/48x48/apps/umbrello.png
 share/icons/hicolor/64x64/apps/umbrello.png
 share/icons/hicolor/scalable/apps/umbrello.svgz
 share/locale/ar/LC_MESSAGES/umbrello.mo
-share/locale/ast/LC_MESSAGES/umbrello.mo
-share/locale/ast/LC_MESSAGES/umbrello_kdevphp.mo
-share/locale/ast/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/bg/LC_MESSAGES/umbrello.mo
 share/locale/bs/LC_MESSAGES/umbrello.mo
 share/locale/bs/LC_MESSAGES/umbrello_kdevphp5.mo
@@ -34,6 +31,7 @@ share/locale/de/LC_MESSAGES/umbrello.mo
 share/locale/de/LC_MESSAGES/umbrello_kdevphp.mo
 share/locale/de/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/el/LC_MESSAGES/umbrello.mo
+share/locale/el/LC_MESSAGES/umbrello_kdevphp.mo
 share/locale/el/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/en_GB/LC_MESSAGES/umbrello.mo
 share/locale/en_GB/LC_MESSAGES/umbrello_kdevphp.mo
@@ -73,8 +71,10 @@ share/locale/kk/LC_MESSAGES/umbrello.mo
 share/locale/kk/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/km/LC_MESSAGES/umbrello.mo
 share/locale/ko/LC_MESSAGES/umbrello.mo
+share/locale/ko/LC_MESSAGES/umbrello_kdevphp.mo
 share/locale/ko/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/lt/LC_MESSAGES/umbrello.mo
+share/locale/lt/LC_MESSAGES/umbrello_kdevphp.mo
 share/locale/lt/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/mr/LC_MESSAGES/umbrello.mo
 share/locale/mr/LC_MESSAGES/umbrello_kdevphp5.mo
@@ -99,6 +99,7 @@ share/locale/pt_BR/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/ro/LC_MESSAGES/umbrello.mo
 share/locale/ro/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/ru/LC_MESSAGES/umbrello.mo
+share/locale/ru/LC_MESSAGES/umbrello_kdevphp.mo
 share/locale/ru/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/sk/LC_MESSAGES/umbrello.mo
 share/locale/sk/LC_MESSAGES/umbrello_kdevphp.mo
@@ -121,6 +122,7 @@ share/locale/zh_CN/LC_MESSAGES/umbrello.mo
 share/locale/zh_CN/LC_MESSAGES/umbrello_kdevphp.mo
 share/locale/zh_CN/LC_MESSAGES/umbrello_kdevphp5.mo
 share/locale/zh_TW/LC_MESSAGES/umbrello.mo
+share/locale/zh_TW/LC_MESSAGES/umbrello_kdevphp.mo
 share/locale/zh_TW/LC_MESSAGES/umbrello_kdevphp5.mo
 share/metainfo/org.kde.umbrello.appdata.xml
 share/umbrello5/common.ent
@@ -146,6 +148,8 @@ share/umbrello5/layouts/activity-vertical.desktop
 share/umbrello5/layouts/class-export.desktop
 share/umbrello5/layouts/class-horizontal.desktop
 share/umbrello5/layouts/class-vertical.desktop
+share/umbrello5/layouts/component-horizontal.desktop
+share/umbrello5/layouts/component-vertical.desktop
 share/umbrello5/layouts/entityrelationship-export.desktop
 share/umbrello5/layouts/entityrelationship-horizontal.desktop
 share/umbrello5/layouts/entityrelationship-vertical.desktop
@@ -155,5 +159,14 @@ share/umbrello5/layouts/object-vertical.desktop
 share/umbrello5/layouts/state-export.desktop
 share/umbrello5/layouts/state-vertical.desktop
 share/umbrello5/layouts/usecase-default.desktop
+share/umbrello5/simple4125/sdbcent.mod
+share/umbrello5/simple4125/sdbhier.mod
+share/umbrello5/simple4125/sdbpool.mod
+share/umbrello5/simple4125/sdocbook-custom.dtd
+share/umbrello5/simple4125/sdocbook.css
+share/umbrello5/simple4125/sdocbook.dtd
+share/umbrello5/simple4125/sdocbookref-custom.dtd
+share/umbrello5/simple4125/sdocbookref.dtd
+share/umbrello5/simple4125/sinclist.mod
 share/umbrello5/xmi.css
 share/umbrello5/xmi2docbook.xsl

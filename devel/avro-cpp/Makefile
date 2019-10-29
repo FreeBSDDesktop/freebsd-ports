@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	avro
-PORTVERSION=	1.8.2
+PORTVERSION=	1.9.1
 DISTVERSIONPREFIX=	release-
-PORTREVISION=	2
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-cpp
 
@@ -17,6 +16,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libboost_regex.so:devel/boost-libs
 
 USES=		cmake compiler:c++11-lang
+
+USE_CXXSTD=	c++11
 USE_LDCONFIG=	yes
 WRKSRC_SUBDIR=	lang/c++
 

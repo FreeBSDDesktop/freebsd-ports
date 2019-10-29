@@ -10,9 +10,6 @@
     SUBDIR += bitcoin-daemon
     SUBDIR += bitcoin-utils
     SUBDIR += bitflu
-    SUBDIR += bitmessage
-    SUBDIR += bnbt
-    SUBDIR += btpd
     SUBDIR += couchpotato
     SUBDIR += cpuminer
     SUBDIR += createtorrent
@@ -28,27 +25,21 @@
     SUBDIR += eiskaltdcpp-data
     SUBDIR += eiskaltdcpp-gtk
     SUBDIR += eiskaltdcpp-lib
-    SUBDIR += eiskaltdcpp-qt
     SUBDIR += frost
-    SUBDIR += gkremldk
-    SUBDIR += gnewtellium
     SUBDIR += go-ethereum
     SUBDIR += gtk-gnutella
     SUBDIR += gtorrentviewer
-    SUBDIR += hs-torrent
     SUBDIR += jackett
     SUBDIR += jigdo
     SUBDIR += ktorrent
-    SUBDIR += ktorrent-kde4
     SUBDIR += libbt
     SUBDIR += liberator
     SUBDIR += libktorrent
-    SUBDIR += libktorrent-kde4
     SUBDIR += libpdtp
     SUBDIR += libswift
     SUBDIR += libtorrent
     SUBDIR += libtorrent-rasterbar
-    SUBDIR += libtorrent-rasterbar-python
+    SUBDIR += lidarr
     SUBDIR += linuxdcpp
     SUBDIR += litecoin
     SUBDIR += litecoin-daemon
@@ -63,7 +54,6 @@
     SUBDIR += namecoin
     SUBDIR += namecoin-daemon
     SUBDIR += namecoin-utils
-    SUBDIR += napshare
     SUBDIR += ncdc
     SUBDIR += opendchub
     SUBDIR += p5-Net-BitTorrent
@@ -72,6 +62,7 @@
     SUBDIR += p5-Net-DirectConnect
     SUBDIR += p5-WWW-BitTorrent
     SUBDIR += phex
+    SUBDIR += py-libtorrent-rasterbar
     SUBDIR += py-py2play
     SUBDIR += py-transmissionrpc
     SUBDIR += py-tremc
@@ -84,6 +75,7 @@
     SUBDIR += rtorrent
     SUBDIR += shx
     SUBDIR += sonarr
+    SUBDIR += sonarr-devel
     SUBDIR += squall
     SUBDIR += torrent-file-editor
     SUBDIR += torrentcheck
@@ -96,20 +88,10 @@
     SUBDIR += transmission-remote-gui
     SUBDIR += tribler
     SUBDIR += uhub
-    SUBDIR += valknut
-    SUBDIR += verlihub
-    SUBDIR += verlihub-plugins
-    SUBDIR += verlihub-plugins-chatroom
-    SUBDIR += verlihub-plugins-floodprotect
-    SUBDIR += verlihub-plugins-forbid
-    SUBDIR += verlihub-plugins-iplog
-    SUBDIR += verlihub-plugins-isp
-    SUBDIR += verlihub-plugins-luascript
-    SUBDIR += verlihub-plugins-messanger
-    SUBDIR += verlihub-plugins-stats
     SUBDIR += vuze
     SUBDIR += xmrig
     SUBDIR += zetacoin
-    SUBDIR += zetacoin-nox11
+    SUBDIR += zetacoin-daemon
+    SUBDIR += zetacoin-utils
 
 .include <bsd.port.subdir.mk>

@@ -2,6 +2,7 @@
 
 PORTNAME=	blazeiterative
 PORTVERSION=	g20180409
+PORTREVISION=	8
 CATEGORIES=	math
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -9,13 +10,16 @@ COMMENT=	Set of iterative linear system solvers for use with the Blaze library
 
 #LICENSE=	https://github.com/tjolsen/BlazeIterative/issues/9
 
+DEPRECATED=	Depends on expiring devel/openmp
+EXPIRATION_DATE=	2019-12-31
+
 BUILD_DEPENDS=	blaze>0:math/blaze \
 		boost-libs>0:devel/boost-libs \
 		openblas>0:math/openblas \
 		openmp>0:devel/openmp
 RUN_DEPENDS=	blaze>0:math/blaze
 
-USES=		cmake:outsource compiler:c++14-lang fortran localbase:ldflags
+USES=		cmake compiler:c++14-lang fortran localbase:ldflags
 USE_GITHUB=	yes
 GH_ACCOUNT=	tjolsen
 GH_PROJECT=	BlazeIterative

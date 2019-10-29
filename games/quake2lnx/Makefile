@@ -177,7 +177,6 @@ MAKE_ARGS+=	BUILD_REDBLUE=YES
 .endif
 
 .if ${PORT_OPTIONS:MIPV6}
-CATEGORIES+=	ipv6
 MAKE_ARGS+=	HAVE_IPV6=YES
 .endif
 
@@ -205,6 +204,10 @@ post-patch: .SILENT
 	${REINPLACE_CMD} -e '/BUILDSTRING/s|Linux|${OPSYS}|' \
 		-e '/CPUSTRING/s|Unknown|${ARCH}|' \
 		${WRKSRC}/src/qcommon/qcommon.h
+.if ${PORT_OPTIONS:MASM}
+	${REINPLACE_CMD} -e '/^SHLIBLDFLAGS/s|$$| -Wl,-z,notext|' \
+		${WRKSRC}/Makefile
+.endif
 
 do-install:
 .for tgt in ${EXE_TARGETS}

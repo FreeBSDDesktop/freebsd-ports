@@ -1,6 +1,6 @@
---- Telegram/SourceFiles/history/history_inner_widget.cpp.orig	2018-08-04 18:53:40 UTC
+--- Telegram/SourceFiles/history/history_inner_widget.cpp.orig	2019-10-07 15:58:21 UTC
 +++ Telegram/SourceFiles/history/history_inner_widget.cpp
-@@ -1344,7 +1344,7 @@ void HistoryInner::mouseActionFinish(
+@@ -1401,7 +1401,7 @@ void HistoryInner::mouseActionFinish(
  	_widget->noSelectingScroll();
  	_widget->updateTopBarSelection();
  
@@ -9,7 +9,7 @@
  	if (!_selected.empty() && _selected.cbegin()->second != FullSelection) {
  		const auto [item, selection] = *_selected.cbegin();
  		if (const auto view = item->mainView()) {
-@@ -1353,7 +1353,7 @@ void HistoryInner::mouseActionFinish(
+@@ -1410,7 +1410,7 @@ void HistoryInner::mouseActionFinish(
  				QClipboard::Selection);
  		}
  	}

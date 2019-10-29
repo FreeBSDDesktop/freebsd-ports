@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	calculix
-PORTVERSION=	2.14
+PORTVERSION=	2.15
 PORTREVISION=	1
 CATEGORIES=	cad
 MASTER_SITES=	http://www.dhondt.de/
@@ -15,11 +15,13 @@ COMMENT=	Three-Dimensional Structural Finite Element Program
 
 LICENSE=	GPLv2
 
-BROKEN=		checksum and size mismatch
-BROKEN_FreeBSD_10=	Does not build with clang on FreeBSD 10, causes segfaults when built with gcc
 BROKEN_aarch64=		fails to link: shapeFunctions.c:(function attach_new): relocation R_AARCH64_CALL26 out of range
 
 RUN_DEPENDS=	ccx:cad/calculix-ccx
+
+USES=		gmake tar:bzip2 compiler:c++11-lib
+USE_XORG=	ice sm x11 xext xi xmu xt
+USE_GL=		gl glu # uses its own glut
 
 DIST_SOURCES=	cgx_${PORTVERSION}.all${EXTRACT_SUFX}
 DIST_HTM=	cgx_${PORTVERSION}.htm${EXTRACT_SUFX}
@@ -29,14 +31,10 @@ DIST_EXAMPLES=	cgx_${PORTVERSION}.exa${EXTRACT_SUFX}
 WRKSRC=		${WRKDIR}/CalculiX
 CGX_VER=	cgx_${PORTVERSION}
 
-USES=		gmake tar:bzip2 compiler:c++11-lib
-USE_XORG=	ice sm x11 xext xi xmu xt
-USE_GL=		gl glu # uses its own glut
+CXXFLAGS+=	-std=c++98
 
 BROWSER?=	firefox
 PSVIEWER?=	gv
-
-CXXFLAGS+=	-std=c++98
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 

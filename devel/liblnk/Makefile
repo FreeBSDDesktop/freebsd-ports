@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	liblnk
-PORTVERSION=	20180626
+PORTVERSION=	20191006
 DISTVERSIONPREFIX=	alpha-
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/libyal/liblnk/releases/download/${PORTVERSION}/ \

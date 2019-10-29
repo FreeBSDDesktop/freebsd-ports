@@ -2,8 +2,8 @@
 
 PORTNAME=	bagel
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.1.2-21
-DISTVERSIONSUFFIX=	-g2a9472a50
+DISTVERSION=	1.2.2
+PORTREVISION=	4
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -17,11 +17,12 @@ BROKEN_i386=	error: static_assert failed "size_t is assumed to be the same size 
 LIB_DEPENDS=	libboost_serialization.so:devel/boost-libs \
 		libcblas.so:math/cblas
 
-USES=		autoreconf fortran gmake libtool localbase python:build
+USES=		autoreconf compiler:c++11-lang fortran gmake libtool localbase python:build
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--datarootdir=${DATADIR}
 USE_GITHUB=	yes
 GH_ACCOUNT=	nubakery
+USE_CXXSTD=	c++11
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=			MPI LIBXC SCALAPACK SMITH # SLATER (needs a separate lib)
@@ -36,9 +37,9 @@ LIBXC_CONFIGURE_WITH=		libxc
 LIBXC_LIB_DEPENDS=		libxc.so:science/libxc
 
 SCALAPACK_DESC=			Use ScaLapack library for parallelized linear algebra
-SCALAPACK_CONFIGURE_ENABLE=	libxc
-SCALAPACK_MAKE_ARGS=		EXTRA_LIBS="-lcblas"
-SCALAPACK_MAKE_ARGS_OFF=	EXTRA_LIBS="-lcblas -llapack -lblas" # -llapack -lblas are a replacement of libscalapack
+SCALAPACK_CONFIGURE_ENABLE=	scalapack
+SCALAPACK_VARS=			LDFLAGS+="-lcblas -lscalapack"
+SCALAPACK_VARS_OFF=		LDFLAGS+="-lcblas -llapack -lblas" # -llapack -lblas are a replacement of libscalapack
 SCALAPACK_LIB_DEPENDS=		libscalapack.so:math/scalapack
 SCALAPACK_LIB_DEPENDS_OFF=	liblapack.so:math/lapack \
 				libblas.so:math/blas
@@ -47,5 +48,9 @@ SCALAPACK_IMPLIES=		MPI
 SMITH_DESC=			Compile SMITH generated code
 SMITH_CONFIGURE_ENABLE=		smith
 SMITH_IMPLIES=			MPI
+
+TEST_TARGET=			check # tests fail to build: https://github.com/nubakery/bagel/issues/145
+#TEST_ENV=			${MAKE_ARGS}
+#TEST_ARGS=			${MAKE_ARGS}
 
 .include <bsd.port.mk>

@@ -11,13 +11,13 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	wen@FreeBSD.org
 COMMENT=	Read and Update SCF Chromatographic Sequence Files
 
-BUILD_DEPENDS=	${LOCALBASE}/include/io_lib/scf.h:biology/iolib
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+LICENSE=	ART10 GPLv1+
+LICENSE_COMB=	dual
 
-CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	${LOCALBASE}/include/io_lib/scf.h:biology/iolib
 
-USES=		perl5
+USES=		perl5 localbase:ldflags
 USE_PERL5=	configure
 
 .include <bsd.port.mk>

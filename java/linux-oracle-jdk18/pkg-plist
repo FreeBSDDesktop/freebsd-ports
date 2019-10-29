@@ -419,10 +419,11 @@
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/cssref/cssexample2.png
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/cssref/cssref.html
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/cssref/fx_code_header.jpg
-%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/legal/THIRDPARTYLICENSEREADME.txt
-%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/lib/lucene-core-7.1.0.jar
-%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/lib/lucene-grouping-7.1.0.jar
-%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/lib/lucene-queryparser-7.1.0.jar
+%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/legal/lucene.md
+%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/legal/syntaxhighlighter.md
+%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/lib/lucene-core-7.7.1.jar
+%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/lib/lucene-grouping-7.7.1.jar
+%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/lib/lucene-queryparser-7.7.1.jar
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/nbproject/build-impl.xml
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/nbproject/configs/Build_index.properties
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/nbproject/genfiles.properties
@@ -476,9 +477,8 @@
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/src/app/resources/ensemble/images/popover-empty.png
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/src/app/resources/ensemble/images/popover-empty@2x.png
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/src/app/resources/ensemble/images/sample-background.png
-%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/src/app/resources/ensemble/syntaxhighlighter/shBrushJava.js
-%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/src/app/resources/ensemble/syntaxhighlighter/shCore.js
-%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/src/app/resources/ensemble/syntaxhighlighter/shCoreDefault.css
+%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/src/app/resources/ensemble/syntaxhighlighter/syntaxhighlighter.js
+%%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/src/app/resources/ensemble/syntaxhighlighter/theme.css
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/src/compiletime/java/ensemble/compiletime/BuildSamplesList.java
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/src/compiletime/java/ensemble/compiletime/CodeGenerationUtils.java
 %%DEMO%%%%T%%/demo/javafx_samples/src/Ensemble8/src/compiletime/java/ensemble/compiletime/EnsembleCompiletimeMain.java
@@ -1394,6 +1394,7 @@
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libavplugin-57.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libavplugin-ffmpeg-56.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libavplugin-ffmpeg-57.so
+%%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libavplugin-ffmpeg-58.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libawt.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libawt_headless.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libawt_xawt.so
@@ -1405,6 +1406,9 @@
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libfontmanager.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libfxplugins.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libglass.so
+%%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libglassgtk2.so
+%%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libglassgtk3.so
+%%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libglib-lite.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libgstreamer-lite.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libhprof.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libinstrument.so
@@ -1417,7 +1421,6 @@
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libjavafx_font.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libjavafx_font_freetype.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libjavafx_font_pango.so
-%%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libjavafx_font_t2k.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libjavafx_iio.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libjawt.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libjdwp.so
@@ -1429,7 +1432,6 @@
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libjsig.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libjsound.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libjsoundalsa.so
-%%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libkcms.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/liblcms.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libmanagement.so
 %%T%%/jre/lib/%%JAVA_ARCHLIBDIR%%/libmlib_image.so

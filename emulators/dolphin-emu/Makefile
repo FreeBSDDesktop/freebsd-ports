@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	dolphin-emu
-PORTVERSION=	5.0.8715
+PORTVERSION=	5.0.10960
 CATEGORIES=	emulators
 
 MAINTAINER=	martymac@FreeBSD.org
@@ -11,18 +11,17 @@ COMMENT=	Gamecube and Wii Emulator
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/license.txt
 
-BROKEN_FreeBSD_10=	conflicting types for '__hash_table<_Tp, _Hash, _Equal, _Alloc>'
+BROKEN_aarch64=	fails to build: Source/Core/Common/ArmCPUDetect.cpp:5:10: fatal error: 'asm/hwcap.h' file not found
 
 # Notes on dependencies:
-# - alsa support disabled (not optimal)
 # - enet and soundtouch come from Externals/ as Dolphin's versions diverge
 #   (see comments in CMakeLists.txt)
+# - alsa support has been disabled (not optimal)
 # Various problems that may be addressed in the future:
 # - xxhash comes from Externals/ as it cannot be properly detected yet
-# - gtest detection is missing (Externals/ version enforced by CMakeLists.txt)
+# - freesurround comes from Externals/ as it is not available from ports yet
 # - cubeb comes from Externals/ as it is not available from ports yet
-# - sdl2 support is buggy and leads to an infinite wait when Dolphin starts:
-#   ciface::SDL::PopulateDevices () at Source/Core/InputCommon/ControllerInterface/SDL/SDL.cpp:177
+# - gtest detection is missing (Externals/ version enforced by CMakeLists.txt)
 LIB_DEPENDS=	libpulse.so:audio/pulseaudio \
 		libavcodec.so:multimedia/ffmpeg \
 		libavdevice.so:multimedia/ffmpeg \
@@ -42,14 +41,15 @@ LIB_DEPENDS=	libpulse.so:audio/pulseaudio \
 		libcurl.so:ftp/curl \
 		libhidapi.so:comms/hidapi
 
-USES=		cmake compiler:c++17-lang desktop-file-utils iconv pkgconfig \
-		qmake qt:5
+USES=		cmake compiler:c++17-lang desktop-file-utils gl iconv \
+		pkgconfig qmake qt:5 sdl xorg
 
 USE_GITHUB=	yes
 GH_PROJECT=	dolphin
-GH_TAGNAME=	5f0d825
+GH_TAGNAME=	19ed641
 
 USE_GL=		gl glew glu
+USE_SDL=	sdl2
 USE_XORG=	ice sm x11 xext xi xrandr
 USE_QT=		buildtools_build core gui widgets
 
@@ -59,7 +59,6 @@ CMAKE_ARGS+=	-DTRY_X11:BOOL=ON \
 		-DENABLE_ALSA:BOOL=OFF \
 		-DENABLE_PULSEAUDIO:BOOL=ON \
 		-DUSE_DISCORD_PRESENCE:BOOL=OFF \
-		-DENABLE_SDL:BOOL=OFF \
 		-DCMAKE_REQUIRED_INCLUDES:PATH="${LOCALBASE}/include" \
 		-DCMAKE_REQUIRED_FLAGS:STRING="-L${LOCALBASE}/lib"
 MAKE_ENV+=	DESTDIR="${STAGEDIR}"

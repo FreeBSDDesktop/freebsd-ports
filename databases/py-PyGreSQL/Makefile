@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	PyGreSQL
-PORTVERSION=	5.0.6
+PORTVERSION=	5.1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	databases python
 MASTER_SITES=	http://www.pygresql.org/files/ \

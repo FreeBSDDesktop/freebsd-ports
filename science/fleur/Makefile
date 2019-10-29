@@ -2,7 +2,7 @@
 
 PORTNAME=	fleur
 DISTVERSION=	0.27-3 # Release 3 of Version 0.27
-PORTREVISION=	3
+PORTREVISION=	7
 CATEGORIES=	science
 MASTER_SITES=	http://www.flapw.de/pm/uploads/FLEUR/
 DISTNAME=	fleurMaXR${DISTVERSION:C/.*-//}
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libopenblas.so:math/openblas
 
-USES=		cmake:outsource,noninja fortran gnome localbase:ldflags tar:tgz
+USES=		cmake:noninja fortran gnome localbase:ldflags tar:tgz
 USE_GNOME=	libxml2
 
 FFLAGS=		-I${LOCALBASE}/include
@@ -27,7 +27,7 @@ OPTIONS_DEFAULT=	MPI SCALAPACK ELPA WANNIER
 
 HDF5_CONFIGURE_ENV=	FLEUR_USE_HDF5=1 HDF5_ROOT=${LOCALBASE}/lib
 HDF5_CONFIGURE_ENV_OFF=	FLEUR_USE_HDF5=0
-HDF5_CMAKE_ARGS=	-DHDF5_INCLUDE_DIRS=${LOCALBASE}/include
+HDF5_CMAKE_ON=		-DHDF5_INCLUDE_DIRS=${LOCALBASE}/include
 HDF5_LDFLAGS=		-lhdf5
 HDF5_LIB_DEPENDS=	libhdf5.so:science/hdf5
 HDF5_BROKEN=		Missing hdf5.mod in hdf5

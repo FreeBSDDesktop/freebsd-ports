@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	mariadb
-DISTVERSION=	3.0.3
-CATEGORIES=	databases ipv6
+DISTVERSION=	3.0.9
+CATEGORIES=	databases
 MASTER_SITES=	http://ftp.osuosl.org/pub/${SITESDIR}/ \
 		http://mirrors.supportex.net/${SITESDIR}/ \
 		http://mirror2.hs-esslingen.de/pub/Mirrors/${SITESDIR}/ \
@@ -23,12 +23,14 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libodbc.so:databases/unixODBC \
 		libmariadb.so:databases/mariadb-connector-c
 
-USES=		cmake
+USES=		cmake:insource
 USE_LDCONFIG=	${PREFIX}/lib/mariadbconnector-odbc
 SITESDIR=	${PORTNAME}/${PKGNAMESUFFIX:S/^-//}-${PORTVERSION:S/.b$//}
 DOCSDIR=	${PREFIX}/share/doc/mysql
 
 CMAKE_ARGS+=	-DCOMPILATION_COMMENT="FreeBSD Ports"
+CFLAGS+=	-I${LOCALBASE}/include/mariadb
+LDFLAGS+=	-L${LOCALBASE}/lib/mariadb
 
 PLIST_FILES=	lib/libmaodbc.so
 

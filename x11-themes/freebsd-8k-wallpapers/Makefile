@@ -1,25 +1,26 @@
 # $FreeBSD$
 
 PORTNAME=	freebsd-8k-wallpapers
-DISTVERSION=	1.0
+DISTVERSION=	2.1
 CATEGORIES=	x11-themes
+MASTER_SITES=	https://bitbucket.org/rigoletto-freebsd/freebsd-8k-wallpapers/get/
 
-MAINTAINER=	lebarondemerde@privacychain.ch
+MAINTAINER=	rigoletto@FreeBSD.org
 COMMENT=	Collection of simple FreeBSD wallpapers
 
 LICENSE=	CC-BY-4.0
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	lebarondemerde
 NO_ARCH=	yes
 NO_BUILD=	yes
 
+WRKSRC=		${WRKDIR}/rigoletto-freebsd-${PORTNAME}-2afc45f41224
+
 OPTIONS_DEFINE=	DOCS
 
-SLAVEPORT?=	freebsd
-
 PORTDOCS=	AUTHOR TRADEMARKS
+
+SLAVEPORT?=	freebsd
 
 .if ${SLAVEPORT:Mkde}
 PORTDOCS+=	TRADEMARKS-KDE
@@ -36,8 +37,8 @@ THEMEDIR_REL=	share/wallpapers/${PORTNAME}-${SLAVEPORT}
 THEMEDIR=	${PREFIX}/${THEMEDIR_REL}
 
 .if ${SLAVEPORT:Mfreebsd}
-FREEBSD_COLORS=	FreeBSD-Blue FreeBSD-Green FreeBSD-Purple \
-		FreeBSD-Red FreeBSD-Yellow
+FREEBSD_COLORS=	FreeBSD-Blue FreeBSD-Green FreeBSD-Grey \
+		FreeBSD-Purple FreeBSD-Red FreeBSD-Yellow
 .endif
 
 do-install:
@@ -56,7 +57,7 @@ do-install:
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	( cd ${WRKSRC} && \
+	( cd ${WRKSRC}/doc && \
 		${INSTALL_MAN} ${PORTDOCS} ${STAGEDIR}${DOCSDIR} )
 
 .include <bsd.port.mk>

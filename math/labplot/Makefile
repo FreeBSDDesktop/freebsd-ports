@@ -2,20 +2,21 @@
 # $FreeBSD$
 
 PORTNAME=	labplot
-PORTVERSION=	2.5.0
+PORTVERSION=	2.7.0
 PORTREVISION=	1
 CATEGORIES=	math kde
 MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}
 
 MAINTAINER=	kde@FreeBSD.org
-COMMENT=	Data plotting and function analysis tool for KDE
+COMMENT=	Data plotting and function analysis tool by KDE
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libgsl.so:math/gsl
 
-USES=		bison cmake:outsource desktop-file-utils kde:5 qt:5 shared-mime-info tar:xz
+USES=		bison cmake compiler:c++11-lang desktop-file-utils kde:5 qt:5 \
+		shared-mime-info tar:xz
 USE_KDE=	archive auth bookmarks codecs completion config configwidgets \
 		coreaddons crash ecm_build guiaddons i18n iconthemes itemviews \
 		jobwidgets kdelibs4support kio newstuff notifications parts \
@@ -34,7 +35,8 @@ OPTIONS_DEFAULT=	${OPTIONS_DEFINE}
 
 CANTOR_DESC=		Build with Cantor support
 CANTOR_CMAKE_BOOL=	ENABLE_CANTOR
-CANTOR_LIB_DEPENDS=	libcantorlibs.so:math/cantor
+CANTOR_LIB_DEPENDS=	libcantorlibs.so:math/cantor \
+			libpoppler-qt5.so:graphics/poppler-qt5
 FITS_DESC=		Flexible Image Transport System Data Format (FITS) Library
 FITS_CMAKE_BOOL=	ENABLE_FITS
 FITS_LIB_DEPENDS=	libcfitsio.so:astro/cfitsio

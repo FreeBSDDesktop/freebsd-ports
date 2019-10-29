@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	xapian
-PORTVERSION=	1.4.7
+PORTVERSION=	1.4.13
 DISTVERSIONPREFIX=	bindings-
 CATEGORIES=	databases
 MASTER_SITES=	https://oligarchy.co.uk/xapian/${PORTVERSION}/ \
@@ -24,15 +24,26 @@ OPTIONS_DEFINE=	DOCS
 
 PORTSCOUT=	limitw:1,even
 
-CONFIGURE_ARGS=	--datarootdir=${DATADIR} --docdir=${DOCSDIR} \
+USES=		compiler:c++11-lang libtool lua tar:xz
+
+CONFIGURE_ARGS=	--datarootdir=${DATADIR} \
+		--docdir=${DOCSDIR} \
+		--enable-shared \
 		--enable-static \
 		--with-lua \
-		--without-csharp --without-java --without-perl --without-php \
-		--without-python --without-python3 --without-ruby --without-tcl
+		--without-csharp \
+		--without-java \
+		--without-perl \
+		--without-php \
+		--without-php7 \
+		--without-python \
+		--without-python3 \
+		--without-ruby \
+		--without-tcl
 CONFIGURE_ENV=	LUA="${LUA_CMD}" LUA_INC="${LUA_INCDIR}" LUA_LIB="${LUA_MODLIBDIR}" LUA_SO=.so
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		compiler:c++11-lang libtool lua tar:xz
+USE_CXXSTD=	c++11
 
 PORTDOCS=	*
 

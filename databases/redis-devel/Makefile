@@ -2,17 +2,16 @@
 # $FreeBSD$
 
 PORTNAME=	redis
-DISTVERSION=	5.0-rc5
+DISTVERSION=	5.0.5
+PORTREVISION=	1
 CATEGORIES=	databases
+MASTER_SITES=	http://download.redis.io/releases/
 PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	osa@FreeBSD.org
 COMMENT=	Persistent key-value database with built-in net interface
 
 LICENSE=	BSD3CLAUSE
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	antirez
 
 OPTIONS_DEFINE=	JEMALLOC TESTS TRIB
 OPTIONS_RADIO=	EXTLUA
@@ -24,7 +23,7 @@ LUAJIT_DESC=	Use lang/luajit instead of builtin lua
 TESTS_DESC=	Install lang/tcl for redis unit tests
 TRIB_DESC=	Install redis-trib.rb (lang/ruby req.)
 
-USES+=		gmake
+USES+=		compiler gmake
 MAKE_ENV=	"V=yo"
 
 .include <bsd.port.options.mk>
@@ -36,7 +35,7 @@ CFLAGS+=	-march=i586
 .endif
 
 .if ${PORT_OPTIONS:MJEMALLOC}
-MAKE_ENV=	"USE_JEMALLOC=yes"
+MAKE_ENV+=	"USE_JEMALLOC=yes"
 .endif
 
 .if ${PORT_OPTIONS:MTRIB}
@@ -92,12 +91,17 @@ PLIST_SUB+=	REDIS_USER=${USERS} \
 	REDIS_DBDIR=${REDIS_DBDIR} \
 	REDIS_RUNDIR=${REDIS_RUNDIR}
 
+.include <bsd.port.pre.mk>
+
 post-patch:
 .if ${PORT_OPTIONS:MJEMALLOC}
 	@${REINPLACE_CMD} '35s!Linux!FreeBSD!g' ${WRKSRC}/src/Makefile
 .endif
 .if ${PORT_OPTIONS:MLUAJIT} || ${PORT_OPTIONS:MLUA}
 	@cd ${WRKSRC}/deps/lua/src && ${CP} fpconv.* lua_* strbuf.* ${WRKSRC}/src/
+.endif
+.if ${CHOSEN_COMPILER_TYPE} == gcc && ${COMPILER_VERSION} <= 42
+	${REINPLACE_CMD} -e '/pragma/d' ${WRKSRC}/src/lzf_d.c
 .endif
 
 post-build:

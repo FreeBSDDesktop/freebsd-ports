@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	torsocks
-PORTVERSION=	2.2.0
+DISTVERSION=	2.3.0
 PORTREVISION=	1
 CATEGORIES=	net security
 MASTER_SITES=	https://people.torproject.org/~dgoulet/${PORTNAME}/

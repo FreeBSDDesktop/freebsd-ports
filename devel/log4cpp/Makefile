@@ -3,7 +3,7 @@
 
 PORTNAME=	log4cpp
 PORTVERSION=	1.1.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}.x%20%28new%29/${PORTNAME}-${PORTVERSION:R}
 
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USES=		gmake libtool pathfix
+USES=		compiler:c++11-lang gmake libtool pathfix
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-html-docs
 REINPLACE_ARGS=	-i ""

@@ -3,11 +3,11 @@
 
 PORTNAME=	tnftp
 PORTVERSION=	20151004
-CATEGORIES=	ftp ipv6
+CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.netbsd.org/pub/NetBSD/misc/tnftp/
 
 MAINTAINER=	danilo@FreeBSD.org
-COMMENT=	Enhanced ftp client from NetBSD
+COMMENT=	Enhanced FTP client from NetBSD
 
 USES=		ncurses ssl
 GNU_CONFIGURE=	yes

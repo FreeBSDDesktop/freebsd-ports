@@ -1,61 +1,58 @@
 # $FreeBSD$
 
 PORTNAME=	cbindgen
-DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.3
+DISTVERSION=	0.9.1
 PORTREVISION=	1
 CATEGORIES=	devel
+MASTER_SITES=	CRATESIO
 PKGNAMEPREFIX=	rust-
+# XXX Teach USES=cargo to have proper default
+DISTFILES=	${CARGO_DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	gecko@FreeBSD.org
 COMMENT=	Generate C bindings from Rust code
 
 LICENSE=	MPL20
 
-RUN_DEPENDS=	cargo:lang/rust
+RUN_DEPENDS=	cargo:lang/${RUST_DEFAULT}
 
 USES=		cargo
-USE_GITHUB=	yes
-GH_ACCOUNT=	eqrion
-PLIST_FILES=	bin/cbindgen
+PLIST_FILES=	bin/${PORTNAME}
 
 CARGO_CRATES=	ansi_term-0.11.0 \
-		atty-0.2.10 \
-		bitflags-1.0.3 \
-		cfg-if-0.1.3 \
-		clap-2.31.2 \
-		cloudabi-0.0.3 \
-		dtoa-0.4.2 \
-		fuchsia-zircon-0.3.3 \
-		fuchsia-zircon-sys-0.3.3 \
-		itoa-0.4.1 \
-		libc-0.2.41 \
-		log-0.4.1 \
-		proc-macro2-0.4.4 \
-		quote-0.3.15 \
-		quote-0.6.3 \
-		rand-0.5.5 \
-		rand_core-0.2.1 \
-		redox_syscall-0.1.40 \
-		redox_termios-0.1.1 \
-		remove_dir_all-0.5.1 \
-		serde-1.0.64 \
-		serde_derive-1.0.21 \
-		serde_derive_internals-0.17.0 \
-		serde_json-1.0.19 \
-		strsim-0.7.0 \
-		syn-0.11.11 \
-		syn-0.14.1 \
-		synom-0.11.3 \
-		tempfile-3.0.3 \
-		termion-1.5.1 \
-		textwrap-0.9.0 \
-		toml-0.4.6 \
-		unicode-width-0.1.5 \
-		unicode-xid-0.0.4 \
-		unicode-xid-0.1.0 \
+		atty-0.2.13 \
+		bitflags-1.1.0 \
+		c2-chacha-0.2.2 \
+		cfg-if-0.1.9 \
+		clap-2.33.0 \
+		getrandom-0.1.11 \
+		itoa-0.4.4 \
+		lazy_static-1.4.0 \
+		libc-0.2.62 \
+		log-0.4.8 \
+		ppv-lite86-0.2.5 \
+		proc-macro2-1.0.1 \
+		quote-1.0.2 \
+		rand-0.7.0 \
+		rand_chacha-0.2.1 \
+		rand_core-0.5.0 \
+		rand_hc-0.2.0 \
+		redox_syscall-0.1.56 \
+		remove_dir_all-0.5.2 \
+		ryu-1.0.0 \
+		serde-1.0.99 \
+		serde_derive-1.0.99 \
+		serde_json-1.0.40 \
+		strsim-0.8.0 \
+		syn-1.0.5 \
+		tempfile-3.1.0 \
+		textwrap-0.11.0 \
+		toml-0.5.3 \
+		unicode-width-0.1.6 \
+		unicode-xid-0.2.0 \
 		vec_map-0.8.1 \
-		winapi-0.3.4 \
+		wasi-0.5.0 \
+		winapi-0.3.7 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
 		winapi-x86_64-pc-windows-gnu-0.4.0
 

@@ -1,22 +1,20 @@
 # $FreeBSD$
 
 PORTNAME=	wesnoth
-PORTVERSION=	1.14.5
+PORTVERSION=	1.14.7
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}/${PORTNAME}-${PORTVERSION} \
 		http://files.wesnoth.org/ \
 		http://ports.toco-domains.de/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	wen@FreeBSD.org
 COMMENT=	Fantasy turn-based strategy game
 
 LICENSE=	GPLv2 GPLv3
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-BROKEN_FreeBSD_10=	fails to build with boost 1.66, see bug 224130
-BROKEN_powerpc64=	fails to link: schema_validator.cpp: undefined reference to boost::match_results
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libvorbisfile.so:audio/libvorbis \
@@ -28,7 +26,8 @@ LDFLAGS+=	-L${LOCALBASE}/lib -lboost_system
 
 PORTSCOUT=	limitw:1,even
 
-USES=		cmake:outsource cpe pkgconfig python:2.7,run readline:port shebangfix ssl tar:bzip2
+USES=		cmake compiler:c++11-lang cpe pkgconfig \
+		python:2.7,run readline:port shebangfix ssl tar:bzip2
 USE_SDL=	image2 mixer2 ttf2
 USE_LDCONFIG=	yes
 USE_GNOME=	cairo pango

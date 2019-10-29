@@ -4,10 +4,10 @@
 PORTNAME=	cfengine
 PORTVERSION=	3.${CFENGINE_COMMIT_DATE}
 CATEGORIES=	sysutils
-MASTER_SITES=	https://s3.amazonaws.com/cfengine-package-repos/tarballs/
 PKGNAMESUFFIX=	-devel
-HASH=		a7aa27a
-CFENGINE_COMMIT_DATE=	2018.09.25
+CFENGINE_HASH=		3bdc063e5
+LIBNTECH_HASH=		e1940f8
+CFENGINE_COMMIT_DATE=	2019.10.23
 
 MAINTAINER=	cy@FreeBSD.org
 #		gjb@FreeBSD.org is also committer for this port
@@ -17,13 +17,13 @@ COMMENT=	Systems administration tool for networks
 LICENSE=	GPLv3
 
 USE_GITHUB=	yes
-GH_PROJECT=	core
-GH_TAGNAME=	${HASH}
+# GH_PROJECT=	core libntech:libntech
+# GH_TAGNAME=	${CFENGINE_HASH} ${LIBNTECH_HASH}
+GH_TUPLE=	cfengine:core:${CFENGINE_HASH} \
+		cfengine:libntech:${LIBNTECH_HASH}:libntech/libntech
 CPE_VENDOR=	gnu
 
 CONFLICTS=	cfengine-2* cfengine3[0-9]-* cfengine31[02-9]-* cfengine-3.*
-
-FETCH_BEFORE_ARGS=	-o ${DISTDIR}/${DISTFILES}
 
 CONFLICTS=	cfengine-[12-9]*
 
@@ -62,15 +62,15 @@ LIB_DEPENDS+=	libpcre.so:devel/pcre \
 OPTIONS_DEFINE=	PGSQL MYSQL LIBVIRT
 
 PGSQL_USES=		pgsql
-PGSQL_CONFIGURE_WITH=	--with-postgresql=${LOCALBASE}
+PGSQL_CONFIGURE_WITH=	postgresql=${LOCALBASE}
 
 MYSQL_USES=		mysql
 MYSQL_BROKEN=		configure: error: MySQL client library exports symbols (EVP_CIPHER_CTX_init) clashing with OpenSSL.
-MYSQL_CONFIGURE_WITH=	--with-mysql=${LOCALBASE}
+MYSQL_CONFIGURE_WITH=	mysql=${LOCALBASE}
 MYSQL_LIB_DEPENDS=	libmysqlclient.so:${_MYSQL_CLIENT}
 MYSQL_LDFLAGS=		-L${LOCALBASE}/lib/mysql
 
-LIBVIRT_CONFIGURE_WITH=	--with-libvirt=${LOCALBASE}
+LIBVIRT_CONFIGURE_WITH=	libvirt=${LOCALBASE}
 LIBVIRT_LIB_DEPENDS+=	libvirt.so:devel/libvirt
 
 .include <bsd.port.mk>

@@ -4,36 +4,35 @@
 #
 # Feature:	pyqt
 # Usage:	USES=pyqt:ARGS
-# Valid ARGS:	4,5
+# Valid ARGS:	5
 #
 # MAINTAINER:	kde@FreeBSD.org
 #
 # Internal Port variables for PyQt ports:
-# PYQT_DIST	- This port is part of PyQt4/5 itself. Variables and
+# PYQT_DIST	- This port is part of PyQt5 itself. Variables and
 #		targets are then set assuming a certain tarball and
 #		port layout.
 # USE_PYQT	- List of PyQt components to depend on
 #		* foo_build    only build depend
 #		* foo_run      only run depend
 #		* foo          both (default)
-# SIPDIR	- Absolute path where sip files will be installed
-# SIPDIR_REL	- Relative version of SIPDIR
-#
-# Also PYQT_SIPDIR=${SIPDIR_REL} will be added to PLIST_SUB.
-#
+# PYQT_SIPDIR	- where sip files will be installed to
+# PYQT_APIDIR	- where api files will be installed to
+# PYQT_DOCDIR	- where doc files will be installed to
+# PYQT_EXAMPLESDIR	- where examples will be installed to
 
 .if !defined(_INCLUDE_USES_PYQT_MK)
 _INCLUDE_USES_PYQT_MK=	yes
 
-# At the moment we support PyQt bindings versions 4 and 5, sip
+# At the moment we support PyQt bindings versions 5, sip
 # option is for internal use by the py-sip ports.
-_PYQT_SUPPORTED=        4 5 sip
+_PYQT_SUPPORTED=        5 sip
 
 .if empty(pyqt_ARGS)
 IGNORE=	pyqt needs a qt-version (${_PYQT_SUPPORTED})
 .endif
 
-# At the moment we support PyQt bindings versions 4 and 5
+# At the moment we support PyQt bindings versions 5
 .for ver in ${_PYQT_SUPPORTED:O:u}
 .  if ${pyqt_ARGS:M${ver}}
 .    if empty(_PYQT_VERSION)
@@ -46,43 +45,40 @@ IGNORE?=        cannot be installed: different PYQT versions specified via pyqt:
 
 .if empty(_PYQT_VERSION)
 IGNORE?=        USES=pyqt needs a version number (valid values: ${_PYQT_SUPPORTED})
+_PYQT_VERSION=	0
 .endif
 
 PYQT_MAINTAINER=	kde@FreeBSD.org
 
 MASTER_SITE_RIVERBANK=	http://www.riverbankcomputing.com/static/Downloads/%SUBDIR%/
 
-MASTER_SITES_SIP=	SF/pyqt/sip/sip-${PORTVERSION} \
+# https://www.riverbankcomputing.com/static/Downloads/sip/4.19.15/sip-4.19.15.tar.gz
+MASTER_SITES_SIP=	RIVERBANK/sip/${PORTVERSION} \
+			SF/pyqt/sip/sip-${PORTVERSION} \
 			GENTOO
-MASTER_SITES_PYQT4=	SF/pyqt/PyQt4/PyQt-${PORTVERSION} \
+MASTER_SITES_PYQT5=	RIVERBANK/PyQt5/${PORTVERSION} \
+			SF/pyqt/PyQt5/PyQt-${PORTVERSION} \
 			GENTOO
-MASTER_SITES_PYQT5=	SF/pyqt/PyQt5/PyQt-${PORTVERSION} \
-			GENTOO
-MASTER_SITES_QSCI2=	SF/pyqt/QScintilla2/QScintilla-${PORTVERSION} \
+#https://www.riverbankcomputing.com/static/Downloads/QScintilla/QScintilla_gpl-2.11.tar.gz
+MASTER_SITES_QSCI2=	RIVERBANK/QScintilla/${PORTVERSION} \
+			SF/pyqt/QScintilla2/QScintilla-${PORTVERSION} \
 			GENTOO
 
-SIP_VERSION=		4.19.8
-QSCI2_VERSION=		2.10.4
-PYQT4_VERSION=		4.12.1
-PYQT5_VERSION=		5.9.2
+SIP_VERSION=		4.19.19
+QSCI2_VERSION=		2.11.2
+PYQT5_VERSION=		5.13.1
 
 SIP_DISTNAME=		sip-${SIP_VERSION}
-PYQT4_DISTNAME=		PyQt4_gpl_x11-${PYQT4_VERSION}
-PYQT4_DISTINFO_FILE=	${.CURDIR:H:H}/devel/${PYQT_RELNAME}/distinfo
 PYQT5_DISTNAME=		PyQt5_gpl-${PYQT5_VERSION}
 PYQT5_DISTINFO_FILE=	${.CURDIR:H:H}/devel/${PYQT_RELNAME}/distinfo
 QSCI2_DISTNAME=		QScintilla_gpl-${QSCI2_VERSION}
-PYQT4_LICENSE=		GPLv3
 PYQT5_LICENSE=		GPLv3
 
-# Keep these synchronized with OPTIONS_DEFINE in devel/py-qt4 and devel/py-qt5
-# PyQt components split up into pyqt4/pyqt5/...
+# Keep these synchronized with OPTIONS_DEFINE in devel/py-qt5
+# PyQt components split up into pyqt5/...
 _USE_PYQT_ALL=		core dbus dbussupport demo designer designerplugin \
-			gui multimedia network opengl qscintilla2 \
+			gui help multimedia network opengl qscintilla2 \
 			sql svg test webkit xml xmlpatterns sip
-# List of components only in pyqt4
-_USE_PYQT4_ONLY=	assistant declarative doc \
-			help phonon script scripttools
 # List of components only in pyqt5
 _USE_PYQT5_ONLY=	multimediawidgets printsupport qml quickwidgets \
 			serialport webchannel webengine webkitwidgets widgets
@@ -120,7 +116,7 @@ py-sql_PATH=		${PYQT_PY_RELNAME}-sql>=${PYQT_VERSION}
 py-svg_PATH=		${PYQT_PY_RELNAME}-svg>=${PYQT_VERSION}
 py-test_PATH=		${PYQT_PY_RELNAME}-test>=${PYQT_VERSION}
 py-webchannel_PATH=	${PYQT_PY_RELNAME}-webchannel>=${PYQT_VERSION}
-py-webengine_PATH=	${PYQT_PY_RELNAME}-webengine>=${PYQT_VERSION}
+py-webengine_PATH=	${PYQT_PY_RELNAME}-webengine>=5.12.1
 py-webkit_PATH=		${PYQT_PY_RELNAME}-webkit>=${PYQT_VERSION}
 py-xml_PATH=		${PYQT_PY_RELNAME}-xml>=${PYQT_VERSION}
 py-xmlpatterns_PATH=	${PYQT_PY_RELNAME}-xmlpatterns>=${PYQT_VERSION}
@@ -205,9 +201,35 @@ py-serialport_DESC=		Python bindings for QtSerialPort
 py-webkitwidgets_DESC=		Python bindings for QtWebKitWidgets module
 py-widgets_DESC=		Python bindings for QTWidgets module
 
-SIPDIR_REL=	share/py-sip/PyQt${_PYQT_VERSION}
-SIPDIR=		${PREFIX}/${SIPDIR_REL}
-PLIST_SUB+=	PYQT_SIPDIR=${SIPDIR_REL}
+# The versionned executable of sip
+SIP=		${LOCALBASE}/bin/sip-${PYTHON_VER}
+
+# Relative directories
+_VERSION_SUBDIR_REL=	PyQt${_PYQT_VERSION}/${PYTHON_VER}
+_APIDIR_REL=	share/${_VERSION_SUBDIR_REL}/qsci
+_DOCDIR_REL=	share/doc/${_VERSION_SUBDIR_REL}
+_EXAMPLEDIR_REL=	share/examples/${_VERSION_SUBDIR_REL}
+_SIPDIR_REL=	share/${_VERSION_SUBDIR_REL}/sip
+_DESIGNERDIR_REL=	${QT_PLUGINDIR_REL}/designer/${_VERSION_SUBDIR_REL}
+_QMLDIR_REL=		${QT_QMLDIR_REL}/${_VERSION_SUBDIR_REL}
+
+# Absolute direcotries
+PYQT_APIDIR=		${PREFIX}/${_APIDIR_REL}
+PYQT_DOCDIR=		${PREFIX}/${_DOCDIR_REL}
+PYQT_EXAMPLEDIR=	${PREFIX}/${_EXAMPLEDIR_REL}
+PYQT_SIPDIR=		${PREFIX}/${_SIPDIR_REL}
+PYQT_DESIGNERDIR=	${PREFIX}/${_DESIGNERDIR_REL}
+PYQT_QMLDIR=		${PREFIX}/${_QMLDIR_REL}
+
+PLIST_SUB+=	PYQT_APIDIR=${_APIDIR_REL} \
+		PYQT_DOCDIR=${_DOCDIR_REL} \
+		PYQT_EXAMPLEDIR=${_EXAMPLEDIR_REL} \
+		PYQT_SIPDIR=${_SIPDIR_REL} \
+		PYQT_DESIGNERDIR=${_DESIGNERDIR_REL} \
+		PYQT_QMLDIR=${_QMLDIR_REL} \
+		PYQT_SIPVERSION=${SIP_VERSION} \
+		PYQT_QSCIVERSION=${QSCI2_VERSION} \
+		PYQT_PYQTVERSION=${PYQT_VERSION}
 
 .if defined(PYQT_DIST)
 PORTVERSION=	${PYQT_VERSION}
@@ -227,14 +249,19 @@ PORTSCOUT?=	limit:^${_QT_VERSION:R}
 .endif
 
 PATCHDIR=	${.CURDIR}/../../devel/${PYQT_RELNAME}-core/files
-QSCIDIR=	${PREFIX}/share/qt${_PYQT_VERSION}/qsci
 CONFIGURE_ARGS+=-b ${PREFIX}/bin \
 		-d ${PYTHONPREFIX_SITELIBDIR} \
 		-q ${QMAKE} \
 		--confirm-license \
-		--sip ${LOCALBASE}/bin/sip-${PYTHON_VER} \
-		--sipdir ${SIPDIR}
-
+		--sip ${SIP} \
+		--sipdir ${PYQT_SIPDIR}
+.if ${_PYQT_VERSION:M5}
+# Move the designer plugin and qml libraries to versioned folders.
+CONFIGURE_ARGS+=--qml-plugindir ${PYQT_QMLDIR} \
+		--designer-plugindir ${PYQT_DESIGNERDIR}
+# Further do not gernate the dinstinfo files.
+CONFIGURE_ARGS+=--no-dist-info
+.endif
 # One of the things PyQt looks for to determine whether to build the Qt DBus
 # main loop module (${PYQT_RELNAME}-dbussupport) is whether the dbus/ directory is
 # present. Only extract it for that port then.

@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	cppcheck
-PORTVERSION=	1.84
-PORTREVISION=	1
+PORTVERSION=	1.89
+PORTREVISION?=	0	# devel/cppcheck-gui
 CATEGORIES=	devel
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -12,7 +12,7 @@ COMMENT?=	Static analysis of C/C++ code
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		compiler:c++11-lib cmake tar:bzip2
+USES=		compiler:c++11-lib cmake:insource tar:bzip2
 USE_GITHUB=	yes
 GH_ACCOUNT=	danmar
 
@@ -34,6 +34,8 @@ PKGNAMESUFFIX=		-gui
 .else
 USES+=			shebangfix
 SHEBANG_FILES=		htmlreport/cppcheck-htmlreport
+
+PORTDATA=		*
 
 OPTIONS_DEFINE=		RULES HTMLREPORT MANPAGES MATCHCOMPILER TEST
 OPTIONS_DEFAULT=	RULES HTMLREPORT MANPAGES MATCHCOMPILER

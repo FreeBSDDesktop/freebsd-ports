@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	msgpack
-PORTVERSION=	3.1.1
+PORTVERSION=	3.2.0
+PORTREVISION=	1
 DISTVERSIONPREFIX=	cpp-
 CATEGORIES=	devel
 
@@ -18,6 +19,7 @@ USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_PROJECT=	msgpack-c
 
+CMAKE_OFF=	MSGPACK_BUILD_EXAMPLES
 TEST_TARGET=	test
 
 .include <bsd.port.options.mk>
@@ -26,6 +28,10 @@ TEST_TARGET=	test
 # required for __sync _* atomic operations on sparc
 USE_GCC=	yes
 .endif
+
+post-patch:
+# GoogleTest doesn't support C++98 consumers since 1.10.0
+	@${REINPLACE_CMD} -e 's/c++98/c++11/' ${WRKSRC}/CMakeLists.txt
 
 pre-test:
 	cd ${WRKSRC} && ${CMAKE_BIN} . && ${MAKE_CMD}

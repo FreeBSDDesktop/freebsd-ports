@@ -5,7 +5,7 @@ PORTNAME=	imap
 PORTVERSION=	2007f
 PORTREVISION=	1
 PORTEPOCH=	1
-CATEGORIES=	mail ipv6
+CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.cac.washington.edu/imap/%SUBDIR%/ \
 		ftp://ftp.nuug.no/pub/anders/distfiles/%SUBDIR%/ \
 		http://atreides.freenix.no/~anders/%SUBDIR%/ \
@@ -33,20 +33,14 @@ ALL_TARGET=	bsf
 # This port must have the same SSL settings as mail/cclient, which it depends on
 # To make MBX format the default mailbox format, change the settings of cclient
 
-OPTIONS_DEFINE=	SSL SSL_AND_PLAINTEXT DRAC NETSCAPE_BRAIN_DAMAGE DOCS
+OPTIONS_DEFINE=	SSL SSL_AND_PLAINTEXT NETSCAPE_BRAIN_DAMAGE DOCS
 OPTIONS_DEFAULT=	SSL
 OPTIONS_SUB=	yes
 
 SSL_AND_PLAINTEXT_DESC=	Allow plain text passwords and SSL
-DRAC_DESC=		Dynamically open MTA for relaying
 NETSCAPE_BRAIN_DAMAGE_DESC=	See Makefile for documentation
 
 .include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MDRAC}
-BUILD_DEPENDS=	${LOCALBASE}/lib/libdrac.a:mail/drac
-MAKE_ARGS+=	WITH_DRAC=yes
-.endif
 
 .if ! ${PORT_OPTIONS:MSSL}
 MAKE_ARGS+=	SSLTYPE=none SSLDIR=${OPENSSLBASE}

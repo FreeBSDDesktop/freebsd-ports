@@ -12,16 +12,14 @@ LICENSE=	APACHE20
 
 ONLY_FOR_ARCHS=	amd64 i386
 ONLY_FOR_ARCHS_REASON=	"not yet ported to anything other than i386 and amd64"
-BROKEN_SSL=	openssl-devel libressl libressl-devel
-BROKEN_SSL_REASON_openssl-devel=	variable has incomplete type 'BIO_METHOD' (aka 'struct bio_method_st')
+BROKEN_SSL=	openssl111 libressl libressl-devel
+BROKEN_SSL_REASON_openssl111=	variable has incomplete type 'BIO_METHOD' (aka 'struct bio_method_st')
 BROKEN_SSL_REASON_libressl=		could not determine kind of name for C.EVP_sha
 BROKEN_SSL_REASON_libressl-devel=	${BROKEN_SSL_REASON_libressl}
 
-BUILD_DEPENDS=	go>0:lang/go
-
 CONFLICTS_INSTALL=	mongodb mongodb[32-34]-tools
 
-USES=	localbase
+USES=	go localbase
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mongodb
@@ -43,6 +41,13 @@ MAKE_ENV=	GOPATH="${WRKSRC}/.gopath:${WRKSRC}/vendor" \
 		CGO_CXXFLAGS="${CXXFLAGS}" CGO_LDFLAGS="-L${LOCALBASE}/lib ${LDFLAGS}"
 
 MY_TAGS=	-tags "${USE_MY_TAGS}"
+
+.include <bsd.port.pre.mk>
+
+.if ${SSL_DEFAULT} == base
+BROKEN_FreeBSD_12=	variable has incomplete type 'BIO_METHOD' (aka 'struct bio_method_st')
+BROKEN_FreeBSD_13=	variable has incomplete type 'BIO_METHOD' (aka 'struct bio_method_st')
+.endif
 
 post-patch:
 	@cd ${WRKSRC} ; ${MKDIR} ${WRKSRC}/.gopath/src/github.com/${GH_ACCOUNT} ; \
@@ -66,4 +71,4 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/${x} ${STAGEDIR}${DOCSDIR}
 .endfor
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

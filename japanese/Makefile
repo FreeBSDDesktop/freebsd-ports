@@ -7,7 +7,6 @@
     SUBDIR += CGdic-fpw
     SUBDIR += FreeWnn-lib
     SUBDIR += FreeWnn-server
-    SUBDIR += VTPSfont
     SUBDIR += Wnn6-lib
     SUBDIR += Wnn7-lib
     SUBDIR += a2ps
@@ -17,7 +16,6 @@
     SUBDIR += alias-fonts
     SUBDIR += another-htmllint
     SUBDIR += anthy
-    SUBDIR += asterisk-sounds
     SUBDIR += awffull
     SUBDIR += bible_names-fpw
     SUBDIR += boiled-mozc
@@ -26,12 +24,12 @@
     SUBDIR += bugzilla50
     SUBDIR += canna-lib
     SUBDIR += canna-server
-    SUBDIR += cannadic
     SUBDIR += cdrom2
     SUBDIR += celrw
     SUBDIR += chasen-base
     SUBDIR += cmigemo
     SUBDIR += cmigemo-dict
+    SUBDIR += cp5022x-el
     SUBDIR += csrd
     SUBDIR += ctags
     SUBDIR += dbskkd-cdb
@@ -46,7 +44,6 @@
     SUBDIR += ebview-gtk2
     SUBDIR += edict
     SUBDIR += edict-fpw
-    SUBDIR += edict-utf-8
     SUBDIR += edyvalue
     SUBDIR += eijiro-fpw
     SUBDIR += epwutil
@@ -91,6 +88,8 @@
     SUBDIR += font-mplus-bitmap
     SUBDIR += font-mplus-ipa
     SUBDIR += font-mplus-outline
+    SUBDIR += font-myrica
+    SUBDIR += font-myricam
     SUBDIR += font-naga10
     SUBDIR += font-nasu
     SUBDIR += font-ricty
@@ -108,7 +107,6 @@
     SUBDIR += gd
     SUBDIR += gedy
     SUBDIR += gimp-help
-    SUBDIR += gjiten
     SUBDIR += groff
     SUBDIR += gskk
     SUBDIR += gsuica
@@ -127,9 +125,6 @@
     SUBDIR += jed
     SUBDIR += jishyo
     SUBDIR += jls
-    SUBDIR += jmode
-    SUBDIR += jmode-skk
-    SUBDIR += jpilot
     SUBDIR += jstrings
     SUBDIR += jvim3
     SUBDIR += kakasi
@@ -139,14 +134,11 @@
     SUBDIR += kbanner
     SUBDIR += kcc
     SUBDIR += kcode
-    SUBDIR += kde4-l10n
     SUBDIR += kdrill
     SUBDIR += kinput2
     SUBDIR += kiten
-    SUBDIR += kiten-kde4
     SUBDIR += kon2-14dot
     SUBDIR += kon2-16dot
-    SUBDIR += kpcal
     SUBDIR += kterm
     SUBDIR += latex-jlisting
     SUBDIR += leafrogue
@@ -177,7 +169,6 @@
     SUBDIR += mozc-el
     SUBDIR += mozc-server
     SUBDIR += mozc-tool
-    SUBDIR += multiskkserv
     SUBDIR += mutt-devel
     SUBDIR += mypaedia-fpw-package
     SUBDIR += namazu
@@ -220,8 +211,6 @@
     SUBDIR += p5-WWW-MobileCarrierJP
     SUBDIR += p5-nkf
     SUBDIR += pejv-fpw
-    SUBDIR += php5-mecab
-    SUBDIR += php_doc
     SUBDIR += plain2
     SUBDIR += plan
     SUBDIR += prn
@@ -230,7 +219,6 @@
     SUBDIR += py-tegaki-gtk
     SUBDIR += py-zinnia
     SUBDIR += qkc
-    SUBDIR += qt4-codecs-jp
     SUBDIR += quit
     SUBDIR += roget-fpw
     SUBDIR += rogue_s
@@ -258,13 +246,14 @@
     SUBDIR += skk-jisyo
     SUBDIR += skk-jisyo-cdb
     SUBDIR += skk-tools
-    SUBDIR += skkfep
     SUBDIR += skkinput
     SUBDIR += skkinput3
     SUBDIR += skkserv
     SUBDIR += slimeforest
     SUBDIR += slrn
-    SUBDIR += spamassassin
+    SUBDIR += sourcehansans-otf
+    SUBDIR += sourcehanserif-otf
+    SUBDIR += spoqahansans-ttf
     SUBDIR += srd-fpw-package
     SUBDIR += suicavalue
     SUBDIR += t2ps
@@ -297,7 +286,6 @@
     SUBDIR += xshodou
     SUBDIR += xtr
     SUBDIR += xv
-    SUBDIR += yasou-fpw
     SUBDIR += yc.el
     SUBDIR += zinnia
     SUBDIR += zinnia-tomoe

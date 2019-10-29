@@ -2,9 +2,8 @@
 
 PORTNAME=	jdftx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.2-74
+DISTVERSION=	1.5.0
 PORTREVISION=	1
-DISTVERSIONSUFFIX=	-gba743849
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -22,7 +21,7 @@ LIB_DEPENDS=	libblas.so:math/blas \
 RUN_DEPENDS=	bash:shells/bash
 TEST_DEPENDS=	bash:shells/bash
 
-USES=		cmake:outsource fortran localbase:ldflags shebangfix
+USES=		compiler:c++11-lang cmake fortran localbase:ldflags shebangfix
 SHEBANG_GLOB=	*.sh
 SHEBANG_FILES=	scripts/*
 SHEBANG_LANG=	octave
@@ -55,6 +54,6 @@ SCALAPACK_CMAKE_BOOL=	EnableScaLAPACK
 SCALAPACK_LIB_DEPENDS=	libscalapack.so:math/scalapack
 
 OCTAVE_DESC=		With Octave support (only for one script: dryRunToPDB)
-OCTAVE_USES=		octave
+OCTAVE_RUN_DEPENDS=	octave:math/octave
 
 .include <bsd.port.mk>

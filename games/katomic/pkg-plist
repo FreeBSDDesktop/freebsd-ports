@@ -13,7 +13,6 @@ share/kconf_update/katomic-levelset-upd.pl
 share/kconf_update/katomic-levelset.upd
 share/kxmlgui5/katomic/katomicui.rc
 share/locale/ar/LC_MESSAGES/katomic.mo
-share/locale/ast/LC_MESSAGES/katomic.mo
 share/locale/bg/LC_MESSAGES/katomic.mo
 share/locale/bs/LC_MESSAGES/katomic.mo
 share/locale/ca/LC_MESSAGES/katomic.mo
@@ -36,6 +35,7 @@ share/locale/he/LC_MESSAGES/katomic.mo
 share/locale/hi/LC_MESSAGES/katomic.mo
 share/locale/hr/LC_MESSAGES/katomic.mo
 share/locale/hu/LC_MESSAGES/katomic.mo
+share/locale/id/LC_MESSAGES/katomic.mo
 share/locale/is/LC_MESSAGES/katomic.mo
 share/locale/it/LC_MESSAGES/katomic.mo
 share/locale/ja/LC_MESSAGES/katomic.mo

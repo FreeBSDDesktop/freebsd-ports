@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	get_iplayer
-PORTVERSION=	3.17
+PORTVERSION=	3.22
 DISTVERSIONPREFIX=v
 CATEGORIES=	net multimedia
 
-MAINTAINER=	crees@FreeBSD.org
+MAINTAINER=	jamie@catflap.org
 COMMENT=	Search, index, or stream archive video from BBC iPlayer
 
 LICENSE=	GPLv3
@@ -13,7 +13,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	p5-XML-LibXML>=0:textproc/p5-XML-LibXML \
 		p5-Mojolicious>=0:www/p5-Mojolicious \
-		p5-JSON-PP>=0:converters/p5-JSON-PP \
 		p5-LWP-Protocol-https>=0:www/p5-LWP-Protocol-https \
 		p5-CGI>=0:www/p5-CGI
 

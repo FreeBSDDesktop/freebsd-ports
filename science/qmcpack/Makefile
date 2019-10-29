@@ -2,7 +2,7 @@
 
 PORTNAME=	qmcpack
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.5.0
+DISTVERSION=	3.8.0
 PORTREVISION=	2
 CATEGORIES=	science
 
@@ -12,7 +12,6 @@ COMMENT=	Many-body ab initio Quantum Monte Carlo code for quantum chemstry
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_FreeBSD_10=	error: use of undeclared identifier '__builtin_assume_aligned'
 BROKEN_i386=	undefined reference to `__atomic_load'
 
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
@@ -23,13 +22,15 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libopenblas.so:math/openblas \
 		libsz.so:science/szip
 
-USES=		cmake:outsource compiler:c++11-lang fortran localbase:ldflags pkgconfig
+USES=		cmake compiler:c++11-lang fortran gnome localbase:ldflags pkgconfig python:build
 USE_GITHUB=	yes
 GH_ACCOUNT=	${PORTNAME:tu}
 USE_GNOME=	libxml2
 
-PROGS=		convert4qmc extract-eshdf-kvectors getSupercell qmcpack
+PROGS=		convert4qmc qmc-check-affinity qmc-extract-eshdf-kvectors qmc-get-supercell qmcpack
 PLIST_FILES=	${PROGS:C/^/bin\//}
+
+BINARY_ALIAS=	python=${PYTHON_CMD}
 
 do-install:
 .for p in ${PROGS}

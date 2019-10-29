@@ -3,6 +3,7 @@
 
 PORTNAME=	ilmbase
 PORTVERSION=	2.3.0
+PORTREVISION=	3
 CATEGORIES=	graphics devel
 MASTER_SITES=	https://github.com/openexr/openexr/releases/download/v${PORTVERSION}/
 
@@ -11,21 +12,30 @@ COMMENT=	ILM Base libraries a.k.a. Half, IlmThread, Imath, and Iex
 
 LICENSE=	BSD3CLAUSE
 
-BUILD_DEPENDS=	bash:shells/bash
+# there are some systems that have a static /bin/bash, so
+# in order to make BUILD_DEPENDS effective, use the same absolute
+# path we will pass down through CONFIGURE_SHELL below.
+BUILD_DEPENDS=	${BASH_CMD}:shells/bash
 
 USES=		compiler:c++14-lang pkgconfig libtool
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
 # The configure script uses bash arrays
-CONFIGURE_SHELL=	${LOCALBASE}/bin/bash
+CONFIGURE_SHELL=${BASH_CMD}
 CONFIGURE_ARGS=	--disable-static
+# libtool links C++ libraries with -nostdlib, which prevents -pthread from
+# having an effect (at least with clang). Make sure we also pass -lpthread so
+# we do link against libthr.so.
+CONFIGURE_ENV+=	PTHREAD_LIBS="-pthread -lpthread"
 TEST_TARGET=	check
 
 PORTDOCS=	AUTHORS ChangeLog README.md
 OPTIONS_DEFINE=		DOCS LARGE_STACK
 LARGE_STACK_DESC=	Enable sys-dependent large stack optimizations
 LARGE_STACK_CONFIGURE_ENABLE=	large-stack
+
+BASH_CMD=	${LOCALBASE}/bin/bash
 
 OPTIONS_SUB=	yes
 

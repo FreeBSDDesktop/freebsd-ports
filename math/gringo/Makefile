@@ -3,8 +3,8 @@
 
 PORTNAME=	gringo
 DISTVERSION=	4.5.4
-PORTREVISION=	1
 DISTVERSIONSUFFIX=	-source
+PORTREVISION=	3
 CATEGORIES=	math devel
 MASTER_SITES=	SOURCEFORGE/potassco/${PORTNAME}/${PORTVERSION}
 
@@ -16,15 +16,10 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	re2c:devel/re2c
 
-BROKEN_powerpc64=	fails to compile: term.cc: error: pow is not a member of std
-
 USES=		bison compiler:c++11-lib python:2.7 scons
 MAKE_ARGS=	${MAKE_ENV}
 CXXFLAGS+=	-std=c++11
 MAKE_ENV=	WITH_LUA=no
-
-# Unhide std::to_string() with GCC < 4.9 (ports/193528)
-CXXFLAGS+=	-D_GLIBCXX_USE_C99
 
 PLIST_FILES=	bin/${PORTNAME} bin/clingo
 

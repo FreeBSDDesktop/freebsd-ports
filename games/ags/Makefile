@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ags
-DISTVERSION=	3.4.1.14
-PORTREVISION=	1
+DISTVERSION=	3.4.4.1
 CATEGORIES=	games
 MASTER_SITES=	https://github.com/adventuregamestudio/ags/releases/download/v.${DISTVERSION}/
 DISTNAME=	ags_linux_v.${DISTVERSION}
@@ -20,20 +19,17 @@ LIB_DEPENDS=	liballeg.so:devel/allegro \
 		libvorbis.so:audio/libvorbis \
 		libfreetype.so:print/freetype2
 
-USES=		compiler:c++11-lib gmake localbase pkgconfig tar:xz
+USES=		compiler:c++11-lang gmake localbase pkgconfig tar:xz xorg
 USE_XORG=	x11
 
-BUILD_WRKSRC=	${WRKSRC}/Engine
-
 MAKE_ARGS=	V=1
+BUILD_WRKSRC=	${WRKSRC}/Engine
 
 PLIST_FILES=	bin/ags
 
 post-patch:
 	@${REINPLACE_CMD} 's|<endian.h>|<sys/endian.h>|' \
 		${WRKSRC}/Common/core/endianness.h
-	@${REINPLACE_CMD} 's|HWND editor_window_handle = NULL;|HWND editor_window_handle = 0;|g' \
-		${WRKSRC}/Engine/debug/debug.cpp
 	@${REINPLACE_CMD} -e 's|return cd_player|return 0; // cd_player|g' \
 		-e 's|cd_exit|//cd_exit|g' \
 		${WRKSRC}/Engine/platform/linux/acpllnx.cpp

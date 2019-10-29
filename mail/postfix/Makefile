@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	postfix
-DISTVERSION=	3.3.1
+DISTVERSION=	3.4.7
 PORTREVISION?=	1
 PORTEPOCH=	1
-CATEGORIES=	mail ipv6
+CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.porcupine.org/mirrors/postfix-release/ \
 		http://de.postfix.org/ftpmirror/ \
 		http://cdn.postfix.johnriley.me/mirrors/postfix-release/ \
@@ -16,7 +16,7 @@ MASTER_SITES:=	${MASTER_SITES:S|$|official/|}
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ohauer@FreeBSD.org
-COMMENT=	Secure alternative to widely-used Sendmail
+COMMENT?=	Secure alternative to widely-used Sendmail
 
 LICENSE=	IPL10 EPL
 LICENSE_COMB=	multi
@@ -24,7 +24,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_NAME_IPL10=	IBM PUBLIC LICENSE VERSION 1.0
 LICENSE_PERMS_IPL10=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-PORTSCOUT=	limit:^3\.3\.
+PORTSCOUT=	limit:^3\.4\.
 
 CONFLICTS_INSTALL?=	courier-0.* opensmtpd-[0-9]* \
 		sendmail-8.* sendmail+*-8.* smail-3.* zmailer-2.* \
@@ -45,7 +45,7 @@ OPTIONS_DEFINE=	BDB BLACKLISTD CDB DOCS EAI INST_BASE LDAP LDAP_SASL \
 
 OPTIONS_RADIO=		RG1
 OPTIONS_RADIO_RG1=	SASLKRB5 SASLKMIT
-OPTIONS_DEFAULT=	EAI PCRE TLS
+OPTIONS_DEFAULT?=	EAI PCRE TLS
 
 BDB_USES=		bdb
 BLACKLISTD_EXTRA_PATCHES=	${FILESDIR}/extra-patch-blacklistd
@@ -198,7 +198,7 @@ POSTFIX_AUXLIBS+=	-L${BDB_LIB_DIR} -l${BDB_LIB_NAME}
 .endif
 
 .if ${PORT_OPTIONS:MBLACKLISTD}
-. if ${OPSYS} == FreeBSD && (${OSVERSION} >= 1100122)
+. if ${OPSYS} == FreeBSD
 POSTFIX_AUXLIBS+=	-lblacklist
 . else
 IGNORE=	blacklistd is only supported on FreeBSD >= 11.0

@@ -13,7 +13,7 @@ EXTRACT_ONLY=
 MAINTAINER=	swhetzel@gmail.com
 COMMENT=	Broadcom AirForce IEEE 802.11 Firmware Kernel Module
 
-ONLY_FOR_ARCHS=		amd64 i386 powerpc
+ONLY_FOR_ARCHS=		amd64 i386 powerpc powerpc64
 ONLY_FOR_ARCHS_REASON=	hardware particular to PCI/CardBus
 
 BUILD_DEPENDS=	b43-fwcutter:sysutils/b43-fwcutter
@@ -41,7 +41,7 @@ FIRMWARES_N=								\
 	n0initvals16 n0initvals24					\
 	n0bsinitvals16 n0bsinitvals24					\
 
-WRKSRC=		${WRKDIR}
+NO_WRKSUBDIR=	yes
 FWNAME=		bwn_v4
 FWFILE=		broadcom-wl-${FWVERSION}.tar.bz2
 FWVERSION=	4.150.10.5

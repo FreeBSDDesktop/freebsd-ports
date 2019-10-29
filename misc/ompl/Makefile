@@ -1,9 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	ompl
-DISTVERSION=	1.4.0
-PORTREVISION=	1
+DISTVERSION=	1.4.2
 DISTVERSIONSUFFIX=	-Source
+PORTREVISION=	2
 CATEGORIES=	misc comms
 MASTER_SITES=	http://cdn.bitbucket.org/${PORTNAME}/${PORTNAME}/downloads/
 
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs
 
-USES=		cmake:outsource eigen:3 pkgconfig zip
+USES=		cmake compiler:c++11-lang eigen:3 pkgconfig zip
 USE_LDCONFIG=	yes
 
 CMAKE_OFF=	OMPL_REGISTRATION OMPL_BUILD_TESTS OMPL_BUILD_DEMOS
@@ -35,7 +35,6 @@ OPENDE_DESC=		Use Open Dynamics Engine for kinodynamic planning
 OPENDE_LIB_DEPENDS=	libode.so:devel/ode
 
 SPOT_DESC=		Use 'Spot' for creating finite automata from LTL formulae
-SPOT_BROKEN=		https://bitbucket.org/ompl/ompl/issues/442
 SPOT_USES=		compiler:c++14-lang
 SPOT_LIB_DEPENDS=	libspot.so:math/spot
 

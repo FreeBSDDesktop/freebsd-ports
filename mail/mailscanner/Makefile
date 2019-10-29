@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	MailScanner
-PORTVERSION=	5.1.1
+PORTVERSION=	5.1.2
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	https://s3.amazonaws.com/msv5/release/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-${PATCHLEVEL}.nix
@@ -72,10 +73,9 @@ SUB_LIST=	DATADIR=${DATADIR} \
 		ETC_FILES="${ETC_FILES}" \
 		MCP_FILES="${MCP_FILES}"
 
-OPTIONS_DEFINE=		SPAMASSASSIN CLAMAV CLAMAVMODULE DOCS
+OPTIONS_DEFINE=		SPAMASSASSIN CLAMAV DOCS
 SPAMASSASSIN_DESC=	Install SpamAssassin
 CLAMAV_DESC=		Install ClamAV
-CLAMAVMODULE_DESC=	Install ClamAV Module
 
 OPTIONS_DEFAULT=	SPAMASSASSIN CLAMAV
 
@@ -92,11 +92,7 @@ PLIST_SUB+=	SPAMASSASSIN="@comment "
 RUN_DEPENDS+=	clamscan:security/clamav
 .endif
 
-.if ${PORT_OPTIONS:MCLAMAVMODULE}
-RUN_DEPENDS+=	p5-Mail-ClamAV>=0:mail/p5-Mail-ClamAV
-.endif
-
-.if ${PORT_OPTIONS:MCLAMAV} || ${PORT_OPTIONS:MCLAMAVMODULE}
+.if ${PORT_OPTIONS:MCLAMAV}
 RUN_DEPENDS+=	unrar:archivers/unrar \
 		zoo:archivers/zoo \
 		unarj:archivers/unarj \
@@ -160,6 +156,8 @@ do-build:
 
 	@${REINPLACE_CMD} -e 's,/usr/local,${LOCALBASE},g' \
 		${WRKSRC}/usr/lib/${PORTNAME}/wrapper/*
+	@${REINPLACE_CMD} -e 's,/usr$$,&/local,' \
+		${WRKSRC}/etc/${PORTNAME}/virus.scanners.conf
 	@${FIND} ${WRKSRC} \( -name "*.bak" -or -name "*.orig" \) -delete
 
 do-install:

@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	tomcat
-PORTVERSION=	9.0.10
+PORTVERSION=	9.0.26
+PORTREVISION=	0
 CATEGORIES=	www java
 MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${PORTVERSION:C/([0-9])(.*)/\1/}/v${PORTVERSION}/bin
 PKGNAMESUFFIX=	9
@@ -13,7 +14,7 @@ COMMENT=	Open-source Java web server by Apache, 9.0.x branch
 
 LICENSE=	APACHE20
 
-RUN_DEPENDS=	jsvc:devel/jakarta-commons-daemon
+RUN_DEPENDS=	jsvc:devel/apache-commons-daemon
 
 USES=		cpe
 CPE_VENDOR=	apache
@@ -42,6 +43,11 @@ ROOT_DESC=		Install default ROOT web application
 
 TOMCAT_SUBDIR?=	${DISTNAME:R}
 TOMCAT_HOME=	${PREFIX}/${TOMCAT_SUBDIR}
+
+post-patch:
+	@${RM} ${WRKSRC}/bin/commons-daemon-native.tar.gz ${WRKSRC}/bin/commons-daemon.jar ${WRKSRC}/bin/tomcat-native.tar.gz
+	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g; s|%%JAVAJARDIR%%|${JAVAJARDIR}|g' ${WRKSRC}/bin/daemon.sh
+	@${FIND} ${WRKSRC} -name '*.bak' -delete -o -name '*.orig' -delete
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${TOMCAT_HOME}/logs

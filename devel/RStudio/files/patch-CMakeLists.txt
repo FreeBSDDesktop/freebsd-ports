@@ -1,21 +1,19 @@
---- CMakeLists.txt.orig	2017-11-16 21:40:37 UTC
+--- CMakeLists.txt.orig	2019-09-19 13:59:21 UTC
 +++ CMakeLists.txt
-@@ -31,8 +31,7 @@ endif()
- if (NOT RSTUDIO_SESSION_WIN64)
+@@ -31,7 +31,7 @@ endif()
+ if (NOT RSTUDIO_SESSION_WIN32)
     # dynamically configure SOURCE with the git revision hash
     INSTALL(CODE "
--      exec_program(git ARGS rev-parse HEAD
--                   OUTPUT_VARIABLE RSTUDIO_GIT_REVISION_HASH)
-+      set(RSTUDIO_VERSION ${FREEBSD_RSTUDIO_VERSION})
+-      execute_process(COMMAND git rev-parse HEAD
++      execute_process(COMMAND printf ${FREEBSD_PORT_VERSION}
+                       WORKING_DIRECTORY \"${CMAKE_CURRENT_SOURCE_DIR}\"
+                       OUTPUT_VARIABLE RSTUDIO_GIT_REVISION_HASH)
        configure_file (\"${CMAKE_CURRENT_SOURCE_DIR}/SOURCE.in\"
-                       \"${CMAKE_CURRENT_BINARY_DIR}/SOURCE\")
-     ")
-@@ -57,8 +56,6 @@ add_subdirectory(package)
+@@ -40,6 +40,7 @@ if (NOT RSTUDIO_SESSION_WIN32)
  
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/VERSION.in
+                   ${CMAKE_CURRENT_BINARY_DIR}/VERSION)
++   set(RSTUDIO_VERSION ${FREEBSD_RSTUDIO_VERSION})
  
- 
--
--
-    
- 
- 
+    # install root docs
+    include(CMakeInstallDocs.txt)

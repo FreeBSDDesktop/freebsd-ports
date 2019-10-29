@@ -12,7 +12,6 @@ COMMENT=	Foreign function call libraries
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN_aarch64=		fails to build: checking whether code in malloc()ed memory is executable... Killing runaway build after 14400 seconds with no output
 BROKEN_armv6=		fails to build: avcall-armhf.s:46:2: error: '.syntax divided' arm assembly not supported
 BROKEN_armv7=		fails to build: avcall-armhf.s:46:2: error: '.syntax divided' arm assembly not supported
 BROKEN_mips=		fails to build: gmake[2]: No rule to make target 'avcall-mipsn32-macro.S', needed by 'avcall-mipsn32.s'
@@ -26,6 +25,9 @@ CONFIGURE_ARGS=		--enable-shared
 CONFIGURE_TARGET=	${ARCH:S/amd64/x86_64/}-portbld-${OPSYS:tl}${OSREL}
 MAKE_JOBS_UNSAFE=	yes
 CFLAGS+=		-fPIC
+
+PATCHES_powerpc64=	${PATCHDIR}/extra-patch-ffcall-abi.h
+EXTRA_PATCHES=		${PATCHES_${ARCH}}
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libavcall.so \

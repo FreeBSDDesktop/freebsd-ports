@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	dfvfs
-PORTVERSION=	20180703
+PORTVERSION=	20190609
 CATEGORIES=	security devel python
 MASTER_SITES=	https://github.com/log2timeline/dfvfs/releases/download/${PORTVERSION}/ \
 		LOCAL/antoine
@@ -16,6 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	libbde>=a:devel/libbde \
 		libewf>=0:devel/libewf \
+		libfsapfs>=e:devel/libfsapfs \
 		libfsntfs>=e:devel/libfsntfs \
 		libfvde>=0:sysutils/libfvde \
 		libfwnt>=e:devel/libfwnt \
@@ -34,10 +35,11 @@ RUN_DEPENDS=	libbde>=a:devel/libbde \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>=0:databases/py-sqlite3@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}
 
-NO_ARCH=	yes
 USES=		python
 USE_LOCALE=	en_US.UTF-8
 USE_PYTHON=	distutils autoplist concurrent
+
+NO_ARCH=	yes
 
 .include <bsd.port.pre.mk>
 

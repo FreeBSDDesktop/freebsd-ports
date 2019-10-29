@@ -3,8 +3,17 @@
 
 PORTNAME=	c6
 PORTVERSION=	${LINUX_DIST_VER}
+PORTREVISION=	1
 CATEGORIES=	emulators linux
 PKGNAMEPREFIX=	linux_base-
+
+MAINTAINER=	emulation@FreeBSD.org
+COMMENT=	Base set of packages needed in Linux mode (Linux CentOS ${LINUX_DIST_VER})
+
+USES=		linux:c6
+USE_LINUX=	# empty
+USE_LINUX_RPM=	yes
+
 BIN_DISTNAMES=	bash-4.1.2-48.el6 \
 		bzip2-1.0.5-7.el6_0 \
 		centos-release-6-10.el6.centos.12.3 \
@@ -12,7 +21,7 @@ BIN_DISTNAMES=	bash-4.1.2-48.el6 \
 		e2fsprogs-1.41.12-24.el6 \
 		elfutils-0.164-2.el6 \
 		findutils-4.4.2-9.el6 \
-		glibc-common-2.12-1.212.el6 \
+		glibc-common-2.12-1.212.el6_10.3 \
 		grep-2.20-6.el6 \
 		info-4.13a-8.el6 \
 		keyutils-1.4-5.el6 \
@@ -32,7 +41,7 @@ LIB_DISTNAMES=	bzip2-libs-1.0.5-7.el6_0 \
 		gamin-0.1.10-9.el6 \
 		gdbm-1.8.0-39.el6 \
 		glib2-2.28.8-10.el6 \
-		glibc-2.12-1.212.el6 \
+		glibc-2.12-1.212.el6_10.3 \
 		gmp-4.3.1-13.el6 \
 		keyutils-libs-1.4-5.el6 \
 		krb5-libs-1.10.3-65.el6 \
@@ -78,7 +87,7 @@ SRC_DISTFILES=	acl-2.2.49-7.el6_9.1${SRC_SUFX}:SOURCE \
 		gcc-4.4.7-23.el6${SRC_SUFX}:SOURCE \
 		gdbm-1.8.0-39.el6${SRC_SUFX}:SOURCE \
 		glib2-2.28.8-10.el6${SRC_SUFX}:SOURCE \
-		glibc-2.12-1.212.el6${SRC_SUFX}:SOURCE \
+		glibc-2.12-1.212.el6_10.3${SRC_SUFX}:SOURCE \
 		gmp-4.3.1-13.el6${SRC_SUFX}:SOURCE \
 		grep-2.20-6.el6${SRC_SUFX}:SOURCE \
 		keyutils-1.4-5.el6${SRC_SUFX}:SOURCE \
@@ -103,13 +112,7 @@ SRC_DISTFILES=	acl-2.2.49-7.el6_9.1${SRC_SUFX}:SOURCE \
 		which-2.19-6.el6${SRC_SUFX}:SOURCE \
 		zlib-1.2.3-29.el6${SRC_SUFX}:SOURCE
 
-MAINTAINER=	emulation@FreeBSD.org
-COMMENT=	Base set of packages needed in Linux mode (Linux CentOS ${LINUX_DIST_VER})
-
 PLIST_SUB=	LINUXBASE=${LINUXBASE} SYSCTLMIB=${SYSCTLMIB}
-USES=		linux:c6
-USE_LINUX=	# empty
-USE_LINUX_RPM=	yes
 
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
@@ -118,9 +121,9 @@ REMOVE_DIRS=	boot home media mnt proc root sys tmp var/log var/run var/tmp
 REMOVE_FILES=	bin/df bin/su etc/exports etc/group etc/gshadow etc/motd \
 		etc/passwd etc/printcap etc/protocols etc/services etc/shadow
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.options.mk>
 
-.if ${LINUX_ARCH} == x86_64 && ${OPSYS} == FreeBSD && ${OSVERSION} >= 1100105
+.if ${ARCH} == amd64
 SYSCTLMIB=	kern.features.linux64
 .else
 SYSCTLMIB=	compat.linux.osrelease
@@ -132,7 +135,7 @@ post-patch:
 	@${FIND} ${WRKSRC}/lib -type d -empty -delete
 	@${FIND} ${WRKSRC}/usr -type d -empty -delete
 	@${BRANDELF} -t Linux ${WRKSRC}/lib/ld-2.12.so
-.if ${LINUX_ARCH} == x86_64
+.if ${ARCH} == amd64
 	@${FIND} ${WRKSRC}/lib64 -type d -empty -delete
 	@${BRANDELF} -t Linux ${WRKSRC}/lib64/ld-2.12.so
 .endif
@@ -152,8 +155,8 @@ post-install:
 	${LN} -sf usr/bin ${STAGEDIR}${PREFIX}
 	${LN} -sf usr/lib ${STAGEDIR}${PREFIX}
 	${LN} -sf usr/sbin ${STAGEDIR}${PREFIX}
-.if ${LINUX_ARCH} == x86_64
+.if ${ARCH} == amd64
 	${LN} -sf usr/lib64 ${STAGEDIR}${PREFIX}
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

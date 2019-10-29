@@ -14,11 +14,10 @@ COMMENT=	Graphical dungeon crawling game
 
 USES=		gmake
 USE_SDL=	sdl
+USE_CXXSTD=	c++98
 MAKE_JOBS_UNSAFE=yes
 
 BUILD_WRKSRC=	${WRKSRC}/port/linux
-
-CXXFLAGS+=	-Wno-c++11-narrowing
 
 PLIST_FILES=	bin/powder
 PORTDOCS=	README.TXT LICENSE.TXT CREDITS.TXT

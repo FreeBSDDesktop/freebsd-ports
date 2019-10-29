@@ -2,19 +2,16 @@
 # $FreeBSD$
 
 PORTNAME=	boost-libs
-PORTREVISION=	1
-COMMENT=	Framework for interfacing Python and C++
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-BUILD_DEPENDS=	bjam:devel/boost-jam
+COMMENT=	Framework for interfacing Python and C++
+
+BUILD_DEPENDS=	bjam:devel/boost-jam \
+		${PYNUMPY}
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs
 
 USES=		python
 USE_PYTHON=	flavors
-
-# Ignore -Wregister warnings in Python.h
-CFLAGS+=	${${PY_FLAVOR}_CFLAGS}
-py27_CFLAGS=	-isystem ${PYTHON_INCLUDEDIR}
 
 OPTIONS_DEFINE=	DEBUG OPTIMIZED_CFLAGS
 

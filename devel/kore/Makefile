@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	kore
-PORTVERSION=	3.1.0
+PORTVERSION=	3.3.1
 PORTREVISION=	1
 CATEGORIES=	devel www
 MASTER_SITES=	https://kore.io/releases/
@@ -13,12 +13,10 @@ COMMENT=	Web application framework for writing web APIs in C
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_powerpc64=	fails to compile: cc1: error: -Werror=c11-extensions: No option -Wc11-extensions
-
 FLAVORS=	default notls
 notls_PKGNAMESUFFIX=	-notls
 
-USES=		compiler gmake ssl
+USES=		compiler:c11 gmake ssl
 
 CFLAGS+=	${CFLAGS_${CHOSEN_COMPILER_TYPE}} -I${OPENSSLINC}
 CFLAGS_clang=	-Wno-error=c11-extensions # 12.0 + -pedantic
@@ -28,8 +26,8 @@ DATADIR=	${PREFIX}/share/kore${PKGNAMESUFFIX}
 EXAMPLESDIR=	${PREFIX}/share/examples/kore${PKGNAMESUFFIX}
 PLIST_SUB=	SUFFIX=${PKGNAMESUFFIX}
 
-OPTIONS_DEFINE=	DEBUG EXAMPLES HTTP JSONRPC PGSQL PYTHON TASKS TLS
-OPTIONS_DEFAULT=	HTTP JSONRPC PGSQL PYTHON TASKS TLS
+OPTIONS_DEFINE=		CURL DEBUG EXAMPLES HTTP JSONRPC PGSQL PYTHON TASKS TLS
+OPTIONS_DEFAULT=	CURL HTTP JSONRPC PGSQL PYTHON TASKS TLS
 .if ${FLAVOR:U} == notls
 OPTIONS_EXCLUDE=	TLS
 .endif
@@ -38,6 +36,9 @@ OPTIONS_SUB=	yes
 HTTP_DESC=	Build with HTTP support
 JSONRPC_DESC=	Build with JSON-RPC support
 TASKS_DESC=	Build with tasks support
+
+CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
+CURL_MAKE_ARGS=		CURL=1
 
 DEBUG_MAKE_ARGS=	DEBUG=1
 

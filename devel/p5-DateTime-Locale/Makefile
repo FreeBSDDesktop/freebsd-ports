@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	DateTime-Locale
-PORTVERSION=	1.22
+PORTVERSION=	1.25
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	perl@FreeBSD.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Localization support for DateTime
 
 LICENSE=	ART10 GPLv1+
@@ -28,15 +28,9 @@ TEST_DEPENDS=	p5-CPAN-Meta-Check>=0.011:devel/p5-CPAN-Meta-Check \
 		p5-Test-Requires>=0:devel/p5-Test-Requires \
 		p5-Test-Warnings>=0:devel/p5-Test-Warnings
 
-NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
 
-.include <bsd.port.pre.mk>
+NO_ARCH=	yes
 
-.if ${PERL_LEVEL} < 502501
-BUILD_DEPENDS+=	p5-Scalar-List-Utils>=1.45:lang/p5-Scalar-List-Utils
-RUN_DEPENDS+=	p5-Scalar-List-Utils>=1.45:lang/p5-Scalar-List-Utils
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

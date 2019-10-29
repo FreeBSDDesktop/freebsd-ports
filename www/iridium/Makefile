@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	iridium
-PORTVERSION=	2018.5.67
-PORTREVISION=	4
+PORTVERSION=	2019.04.73
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	https://downloads.iridiumbrowser.de/source/
 PKGNAMESUFFIX=	-browser
@@ -21,6 +21,7 @@ BUILD_DEPENDS=	gperf:devel/gperf \
 		bash:shells/bash \
 		flock:sysutils/flock \
 		node:www/node \
+		${LOCALBASE}/bin/ar:devel/binutils \
 		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
 		${LOCALBASE}/share/usbids/usb.ids:misc/usbids \
 		${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR} \
@@ -28,6 +29,7 @@ BUILD_DEPENDS=	gperf:devel/gperf \
 		${PYTHON_PKGNAMEPREFIX}html5lib>0:www/py-html5lib@${PY_FLAVOR}
 
 LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-atk \
+		libatspi.so:accessibility/at-spi2-core \
 		libspeechd.so:accessibility/speech-dispatcher \
 		libsnappy.so:archivers/snappy \
 		libFLAC.so:audio/flac \
@@ -57,12 +59,12 @@ LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-atk \
 		libfontconfig.so:x11-fonts/fontconfig
 
 RUN_DEPENDS=	xdg-open:devel/xdg-utils \
-		noto-lite>0:x11-fonts/noto-lite
+		noto-basic>0:x11-fonts/noto-basic
 
 ONLY_FOR_ARCHS=	amd64 i386
 
-USES=		bison desktop-file-utils gnome jpeg localbase:ldflags ninja \
-		perl5 pkgconfig python:2.7,build shebangfix tar:xz
+USES=		bison desktop-file-utils dos2unix gl gnome jpeg localbase:ldflags \
+		ninja perl5 pkgconfig python:2.7,build shebangfix tar:xz
 USE_GL=		gl
 USE_LDCONFIG=	${DATADIR}
 USE_PERL5=	build
@@ -70,6 +72,7 @@ USE_XORG=	x11 xcb xcomposite xcursor xext xdamage xfixes xi \
 		xorgproto xrandr xrender xscrnsaver xtst
 USE_GNOME=	atk dconf glib20 gtk30 libxml2 libxslt
 MAKE_ARGS=	-C out/${BUILDTYPE}
+DOS2UNIX_FILES=	third_party/skia/third_party/vulkanmemoryallocator/include/vk_mem_alloc.h
 BINARY_ALIAS=	python=${PYTHON_CMD}
 ALL_TARGET=	chrome
 INSTALLS_ICONS=	yes
@@ -86,6 +89,7 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		enable_remoting=false \
 		fieldtrial_testing_like_official_build=true \
 		is_clang=true \
+		jumbo_file_merge_limit=8 \
 		toolkit_views=true \
 		treat_warnings_as_errors=false \
 		use_allocator="none" \
@@ -94,7 +98,7 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		use_bundled_fontconfig=false \
 		use_custom_libcxx=false \
 		use_gnome_keyring=false \
-		use_gtk3=true \
+		use_jumbo_build=true \
 		use_lld=true \
 		use_sysroot=false \
 		use_system_freetype=true \
@@ -104,9 +108,9 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		extra_ldflags="${LDFLAGS}"
 # TODO: investigate building with these options:
 # use_system_minigbm
-GN_BOOTSTRAP_FLAGS=	--no-clean --no-rebuild
+GN_BOOTSTRAP_FLAGS=	--no-clean --no-rebuild --skip-generate-buildfiles
 
-SUB_FILES=	iridium-browser.desktop iridium pkg-message
+SUB_FILES=	iridium-browser.desktop iridium
 SUB_LIST+=	COMMENT="${COMMENT}"
 
 OPTIONS_DEFINE=	CODECS CUPS DEBUG KERBEROS
@@ -136,7 +140,7 @@ CUPS_VARS_OFF=		GN_ARGS+=use_cups=false
 
 DEBUG_VARS=		BUILDTYPE=Debug \
 			GN_ARGS+=is_debug=true \
-			GN_ARGS+=is_component_buils=false \
+			GN_ARGS+=is_component_build=false \
 			GN_BOOTSTRAP_FLAGS+=--debug \
 			WANTSPACE="lots of free diskspace (~ 13GB)"
 DEBUG_VARS_OFF=		BUILDTYPE=Release \
@@ -162,17 +166,13 @@ SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
 SNDIO_VARS=		GN_ARGS+=use_sndio=true
 SNDIO_VARS_OFF=		GN_ARGS+=use_sndio=false
 
-.include <bsd.port.options.mk>
+# Make better javascript with java
+JAVA_BUILD=	yes
+JAVA_VERSION=	1.8
+USE_JAVA=	yes
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1101513
-BUILD_DEPENDS+=	clang60:devel/llvm60
-CC=		clang60
-CXX=		clang++60
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-llvm-port
-.else
-BUILD_DEPENDS+=	${LOCALBASE}/bin/ar:devel/binutils
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-llvm-base
-.endif
+# Allow relocations against read-only segments (override lld default)
+LDFLAGS_i386=	-Wl,-znotext
 
 # TODO: -isystem, would be just as ugly as this approach, but more reliably
 # build would fail without C_INCLUDE_PATH/CPLUS_INCLUDE_PATH env var set.
@@ -217,9 +217,12 @@ do-configure:
 	@${MKDIR} ${WRKSRC}/third_party/node/freebsd/node-freebsd-x64/bin
 	${LN} -sf ${LOCALBASE}/bin/node ${WRKSRC}/third_party/node/freebsd/node-freebsd-x64/bin/node
 
+	# Setup java dependency
+	@${MKDIR} ${WRKDIR}/bin
+	${LN} -sf ${LOCALBASE}/openjdk8/bin/java ${WRKDIR}/bin/java
+
 do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
-	${INSTALL_DATA} ${WRKSRC}/out/${BUILDTYPE}/*.service ${STAGEDIR}${DATADIR}
 	${INSTALL_MAN} ${WRKSRC}/chrome/app/resources/manpage.1.in \
 		${STAGEDIR}${MANPREFIX}/man/man1/iridium.1
 .for s in 22 24 48 64 128 256

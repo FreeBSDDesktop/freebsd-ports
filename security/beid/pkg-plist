@@ -18,6 +18,7 @@ lib/libbeidpkcs11.so.0.0.0
 lib/libeidviewer.so
 lib/libeidviewer.so.0
 lib/libeidviewer.so.0.1.0
+lib/mozilla/pkcs11-modules/beidp11kit.json
 lib/mozilla/pkcs11-modules/beidpkcs11.json
 lib/pkcs11/beidpkcs11.so
 lib/firefox/browser/extensions/belgiumeid@eid.belgium.be.xpi
@@ -48,4 +49,6 @@ share/icons/hicolor/512x512/apps/eid-viewer.png
 %%NLS%%share/locale/fr/LC_MESSAGES/eid-viewer.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/dialogs-beid.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/eid-viewer.mo
+share/metainfo/be.belgium.eid.eidmw.metainfo.xml
+share/metainfo/eid-viewer.appdata.xml
 share/p11-kit/modules/beid.module

@@ -4,7 +4,7 @@
 PORTNAME=	pidentd
 PORTVERSION=	3.0.19
 PORTREVISION=	4
-CATEGORIES=	security ipv6
+CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.lysator.liu.se/pub/unix/ident/servers/ \
 		ftp://ftp.stack.nl/pub/users/johans/pidentd/
 
@@ -17,6 +17,7 @@ MAINTAINER=	johans@FreeBSD.org
 COMMENT=	RFC1413 identification server
 
 BROKEN_FreeBSD_12=	fails to compile: k_freebsd2.c: storage size of 'pcbp' isn't known
+BROKEN_FreeBSD_13=	fails to compile: k_freebsd2.c: storage size of 'pcbp' isn't known
 
 CONFLICTS_INSTALL=	fakeident-[0-9]*
 

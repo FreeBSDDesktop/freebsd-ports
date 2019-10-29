@@ -5,7 +5,7 @@ PORTNAME=	db6
 PORTVERSION=	6.2.32
 PORTREVISION=	1
 CATEGORIES=	databases java
-MASTER_SITES=	http://download.oracle.com/berkeley-db/
+MASTER_SITES=	https://download.oracle.com/berkeley-db/
 PKGNAMEPREFIX?=
 #
 # the distfiles aren't named db6-* but db-*:
@@ -37,7 +37,7 @@ USE_LDCONFIG=	yes
 PLIST_SUB=	BDBMAJ=${BDBMAJ} BDBVER=${BDBVER}
 MAKE_ARGS+=	docdir=${DOCSDIR}
 
-OPTIONS_DEFINE=	CRYPTO L10N SQL JAVA TCL DOCS
+OPTIONS_DEFINE=	CRYPTO DEBUG L10N SQL JAVA TCL DOCS
 OPTIONS_DEFAULT=CRYPTO
 OPTIONS_SUB=	yes
 CRYPTO_DESC=	Cryptography support
@@ -59,7 +59,7 @@ JAVA_CONFIGURE_ENABLE=	java
 JAVA_CPPFLAGS=		-I"${JAVA_HOME}/include"
 JAVA_CONFIGURE_ENV=	JAVAC="${JAVAC}" JAR="${JAR}" JAVA="${JAVA}"
 TCL_CONFIGURE_ENABLE=	tcl
-TCL_USES=		tcl:85+
+TCL_USES=		tcl
 TCL_CONFIGURE_WITH=	tcl=${TCL_LIBDIR}
 TCL_VARS=		DBLIBS+=libdb_tcl
 DOCS_INSTALL_TARGET=	install_docs
@@ -67,11 +67,7 @@ DOCS_INSTALL_TARGET=	install_docs
 .include <bsd.port.options.mk>
 
 .if ${ARCH} == aarch64
-. if ${OSVERSION} > 1100100
 CONFIGURE_ARGS+=	--with-mutex=POSIX/pthreads
-. else
-CONFIGURE_ARGS+=	--enable-posixmutexes
-. endif
 .endif
 
 post-patch:

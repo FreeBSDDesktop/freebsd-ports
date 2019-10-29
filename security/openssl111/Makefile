@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	openssl
-DISTVERSION=	1.1.1
-PORTREVISION=	1
+PORTVERSION=	1.1.1d
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.openssl.org/source/ \
 		ftp://ftp.cert.dfn.de/pub/tools/net/openssl/source/
@@ -17,13 +16,22 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	libressl-[0-9]* \
 			libressl-devel-[0-9]* \
-			openssl-[0-9]* \
-			openssl-devel-[0-9]*
+			openssl-[0-9]*
 
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	config
 CONFIGURE_ENV=	PERL="${PERL}"
-CONFIGURE_ARGS=	--openssldir=${OPENSSLDIR}
+CONFIGURE_ARGS=	--openssldir=${OPENSSLDIR} \
+		--prefix=${PREFIX}
+
+USES=		cpe perl5
+USE_PERL5=	build
+TEST_TARGET=	test
+
+LDFLAGS_i386=	-Wl,-znotext
+
+MAKE_ARGS+=	WHOLE_ARCHIVE_FLAG=--whole-archive CNF_LDFLAGS="${LDFLAGS}"
+MAKE_ENV+=	LIBRPATH="${PREFIX}/lib" GREP_OPTIONS=
 
 OPTIONS_GROUP=		CIPHERS HASHES OPTIMIZE PROTOCOLS
 OPTIONS_GROUP_CIPHERS=	ARIA DES GOST IDEA SM2 SM3 SM4 RC2 RC4 RC5
@@ -45,6 +53,8 @@ OPTIONS_GROUP_OPTIMIZE+=	EC
 OPTIONS_GROUP_OPTIMIZE+=	EC
 .endif
 
+OPTIONS_SUB=	yes
+
 ARIA_DESC=	ARIA (South Korean standard)
 ASM_DESC=	Assembler code
 ASYNC_DESC=	Asynchronous mode
@@ -56,7 +66,7 @@ GOST_DESC=	GOST (Russian standard)
 HASHES_DESC=	Hash Function Support
 I386_DESC=	i386 (instead of i486+)
 IDEA_DESC=	International Data Encryption Algorithm
-MAN3_DESC=	Install API manpages (section 3)
+MAN3_DESC=	Install API manpages (section 3, 7)
 MD2_DESC=	MD2 (obsolete)
 MD4_DESC=	MD4 (unsafe)
 MDC2_DESC=	MDC-2 (patented, requires DES)
@@ -80,22 +90,14 @@ TLS1_1_DESC=	TLSv1.1 (requires TLS1_2)
 TLS1_2_DESC=	TLSv1.2
 ZLIB_DESC=	zlib compression support
 
-OPTIONS_SUB=	yes
-
-USES=		cpe perl5
-USE_PERL5=	build
-MAKE_ARGS+=	WHOLE_ARCHIVE_FLAG=--whole-archive
-MAKE_ENV+=	LIBRPATH="${PREFIX}/lib" GREP_OPTIONS=
-TEST_TARGET=	test
-
 # Upstream default disabled options
 .for _option in md2 rc5 sctp ssl3 zlib
 ${_option:tu}_CONFIGURE_ON=	enable-${_option}
 .endfor
 
 # Upstream default enabled options
-.for _option in aria asm async ct des gost idea md4 mdc2 nextprotoneg \
-	rfc3779 rmd160 sm2 sm3 sm4 sse2 threads tls1 tls1_1 tls1_2
+.for _option in aria asm async ct des gost idea md4 mdc2 nextprotoneg rc2 rc4 \
+	rfc3779 rmd160 shared sm2 sm3 sm4 sse2 threads tls1 tls1_1 tls1_2
 ${_option:tu}_CONFIGURE_OFF=	no-${_option}
 .endfor
 
@@ -132,6 +134,7 @@ post-patch:
 		-e 's| install_html_docs$$||' \
 		-e 's|$$(LIBDIR)/pkgconfig|libdata/pkgconfig|g' \
 		${WRKSRC}/Configurations/unix-Makefile.tmpl
+	${REINPLACE_CMD} -e 's|\^GNU ld|GNU|' ${WRKSRC}/Configurations/shared-info.pl
 
 post-configure:
 	${REINPLACE_CMD} \

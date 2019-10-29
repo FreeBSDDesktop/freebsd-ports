@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	gpaw
-DISTVERSION=	1.4.0
+DISTVERSION=	1.5.2
 PORTREVISION=	1
 CATEGORIES=	science python
 MASTER_SITES=	CHEESESHOP
@@ -11,6 +11,7 @@ MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	DFT and beyond within the projector-augmented wave method in chemistry
 
 LICENSE=	GPLv3+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${PYNUMPY}
 LIB_DEPENDS=	libmpich.so:net/mpich \
@@ -20,10 +21,12 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ase>0:science/py-ase@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
 		${PYNUMPY}
 
-USES=		gettext-runtime localbase python shebangfix
-GH_ACCOUNT=	psychopy
+USES=		gettext-runtime localbase python:3.5+ shebangfix
 USE_PYTHON=	distutils concurrent autoplist
 SHEBANG_FILES=	tools/*
+
+post-patch:
+	@${REINPLACE_CMD} "s|'/usr/local/|'${LOCALBASE}/|" ${WRKSRC}/gpaw/__init__.py
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/gpaw-python ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/_gpaw.so

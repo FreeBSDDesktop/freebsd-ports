@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	kicad
-PORTVERSION=	5.0.0
+PORTVERSION=	5.1.4
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-library-footprints
 
-MAINTAINER=	thierry@FreeBSD.org
+MAINTAINER=	cmt@FreeBSD.org
 COMMENT=	Official KiCad Footprint Libraries
 
 LICENSE=	GPLv2

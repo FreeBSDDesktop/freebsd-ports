@@ -2,6 +2,7 @@
 
 PORTNAME=	qemu
 PORTVERSION=	0.d${SNAPDATE}
+PORTREVISION=	0
 CATEGORIES=	emulators devel
 PKGNAMESUFFIX=	-cheri
 
@@ -10,6 +11,8 @@ COMMENT?=	QEMU emulator with CHERI CPU support
 
 # XXX: disabling gnutls doesn't work so depend on it to avoid breakage.
 LIB_DEPENDS=	libcapstone.so:devel/capstone3 \
+		libdrm.so:graphics/libdrm \
+		libepoxy.so:graphics/libepoxy \
 		libgnutls.so:security/gnutls \
 		libnettle.so:security/nettle
 RUN_DEPENDS=	qemu-system-i386:emulators/qemu
@@ -22,11 +25,12 @@ GH_TAGNAME=	${QEMU_COMMIT}
 GH_TUPLE=	qemu:keycodemapdb:6b3d716:qemu/ui/keycodemapdb
 
 HAS_CONFIGURE=	yes
-USES=	gettext-runtime gmake libtool makeinfo pkgconfig python:2.7,build
+USES=	compiler:c11 gettext-runtime gl gmake gnome libtool makeinfo pkgconfig \
+	python:2.7,build xorg
 USE_XORG=	pixman
-USE_GNOME+=	glib20
-ONLY_FOR_ARCHS=	amd64 i386 powerpc powerpc64
-BROKEN_FreeBSD_10=	Default toolchain lacks support for .cfi_sections
+USE_GNOME+=	glib20 libxml2
+USE_GL+=	gbm
+ONLY_FOR_ARCHS=	amd64 powerpc64
 
 OPTIONS_DEFINE=	DOCS
 

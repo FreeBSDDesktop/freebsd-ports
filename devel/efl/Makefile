@@ -3,7 +3,7 @@
 
 PORTNAME=	efl
 DISTVERSION=	1.20.7
-PORTREVISION=	2
+PORTREVISION=	18
 CATEGORIES=	devel enlightenment
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PORTNAME}/
 DIST_SUBDIR=	enlightenment
@@ -20,8 +20,7 @@ LIB_DEPENDS=	libgif.so:graphics/giflib \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libdbus-1.so:devel/dbus \
-		libsndfile.so:audio/libsndfile \
-		libunwind.so:devel/libunwind
+		libsndfile.so:audio/libsndfile
 
 # lib/libeio.so.1
 CONFLICTS_INSTALL=	libeio
@@ -29,9 +28,9 @@ CONFLICTS_INSTALL=	libeio
 GNU_CONFIGURE=	yes
 USES=		autoreconf compiler:c++14-lang gettext-tools gmake iconv jpeg \
 		libtool pathfix pkgconfig python:2.7,run shared-mime-info \
-		shebangfix tar:xz
+		shebangfix tar:xz xorg
 SHEBANG_FILES=	src/scripts/eina/eina-bench-cmp
-USE_XORG=	x11 xcb xcursor xcomposite xdamage xext xfixes xi xinerama xp \
+USE_XORG=	x11 xcb xcursor xcomposite xdamage xext xfixes xi xinerama \
 		xrandr xrender xtst xscrnsaver
 USE_LDCONFIG=	yes
 
@@ -85,7 +84,8 @@ PHYSICS_CONFIGURE_ENABLE=	physics
 PULSEAUDIO_LIB_DEPENDS=		libpulse.so:audio/pulseaudio
 PULSEAUDIO_CONFIGURE_ENABLE=	pulseaudio
 
-WAYLAND_BROKEN=			WAYLAND option is broken: https://phab.enlightenment.org/T7116
+WAYLAND_BROKEN=			ERROR: epoll_create() is deprecated, use epoll_create1(EPOLL_CLOEXEC).
+WAYLAND_BUILD_DEPENDS=		wayland-protocols>=1.7:graphics/wayland-protocols
 WAYLAND_LIB_DEPENDS=		libepoll-shim.so:devel/libepoll-shim \
 				libxkbcommon.so:x11/libxkbcommon \
 				libwayland-client.so:graphics/wayland \
@@ -94,9 +94,9 @@ WAYLAND_CFLAGS=			-I${LOCALBASE}/include/libepoll-shim
 WAYLAND_LDFLAGS=		-lepoll-shim
 WAYLAND_CONFIGURE_ENABLE=	wayland
 
-WAYLAND_EGL_LIB_DEPENDS=	libwayland-egl.so:graphics/mesa-libs
+WAYLAND_EGL_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland
 WAYLAND_EGL_CONFIGURE_ENABLE=	egl
-WAYLANG_EGL_USE=		GL=egl
+WAYLAND_EGL_USE=		GL=egl
 WAYLAND_EGL_IMPLIES=		WAYLAND OPENGLES
 
 GSTREAMER_USE=			GSTREAMER1=core
@@ -169,7 +169,12 @@ CONFIGURE_ARGS+=		--disable-ibus --with-glib=no
 CONFIGURE_ARGS+=		--with-opengl=none
 .endif
 
-.if ${ARCH} == "powerpc" || ${ARCH} == "sparc64"
+# keep in sync with all platforms where libunwind is available
+.if (${ARCH} == amd64 || ${ARCH} == i386)
+LIB_DEPENDS+=	libunwind.so:devel/libunwind
+.endif
+
+.if ${ARCH:Mpowerpc*} || ${ARCH} == "sparc64"
 USES+=				lua
 CONFIGURE_ARGS+=		--enable-lua-old
 PLIST_SUB+=			ELUA="@comment "

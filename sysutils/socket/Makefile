@@ -4,10 +4,10 @@
 PORTNAME=	socket
 PORTVERSION=	1.2
 #PORTREVISION=	1
-CATEGORIES=	sysutils net ipv6
+CATEGORIES=	sysutils net
 MASTER_SITES=	https://wolfram.schneider.org/src/ LOCAL/wosch
 
-MAINTAINER=	wosch@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Create TCP socket and connect to stdin/out
 
 LICENSE=	GPLv1

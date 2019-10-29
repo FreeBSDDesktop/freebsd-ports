@@ -3,7 +3,7 @@
 
 PORTNAME=	pinentry
 PORTVERSION=	1.1.0
-PORTREVISION?=	1
+PORTREVISION?=	6
 CATEGORIES=	security
 MASTER_SITES=	GNUPG/pinentry
 
@@ -22,7 +22,7 @@ NO_BUILD=	yes
 PLIST_FILES=	bin/pinentry
 
 OPTIONS_SINGLE=	FRONTEND
-OPTIONS_SINGLE_FRONTEND=	TTY NCURSES FLTK GTK2 QT4 QT5 GNOME3
+OPTIONS_SINGLE_FRONTEND=	TTY NCURSES FLTK GTK2 QT5 GNOME3
 OPTIONS_DEFAULT=	TTY
 
 FRONTEND_DESC=	Default frontend
@@ -42,10 +42,6 @@ FLTK_RUN_DEPENDS=	${PINENTRY_FLTK}:security/pinentry-fltk
 GTK2_DESC=	Gtk+ 2 frontend
 PINENTRY_GTK2=	pinentry-gtk-2
 GTK2_RUN_DEPENDS=	${PINENTRY_GTK2}:security/pinentry-gtk2
-
-QT4_DESC=	Qt 4 frontend
-PINENTRY_QT4=	pinentry-qt4
-QT4_RUN_DEPENDS=	${PINENTRY_QT4}:security/pinentry-qt4
 
 QT5_DESC=	Qt 5 frontend
 PINENTRY_QT5=	pinentry-qt5
@@ -86,20 +82,13 @@ LIBSECRET_USE=		GNOME=glib20
 
 .if ${PINENTRY_GUI} == "gnome3"
 OPTIONS_SLAVE=	LIBSECRET
-USE_GNOME+=	gtk20
 LIB_DEPENDS+=	libgcr-base-3.so:security/gcr
 PLIST_FILES=	bin/pinentry-gnome3
 .else
 CONFIGURE_ARGS+=--disable-pinentry-gnome3
 .endif
 
-.if ${PINENTRY_GUI} == "qt4"
-USES+=		compiler:c++11-lib qt:4
-USE_QT=		corelib gui moc_build
-PLIST_FILES=	bin/pinentry-qt4
-CONFIGURE_ARGS+=--disable-pinentry-qt5 \
-		--program-suffix=4
-.elif ${PINENTRY_GUI} == "qt5"
+.if ${PINENTRY_GUI} == "qt5"
 USES+=		compiler:c++11-lib qt:5
 USE_QT=		core gui widgets buildtools_build
 PLIST_FILES=	bin/pinentry-qt5
@@ -139,7 +128,7 @@ CONFIGURE_ARGS+=--disable-pinentry-tty
 
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/bin/pinentry \
-		${STAGEDIR}${PREFIX}/info/pinentry.info
+		${STAGEDIR}${PREFIX}/share/info/pinentry.info
 
 .endif # !defined(PINENTRY_GUI)
 

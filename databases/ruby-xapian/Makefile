@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	xapian
-PORTVERSION=	1.4.7
+PORTVERSION=	1.4.13
 DISTVERSIONPREFIX=	bindings-
 CATEGORIES=	databases ruby
 MASTER_SITES=	https://oligarchy.co.uk/xapian/${PORTVERSION}/ \
@@ -24,18 +24,36 @@ OPTIONS_DEFINE=	DOCS
 
 PORTSCOUT=	limitw:1,even
 
-CONFIGURE_ARGS=	--datarootdir=${DATADIR} --docdir=${DOCSDIR} \
-		--enable-static --with-ruby \
-		--without-csharp --without-java --without-lua --without-perl \
-		--without-php --without-python --without-python3 --without-tcl
-GNU_CONFIGURE=	yes
-INSTALL_TARGET=	install-strip
 USES=		compiler:c++11-lang libtool tar:xz
 USE_RUBY=	yes
+
+CONFIGURE_ARGS=	--datarootdir=${DATADIR} \
+		--docdir=${DOCSDIR} \
+		--enable-shared \
+		--enable-static \
+		--with-ruby \
+		--without-csharp \
+		--without-java \
+		--without-lua \
+		--without-perl \
+		--without-php \
+		--without-php7 \
+		--without-python \
+		--without-python3 \
+		--without-tcl
+GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
+USE_CXXSTD=	c++11
 
 PORTDOCS=	*
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|-lstdc++||g' ${WRKSRC}/configure
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${RUBY_VER} >= 2.6
+BUILD_DEPENDS+=	rubygem-rdoc>=0:devel/rubygem-rdoc
+.endif
+
+.include <bsd.port.post.mk>

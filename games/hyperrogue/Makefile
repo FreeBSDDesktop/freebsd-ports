@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	hyperrogue
-PORTVERSION=	10.4t
+PORTVERSION=	11.2d
 CATEGORIES=	games
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -11,14 +11,15 @@ COMMENT=	Roguelike in a non-euclidean world
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN_powerpc64=	fails to link: langen-langen.o: relocation truncated to fit: R_PPC64_TOC16_DS
+BROKEN_FreeBSD_11=	does not build: hyperrogue-hyper.o: file not recognized: File format not recognized
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	zenorogue
+GH_TAGNAME=	v${PORTVERSION:C/\.//}
 
-USES=		autoreconf localbase
+USES=		autoreconf compiler:c++11-lang gl localbase sdl xorg
 GNU_CONFIGURE=	yes
 USE_SDL=	sdl mixer gfx ttf
 USE_GL=		gl glew

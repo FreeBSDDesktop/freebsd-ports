@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	public_suffix_list
-PORTVERSION=	20180823
+PORTVERSION=	20191026
 CATEGORIES=	dns
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -21,7 +21,7 @@ PORTDATA=	public_suffix_list.dat \
 
 GH_ACCOUNT=	publicsuffix
 GH_PROJECT=	list
-GH_TAGNAME=	87cffce
+GH_TAGNAME=	5ae6975
 USE_GITHUB=	yes
 
 do-install:

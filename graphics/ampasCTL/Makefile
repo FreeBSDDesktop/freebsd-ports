@@ -3,7 +3,7 @@
 
 PORTNAME=	ampasCTL
 PORTVERSION=	1.5.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics devel
 
 MAINTAINER=	ports@FreeBSD.org
@@ -19,7 +19,7 @@ LIB_DEPENDS=	libImath.so:graphics/ilmbase \
 		libtiff.so:graphics/tiff \
 		libAcesContainer.so:graphics/ampasACES-container
 
-USES=		cmake:outsource pathfix pkgconfig
+USES=		compiler:c++11-lang cmake pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 

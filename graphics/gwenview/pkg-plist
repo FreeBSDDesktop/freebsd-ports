@@ -25,7 +25,6 @@ share/kservices5/ServiceMenus/slideshow.desktop
 share/kservices5/gvpart.desktop
 share/kxmlgui5/gvpart/gvpart.rc
 share/locale/ar/LC_MESSAGES/gwenview.mo
-share/locale/ast/LC_MESSAGES/gwenview.mo
 share/locale/bg/LC_MESSAGES/gwenview.mo
 share/locale/bs/LC_MESSAGES/gwenview.mo
 share/locale/ca/LC_MESSAGES/gwenview.mo
@@ -57,6 +56,7 @@ share/locale/km/LC_MESSAGES/gwenview.mo
 share/locale/ko/LC_MESSAGES/gwenview.mo
 share/locale/lt/LC_MESSAGES/gwenview.mo
 share/locale/lv/LC_MESSAGES/gwenview.mo
+share/locale/ml/LC_MESSAGES/gwenview.mo
 share/locale/mr/LC_MESSAGES/gwenview.mo
 share/locale/nb/LC_MESSAGES/gwenview.mo
 share/locale/nds/LC_MESSAGES/gwenview.mo

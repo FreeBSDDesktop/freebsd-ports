@@ -3,8 +3,8 @@
 
 PORTNAME=	heimdal
 PORTVERSION=	7.5.0
-PORTREVISION=	1
-CATEGORIES=	security ipv6
+PORTREVISION=	4
+CATEGORIES=	security
 MASTER_SITES=	https://github.com/heimdal/heimdal/releases/download/${DISTNAME}/
 
 MAINTAINER=	hrs@FreeBSD.org

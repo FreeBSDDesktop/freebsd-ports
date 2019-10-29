@@ -3,7 +3,7 @@
 PORTNAME=	IO-Socket-Timeout
 PORTVERSION=	0.32
 PORTREVISION=	1
-CATEGORIES=	net ipv6 perl5
+CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
@@ -13,8 +13,8 @@ COMMENT=	IO::Socket with read/write timeout
 LICENSE=	ART10 GPLv1+
 LICENSE_COMB=	dual
 
-BUILD_DEPENDS=	p5-PerlIO-via-Timeout>=0.32:devel/p5-PerlIO-via-Timeout
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+BUILD_DEPENDS=	${RUN_DEPENDS}
+RUN_DEPENDS=	p5-PerlIO-via-Timeout>=0.32:devel/p5-PerlIO-via-Timeout
 
 NO_ARCH=	yes
 

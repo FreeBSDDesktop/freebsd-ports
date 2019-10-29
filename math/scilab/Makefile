@@ -3,13 +3,18 @@
 
 PORTNAME=	scilab
 PORTVERSION=	5.5.2
-PORTREVISION=	13
+PORTREVISION=	22
 CATEGORIES=	math cad java
-MASTER_SITES=	http://www.scilab.org/download/${PORTVERSION}/
+MASTER_SITES=	https://www.scilab.org/download/${PORTVERSION}/
 DISTFILES=	${DISTNAME}-src${EXTRACT_SUFX}
 
 MAINTAINER=	makc@FreeBSD.org
 COMMENT=	Scientific software package for numerical computations
+
+LICENSE=	GPLv2 BSD3CLAUSE
+LICENSE_COMB=	dual
+LICENSE_FILE_GPLv2=	${WRKSRC}/COPYING
+LICENSE_FILE_BSD3CLAUSE=	${WRKSRC}/COPYING-BSD
 
 # A partial dependencies list can be found at:
 # http://wiki.scilab.org/Dependencies_of_Scilab_5.X
@@ -17,18 +22,18 @@ LIB_DEPENDS=	libxml2.so:textproc/libxml2 \
 		libpcre.so:devel/pcre \
 		libcurl.so:ftp/curl \
 		libhdf5.so:science/hdf5 \
-		libarpack.so:math/arpack \
+		libarpack.so:math/arpack-ng \
 		libfftw3.so:math/fftw3 \
 		libmatio.so:math/matio \
 		libamd.so:math/suitesparse
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
-USES=		cpe desktop-file-utils fortran gettext gmake iconv \
+USES=		cpe desktop-file-utils fortran gettext gmake gnome iconv \
 		libtool ncurses pathfix pkgconfig shared-mime-info
 USE_CXXSTD=	gnu++98
 USE_LOCALE=	en_US.UTF-8
-GNU_CONFIGURE=	yes
 
+GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -63,7 +68,7 @@ _GUI_DEPENDS+=	${JAVALIBDIR}/flexdock.jar:devel/flexdock \
 		foprep:math/jeuclid \
 		${JAVALIBDIR}/jhall.jar:java/javahelp \
 		${JAVALIBDIR}/jrosetta-api.jar:java/jrosetta \
-		${JAVALIBDIR}/commons-logging.jar:java/jakarta-commons-logging \
+		${JAVALIBDIR}/commons-logging.jar:java/apache-commons-logging \
 		${JAVALIBDIR}/jgraphx.jar:java/jgraphx \
 		${JAVALIBDIR}/jlatexmath.jar:math/jlatexmath \
 		${LOCALBASE}/share/java/ecj-4.5.jar:lang/gcc-ecj45
@@ -72,7 +77,7 @@ _GUI_DEPENDS+=	${LOCALBASE}/share/java/fop/build/fop.jar:textproc/fop \
 		${JAVALIBDIR}/jlatexmath-fop.jar:math/jlatexmath \
 		${LOCALBASE}/share/java/batik/lib/batik-all.jar:graphics/batik \
 		${JAVALIBDIR}/avalon-framework.jar:devel/avalon-framework \
-		${JAVALIBDIR}/commons-io.jar:devel/jakarta-commons-io \
+		${JAVALIBDIR}/commons-io.jar:devel/apache-commons-io \
 		${JAVALIBDIR}/xmlgraphics-commons.jar:graphics/xmlgraphics-commons
 # Code quality:
 _GUI_DEPENDS+=	${JAVALIBDIR}/commons-beanutils.jar:java/jakarta-commons-beanutils \
@@ -94,6 +99,7 @@ GUI_BUILD_DEPENDS=	${_GUI_DEPENDS} \
 GUI_RUN_DEPENDS=	${_GUI_DEPENDS}
 
 GUI_ALL_TARGET=	all doc
+GUI_USES=	gl
 GUI_USE=	GL=gl JAVA=yes
 GUI_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-bin-JAVA_HOME
 GUI_CONFIGURE_ON=	--with-jdk=${JAVA_HOME} \
@@ -124,7 +130,7 @@ CONFIGURE_ARGS+=	--without-openmp
 
 .include <bsd.port.pre.mk>
 
-.if ${PORT_OPTIONS:MGUI} && ${JAVA_PORT_VERSION:M1.8.*}
+.if ${PORT_OPTIONS:MGUI} && ${JAVA_PORT_VERSION:M*8*}
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-Makefile.in
 .endif
 
@@ -156,6 +162,8 @@ post-patch-GUI-on:
 	@${REINPLACE_CMD} -e 's|$$jardir/fop.jar|${LOCALBASE}/share/java/fop/build/fop.jar|' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|$$jardir/jeuclid-core*.jar|${LOCALBASE}/share/java/jeuclid/repo/jeuclid-core*.jar|' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|jrosetta-API.jar|jrosetta-api.jar|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|javax.media.opengl.glu.GLUnurbs|com.jogamp.opengl.glu.GLUnurbs|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's|jogamp.common.os.MachineDescriptionRuntime|jogamp.common.os.MachineDataInfoRuntime|' ${WRKSRC}/configure
 	@# Run fixes
 	@${REINPLACE_CMD} -e 's|%%JAVA_HOME%%|${JAVA_HOME}|' ${WRKSRC}/bin/scilab
 	@${REINPLACE_CMD} -e 's|/usr/share/scilab|${DATADIR}|' ${WRKSRC}/desktop/scilab.desktop

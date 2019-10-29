@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	openssl
-PORTVERSION=	1.0.2p
-PORTREVISION=	1
+PORTVERSION=	1.0.2t
 PORTEPOCH=	1
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/source/ \
@@ -16,12 +15,15 @@ COMMENT=	SSL and crypto library
 LICENSE=	OpenSSL
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-CONFLICTS_INSTALL=	libressl-[0-9]* \
-			libressl-devel-[0-9]* \
-			openssl-devel-[0-9]* \
-			openssl111-[0-9]*
+DEPRECATED=		OpenSSL 1.0.2 is End-of-Life 2019-12-31 at which \
+			time this port will update to 1.1.1 branch
+EXPIRATION_DATE=	2019-12-31
 
 OPTIONS_DEFINE=		DOCS MAN3 PADLOCK RFC3779 SHARED THREADS ZLIB
+CONFLICTS_INSTALL=	libressl-[0-9]* \
+			libressl-devel-[0-9]* \
+			openssl111-[0-9]*
+
 OPTIONS_DEFAULT=	ASM MD2 MAN3 SCTP SHARED SSE2 SSL2 SSL3 THREADS
 OPTIONS_DEFINE_amd64=	EC
 OPTIONS_DEFAULT_amd64=	EC
@@ -128,6 +130,7 @@ post-patch:
 		${WRKSRC}/crypto/des/Makefile
 	${REINPLACE_CMD} -e 's|SHLIB_VERSION_NUMBER "1.0.0"|SHLIB_VERSION_NUMBER "${OPENSSL_SHLIBVER}"|' \
 		${WRKSRC}/crypto/opensslv.h
+	${REINPLACE_CMD} -e 's|\^GNU ld|GNU|' ${WRKSRC}/Makefile.shared
 
 post-patch-MAN3-off:
 	${GREP} -L openssl_manual_section ${WRKSRC}/doc/crypto/*.pod | ${XARGS} ${RM}

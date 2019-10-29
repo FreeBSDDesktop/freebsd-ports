@@ -2,11 +2,12 @@
 
 PORTNAME=	transmission
 DISTVERSION=	2.94
+PORTREVISION?=	5
 CATEGORIES+=	net-p2p
 SLAVEPORT?=	cli
 PKGNAMESUFFIX?=	-cli
 
-MAINTAINER=	lebarondemerde@privacychain.ch
+MAINTAINER=	rigoletto@FreeBSD.org
 COMMENT=	Meta-port for Transmission BitTorrent client
 
 LICENSE+=	MIT
@@ -26,10 +27,9 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl \
 		libutp.so:net/libutp \
 		libminiupnpc.so:net/miniupnpc
 
-USES+=		cmake:outsource cpe iconv libtool localbase pkgconfig
+USES+=		cmake cpe iconv libtool localbase pkgconfig ssl
 
 .  if ${SLAVEPORT:Mcli}
-USES+=		ssl
 NLS_USES=	gettext-runtime:run
 .  endif
 
@@ -52,20 +52,9 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_DOCDIR=${DOCSDIR}
 
 OPTIONS_DEFINE+=	DOCS LITE NLS
 OPTIONS_SUB=		yes
-OPTIONS_DEFAULT=	OPENSSL
 
 NLS_CMAKE_BOOL=		ENABLE_NLS
 
-OPTIONS_SINGLE=		SSL
-OPTIONS_SINGLE_SSL=	OPENSSL WOLFSSL
-
-OPENSSL_USES=		ssl
-OPENSSL_CMAKE_ARGS=	-DWITH_CRYPTO="openssl"
-
-WOLFSSL_LIB_DEPENDS=	libwolfssl.so:security/wolfssl
-WOLFSSL_CMAKE_ARGS=	-DWITH_CRYPTO="cyassl"
-
-LITE_CONFIGURE_ENABLE=	lightweight
 LITE_CMAKE_BOOL=	ENABLE_LIGHTWEIGHT
 .endif
 

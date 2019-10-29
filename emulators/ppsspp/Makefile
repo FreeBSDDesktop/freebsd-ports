@@ -2,24 +2,23 @@
 
 PORTNAME=	ppsspp
 DISTVERSIONPREFIX=	v
-DISTVERSION?=	1.6.3
-PORTREVISION?=	3
+DISTVERSION?=	1.9.4
+PORTREVISION?=	0
 CATEGORIES=	emulators
 # XXX Get from Debian once #697821 lands
 MASTER_SITES=	https://bazaar.launchpad.net/~sergio-br2/${PORTNAME}/debian-sdl/download/5/${PORTNAME}.1-20140802045408-dd26dik367ztj5xg-8/:manpage
 DISTFILES=	${PORTNAME}.1:manpage
 EXTRACT_ONLY=	${DISTFILES:N*\:manpage:C/:.*//}
 
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES=	c783e7761c2a.patch:-p1
-PATCHFILES+=	f2a75719d843.patch:-p1
-PATCHFILES+=	78a41980dfd7.patch:-p1
-PATCHFILES+=	7a7c655615a4.patch:-p1
-
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	PSP emulator in C++ with dynarec JIT for x86, ARM, MIPS
 
 LICENSE=	GPLv2+
+
+# Bi-endian architectures default to big for some reason
+NOT_FOR_ARCHS=	mips mips64 powerpc powerpc64 sparc64
+NOT_FOR_ARCHS_REASON=	only little-endian is supported, see \
+		https://github.com/hrydgard/ppsspp/issues/8823
 
 LIB_DEPENDS=	libzip.so:archivers/libzip \
 		libsnappy.so:archivers/snappy \
@@ -28,20 +27,20 @@ RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrydgard
-GH_TUPLE?=	hrydgard:glslang:2edde666:glslang/ext/glslang \
-		hrydgard:${PORTNAME}-lang:1153a42:lang/assets/lang \
-		KhronosGroup:SPIRV-Cross:90966d5:SPIRV/ext/SPIRV-Cross \
-		Kingcom:armips:v0.9-89-g8b4cada:armips/ext/armips \
-		Kingcom:tinyformat:Release-2.0.1-7-gb7f5a22:tinyformat/ext/armips/ext/tinyformat
+GH_TUPLE?=	hrydgard:glslang:7.11.3214-63-gf9d08a25:glslang/ext/glslang \
+		hrydgard:${PORTNAME}-lang:bfc3a51:lang/assets/lang \
+		KhronosGroup:SPIRV-Cross:2019-05-20-60-ga1f7c8dc:SPIRV/ext/SPIRV-Cross \
+		Kingcom:armips:v0.10.0-28-g7885552:armips/ext/armips
 
 CONFLICTS_INSTALL=	${PORTNAME}-*
 
-USES=		cmake:outsource compiler:c++11-lib localbase:ldflags pkgconfig
+USES=		cmake compiler:c++11-lib localbase:ldflags pkgconfig
 EXCLUDE=	libzip zlib
 EXTRACT_AFTER_ARGS=${EXCLUDE:S,^,--exclude ,}
 USE_GL=		gl glew glu
 USE_SDL=	sdl2 # joystick
 CMAKE_ON=	USE_SYSTEM_FFMPEG USE_SYSTEM_LIBZIP
+CMAKE_OFF=	USE_DISCORD
 SUB_FILES=	pkg-message
 PORTDATA=	assets ${PORTNAME}
 
@@ -80,7 +79,7 @@ post-patch:
 		${WRKSRC}/assets/gamecontrollerdb.txt
 	@${REINPLACE_CMD} -e 's,/usr/share,${PREFIX}/share,' \
 		${WRKSRC}/UI/NativeApp.cpp
-	@${REINPLACE_CMD} -e 's/"unknown"/"${GH_TAGNAME}"/' \
+	@${REINPLACE_CMD} -e 's/"unknown"/"${DISTVERSIONFULL}"/' \
 		${WRKSRC}/git-version.cmake
 
 do-install:

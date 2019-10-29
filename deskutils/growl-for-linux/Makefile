@@ -2,7 +2,7 @@
 
 PORTNAME=	growl-for-linux
 PORTVERSION=	0.8.5
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	deskutils
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -34,11 +34,19 @@ OPTIONS_DEFINE=	LIBNOTIFY
 
 PLIST_SUB=	DESKTOPDIR=${DESKTOPDIR:S,^${PREFIX}/,,}
 
-USES=		autoreconf compiler:nestedfct libtool pkgconfig sqlite:3 ssl
+USES=		autoreconf compiler:nestedfct gnome libtool pkgconfig sqlite:3 \
+		ssl
 USE_GITHUB=	yes
 USE_GNOME=	cairo gdkpixbuf2 gtk20 libxml2
 USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}/display \
 		${PREFIX}/lib/${PORTNAME}/subscribe
+
+.include <bsd.port.pre.mk>
+
+.if ${CHOSEN_COMPILER_TYPE} == gcc && ${COMPILER_VERSION} <= 42
+CFLAGS+=	-fnested-functions
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} '/^gol_LDADD =/s/$$/ -lgmodule-2.0/' \
 		${WRKSRC}/Makefile.am
@@ -46,4 +54,4 @@ post-patch:
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/lib/libgolplug.a
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

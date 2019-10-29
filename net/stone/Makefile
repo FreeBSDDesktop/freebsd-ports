@@ -3,7 +3,7 @@
 
 PORTNAME=	stone
 PORTVERSION=	2.3e
-CATEGORIES=	net ipv6
+CATEGORIES=	net
 MASTER_SITES=	http://www.gcd.org/sengoku/stone/
 
 MAINTAINER=	ports@FreeBSD.org
@@ -29,6 +29,11 @@ post-extract:
 ALL_TARGET=	bsd-ssl
 MAKE_ARGS=	SSL_FLAGS="-DUSE_SSL -I${OPENSSLINC}" \
 		SSL_LIBS="-L${OPENSSLLIB} -lssl -lcrypto" LIBS="-DUNIX_DAEMON"
+.endif
+
+.if ${SSL_DEFAULT} == base
+BROKEN_FreeBSD_12=	incomplete definition of type 'struct ssl_session_st'
+BROKEN_FreeBSD_13=	incomplete definition of type 'struct ssl_session_st'
 .endif
 
 post-patch:

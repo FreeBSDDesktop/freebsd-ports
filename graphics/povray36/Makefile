@@ -17,10 +17,8 @@ COMMENT=	Persistence of Vision Ray Tracer
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libtiff.so:graphics/tiff
 
-BROKEN_powerpc64=	Does not build: error: 64 bit CPU required
-
 USE_XORG=	x11
-USES=		gmake jpeg tar:bzip2
+USES=		compiler:c11 gmake jpeg tar:bzip2
 GNU_CONFIGURE=	yes
 USE_CXXSTD=	gnu++98
 
@@ -46,7 +44,7 @@ CXXFLAGS+=	-mfancy-math-387 -mpreferred-stack-boundary=3 -malign-double
 CONFIGURE_ARGS=	--disable-optimiz
 .endif
 
-CONFIGURE_ARGS=	--x-includes="${LOCALBASE}/include" --includedir=${LOCALBASE} \
+CONFIGURE_ARGS+=	--x-includes="${LOCALBASE}/include" --includedir=${LOCALBASE} \
 		CXXFLAGS="${CXXFLAGS} -L${LOCALBASE}/lib" \
 		CFLAGS="${CFLAGS} -L${LOCALBASE}/lib" \
 		LDFLAGS="-L${LOCALBASE}/lib" COMPILED_BY=${MAINTAINER} \

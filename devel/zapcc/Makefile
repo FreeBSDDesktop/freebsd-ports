@@ -2,19 +2,18 @@
 
 PORTNAME=	zapcc
 PORTVERSION=	g20180622
+PORTREVISION=	1
 CATEGORIES=	devel
 
-MAINTAINER=	martinfilla@post.cz
+MAINTAINER=	freebsd@sysctl.cz
 COMMENT=	C++ caching compiler based on clang
 
 LICENSE=	NCSA
 LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
 
-BROKEN_FreeBSD_10=	error: expected a class or namespace const NoneType None = NoneType::None
-
 BUILD_DEPENDS=	googletest>0:devel/googletest
 
-USES=		cmake:outsource libedit python:3.4+ shebangfix
+USES=		cmake compiler:c++11-lang libedit python:3.4+ shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	yrnkrn
 GH_PROJECT=	zapcc

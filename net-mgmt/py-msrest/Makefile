@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	msrest
-PORTVERSION=	0.5.5
+PORTVERSION=	0.6.10
 CATEGORIES=	net-mgmt python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,17 +15,13 @@ LICENSE=	MIT
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}certifi>=2017.4.17:security/py-certifi@${PY_FLAVOR} \
 		${PY_ENUM34} \
 		${PYTHON_PKGNAMEPREFIX}isodate>=0.6.0:devel/py-isodate@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}requests>=2.16:www/py-requests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests-oauthlib>=0.5.0:www/py-requests-oauthlib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}requests>=2.16:www/py-requests@${PY_FLAVOR}
+		${PY_TYPING}
 
-NO_ARCH=	yes
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
-.include <bsd.port.pre.mk>
+NO_ARCH=	yes
 
-.if ${PYTHON_REL} < 3500
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing>=0:devel/py-typing@${PY_FLAVOR}
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

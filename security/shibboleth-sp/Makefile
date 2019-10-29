@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	shibboleth-sp
-PORTVERSION=	3.0.2
-PORTREVISION=	1
+PORTVERSION=	3.0.4
+PORTREVISION=	2
 CATEGORIES=	security www
 MASTER_SITES=	http://shibboleth.net/downloads/service-provider/${PORTVERSION}/
 

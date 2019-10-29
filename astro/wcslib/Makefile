@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wcslib
-PORTVERSION=	5.19.1
+PORTVERSION=	6.4
 CATEGORIES=	astro
 MASTER_SITES=	ftp://ftp.atnf.csiro.au/pub/software/wcslib/
 
@@ -11,8 +11,9 @@ COMMENT=	Library for parsing/generating FITS headers
 
 LICENSE=	GPLv3
 
-GNU_CONFIGURE=	yes
 USES=		tar:bzip2 gmake fortran
+
+GNU_CONFIGURE=	yes
 MAKEFILE=	GNUmakefile
 USE_LDCONFIG=	yes
 MAKE_JOBS_UNSAFE=yes
@@ -33,6 +34,7 @@ PGPLOT_CONFIGURE_WITH=	pgplot
 PGPLOT_LIB_DEPENDS=	libpgplot.so:graphics/pgplot \
 			libpng.so:graphics/png
 PGPLOT_USE=		XORG=x11
+PGPLOT_USES=		xorg
 
 post-patch:
 	@${REINPLACE_CMD} -e 's#%%PKGDIR%%#${STAGEDIR}${PREFIX}/libdata#g' \

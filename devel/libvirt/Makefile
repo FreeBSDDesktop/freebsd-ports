@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	libvirt
-PORTVERSION=	4.7.0
+PORTVERSION=	5.8.0
 CATEGORIES=	devel
 MASTER_SITES=	http://libvirt.org/sources/ \
 		ftp://libvirt.org/libvirt/
@@ -64,7 +64,7 @@ SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 
 XEN_CONFIGURE_WITH=	libxl
 XEN_CFLAGS=	-I${LOCALBASE}/include
-XEN_LIB_DEPENDS=	libxenlight.so:sysutils/xen-tools47
+XEN_LIB_DEPENDS=	libxenlight.so:sysutils/xen-tools
 
 LIBSSH_CONFIGURE_WITH=	libssh
 LIBSSH_LIB_DEPENDS=	libssh.so:security/libssh
@@ -105,14 +105,12 @@ USE_PERL5=	build
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
-SHLIB_VER=	0.4007.0
-PLIST_SUB+=	PORTVERSION="-${PORTVERSION}" \
-		SHLIB_VER=${SHLIB_VER}
+SHLIB_VER=	0.5008.0
+PLIST_SUB+=	SHLIB_VER=${SHLIB_VER}
 PORTDOCS=	*
 SHEBANG_FILES=	src/keycodemapdb/tools/keymap-gen
 
 SUB_FILES=	pkg-message
-SUB_LIST+=	PORTVERSION="-${PORTVERSION}"
 
 .include <bsd.port.options.mk>
 
@@ -134,8 +132,16 @@ CONF_FILES=	\
 		libvirtd.conf \
 		libxl.conf \
 		qemu.conf \
+		virtbhyved.conf \
 		virtlockd.conf \
-		virtlogd.conf
+		virtlogd.conf \
+		virtnetworkd.conf \
+		virtproxyd.conf \
+		virtqemud.conf \
+		virtsecretd.conf \
+		virtstoraged.conf \
+		virtvboxd.conf \
+		virtxend.conf
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|$$(LN_S) ../default.xml default.xml|true|' \

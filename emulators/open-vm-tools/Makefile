@@ -15,17 +15,17 @@ LICENSE_FILE=		${WRKSRC}/COPYING
 
 ONLY_FOR_ARCHS=		amd64 i386
 
-LIB_DEPENDS=		libmspack.so:archivers/libmspack
+LIB_DEPENDS=		libmspack.so:archivers/libmspack \
+			libdnet.so:net/libdnet
 
-RELEASE_VER=		10.3.0
-BUILD_VER=		8931395
+RELEASE_VER=		11.0.1
+BUILD_VER=		14773994
 
-OPTIONS_DEFINE=		DNET LIBNOTIFY OPENSSL X11
-OPTIONS_DEFAULT=	DNET LIBNOTIFY OPENSSL X11
+OPTIONS_DEFINE=		LIBNOTIFY OPENSSL X11
+OPTIONS_DEFAULT=	LIBNOTIFY OPENSSL X11
 
 OPTIONS_SUB=
 
-DNET_DESC=		libdnet support
 LIBNOTIFY_DESC=		Desktop notification support
 
 X11_CONFIGURE_WITH=	x gtk2 gtkmm
@@ -34,8 +34,6 @@ X11_USE=		xorg=ice,sm,x11,xext,xi,xinerama,xorgproto,xrandr,xrender,xtst \
 X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 			libfreetype.so:print/freetype2
 LIBNOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
-DNET_CONFIGURE_WITH=	dnet
-DNET_LIB_DEPENDS=	libdnet.so:net/libdnet
 OPENSSL_CONFIGURE_WITH=	ssl
 
 WRKSRC_SUBDIR=		open-vm-tools
@@ -64,14 +62,10 @@ INSTALL_TARGET=		install-strip
 
 .include <bsd.port.options.mk>
 
-.if ${OSVERSION} < 1100000
-CFLAGS+=		-Wno-unknown-warning-option
-.endif
-
 .if ${PORT_OPTIONS:MX11}
-CONFLICTS=		open-vm-tools-nox11-[0-9]*
+CONFLICTS+=		open-vm-tools-nox11-[0-9]*
 .else
-CONFLICTS=		open-vm-tools-[0-9]*
+CONFLICTS+=		open-vm-tools-[0-9]*
 .endif
 
 CONFIGURE_ENV+=		SYSDIR=${SRC_BASE}/sys
@@ -90,7 +84,6 @@ post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/input
 	${INSTALL_DATA} ${WRKSRC}/modules/freebsd/vmblock.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmblock.ko
 	${INSTALL_DATA} ${WRKSRC}/modules/freebsd/vmmemctl.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmmemctl.ko
-	${INSTALL_DATA} ${WRKSRC}/modules/freebsd/vmxnet.ko ${STAGEDIR}${PREFIX}/lib/vmware-tools/modules/drivers/vmxnet.ko
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/open-vm-tools/scripts/vmware/
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/open-vm-tools/scripts/
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/open-vm-tools/tests/

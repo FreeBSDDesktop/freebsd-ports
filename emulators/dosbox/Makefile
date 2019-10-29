@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	dosbox
-PORTVERSION=	0.74
-PORTREVISION=	11
+DISTVERSION=	0.74-3
 CATEGORIES=	emulators
-MASTER_SITES=	SF
+MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${DISTVERSION}
 
 MAINTAINER=	knyght@gmail.com
 COMMENT=	Emulator of a PC with DOS
@@ -14,18 +13,17 @@ LICENSE=	GPLv2
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
+USES=		sdl
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-core-inline
 USE_SDL=	sdl net sound
+
 PLIST_FILES=	bin/dosbox man/man1/dosbox.1.gz share/pixmaps/dosbox.ico
 PORTDOCS=	NEWS README
 
-PKGMESSAGE=	${WRKDIR}/pkg-message
-
-CONFIGURE_ARGS+=	--enable-core-inline
-
 DESKTOP_ENTRIES="DOSBox" "${COMMENT}" \
 		"${PREFIX}/share/pixmaps/dosbox.ico" "dosbox" \
-		"System;Emulator;" "true"
+		"System;Emulator;" true
 
 OPTIONS_DEFINE=	DOCS
 OPTIONS_RADIO=	DEBUGGER

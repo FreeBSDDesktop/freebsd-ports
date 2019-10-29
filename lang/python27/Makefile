@@ -2,7 +2,7 @@
 
 PORTNAME=	python
 PORTVERSION=	${PYTHON_PORTVERSION}
-CATEGORIES=	lang python ipv6
+CATEGORIES=	lang python
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
 PKGNAMESUFFIX=	27
 DISTNAME=	Python-${PORTVERSION}
@@ -34,7 +34,6 @@ TEST_TARGET=		buildbottest
 TEST_ARGS=		TESTOPTS=-j${MAKE_JOBS_NUMBER}
 
 MAKE_ARGS+=		INSTALL_SHARED="${INSTALL_LIB}"				# Strip shared library
-MAKE_JOBS_UNSAFE=	yes							# Parser/pgen build bug. See Issue: 200622, 201974
 
 PLIST_SUB=		ABI=${ABIFLAGS} \
 			PORTVERSION=${PORTVERSION} \
@@ -88,7 +87,7 @@ PLIST_SUB+=	X86_ONLY=""
 PLIST_SUB+=	X86_ONLY="@comment "
 .endif
 
-.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == mips64 || ${ARCH} == powerpc64 || ${ARCH} == sparc64
+.if ${ARCH:M*64*}
 PLIST_SUB+=	32BIT_ONLY="@comment "
 .else
 PLIST_SUB+=	32BIT_ONLY=""
@@ -110,13 +109,6 @@ PLIST_SUB+=	NO_NIS=""
 .endif
 
 post-patch:
-# readline shared library is present on base before FreeBSD 11 - r268461
-# force setup.py ignore base and use readline from ports
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1100000
-	@${REINPLACE_CMD} -e \
-		"s|lib_dirs,\ \'readline\'|[\'${LOCALBASE}/lib\',\ \'.\'],\ \'readline\'|" \
-		${WRKSRC}/setup.py
-.endif
 	@${REINPLACE_CMD} -e 's|/usr/local/bin/python|${python_CMD}|' \
 		${WRKSRC}/Lib/cgi.py
 	@${REINPLACE_CMD} -e \

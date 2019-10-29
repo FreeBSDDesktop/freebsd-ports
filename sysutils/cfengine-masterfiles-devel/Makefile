@@ -4,10 +4,9 @@
 PORTNAME=	cfengine-masterfiles
 PORTVERSION=	3.${CFENGINE_COMMIT_DATE}
 CATEGORIES=	sysutils
-MASTER_SITES=	https://cfengine-package-repos.s3.amazonaws.com/tarballs/
 PKGNAMESUFFIX=	-devel
-HASH=		c6377ff
-CFENGINE_COMMIT_DATE=	2018.09.25
+HASH=		52b2c41
+CFENGINE_COMMIT_DATE=	2019.10.23
 
 MAINTAINER=	cy@FreeBSD.org
 #		gjb@FreeBSD.org is also committer for this port
@@ -29,15 +28,12 @@ RUN_DEPENDS=	cf-agent:sysutils/cfengine${PKGNAMESUFFIX}
 
 FETCH_BEFORE_ARGS=	-o ${DISTDIR}/${DISTFILES}
 
-CONFLICTS=	cfengine-masterfiles[6-9]*
-
 MAKE_JOBS_UNSAFE=	yes
-USES=		autoreconf:build cpe gmake python:build shebangfix
+USES=		autoreconf:build cpe gmake python:build
 HAS_CONFIGURE=	yes
 EXAMPLESDIR=	${PREFIX}/share/examples/cfengine-masterfiles
 CONFIGURE_SCRIPT=	./autogen.sh
 CONFIGURE_ARGS=	--prefix=${EXAMPLESDIR}
 CONFIGURE_ENV=	EXPLICIT_VERSION=${PORTVERSION}-${HASH}
-SHEBANG_FILES=	modules/packages/yum  modules/packages/zypper
 
 .include <bsd.port.mk>

@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	spidermonkey
-PORTVERSION=	52.8.0
-PORTREVISION=	1
+PORTVERSION=	52.9.0
+PORTREVISION=	5
 CATEGORIES=	lang
 MASTER_SITES=	MOZILLA/firefox/releases/${PORTVERSION}esr/source
 PKGNAMESUFFIX=	${SP_VER}
@@ -26,6 +26,9 @@ SP_VER=		52
 
 WRKSRC=		${WRKDIR}/firefox-${PORTVERSION}esr/js/src
 PATCH_WRKSRC=	${WRKDIR}/firefox-${PORTVERSION}esr/
+INCLUDE=	.cargo Makefile.in build* config* gradle* js memory nsprpub/config
+INCLUDE+=	mfbt modules moz* python taskcluster testing
+EXTRACT_AFTER_ARGS+=	${INCLUDE:S|^|firefox-${PORTVERSION}esr/|}
 
 CONFIGURE_ARGS=	--with-pthreads \
 		--prefix=${PREFIX:Q} \
@@ -42,7 +45,6 @@ OPTIONS_DEFAULT=METHODJIT OPTIMIZE READLINE
 OPTIONS_SUB=	yes
 
 DEBUG_CONFIGURE_ENABLE=	debug debug-symbols
-DEBUG_CONFIGURE_DISABLE=debug
 
 DTRACE_CONFIGURE_ENABLE=dtrace profiling
 DTRACE_LIBS=	-lelf
@@ -71,15 +73,21 @@ CONFIGURE_TARGET=x86_64-portbld-freebsd${OSREL}
 
 post-patch:
 # Skip some tests because bundled icu differs from system
-	@${RM}  ${WRKSRC}/tests/test262/intl402/ch10/10.2/10.2.3_b.js \
+	@${RM}  ${WRKSRC}/tests/Intl/Date/toLocaleDateString_timeZone.js \
 		${WRKSRC}/tests/Intl/DateTimeFormat/format.js \
-		${WRKSRC}/tests/ecma_6/String/normalize-generateddata-part1-not-listed.js
+		${WRKSRC}/tests/Intl/DateTimeFormat/format_timeZone.js \
+		${WRKSRC}/tests/Intl/NumberFormat/StringBuffer.js
+
 pre-configure:
 	cd ${WRKSRC} && ${LOCALBASE}/bin/autoconf-2.13
+# The directory needs to exist, or configure freaks out:
+	@${MKDIR} ${WRKSRC:H:H}/intl/icu/source/common/unicode
+	${LN} -s ${LOCALBASE}/include/unicode/uvernum.h	\
+		${WRKSRC:H:H}/intl/icu/source/common/unicode/
 
 regression-test: build
 	@${ECHO_MSG} -n "===> Running jstests.py: "
-	@cd ${WRKSRC} && ${SETENV} TZ=PST8PDT ${PYTHON_CMD} tests/jstests.py \
+	@cd ${WRKSRC} && ${SETENV} LANG=C TZ=PST8PDT ${PYTHON_CMD} tests/jstests.py \
 	-d -s --no-progress ./js/src/shell/js
 
 post-install:

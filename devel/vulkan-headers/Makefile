@@ -2,7 +2,7 @@
 
 PORTNAME=	vulkan-headers
 DISTVERSIONPREFIX=sdk-
-DISTVERSION=	1.1.82.0
+DISTVERSION=	1.1.108.0
 CATEGORIES=	devel graphics
 
 MAINTAINER=	greg@unrelenting.technology
@@ -10,7 +10,7 @@ COMMENT=	Headers for the Vulkan graphics API
 
 LICENSE=	APACHE20
 
-USES=		cmake:outsource
+USES=		cmake
 STRIP=		# nothing to strip
 
 USE_GITHUB=	yes

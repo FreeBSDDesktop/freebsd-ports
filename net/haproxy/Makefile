@@ -1,10 +1,10 @@
-# Created by: Clement Laforet
+# Created by: Hugo Saro <hugo@barafranca.com>
 # $FreeBSD$
 
 PORTNAME=	haproxy
-DISTVERSION=	1.8.14
+DISTVERSION=	2.0.8
 CATEGORIES=	net www
-MASTER_SITES=	http://www.haproxy.org/download/1.8/src/
+MASTER_SITES=	http://www.haproxy.org/download/2.0/src/
 
 MAINTAINER=	demon@FreeBSD.org
 COMMENT=	Reliable, high performance TCP/HTTP load balancer
@@ -12,21 +12,22 @@ COMMENT=	Reliable, high performance TCP/HTTP load balancer
 LICENSE=	GPLv2 LGPL21
 LICENSE_COMB=	multi
 
-CONFLICTS_INSTALL=	haproxy-devel-[0-9]* haproxy17-[0-9]*
+CONFLICTS_INSTALL=	haproxy-devel-[0-9]* haproxy17-[0-9]* haproxy18-[0-9]* haproxy19-[0-9]*
 
-USES=		cpe gmake
+USES=		compiler:c++11-lang cpe gmake
 USE_RC_SUBR=	haproxy
 
 MAKE_ARGS=	TARGET=freebsd DEFINE=-DFREEBSD_PORTS USE_GETADDRINFO=1 \
 		USE_ZLIB=1 USE_CPU_AFFINITY=1 USE_ACCEPT4=1 \
 		CC="${CC}" DEBUG_CFLAGS="" CPU_CFLAGS="${CFLAGS}"
 
-OPTIONS_DEFINE=		DOCS EXAMPLES LUA OPENSSL DEVICEATLAS
+OPTIONS_DEFINE=		DOCS EXAMPLES LUA OPENSSL DEVICEATLAS PROMEX
 OPTIONS_RADIO=		PCRE
 OPTIONS_RADIO_PCRE=	DPCRE SPCRE
 DPCRE_DESC=		Link dynamically
 SPCRE_DESC=		Link statically
 DEVICEATLAS_DESC=	DeviceAtlas Device Detection support
+PROMEX_DESC=		Enable Prometheus exporter
 OPTIONS_DEFAULT=	SPCRE OPENSSL
 
 DPCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
@@ -35,6 +36,7 @@ SPCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
 SPCRE_MAKE_ARGS=	USE_PCRE=1 USE_STATIC_PCRE=1 USE_PCRE_JIT=1
 DEVICEATLAS_LIB_DEPENDS=	libda.so:net/deviceatlas-enterprise-c
 DEVICEATLAS_MAKE_ARGS=		USE_DEVICEATLAS=1 DEVICEATLAS_LIB=${LOCALBASE}/lib DEVICEATLAS_INC=${LOCALBASE}/include
+PROMEX_MAKE_ARGS=	EXTRA_OBJS="contrib/prometheus-exporter/service-prometheus.o"
 OPENSSL_USES=		ssl
 OPENSSL_MAKE_ARGS=	USE_OPENSSL=1 SSL_LIB=${OPENSSLLIB} SSL_INC=${OPENSSLINC}
 LUA_USES=		lua:53
@@ -43,11 +45,7 @@ LUA_MAKE_ARGS=		USE_LUA=1 LUA_INC=${LUA_INCDIR} LUA_LIB=${LUA_LIBDIR} LUA_LIB_NA
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64" || ${ARCH} == "i386"
-MAKE_ARGS+=     USE_REGPARM=1
-.endif
-
-.if ${PORT_OPTIONS:MOPENSSL} && ${SSL_DEFAULT:Mopenssl-devel}
-BROKEN=         Does not build with openssl-devel
+MAKE_ARGS+=	USE_REGPARM=1
 .endif
 
 post-build:

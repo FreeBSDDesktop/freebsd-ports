@@ -1,18 +1,15 @@
 # $FreeBSD$
 
 PORTNAME=	cbsd
-DISTVERSION=	11.2.1
+DISTVERSION=	12.1.1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	olevole@olevole.ru
-COMMENT=	Yet another FreeBSD Jail and Bhyve Management Utility
+COMMENT=	Yet another FreeBSD Jail, XEN and Bhyve Management Utility
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-BROKEN_mips=		fails to link: cannot find -lc++
-BROKEN_mips64=		fails to link: cannot find -lc++
-BROKEN_powerpc64=	fails to link: cannot find -lc++
 
 RUN_DEPENDS=	rsync:net/rsync \
 		sudo:security/sudo \
@@ -21,9 +18,9 @@ RUN_DEPENDS=	rsync:net/rsync \
 LIB_DEPENDS=	libssh2.so:security/libssh2 \
 		libsqlite3.so:databases/sqlite3
 
-USES=		libedit pkgconfig
+USES=		compiler:c++11-lang libedit pkgconfig:both
 USE_GITHUB=	yes
-USE_RC_SUBR=	cbsdd cbsdrsyncd
+USE_RC_SUBR=	cbsdd cbsdrsyncd cbsd-statsd-bhyve cbsd-statsd-hoster cbsd-statsd-jail
 
 SUB_FILES=	pkg-message pkg-deinstall
 

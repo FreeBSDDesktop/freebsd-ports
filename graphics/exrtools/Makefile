@@ -3,7 +3,7 @@
 
 PORTNAME=	exrtools
 PORTVERSION=	0.4
-PORTREVISION=	15
+PORTREVISION=	16
 CATEGORIES=	graphics
 MASTER_SITES=	http://scanline.ca/exrtools/ \
 		LOCAL/ehaupt
@@ -17,14 +17,9 @@ LIB_DEPENDS=	libImath.so:graphics/ilmbase \
 		libpng.so:graphics/png \
 		libIlmImf.so:graphics/openexr
 
-BROKEN_armv6=		fails to configure: checking for /nxb-bin/usr/bin/cc... no
-BROKEN_armv7=		fails to configure: checking for /nxb-bin/usr/bin/cc... no
+USES=		compiler:c++11-lang gmake jpeg localbase:ldflags pkgconfig
 
 GNU_CONFIGURE=	yes
-USES=		gmake jpeg pkgconfig
-
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|<values\.h>|<float.h>|' \

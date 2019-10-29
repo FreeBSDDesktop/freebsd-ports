@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	socat
-PORTVERSION=	1.7.3.2
-PORTREVISION=	4
-CATEGORIES=	net ipv6
+PORTVERSION=	1.7.3.3
+PORTREVISION=	1
+CATEGORIES=	net
 MASTER_SITES=	http://www.dest-unreach.org/socat/download/ \
 		LOCAL/ehaupt
 
@@ -15,8 +15,9 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		compiler cpe ssl tar:bzip2
-GNU_CONFIGURE=	yes
 USE_RC_SUBR=	socat
+
+GNU_CONFIGURE=	yes
 
 CPE_VENDOR=	dest-unreach
 

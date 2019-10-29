@@ -2,7 +2,8 @@
 
 PORTNAME=	squid
 PORTVERSION=	3.5.28
-CATEGORIES=	www ipv6
+PORTREVISION=	3
+CATEGORIES=	www
 MASTER_SITES=	http://www.squid-cache.org/Versions/v3/${PORTVERSION:R}/ \
 		http://www2.us.squid-cache.org/Versions/v3/${PORTVERSION:R}/ \
 		http://www1.at.squid-cache.org/Versions/v3/${PORTVERSION:R}/ \
@@ -113,7 +114,7 @@ SSL_CONFIGURE_ON=		--with-openssl=${OPENSSLBASE} \
 				LIBOPENSSL_CFLAGS=-I${OPENSSLINC} \
 				LIBOPENSSL_LIBS="-lcrypto -lssl"
 SSL_USES=			ssl
-SSL_VARS=			BROKEN_SSL=openssl-devel
+SSL_VARS=			BROKEN_SSL=openssl111
 SSL_CRTD_CONFIGURE_ENABLE=	ssl-crtd
 SSL_CRTD_IMPLIES=		SSL
 STACKTRACES_CONFIGURE_ENABLE=	stacktraces
@@ -278,6 +279,10 @@ WITH_DEBUG?=		yes
 
 # Finally, add additional user specified configuration options:
 CONFIGURE_ARGS+=	${SQUID_CONFIGURE_ARGS}
+
+.if ${PORT_OPTIONS:MSSL} && ${OPSYS} == FreeBSD && ${OSVERSION} >= 1200085 && ${SSL_DEFAULT} == base
+BROKEN=		Does not build on FreeBSD 12 with OpenSSL 1.1. You may add DEFAULT_VERSIONS+=ssl=openssl to /etc/make.conf as a workaround
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \

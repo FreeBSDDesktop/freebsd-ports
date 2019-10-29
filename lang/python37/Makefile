@@ -3,8 +3,7 @@
 
 PORTNAME=	python
 PORTVERSION=	${PYTHON_PORTVERSION}
-PORTREVISION=	3
-CATEGORIES=	lang python ipv6
+CATEGORIES=	lang python
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
 PKGNAMESUFFIX=	${PYTHON_SUFFIX}
 DISTNAME=	Python-${PORTVERSION}
@@ -37,7 +36,6 @@ TEST_TARGET=		buildbottest
 TEST_ARGS=		TESTOPTS=-j${MAKE_JOBS_NUMBER}
 
 MAKE_ARGS+=		INSTALL_SHARED="${INSTALL_LIB}"				# Strip shared library
-MAKE_JOBS_UNSAFE=	yes							# Parser/pgen build bug. See Issue: 200622, 201974
 
 SUB_FILES=		pkg-message
 SUB_LIST=		PYTHON_SUFFIX=${PYTHON_SUFFIX}
@@ -116,22 +114,11 @@ DISABLED_EXTENSIONS+=	nis
 PLIST_SUB+=	NO_NIS=""
 .endif
 
-# python37 fails to build ssl module on FreeBSD10 with base SSL because X509_VERIFY_PARAM_set1_host check fails.
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1100000 && ${SSL_DEFAULT} == base
-PLIST_SUB+=	NO_SSL="@comment "
-WARNING+=	"No SSL support for FreeBSD ${OSREL} with base SSL! OpenSSL must be greater than/equal to 1.0.2"
-.else
-PLIST_SUB+=	NO_SSL=""
-.endif
-
 post-patch:
-# readline shared library is present on base before FreeBSD 11 - r268461
-# force setup.py ignore base and use readline from ports
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1100000
-	@${REINPLACE_CMD} -e \
-		"s|lib_dirs,\ \'readline\'|[\'${LOCALBASE}/lib\',\ \'.\'],\ \'readline\'|" \
-		${WRKSRC}/setup.py
-.endif
+# disable the detection of includes and library from e2fsprogs-libuuid,
+# which introduces hidden dependency and breaks build
+	@${REINPLACE_CMD} -e 's|uuid/uuid.h|ignore_&|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e '/find_library_file/ s|uuid|ignore_&|' ${WRKSRC}/setup.py
 
 post-install:
 .if ! ${PORT_OPTIONS:MDEBUG}

@@ -2,6 +2,7 @@
 
 PORTNAME=	Fiona
 DISTVERSION=	1.7.13
+PORTREVISION=	1
 CATEGORIES=	graphics python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,7 +20,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cligj>=0.4:devel/py-cligj@${PY_FLAVOR} \
 		${PY_ENUM34}
 LIB_DEPENDS+=	libgdal.so:graphics/gdal
 
-USES=		python
+USES=		compiler:c++11-lang python
 USE_PYTHON=	autoplist distutils cython
 
 .include <bsd.port.mk>

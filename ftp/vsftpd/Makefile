@@ -3,7 +3,8 @@
 
 PORTNAME=	vsftpd
 PORTVERSION=	3.0.3
-CATEGORIES=	ftp ipv6
+PORTREVISION=	1
+CATEGORIES=	ftp
 MASTER_SITES=	https://security.appspot.com/downloads/ \
 		GENTOO
 PKGNAMESUFFIX?=	${SSL_SUFFIX}${PKGNAMESUFFIX2}

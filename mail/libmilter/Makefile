@@ -3,7 +3,7 @@
 PORTNAME=	libmilter
 PORTVERSION=	8.15.2
 PORTREVISION=	1
-CATEGORIES=	mail ipv6
+CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/
 DISTNAME=	sendmail.${PORTVERSION}
 
@@ -42,7 +42,7 @@ post-patch-MILTER_SHARED-on:
 		${WRKSRC}/libsharedmilter/Makefile.m4
 
 do-configure:
-	${REINPLACE_CMD} -e "s|\`-O\'|\`${CFLAGS}\'|" \
+	${REINPLACE_CMD} -e "s|\`-O'|\`${CFLAGS}'|" \
 		-e 's|%%CC%%|${CC}|' -e 's|%%LD%%|${LD}|' \
 		${WRKSRC}/devtools/OS/FreeBSD
 	${SED} -e "s=%%PREFIX%%=${PREFIX}=g" \

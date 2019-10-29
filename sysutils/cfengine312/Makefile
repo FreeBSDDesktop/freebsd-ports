@@ -3,6 +3,7 @@
 
 PORTNAME=	cfengine
 PORTVERSION=	3.12.0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://s3.amazonaws.com/cfengine-package-repos/tarballs/
 
@@ -15,15 +16,13 @@ LICENSE=	GPLv3
 
 CPE_VENDOR=	gnu
 
-CONFLICTS=	cfengine-2* cfengine3[0-9]-* cfengine31[013-9]-*
+CONFLICTS=	cfengine3[0-9]-* cfengine31[013-9]-*
 .if !defined(MASTERDIR)
 PKGNAMESUFFIX=	312
 CONFLICTS+=	cfengine-3.*
 .endif
 
 FETCH_BEFORE_ARGS=	-o ${DISTDIR}/${DISTFILES}
-
-CONFLICTS=	cfengine-[12-9]*
 
 USE_RC_SUBR=	cf-execd cf-serverd cf-monitord
 
@@ -59,10 +58,12 @@ OPTIONS_DEFINE=	PGSQL MYSQL LIBVIRT
 
 PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_WITH=	--with-postgresql=${LOCALBASE}
+PGSQL_CONFIGURE_OFF=	--without-postgresql
 
 MYSQL_USES=		mysql
 MYSQL_BROKEN=		configure: error: MySQL client library exports symbols (EVP_CIPHER_CTX_init) clashing with OpenSSL.
 MYSQL_CONFIGURE_WITH=	--with-mysql=${LOCALBASE}
+MYSQL_CONFIGURE_OFF=	--without-mysql
 MYSQL_LIB_DEPENDS=	libmysqlclient.so:${_MYSQL_CLIENT}
 MYSQL_LDFLAGS=		-L${LOCALBASE}/lib/mysql
 

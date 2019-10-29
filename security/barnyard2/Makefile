@@ -3,13 +3,15 @@
 PORTNAME=	barnyard2
 PORTVERSION=	1.13
 DISTVERSIONPREFIX=	v2-
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	security
 
 MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Interpreter for Snort unified2 binary output files
 
 LICENSE=	GPLv2
+
+USES=		autoreconf libtool
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	firnsy
@@ -28,11 +30,10 @@ PORT_PCAP_DESC=	Use libpcap from ports
 
 .if defined(SLAVE)
 OPTIONS_DEFINE+=	TCL
-OPTIONS_DESC=	Enable tcl support for sguil
+TCL_DESC=	Enable tcl support for sguil
 OPTIONS_DEFAULT+=	TCL
 .endif
 
-USES=		autoreconf libtool
 USE_RC_SUBR=	barnyard2
 GNU_CONFIGURE=	yes
 
@@ -55,15 +56,15 @@ MYSQL_CONFIGURE_WITH=	mysql
 MYSQL_CONFIGURE_ON=	--with-mysql-includes=${LOCALBASE}/include/mysql \
 			--with-mysql-libraries=${LOCALBASE}/lib/mysql
 MYSQL_SSL_CONFIGURE_ENABLE=	mysql-ssl-support
+ODBC_BROKEN=		fails to build with ODBC=on
 ODBC_LIB_DEPENDS=	libodbc.so:databases/unixODBC
-ODBC_WITH=		odbc
+ODBC_CONFIGURE_WITH=	odbc
 PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_ON=	--with-postgresql=${LOCALBASE}/bin/pg_config --with-pgsql-includes=${LOCALBASE}/include/postgresql/server
 PGSQL_CONFIGURE_OFF=	--without-postgresql
 TCL_USES=		tcl
 TCL_CONFIGURE_ON=	--with-tcl=${LOCALBASE}/lib/tcl${TCL_VER}
 TCL_CONFIGURE_OFF=	--without-tcl
-WANT_PGSQL_VER=		92+
 PORT_PCAP_LIB_DEPENDS=	libpcap.so.1:net/libpcap
 PORT_PCAP_CONFIGURE_ON=	--with-libpcap-includes=${LOCALBASE}/include \
 			--with-libpcap-libraries=${LOCALBASE}/lib

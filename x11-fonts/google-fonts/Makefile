@@ -1,10 +1,10 @@
 # $FreeBSD$
 
 PORTNAME=	google-fonts
-DISTVERSION=	0.0.0.20180913
+DISTVERSION=	0.0.0.20190509
 CATEGORIES=	x11-fonts
 
-MAINTAINER=	dg@syrec.org
+MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	Collection of freely redistributable TrueType fonts from Google
 
 LICENSE=	APACHE20 OFL11
@@ -13,7 +13,7 @@ LICENSE_COMB=	multi
 RUN_DEPENDS=	anonymous-pro>0:x11-fonts/anonymous-pro \
 		comfortaa-ttf>0:x11-fonts/comfortaa-ttf \
 		croscorefonts>0:x11-fonts/croscorefonts-fonts-ttf \
-		noto-lite>0:x11-fonts/noto-lite \
+		noto-basic>0:x11-fonts/noto-basic \
 		roboto-fonts-ttf>0:x11-fonts/roboto-fonts-ttf \
 		sourcecodepro-ttf>0:x11-fonts/sourcecodepro-ttf \
 		sourcesanspro-ttf>0:x11-fonts/sourcesanspro-ttf \
@@ -29,7 +29,7 @@ NO_BUILD=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	google
 GH_PROJECT=	fonts
-GH_TAGNAME=	c9d3903
+GH_TAGNAME=	1c76cff
 
 SUB_FILES=	pkg-message
 

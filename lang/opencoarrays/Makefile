@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	opencoarrays
-DISTVERSION=	2.2.0
-PORTREVISION=	2
+DISTVERSION=	2.7.1
+PORTREVISION=	1
 CATEGORIES=	lang parallel
 
-MAINTAINER=	as@cmplx.uk
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Transport layer for coarray Fortran compilers
 
 LICENSE=	BSD3CLAUSE
@@ -17,7 +17,7 @@ BROKEN_aarch64=		fails to build: Can't open module file 'ieee_arithmetic.mod' fo
 BUILD_DEPENDS=	bash:shells/bash
 RUN_DEPENDS=	bash:shells/bash
 
-USES=		cmake:outsource fortran
+USES=		cmake fortran
 USE_CSTD=	gnu99
 USE_GITHUB=	yes
 GH_ACCOUNT=	sourceryinstitute
@@ -52,10 +52,8 @@ PLIST_SUB+=	SOVERSION=3
 PLIST_SUB+=	SOVERSION=2
 .elif ${GCC_DEFAULT} == 6
 PLIST_SUB+=	SOVERSION=1
-.elif ${GCC_DEFAULT} == 5
-PLIST_SUB+=	SOVERSION=0
 .else
-IGNORE=		requires GCC 5 or higher
+IGNORE=		requires GCC 6 or higher
 .endif
 
 post-patch:

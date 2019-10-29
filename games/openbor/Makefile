@@ -2,7 +2,7 @@
 
 PORTNAME=	openbor
 # Hint: svn revision is git rev-list --count ${GH_TAGNAME}
-PORTVERSION?=	6484
+PORTVERSION?=	7080
 .ifndef PKGNAMESUFFIX
 PORTREVISION=	0
 .endif
@@ -31,7 +31,7 @@ PORTSCOUT=	ignore:1
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	DCurrent
-GH_TAGNAME?=	949a4031
+GH_TAGNAME?=	9b0f0d29
 
 USES+=		gmake pkgconfig
 .if ${PORTVERSION} < 4433
@@ -39,8 +39,10 @@ USE_CSTD=	gnu89
 .endif
 .if ${PORTVERSION} < 4108
 USE_SDL=	gfx
-.else
+.elif ${PORTVERSION} < 6639
 USE_SDL=	gfx2
+.else
+USE_SDL=	sdl2
 .endif
 WRKSRC_SUBDIR=	engine
 MAKE_ENV=	BUILD_LINUX=1 SDKPATH="${LOCALBASE}" \
@@ -79,6 +81,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's/ -O[0-9]//; s/ -g//; s/ -Werror//' \
 		-e 's/ -fomit-frame-pointer//' \
 		-e 's/ -freorder-blocks//' \
+		-e 's/ -Wno-unused-result//' \
 		-e 's/ -Wl,-rpath,$$(LIBRARIES)//' \
 		-e '/echo/!s/	@/	/' \
 		-e 's/@echo/@$$(ECHO)/' \
@@ -89,11 +92,12 @@ post-patch:
 	@${GREP} -Flr 'malloc.h' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} \
 		's,malloc\.h,stdlib.h,'
 	@${REINPLACE_CMD} -e 's/^function \(.*\) {/\1() {/' \
-		-e 's/^get_revnum$$/VERSION_BUILD=${PORTVERSION}/' \
+		-e '/^[[:space:]]*VERSION_.*=0000/d' \
 		${WRKSRC}/version.sh
 
 do-configure:
-	(cd ${WRKSRC} && ${SH} ./version.sh)
+	(cd ${WRKSRC} && VERSION_BUILD=${PORTVERSION} VERSION_COMMIT=${GH_TAGNAME} \
+		${SH} ./version.sh)
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/OpenBOR.elf \

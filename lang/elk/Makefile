@@ -3,7 +3,7 @@
 
 PORTNAME=	elk
 PORTVERSION=	3.99.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang scheme
 MASTER_SITES=	http://sam.zoy.org/elk/
 
@@ -12,8 +12,6 @@ COMMENT=	Embeddable Scheme interpreter
 
 LIB_DEPENDS=	libgdbm.so:databases/gdbm \
 		libelf.so:devel/libelf
-
-BROKEN_aarch64=	Fails to link: missing sbrk
 
 USES=		libtool motif tar:bzip2
 GNU_CONFIGURE=	yes

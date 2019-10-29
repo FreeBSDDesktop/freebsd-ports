@@ -4,9 +4,10 @@
 PORTNAME=	encryptpad
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.4.0.4
+PORTREVISION=	8
 CATEGORIES=	editors security
 
-MAINTAINER=	dg@syrec.org
+MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	Minimalist secure text editor and binary encryptor
 
 LICENSE=	GPLv2+
@@ -15,7 +16,8 @@ LICENSE_FILE=	${WRKSRC}/license.txt
 BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libbotan-2.so:security/botan2
 
-USES=		desktop-file-utils gl gmake pkgconfig qt:5 shared-mime-info shebangfix
+USES=		compiler:c++11-lang desktop-file-utils gl gmake pkgconfig qt:5 \
+		shared-mime-info shebangfix
 USE_GL=		gl
 USE_QT=		core gui widgets buildtools_build qmake_build
 SHEBANG_FILES=	deps/libencryptmsg/configure
@@ -27,6 +29,14 @@ GH_PROJECT=	EncryptPad
 OPTIONS_DEFINE=	DOCS
 
 PORTDOCS=	*
+
+.include <bsd.port.pre.mk>
+
+post-patch:
+.if ${CHOSEN_COMPILER_TYPE} == gcc
+	${REINPLACE_CMD} -e 's/freebsd-clang/freebsd-g++/' \
+		${WRKSRC}/build/Makefile.qt_ui
+.endif
 
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} MAKE=${MAKE_CMD} \
@@ -50,4 +60,4 @@ post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/docs && ${COPYTREE_SHARE} . ${STAGEDIR}/${DOCSDIR}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

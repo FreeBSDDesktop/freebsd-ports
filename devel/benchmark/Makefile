@@ -2,8 +2,8 @@
 
 PORTNAME=	benchmark
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.1-25
-DISTVERSIONSUFFIX=	-gaf441fc
+DISTVERSION=	1.5.0
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -12,7 +12,7 @@ COMMENT=	Microbenchmark support library
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake:outsource
+USES=		cmake compiler:c++11-lang
 USE_GITHUB=	yes
 GH_ACCOUNT=	google
 USE_LDCONFIG=	yes

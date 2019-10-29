@@ -9,12 +9,12 @@ MASTER_SITES=	GH \
 		http://mirror.shatow.net/freebsd/${PORTNAME}/
 PKGNAMESUFFIX=	-devel
 
-MAINTAINER=	bdrewery@FreeBSD.org
+MAINTAINER=	dbaio@FreeBSD.org
 COMMENT=	The most popular open source Internet Relay Chat bot
 
 LICENSE=	GPLv2
 
-USES=		tcl:85+ ssl
+USES=		tcl ssl
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-tcllib=${LOCALBASE}/lib/libtcl${TCL_SHLIB_VER}.so \
 		--with-tclinc=${LOCALBASE}/include/tcl${TCL_VER}/tcl.h

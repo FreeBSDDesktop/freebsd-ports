@@ -3,7 +3,7 @@
 # levmar library (math/levmar) is bundled
 
 PORTNAME=	levmar
-DISTVERSION=	0.2.2
+DISTVERSION=	0.2.3
 CATEGORIES=	math python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}

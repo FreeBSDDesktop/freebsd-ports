@@ -1,16 +1,15 @@
 # $FreeBSD$
 
 PORTNAME=	squid
-PORTVERSION=	4.1
-PORTREVISION=	2
-CATEGORIES=	www ipv6
+PORTVERSION=	4.8
+PORTREVISION=	1
+CATEGORIES=	www
 MASTER_SITES=	http://www.squid-cache.org/Versions/v4/ \
 		http://www2.us.squid-cache.org/Versions/v4/ \
 		http://www1.at.squid-cache.org/Versions/v4/ \
 		http://www.eu.squid-cache.org/Versions/v4/ \
 		http://www1.jp.squid-cache.org/Versions/v4/
-#DIST_SUBDIR=	squid${PORTVERSION:R}
-DIST_SUBDIR=	squid${PORTVERSION}
+DIST_SUBDIR=	squid${PORTVERSION:R}
 
 PATCH_SITES=	http://www.squid-cache.org/%SUBDIR%/ \
 		http://www2.us.squid-cache.org/%SUBDIR%/ \
@@ -26,11 +25,9 @@ COMMENT=	HTTP Caching Proxy
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN_powerpc64=	fails to link: ext_time_quota_acl.cc: undefined reference to std::ctype
+USES=		compiler:c++11-lib cpe perl5 shebangfix tar:xz
 
 CONFLICTS=	squid*-3.*
-
-USES=		compiler:c++11-lib cpe perl5 shebangfix tar:xz
 CPE_VENDOR=	squid-cache
 SHEBANG_FILES=	scripts/*.pl contrib/*.pl tools/*.pl
 GNU_CONFIGURE=	yes
@@ -139,15 +136,21 @@ GSSAPI_NONE_CONFIGURE_ON=	--without-heimdal-krb5 \
 				--without-gss
 
 GSSAPI_BASE_USES=		gssapi
-GSSAPI_BASE_CONFIGURE_ON=	--with-heimdal-krb5=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_BASE_CONFIGURE_ON=	--with-heimdal-krb5=${GSSAPIBASEDIR} \
+				${GSSAPI_CONFIGURE_ARGS} \
+				krb5_config=${GSSAPIBASEDIR}/bin/krb5-config
 GSSAPI_BASE_PLIST_SUB=		AUTH_KERB=""
 
 GSSAPI_HEIMDAL_USES=		gssapi:heimdal
-GSSAPI_HEIMDAL_CONFIGURE_ON=	--with-heimdal-krb5=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_HEIMDAL_CONFIGURE_ON=	--with-heimdal-krb5=${GSSAPIBASEDIR} \
+				${GSSAPI_CONFIGURE_ARGS} \
+				krb5_config=${GSSAPIBASEDIR}/bin/krb5-config
 GSSAPI_HEIMDAL_PLIST_SUB=	AUTH_KERB=""
 
 GSSAPI_MIT_USES=		gssapi:mit
-GSSAPI_MIT_CONFIGURE_ON=	--with-mit-krb5=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_MIT_CONFIGURE_ON=	--with-mit-krb5=${GSSAPIBASEDIR} \
+				${GSSAPI_CONFIGURE_ARGS} \
+				krb5_config=${GSSAPIBASEDIR}/bin/krb5-config
 GSSAPI_MIT_PLIST_SUB=		AUTH_KERB=""
 
 ARP_ACL_DESC=		ARP/MAC/EUI based authentification
@@ -186,6 +189,10 @@ VIA_DB_DESC=		Forward/Via database
 WCCPV2_DESC=		Web Cache Coordination Protocol v2
 WCCP_DESC=		Web Cache Coordination Protocol
 
+CFLAGS+=	${CFLAGS_${CHOSEN_COMPILER_TYPE}}
+CFLAGS+=	-Wno-error=deprecated-declarations
+CFLAGS_gcc=	-Wno-error=stringop-truncation
+
 change_files=	ChangeLog \
 		contrib/nextstep/makepkg \
 		contrib/nextstep/post_install \
@@ -218,6 +225,7 @@ CONFIGURE_ARGS=	--with-default-user=squid \
 		--with-pidfile=/var/run/squid/squid.pid \
 		--with-swapdir=/var/squid/cache \
 		--without-gnutls \
+		--with-included-ltdl \
 		--enable-auth \
 		--enable-zph-qos \
 		--enable-build-info \
@@ -296,12 +304,12 @@ post-patch:
 	@(cd ${WRKSRC} && ${MV} src/mime.conf.default src/mime.conf.sample)
 
 post-patch-IPV6-off:
-	@${REINPLACE_CMD} -e's/ ::1//' -e's/ fc00::\/7//' \
-		-e's/ fe80::\/10//' -e's/ 2001:DB8::2//' \
-		-e's/ 2001:DB8::a:0\/64//' \
-		-e'/tcp_outgoing_address 2001:db8::c001 good_service_net/d' \
-		-e'/tcp_outgoing_address 2001:db8::beef normal_service_net/d' \
-		-e'/tcp_outgoing_address 2001:db8::1/d' \
+	@${REINPLACE_CMD} -e's| ::1||' -e's|^.*fc00::\/7.*||' \
+		-e's|^.*fe80::\/10.*||' -e's| 2001:DB8::2||' \
+		-e's| 2001:DB8::a:0\/64||' \
+		-e's|tcp_outgoing_address 2001:db8::c001 good_service_net||' \
+		-e's|tcp_outgoing_address 2001:db8::beef normal_service_net||' \
+		-e's|tcp_outgoing_address 2001:db8::1||' \
 		${WRKSRC}/src/cf.data.pre
 
 post-install:

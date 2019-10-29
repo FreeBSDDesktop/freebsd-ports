@@ -3,7 +3,8 @@
 
 PORTNAME=	lftp
 PORTVERSION=	4.8.4
-CATEGORIES=	ftp ipv6
+PORTREVISION=	5
+CATEGORIES=	ftp
 MASTER_SITES=	http://lftp.tech/ftp/ \
 		http://lftp.tech/ftp/old/ \
 		http://lftp.cybermirror.org/ \
@@ -14,7 +15,7 @@ MASTER_SITES=	http://lftp.tech/ftp/ \
 		ftp://ftp.cs.tu-berlin.de/pub/net/ftp/lftp/
 
 MAINTAINER=	martymac@FreeBSD.org
-COMMENT=	Shell-like command line ftp client
+COMMENT=	Shell-like command line FTP client
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -68,10 +69,6 @@ NEED_PTHREAD=	# empty
 .endif
 .if !empty(NEED_PTHREAD)
 LDFLAGS+=	-pthread
-.endif
-
-.if ${ARCH} == powerpc64
-USE_GCC=	yes
 .endif
 
 .include <bsd.port.post.mk>

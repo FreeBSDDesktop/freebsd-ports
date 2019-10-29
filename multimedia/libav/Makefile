@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	libav
-PORTVERSION=	12.1
-PORTREVISION=	8
-CATEGORIES=	multimedia audio ipv6 net
+PORTVERSION=	12.3
+PORTREVISION=	4
+CATEGORIES=	multimedia audio net
 MASTER_SITES=	http://libav.org/releases/
 
-MAINTAINER=	dem.procopiou@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Realtime audio/video conversion library
 
 LICENSE=	GPLv2+
@@ -20,14 +20,15 @@ LIB_DEPENDS=	libopencv_core.so:graphics/opencv-core \
 		libvdpau.so:multimedia/libvdpau \
 		libhogweed.so:security/nettle
 
-USES=		cpe gmake perl5 pkgconfig tar:xz
+USES=		cpe compiler:c++11-lang gmake localbase perl5 pkgconfig tar:xz
+
 USE_XORG=	x11
-HAS_CONFIGURE=	yes
 USE_PERL5=	build
 USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
+
+HAS_CONFIGURE=	yes
 NOPRECIOUSMAKEVARS=	yes # ARCH
 
-CPPFLAGS+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS=	--prefix="${PREFIX}" \
 		--libdir="${PREFIX}/lib/${PORTNAME}" \
 		--shlibdir="${PREFIX}/lib/${PORTNAME}" \
@@ -181,6 +182,7 @@ CONFIGURE_ENV+=	ASFLAGS=-no-integrated-as
 
 .if ${ARCH} == "i386"
 CONFIGURE_ARGS+=	--extra-cflags=-m32
+LLD_UNSAFE=	yes
 .endif
 
 # License definitions

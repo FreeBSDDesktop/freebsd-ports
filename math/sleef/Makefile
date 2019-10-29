@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	sleef
-DISTVERSION=	3.3-9
-DISTVERSIONSUFFIX=	-g3998463
+DISTVERSION=	3.4.0
+PORTREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	jmd@FreeBSD.org
@@ -12,12 +12,18 @@ COMMENT=	SIMD Library for Evaluating Elementary Functions, vectorized libm
 LICENSE=	BSL
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-IGNORE_FreeBSD_10=	base compiler too old
-
-USES=		cmake:outsource compiler:c11
+USES=		cmake compiler:c11
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	shibatch
+
+.include <bsd.port.options.mk>
+
+.if ${ARCH} == powerpc64
+PLIST_SUB+=	NO_PPC64="@comment "
+.else
+PLIST_SUB+=	NO_PPC64=""
+.endif
 
 .include <bsd.port.mk>

@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	axa
-PORTVERSION=	2.1.0
+PORTVERSION=	2.2.0
+PORTREVISION=	1
 CATEGORIES=	net dns
 MASTER_SITES=	FARSIGHT LOCAL/truckman/farsight
 
@@ -15,20 +16,21 @@ LICENSE_FILE_PD=	${WRKSRC}/license_pd
 
 BUILD_DEPENDS=	bash:shells/bash \
 		sie-nmsg>0:net/sie-nmsg
-LIB_DEPENDS=	libcheck.so:devel/check \
+LIB_DEPENDS=	liblmdb.so:databases/lmdb \
+		libcheck.so:devel/check \
 		libprotobuf-c.so:devel/protobuf-c \
 		libnmsg.so:net/nmsg \
 		libwdns.so:dns/wdns \
 		libyajl.so:devel/yajl
 RUN_DEPENDS=	sie-nmsg>0:net/sie-nmsg
 
-USES=		autoreconf gmake libedit libtool pathfix pkgconfig shebangfix \
-		ssl
+USES=		autoreconf compiler gmake libedit libtool pathfix \
+		pkgconfig shebangfix ssl
 
 GNU_CONFIGURE=	yes
 CONFIGURE_SHELL=	${LOCALBASE}/bin/bash
 USE_LDCONFIG=	yes
-SHEBANG_FILES=	cert_tools/axa_link_certs.in
+SHEBANG_FILES=	tools/axa_link_certs.in
 
 PORTDOCS=	*
 
@@ -45,16 +47,19 @@ LDFLAGS+=	-lm
 
 .include <bsd.port.pre.mk>
 
-.if ${SSL_DEFAULT} == base
-CONFIGURE_ENV+=	libcrypto_CFLAGS="-I${OPENSSLINC}"		\
-		libcrypto_LIBS="${OPENSSLLIB}/libcrypto.so"	\
-		libssl_CFLAGS="-I${OPENSSLINC}"			\
-		libssl_LIBS="${OPENSSLLIB}/libssl.so"
-.endif
+CONFIGURE_ENV+=	libcrypto_CFLAGS="-I${OPENSSLINC}"	\
+		libcrypto_LIBS="-lcrypto"		\
+		libssl_CFLAGS="-I${OPENSSLINC}"		\
+		libssl_LIBS="-lssl"
 
 post-extract:
 	(${ECHO} "For libmy/b64_encode.c:" ; \
-	 ${SED} -ne "1,/\*\//p" ${WRKSRC}/libmy/b64_encode.c ) > ${LICENSE_FILE_PD}
+	${SED} -ne "1,/\*\//p" ${WRKSRC}/libmy/b64_encode.c ) > ${LICENSE_FILE_PD}
+
+.if ${CHOSEN_COMPILER_TYPE} == gcc
+pre-configure:
+	${REINPLACE_CMD} -e 's|-Wno-unused-command-line-argument||' ${WRKSRC}/configure.ac
+.endif
 
 post-install-DOXYGEN-on:
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} html ${STAGEDIR}${DOCSDIR})

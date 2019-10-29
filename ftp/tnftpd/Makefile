@@ -3,11 +3,11 @@
 
 PORTNAME=	tnftpd
 PORTVERSION=	20130325
-CATEGORIES=	ftp ipv6
+CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.netbsd.org/pub/NetBSD/misc/tnftp/
 
 MAINTAINER=	cejkar@fit.vutbr.cz
-COMMENT=	Enhanced ftp server from NetBSD
+COMMENT=	Enhanced FTP server from NetBSD
 
 USES=		autoreconf libtool
 GNU_CONFIGURE=	yes

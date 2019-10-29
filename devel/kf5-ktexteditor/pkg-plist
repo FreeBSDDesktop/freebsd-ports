@@ -1,4 +1,4 @@
-etc/dbus-1/system.d/org.kde.ktexteditor.katetextbuffer.conf
+include/KF5/KTextEditor/KTextEditor/AbstractAnnotationItemDelegate
 include/KF5/KTextEditor/KTextEditor/AnnotationInterface
 include/KF5/KTextEditor/KTextEditor/Application
 include/KF5/KTextEditor/KTextEditor/Attribute
@@ -28,6 +28,7 @@ include/KF5/KTextEditor/KTextEditor/Range
 include/KF5/KTextEditor/KTextEditor/SessionConfigInterface
 include/KF5/KTextEditor/KTextEditor/TextHintInterface
 include/KF5/KTextEditor/KTextEditor/View
+include/KF5/KTextEditor/ktexteditor/abstractannotationitemdelegate.h
 include/KF5/KTextEditor/ktexteditor/annotationinterface.h
 include/KF5/KTextEditor/ktexteditor/application.h
 include/KF5/KTextEditor/ktexteditor/attribute.h
@@ -70,6 +71,7 @@ lib/libexec/kauth/kauth_ktexteditor_helper
 %%QT_PLUGINDIR%%/kf5/parts/katepart.so
 %%QT_MKSPECDIR%%/modules/qt_KTextEditor.pri
 share/dbus-1/system-services/org.kde.ktexteditor.katetextbuffer.service
+share/dbus-1/system.d/org.kde.ktexteditor.katetextbuffer.conf
 share/katepart5/script/README.md
 share/kdevappwizard/templates/ktexteditor-plugin.tar.bz2
 share/kservices5/katepart.desktop
@@ -77,7 +79,6 @@ share/kservicetypes5/ktexteditor.desktop
 share/kservicetypes5/ktexteditorplugin.desktop
 share/locale/af/LC_MESSAGES/ktexteditor5.mo
 share/locale/ar/LC_MESSAGES/ktexteditor5.mo
-share/locale/ast/LC_MESSAGES/ktexteditor5.mo
 share/locale/be/LC_MESSAGES/ktexteditor5.mo
 share/locale/bg/LC_MESSAGES/ktexteditor5.mo
 share/locale/bn/LC_MESSAGES/ktexteditor5.mo
@@ -161,3 +162,4 @@ share/locale/xh/LC_MESSAGES/ktexteditor5.mo
 share/locale/zh_CN/LC_MESSAGES/ktexteditor5.mo
 share/locale/zh_TW/LC_MESSAGES/ktexteditor5.mo
 share/polkit-1/actions/org.kde.ktexteditor.katetextbuffer.policy
+share/qlogging-categories5/ktexteditor.categories

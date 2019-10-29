@@ -3,9 +3,10 @@
 PORTNAME=	lxi-tools
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.21
+PORTREVISION=	1
 CATEGORIES=	misc
 
-MAINTAINER=	dg@syrec.org
+MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	Collection of tools that enables control of LXI compatible instruments
 
 LICENSE=	BSD3CLAUSE

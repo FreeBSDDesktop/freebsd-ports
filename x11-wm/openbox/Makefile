@@ -3,7 +3,7 @@
 
 PORTNAME=	openbox
 PORTVERSION=	3.6
-PORTREVISION=	3
+PORTREVISION=	6
 CATEGORIES=	x11-wm
 MASTER_SITES=	http://openbox.org/dist/openbox/
 
@@ -17,27 +17,25 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 
 GNU_CONFIGURE=	yes
 USES=		gmake libtool pathfix python:run pkgconfig shebangfix
-USE_GNOME=	cairo glib20 libxml2
+USE_GNOME=	cairo glib20 libxml2 pango
 USE_XORG=	ice sm x11 xcursor xext xft xinerama xrandr \
 		xrender xau
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 SHEBANG_FILES=	data/autostart/openbox-xdg-autostart
+ETCDIR=		${PREFIX}/etc/xdg/${PORTNAME}
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lXext
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 
-OPTIONS_DEFINE=	NLS IMLIB PANGO SVG NOTIFY PATCHES
-OPTIONS_DEFAULT=	IMLIB PANGO NOTIFY SVG
+OPTIONS_DEFINE=	NLS IMLIB SVG NOTIFY PATCHES
+OPTIONS_DEFAULT=	IMLIB NOTIFY SVG
 OPTIONS_SUB=	yes
 
 NLS_USES=		gettext
 NLS_CONFIGURE_OFF=	--disable-nls
-
-PANGO_USE=		GNOME=pango
-PANG_CONFIGURE_OFF=	--disable-pango
 
 NOTIFY_LIB_DEPENDS=	libstartup-notification-1.so:x11/startup-notification
 NOTIFY_CONFIGURE_OFF=	--disable-startup-notification
@@ -56,5 +54,11 @@ PATCHES_EXTRA_PATCHES=	${PATCHDIR}/openbox-3.5.0-title-matching.patch:-p1 \
 
 post-configure:
 	@${CHMOD} +x ${WRKSRC}/install-sh
+
+post-install:
+.for config_file in autostart environment menu.xml rc.xml
+	@${MV} ${STAGEDIR}${ETCDIR}/${config_file} \
+		${STAGEDIR}${ETCDIR}/${config_file}.sample
+.endfor
 
 .include <bsd.port.mk>

@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	range-v3
-DISTVERSION=	0.3.6
+DISTVERSION=	0.9.0
 CATEGORIES=	devel
 
 MAINTAINER=	henry.hu.sh@gmail.com
@@ -10,7 +10,7 @@ COMMENT=	Experimental range library for C++11/14/17
 LICENSE=	BSL
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		cmake:outsource
+USES=		cmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	ericniebler
 NO_BUILD=	yes

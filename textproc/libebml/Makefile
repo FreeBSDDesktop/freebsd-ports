@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	libebml
-PORTVERSION=	1.3.6
+DISTVERSION=	1.3.9
+PORTREVISION=	1
 DISTVERSIONPREFIX=	release-
 CATEGORIES=	textproc
 
@@ -12,7 +13,7 @@ COMMENT=	EBML (Extensible Binary Meta Language), sort of binary version of XML
 LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/LICENSE.LGPL
 
-USES=		cmake pathfix tar:bzip2
+USES=		cmake compiler:c++11-lang pathfix tar:bzip2
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes

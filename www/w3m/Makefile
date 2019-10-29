@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	w3m
-PORTVERSION=	0.5.3.20180520
-PORTREVISION=	1
-CATEGORIES+=	www ipv6
+PORTVERSION=	0.5.3.${SNAPDATE}
+CATEGORIES+=	www
 
 MAINTAINER?=	nobutaka@FreeBSD.org
 COMMENT?=	Pager/text-based WWW browser
@@ -23,9 +22,10 @@ USE_GITHUB=	yes
 
 GH_ACCOUNT=	tats
 GH_PROJECT=	w3m
-GH_TAGNAME=	169789b
+GH_TAGNAME=	b305436
 
 MAKE_JOBS_UNSAFE=	yes
+SNAPDATE=	20190702
 
 CONFLICTS?=	ja-w3m-0.5.* ja-w3m-img-0.5.* w3m-img-0.5.*
 GNU_CONFIGURE=	yes
@@ -73,7 +73,7 @@ PKGMESSAGE=	${NONEXISTENT}
 
 post-patch:
 	@${REINPLACE_CMD} -e \
-		's|\`\(expr\) \(.*\) : \(.*\)`|`\1 \\( \2 : \3 \\)`|' \
+		's|`\(expr\) \(.*\) : \(.*\)`|`\1 \\( \2 : \3 \\)`|' \
 		-e 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/configure
 	@${FIND} ${WRKSRC}/doc* -type f \! -name HISTORY \

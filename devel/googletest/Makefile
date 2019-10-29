@@ -3,7 +3,7 @@
 
 PORTNAME=	googletest
 DISTVERSIONPREFIX=	release-
-DISTVERSION=	1.8.1
+DISTVERSION=	1.10.0
 CATEGORIES=	devel
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -15,22 +15,17 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USE_GITHUB=	yes
 GH_ACCOUNT=	google
 
-USES=		autoreconf libtool
-WRKSRC_SUBDIR=	${PORTNAME}
-GNU_CONFIGURE=	yes
-# fused-src python tests are only useful for bundling. There's no point in
-# running them before installing system-wide without source files.
-CONFIGURE_ENV=	ac_cv_path_PYTHON=":"
-TEST_TARGET=	check
-INSTALL_TARGET=	install-strip
+USES=		cmake compiler:c++11-lib
 USE_LDCONFIG=	yes
+CMAKE_ON=	BUILD_SHARED_LIBS
+CMAKE_OFF=	BUILD_GMOCK
 
-post-patch:
-# enable vendor make install again (revert 661758e)
-	@${REINPLACE_CMD} -E 's/install-(exec|data)-local/&-dummy/' \
-		${WRKSRC}/Makefile.am
+OPTIONS_DEFINE=	TEST
 
-post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/gtest-config ${STAGEDIR}${PREFIX}/bin
+TEST_USES=		python:build
+TEST_CMAKE_BOOL=	gtest_build_tests
+TEST_TEST_TARGET=	test
+
+pre-install-TEST-on: do-test
 
 .include <bsd.port.mk>

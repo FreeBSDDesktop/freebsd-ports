@@ -10,14 +10,6 @@ COMMENT=	GNU binary tools for base
 MASTERDIR=	${.CURDIR}/../../devel/binutils
 PLIST=		${.CURDIR}/pkg-plist
 
-.if !defined(CROSS_TOOLCHAIN)
-.error Please define CROSS_TOOLCHAIN before building
-.endif
-
-.if !defined(CROSS_SYSROOT)
-.error Please define CROSS_SYSROOT before building
-.endif
-
 TARGETARCH=	${ARCH:S/amd64/x86_64/}
 BUTARGET=	${TARGETARCH}-unknown-${OPSYS:tl}${OSREL}
 
@@ -41,12 +33,8 @@ BUREMOVE=	addr2line \
 
 .include "${MASTERDIR}/Makefile"
 
-.if ${OSVERSION} >= 1100100
 PLIST_SUB+=	OBJCOPY="@comment "
 BUREMOVE+=	objcopy
-.else
-PLIST_SUB+=	OBJCOPY=""
-.endif
 
 .if ${ARCH} == "amd64" || ${ARCH} == "i386"
 PLIST_SUB+=	I386=""

@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	mysqlwsrep
-PORTVERSION?=	5.7.23
+PORTVERSION?=	5.7.27
 DISTVERSIONPREFIX?=	wsrep_
-DISTVERSIONSUFFIX?=	-25.15
+DISTVERSIONSUFFIX?=	-25.19
 PORTREVISION?=	1
-CATEGORIES=	databases ipv6
+CATEGORIES=	databases
 MASTER_SITES+=	SF/boost/boost/1.59.0:boost
 PKGNAMESUFFIX=	57-server
 DISTFILES+=	boost_1_59_0${EXTRACT_SUFX}:boost
@@ -24,7 +24,7 @@ RUN_DEPENDS=	bash:shells/bash \
 LIB_DEPENDS=	libevent.so:devel/libevent liblz4.so:archivers/liblz4
 
 USES=		bison \
-		cmake:outsource,noninja \
+		cmake:noninja \
 		compiler:c++11-lib \
 		compiler:c11 \
 		libedit \
@@ -46,7 +46,7 @@ GH_TUPLE?=	codership:mysql-wsrep:${DISTVERSIONPREFIX}${PORTVERSION}${DISTVERSION
 DATADIR=	${PREFIX}/share/mysql
 ETCDIR=		${PREFIX}/etc/mysql
 
-NOT_FOR_ARCHS=	aarch64 armv6 armv7 powerpc64
+NOT_FOR_ARCHS=	i386 aarch64 armv6 armv7 powerpc64
 NOT_FOR_ARCHS_REASON=	Not supported platform
 
 CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
@@ -55,6 +55,7 @@ CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DINSTALL_DOCREADMEDIR="share/doc/mysql" \
 		-DINSTALL_INCLUDEDIR="include/mysql" \
 		-DINSTALL_INFODIR="info" \
+		-DINSTALL_LDCONFIGDIR="${LOCALBASE}/libdata/ldconfig" \
 		-DINSTALL_LIBDIR="lib/mysql" \
 		-DINSTALL_MANDIR="man" \
 		-DINSTALL_MYSQLDATADIR="${MY_DBDIR}" \

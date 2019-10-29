@@ -8,8 +8,12 @@ CATEGORIES=	security python
 MASTER_SITES=	http://files.bsdroot.lv/my/FreeBSD/distfiles/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	graudeejs@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Replacement for htpasswd
+
+BROKEN=		unfetchable
+DEPRECATED=	Unfetchable, unmaintained
+EXPIRATION_DATE=	2019-10-16
 
 USES=		python shebangfix tar:xz
 

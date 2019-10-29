@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	edgar
-DISTVERSION=	1.29
+DISTVERSION=	1.32
 CATEGORIES=	games
 MASTER_SITES=	https://github.com/riksweeney/edgar/releases/download/${DISTVERSION}/
 PKGNAMEPREFIX=	legend-of-
@@ -16,8 +16,8 @@ LICENSE_FILE=	${WRKSRC}/doc/license
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
-USES=		gmake
-USE_SDL=	image mixer sdl ttf
+USES=		gmake sdl
+USE_SDL=	image2 mixer2 sdl2 ttf2
 MAKEFILE=	makefile
 MAKE_ARGS=	BIN_DIR=${PREFIX}/bin/ \
 		DATA_DIR=${DATADIR}/ \
@@ -27,10 +27,8 @@ MAKE_ARGS=	BIN_DIR=${PREFIX}/bin/ \
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
 
-PORTDOCS=	*
-
-NLS_MAKE_ARGS_OFF=	LOCALE_MO=""
 NLS_USES=		gettext-tools
+NLS_MAKE_ARGS_OFF=	LOCALE_MO=""
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|Categories=Game|Categories=Game;ArcadeGame;|' \

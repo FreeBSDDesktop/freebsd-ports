@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	qpdf
-DISTVERSION=	8.2.1
+DISTVERSION=	9.0.0
 CATEGORIES=	print
 MASTER_SITES=	SF
 
-MAINTAINER=	d.y.kazarov@mail.ru
+MAINTAINER=	wen@FreeBSD.org
 COMMENT=	Command-line tools for transforming and inspecting PDF documents
 
 LICENSE=	ART20 APACHE20

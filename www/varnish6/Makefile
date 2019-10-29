@@ -1,9 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	varnish
-PORTVERSION=	6.0.1
+PORTVERSION=	6.3.1
 DISTVERSIONPREFIX=	varnish-
-PORTREVISION=	1
 CATEGORIES=	www
 PKGNAMESUFFIX=	6
 
@@ -13,13 +12,14 @@ COMMENT=	High-performance HTTP accelerator
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	rst2man:textproc/py-docutils
+BUILD_DEPENDS=	rst2man:textproc/py-docutils \
+		${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
 CONFLICTS=	varnish-2.* varnish-3.* varnish4-4.* varnish5-5.*
 
-USES=		autoreconf cpe gmake libedit libtool ncurses pathfix \
-		pkgconfig python:2.7,build readline shebangfix
+USES=		autoreconf compiler cpe gmake libedit libtool ncurses pathfix \
+		pkgconfig python:3.4+,build readline shebangfix
 SHEBANG_FILES=	lib/libvcc/*.py
 CPE_VENDOR=	varnish-cache
 CFLAGS+=	-I${LOCALBASE}/include
@@ -45,9 +45,14 @@ EXTRA_PATCHES+=	${FILESDIR}/no-inet6.patch
 
 OPTIONS_DEFINE=	DOCS
 
-.if defined(BAD_TESTS)
+.include <bsd.port.pre.mk>
+
 post-patch:
+.if defined(BAD_TESTS)
 	${RM} ${BAD_TESTS:C|.+|${WRKSRC}/bin/varnishtest/tests/\0.vtc|}
 .endif
+.if ${CHOSEN_COMPILER_TYPE} == gcc
+	${REINPLACE_CMD} -e '/-Wno-unknown-warning-option -Wno-implicit-fallthrough/d' ${WRKSRC}/configure.ac
+.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

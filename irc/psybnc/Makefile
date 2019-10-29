@@ -4,7 +4,7 @@
 PORTNAME=	psybnc
 DISTVERSION=	2.3.2-9
 PORTREVISION=	2
-CATEGORIES=	irc ipv6
+CATEGORIES=	irc
 MASTER_SITES=	http://www.psybnc.at/download/beta/
 DISTNAME=	psyBNC-${DISTVERSION}
 
@@ -12,10 +12,6 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Powerful IRC bouncer
 
 LICENSE=	GPLv1+ # though COPYING is GPLv2
-
-BROKEN_mips=		Does not build: exec(clang) failed (No such file or directory)
-BROKEN_mips64=		Does not build: exec(clang) failed (No such file or directory)
-BROKEN_powerpc64=	Does not build: exec(clang) failed (No such file or directory)
 
 USES=		dos2unix ssl
 DOS2UNIX_GLOB=	*.c *.h

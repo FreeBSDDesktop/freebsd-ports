@@ -1,44 +1,29 @@
 # $FreeBSD$
 
-# Make sure that your configuration DOES NOT set ANY gcc-related
-# variables.  ksh93 will not compile if you set even the seemingly
-# most unrelated variable related to gcc configuration.  This means
-# especially any flag which attempts to set the cputype.  Setting the
-# cputype does absolutely nothing except cause systems to fail in
-# horrible ways.  For any modern processor, setting the cputype only
-# serves to expose gcc bugs and does nothing to speed up any known
-# program.  If you are really unconvinced, go ahead but do not
-# complain to me about it.
-
 PORTNAME=	ksh93
 PORTVERSION=	${AST_COMMIT_DATE}
 CATEGORIES=	shells
 PKGNAMESUFFIX=	-devel
-HASH=		 2bb160b
-AST_COMMIT_DATE=	2018.09.25
 
 MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Development branch of AT&T KornShell 93
 
 LICENSE=	EPL
 
+USES=		compiler:c11 meson ninja python:build
+
+HASH=		452d142c
+AST_COMMIT_DATE=	2019.10.23
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	att
 GH_PROJECT=	ast
 GH_TAGNAME=	${HASH}
 
-KSH93_CONFLICTS=	ksh93-*
 KSH_CONFLICTS=		pdksh-*
+KSH93_CONFLICTS=	ksh93-2* ast-ksh-*
 
-USES=		meson ninja
-FETCH_ENV=	HTTP_AUTH=basic:*:I\ accept\ www.opensource.org/licenses/cpl:.
-LDFLAGS+=	-lm 
 MESON_BUILD_DIR=	build
-MAKE_ENV=	CCFLAGS="${CFLAGS}"
-
-STATIC_MAKE_ENV=	LDFLAGS+=-static
-
-BROKEN_aarch64=		Fails to compile: needs sbrk
 
 OPTIONS_DEFAULT=	KSH93
 OPTIONS_SINGLE=		BIN_KSH
@@ -46,20 +31,22 @@ OPTIONS_SINGLE_BIN_KSH=	KSH KSH93
 KSH_DESC=		Install to ${PREFIX}/bin/ksh
 KSH93_DESC=		Install to ${PREFIX}/bin/ksh93
 
-KSH93_EXTRA_PATCHES=	${FILESDIR}/extra-patch-install-as-ksh93
-KSH93_DESC=	Install to ${PREFIX}/bin/ksh93
+KSH93_EXTRA_PATCHES=	${FILESDIR}/extra-patch-install-as-ksh93 \
+			${FILESDIR}/extra-patch-install-as-ksh93-doc
 
 KSH_PLIST_SUB=		93=""
 KSH93_PLIST_SUB=	93="93"
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.options.mk>
 
 post-patch:
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1100093
+	@${REINPLACE_CMD} -e '/for name in/ s|python.*|${PYTHON_CMD}|g' ${WRKSRC}/scripts/python.sh
 	@${REINPLACE_CMD} -e 's|SF_FLAGS|SFIO_FLAGS|g' ${WRKSRC}/src/lib/libast/include/sfio*.h ${WRKSRC}/src/lib/libast/sfio/*.c
-.endif
 .if ${PORT_OPTIONS:MKSH93}
-	@${MV} ${WRKSRC}/src/cmd/ksh93/ksh.1 ${WRKSRC}/src/cmd/ksh93/ksh93.1
+	@${MV} ${WRKSRC}/src/cmd/ksh93/docs/ksh.1 ${WRKSRC}/src/cmd/ksh93/docs/ksh93.1
+.endif
+.if ${PORT_OPTIONS:MKSH}
+	@# Keep portlint happy
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

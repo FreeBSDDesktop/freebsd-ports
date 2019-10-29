@@ -3,6 +3,7 @@
 PORTNAME=	picpas
 PORTVERSION=	0.8.8
 DISTVERSIONPREFIX=	v
+PORTREVISION=	4
 CATEGORIES=	editors
 PKGNAMESUFFIX=	${LAZARUS_PKGNAMESUFFIX}
 
@@ -11,9 +12,8 @@ COMMENT=	Multi-platform Pascal for Microchip PIC16F microcontrollers
 
 LICENSE=	GPLv2
 
-gtk2_CONFLICTS_INSTALL=	${PORTNAME}-qt4 ${PORTNAME}-qt5
-qt4_CONFLICTS_INSTALL=	${PORTNAME}-gtk2 ${PORTNAME}-qt5
-qt5_CONFLICTS_INSTALL=	${PORTNAME}-gtk2 ${PORTNAME}-qt4
+gtk2_CONFLICTS_INSTALL=	${PORTNAME}-qt5
+qt5_CONFLICTS_INSTALL=	${PORTNAME}-gtk2
 
 USES=		dos2unix fpc lazarus:flavors
 USE_FPC=	chm fcl-base fcl-image fcl-json fcl-registry fcl-xml pasjpeg regexpr \

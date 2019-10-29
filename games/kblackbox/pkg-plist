@@ -9,7 +9,6 @@ share/icons/hicolor/64x64/apps/kblackbox.png
 %%DATADIR%%/pics/kblackbox.svgz
 share/kxmlgui5/kblackbox/kblackboxui.rc
 share/locale/ar/LC_MESSAGES/kblackbox.mo
-share/locale/ast/LC_MESSAGES/kblackbox.mo
 share/locale/bg/LC_MESSAGES/kblackbox.mo
 share/locale/bs/LC_MESSAGES/kblackbox.mo
 share/locale/ca/LC_MESSAGES/kblackbox.mo
@@ -32,6 +31,7 @@ share/locale/he/LC_MESSAGES/kblackbox.mo
 share/locale/hi/LC_MESSAGES/kblackbox.mo
 share/locale/hr/LC_MESSAGES/kblackbox.mo
 share/locale/hu/LC_MESSAGES/kblackbox.mo
+share/locale/id/LC_MESSAGES/kblackbox.mo
 share/locale/is/LC_MESSAGES/kblackbox.mo
 share/locale/it/LC_MESSAGES/kblackbox.mo
 share/locale/ja/LC_MESSAGES/kblackbox.mo

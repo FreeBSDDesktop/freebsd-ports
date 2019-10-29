@@ -1,23 +1,26 @@
 # $FreeBSD$
 
 PORTNAME=	xxhash
-PORTVERSION=	1.0.1
+PORTVERSION=	1.4.2
 CATEGORIES=	devel
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	rezny@FreeBSD.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Python bindings for the xxHash library
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>1:devel/py-nose@${PY_FLAVOR}
+LIB_DEPENDS=	libxxhash.so:devel/xxhash
 
-USES=		python zip
-USE_PYTHON=	distutils autoplist
+USES=		localbase python
+USE_PYTHON=	autoplist concurrent distutils
+
+CONFIGURE_ENV=	XXHASH_LINK_SO=yes
+MAKE_ENV=	XXHASH_LINK_SO=yes
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/xxhash/cpython.so
+	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/xxhash/_xxhash.so
 
 .include <bsd.port.mk>

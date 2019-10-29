@@ -2,10 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	mysqlwsrep
-PORTVERSION?=	5.6.41
+PORTVERSION?=	5.6.45
 DISTVERSIONPREFIX?=	wsrep_
-DISTVERSIONSUFFIX?=	-25.23
-CATEGORIES=	databases ipv6
+DISTVERSIONSUFFIX?=	-25.27
+PORTREVISION?=	1
+CATEGORIES=	databases
 PKGNAMESUFFIX=	56-server
 
 MAINTAINER=	devel@galeracluster.com
@@ -23,14 +24,14 @@ RUN_DEPENDS=	bash:shells/bash \
 		socat:net/socat
 LIB_DEPENDS=	libevent.so:devel/libevent liblz4.so:archivers/liblz4
 
-BROKEN_SSL=	openssl-devel
-BROKEN_SSL_REASON_openssl-devel=	incomplete definition of type 'struct dh_st'
+#BROKEN_SSL=	openssl111
+#BROKEN_SSL_REASON_openssl111=	incomplete definition of type 'struct dh_st'
 
 DATADIR=	${PREFIX}/share/mysql
 ETCDIR=		${PREFIX}/etc/mysql
 
 USES=		bison \
-		cmake:outsource,noninja \
+		cmake:noninja \
 		compiler:c++11-lib \
 		compiler:c11 \
 		libedit \

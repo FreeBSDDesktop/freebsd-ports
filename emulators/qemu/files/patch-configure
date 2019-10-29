@@ -1,6 +1,6 @@
---- configure.orig	2018-04-24 16:30:46 UTC
+--- configure.orig	2018-12-11 17:44:34 UTC
 +++ configure
-@@ -369,7 +369,7 @@ DSOSUF=".so"
+@@ -393,7 +393,7 @@ DSOSUF=".so"
  LDFLAGS_SHARED="-shared"
  modules="no"
  prefix="/usr/local"
@@ -9,7 +9,7 @@
  datadir="\${prefix}/share"
  firmwarepath="\${prefix}/share/qemu-firmware"
  qemu_docdir="\${prefix}/share/doc/qemu"
-@@ -449,6 +449,9 @@ numa=""
+@@ -469,6 +469,9 @@ numa=""
  tcmalloc="no"
  jemalloc="no"
  replication="yes"
@@ -17,9 +17,9 @@
 +pcap_create="no"
 +bpf="no"
  vxhs=""
- libxml2=""
- 
-@@ -1030,6 +1033,10 @@ for opt do
+ bochs="yes"
+ cloop="yes"
+@@ -1097,6 +1100,10 @@ for opt do
    ;;
    --enable-vnc-png) vnc_png="yes"
    ;;
@@ -30,7 +30,7 @@
    --disable-slirp) slirp="no"
    ;;
    --disable-vde) vde="no"
-@@ -2799,6 +2806,14 @@ if ! check_include "ifaddrs.h" ; then
+@@ -2860,6 +2867,14 @@ if ! check_include "ifaddrs.h" ; then
  fi
  
  ##########################################
@@ -45,7 +45,19 @@
  # VTE probe
  
  if test "$vte" != "no"; then
-@@ -2969,7 +2984,51 @@ EOF
+@@ -4466,11 +4481,6 @@ fi
+ if test "$docs" != "no" ; then
+   if has makeinfo && has pod2man; then
+     docs=yes
+-  else
+-    if test "$docs" = "yes" ; then
+-      feature_not_found "docs" "Install texinfo and Perl/perl-podlators"
+-    fi
+-    docs=no
+   fi
+ fi
+ 
+@@ -4984,7 +4994,51 @@ if test "$debug_stack_usage" = "yes"; then
    fi
  fi
  
@@ -95,24 +107,9 @@
 +fi # test "$pcap"
 +
  ##########################################
- # VNC SASL detection
- if test "$vnc" = "yes" -a "$vnc_sasl" != "no" ; then
-@@ -4331,14 +4390,7 @@ fi
+ # check if we have open_by_handle_at
  
- # Check if tools are available to build documentation.
- if test "$docs" != "no" ; then
--  if has makeinfo && has pod2man; then
-     docs=yes
--  else
--    if test "$docs" = "yes" ; then
--      feature_not_found "docs" "Install texinfo and Perl/perl-podlators"
--    fi
--    docs=no
--  fi
- fi
- 
- # Search for bswap_32 function
-@@ -5783,6 +5835,7 @@ echo "Audio drivers     $audio_drv_list"
+@@ -6005,6 +6059,7 @@ echo "Audio drivers     $audio_drv_list"
  echo "Block whitelist (rw) $block_drv_rw_whitelist"
  echo "Block whitelist (ro) $block_drv_ro_whitelist"
  echo "VirtFS support    $virtfs"
@@ -120,7 +117,7 @@
  echo "Multipath support $mpath"
  echo "VNC support       $vnc"
  if test "$vnc" = "yes" ; then
-@@ -6010,6 +6063,15 @@ fi
+@@ -6240,6 +6295,15 @@ fi
  if test "$profiler" = "yes" ; then
    echo "CONFIG_PROFILER=y" >> $config_host_mak
  fi
@@ -136,7 +133,7 @@
  if test "$slirp" = "yes" ; then
    echo "CONFIG_SLIRP=y" >> $config_host_mak
    echo "CONFIG_SMBD_COMMAND=\"$smbd\"" >> $config_host_mak
-@@ -6247,6 +6309,9 @@ fi
+@@ -6470,6 +6534,9 @@ fi
  # if this macro is set.
  if test "$have_fsxattr" = "yes" ; then
      echo "HAVE_FSXATTR=y" >> $config_host_mak
@@ -144,5 +141,5 @@
 +if test "$have_ifaddrs_h" = "yes" ; then
 +    echo "HAVE_IFADDRS_H=y" >> $config_host_mak
  fi
- if test "$vte" = "yes" ; then
-   echo "CONFIG_VTE=y" >> $config_host_mak
+ if test "$have_copy_file_range" = "yes" ; then
+     echo "HAVE_COPY_FILE_RANGE=y" >> $config_host_mak

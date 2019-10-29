@@ -5,16 +5,18 @@ PORTNAME=	raspberrypi-userland
 PORTVERSION=	20161026
 CATEGORIES=	misc
 
-MAINTAINER=	mikael.urankar@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Various libraries for the Raspberry Pi
 
 LICENSE=	BSD3CLAUSE
 
 ONLY_FOR_ARCHS=	armv6 armv7
 
-CONFLICTS_INSTALL=	libglesv2 libEGL
+CONFLICTS_INSTALL=	mesa-libs
 
-USES=		cmake:outsource pkgconfig shebangfix
+USES=		cmake pkgconfig shebangfix
+
+USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	gonzoua
@@ -31,8 +33,6 @@ EXAMPLES_DESC=	Install test applications source code (hello_pi)
 EXAMPLES_LIB_DEPENDS=	libfreetype.so:print/freetype2
 
 DEBUG_CFLAGS_OFF=	-DNDEBUG
-
-USE_LDCONFIG=	yes
 
 LLD_UNSAFE=	yes
 

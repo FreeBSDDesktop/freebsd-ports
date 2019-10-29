@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	giacxcas
-DISTVERSION=	1.4.9-59
-PORTREVISION=	4
+DISTVERSION=	1.5.0-69
 CATEGORIES=	math
 MASTER_SITES=	http://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/:giac \
 		http://www-fourier.ujf-grenoble.fr/~parisse/giac/freebsd/
@@ -20,19 +19,21 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libao.so:audio/libao \
+		libcurl.so:ftp/curl \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libgsl.so:math/gsl \
 		libglpk.so:math/glpk \
 		libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \
 		libpari.so:math/pari \
-		libpng.so:graphics/png
+		libpng.so:graphics/png \
+		libsamplerate.so:audio/libsamplerate
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
 NO_CDROM=	French documentation is for non-commercial use only
 
-USES=		blaslapack desktop-file-utils fortran gettext gmake jpeg \
-		libtool ncurses readline shebangfix
+USES=		blaslapack desktop-file-utils fortran gettext gl gmake gnome jpeg \
+		libtool ncurses readline shebangfix xorg
 GNU_CONFIGURE=	yes
 USE_GL=		gl
 USE_XORG=	x11 xcursor xext xft xi xinerama

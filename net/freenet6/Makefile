@@ -4,7 +4,7 @@
 PORTNAME=	freenet6
 DISTVERSION=	6_0_1
 PORTREVISION=	2
-CATEGORIES=	net ipv6
+CATEGORIES=	net
 MASTER_SITES=	http://go6.net/4105/file.asp?file_id=166&
 DISTNAME=	tspc-${PORTVERSION}-src
 
@@ -25,10 +25,17 @@ SUB_FILES=	pkg-message
 
 MAKE_JOBS_UNSAFE=yes
 
+.include <bsd.port.pre.mk>
+
+.if ${SSL_DEFAULT} == base
+BROKEN_FreeBSD_12=	incomplete definition of type 'struct dsa_st'
+BROKEN_FreeBSD_13=	incomplete definition of type 'struct dsa_st'
+.endif
+
 post-fetch:
 	@if [ ! -f ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} ]; then \
 		${MV} ${DISTDIR}/file.asp*file_id*166* \
 			${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}; \
 	fi
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

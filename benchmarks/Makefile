@@ -16,7 +16,6 @@
     SUBDIR += dhrystone
     SUBDIR += dkftpbench
     SUBDIR += fhourstones
-    SUBDIR += filebench
     SUBDIR += fio
     SUBDIR += flamegraph
     SUBDIR += flops
@@ -26,9 +25,10 @@
     SUBDIR += gtkperf
     SUBDIR += hey
     SUBDIR += himenobench
+    SUBDIR += hipercontracer
     SUBDIR += hpl
-    SUBDIR += hs-criterion
     SUBDIR += httperf
+    SUBDIR += hyperfine
     SUBDIR += imb
     SUBDIR += interbench
     SUBDIR += iorate
@@ -36,6 +36,7 @@
     SUBDIR += iozone21
     SUBDIR += iperf
     SUBDIR += iperf3
+    SUBDIR += libcelero
     SUBDIR += libmicro
     SUBDIR += linux-vdbench
     SUBDIR += lmbench
@@ -63,6 +64,7 @@
     SUBDIR += polygraph
     SUBDIR += postal
     SUBDIR += postmark
+    SUBDIR += py-locust
     SUBDIR += py-naarad
     SUBDIR += py-throughpy
     SUBDIR += py-zopkio
@@ -71,6 +73,8 @@
     SUBDIR += ramspeed
     SUBDIR += randomio
     SUBDIR += rubygem-benchmark-ips
+    SUBDIR += rubygem-benchmark-memory
+    SUBDIR += rubygem-derailed_benchmarks
     SUBDIR += rubygem-railsbench
     SUBDIR += scimark2
     SUBDIR += scimark2c

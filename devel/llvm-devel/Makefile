@@ -10,23 +10,12 @@ PKGNAMESUFFIX=	-devel
 MAINTAINER=	brooks@FreeBSD.org
 COMMENT=	LLVM and Clang
 
-# License are listed in the order they appear in LICENSE.TXT
-LICENSE=	LLVM GTEST REGEX MIT ARM PD
-LICENSE_COMB=	multi
-LICENSE_NAME_LLVM=	LLVM Release License
-LICENSE_PERMS_LLVM=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-LICENSE_FILE_LLVM=	${WRKSRC}/LICENSE.TXT
-LICENSE_NAME_GTEST=	Google test license
-LICENSE_PERMS_GTEST=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-LICENSE_FILE_GTEST=	${WRKSRC}/utils/unittest/googletest/LICENSE.TXT
-LICENSE_NAME_REGEX=	OpenBSD Regex License
-LICENSE_PERMS_REGEX=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-LICENSE_FILE_REGEX=	${WRKSRC}/lib/Support/COPYRIGHT.regex
-# pyyaml tests are under the MIT license
-LICENSE_NAME_ARM=	ARM Limited license
-LICENSE_PERMS_ARM=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-LICENSE_FILE_ARM=	${WRKSRC}/lib/Target/ARM/LICENSE.TXT
-# md5 is in the public domain
+.include "Makefile.LICENSE"
+LICENSE+=	LLVM2
+LICENSE_FILE_LLVM2=	${WRKSRC}/LICENSE.TXT
+LICENSE_NAME_LLVM2= 	Apache License 2.0 with LLVM Exceptions
+LICENSE_PERMS_LLVM2=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE:=	${LICENSE:NARM}
 
 LLVM_SUFFIX=	-devel
 LLVM_PREFIX=	${PREFIX}/llvm${LLVM_SUFFIX}
@@ -35,28 +24,24 @@ DATADIR=	${PREFIX}/share/${PORTNAME}${LLVM_SUFFIX}
 
 BUILD_DEPENDS=
 
-USES=		cmake:outsource compiler:c++11-lib libedit perl5 \
+USES=		cmake compiler:c++11-lib libedit perl5 \
 		shebangfix
 USE_LDCONFIG=	${LLVM_PREFIX}/lib
-_USES_PYTHON?=	python:build:2.7
+_USES_PYTHON?=	python:build,3.6+
 USES+=		${_USES_PYTHON}
 SHEBANG_FILES=	utils/lit/lit.py utils/llvm-lit/llvm-lit.in \
-		tools/clang/utils/hmaptool/hmaptool \
-		tools/clang/tools/scan-view/bin/scan-view \
-		tools/clang/tools/clang-format/git-clang-format \
-		tools/clang/tools/clang-format/clang-format-diff.py \
-		tools/clang/tools/extra/clang-tidy/tool/clang-tidy-diff.py \
-		tools/clang/tools/extra/clang-tidy/tool/run-clang-tidy.py \
-		tools/clang/tools/extra/include-fixer/find-all-symbols/tool/run-find-all-symbols.py
-
-BROKEN_FreeBSD_10=	error: anonymous union can only contain non-static data members
+		tools/opt-viewer/optrecord.py \
+		tools/opt-viewer/opt-diff.py \
+		tools/opt-viewer/opt-stats.py \
+		tools/opt-viewer/opt-viewer.py
 
 SUB_FILES=	llvm-wrapper.sh
 SUB_LIST=	LLVM_PREFIX="${LLVM_PREFIX}" LLVM_SUFFIX="${LLVM_SUFFIX}"
 
 CMAKE_INSTALL_PREFIX=	${LLVM_PREFIX}
 CMAKE_ARGS=	-DLLVM_BUILD_LLVM_DYLIB=ON
-CMAKE_ARGS=	-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
+CMAKE_ARGS+=	-DLLVM_LINK_LLVM_DYLIB=ON
+CMAKE_ARGS+=	-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
 CMAKE_ARGS+=	-DLLVM_ENABLE_RTTI=ON
 CMAKE_ARGS+=	-DLLVM_DEFAULT_TARGET_TRIPLE=${CONFIGURE_TARGET}
 CMAKE_ARGS+=	-DLLVM_HOST_TRIPLE=${CONFIGURE_TARGET}
@@ -65,6 +50,15 @@ CMAKE_ARGS+=	-DLLVM_HOST_TRIPLE=${CONFIGURE_TARGET}
 # redefine CMAKE_INSTALL_MANDIR
 CMAKE_ARGS+=	-DCMAKE_INSTALL_MANDIR:PATH="share/man"
 CMAKE_ARGS+=	-DLLVM_PARALLEL_LINK_JOBS=1
+CMAKE_ARGS+=	-DLLVM_ENABLE_Z3_SOLVER=OFF
+CMAKE_ARGS+=	-DPYTHON_EXECUTABLE=${PYTHON_CMD} \
+		-DPYTHON_INCLUDE_DIR=${PYTHON_INCLUDEDIR} \
+		-DPYTHON_LIBRARY=${LOCALBASE}/lib/lib${PYTHON_VERSION}m.so
+
+# Disable assertions.  They should be disabled by cmake, but USES=cmake
+# overrides -DCMAKE_*_FLAGS_RELEASE.
+CFLAGS+=	-DNDEBUG
+CXXFLAGS+=	-DNDEBUG
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	llvm-mirror
@@ -72,15 +66,16 @@ GH_TAGNAME=	${LLVM_COMMIT}
 
 .include "Makefile.snapshot"
 
-OPTIONS_DEFINE=	CLANG DOCS EXTRAS LIT LLD LLDB
+OPTIONS_DEFINE=	CLANG DOCS EXTRAS LIT LLD LLDB ELFV2
 OPTIONS_DEFINE_amd64=	COMPILER_RT GOLD OPENMP
 OPTIONS_DEFINE_i386=	COMPILER_RT OPENMP
 OPTIONS_DEFAULT=	CLANG EXTRAS LIT LLD LLDB
 OPTIONS_DEFAULT_amd64=	COMPILER_RT GOLD OPENMP
 OPTIONS_DEFAULT_i386=	COMPILER_RT OPENMP
-OPTIONS_EXCLUDE_FreeBSD_10=	LLDB OPENMP
 OPTIONS_SUB=	yes
 
+# Pre-declared for options framework
+LIB_DEPENDS=
 PLIST_FILES=
 
 CLANG_DESC=	Build clang
@@ -89,7 +84,8 @@ CLANG_CONFLICTS_INSTALL=	clang-devel-3.[1234567]*
 CLANG_GH_PROJECT=	clang:clang
 CLANG_GH_SUBDIR=	tools/clang:clang
 CLANG_GH_TAGNAME=	${CLANG_COMMIT}:clang
-CLANG_CMAKE_ON=		-DCLANG_DEFAULT_OPENMP_RUNTIME=libomp
+CLANG_CMAKE_ON=		-DCLANG_DEFAULT_OPENMP_RUNTIME=libomp \
+			-DCLANG_LINK_LLVM_DYLIB=ON
 CLANG_PORTDOCS=		clang
 CLANG_USE=		GNOME=libxml2
 COMPILER_RT_DESC=	Sanitizer libraries
@@ -117,13 +113,14 @@ LLD_GH_PROJECT=		lld:lld
 LLD_GH_SUBDIR=		tools/lld:lld
 LLD_GH_TAGNAME=		${LLD_COMMIT}:lld
 LLDB_BUILD_DEPENDS=	swig3.0:devel/swig30
+LLDB_EXTRA_PATCHES=	${PATCHDIR}/lldb
 LLDB_DESC=		Install lldb, the LLVM debugger
-LLDB_EXTRA_PATCHES=	${PATCHDIR}/lldb-patch-tools_lldb_source_Plugins_Process_FreeBSD_ProcessFreeBSD.cpp
 LLDB_GH_PROJECT=	lldb:lldb
 LLDB_GH_SUBDIR=		tools/lldb:lldb
 LLDB_GH_TAGNAME=	${LLDB_COMMIT}:lldb
 LLDB_IMPLIES=		CLANG
-LLDB_VARS=		_USES_PYTHON=python:2.7
+LLDB_PORTDOCS=		lldb
+LLDB_VARS=		_USES_PYTHON=python:3.6+
 OPENMP_DESC=		Install libomp, the LLVM OpenMP runtime library
 OPENMP_CONFLICTS_INSTALL=	libiomp5-devel-*
 OPENMP_GH_PROJECT=	openmp:openmp
@@ -133,71 +130,28 @@ OPENMP_EXTRA_PATCHES=	${PATCHDIR}/openmp
 GOLD_DESC=		Build the LLVM Gold plugin for LTO
 GOLD_CMAKE_ON=		-DLLVM_BINUTILS_INCDIR=${LOCALBASE}/include
 GOLD_BUILD_DEPENDS=	${LOCALBASE}/bin/ld.gold:devel/binutils
-
-OPTIONS_SUB=	yes
+ELFV2_DESC=		[PowerPC64] Use OpenPOWER ELF ABI v2 by default
+ELFV2_EXTRA_PATCHES=	${PATCHDIR}/ppc64-elfv2
+ELFV2_IMPLIES=		CLANG
 
 PLIST_SUB+=	LLVM_MAJOR=${LLVM_MAJOR} \
 		LLVM_RELEASE=${LLVM_RELEASE}
 
-COMMANDS=	bugpoint \
-		dsymutil \
-		llc \
-		lli \
-		llvm-ar \
-		llvm-as \
-		llvm-bcanalyzer \
-		llvm-cat \
-		llvm-cfi-verify \
-		llvm-config \
-		llvm-cov \
-		llvm-cvtres \
-		llvm-cxxmap \
-		llvm-diff \
-		llvm-dis \
-		llvm-dlltool \
-		llvm-dwarfdump \
-		llvm-dwp \
-		llvm-exegesis \
-		llvm-extract \
-		llvm-link \
-		llvm-mc \
-		llvm-modextract \
-		llvm-mt \
-		llvm-nm \
-		llvm-objcopy \
-		llvm-objdump \
-		llvm-opt-report \
-		llvm-pdbutil \
-		llvm-profdata \
-		llvm-ranlib \
-		llvm-rc \
-		llvm-readelf \
-		llvm-readobj \
-		llvm-rtdyld \
-		llvm-size \
-		llvm-split \
-		llvm-stress \
-		llvm-strings \
-		llvm-strip \
-		llvm-symbolizer \
-		llvm-tblgen \
-		llvm-undname \
-		llvm-xray \
-		macho-dump \
-		opt \
-		sancov
+COMMANDS=	${LLVM_COMMANDS}
 FIRST_COMMAND=	${COMMANDS:C/^/XXXX/1:MXXXX*:C/^XXXX//}
 
 MAN1SRCS+=	bugpoint.1 \
 		dsymutil.1 \
 		llc.1 \
 		lli.1 \
+		llvm-addr2line.1 \
 		llvm-ar.1 \
 		llvm-as.1 \
 		llvm-bcanalyzer.1 \
 		llvm-build.1 \
 		llvm-config.1 \
 		llvm-cov.1 \
+		llvm-cxxfilt.1 \
 		llvm-cxxmap.1 \
 		llvm-diff.1 \
 		llvm-dis.1 \
@@ -205,14 +159,22 @@ MAN1SRCS+=	bugpoint.1 \
 		llvm-exegesis.1 \
 		llvm-extract.1 \
 		llvm-lib.1 \
+		llvm-lipo.1 \
 		llvm-link.1 \
+		llvm-locstats.1 \
 		llvm-mca.1 \
 		llvm-nm.1 \
+		llvm-objcopy.1 \
 		llvm-objdump.1 \
 		llvm-pdbutil.1 \
 		llvm-profdata.1 \
+		llvm-ranlib.1 \
+		llvm-readelf.1 \
 		llvm-readobj.1 \
+		llvm-size.1 \
 		llvm-stress.1 \
+		llvm-strings.1 \
+		llvm-strip.1 \
 		llvm-symbolizer.1 \
 		opt.1 \
 		tblgen.1
@@ -222,17 +184,6 @@ STRIP_LIBS=	BugpointPasses.so \
 		${LIBNAME}.0 \
 		libLTO.so
 
-EXTRAS_COMMANDS= \
-		clang-apply-replacements \
-		clang-change-namespace \
-		clang-include-fixer \
-		clang-modernize \
-		clang-query \
-		clang-rename \
-		clang-reorder-fields \
-		clang-tidy \
-		find-all-symbols \
-		modularize
 EXTRAS_LIBS=	\
 		libclangApplyReplacements \
 		libclangIncludeFixer \
@@ -249,6 +200,12 @@ EXTRAS_LIBS=	\
 EXTRAS_PATTERN=	${EXTRAS_COMMANDS:tW:C/  */|/g}|${EXTRAS_LIBS:tW:C/  */|/g}
 
 .include <bsd.port.options.mk>
+
+# PPC_ABI variable is only defined after including bsd.port.options.mk
+.if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
+OPTIONS_DEFAULT_powerpc64=      ELFV2
+.endif
+
 
 # keep in sync with /usr/src/lib/clang/clang.build.mk 
 # ----------- start of sync block ------------------
@@ -267,69 +224,48 @@ CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-${OPSYS:tl}${
 # ----------- end of sync block --------------------
 
 .if ${PORT_OPTIONS:MCLANG}
-COMMANDS+=	c-index-test \
-		clang \
-		clang++ \
-		clang-check \
-		clang-cpp \
-		clang-format \
-		clang-func-mapping \
-		clang-import-test \
-		clang-offload-bundler \
-		clangd \
-		diagtool \
-		hmaptool \
-		scan-build \
-		scan-view
+COMMANDS+=	${CLANG_COMMANDS}
 MAN1SRCS+=	clang.1 \
 		diagtool.1 \
 		scan-build.1
-CLANG_PATTERN=	(c-index-test|clang|scan-|Reporter.py|ScanView.py|scanview.css|sorttable.js|startfile.py|-analyzer)
+CLANG_PATTERN=	(c-index-test|clang|diagtool|hmaptool|scan-|Reporter.py|ScanView.py|scanview.css|sorttable.js|startfile.py|-analyzer)
+SHEBANG_FILES+= tools/clang/tools/clang-format/git-clang-format \
+		tools/clang/tools/clang-format/clang-format-diff.py \
+		tools/clang/tools/scan-view/bin/scan-view \
+		tools/clang/utils/hmaptool/hmaptool
+USES+=	gnome
 .endif
 
 .if ${PORT_OPTIONS:MCOMPILER_RT}
-COMPILER_RT_PATTERN=	(sanitizer|include.xray)
+COMPILER_RT_PATTERN=	(sanitizer|include.xray|include\/fuzzer)
+.endif
+
+.if ${PORT_OPTIONS:MEXTRAS}
+COMMANDS+=	${EXTRAS_COMMANDS}
+MAN1SRCS+=	extraclangtools.1
+PORTDOCS+=	clang-tools
+SHEBANG_FILES+=	tools/clang/tools/extra/clang-include-fixer/find-all-symbols/tool/run-find-all-symbols.py \
+		tools/clang/tools/extra/clang-tidy/tool/clang-tidy-diff.py \
+		tools/clang/tools/extra/clang-tidy/tool/run-clang-tidy.py
 .endif
 
 .if ${PORT_OPTIONS:MLIT}
 MAN1SRCS+=	lit.1 FileCheck.1
-LIT_COMMANDS=	lit llvm-lit FileCheck
 .endif
 
 .if ${PORT_OPTIONS:MLLD}
-COMMANDS+=	ld.lld \
-		ld64.lld \
-		wasm-ld
+COMMANDS+=	${LLD_COMMANDS}
+PORTDOCS+=	lld
 .endif
 
 .if ${PORT_OPTIONS:MLLDB}
-COMMANDS+=	lldb \
-		lldb-argdumper \
-		lldb-mi \
-		lldb-server \
-		lldb-test \
-		lldb-vscode
+COMMANDS+=	${LLDB_COMMANDS}
 .endif
 
-.if ! ${OPTIONS_DEFINE:MCOMPILER_RT}
-# Hack to disable COMPILER_RT in plist of unsupported architectures
-PLIST_SUB+=	COMPILER_RT="@comment "
-.else
-.endif
-
-.if ! ${OPTIONS_DEFINE:MGOLD}
-# Hack to disable GOLD in plist of unsupported architectures
-PLIST_SUB+=	GOLD="@comment "
-.else
-.endif
-
-.if ! ${OPTIONS_DEFINE:MOPENMP}
-# Hack to disable OPENMP in plist of unsupported architectures
-PLIST_SUB+=	OPENMP="@comment "
-.else
-.endif
+OPENMP_PATTERN=	lib[ig]*omp|omp.h|ompt.h|omp-tools.h
 
 .include <bsd.port.pre.mk>
+.include "${.CURDIR}/Makefile.COMMANDS"
 
 .if defined(WITH_DEBUG)
 CMAKE_BUILD_TYPE=	RelWithDebInfo
@@ -350,11 +286,12 @@ _COMPILER_RT_LIBS= \
 	libclang_rt.asan_cxx-x86_64.a \
 	libclang_rt.asan_cxx-x86_64.a.syms \
 	libclang_rt.builtins-x86_64.a \
+	libclang_rt.cfi-x86_64.a \
+	libclang_rt.cfi_diag-x86_64.a \
 	libclang_rt.dd-x86_64.a \
 	libclang_rt.dyndd-x86_64.so \
 	libclang_rt.fuzzer-x86_64.a \
 	libclang_rt.fuzzer_no_main-x86_64.a \
-	libclang_rt.lsan-x86_64.a \
 	libclang_rt.msan-x86_64.a \
 	libclang_rt.msan-x86_64.a.syms \
 	libclang_rt.msan_cxx-x86_64.a \
@@ -388,7 +325,8 @@ _COMPILER_RT_LIBS+= \
 	libclang_rt.asan-preinit-i386.a \
 	libclang_rt.asan_cxx-i386.a \
 	libclang_rt.builtins-i386.a \
-	libclang_rt.lsan-i386.a \
+	libclang_rt.cfi-i386.a \
+	libclang_rt.cfi_diag-i386.a \
 	libclang_rt.profile-i386.a \
 	libclang_rt.safestack-i386.a \
 	libclang_rt.stats-i386.a \
@@ -400,16 +338,22 @@ _COMPILER_RT_LIBS+= \
 	libclang_rt.ubsan_standalone_cxx-i386.a
 .endif
 
-.if ${PORT_OPTIONS:MEXTRAS}
-COMMANDS+=	${EXTRAS_COMMANDS}
-MAN1SRCS+=	extraclangtools.1
-PORTDOCS+=	clang-tools
+.if ! ${OPTIONS_DEFINE:MCOMPILER_RT}
+# Hack to disable COMPILER_RT in plist of unsupported architectures
+PLIST_SUB+=	COMPILER_RT="@comment "
+.else
 .endif
 
-.if ${PORT_OPTIONS:MLLD}
-COMMANDS+=	lld \
-		lld-link
-PORTDOCS+=	lld
+.if ! ${OPTIONS_DEFINE:MGOLD}
+# Hack to disable GOLD in plist of unsupported architectures
+PLIST_SUB+=	GOLD="@comment "
+.else
+.endif
+
+.if ! ${OPTIONS_DEFINE:MOPENMP}
+# Hack to disable OPENMP in plist of unsupported architectures
+PLIST_SUB+=	OPENMP="@comment "
+.else
 .endif
 
 post-patch:
@@ -421,6 +365,8 @@ post-patch:
 	    ${WRKSRC}/CMakeLists.txt
 
 post-patch-CLANG-on:
+	${REINPLACE_CMD} -e 's|%%LLVM_PREFIX%%|${LLVM_PREFIX}|' \
+	    ${PATCH_WRKSRC}/tools/clang/lib/Driver/ToolChains/CommonArgs.cpp
 	${REINPLACE_CMD} -e 's|%%LLVM_SUFFIX%%|${LLVM_SUFFIX}|' \
 	    ${PATCH_WRKSRC}/tools/clang/tools/clang-format/clang-format.py \
 	    ${PATCH_WRKSRC}/tools/clang/tools/clang-format/clang-format-sublime.py \
@@ -443,6 +389,7 @@ post-install:
 .endfor
 
 post-install-DOCS-on:
+	${RM} -r ${STAGEDIR}${DOCSDIR}
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${MV} ${STAGEDIR}${LLVM_PREFIX}/share/doc/* ${STAGEDIR}${DOCSDIR}
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/doc
@@ -532,13 +479,13 @@ build-plist:
 	    -e 's|${LLVM_MAJOR:C/\./\\./}|%%LLVM_MAJOR%%|' | \
 	    ${SORT} >> ${PLIST}.tmp
 	awk '{ \
-	    if ($$0 ~ /${CLANG_PATTERN}/ && $$0 !~ /omp.h|${EXTRAS_PATTERN}|libclang_rt/) {printf "%%%%CLANG%%%%"} \
+	    if ($$0 ~ /${CLANG_PATTERN}/ && $$0 !~ /${OPENMP_PATTERN}|${EXTRAS_PATTERN}|libclang_rt/) {printf "%%%%CLANG%%%%"} \
 	    if ($$0 ~ /${COMPILER_RT_PATTERN}/) \
 		{printf "%%%%COMPILER_RT%%%%"} \
 	    if ($$0 ~ /lld|wasm-ld/ && $$0 !~ /lldb/) {printf "%%%%LLD%%%%"} \
 	    if ($$0 ~ /(${EXTRAS_PATTERN})/) {printf "%%%%EXTRAS%%%%"} \
 	    if ($$0 ~ /(argdumper|lldb|six.py)/) {printf "%%%%LLDB%%%%"} \
-	    if ($$0 ~ /(lib[ig]*omp|omp.h|ompt.h)/) {printf "%%%%OPENMP%%%%"} \
+	    if ($$0 ~ /(${OPENMP_PATTERN})/) {printf "%%%%OPENMP%%%%"} \
 	    if ($$0 ~ /LLVMgold/) {printf "%%%%GOLD%%%%"} \
 	    if ($$0 !~ /libclang_rt/) {print} \
 	}' ${PLIST}.tmp >> ${PLIST}

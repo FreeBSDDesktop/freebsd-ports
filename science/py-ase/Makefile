@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ase
-DISTVERSION=	3.16.2
+DISTVERSION=	3.18.1
 CATEGORIES=	science python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,8 +18,9 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Flask>0:www/py-flask@${PY_FLAVOR} \
 		${PYNUMPY} \
 		nwchem:science/nwchem
 
-USES=		python
+USES=		python:3.5+
 USE_PYTHON=	distutils concurrent autoplist
+
 NO_ARCH=	yes
 
 .include <bsd.port.mk>

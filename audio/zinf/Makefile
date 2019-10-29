@@ -3,8 +3,8 @@
 
 PORTNAME=	zinf
 PORTVERSION=	2.2.5
-PORTREVISION=	22
-CATEGORIES=	audio ipv6
+PORTREVISION=	24
+CATEGORIES=	audio
 MASTER_SITES=	SF
 
 MAINTAINER=	ports@FreeBSD.org
@@ -18,19 +18,18 @@ USE_CXXSTD=	gnu++98
 USE_GNOME=	gtk20
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-ipv6 \
-		--disable-arts
+		--disable-arts \
+		--disable-esd
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 CPPFLAGS+=	-D_WANT_SEMUN
 LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
 LDFLAGS_i386=	-Wl,-znotext
 
-OPTIONS_DEFINE=	ESOUND VORBIS
+OPTIONS_DEFINE=	VORBIS
 OPTIONS_DEFAULT=VORBIS
 OPTIONS_SUB=	yes
 
-ESOUND_CONFIGURE_OFF=	--disable-esd
-ESOUND_USE=		GNOME=esound
 INSTALL_TARGET=	install-strip
 
 VORBIS_CONFIGURE_OFF=	--disable-vorbis

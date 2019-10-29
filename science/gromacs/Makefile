@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gromacs
-DISTVERSION=	2018.3
-PORTREVISION=	1
+DISTVERSION=	2019.4
 CATEGORIES=	science
 MASTER_SITES=	ftp://ftp.gromacs.org/pub/gromacs/
 
@@ -13,10 +12,12 @@ COMMENT=	Compute molecular dynamics
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN_i386=	undefined reference to `__atomic_load' and `__atomic_compare_exchange'
+
 BUILD_DEPENDS=	boost-libs>=1.44:devel/boost-libs
 LIB_DEPENDS=	libhwloc.so:devel/hwloc
 
-USES=		cmake:outsource fortran perl5 pkgconfig shebangfix
+USES=		cmake compiler:c++11-lang fortran gnome perl5 pkgconfig shebangfix xorg
 SHEBANG_FILES=	admin/*.sh scripts/*.pl scripts/*.sh src/gromacs/selection/*.sh
 bash_CMD=	${SH}
 USE_GNOME=	libxml2
@@ -53,6 +54,7 @@ OPENCL_LIB_DEPENDS=	libOpenCL.so:devel/ocl-icd
 OPENMP_USES=		compiler:openmp
 OPENMP_CMAKE_ON=	-DGMX_CXX11:BOOL=OFF
 OPENMP_CMAKE_OFF=	-DGMX_OPENMP:BOOL=OFF
+OPENMP_LIB_DEPENDS=	libomp.so:devel/openmp
 
 SIMD_CMAKE_OFF=		-DGMX_SIMD:STRING="None"
 

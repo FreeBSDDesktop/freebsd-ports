@@ -5,7 +5,7 @@ PORTNAME=	ircproxy
 PORTVERSION=	1.3.6
 PORTREVISION=	3
 CATEGORIES=	irc
-MASTER_SITES=	http://BSDforge.com/projects/source/irc/ircproxy/
+MASTER_SITES=	https://BSDforge.com/projects/source/irc/ircproxy/
 
 MAINTAINER=	portmaster@BSDforge.com
 COMMENT=	IRC proxy/bouncer daemon
@@ -37,6 +37,13 @@ IPV6_CONFIGURE_ENABLE=		ipv6
 SSL_CONFIGURE_ENABLE=		ssl
 SSL_USES=		ssl
 
+.include <bsd.port.pre.mk>
+
+.if ${SSL_DEFAULT} == base
+BROKEN_FreeBSD_12=	gnutls library not found. Install gnutls or use --with-openssl
+BROKEN_FreeBSD_13=	gnutls library not found. Install gnutls or use --with-openssl
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|EUSER="ircproxy"|EUSER="ircproxyd"|g; \
 		s|EGROUP="users"|EGROUP="ircproxyd"|g' ${WRKSRC}/data/${PORTNAME}d.conf
@@ -44,4 +51,4 @@ post-patch:
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/imkpasswd ${STAGEDIR}${PREFIX}/bin/ircproxyd
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

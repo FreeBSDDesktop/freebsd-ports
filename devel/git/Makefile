@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	git
-DISTVERSION=	2.19.0
-PORTREVISION=	1
+DISTVERSION=	2.23.0
 CATEGORIES=	devel
 MASTER_SITES=	KERNEL_ORG/software/scm/git
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
@@ -29,7 +28,7 @@ GNU_CONFIGURE=	yes
 USES=		autoreconf gmake iconv shebangfix ssl tar:xz
 CPPFLAGS+=	-isystem${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ARGS+=	DEVELOPER_CFLAGS=
+MAKE_ARGS+=	DEVELOPER=
 MAKE_ENV+=	V=1
 USE_RC_SUBR=	git_daemon
 SHEBANG_FILES=	*.perl */*.perl */*/*.perl */*.pl */*/*.pl */*/*/*.pl \
@@ -105,7 +104,7 @@ GUI_USES=		tk
 GUI_MAKE_ARGS=		TCL_PATH=${TCLSH} TCLTK_PATH=${WISH}
 GUI_MAKE_ARGS_OFF=	NO_TCLTK=yes
 
-# While this port does not explicity honor WITH_SUBVERSION_VER knob it does
+# While this port does not explicitly honor WITH_SUBVERSION_VER knob it does
 # depend upon devel/p5-subversion, which does honor that knob. If you want
 # to have git use devel/subversion18 it will be brought in through
 # devel/p5-subversion if you set WITH_SUBVERSION_VER=18. Otherwise

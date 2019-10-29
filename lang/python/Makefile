@@ -5,7 +5,7 @@ PORTNAME=	python
 PORTVERSION=	${PYTHON_DEFAULT}
 PORTREVISION=	3
 PORTEPOCH=	2
-CATEGORIES=	lang python ipv6
+CATEGORIES=	lang python
 MASTER_SITES=	# empty
 DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
@@ -16,6 +16,7 @@ COMMENT=	"meta-port" for the default version of Python interpreter
 RUN_DEPENDS=	python${PYTHON_MAJOR_VER}:lang/python${PYTHON_MAJOR_VER}
 
 USES=		python:run
+
 NO_ARCH=	yes
 NO_BUILD=	yes
 

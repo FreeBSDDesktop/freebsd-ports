@@ -2,9 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	sqlite3
-DISTVERSION=	3.25.1
+DISTVERSION=	3.29.0
+PORTREVISION=	1
 CATEGORIES=	databases
-MASTER_SITES=	https://www.sqlite.org/2018/ http://www2.sqlite.org/2018/ http://www3.sqlite.org/2018/
+MASTER_SITES=	https://www.sqlite.org/2019/ http://www2.sqlite.org/2019/ http://www3.sqlite.org/2019/
 DISTNAME=	sqlite-autoconf-${PORTVERSION:C/\.([[:digit:]])[[:>:]]/0\1/g:S/.//g}00
 
 MAINTAINER=	pavelivolkov@gmail.com
@@ -13,17 +14,18 @@ COMMENT=	SQL database engine in a C library
 LICENSE=	PD
 
 USES=		libtool ncurses pathfix
-GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-INSTALL_TARGET=	install-strip
 
+GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
+INSTALL_TARGET=	install-strip
 
 # Compilation Options For SQLite https://www.sqlite.org/compile.html
 OPTIONS_DEFINE=		FTS4 URI URI_AUTHORITY METADATA \
 			DIRECT_READ MEMMAN SECURE_DELETE UNLOCK_NOTIFY THREADS \
 			EXTENSION ARMOR STMT DBPAGE DBSTAT FTS5 RBU NULL_TRIM \
-			LIKENOTBLOB STSHELL FTS3_TOKEN UNKNOWN_SQL SORT_REF
+			LIKENOTBLOB STSHELL FTS3_TOKEN UNKNOWN_SQL SORT_REF \
+			NORMALIZE DQS
 OPTIONS_SINGLE=		RAMT
 OPTIONS_RADIO=		STAT
 OPTIONS_GROUP=		OPT_EXT OPT_FUNC UNICODE RTREEG RL
@@ -43,6 +45,10 @@ SECURE_DELETE_DESC=	Overwrite deleted information with zeros
 UNLOCK_NOTIFY_DESC=	Enable notification on unlocking
 EXTENSION_DESC=		Allow loadable extensions
 STSHELL_DESC=		Statically link libsqlite3 into shell
+NORMALIZE_DESC=		Enable normalized sql function
+
+# https://www.sqlite.org/compile.html#dqs
+DQS_DESC=		Double-quoted String Literals
 
 # https://sqlite.org/compile.html#enable_null_trim
 NULL_TRIM_DESC=		Omits NULL columns at the ends of rows
@@ -133,7 +139,7 @@ EDITLINE_PREVENTS=	READLINES READLINEP
 
 OPTIONS_DEFAULT=	FTS4 URI METADATA SECURE_DELETE UNLOCK_NOTIFY THREADS \
 			EXTENSION TS1 UNICODE61 RTREE DBSTAT STSHELL READLINES \
-			FTS3_TOKEN FTS5
+			FTS3_TOKEN FTS5 DQS
 # SECURE_DELETE, UNLOCK_NOTIFY, DBSTAT (since 41.0) used by www/firefox et al.
 # RTREE used by graphics/mapnik, databases/spatialite
 # FTS3_TOKEN used by audio/clementine-player, mail/thunderbird, www/seamonkey
@@ -221,6 +227,11 @@ SER1_CPPFLAGS=	-DSQLITE_ENABLE_DESERIALIZE=1
 
 SORT_REF_CPPFLAGS=	-DSQLITE_ENABLE_SORTER_REFERENCES=1
 
+NORMALIZE_CPPFLAGS=	-DSQLITE_ENABLE_NORMALIZE=1
+
+DQS_CPPFLAGS=	-DSQLITE_DQS=3
+DQS_CPPFLAGS_OFF=	-DSQLITE_DQS=0
+
 .include <bsd.port.options.mk>
 
 # Platform Configuration
@@ -242,7 +253,7 @@ post-install:
 	${RM} ${STAGEDIR}${PREFIX}/include/msvc.h
 
 # for compares with checksum from of the site
-sha1: fetch
+sha1: checksum
 .if defined(SHA1) && !empty(SHA1)
 	@sha1 -c ${SHA1} ${DISTDIR}/${ALLFILES}
 .else

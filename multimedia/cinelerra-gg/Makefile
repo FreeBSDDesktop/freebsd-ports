@@ -3,7 +3,7 @@
 PORTNAME=	cinelerra-gg
 DISTVERSION=	5.1-20180714
 DISTVERSIONSUFFIX=	-${REV:C/(.......).*/\1/}
-PORTREVISION=	3
+PORTREVISION=	11
 CATEGORIES=	multimedia
 MASTER_SITES=	https://git.cinelerra-cv.org/gitweb?p=goodguy/cinelerra.git;a=snapshot;h=${REV};sf=tgz;dummy=/ # tarballs are @ https://cinelerra-cv.org/five/pkgs/src/
 
@@ -33,7 +33,7 @@ LIB_DEPENDS=	libFLAC.so:audio/flac \
 		libogg.so:audio/libogg \
 		libopenjp2.so:graphics/openjpeg \
 		libopus.so:audio/opus \
-		libpng16.so:graphics/png \
+		libpng.so:graphics/png \
 		libsndfile.so:audio/libsndfile \
 		libtheoraenc.so:multimedia/libtheora \
 		libtiff.so:graphics/tiff \
@@ -49,7 +49,7 @@ EXTRA_PATCHES=	${BUILD_WRKSRC}/blds/bsd.patch:-p1
 
 REV=		502b6f3b6fd04f6b01c6d70dcb81aa304dd0db1c # git revision
 
-USES=		autoreconf gettext-runtime gettext-tools gmake iconv:wchar_t jpeg localbase makeinfo shebangfix
+USES=		autoreconf gettext-runtime gettext-tools gmake iconv:wchar_t jpeg localbase makeinfo python:2.7,build shebangfix
 SHEBANG_GLOB=	*.sh *.bld
 GNU_CONFIGURE=	yes
 USE_XORG=	x11 xau xdmcp xext xfixes xft xinerama xv

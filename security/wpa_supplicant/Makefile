@@ -1,24 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	wpa_supplicant
-PORTVERSION=	2.6
-PORTREVISION=	3
+PORTVERSION=	2.9
 CATEGORIES=	security net
 MASTER_SITES=	https://w1.fi/releases/
 
-PATCH_SITES=	https://w1.fi/security/2017-1/:2017_1 \
-		https://w1.fi/security/2018-1/:2018_1
-
-PATCHFILES=	rebased-v2.6-0001-hostapd-Avoid-key-reinstallation-in-FT-handshake.patch:2017_1 \
-	rebased-v2.6-0002-Prevent-reinstallation-of-an-already-in-use-group-ke.patch:2017_1 \
-	rebased-v2.6-0003-Extend-protection-of-GTK-IGTK-reinstallation-of-WNM-.patch:2017_1 \
-	rebased-v2.6-0004-Prevent-installation-of-an-all-zero-TK.patch:2017_1 \
-	rebased-v2.6-0005-Fix-PTK-rekeying-to-generate-a-new-ANonce.patch:2017_1 \
-	rebased-v2.6-0006-TDLS-Reject-TPK-TK-reconfiguration.patch:2017_1 \
-	rebased-v2.6-0007-WNM-Ignore-WNM-Sleep-Mode-Response-without-pending-r.patch:2017_1 \
-	rebased-v2.6-0008-FT-Do-not-allow-multiple-Reassociation-Response-fram.patch:2017_1 \
-	rebased-v2.6-0001-WPA-Ignore-unauthenticated-encrypted-EAPOL-Key-data.patch:2018_1
-PATCH_DIST_STRIP=	-p1
+PATCH_SITES=	https://w1.fi/security/2018-1/:2018_1
 
 MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Supplicant (client) for WPA/802.1x protocols
@@ -39,17 +26,21 @@ PORTDOCS=	README ChangeLog
 
 CFG=		${BUILD_WRKSRC}/.config
 
+.if !exists(/etc/rc.d/wpa_supplicant)
+USE_RC_SUBR=	wpa_supplicant
+.endif
+
 OPTIONS_MULTI=		DRV EAP
 OPTIONS_MULTI_DRV=	BSD WIRED NDIS TEST NONE #ROBOSWITCH
-OPTIONS_MULTI_EAP=	TLS PEAP TTLS MD5 MSCHAPv2 GTC LEAP OTP PSK FAST \
-			SIM PWD PAX AKA AKA_PRIME SAKE GPSK TNC IKEv2 EKE
+OPTIONS_MULTI_EAP=	TLS PEAP TTLS MD5 MSCHAPV2 GTC LEAP OTP PSK FAST \
+			SIM PWD PAX AKA AKA_PRIME SAKE GPSK TNC IKEV2 EKE
 OPTIONS_DEFINE=		WPS WPS_ER WPS_NOREG WPS_NFC PKCS12 SMARTCARD \
 			HT_OVERRIDES VHT_OVERRIDES TLSV12 IEEE80211W \
 			IEEE80211R DEBUG_FILE DEBUG_SYSLOG PRIVSEP \
 			DELAYED_MIC IEEE80211N IEEE80211AC INTERWORKING \
 			HS20 NO_ROAMING P2P TDLS DOCS
 OPTIONS_DEFAULT=	BSD WIRED NDIS \
-			TLS PEAP TTLS MD5 MSCHAPv2 GTC LEAP OTP PSK \
+			TLS PEAP TTLS MD5 MSCHAPV2 GTC LEAP OTP PSK \
 			WPS PKCS12 SMARTCARD IEEE80211R DEBUG_SYSLOG \
 			INTERWORKING HS20
 
@@ -89,7 +80,7 @@ TLS_DESC=		Transport Layer Security
 PEAP_DESC=		Protected Extensible Authentication Protocol
 TTLS_DESC=		Tunneled Transport Layer Security
 MD5_DESC=		MD5 hash (deprecated, no key generation)
-MSCHAPv2_DESC=		Microsoft CHAP version 2 (RFC 2759)
+MSCHAPV2_DESC=		Microsoft CHAP version 2 (RFC 2759)
 GTC_DESC=		Generic Token Card
 LEAP_DESC=		Lightweight Extensible Authentication Protocol
 OTP_DESC=		One-Time Password
@@ -99,7 +90,7 @@ AKA_DESC=		Autentication and Key Agreement (UMTS)
 AKA_PRIME_DESC=		AKA Prime variant (RFC 5448)
 EKE_DESC=		Encrypted Key Exchange
 SIM_DESC=		Subscriber Identity Module
-IKEv2_DESC=		Internet Key Exchange version 2
+IKEV2_DESC=		Internet Key Exchange version 2
 PWD_DESC=		Shared password (RFC 5931)
 PAX_DESC=		Password Authenticated Exchange
 SAKE_DESC=		Shared-Secret Authentication & Key Establishment
@@ -134,8 +125,8 @@ post-patch:
 .  endif
 .endfor
 	# Set EAP protocol(s)
-.for item in MD5 MSCHAPv2 TLS PEAP TTLS FAST GTC OTP PSK PWD PAX LEAP SIM \
-	AKA AKA_PRIME SAKE GPSK TNC IKEv2 EKE
+.for item in MD5 MSCHAPV2 TLS PEAP TTLS FAST GTC OTP PSK PWD PAX LEAP SIM \
+	AKA AKA_PRIME SAKE GPSK TNC IKEV2 EKE
 .  if ${PORT_OPTIONS:M${item}}
 	@${ECHO_CMD} CONFIG_EAP_${item:tu}=y >> ${CFG}
 .  endif

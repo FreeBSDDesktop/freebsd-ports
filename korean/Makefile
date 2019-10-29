@@ -12,7 +12,6 @@
     SUBDIR += engdic
     SUBDIR += fcitx-hangul
     SUBDIR += gimp-help
-    SUBDIR += gtkcomm
     SUBDIR += h2ps
     SUBDIR += hanyangfonts
     SUBDIR += hcode
@@ -23,7 +22,6 @@
     SUBDIR += imhangul-gtk2
     SUBDIR += imhangul-gtk3
     SUBDIR += kaistfonts
-    SUBDIR += kde4-l10n
     SUBDIR += ko.TeX
     SUBDIR += ko.TeX-fonts-base
     SUBDIR += ko.TeX-fonts-extra
@@ -36,9 +34,11 @@
     SUBDIR += nanumfonts-otf
     SUBDIR += nanumfonts-ttf
     SUBDIR += nhpf
-    SUBDIR += qt4-codecs-kr
     SUBDIR += scim-hangul
     SUBDIR += scim-tables
+    SUBDIR += sourcehansans-otf
+    SUBDIR += sourcehanserif-otf
+    SUBDIR += spoqahansans-ttf
     SUBDIR += unfonts-core
     SUBDIR += unfonts-extra
     SUBDIR += uniksc

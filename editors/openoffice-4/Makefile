@@ -3,9 +3,9 @@
 
 PORTNAME=	apache-openoffice
 PORTVERSION=	${AOOVERSION}
-PORTREVISION=	9
+PORTREVISION=	1
 CATEGORIES=	editors java
-MASTER_SITES=	APACHE/openoffice/${PORTVERSION}/sources \
+MASTER_SITES=	APACHE/openoffice/${PORTVERSION}/source \
 		http://tools.openoffice.org/unowinreg_prebuild/680/:unoreg \
 		LOCAL/truckman/openoffice:extsrc
 .if defined(LANG_PKGNAME)
@@ -62,7 +62,7 @@ BUILD_DEPENDS=								\
 		gpatch:devel/patch					\
 		${LOCALBASE}/include/sane/sane.h:graphics/sane-backends	\
 		${LOCALBASE}/bin/vigra-config:graphics/vigra		\
-		${JAVALIBDIR}/commons-lang.jar:java/jakarta-commons-lang \
+		${JAVALIBDIR}/commons-lang.jar:java/apache-commons-lang \
 		${JAVALIBDIR}/junit.jar:java/junit			\
 		${JAVALIBDIR}/bsh.jar:lang/bsh				\
 		bash:shells/bash					\
@@ -81,7 +81,7 @@ LIB_DEPENDS=								\
 		libfreetype.so:print/freetype2				\
 		libnss3.so:security/nss					\
 		libexpat.so:textproc/expat2				\
-		libhunspell-1.6.so:textproc/hunspell			\
+		libhunspell-1.7.so:textproc/hunspell			\
 		libhyphen.so:textproc/hyphen				\
 		libtextcat.so:textproc/libtextcat			\
 		libmythes-1.2.so:textproc/mythes			\
@@ -90,39 +90,15 @@ LIB_DEPENDS=								\
 		libfontconfig.so:x11-fonts/fontconfig
 RUN_DEPENDS=								\
 		${LOCALBASE}/share/icons/hicolor/index.theme:misc/hicolor-icon-theme \
-		${JAVALIBDIR}/commons-lang.jar:java/jakarta-commons-lang \
+		${JAVALIBDIR}/commons-lang.jar:java/apache-commons-lang \
 		${JAVALIBDIR}/bsh.jar:lang/bsh				\
 		${LOCALBASE}/share/fonts/Caladea/Caladea-Bold.ttf:x11-fonts/crosextrafonts-caladea-ttf \
 		${LOCALBASE}/share/fonts/Carlito/Carlito-Bold.ttf:x11-fonts/crosextrafonts-carlito-ttf \
 		${LOCALBASE}/share/fonts/ChromeOS/Arimo-Bold.ttf:x11-fonts/croscorefonts-fonts-ttf
 
-CONFLICTS_INSTALL=	apache-openoffice-devel-*
-
-AOOVERSION1=	4
-AOOVERSION2=	1
-AOOVERSION3=	5
-# From solenv/inc/minor.mk SOURCEREVISION LAST_MINOR BUILD
-AOOTAG=		AOO415m1\(Build:9789\)
-SVNREVISION=	1817496
-EXTSRC=		ApacheOpenOffice.ext_sources.${AOOVERSION1}.x.x.20150707.tar.gz
-
-AOOVERSION=	${AOOVERSION1}.${AOOVERSION2}.${AOOVERSION3}
-AOOXXX=		${AOOVERSION1}${AOOVERSION2}${AOOVERSION3}
-AOOSUFFIX=	${PORTVERSION}
-AOOSRC=		apache-openoffice-${AOOVERSION}-r${SVNREVISION}-src${EXTRACT_SUFX}
-
-AOOUDIR=		.openoffice.org\/${AOOVERSION1}
-INSTALLATION_BASEDIR?=	openoffice-${AOOSUFFIX}
-PRINSTALLATION_BASEDIR=	${PREFIX}/${INSTALLATION_BASEDIR}
-OOPATH=			${PRINSTALLATION_BASEDIR}/openoffice${AOOVERSION1}
-XDGDIR=			${OOPATH}/share/xdg
-XDGREL=			../../${INSTALLATION_BASEDIR}/openoffice${AOOVERSION1}/share/xdg
-EXECBASE?=		openoffice-${AOOSUFFIX}
-
-USES=		autoreconf bison compiler:c++11-lib cpe \
-		desktop-file-utils \
-		gettext-runtime gmake iconv jpeg perl5 pkgconfig python:2.7 \
-		shared-mime-info ssl tar:bzip2
+USES=		autoreconf bison compiler:c++11-lib cpe desktop-file-utils \
+		gettext-runtime gl gmake gnome iconv jpeg perl5 pkgconfig \
+		python:2.7 shared-mime-info ssl tar:bzip2 xorg
 USE_GL=		gl glu
 USE_GNOME=	gtk20 libxslt libidl glib20
 USE_JAVA=	yes
@@ -133,6 +109,30 @@ JAVA_VERSION=	1.6+
 USE_PERL5=	build
 USE_XORG=	ice sm x11 xau xaw xcomposite xcursor xdamage xext xfixes xi \
 		xinerama xrandr xrender xt
+
+CONFLICTS_INSTALL=	apache-openoffice-devel-*
+
+AOOVERSION1=	4
+AOOVERSION2=	1
+AOOVERSION3=	7
+# From solenv/inc/minor.mk SOURCEREVISION LAST_MINOR BUILD
+AOOTAG=		AOO417m1\(Build:9800\)
+GITREVISION=	46059c9192
+EXTSRC=		ApacheOpenOffice.ext_sources.${AOOVERSION1}.x.x.20150707.tar.gz
+
+AOOVERSION=	${AOOVERSION1}.${AOOVERSION2}.${AOOVERSION3}
+AOOXXX=		${AOOVERSION1}${AOOVERSION2}${AOOVERSION3}
+AOOSUFFIX=	${PORTVERSION}
+AOOSRC=		apache-openoffice-${AOOVERSION}-${GITREVISION}-src${EXTRACT_SUFX}
+
+AOOUDIR=		.openoffice.org\/${AOOVERSION1}
+INSTALLATION_BASEDIR?=	openoffice-${AOOSUFFIX}
+PRINSTALLATION_BASEDIR=	${PREFIX}/${INSTALLATION_BASEDIR}
+OOPATH=			${PRINSTALLATION_BASEDIR}/openoffice${AOOVERSION1}
+XDGDIR=			${OOPATH}/share/xdg
+XDGREL=			../../${INSTALLATION_BASEDIR}/openoffice${AOOVERSION1}/share/xdg
+EXECBASE?=		openoffice-${AOOSUFFIX}
+
 INSTALLS_ICONS=	yes
 WITHOUT_CPU_CFLAGS=	true
 CPE_PRODUCT=	${PORTNAME:S|apache-||}
@@ -185,13 +185,19 @@ WIKI_PUBLISHER_CONFIGURE_WITH=						\
 WIKI_PUBLISHER_JAR_DEPENDS=						\
 	${JAVALIBDIR}/commons-codec.jar:java/jakarta-commons-codec	\
 	${JAVALIBDIR}/commons-httpclient.jar:java/jakarta-commons-httpclient \
-	${JAVALIBDIR}/commons-logging.jar:java/jakarta-commons-logging
+	${JAVALIBDIR}/commons-logging.jar:java/apache-commons-logging
 WIKI_PUBLISHER_BUILD_DEPENDS=	${WIKI_PUBLISHER_JAR_DEPENDS}
 WIKI_PUBLISHER_RUN_DEPENDS=	${WIKI_PUBLISHER_JAR_DEPENDS}
 WIKI_PUBLISHER_VARS=	BUNDLED_EXTENSIONS+=swext/wiki-publisher.oxt
 
 # Don't run gnome-post-icons until after post-install generates the plist
 TARGET_ORDER_OVERRIDE=	710:gnome-post-icons
+
+# Force the SDK option on for makesum to ensure that unowinreg.dll is
+# included in distinfo
+.if make(makesum) || make(distclean)
+WITH=	SDK
+.endif
 
 .include <bsd.port.pre.mk>
 
@@ -201,9 +207,9 @@ CONFIGURE_ARGS+=	--enable-symbols
 
 .include <${FILESDIR}/Makefile.localized>
 
-.if ${COMPILER_TYPE} == clang
+.if ${CHOSEN_COMPILER_TYPE} == clang
 CPPFLAGS+=		-I${LOCALBASE}/include
-. if ${COMPILER_VERSION} >= 40 && ${ARCH} == amd64
+. if ${ARCH} == amd64
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-align16
 . endif
 .endif
@@ -361,8 +367,10 @@ post-patch:
 		${WRKSRC}/sysui/desktop/productversion.mk
 	${REINPLACE_CMD} -e "s|%%JAVA_HOME%%|${JAVA_HOME}|" \
 		${WRKSRC}/desktop/scripts/soffice.sh
+	${REINPLACE_CMD} -e "/#test/i\\${.newline}	return '${GITREVISION}';" \
+		${WRKSRC}/solenv/bin/modules/SvnRevision.pm
 	${REINPLACE_CMD} -e '/^mkdir -p/,$$d' ${CREATE_TREE}
-.if ${COMPILER_TYPE} == gcc
+.if ${CHOSEN_COMPILER_TYPE} == gcc
 	# g++49 -Os sometimes leaves inline class methods undefined,
 	# affects fmgridif.cxx and ColumnControl.cxx
 	# See: <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=65009>
@@ -370,7 +378,7 @@ post-patch:
 		${REINPLACE_CMD} -e "s/ := -Os/ := -Os -fno-devirtualize -fno-devirtualize-speculatively/" ${WRKSRC}/solenv/gbuild/platform/freebsd.mk; \
 		${REINPLACE_CMD} -e "s/=-Os /=-Os -fno-devirtualize -fno-devirtualize-speculatively /" ${WRKSRC}/solenv/inc/unxfbsdi.mk; \
 	fi
-.elif ${ARCH} == i386 && ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 36
+.elif ${ARCH} == i386 && ${CHOSEN_COMPILER_TYPE} == clang
 	# autodoc and uno (bridgetest) core dump when built with with -Os
 	# on i386, affects file.cxx and bridgetest.cxx (at least).
 	# Using -O2 optimiztion works, and -Os is essentially -O2 with out

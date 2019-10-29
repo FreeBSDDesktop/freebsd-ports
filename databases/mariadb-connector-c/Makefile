@@ -1,8 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	mariadb-connector-c
-PORTVERSION=	3.0.6
-CATEGORIES=	databases ipv6
+PORTVERSION=	3.0.10
+PORTREVISION=	1
+CATEGORIES=	databases
 MASTER_SITES=	http://ftp.osuosl.org/pub/${SITESDIR}/ \
 		http://mirrors.supportex.net/${SITESDIR}/ \
 		http://mirror2.hs-esslingen.de/pub/Mirrors/${SITESDIR}/ \
@@ -26,7 +27,7 @@ CONFLICTS_INSTALL=	mariadb[0-9]*-client-* \
 			mysql[0-9]*-client-* \
 			percona[0-9]*-client-*
 
-USES=		cmake compiler:c++11-lib iconv:translit ssl
+USES=		cmake:insource compiler:c++11-lib iconv:translit ssl
 USE_LDCONFIG=	${PREFIX}/lib/mariadb
 SITESDIR=	mariadb/connector-c-${PORTVERSION}
 DOCSDIR=	${PREFIX}/share/doc/mysql

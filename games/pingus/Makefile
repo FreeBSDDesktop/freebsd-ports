@@ -3,9 +3,9 @@
 
 PORTNAME=	pingus
 PORTVERSION=	0.7.6
-PORTREVISION=	15
+PORTREVISION=	21
 CATEGORIES=	games
-MASTER_SITES=	http://mirror.amdmi3.ru/distfiles/
+MASTER_SITES=	https://mirror.amdmi3.ru/distfiles/
 
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Free Lemmings-like game
@@ -13,10 +13,10 @@ COMMENT=	Free Lemmings-like game
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libpng.so:graphics/png \
-		libboost_signals.so:devel/boost-libs
+BUILD_DEPENDS=	${LOCALBASE}/include/boost/signals2.hpp:devel/boost-libs
+LIB_DEPENDS=	libpng.so:graphics/png
 
-USES=		compiler:c++11-lib iconv scons tar:bzip2
+USES=		compiler:c++11-lib gl iconv scons sdl tar:bzip2 xorg
 USE_GL=		gl
 USE_SDL=	sdl image mixer
 LIBS+=		${ICONV_LIB}

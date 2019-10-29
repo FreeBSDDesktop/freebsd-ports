@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	loompy
-DISTVERSION=	2.0.14
+DISTVERSION=	2.0.17
+PORTREVISION=	1
 CATEGORIES=	biology python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,6 +20,7 @@ RUN_DEPENDS=	${PYNUMPY} \
 
 USES=		python:3.6+
 USE_PYTHON=	distutils autoplist
+
 NO_ARCH=	yes
 
 .include <bsd.port.mk>

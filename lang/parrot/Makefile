@@ -3,7 +3,7 @@
 
 PORTNAME=	parrot
 PORTVERSION=	8.1.0
-PORTREVISION=	8
+PORTREVISION=	11
 CATEGORIES=	lang
 MASTER_SITES=	ftp://ftp.parrot.org/pub/parrot/releases/supported/${PORTVERSION}/ \
 		LOCAL/sunpoet
@@ -14,7 +14,6 @@ COMMENT=	Parrot - virtual machine for dynamic languages
 LICENSE=	ART20
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex \
-		gm4:devel/m4 \
 		pcre-config:devel/pcre
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libicudata.so:devel/icu
@@ -23,8 +22,8 @@ OPTIONS_DEFINE=	DOCS
 
 ALL_TARGET=	installable
 CONFIGURE_ARGS=	--cc=${CC} --cxx=${CXX} --link=${CXX} \
-		--ccflags="${CFLAGS} -I${LOCALBASE}/include" \
-		--ld=${CC} --ldflags="${LDFLAGS} -L${LIBDIR} -L${LOCALBASE}/lib" \
+		--ccflags="${CFLAGS}" \
+		--ld=${CC} --ldflags="${LDFLAGS}" \
 		--gc=gms --inline --optimize --parrot_is_shared --verbose \
 		--prefix=${PREFIX} \
 		--icu-config=${LOCALBASE}/bin/icu-config \
@@ -35,12 +34,13 @@ INSTALL_TARGET=	install-dev
 TEST_TARGET=	test
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
-USES=		bison gmake perl5 shebangfix tar:bzip2
+USES=		bison gmake localbase:ldflags perl5 shebangfix tar:bzip2
 SHEBANG_FILES=	tools/dev/create_language.pl \
 		tools/dev/gen_makefile.pl \
 		tools/dev/pprof2cg.pl \
 		tools/dev/reconfigure.pl
 perl_OLD_CMD=	perl
+BINARY_WRAPPERS=	gm4
 
 DOCSDIR=	share/doc/${PORTNAME}/${PORTVERSION}
 PLIST_SUB=	PARROT_VER="${PORTVERSION}"

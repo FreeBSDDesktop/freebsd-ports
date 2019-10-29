@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	quantlib
-PORTVERSION=	1.13
-PORTREVISION=	2
+PORTVERSION=	1.15
+PORTREVISION=	5
 CATEGORIES=	finance math devel
 MASTER_SITES=	https://dl.bintray.com/${PORTNAME}/releases/
 DISTNAME=	QuantLib-${PORTVERSION}
@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
 
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs
 
-USES=	compiler
+USES=		compiler:c++11-lang libtool
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	EMACS=no
@@ -31,11 +31,6 @@ OPTIONS_DEFINE+=EXTRA_SAFETY_CHECKS SESSIONS INTRADAY
 OPTIONS_DEFINE+=THREAD_SAFE_OBSERVER_PATTERN
 OPTIONS_DEFINE+=THREAD_SAFE_SINGLETON_INIT
 OPTIONS_DEFINE+=${OPTIONS_DEFAULT}
-
-.if ${CC} == "cc"
-# The base cc/c++ on FreeBSD-10 is too old for OpenMP.
-OPTIONS_EXCLUDE_FreeBSD_10=OPENMP
-.endif
 
 BENCHMARK_DESC=		Install benchmark (it is always built)
 EXTRA_SAFETY_CHECKS_DESC=Trade performance for run-time checks
@@ -64,5 +59,7 @@ OPENMP_LDFLAGS=		-L${LOCALBASE}/lib
 # unfortunately, devel/llvm${COMPILER_VERSION} may install
 # one too:
 OPENMP_LDFLAGS+=	-L${LOCALBASE}/llvm${COMPILER_VERSION}/lib
+
+CXXFLAGS_i386=	-DBOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS
 
 .include <bsd.port.mk>

@@ -3,8 +3,7 @@
 
 PORTNAME=	qjackctl
 DISTVERSIONPREFIX=	qjackctl_
-DISTVERSION=	0_5_4-1
-DISTVERSIONSUFFIX=	-g75af70c # include the regression fix
+DISTVERSION=	0_6_0
 CATEGORIES=	audio
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -19,9 +18,11 @@ USES=		autoreconf compiler:c++11-lib gl gmake localbase pkgconfig qt:5
 GNU_CONFIGURE=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	rncbc
-USE_QT=		core gui widgets x11extras xml buildtools_build linguisttools_build qmake_build
+USE_QT=		core gui network widgets x11extras xml buildtools_build linguisttools_build qmake_build
 USE_GL=		gl
 USE_CXXSTD=	c++11
+
+BINARY_ALIAS=	qmake=${QMAKE}
 
 OPTIONS_DEFINE=		DBUS SYSTRAY XUNIQUE
 OPTIONS_DEFAULT=	DBUS SYSTRAY XUNIQUE
@@ -30,7 +31,6 @@ OPTIONS_GROUP_AIFACE=	ALSA PORTAUDIO
 
 AIFACE_DESC=		Other audio interfaces
 SYSTRAY_DESC=		System tray icon support
-TOOLKIT_DESC=		Qt toolkit
 XUNIQUE_DESC=		X11 unique/single instance
 
 ALSA_CONFIGURE_ENABLE=	alsa_seq
@@ -45,6 +45,7 @@ PORTAUDIO_LIB_DEPENDS=	libportaudio.so:audio/portaudio
 SYSTRAY_CONFIGURE_ENABLE=	system-tray
 
 XUNIQUE_CONFIGURE_ENABLE=	xunique
+XUNIQUE_USES=			xorg
 XUNIQUE_USE=			XORG=x11
 
 .include <bsd.port.mk>

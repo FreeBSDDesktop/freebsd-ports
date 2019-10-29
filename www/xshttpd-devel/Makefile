@@ -3,7 +3,7 @@
 
 PORTNAME=	xshttpd
 DISTVERSION=	3.7b35
-CATEGORIES=	www ipv6
+CATEGORIES=	www
 MASTER_SITES=	ftp://ftp.stack.nl/pub/xs-httpd/release/ \
 		ftp://mud.stack.nl/pub/xs-httpd/release/
 PKGNAMESUFFIX=	-devel
@@ -43,6 +43,13 @@ PERL_CONFIGURE_WITH=	perl
 
 PORTDOCS=	README ChangeLog
 
+.include <bsd.port.pre.mk>
+
+.if ${SSL_DEFAULT} == base
+BROKEN_FreeBSD_12=	variable has incomplete type 'EVP_CIPHER_CTX' (aka 'struct evp_cipher_ctx_st')
+BROKEN_FreeBSD_13=	variable has incomplete type 'EVP_CIPHER_CTX' (aka 'struct evp_cipher_ctx_st')
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} \
 		-e 's|\(MIME_TYPES\).*|\1 "${LOCALBASE}/etc/mime.types"|' \
@@ -60,4 +67,4 @@ post-install:
 		${STAGEDIR}/var/db/xshttpd/sessions
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
