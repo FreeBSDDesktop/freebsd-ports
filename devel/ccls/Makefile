@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ccls
-DISTVERSION=	0.20190823
+DISTVERSION=	0.20190823.3
 CATEGORIES=	devel
 MASTER_SITES=	LOCAL/tobik
 
@@ -19,7 +19,8 @@ USES=		cmake compiler:c++17-lang localbase
 USE_GITHUB=	yes
 GH_ACCOUNT=	MaskRay
 
-CMAKE_ARGS=	-DClang_DIR:PATH="${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/cmake/clang" \
+CMAKE_ARGS=	-DCCLS_VERSION:STRING="${DISTVERSION}" \
+		-DClang_DIR:PATH="${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/cmake/clang" \
 		-DLLVM_DIR:PATH="${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/cmake/llvm"
 CXXFLAGS+=	-DNDEBUG
 
@@ -28,9 +29,8 @@ PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
 
-DOCS_MASTER_SITES=	LOCAL/tobik:docs \
-			https://pkg.tobik.me/distfiles/:docs
-DOCS_DISTFILES=		MaskRay-ccls.wiki-20190226.tar.gz:docs
+DOCS_MASTER_SITES=	LOCAL/tobik:docs
+DOCS_DISTFILES=		MaskRay-ccls.wiki-20190903.tar.gz:docs
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

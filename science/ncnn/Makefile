@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	ncnn
-DISTVERSION=	20190611-40
-DISTVERSIONSUFFIX=	-gd3be711
+DISTVERSION=	20190908
+PORTREVISION=	1
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -15,9 +15,13 @@ USES=		cmake compiler:c11
 USE_GITHUB=	yes
 GH_ACCOUNT=	Tencent
 
-post-install: # https://github.com/Tencent/ncnn/issues/1130
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/cmake/${PORTNAME}
-	@${MV} ${STAGEDIR}${DATADIR}/* ${STAGEDIR}${PREFIX}/lib/cmake/${PORTNAME}
-	@${RMDIR} ${STAGEDIR}${DATADIR}
+OPTIONS_DEFINE=	VULKAN
+OPTIONS_DEFAULT=VULKAN
+
+VULKAN_DESC=	Vulkan compute support
+VULKAN_BUILD_DEPENDS=	glslangValidator:devel/glslang \
+	${LOCALBASE}/include/vulkan/vulkan.h:devel/vulkan-headers \
+	${LOCALBASE}/lib/libvulkan.so:graphics/vulkan-loader
+VULKAN_CMAKE_BOOL=	NCNN_VULKAN
 
 .include <bsd.port.mk>

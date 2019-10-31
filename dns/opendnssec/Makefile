@@ -3,7 +3,7 @@
 
 PORTNAME=	opendnssec
 PORTVERSION=	1.4.14
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	dns
 MASTER_SITES=	http://dist.opendnssec.org/source/
 
@@ -63,8 +63,8 @@ SCRIPTDATA=	database_create.sqlite3 migrate_keyshare_sqlite3.pl \
 .endif
 
 .if ${PORT_OPTIONS:MSOFTHSM}
-CONFIGURE_ARGS+=	--with-pkcs11-softhsm=${LOCALBASE}/lib/softhsm/libsofthsm.so
-RUN_DEPENDS+=	softhsm>=1.2.0:security/softhsm
+CONFIGURE_ARGS+=	--with-pkcs11-softhsm=${LOCALBASE}/lib/softhsm/libsofthsm2.so
+RUN_DEPENDS+=	softhsm2>=2.5.0:security/softhsm2
 .endif
 
 SCRIPTDATA+=	convert_database.pl

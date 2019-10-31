@@ -610,8 +610,8 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  scripts or nothing, depending on what's available.
 # build			- Actually compile the sources.
 # install		- Install the results of a build.
-# reinstall		- Install the results of a build, ignoring "already installed"
-#				  flag.
+# reinstall		- Install the results of a build, deinstalling any previous
+#				  installation if needed.
 # deinstall		- Remove the installation.
 # deinstall-all	- Remove all installations with the same PKGORIGIN.
 # test			- Run tests for the port.
@@ -1029,6 +1029,7 @@ STAGEDIR?=	${WRKDIR}/stage
 NOTPHONY?=
 FLAVORS?=
 FLAVOR?=
+OVERLAYS?=
 # Disallow forced FLAVOR as make argument since we cannot change it to the
 # proper default.
 .if empty(FLAVOR) && !empty(.MAKEOVERRIDES:MFLAVOR)
@@ -1038,7 +1039,9 @@ FLAVOR?=
 .if !defined(_FLAVOR)
 _FLAVOR:=	${FLAVOR}
 .endif
+.if !defined(PORTS_FEATURES) && empty(${PORTS_FEATURES:MFLAVORS})
 PORTS_FEATURES+=	FLAVORS
+.endif
 MINIMAL_PKG_VERSION=	1.6.0
 
 _PORTS_DIRECTORIES+=	${PKG_DBDIR} ${PREFIX} ${WRKDIR} ${EXTRACT_WRKDIR} \
@@ -1331,6 +1334,7 @@ INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}
 PACKAGES?=		${PORTSDIR}/packages
 TEMPLATES?=		${PORTSDIR}/Templates
 KEYWORDS?=		${PORTSDIR}/Keywords
+WRAPPERSDIR?=	${PORTSDIR}/Mk/Wrappers/
 
 PATCHDIR?=		${MASTERDIR}/files
 FILESDIR?=		${MASTERDIR}/files
@@ -1450,7 +1454,17 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .endif
 .endfor
 .for f in ${USES}
-.include "${USESDIR}/${f:C/\:.*//}.mk"
+.undef _usefound
+.for udir in ${OVERLAYS:C,$,/Mk/Uses,} ${USESDIR}
+_usefile=	${udir}/${f:C/\:.*//}.mk
+.if exists(${_usefile}) && !defined(_usefound)
+_usefound=
+.include "${_usefile}"
+.endif
+.endfor
+.if !defined(_usefound)
+ERROR+=	"Unknown USES=${f:C/\:.*//}"
+.endif
 .endfor
 
 .if !empty(FLAVORS)
@@ -1828,6 +1842,11 @@ PKG_DEPENDS+=	${LOCALBASE}/sbin/pkg:${PKG_ORIGIN}
 .if defined(LLD_UNSAFE) && ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
 LDFLAGS+=	-fuse-ld=bfd
 BINARY_ALIAS+=	ld=${LD}
+.  if ${ARCH} == powerpc64
+# Base ld.bfd can't do ELFv2 which powerpc64 with Clang in base uses
+USE_BINUTILS=	yes
+LDFLAGS+=		-B${LOCALBASE}/bin
+.  endif
 .  if !defined(USE_BINUTILS)
 .    if exists(/usr/bin/ld.bfd)
 LD=	/usr/bin/ld.bfd
@@ -1962,7 +1981,17 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .endif
 .endfor
 .for f in ${_USES_POST}
-.include "${USESDIR}/${f:C/\:.*//}.mk"
+.undef _usefound
+.for udir in ${OVERLAYS:C,$,/Mk/Uses,} ${USESDIR}
+_usefile=	${udir}/${f:C/\:.*//}.mk
+.if exists(${_usefile}) && !defined(_usefound)
+_usefound=
+.include "${_usefile}"
+.endif
+.endfor
+.if !defined(_usefound)
+ERROR+=	"Unknown USES=${f:C/\:.*//}"
+.endif
 .endfor
 
 .if defined(PORTNAME)
@@ -2540,7 +2569,7 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	benchmarks biology cad chinese comms converters databases \
 	deskutils devel docs dns editors elisp emulators enlightenment finance french ftp \
 	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
-	ipv6 irc japanese java kde ${_KDE_CATEGORIES_SUPPORTED} kld korean lang linux lisp \
+	irc japanese java kde ${_KDE_CATEGORIES_SUPPORTED} kld korean lang linux lisp \
 	mail mate math mbone misc multimedia net net-im net-mgmt net-p2p net-vpn news \
 	palm parallel pear perl5 plan9 polish portuguese ports-mgmt \
 	print python ruby rubygems russian \
@@ -3212,8 +3241,7 @@ do-configure:
 .endif
 
 # Build
-# XXX: ${MAKE_ARGS:N${DESTDIRNAME}=*} would be easier but it is not valid with the old fmake
-DO_MAKE_BUILD?=	${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS:C,^${DESTDIRNAME}=.*,,g}
+DO_MAKE_BUILD?=	${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS:N${DESTDIRNAME}=*}
 .if !target(do-build)
 do-build:
 	@(cd ${BUILD_WRKSRC}; if ! ${DO_MAKE_BUILD} ${ALL_TARGET}; then \
@@ -3333,7 +3361,7 @@ do-install:
 # Test
 
 .if !target(do-test) && defined(TEST_TARGET)
-DO_MAKE_TEST?=	${SETENV} ${TEST_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${TEST_ARGS:C,^${DESTDIRNAME}=.*,,g}
+DO_MAKE_TEST?=	${SETENV} ${TEST_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${TEST_ARGS:N${DESTDIRNAME}=*}
 do-test:
 	@(cd ${TEST_WRKSRC}; if ! ${DO_MAKE_TEST} ${TEST_TARGET}; then \
 		if [ -n "${TEST_FAIL_MESSAGE}" ] ; then \
@@ -3650,7 +3678,7 @@ checkpatch:
 .if !target(reinstall)
 reinstall:
 	@${RM} ${INSTALL_COOKIE} ${PACKAGE_COOKIE}
-	@cd ${.CURDIR} && DEPENDS_TARGET="${DEPENDS_TARGET}" ${MAKE} -DFORCE_PKG_REGISTER install
+	@cd ${.CURDIR} && DEPENDS_TARGET="${DEPENDS_TARGET}" ${MAKE} deinstall install
 .endif
 
 .if !target(restage)
@@ -3851,20 +3879,8 @@ _CHECKSUM_INIT_ENV= \
 # As we're fetching new distfiles, that are not in the distinfo file, disable
 # checksum and sizes checks.
 makesum: check-sanity
-.if !empty(DISTFILES)
-	@${SETENV} \
-			${_DO_FETCH_ENV} ${_MASTER_SITES_ENV} \
-			dp_NO_CHECKSUM=yes dp_DISABLE_SIZE=yes \
-			dp_SITE_FLAVOR=MASTER \
-			${SH} ${SCRIPTSDIR}/do-fetch.sh ${DISTFILES:C/.*/'&'/}
-.endif
-.if defined(PATCHFILES) && !empty(PATCHFILES)
-	@${SETENV} \
-			${_DO_FETCH_ENV} ${_PATCH_SITES_ENV} \
-			dp_NO_CHECKSUM=yes dp_DISABLE_SIZE=yes \
-			dp_SITE_FLAVOR=PATCH \
-			${SH} ${SCRIPTSDIR}/do-fetch.sh ${PATCHFILES:C/:-p[0-9]//:C/.*/'&'/}
-.endif
+	@cd ${.CURDIR} && ${MAKE} fetch NO_CHECKSUM=yes \
+			DISABLE_SIZE=yes DISTFILES="${DISTFILES}"
 	@${SETENV} \
 			${_CHECKSUM_INIT_ENV} \
 			dp_CHECKSUM_ALGORITHMS='${CHECKSUM_ALGORITHMS:tu}' \
@@ -3965,6 +3981,7 @@ ${deptype:tl}-depends:
 		dp_SH="${SH}" \
 		dp_SCRIPTSDIR="${SCRIPTSDIR}" \
 		PORTSDIR="${PORTSDIR}" \
+		dp_OVERLAYS="${OVERLAYS}" \
 		dp_MAKE="${MAKE}" \
 		dp_MAKEFLAGS='${.MAKEFLAGS}' \
 		${SH} ${SCRIPTSDIR}/do-depends.sh
@@ -4019,11 +4036,13 @@ DEPENDS-LIST= \
 			dp_PKGNAME="${PKGNAME}" \
 			dp_PKG_INFO="${PKG_INFO}" \
 			dp_SCRIPTSDIR="${SCRIPTSDIR}" \
+			dp_OVERLAYS="${OVERLAYS}" \
 			${SH} ${SCRIPTSDIR}/depends-list.sh \
 			${DEPENDS_SHOW_FLAVOR:D-f}
 
 ALL-DEPENDS-LIST=			${DEPENDS-LIST} -r ${_UNIFIED_DEPENDS:Q}
 ALL-DEPENDS-FLAVORS-LIST=	${DEPENDS-LIST} -f -r ${_UNIFIED_DEPENDS:Q}
+DEINSTALL-DEPENDS-FLAVORS-LIST=	${DEPENDS-LIST} -f -r ${_UNIFIED_DEPENDS:N${PKG_DEPENDS}:Q}
 MISSING-DEPENDS-LIST=		${DEPENDS-LIST} -m ${_UNIFIED_DEPENDS:Q}
 BUILD-DEPENDS-LIST=			${DEPENDS-LIST} "${PKG_DEPENDS} ${EXTRACT_DEPENDS} ${PATCH_DEPENDS} ${FETCH_DEPENDS} ${BUILD_DEPENDS} ${LIB_DEPENDS}"
 RUN-DEPENDS-LIST=			${DEPENDS-LIST} "${LIB_DEPENDS} ${RUN_DEPENDS}"
@@ -4048,7 +4067,7 @@ limited-clean-depends:
 .if !target(deinstall-depends)
 deinstall-depends:
 	@recursive_cmd="deinstall"; \
-	    recursive_dirs="$$(${ALL-DEPENDS-FLAVORS-LIST})"; \
+		recursive_dirs="$$(${DEINSTALL-DEPENDS-FLAVORS-LIST})"; \
 		${_FLAVOR_RECURSIVE_SH}
 .endif
 
@@ -4639,12 +4658,9 @@ STAGE_ARGS=		-i ${STAGEDIR}
 fake-pkg:
 .if defined(INSTALLS_DEPENDS)
 	@${ECHO_MSG} "===>   Registering installation for ${PKGNAME} as automatic"
-.else
-	@${ECHO_MSG} "===>   Registering installation for ${PKGNAME}"
-.endif
-.if defined(INSTALLS_DEPENDS)
 	@${SETENV} ${PKG_ENV} FORCE_POST="${_FORCE_POST_PATTERNS}" ${PKG_REGISTER} -d ${STAGE_ARGS} -m ${METADIR} -f ${TMPPLIST}
 .else
+	@${ECHO_MSG} "===>   Registering installation for ${PKGNAME}"
 	@${SETENV} ${PKG_ENV} FORCE_POST="${_FORCE_POST_PATTERNS}" ${PKG_REGISTER} ${STAGE_ARGS} -m ${METADIR} -f ${TMPPLIST}
 .endif
 	@${RM} -r ${METADIR}
@@ -5091,6 +5107,15 @@ create-binary-alias: ${BINARY_LINKDIR}
 .endif
 .endif
 
+.if !empty(BINARY_WRAPPERS)
+.if !target(create-binary-wrappers)
+create-binary-wrappers: ${BINARY_LINKDIR}
+.for bin in ${BINARY_WRAPPERS}
+	@${INSTALL_SCRIPT} ${WRAPPERSDIR}/${bin} ${BINARY_LINKDIR}
+.endfor
+.endif
+.endif
+
 .if defined(WARNING)
 WARNING_WAIT?=	10
 show-warnings:
@@ -5191,6 +5216,7 @@ _PATCH_SEQ=		050:ask-license 100:patch-message 150:patch-depends \
 				${_OPTIONS_patch} ${_USES_patch}
 _CONFIGURE_DEP=	patch
 _CONFIGURE_SEQ=	150:build-depends 151:lib-depends 160:create-binary-alias \
+				161:create-binary-wrappers \
 				200:configure-message \
 				300:pre-configure 450:pre-configure-script \
 				490:run-autotools-fixup 500:do-configure 700:post-configure \

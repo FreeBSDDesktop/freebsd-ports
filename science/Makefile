@@ -149,7 +149,6 @@
     SUBDIR += mdynamix
     SUBDIR += medit
     SUBDIR += meep
-    SUBDIR += metaf2xml
     SUBDIR += metaphysicl
     SUBDIR += minc2
     SUBDIR += mmdb2
@@ -210,6 +209,7 @@
     SUBDIR += p5-Mcstas-Tools
     SUBDIR += p5-PerlMol
     SUBDIR += p5-Physics-Unit
+    SUBDIR += packmol
     SUBDIR += pagmo2
     SUBDIR += paje
     SUBDIR += paraview
@@ -252,7 +252,6 @@
     SUBDIR += py-netCDF4
     SUBDIR += py-obspy
     SUBDIR += py-oddt
-    SUBDIR += py-onnx
     SUBDIR += py-openpiv
     SUBDIR += py-paida
     SUBDIR += py-paramz
@@ -332,8 +331,8 @@
     SUBDIR += vmd
     SUBDIR += voro++
     SUBDIR += wannier90
-    SUBDIR += wxmacmolplt
     SUBDIR += wwplot
+    SUBDIR += wxmacmolplt
     SUBDIR += xcrysden
     SUBDIR += xdrawchem
     SUBDIR += xfce4-equake-plugin

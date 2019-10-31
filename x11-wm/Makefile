@@ -26,6 +26,7 @@
     SUBDIR += compizconfig-backend-gconf
     SUBDIR += compizconfig-python
     SUBDIR += compton
+    SUBDIR += compton-yshui
     SUBDIR += ctwm
     SUBDIR += cwm
     SUBDIR += devilspie
@@ -52,12 +53,9 @@
     SUBDIR += fluxconf
     SUBDIR += fluxter
     SUBDIR += flwm
-    SUBDIR += fvwm
     SUBDIR += fvwm-crystal
     SUBDIR += fvwm2
     SUBDIR += gcompmgr
-    SUBDIR += genmenu
-    SUBDIR += golem
     SUBDIR += herbstluftwm
     SUBDIR += hikari
     SUBDIR += hs-xmonad
@@ -84,7 +82,6 @@
     SUBDIR += mcwm
     SUBDIR += metacity
     SUBDIR += muffin
-    SUBDIR += musca
     SUBDIR += mutter
     SUBDIR += nickleby
     SUBDIR += obapps
@@ -97,12 +94,10 @@
     SUBDIR += openbox
     SUBDIR += oroborus
     SUBDIR += pager
-    SUBDIR += pawm
     SUBDIR += peksystray
     SUBDIR += pekwm
     SUBDIR += phluid
     SUBDIR += piewm
-    SUBDIR += plank
     SUBDIR += plasma5-kdecoration
     SUBDIR += plasma5-kwin
     SUBDIR += plwm
@@ -129,15 +124,12 @@
     SUBDIR += vtwm
     SUBDIR += w9wm
     SUBDIR += wayfire
-    SUBDIR += weewm
-    SUBDIR += windowlab
     SUBDIR += windowmaker
     SUBDIR += wm2
     SUBDIR += wmakerconf
     SUBDIR += wmanager
     SUBDIR += wmanager-addons
     SUBDIR += wmconfig
-    SUBDIR += wmfs
     SUBDIR += wmii
     SUBDIR += wmii-devel
     SUBDIR += wmname
