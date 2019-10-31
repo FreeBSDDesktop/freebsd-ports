@@ -20,7 +20,7 @@ IGNORE=	USES=motif takes no arguments
 .if defined(WANT_LESSTIF)
 LIB_DEPENDS+=		libXm.so:x11-toolkits/lesstif
 .else
-USE_XORG+=	xpm
+_USE_XORG+=	xpm
 LIB_DEPENDS+=		libXm.so.4:x11-toolkits/open-motif
 .endif
 
@@ -28,7 +28,7 @@ MOTIFLIB?=	-L${LOCALBASE}/lib -lXm
 MAKE_ENV+=	MOTIFLIB="${MOTIFLIB}"
 
 # We only need USES=xorg if we want USE_XORG modules
-.if defined(USE_XORG) && !empty(USE_XORG)
+.if defined(_USE_XORG) && !empty(_USE_XORG)
 .include "${USESDIR}/xorg.mk"
 .endif
 
