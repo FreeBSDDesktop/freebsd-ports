@@ -40,13 +40,13 @@ USE_GL=		glu
 .if !defined(_GL_${_component}_LIB_DEPENDS)
 IGNORE=		uses unknown GL component
 .else
-USE_XORG+=	${_GL_${_component}_USE_XORG}
+_USE_XORG+=	${_GL_${_component}_USE_XORG}
 LIB_DEPENDS+=	${_GL_${_component}_LIB_DEPENDS}
 .endif
 .endfor
 
 # We only need USES=xorg if we want USE_XORG modules
-.if defined(USE_XORG) && !empty(USE_XORG)
+.if defined(_USE_XORG) && !empty(_USE_XORG)
 .include "${USESDIR}/xorg.mk"
 .endif
 

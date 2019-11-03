@@ -31,7 +31,9 @@ _INCLUDE_USES_XORG_POST_MK=	yes
 IGNORE=		USES=xorg takes no arguments
 .  endif
 
-.  if !defined(USE_XORG)
+_USE_XORG+=	${USE_XORG}
+
+.  if !defined(_USE_XORG)
 IGNORE=		need to specify xorg modules with USE_XORG
 .  endif
 
@@ -139,14 +141,14 @@ xxf86vm_LIB_PC_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/xxf86vm.pc:x11/libXxf86v
 CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
 .  endif
 
-.  for _module in ${USE_XORG:M*\:both:C/\:.*//g}
+.  for _module in ${_USE_XORG:M*\:both:C/\:.*//g}
 .    if ${XORG_MODULES:M${_module}} == ""
 IGNORE=		requires unknown xorg module (${_module})
 .    endif
 RUN_DEPENDS+=	${${_module}_BUILD_DEPENDS}
 .  endfor
 
-.  for _module in ${USE_XORG:C/\:both$//g}
+.  for _module in ${_USE_XORG:C/\:both$//g}
 .    if ${XORG_MODULES:M${_module}} == ""
 IGNORE=		requires unknown xorg module (${_module})
 .    endif
