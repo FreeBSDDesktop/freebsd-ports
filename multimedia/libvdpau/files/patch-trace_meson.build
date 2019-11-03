@@ -1,0 +1,11 @@
+--- trace/meson.build.orig	2019-08-28 17:57:55 UTC
++++ trace/meson.build
+@@ -1,7 +1,7 @@
+ trace = shared_library('vdpau_trace',
+     sources : 'vdpau_trace.cpp',
+     include_directories : inc,
+-    dependencies : libdl,
++    dependencies : [x11, libdl],
+     version : '1.0.0',
+     install : true,
+     install_dir : moduledir,
