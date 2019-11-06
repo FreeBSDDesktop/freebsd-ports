@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	rav1e
-PORTVERSION=	s20191030
+PORTVERSION=	s20191104
 CATEGORIES=	multimedia
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -16,7 +16,7 @@ BUILD_DEPENDS_amd64=	nasm:devel/nasm
 USES=		cargo
 USE_GITHUB=	yes
 GH_ACCOUNT=	xiph
-GH_TAGNAME=	610946f9
+GH_TAGNAME=	9e1c7110
 PLIST_FILES=	bin/${PORTNAME}
 
 CARGO_CRATES=	adler32-1.0.4 \
@@ -48,7 +48,7 @@ CARGO_CRATES=	adler32-1.0.4 \
 		clang-sys-0.28.1 \
 		clap-2.33.0 \
 		clicolors-control-1.0.1 \
-		console-0.9.0 \
+		console-0.9.1 \
 		crc32fast-1.2.0 \
 		criterion-0.3.0 \
 		criterion-plot-0.4.0 \
@@ -81,10 +81,11 @@ CARGO_CRATES=	adler32-1.0.4 \
 		libloading-0.5.2 \
 		log-0.4.8 \
 		memchr-2.2.1 \
-		memoffset-0.5.1 \
+		memoffset-0.5.2 \
 		metadeps-1.1.2 \
 		nodrop-0.1.14 \
 		nom-4.2.3 \
+		noop_proc_macro-0.1.0 \
 		num-derive-0.3.0 \
 		num-integer-0.1.41 \
 		num-iter-0.1.39 \
@@ -95,7 +96,7 @@ CARGO_CRATES=	adler32-1.0.4 \
 		paste-0.1.6 \
 		paste-impl-0.1.6 \
 		peeking_take_while-0.1.2 \
-		pkg-config-0.3.16 \
+		pkg-config-0.3.17 \
 		png-0.15.0 \
 		ppv-lite86-0.2.6 \
 		pretty_assertions-0.6.1 \
@@ -149,7 +150,7 @@ CARGO_CRATES=	adler32-1.0.4 \
 		version_check-0.1.5 \
 		walkdir-2.2.9 \
 		wasi-0.7.0 \
-		which-3.0.0 \
+		which-3.1.0 \
 		winapi-0.3.8 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
 		winapi-util-0.1.2 \

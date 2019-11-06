@@ -1162,7 +1162,7 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${SRC
 .endif
 _EXPORTED_VARS+=	OSVERSION
 
-.if (${OPSYS} == FreeBSD && ${OSVERSION} < 1102000) || \
+.if (${OPSYS} == FreeBSD && ${OSVERSION} < 1103000) || \
     (${OPSYS} == DragonFly && ${DFLYVERSION} < 400400)
 _UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
 								are guaranteed to build on this system. Please upgrade to a supported release.
@@ -1352,13 +1352,6 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .if defined(USE_XORG) && (!defined(USES) || !${USES:Mxorg})
 DEV_WARNING+=		"Using USE_XORG alone is deprecated, please use USES=xorg"
 USES+=	xorg
-.endif
-
-.if defined(XORG_CAT)
-DEV_WARNING+=		"Using XORG_CAT is deprecated, please use USES=xorg-cat:category"
-.if !defined(USES) || !${USES:Mxorg-cat*}
-USES+=	xorg-cat:${XORG_CAT}
-.endif
 .endif
 
 .if defined(USE_PHP) && (!defined(USES) || ( defined(USES) && !${USES:Mphp*} ))
@@ -2571,7 +2564,7 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
 	irc japanese java kde ${_KDE_CATEGORIES_SUPPORTED} kld korean lang linux lisp \
 	mail mate math mbone misc multimedia net net-im net-mgmt net-p2p net-vpn news \
-	palm parallel pear perl5 plan9 polish portuguese ports-mgmt \
+	parallel pear perl5 plan9 polish portuguese ports-mgmt \
 	print python ruby rubygems russian \
 	scheme science security shells spanish sysutils \
 	tcl textproc tk \
