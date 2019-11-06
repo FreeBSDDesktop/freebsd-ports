@@ -113,7 +113,7 @@ MASTER_SITES?=		XORG/individual/${_XORG_CAT}
 #
 ## All xorg ports needs xorg-macros.
 .  if ${PORTNAME} != xorg-macros
-_USE_XORG+=      xorg-macros
+USE_XORG+=      xorg-macros
 .  endif
 
 .  if ${_XORG_CAT} == app
@@ -123,7 +123,7 @@ _USE_XORG+=      xorg-macros
 # Nothing at the moment.
 
 .  elif ${_XORG_CAT} == driver
-_USE_XORG+=	xi xorg-server xorgproto
+USE_XORG+=	xi xorg-server xorgproto
 .    if ${_XORG_BUILDSYS} == meson
 # Put special stuff for meson here
 .    else
@@ -173,12 +173,12 @@ CONFIGURE_ARGS+=	--with-xkb-path=${LOCALBASE}/share/X11/xkb \
 			--with-fontrootdir=${LOCALBASE}/share/fonts
 .    endif
 LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
-_USE_XORG+=	fontutil
+USE_XORG+=	fontutil
 
 .  endif # ${_XORG_CAT} == <category>
 
 # We only need USES=xorg if we want USE_XORG modules
-.  if defined(_USE_XORG) && !empty(_USE_XORG)
+.  if defined(USE_XORG) && !empty(USE_XORG)
 .include "${USESDIR}/xorg.mk"
 .  endif
 
