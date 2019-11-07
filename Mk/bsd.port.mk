@@ -1349,11 +1349,6 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .include "${PORTSDIR}/Mk/bsd.local.mk"
 .endif
 
-.if defined(USE_XORG) && (!defined(USES) || !${USES:Mxorg})
-DEV_WARNING+=		"Using USE_XORG alone is deprecated, please use USES=xorg"
-USES+=	xorg
-.endif
-
 .if defined(USE_PHP) && (!defined(USES) || ( defined(USES) && !${USES:Mphp*} ))
 DEV_WARNING+=		"Using USE_PHP alone is deprecated, please use USES=php"
 USES+=	php
@@ -1396,11 +1391,6 @@ USES+=	gnome
 .if defined(USE_MATE) && empty(USES:Mmate)
 DEV_WARNING+=	"Using USE_MATE alone is deprecated, please add USES=mate."
 USES+=	mate
-.endif
-
-.if defined(USE_GL) && (!defined(USES) || !${USES:Mgl})
-DEV_WARNING+=	"Using USE_GL alone is deprecated, please add USES=gl."
-USES+=	gl
 .endif
 
 .if defined(USE_SDL) && (!defined(USES) || !${USES:Msdl})
@@ -1929,11 +1919,6 @@ _FORCE_POST_PATTERNS=	rmdir kldxref mkfontscale mkfontdir fc-cache \
 
 .if defined(USE_LOCAL_MK)
 .include "${PORTSDIR}/Mk/bsd.local.mk"
-.endif
-
-.if defined(USE_XORG) && (!defined(USES) || ( defined(USES) && !${USES:Mxorg} ))
-DEV_WARNING+=	"Using USE_XORG alone is deprecated, please use USES=xorg"
-_USES_POST+=	xorg
 .endif
 
 .if defined(WANT_GSTREAMER) || defined(USE_GSTREAMER) || defined(USE_GSTREAMER1)

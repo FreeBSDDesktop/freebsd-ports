@@ -176,6 +176,14 @@ DEV_ERROR+=	"PORTEPOCH needs to be an integer \>= 0"
 DEV_ERROR+=	"PORTREVISION needs to be an integer \>= 0"
 .endif
 
+.if defined(USE_XORG) && (!defined(USES) || !${USES:Mxorg})
+DEV_ERROR+=	"USE_XORG without USES=xorg is no longer supported"
+.endif
+
+.if defined(USE_GL) && (!defined(USES) || !${USES:Mgl})
+DEV_ERROR+=	"USE_GL without USES=gl is no longer supported"
+.endif
+
 # Whitelist of options helper lookalikes that should not be reported on:
 _OPTIONS_HELPERS_SEEN+=	OPENSSL_LDFLAGS
 _BROKEN_OPTIONS_HELPERS=
