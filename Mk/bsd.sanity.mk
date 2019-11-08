@@ -176,11 +176,11 @@ DEV_ERROR+=	"PORTEPOCH needs to be an integer \>= 0"
 DEV_ERROR+=	"PORTREVISION needs to be an integer \>= 0"
 .endif
 
-.if defined(USE_XORG) && (!defined(USES) || !${USES:Mxorg})
+.if defined(USE_XORG) && !empty(USE_XORG) && (!defined(USES) || !${USES:Mxorg})
 DEV_ERROR+=	"USE_XORG without USES=xorg is no longer supported"
 .endif
 
-.if defined(USE_GL) && (!defined(USES) || !${USES:Mgl})
+.if defined(USE_GL) && !empty(USE_GL) && (!defined(USES) || !${USES:Mgl})
 DEV_ERROR+=	"USE_GL without USES=gl is no longer supported"
 .endif
 
