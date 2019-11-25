@@ -727,7 +727,7 @@ litecoin:*:778:778::0:0:litecoin Daemon:/var/db/litecoin:/usr/sbin/nologin
 bitcoin:*:779:779::0:0:bitcoin Daemon:/var/db/bitcoin:/usr/sbin/nologin
 zetacoin:*:780:780::0:0:ZetaCoin Daemon:/nonexistent:/usr/sbin/nologin
 monero:*:781:781::0:0:Monero Daemon:/var/db/monero:/usr/sbin/nologin
-# free: 782
+zeek:*:782:782::0:0:Zeek Network Security Monitor:/nonexistent:/usr/sbin/nologin
 # free: 783
 # free: 784
 # free: 785
@@ -797,9 +797,9 @@ graylog:*:848:848::0:0:Graylog user:/nonexistent:/usr/sbin/nologin
 chronyd:*:849:849::0:0:chronyd user:/nonexistent:/usr/sbin/nologin
 qbittorrent:*:850:850::0:0:qBittorrent Daemon User:/var/db/qbittorrent/conf:/usr/sbin/nologin
 cassandra:*:851:851::0:0:Cassandra DB Daemon User:/var/db/cassandra:/usr/sbin/nologin
-# free: 852
+p0f:*:852:852::0:0:p0f unprivileged user:/var/empty:/usr/sbin/nologin
 _geodns:*:853:853::0:0:GeoDNS User:/var/empty:/usr/sbin/nologin
-# free: 854
+ebusd:*:854:854::0:0:eBUS Daemon user:/nonexistent:/usr/sbin/nologin
 # free: 855
 # free: 856
 # free: 857

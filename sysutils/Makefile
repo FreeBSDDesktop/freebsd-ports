@@ -27,6 +27,7 @@
     SUBDIR += ah-tty
     SUBDIR += aimage
     SUBDIR += aird
+    SUBDIR += alfio
     SUBDIR += am-utils
     SUBDIR += amazon-ssm-agent
     SUBDIR += amdmsrtweaker
@@ -37,6 +38,7 @@
     SUBDIR += android-file-transfer
     SUBDIR += android-file-transfer-qt5
     SUBDIR += ansible
+    SUBDIR += ansible-sysrc
     SUBDIR += ansible1
     SUBDIR += ansible23
     SUBDIR += ansible24
@@ -44,7 +46,9 @@
     SUBDIR += ansible26
     SUBDIR += ansible27
     SUBDIR += anvil
+    SUBDIR += apache-mesos
     SUBDIR += apachetop
+    SUBDIR += apcctrl
     SUBDIR += apcpwr
     SUBDIR += apcupsd
     SUBDIR += aptly
@@ -104,7 +108,6 @@
     SUBDIR += bfs
     SUBDIR += bhyve-firmware
     SUBDIR += bhyve-rc
-    SUBDIR += bibelot
     SUBDIR += biosfont
     SUBDIR += bkpupsd
     SUBDIR += bksh
@@ -196,7 +199,6 @@
     SUBDIR += copytape
     SUBDIR += coreos-ct
     SUBDIR += coreutils
-    SUBDIR += cotty
     SUBDIR += cpdup
     SUBDIR += cpu
     SUBDIR += cpu-x
@@ -241,6 +243,7 @@
     SUBDIR += dim
     SUBDIR += dirdiff
     SUBDIR += direnv
+    SUBDIR += direvent
     SUBDIR += dirvish
     SUBDIR += diskcheckd
     SUBDIR += diskimage-tools
@@ -267,7 +270,6 @@
     SUBDIR += dsbmd
     SUBDIR += dsbsu
     SUBDIR += dsbwrtsysctl
-    SUBDIR += dt
     SUBDIR += dtc
     SUBDIR += dtpstree
     SUBDIR += du2ps
@@ -275,6 +277,7 @@
     SUBDIR += dunst
     SUBDIR += dupd
     SUBDIR += duplicity
+    SUBDIR += duplicity-devel
     SUBDIR += duply
     SUBDIR += dupmerge
     SUBDIR += dvd+rw-tools
@@ -377,8 +380,10 @@
     SUBDIR += fusefs-gstfs
     SUBDIR += fusefs-gunzip
     SUBDIR += fusefs-hfsfuse
+    SUBDIR += fusefs-httpdirfs
     SUBDIR += fusefs-httpfs
     SUBDIR += fusefs-ifuse
+    SUBDIR += fusefs-jmtpfs
     SUBDIR += fusefs-libs
     SUBDIR += fusefs-libs3
     SUBDIR += fusefs-lkl
@@ -419,7 +424,6 @@
     SUBDIR += gigolo
     SUBDIR += gkfreq
     SUBDIR += gkleds2
-    SUBDIR += gkrellfire
     SUBDIR += gkrellflynn
     SUBDIR += gkrellm-trayicons
     SUBDIR += gkrellm2
@@ -464,6 +468,7 @@
     SUBDIR += hare
     SUBDIR += hared
     SUBDIR += hatop
+    SUBDIR += hcloud
     SUBDIR += hdrecover
     SUBDIR += healthd
     SUBDIR += heartbeat
@@ -581,6 +586,7 @@
     SUBDIR += libretto-config
     SUBDIR += libsunacl
     SUBDIR += libsysstat
+    SUBDIR += libudisks
     SUBDIR += liburcu
     SUBDIR += life-preserver
     SUBDIR += lineak-defaultplugin
@@ -600,7 +606,6 @@
     SUBDIR += lmon
     SUBDIR += lnav
     SUBDIR += lockfile-progs
-    SUBDIR += log_analysis
     SUBDIR += logrotate
     SUBDIR += logstalgia
     SUBDIR += logstash-forwarder
@@ -610,6 +615,7 @@
     SUBDIR += logwatch
     SUBDIR += lookat
     SUBDIR += lr
+    SUBDIR += lsblk
     SUBDIR += lscpu
     SUBDIR += lsof
     SUBDIR += lsop
@@ -630,7 +636,6 @@
     SUBDIR += mac_nonet
     SUBDIR += mac_rtprio
     SUBDIR += magicrescue
-    SUBDIR += makeztxt
     SUBDIR += manck
     SUBDIR += mapchan
     SUBDIR += mapdir
@@ -680,7 +685,6 @@
     SUBDIR += mkfile
     SUBDIR += mkfwimage
     SUBDIR += mkntpwd
-    SUBDIR += mksunbootcd
     SUBDIR += mmc-utils
     SUBDIR += mmve
     SUBDIR += mnrpes
@@ -742,6 +746,7 @@
     SUBDIR += no-login
     SUBDIR += node_exporter
     SUBDIR += nomad
+    SUBDIR += nomad-pot-driver
     SUBDIR += npadmin
     SUBDIR += nq
     SUBDIR += nrg2iso
@@ -758,7 +763,9 @@
     SUBDIR += ohmu
     SUBDIR += omnibackup
     SUBDIR += open
+    SUBDIR += opencorsairlink
     SUBDIR += openipmi
+    SUBDIR += opensbi
     SUBDIR += openupsd
     SUBDIR += openzfs
     SUBDIR += openzfs-kmod
@@ -776,6 +783,7 @@
     SUBDIR += p5-File-Listing
     SUBDIR += p5-File-Log
     SUBDIR += p5-File-Next
+    SUBDIR += p5-File-Rename
     SUBDIR += p5-File-Signature
     SUBDIR += p5-File-Stat-Bits
     SUBDIR += p5-File-Stat-ModeString
@@ -849,6 +857,7 @@
     SUBDIR += parafly
     SUBDIR += parallel
     SUBDIR += pass-otp
+    SUBDIR += pass-update
     SUBDIR += password-store
     SUBDIR += passwordsafe
     SUBDIR += patchelf
@@ -861,7 +870,6 @@
     SUBDIR += pcbsd-libsh
     SUBDIR += pcbsd-syscache
     SUBDIR += pcbsd-utils
-    SUBDIR += pcbsd-utils-qt5
     SUBDIR += pciutils
     SUBDIR += pcpustat
     SUBDIR += pdixtract
@@ -881,6 +889,7 @@
     SUBDIR += pefs-kmod
     SUBDIR += personality
     SUBDIR += pesign
+    SUBDIR += pfetch
     SUBDIR += pflogx
     SUBDIR += pfstat
     SUBDIR += pftables
@@ -892,10 +901,13 @@
     SUBDIR += php72-posix
     SUBDIR += php73-fileinfo
     SUBDIR += php73-posix
+    SUBDIR += php74-fileinfo
+    SUBDIR += php74-posix
     SUBDIR += phpfpm_exporter
     SUBDIR += phybs
     SUBDIR += pick
     SUBDIR += pidof
+    SUBDIR += pies
     SUBDIR += pipemeter
     SUBDIR += plasma-pass
     SUBDIR += plasma5-discover
@@ -951,60 +963,9 @@
     SUBDIR += py-ansible-runner
     SUBDIR += py-azure-cli
     SUBDIR += py-azure-cli-acr
-    SUBDIR += py-azure-cli-acs
-    SUBDIR += py-azure-cli-advisor
-    SUBDIR += py-azure-cli-ams
-    SUBDIR += py-azure-cli-appservice
-    SUBDIR += py-azure-cli-backup
     SUBDIR += py-azure-cli-base
-    SUBDIR += py-azure-cli-batch
-    SUBDIR += py-azure-cli-batchai
-    SUBDIR += py-azure-cli-billing
-    SUBDIR += py-azure-cli-botservice
-    SUBDIR += py-azure-cli-cdn
-    SUBDIR += py-azure-cli-cloud
-    SUBDIR += py-azure-cli-cognitiveservices
-    SUBDIR += py-azure-cli-configure
-    SUBDIR += py-azure-cli-consumption
-    SUBDIR += py-azure-cli-container
     SUBDIR += py-azure-cli-core
-    SUBDIR += py-azure-cli-cosmosdb
-    SUBDIR += py-azure-cli-dla
-    SUBDIR += py-azure-cli-dls
-    SUBDIR += py-azure-cli-dms
-    SUBDIR += py-azure-cli-eventgrid
-    SUBDIR += py-azure-cli-eventhubs
-    SUBDIR += py-azure-cli-extension
-    SUBDIR += py-azure-cli-feedback
-    SUBDIR += py-azure-cli-find
-    SUBDIR += py-azure-cli-hdinsight
-    SUBDIR += py-azure-cli-interactive
-    SUBDIR += py-azure-cli-iot
-    SUBDIR += py-azure-cli-iotcentral
-    SUBDIR += py-azure-cli-keyvault
-    SUBDIR += py-azure-cli-kusto
-    SUBDIR += py-azure-cli-lab
-    SUBDIR += py-azure-cli-maps
-    SUBDIR += py-azure-cli-monitor
-    SUBDIR += py-azure-cli-network
-    SUBDIR += py-azure-cli-policyinsights
-    SUBDIR += py-azure-cli-profile
-    SUBDIR += py-azure-cli-rdbms
-    SUBDIR += py-azure-cli-redis
-    SUBDIR += py-azure-cli-relay
-    SUBDIR += py-azure-cli-reservations
-    SUBDIR += py-azure-cli-resource
-    SUBDIR += py-azure-cli-role
-    SUBDIR += py-azure-cli-search
-    SUBDIR += py-azure-cli-security
-    SUBDIR += py-azure-cli-servicebus
-    SUBDIR += py-azure-cli-servicefabric
-    SUBDIR += py-azure-cli-signalr
-    SUBDIR += py-azure-cli-sql
-    SUBDIR += py-azure-cli-sqlvm
-    SUBDIR += py-azure-cli-storage
     SUBDIR += py-azure-cli-telemetry
-    SUBDIR += py-azure-cli-vm
     SUBDIR += py-bcfg2
     SUBDIR += py-bitrot
     SUBDIR += py-borgmatic
@@ -1028,6 +989,7 @@
     SUBDIR += py-google-compute-engine
     SUBDIR += py-halite
     SUBDIR += py-hared
+    SUBDIR += py-hcloud
     SUBDIR += py-honcho
     SUBDIR += py-hpilo
     SUBDIR += py-iowait
@@ -1106,7 +1068,6 @@
     SUBDIR += restic
     SUBDIR += retail
     SUBDIR += rex
-    SUBDIR += rfstool
     SUBDIR += rhc
     SUBDIR += riak-cs
     SUBDIR += rinse
@@ -1116,6 +1077,7 @@
     SUBDIR += roottail
     SUBDIR += rovclock
     SUBDIR += rpi-firmware
+    SUBDIR += rshim-user-space
     SUBDIR += rsnapshot
     SUBDIR += rsyncbackup
     SUBDIR += rsyncrypto
@@ -1219,6 +1181,8 @@
     SUBDIR += samefile
     SUBDIR += samesame
     SUBDIR += sample
+    SUBDIR += sanoid
+    SUBDIR += sanoid-devel
     SUBDIR += sas2ircu
     SUBDIR += sas3ircu
     SUBDIR += savelogs
@@ -1254,10 +1218,8 @@
     SUBDIR += signon-plugin-oauth2
     SUBDIR += signon-qt5
     SUBDIR += signon-ui
-    SUBDIR += skill
     SUBDIR += slack
     SUBDIR += sleuthkit
-    SUBDIR += sloth
     SUBDIR += slst
     SUBDIR += slurm-wlm
     SUBDIR += smart
@@ -1267,7 +1229,6 @@
     SUBDIR += snap
     SUBDIR += snmp_exporter
     SUBDIR += snooze
-    SUBDIR += snowlog
     SUBDIR += sockaddr
     SUBDIR += socket
     SUBDIR += socklog
@@ -1299,8 +1260,7 @@
     SUBDIR += symon
     SUBDIR += synergy
     SUBDIR += synergy-1
-    SUBDIR += sysadm
-    SUBDIR += sysadm-client
+    SUBDIR += sysctlinfo-kmod
     SUBDIR += sysgather
     SUBDIR += sysinfo
     SUBDIR += syslinux
@@ -1314,6 +1274,7 @@
     SUBDIR += syslog-ng321
     SUBDIR += syslog-ng322
     SUBDIR += syslog-ng323
+    SUBDIR += syslog-ng324
     SUBDIR += syslogger
     SUBDIR += sysrc
     SUBDIR += system-tools-backends
@@ -1349,6 +1310,7 @@
     SUBDIR += topless
     SUBDIR += torque
     SUBDIR += toshctl
+    SUBDIR += toybox
     SUBDIR += tracker
     SUBDIR += tracker-miners
     SUBDIR += tree
@@ -1406,6 +1368,7 @@
     SUBDIR += u-boot-rpi-0-w
     SUBDIR += u-boot-rpi2
     SUBDIR += u-boot-rpi3
+    SUBDIR += u-boot-rpi4
     SUBDIR += u-boot-sinovoip-bpi-m3
     SUBDIR += u-boot-sopine
     SUBDIR += u-boot-tools
@@ -1489,7 +1452,6 @@
     SUBDIR += wmcpuload
     SUBDIR += wmcube
     SUBDIR += wmdiskmon
-    SUBDIR += wmfire
     SUBDIR += wmflame
     SUBDIR += wmmemfree
     SUBDIR += wmmemload
@@ -1500,7 +1462,6 @@
     SUBDIR += wuzzah
     SUBDIR += x86info
     SUBDIR += xbatt
-    SUBDIR += xbattbar
     SUBDIR += xcdroast
     SUBDIR += xcpustate
     SUBDIR += xdu
@@ -1518,6 +1479,7 @@
     SUBDIR += xfce4-kbdleds-plugin
     SUBDIR += xfce4-mount-plugin
     SUBDIR += xfce4-netload-plugin
+    SUBDIR += xfce4-places-plugin
     SUBDIR += xfce4-power-manager
     SUBDIR += xfce4-settings
     SUBDIR += xfce4-systemload-plugin

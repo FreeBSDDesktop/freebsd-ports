@@ -1,9 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	renpy
-PORTVERSION?=	7.3.2
+PORTVERSION?=	7.3.5
 DISTVERSIONSUFFIX=-sdk
-PORTREVISION?=	1
+PORTREVISION?=	0
 CATEGORIES=	games devel
 MASTER_SITES=	https://www.renpy.org/dl/${PORTVERSION}/
 
@@ -28,7 +28,7 @@ CONFLICTS_INSTALL?=	${PORTNAME}6-*
 # Upstream tends to reroll distfiles before moving under /release/
 PORTSCOUT?=	site:http://www.renpy.org/dl/release/
 
-USES=		python:2.7 shebangfix tar:bz2
+USES=		gl python:2.7 sdl shebangfix tar:bz2
 USE_GL=		glew
 USE_PYTHON=	autoplist distutils cython
 USE_SDL?=	sdl2

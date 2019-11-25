@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pot
-PORTVERSION=	0.9.1
+PORTVERSION=	0.10.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	pizzamig@FreeBSD.org

@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	modules2tuple
-PORTVERSION=	1.8.1
 DISTVERSIONPREFIX=	v
+DISTVERSION=	1.12.0
 CATEGORIES=	ports-mgmt
 
 MAINTAINER=	dmgk@FreeBSD.org
@@ -13,14 +13,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:modules
 
-GO_BUILDFLAGS=	-ldflags="-X main.version=${PORTVERSION}"
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	dmgk
 
-PLIST_FILES=	bin/${PORTNAME}
+GO_BUILDFLAGS=	-ldflags="-s -w -X main.version=${PORTVERSION}"
 
-do-test:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${GO_ENV} ${GO_CMD} test ${GO_BUILDFLAGS} ./...
+PLIST_FILES=	bin/${PORTNAME}
 
 .include <bsd.port.mk>

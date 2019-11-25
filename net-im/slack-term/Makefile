@@ -3,6 +3,7 @@
 PORTNAME=	slack-term
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.4.1
+PORTREVISION=	1
 CATEGORIES=	net-im
 
 MAINTAINER=	dmgk@FreeBSD.org
@@ -25,13 +26,6 @@ PORTDOCS=	README.md
 PLIST_FILES=	bin/slack-term
 
 OPTIONS_DEFINE=	DOCS
-
-do-build:
-	cd ${WRKSRC}/${GH_SUBDIR} && \
-		${SETENV} ${MAKE_ENV} GOPATH=${WRKSRC} go build -o ${PORTNAME}
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
 
 do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

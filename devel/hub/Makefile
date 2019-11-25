@@ -2,8 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	hub
-PORTVERSION=	2.12.4
+PORTVERSION=	2.13.0
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	devel sysutils
 
 MAINTAINER=	egypcio@FreeBSD.org
@@ -24,13 +25,6 @@ PLIST_FILES=	bin/hub \
 		man/man1/hub.1.gz \
 		share/fish/completions/hub.fish \
 		share/zsh/site-functions/_hub
-
-OPTIONS_DEFINE=		GIT_SUBVERSION
-
-GIT_SUBVERSION_DESC=	Use 'git-subversion' instead of 'git' as backend
-
-GIT_SUBVERSION_RUN_DEPENDS=	git-subversion>0:devel/git-subversion
-GIT_SUBVERSION_RUN_DEPENDS_OFF=	git:devel/git
 
 post-build:
 	(cd ${GO_WRKSRC} && \

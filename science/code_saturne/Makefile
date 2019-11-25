@@ -3,7 +3,7 @@
 
 PORTNAME=	code_saturne
 PORTVERSION=	5.3.3
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	science parallel
 
@@ -26,7 +26,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	code-saturne
 
 USES=		autoreconf bison fortran gettext gnome gmake iconv libtool	\
-		pyqt:5 python:3.6 shebangfix
+		pyqt:5 python:3.6+ shebangfix
 
 USE_GNOME=	libxml2
 USE_PYQT=	core gui sip widgets xml_build

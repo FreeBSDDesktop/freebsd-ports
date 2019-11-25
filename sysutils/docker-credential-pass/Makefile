@@ -3,6 +3,7 @@
 PORTNAME=	docker-credential-pass
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.6.3
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	dmgk@FreeBSD.org
@@ -16,7 +17,7 @@ RUN_DEPENDS=	${LOCALBASE}/bin/pass:sysutils/password-store
 USES=		go
 
 GO_PKGNAME=	github.com/docker/docker-credential-helpers
-GO_TARGET=	./pass/cmd
+GO_TARGET=	./pass/cmd:${PORTNAME}
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	docker
@@ -27,8 +28,5 @@ PLIST_FILES=	bin/docker-credential-pass
 pre-build:
 	${LN} -s ${GO_WRKSRC}/pass/cmd/main_linux.go ${GO_WRKSRC}/pass/cmd/main_freebsd.go
 	${LN} -s ${GO_WRKSRC}/pass/pass_linux.go ${GO_WRKSRC}/pass/pass_freebsd.go
-
-do-install:
-	${INSTALL_PROGRAM} ${GO_WRKDIR_BIN}/cmd ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

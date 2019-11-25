@@ -2,7 +2,7 @@
 
 PORTNAME=	pcdm
 PORTVERSION=	201710031254
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11
 
 MAINTAINER=	jt@ixsystems.com
@@ -15,7 +15,7 @@ RUN_DEPENDS=	xorg-minimal>=0:x11/xorg-minimal \
 		setxkbmap:x11/setxkbmap \
 		${LOCALBASE}/bin/qsudo:sysutils/qsudo
 
-USES=		compiler:c++11-lang gl qmake qt:5
+USES=		compiler:c++11-lang gl qmake qt:5 xorg
 USE_QT=		core gui network svg multimedia imageformats \
 		buildtools_build x11extras widgets concurrent linguisttools_build
 USE_GL=		gl

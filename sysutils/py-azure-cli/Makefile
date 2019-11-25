@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	azure-cli
-PORTVERSION=	2.0.73
+PORTVERSION=	2.0.76
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,8 +12,9 @@ COMMENT=	Microsoft Azure Command-Line Tools
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-batch>=8.0:devel/py-azure-batch@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}azure-cli-core>=2.0.73:sysutils/py-azure-cli-core@${PY_FLAVOR} \
+RUN_DEPENDS=	bash:shells/bash \
+		${PYTHON_PKGNAMEPREFIX}azure-batch>=8.0:devel/py-azure-batch@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}azure-cli-core>=2.0.75:sysutils/py-azure-cli-core@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-cli-telemetry>=1.0.2:sysutils/py-azure-cli-telemetry@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-cosmos>=3.0.2:devel/py-azure-cosmos@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-datalake-store>=0.0.45:devel/py-azure-datalake-store@${PY_FLAVOR} \
@@ -31,11 +32,11 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-batch>=8.0:devel/py-azure-batch@${PY_F
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-botservice>=0.2.0:devel/py-azure-mgmt-botservice@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-cdn>=3.1:devel/py-azure-mgmt-cdn@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-cognitiveservices>=5.0.0:devel/py-azure-mgmt-cognitiveservices@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}azure-mgmt-compute>=7.0:devel/py-azure-mgmt-compute@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}azure-mgmt-compute>=8.0:devel/py-azure-mgmt-compute@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-consumption>=2.0:devel/py-azure-mgmt-consumption@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-containerinstance>=1.4:devel/py-azure-mgmt-containerinstance@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}azure-mgmt-containerregistry>=3.0.0.r5:devel/py-azure-mgmt-containerregistry@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}azure-mgmt-containerservice>=5.2:devel/py-azure-mgmt-containerservice@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}azure-mgmt-containerregistry>=3.0.0.r7:devel/py-azure-mgmt-containerregistry@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}azure-mgmt-containerservice>=7.0.0:devel/py-azure-mgmt-containerservice@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-cosmosdb>=0.8.0:devel/py-azure-mgmt-cosmosdb@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-datalake-analytics>=0.2.1:devel/py-azure-mgmt-datalake-analytics@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-datalake-store>=0.5.0:devel/py-azure-mgmt-datalake-store@${PY_FLAVOR} \
@@ -60,8 +61,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-batch>=8.0:devel/py-azure-batch@${PY_F
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-media>=1.1:devel/py-azure-mgmt-media@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-monitor>=0.5.2:devel/py-azure-mgmt-monitor@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-msi>=0.2:devel/py-azure-mgmt-msi@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}azure-mgmt-network>=4.0:devel/py-azure-mgmt-network@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}azure-mgmt-netapp>=0.5.0:devel/py-azure-mgmt-netapp@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}azure-mgmt-network>=7.0.0:devel/py-azure-mgmt-network@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}azure-mgmt-netapp>=0.6.0:devel/py-azure-mgmt-netapp@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-policyinsights>=0.3.1:devel/py-azure-mgmt-policyinsights@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-privatedns>=0.1.0:devel/py-azure-mgmt-privatedns@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-rdbms>=1.8:devel/py-azure-mgmt-rdbms@${PY_FLAVOR} \
@@ -70,15 +71,15 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-batch>=8.0:devel/py-azure-batch@${PY_F
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-redis>=6.0:devel/py-azure-mgmt-redis@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-relay>=0.1.0:devel/py-azure-mgmt-relay@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-reservations>=0.3.1:devel/py-azure-mgmt-reservations@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}azure-mgmt-resource>=3.1:devel/py-azure-mgmt-resource@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}azure-mgmt-resource>=4.0:devel/py-azure-mgmt-resource@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-search>=2.0:devel/py-azure-mgmt-search@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-security>=0.1.0:devel/py-azure-mgmt-security@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-servicebus>=0.6.0:devel/py-azure-mgmt-servicebus@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-servicefabric>=0.2.0:devel/py-azure-mgmt-servicefabric@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-signalr>=0.3.0:devel/py-azure-mgmt-signalr@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}azure-mgmt-sql>=0.12:devel/py-azure-mgmt-sql@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}azure-mgmt-sql>=0.13:devel/py-azure-mgmt-sql@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-sqlvirtualmachine>=0.4.0:devel/py-azure-mgmt-sqlvirtualmachine@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}azure-mgmt-storage>=4.0:devel/py-azure-mgmt-storage@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}azure-mgmt-storage>=5.0.0:devel/py-azure-mgmt-storage@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-trafficmanager>=0.51.0:devel/py-azure-mgmt-trafficmanager@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-mgmt-web>=0.42.0:devel/py-azure-mgmt-web@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-multiapi-storage>=0.2.4:devel/py-azure-multiapi-storage@${PY_FLAVOR} \
@@ -86,6 +87,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-batch>=8.0:devel/py-azure-batch@${PY_F
 		${PYTHON_PKGNAMEPREFIX}colorama>=0.4.1:devel/py-colorama@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cryptography>=2.3.1:security/py-cryptography@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fabric>=2.4:devel/py-fabric@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}jsmin>=2.2.2:devel/py-jsmin@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}knack>=0.6.3:devel/py-knack@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mock>=2.0:devel/py-mock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}paramiko>=2.0.8:security/py-paramiko@${PY_FLAVOR} \
@@ -99,7 +101,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-batch>=8.0:devel/py-azure-batch@${PY_F
 		${PYTHON_PKGNAMEPREFIX}six>=1.12:devel/py-six@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sshtunnel>=0.1.4:net/py-sshtunnel@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}urllib3>=1.18:net/py-urllib3@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}vsts-cd-manager>=1.0.0:devel/py-vsts-cd-manager@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}vsts-cd-manager>=1.0.2:devel/py-vsts-cd-manager@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}websocket-client>=0.56.0:www/py-websocket-client@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xmltodict>=0.12:devel/py-xmltodict@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}javaproperties>=0.5.1:devel/py-javaproperties@${PY_FLAVOR} \

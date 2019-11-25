@@ -43,7 +43,7 @@ UDEV_CONFIGURE_ENABLE=	config-udev
 UDEV_CONFIGURE_ON=	--disable-config-udev-kms
 UDEV_LIB_DEPENDS=	libudev.so:devel/libudev-devd
 
-USES=		gl gmake perl5 ssl xorg-cat:xserver xorg
+USES=		gmake gl libtool perl5 ssl tar:bzip2 xorg xorg-cat:xserver
 USE_PERL5=	build
 USE_GL+=	gl
 USE_XORG+=	pixman xau xdmcp xfont2 xkbfile xorgproto xshmfence xtrans

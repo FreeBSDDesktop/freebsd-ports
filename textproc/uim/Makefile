@@ -3,7 +3,7 @@
 
 PORTNAME=	uim
 PORTVERSION=	1.8.8
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES?=	textproc
 MASTER_SITES=	https://github.com/uim/uim/releases/download/${PORTVERSION}/
 .if !defined(UIM_SLAVE) && defined(WITHOUT_X11)
@@ -29,6 +29,7 @@ OPTIONS_DEFAULT=	X11
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MX11}
+USES+=		xorg
 USE_XORG+=	x11 xext
 LIB_DEPENDS+=	libXft.so:x11-fonts/libXft
 CONFIGURE_ARGS+=	--with-x --with-xft

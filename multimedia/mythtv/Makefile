@@ -8,6 +8,9 @@ PORTREVISION?=	4
 PORTEPOCH=	1
 CATEGORIES=	multimedia
 
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	aab7d3f065a7.patch:-p2
+
 MAINTAINER?=	ports@FreeBSD.org
 COMMENT?=	MythTV is a homebrew PVR project
 
@@ -35,7 +38,8 @@ LIB_DEPENDS=	liblzo2.so:archivers/lzo2 \
 BUILD_DEPENDS=	yasm:devel/yasm \
 		${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 
-USES=		gmake gl iconv libtool pkgconfig pathfix qmake:no_env qt:5 ssl
+USES=		gmake gl iconv libtool pkgconfig pathfix qmake:no_env qt:5 ssl \
+		xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	MythTV
 USE_GL=		gl

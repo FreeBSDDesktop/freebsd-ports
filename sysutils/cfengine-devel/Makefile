@@ -5,9 +5,9 @@ PORTNAME=	cfengine
 PORTVERSION=	3.${CFENGINE_COMMIT_DATE}
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-devel
-CFENGINE_HASH=		89f8f60
-LIBNTECH_HASH=		aa1fc0c
-CFENGINE_COMMIT_DATE=	2019.09.03
+CFENGINE_HASH=		1ff1040d6
+LIBNTECH_HASH=		5a2c900
+CFENGINE_COMMIT_DATE=	2019.11.09
 
 MAINTAINER=	cy@FreeBSD.org
 #		gjb@FreeBSD.org is also committer for this port
@@ -32,8 +32,8 @@ USE_RC_SUBR=	cf-execd cf-serverd cf-monitord
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USES=		autoreconf:build \
-		cpe gmake localbase libtool shebangfix ssl
+USES=		autoreconf:build cpe gmake gnome libtool localbase shebangfix \
+		ssl
 USE_GNOME=	libxml2
 SHEBANG_FILES=	examples/remake_outputs.pl
 CFLAGS+=	-Wno-return-type
@@ -62,15 +62,15 @@ LIB_DEPENDS+=	libpcre.so:devel/pcre \
 OPTIONS_DEFINE=	PGSQL MYSQL LIBVIRT
 
 PGSQL_USES=		pgsql
-PGSQL_CONFIGURE_WITH=	--with-postgresql=${LOCALBASE}
+PGSQL_CONFIGURE_WITH=	postgresql=${LOCALBASE}
 
 MYSQL_USES=		mysql
 MYSQL_BROKEN=		configure: error: MySQL client library exports symbols (EVP_CIPHER_CTX_init) clashing with OpenSSL.
-MYSQL_CONFIGURE_WITH=	--with-mysql=${LOCALBASE}
+MYSQL_CONFIGURE_WITH=	mysql=${LOCALBASE}
 MYSQL_LIB_DEPENDS=	libmysqlclient.so:${_MYSQL_CLIENT}
 MYSQL_LDFLAGS=		-L${LOCALBASE}/lib/mysql
 
-LIBVIRT_CONFIGURE_WITH=	--with-libvirt=${LOCALBASE}
+LIBVIRT_CONFIGURE_WITH=	libvirt=${LOCALBASE}
 LIBVIRT_LIB_DEPENDS+=	libvirt.so:devel/libvirt
 
 .include <bsd.port.mk>

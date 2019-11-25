@@ -3,6 +3,7 @@
 
 PORTNAME=	libclc
 DISTVERSION=	0.4.0.20190527
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	x11@FreeBSD.org
@@ -12,6 +13,8 @@ LICENSE=	LLVM
 LICENSE_NAME=	LLVM Release License
 LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+BROKEN_powerpc64=	fails to compile: /usr/local/llvm80/include/llvm-c/DataTypes.h:28:10: fatal error: 'cmath' file not found
 
 BUILD_DEPENDS=	llvm${LLVM_DEFAULT}>=4.0:devel/llvm${LLVM_DEFAULT} \
 		libedit>=0:devel/libedit
@@ -37,5 +40,12 @@ do-configure:
 		--with-llvm-config=${LOCALBASE}/bin/llvm-config${LLVM_DEFAULT} \
 		--pkgconfigdir=${PREFIX}/libdata/pkgconfig \
 		--prefix=${PREFIX}
+
+.include <bsd.port.options.mk>
+
+# Keep in sync with lang/clover
+.if ${LLVM_DEFAULT:S,-devel,990,} >= 90
+LLVM_DEFAULT=	80
+.endif
 
 .include <bsd.port.mk>
