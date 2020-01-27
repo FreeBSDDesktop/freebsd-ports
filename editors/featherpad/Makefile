@@ -3,6 +3,7 @@
 
 PORTNAME=		featherpad
 PORTVERSION=		0.10.0
+PORTREVISION=	1
 DISTVERSIONPREFIX=	V
 CATEGORIES=		editors
 
@@ -11,7 +12,7 @@ COMMENT=	Lightweight Qt5 plain-text editor
 
 LICENSE=	GPLv3
 
-USES=		compiler:c++11-lang desktop-file-utils pkgconfig qmake:outsource qt:5 gl
+USES=		compiler:c++11-lang desktop-file-utils pkgconfig qmake:outsource qt:5 gl xorg
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	tsujan

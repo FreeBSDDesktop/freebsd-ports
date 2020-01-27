@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	seed7
-DISTVERSION=	05_20190407
+DISTVERSION=	05_20190818
 PORTREVISION=	0
 CATEGORIES=	lang
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${DISTNAME}/
@@ -21,7 +21,7 @@ ONLY_FOR_ARCHS=	amd64 i386 sparc64
 
 LIB_DEPENDS=	libodbc.so:databases/unixODBC
 
-USES=		mysql:client ncurses pgsql sqlite tar:tgz
+USES=		mysql:client ncurses pgsql sqlite tar:tgz xorg
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 

@@ -3,6 +3,7 @@
 PORTNAME=	icingaweb2-module-businessprocess
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.2.0
+PORTREVISION=	1
 CATEGORIES=	net-mgmt www
 
 MAINTAINER=	lme@FreeBSD.org
@@ -22,7 +23,7 @@ NO_ARCH=	yes
 
 OPTIONS_DEFINE=		NLS
 
-NLS_USES=	gettext
+NLS_USES=	gettext php
 NLS_USE=	php=intl
 
 WWWDIR?=	${PREFIX}/www/icingaweb2/modules/${PORTNAME:C/^.*-//}

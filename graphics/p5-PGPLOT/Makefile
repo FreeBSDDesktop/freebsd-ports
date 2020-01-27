@@ -3,7 +3,7 @@
 
 PORTNAME=	PGPLOT
 PORTVERSION=	2.21
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:KGB
@@ -20,7 +20,7 @@ BUILD_DEPENDS=	p5-ExtUtils-F77>=1.13:lang/p5-ExtUtils-F77
 LIB_DEPENDS=	libpgplot.so:graphics/pgplot \
 		libpng.so:graphics/png
 
-USES=		fortran perl5
+USES=		fortran perl5 xorg
 USE_XORG=	x11
 INSTALL_TARGET=	pure_install
 TEST_TARGET=	test

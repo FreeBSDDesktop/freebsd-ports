@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	nano
-PORTVERSION=	4.2
+PORTVERSION=	4.5
 CATEGORIES=	editors
 MASTER_SITES=	https://www.nano-editor.org/dist/v${PORTVERSION:R}/ GNU
 
@@ -27,17 +27,12 @@ MAKE_ARGS+=	install_htmlmanDATA=install-htmlmanDATA
 OPTIONS_DEFINE=	DOCS EXAMPLES NLS
 OPTIONS_SUB=	yes
 
-NLS_USES=		gettext
+NLS_USES=		gettext localbase
 NLS_CONFIGURE_ENABLE=	nls
 
 INFO=		nano
 
 PORTSCOUT=	limitw:1,even
-
-.ifdef QEMU_EMULATING
-# XXX bug 224740/231346: configure hangs
-CONFIGURE_ENV+=	gl_cv_func_printf_enomem=no
-.endif
 
 post-patch:
 	${REINPLACE_CMD} -e 's/^groff.*/false/' ${WRKSRC}/configure

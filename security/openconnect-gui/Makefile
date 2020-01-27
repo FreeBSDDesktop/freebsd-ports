@@ -4,11 +4,13 @@
 PORTNAME=	openconnect-gui
 PORTVERSION=	1.4.1
 DISTVERSIONPREFIX=v
-PORTREVISION=	2
-CATEGORIES=	security
+PORTREVISION=	3
+CATEGORIES=	security net-vpn
 
 MAINTAINER=	pkubaj@anongoth.pl
 COMMENT=	Graphical OpenConnect client
+
+BROKEN=		unfetchable
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt

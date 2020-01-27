@@ -3,7 +3,7 @@
 
 PORTNAME=	ptlib
 PORTVERSION=	2.10.11
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
 
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2
 CONFLICTS=	pwlib-1.*
 
 USES=		autoreconf:build bison compiler:c11 gmake localbase:ldflags \
-		pathfix pkgconfig ssl tar:xz
+		pathfix pkgconfig sdl ssl tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${OPENSSLINC}

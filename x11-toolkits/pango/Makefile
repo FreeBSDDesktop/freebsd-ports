@@ -3,7 +3,7 @@
 
 PORTNAME=	pango
 PORTVERSION=	1.42.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -43,6 +43,7 @@ DOCS_MESON_TRUE=	enable_docs
 DOCS_BUILD_DEPENDS=	gtk-doc>=0:textproc/gtk-doc
 
 X11_MESON_TRUE=	xft
+X11_USES=	xorg
 X11_USE=	XORG=x11,xft,xrender
 
 pre-configure:

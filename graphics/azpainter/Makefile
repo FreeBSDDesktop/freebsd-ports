@@ -3,6 +3,7 @@
 
 PORTNAME=	azpainter
 PORTVERSION=	2.1.4
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	OSDN/${PORTNAME}/71051
 
@@ -16,7 +17,7 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libpng.so:graphics/png
 
 USES=		compiler:c11 desktop-file-utils jpeg localbase \
-		shared-mime-info tar:xz
+		shared-mime-info tar:xz xorg
 USE_XORG=	x11 xext xi
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-freetype-dir=${LOCALBASE}/include/freetype2

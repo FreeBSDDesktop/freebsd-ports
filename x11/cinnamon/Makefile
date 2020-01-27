@@ -3,7 +3,7 @@
 
 PORTNAME=	cinnamon
 PORTVERSION=	2.4.6
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	x11 gnome
 DIST_SUBDIR=	gnome3
 
@@ -47,7 +47,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>=0:devel/py-dbus@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}lxml>=0:devel/py-lxml@${PY_FLAVOR}
 
 USES=		autoreconf compiler:c11 gettext gmake gnome gl libtool \
-		localbase:ldflags pathfix pkgconfig python:2.7 shebangfix
+		localbase:ldflags pathfix pkgconfig python:2.7 shebangfix xorg
 USE_GITHUB=	yes
 USE_GL=		gl egl
 USE_GNOME=	cairo evolutiondataserver3 gconf2 gnomedesktop3 \

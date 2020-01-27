@@ -2,6 +2,7 @@
 
 PORTNAME=	swaylock
 DISTVERSION=	1.4
+PORTREVISION=	1
 CATEGORIES=	x11
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -17,7 +18,7 @@ BUILD_DEPENDS=	wayland-protocols>=1.14:graphics/wayland-protocols
 LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
 
-USES=		compiler:c11 meson pkgconfig
+USES=		compiler:c11 gnome meson pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	swaywm
 USE_GNOME=	cairo pango

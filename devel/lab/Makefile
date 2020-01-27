@@ -11,17 +11,11 @@ COMMENT=	Lab makes it simple to work with repositories on GitLab
 LICENSE=	UNLICENSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go
-
-OPTIONS_DEFINE=	GIT_SUBVERSION
-
-GIT_SUBVERSION_DESC=		Use devel/git-subversion as backend
-GIT_SUBVERSION_RUN_DEPENDS=	git-subversion>0:devel/git-subversion
-GIT_SUBVERSION_RUN_DEPENDS_OFF=	git:devel/git
+USES=		go:modules
 
 USE_GITHUB=	yes
 
-GH_TUPLE=	zaquestion:${PORTNAME}:${DISTVERSIONPREFIX}${PORTVERSION}:DEFAULT/src/github.com/zaquestion/${PORTNAME} \
+GH_TUPLE=	zaquestion:${PORTNAME}:${DISTVERSIONPREFIX}${PORTVERSION}:DEFAULT \
 		avast:retry-go:5469272a8171:avast_retry_go/vendor/github.com/avast/retry-go \
 		cpuguy83:go-md2man:v1.0.8:cpuguy83_go_md2man/vendor/github.com/cpuguy83/go-md2man \
 		davecgh:go-spew:v1.1.1:davecgh_go_spew/vendor/github.com/davecgh/go-spew \
@@ -58,15 +52,9 @@ GH_TUPLE=	zaquestion:${PORTNAME}:${DISTVERSIONPREFIX}${PORTVERSION}:DEFAULT/src/
 		stretchr:testify:v1.2.2:stretchr_testify/vendor/github.com/stretchr/testify \
 		tcnksm:go-gitconfig:v0.1.2:tcnksm_go_gitconfig/vendor/github.com/tcnksm/go-gitconfig \
 		xanzy:go-gitlab:7bc4155e8bf8:xanzy_go_gitlab/vendor/github.com/xanzy/go-gitlab
+
+GO_BUILDFLAGS=	-ldflags="-X main.version=${PORTVERSION}"
+
 PLIST_FILES=	bin/lab
-
-do-build:
-	@cd ${WRKSRC}/src/github.com/zaquestion/${PORTNAME}; \
-		${SETENV} ${MAKE_ENV} CGO_ENABLED=0 ${BUILD_ENV} \
-		GOPATH=${WRKSRC} go build \
-		-ldflags "-X \"main.version=${PORTVERSION}\""
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
 
 .include <bsd.port.mk>

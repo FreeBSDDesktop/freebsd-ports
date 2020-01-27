@@ -216,6 +216,10 @@
 %%DATADIR%%/library/MCU_Nordic.lib
 %%DATADIR%%/library/MCU_Parallax.dcm
 %%DATADIR%%/library/MCU_Parallax.lib
+%%DATADIR%%/library/MCU_Renesas_Synergy_S1.dcm
+%%DATADIR%%/library/MCU_Renesas_Synergy_S1.lib
+%%DATADIR%%/library/MCU_STC.dcm
+%%DATADIR%%/library/MCU_STC.lib
 %%DATADIR%%/library/MCU_ST_STM32F0.dcm
 %%DATADIR%%/library/MCU_ST_STM32F0.lib
 %%DATADIR%%/library/MCU_ST_STM32F1.dcm
@@ -248,6 +252,8 @@
 %%DATADIR%%/library/MCU_Texas.lib
 %%DATADIR%%/library/MCU_Texas_MSP430.dcm
 %%DATADIR%%/library/MCU_Texas_MSP430.lib
+%%DATADIR%%/library/MCU_Texas_SimpleLink.dcm
+%%DATADIR%%/library/MCU_Texas_SimpleLink.lib
 %%DATADIR%%/library/Mechanical.dcm
 %%DATADIR%%/library/Mechanical.lib
 %%DATADIR%%/library/Memory_Controller.dcm

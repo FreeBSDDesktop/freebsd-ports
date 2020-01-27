@@ -6,7 +6,7 @@
 # the symbols to LOCALBASE/lib/debug/<original path>.
 # For example:
 # /var/qmail/bin/qmaild -> /usr/local/lib/debug/var/qmail/bin/qmaild.debug
-# /usr/local/bin/ssh    -> /usr/local/lib/debug/usr/local/bin/ssh
+# /usr/local/bin/ssh    -> /usr/local/lib/debug/usr/local/bin/ssh.debug
 LIB_DIR_PREFIX="${LOCALBASE}/lib/debug"
 
 msg() {
@@ -17,8 +17,8 @@ msg "Finding symbols"
 
 # Find all ELF files
 ELF_FILES=$(mktemp -t elf_files)
-find ${STAGEDIR} -type f \
-    -exec /usr/bin/readelf -S {} + 2>/dev/null | awk ' \
+find ${STAGEDIR} -type f ! -name '*.a' \
+    -exec /usr/bin/readelf -S /dev/null {} + 2>/dev/null | awk ' \
     /File:/ {sub(/File: /, "", $0); file=$0}
     /[[:space:]]\.debug_info[[:space:]]*PROGBITS/ {print file}' \
     > ${ELF_FILES}
@@ -42,5 +42,12 @@ while read -r staged_elf_file; do
 	msg "Saved symbols for ${staged_elf_file}"
 	echo "${debug_file_name#${STAGEDIR}}" >&3
 done < ${ELF_FILES} 3>> ${TMPPLIST}
+
+# Need @dir entries if PREFIX != LOCALBASE
+if [ "${PREFIX}" != "${LOCALBASE}" ] && [ -d "${lib_dir}" ]; then
+	find -sd "${lib_dir}" -type d | sed -e "s,^${STAGEDIR},," \
+	    -e 's,^,@dir ,' \
+	    >> ${TMPPLIST}
+fi
 
 rm -f ${ELF_FILES}

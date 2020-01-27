@@ -2,14 +2,16 @@
 # $FreeBSD$
 
 ######################################################################
-# Anytime PORTVERSION changes please bump PORTREVISION of            #
-# mail/dovecot-pigeonhole. See ports/146029 for an explanation.      #
+# Anytime PORTVERSION changes please bump PORTREVISION of:           #
+# - mail/dovecot-pigeonhole. See ports/146029 for an explanation.    #
+# - mail/dovecot-fts-xapian.                                         #
 ######################################################################
 
 PORTNAME=	dovecot
-PORTVERSION=	2.3.6
-CATEGORIES=	mail ipv6
-MASTER_SITES=	https://www.dovecot.org/releases/2.3/
+PORTVERSION=	2.3.8
+PORTREVISION=	3
+CATEGORIES=	mail
+MASTER_SITES=	https://dovecot.org/releases/2.3/
 
 MAINTAINER=	ler@FreeBSD.org
 COMMENT=	Secure, fast and powerful IMAP and POP3 server

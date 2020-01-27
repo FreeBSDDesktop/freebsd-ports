@@ -3,7 +3,7 @@
 
 PORTNAME=	clanlib
 PORTVERSION=	2.3.7
-PORTREVISION=	17
+PORTREVISION=	18
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.clanlib.org/download/releases-2.0/
@@ -22,8 +22,8 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libpcre.so:devel/pcre
 
-USES=		compiler:c++11-lib gmake jpeg libtool localbase:ldflags \
-		pathfix pkgconfig sqlite tar:tgz
+USES=		compiler:c++11-lib gl gmake jpeg libtool localbase:ldflags \
+		pathfix pkgconfig sqlite tar:tgz xorg
 USE_XORG=	x11
 USE_LDCONFIG=	yes
 USE_GL=		yes

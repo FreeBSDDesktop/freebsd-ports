@@ -3,7 +3,7 @@
 
 PORTNAME=	bombz
 PORTVERSION=	0.2
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	games python
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${DISTVERSION}/ \
 		SF/nemysisfreebsdp/games/:icons
@@ -22,7 +22,7 @@ RUN_DEPENDS=	${PYGAME}
 
 WRKSRC=		${WRKDIR}/Bombz
 
-USES=		dos2unix python:2.7 zip
+USES=		dos2unix gnome python:2.7 sdl zip
 DOS2UNIX_FILES=	*.txt
 USE_SDL=	sdl image mixer
 INSTALLS_ICONS=	yes

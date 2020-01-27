@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	libva-utils
-PORTVERSION=	2.4.0
+PORTVERSION=	2.5.0
+PORTREVISION=	2
 CATEGORIES=	multimedia
 
 MAINTAINER=	madpilot@FreeBSD.org
@@ -33,6 +34,7 @@ WAYLAND_CONFIGURE_ENABLE=	wayland
 WAYLAND_LIB_DEPENDS=		libwayland-client.so:graphics/wayland
 
 X11_CONFIGURE_ENABLE=		x11
+X11_USES=			xorg
 X11_USE=			XORG=x11,xext,xfixes
 
 .include <bsd.port.mk>

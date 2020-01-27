@@ -2,7 +2,7 @@
 
 PORTNAME=	engauge-digitizer
 DISTVERSIONPREFIX=	v
-DISTVERSION=	11.2
+DISTVERSION=	12
 PORTREVISION=	3
 CATEGORIES=	graphics math science
 

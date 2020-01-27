@@ -3,6 +3,7 @@
 
 PORTNAME=	clisp
 PORTVERSION=	2.49.93+
+PORTREVISION=	1
 CATEGORIES=	lang lisp
 
 MAINTAINER=	kiri@TrueFC.org
@@ -104,6 +105,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib/db${BDB_VER}
 .endif
 
 .if ${PORT_OPTIONS:MCLX_MIT} || ${PORT_OPTIONS:MCLX_NEW}
+USES+=		xorg
 USE_XORG=	x11
 .endif
 .if ${PORT_OPTIONS:MCLX_MIT}
@@ -134,6 +136,7 @@ CONFIGURE_ARGS+=--with-module=bindings/glibc
 .endif
 
 .if ${PORT_OPTIONS:MGTK2}
+USES+=		gnome
 USE_GNOME=	gtk20 libglade2
 CONFIGURE_ARGS+=--with-module=gtk2
 .endif

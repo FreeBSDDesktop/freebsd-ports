@@ -3,7 +3,7 @@
 
 PORTNAME=	fox
 PORTVERSION=	1.7.64
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	http://ftp.fox-toolkit.org/pub/ \
 		ftp://ftp.fox-toolkit.org/pub/
@@ -21,7 +21,7 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
-USES=		compiler:c++11-lib libtool localbase pathfix
+USES=		compiler:c++11-lib gl libtool localbase pathfix xorg
 USE_GL=		gl glu
 USE_XORG=	ice sm x11 xcursor xext xfixes xft xi xrandr xrender
 USE_LDCONFIG=	yes

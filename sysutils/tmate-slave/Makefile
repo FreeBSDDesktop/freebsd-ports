@@ -2,11 +2,14 @@
 
 PORTNAME=	tmate-slave
 PORTVERSION=	g2018112801
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	swills@FreeBSD.org
 COMMENT=	Instant terminal sharing server
+
+BROKEN=		fails to patch
 
 LIB_DEPENDS=	libevent.so:devel/libevent \
 		libmsgpackc.so:devel/msgpack \

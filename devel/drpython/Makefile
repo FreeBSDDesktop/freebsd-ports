@@ -3,7 +3,7 @@
 
 PORTNAME=	drpython
 PORTVERSION=	3.11.4
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	devel python
 MASTER_SITES=	SF/${PORTNAME}/DrPython%20%283.x%29/${PORTVERSION}
 PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
@@ -13,8 +13,6 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Highly customizable cross-platform ide to aid programming in Python
 
 LICENSE=	GPLv2
-
-BROKEN_aarch64=		fails to build: Signal 11
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}
 RUN_DEPENDS=	xdg-open:devel/xdg-utils

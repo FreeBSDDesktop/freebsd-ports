@@ -3,6 +3,7 @@
 
 PORTNAME=	SoQt
 PORTVERSION=	1.6.0a
+PORTREVISION=	1
 PKGNAMESUFFIX=	-devel
 DISTNAME=	soqt_${PORTVERSION}
 CATEGORIES=	x11-toolkits
@@ -19,7 +20,7 @@ LIB_DEPENDS=	libCoin.so:graphics/Coin
 CONFLICTS_INSTALL=	SoQt
 
 USES=		cmake compiler:c++11-lang dos2unix gl libtool \
-		localbase:ldflags pathfix pkgconfig qmake:no_env qt:5
+		localbase:ldflags pathfix pkgconfig qmake:no_env qt:5 xorg
 USE_QT=		buildtools core gui opengl qmake widgets
 USE_GL=		gl
 USE_XORG=	ice sm x11 xext xi

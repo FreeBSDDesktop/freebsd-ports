@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	redis
-DISTVERSION=	5.0.5
+DISTVERSION=	5.0.7
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	http://download.redis.io/releases/
 PKGNAMESUFFIX=	-devel
@@ -22,7 +23,7 @@ LUAJIT_DESC=	Use lang/luajit instead of builtin lua
 TESTS_DESC=	Install lang/tcl for redis unit tests
 TRIB_DESC=	Install redis-trib.rb (lang/ruby req.)
 
-USES+=		gmake
+USES+=		compiler gmake
 MAKE_ENV=	"V=yo"
 
 .include <bsd.port.options.mk>
@@ -64,7 +65,7 @@ USES+=		tcl:build
 
 LDFLAGS+=	-lpthread -lm -lexecinfo
 
-CONFLICTS?=	redis-4.*
+CONFLICTS?=	redis4-4.* redis-5.*
 
 USE_RC_SUBR=	redis sentinel
 BIN_FILES=	redis-benchmark redis-check-aof redis-check-rdb \
@@ -90,14 +91,16 @@ PLIST_SUB+=	REDIS_USER=${USERS} \
 	REDIS_DBDIR=${REDIS_DBDIR} \
 	REDIS_RUNDIR=${REDIS_RUNDIR}
 
+.include <bsd.port.pre.mk>
+
 post-patch:
 .if ${PORT_OPTIONS:MJEMALLOC}
 	@${REINPLACE_CMD} '35s!Linux!FreeBSD!g' ${WRKSRC}/src/Makefile
 .endif
-.if ${PORT_OPTIONS:MLUAJIT} || ${PORT_OPTIONS:MLUA}
+.if ${PORT_OPTIONS:MLUA} || ${PORT_OPTIONS:MLUAJIT}
 	@cd ${WRKSRC}/deps/lua/src && ${CP} fpconv.* lua_* strbuf.* ${WRKSRC}/src/
 .endif
-.if ${ARCH:Mmips*} || ${ARCH:Mpowerpc*} || ${ARCH} == sparc64
+.if ${CHOSEN_COMPILER_TYPE} == gcc && ${COMPILER_VERSION} <= 42
 	${REINPLACE_CMD} -e '/pragma/d' ${WRKSRC}/src/lzf_d.c
 .endif
 
@@ -119,4 +122,4 @@ do-install:
 do-test:
 	@cd ${WRKSRC} && ${TCLSH} tests/test_helper.tcl
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	librsvg
-PORTVERSION=	2.45.7
+PORTVERSION=	2.46.3
 PORTREVISION=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
@@ -14,7 +14,7 @@ COMMENT=	Library for parsing and rendering SVG vector-graphic files
 
 LICENSE=	LGPL20
 
-BUILD_DEPENDS=	${RUST_DEFAULT}>=1.30.0:lang/${RUST_DEFAULT} \
+BUILD_DEPENDS=	${RUST_DEFAULT}>=1.34.0:lang/${RUST_DEFAULT} \
 		valac:lang/vala
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig \
@@ -30,11 +30,12 @@ CONFIGURE_ARGS=	--enable-vala \
 		--disable-Bsymbolic \
 		--disable-dependency-tracking \
 		--disable-static
-INSTALL_TARGET=	install-strip
 # Make sure it uses the Rust toolchain from ports.
 CONFIGURE_ENV=	CARGO=${LOCALBASE}/bin/cargo \
 		RUSTC=${LOCALBASE}/bin/rustc
 MAKE_ENV=	RUSTC=${LOCALBASE}/bin/rustc
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
 CONFLICTS_INSTALL=	librsvg2
 

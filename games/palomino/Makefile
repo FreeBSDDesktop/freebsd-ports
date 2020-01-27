@@ -3,7 +3,7 @@
 
 PORTNAME=	palomino
 PORTVERSION=	20131231
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	games
 MASTER_SITES=	SF/palomino-sim
 DISTFILES=	${PORTNAME}_src_${PORTVERSION}.txz \
@@ -44,6 +44,7 @@ PLIB_DESC=		Enable sound support through plib
 PLIB_BUILD_DEPENDS=	${LOCALBASE}/lib/libplibsl.a:x11-toolkits/plib
 GUI_DESC=		Enable FLTK GUI
 GUI_LIB_DEPENDS=	libfltk.so:x11-toolkits/fltk
+SDL_USES=		sdl
 SDL_USE=		SDL=sdl,mixer
 
 post-patch:

@@ -3,6 +3,7 @@
 
 PORTNAME=	julia
 PORTVERSION=	1.0.4
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-full
 CATEGORIES=	lang math
 MASTER_SITES=	https://github.com/JuliaLang/julia/releases/download/v${PORTVERSION}/
@@ -90,6 +91,7 @@ GPL_LIBS_MAKE_ARGS=	USE_SYSTEM_SUITESPARSE=0
 GPL_LIBS_VARS=	USE_GPL_LIBS=1
 
 DESKTOP_DESC=	Install icon, .desktop and appdata files
+DESKTOP_USES=	gnome
 DESKTOP_VARS=	INSTALL_TARGET+=install-desktop \
 		INSTALLS_ICONS=yes
 

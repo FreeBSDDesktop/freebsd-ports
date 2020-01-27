@@ -3,7 +3,7 @@
 
 PORTNAME=		sope3
 PORTVERSION=		3.2.10
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=		devel gnustep
 MASTER_SITES=		http://www.sogo.nu/files/downloads/SOGo/Sources/
 DISTNAME=		SOPE-${PORTVERSION}
@@ -12,6 +12,8 @@ MAINTAINER=		acm@FreeBSD.org
 COMMENT=		Extensive set of GNUstep web application frameworks
 
 LICENSE=		LGPL20
+
+BROKEN_powerpc64=	fails to build: bundle.make:301: STXSaxDriver.sax/Resources/Info-gnustep.plist] Illegal instruction (core dumped)
 
 LIB_DEPENDS=		libxml2.so:textproc/libxml2 \
 			libmemcached.so:databases/libmemcached
@@ -42,7 +44,7 @@ CONFIGURE_ENV+=		CC="${CC}"
 
 LDAP_USE=		OPENLDAP=client
 PGSQL_USES=		pgsql
-MYSQL_USE=		MYSQL=client
+MYSQL_USES=		mysql
 MEMCACHED_RUN_DEPENDS=	${LOCALBASE}/bin/memcached:databases/memcached
 
 post-patch:

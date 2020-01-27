@@ -2,7 +2,7 @@
 
 PORTNAME=	hfm
 PORTVERSION=	1.2.3
-PORTREVISION=	5
+PORTREVISION=	6
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -10,6 +10,8 @@ MAINTAINER=	554b8425@razorfever.net
 COMMENT=	Run tests in parallel at high frequency
 
 LICENSE=	BSD2CLAUSE
+
+BROKEN=		fails to build
 
 # gb 0.4 includes FreeBSD-specific fixes that this port requires
 #   https://github.com/constabulary/gb/issues/506
@@ -34,7 +36,7 @@ ALL_TARGET=	test build
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-do-patch:
+post-patch:
 	(cd ${WRKSRC}; ${PATCH} vendor/src/github.com/mitchellh/go-libucl/libucl.go < vendor/patches/github.com/mitchellh/go-libucl/libucl.go.patch )
 
 do-install:

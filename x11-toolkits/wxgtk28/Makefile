@@ -3,7 +3,7 @@
 
 PORTNAME=	wx
 PORTVERSION=	2.8.12
-PORTREVISION?=	7
+PORTREVISION?=	8
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF/wxwindows/${PORTVERSION}
 PKGNAMESUFFIX=	28-${WXGTK_FLAVOR}
@@ -16,8 +16,8 @@ LIB_DEPENDS+=	libpng.so:graphics/png\
 		libtiff.so:graphics/tiff\
 		libexpat.so:textproc/expat2
 
-USES=		compiler:c++11-lang gl gmake iconv jpeg localbase pkgconfig \
-		tar:bzip2
+USES=		compiler:c++11-lang gl gmake gnome iconv jpeg localbase \
+		pkgconfig tar:bzip2 xorg
 USE_CXXSTD=	gnu++98
 USE_XORG=	x11 sm xxf86vm xinerama
 USE_GL=		glu

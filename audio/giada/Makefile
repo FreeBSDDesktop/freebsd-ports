@@ -3,7 +3,7 @@
 PORTNAME=	giada
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.15.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -25,7 +25,7 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libsamplerate.so:audio/libsamplerate \
 		libsndfile.so:audio/libsndfile
 
-USES=		autoreconf compiler:c++11-lang gmake localbase
+USES=		autoreconf compiler:c++11-lang gmake localbase xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	monocasual
 GNU_CONFIGURE=	yes

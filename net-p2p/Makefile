@@ -10,8 +10,6 @@
     SUBDIR += bitcoin-daemon
     SUBDIR += bitcoin-utils
     SUBDIR += bitflu
-    SUBDIR += bnbt
-    SUBDIR += btpd
     SUBDIR += couchpotato
     SUBDIR += cpuminer
     SUBDIR += createtorrent
@@ -28,7 +26,6 @@
     SUBDIR += eiskaltdcpp-gtk
     SUBDIR += eiskaltdcpp-lib
     SUBDIR += frost
-    SUBDIR += gkremldk
     SUBDIR += go-ethereum
     SUBDIR += gtk-gnutella
     SUBDIR += gtorrentviewer
@@ -42,6 +39,7 @@
     SUBDIR += libswift
     SUBDIR += libtorrent
     SUBDIR += libtorrent-rasterbar
+    SUBDIR += lidarr
     SUBDIR += linuxdcpp
     SUBDIR += litecoin
     SUBDIR += litecoin-daemon
@@ -63,6 +61,7 @@
     SUBDIR += p5-Net-BitTorrent-PeerPacket
     SUBDIR += p5-Net-DirectConnect
     SUBDIR += p5-WWW-BitTorrent
+    SUBDIR += parity-ethereum
     SUBDIR += phex
     SUBDIR += py-libtorrent-rasterbar
     SUBDIR += py-py2play
@@ -77,6 +76,7 @@
     SUBDIR += rtorrent
     SUBDIR += shx
     SUBDIR += sonarr
+    SUBDIR += sonarr-devel
     SUBDIR += squall
     SUBDIR += torrent-file-editor
     SUBDIR += torrentcheck
@@ -92,5 +92,7 @@
     SUBDIR += vuze
     SUBDIR += xmrig
     SUBDIR += zetacoin
+    SUBDIR += zetacoin-daemon
+    SUBDIR += zetacoin-utils
 
 .include <bsd.port.subdir.mk>

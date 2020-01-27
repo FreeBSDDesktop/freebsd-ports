@@ -3,6 +3,7 @@
 
 PORTNAME=	lightdm
 PORTVERSION=	1.30.0
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	https://github.com/CanonicalLtd/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 
@@ -23,7 +24,7 @@ LIB_DEPENDS=	libaccountsservice.so:sysutils/accountsservice \
 		libxklavier.so:x11/libxklavier
 
 USES=		compiler:c++11-lang gettext gmake gnome libtool localbase \
-		pathfix pkgconfig tar:xz
+		pathfix pkgconfig tar:xz xorg
 USE_CXXSTD=	c++11
 USE_GNOME=	glib20 intltool
 USE_XORG=	x11 xcb xdmcp

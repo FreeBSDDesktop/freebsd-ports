@@ -3,6 +3,7 @@
 
 PORTNAME=	delegate
 PORTVERSION=	9.9.13
+PORTREVISION=	1
 CATEGORIES=	net www
 MASTER_SITES=	ftp://ftp.delegate.org/pub/DeleGate/
 DISTNAME=	${PORTNAME}${PORTVERSION}
@@ -19,6 +20,8 @@ SUB_FILES=	pkg-message
 ADMIN?=		admin@example.com
 
 CFLAGS+=	-x c++ -std=gnu++98
+
+FETCH_ARGS=	-Fr --no-passive
 
 PLIST_FILES=	sbin/delegated etc/rc.d/delegated.sh-dist
 PORTDOCS=	CHANGES COPYRIGHT DG9note.html HowToDG.html IPv6NOTE.txt \

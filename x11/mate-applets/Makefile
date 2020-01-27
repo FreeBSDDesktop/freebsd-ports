@@ -2,6 +2,7 @@
 
 PORTNAME=	mate-applets
 PORTVERSION=	1.22.1
+PORTREVISION=	1
 CATEGORIES=	x11 mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
@@ -25,7 +26,7 @@ LIB_DEPENDS=	libgtop-2.0.so:devel/libgtop \
 PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c11 gettext gmake gnome libtool localbase mate \
-		pkgconfig python:2.7 tar:xz
+		pkgconfig python:2.7 tar:xz xorg
 USE_CSTD=	c11
 
 USE_MATE=	libmateweather panel

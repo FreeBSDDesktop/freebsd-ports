@@ -3,11 +3,14 @@
 
 PORTNAME=	mp
 DISTVERSION=	5.31
+PORTREVISION=	1
 CATEGORIES=	editors
 MASTER_SITES=	http://triptico.com/download/mp/
 
 MAINTAINER=	jhale@FreeBSD.org
 COMMENT=	Programming text editor
+
+BROKEN=		unfetchable
 
 LICENSE=	PD
 LICENSE_FILE=	${WRKSRC}/LICENSE

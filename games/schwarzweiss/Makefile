@@ -3,7 +3,7 @@
 
 PORTNAME=	schwarzweiss
 PORTVERSION=	20110806
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	games python
 MASTER_SITES=	SF/nemysisfreebsdp/games/:icons
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
@@ -23,7 +23,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	horstjens
 GH_TAGNAME=	d95263f
 
-USES=		python:2.7 shebangfix
+USES=		gnome python:2.7 shebangfix
 SHEBANG_FILES=	schwarzweiss_start.py data/*.py
 
 PORTDOCS=	readme.txt

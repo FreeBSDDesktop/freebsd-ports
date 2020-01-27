@@ -3,7 +3,7 @@
 
 PORTNAME=	clipgrab
 PORTVERSION=	3.7.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 MASTER_SITES=	https://download.clipgrab.org/
 
@@ -12,6 +12,8 @@ PATCHFILES=	clipgrab-qt5-${PORTVERSION}.patch:-p1
 
 MAINTAINER=	kikadf.01@gmail.com
 COMMENT=	Program to download videos from YouTube and etc
+
+BROKEN=		unfetchable
 
 LICENSE=	GPLv3
 

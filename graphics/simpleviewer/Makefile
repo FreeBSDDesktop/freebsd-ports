@@ -3,7 +3,7 @@
 
 PORTNAME=	simpleviewer
 PORTVERSION=	2.92
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	graphics
 MASTER_SITES=	https://bitbucket.org/andreyu/simple-viewer-gl/get/
 DISTNAME=	v${PORTVERSION}	# version tag, thus no embedded ${PORTNAME}
@@ -25,7 +25,8 @@ LIB_DEPENDS=	libIlmImf.so:graphics/openexr \
 		libtiff.so:graphics/tiff \
 		libwebp.so:graphics/webp
 
-USES=		cmake:insource compiler:c++11-lang jpeg pkgconfig tar:bzip2
+USES=		cmake:insource compiler:c++11-lang gl jpeg pkgconfig tar:bzip2 \
+		xorg
 USE_GL=		glu
 USE_XORG=	ice sm x11 xcursor xext xinerama xrandr xxf86vm
 

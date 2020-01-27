@@ -3,7 +3,7 @@
 PORTNAME=	bareos17
 DISTVERSIONPREFIX=	Release/
 DISTVERSION=	17.2.7
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES?=	sysutils
 PKGNAMEPREFIX?=	#
 PKGNAMESUFFIX?=	-server
@@ -154,7 +154,7 @@ CONFFILES=		sd dir
 # Server default database
 
 MYSQL_CONFIGURE_ON=	--with-mysql=yes
-MYSQL_USE=	MYSQL=yes
+MYSQL_USES=	mysql
 SQLITE3_CONFIGURE_ON=	--with-sqlite3=yes
 SQLITE3_LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 PGSQL_CONFIGURE_ON=	--with-postgresql=yes

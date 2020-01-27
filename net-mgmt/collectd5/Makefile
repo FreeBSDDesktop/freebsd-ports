@@ -3,7 +3,7 @@
 
 PORTNAME=	collectd
 PORTVERSION=	5.9.0
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	net-mgmt
 MASTER_SITES=	https://storage.googleapis.com/collectd-tarballs/
 PKGNAMESUFFIX=	5
@@ -24,7 +24,7 @@ OPTIONS_GROUP_OUTPUT=	KAFKA MONGODB NOTIFYDESKTOP NOTIFYEMAIL PROMETHEUS \
 			RIEMANN RRDTOOL TSDB
 OPTIONS_GROUP_INPUT=	CHRONY CURL CURL_JSON CURL_XML DBI IPMI JSON MEMCACHEC \
 			MODBUS MQTT MYSQL NUTUPS OLSRD ONEWIRE OPENLDAP PERL \
-			PGSQL PINBA PING PYTHON RABBITMQ REDIS ROUTEROS SIGROK \
+			PGSQL PINBA PING PYTHON RABBITMQ REDIS SIGROK \
 			SNMP STATSD TOKYOTYRANT VARNISH XML ZOOKEEPER
 
 OPTIONS_DEFAULT=	GCRYPT LOGGING PING
@@ -61,7 +61,6 @@ PYTHON_DESC=		Enable python-based plugins
 RABBITMQ_DESC=		Enable rabbitmq-based plugins
 REDIS_DESC=		Enable redis-based plugins
 RIEMANN_DESC=		Enable write_riemann plugin (via riemann-c-client)
-ROUTEROS_DESC=		Enable routeros plugin
 RRDTOOL_DESC=		Enable rrdtool plugin (also rrdcached plugin)
 SIGROK_DESC=		Enable sigrok plugin
 SNMP_DESC=		Enable SNMP plugin
@@ -84,27 +83,24 @@ LIBS+=		-L${LOCALBASE}/lib
 
 # NOTE: Plugins without dependencies are defined further down.
 CONFIGURE_ARGS=	--disable-all-plugins \
+		--disable-amqp \
 		--disable-ceph \
 		--disable-cgroups \
 		--disable-fhcount \
+		--disable-lvm \
 		--disable-static \
 		--disable-turbostat \
 		--enable-disk \
 		--localstatedir=/var \
-		--without-amqp \
 		--without-libaquaero5 \
 		--without-libganglia \
 		--without-libiptc \
-		--without-libkstat \
 		--without-libldap \
 		--without-liblvm2app \
 		--without-libmnl \
 		--without-libnetapp \
-		--without-libnetlink \
 		--without-libowcapi \
-		--without-libperfstat \
 		--without-libsensors \
-		--without-lvm \
 		--without-mic \
 		--without-oracle
 
@@ -130,13 +126,12 @@ JAVA_CONFIGURE_ENABLE=	java
 JAVA_CONFIGURE_WITH=	java=${LOCALBASE} libjvm
 
 DBI_LIB_DEPENDS=	libdbi.so:databases/libdbi
-DBI_CONFIGURE_WITH=	libdbi=${LOCALBASE}
 DBI_CONFIGURE_ENABLE=	dbi
 DBI_CFLAGS=		-Wno-deprecated-declarations
 
 GCRYPT_LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 			libgpg-error.so:security/libgpg-error
-GCRYPT_CONFIGURE_WITH=	-with-libgcrypt=${LOCALBASE}
+GCRYPT_CONFIGURE_WITH=	libgcrypt=${LOCALBASE}
 GCRYPT_LIBS=		-lgcrypt
 
 IPMI_LIB_DEPENDS=	libOpenIPMI.so:sysutils/openipmi
@@ -179,7 +174,7 @@ NOTIFYDESKTOP_LIB_DEPENDS=	libnotify.so:devel/libnotify
 NOTIFYDESKTOP_CONFIGURE_ENABLE=	notify_desktop
 NOTIFYDESKTOP_CONFIGURE_WITH=	libnotify=${LOCALBASE}
 NOTIFYDESKTOP_USE=		GNOME=gdkpixbuf2
-NOTIFYDESKTOP_USES=		gettext-runtime
+NOTIFYDESKTOP_USES=		gettext-runtime gnome
 
 NOTIFYEMAIL_LIB_DEPENDS=	libesmtp.so:mail/libesmtp
 NOTIFYEMAIL_CONFIGURE_ENABLE=	notify_email
@@ -236,12 +231,6 @@ RIEMANN_LIB_DEPENDS=		libltdl.so:devel/libltdl \
 				libriemann-client.so:net-mgmt/riemann-c-client
 RIEMANN_CONFIGURE_ENABLE=	write_riemann
 
-ROUTEROS_LIB_DEPENDS=		libgcrypt.so:security/libgcrypt \
-				libgpg-error.so:security/libgpg-error \
-				librouteros.so:net/librouteros
-ROUTEROS_CONFIGURE_ENABLE=	routeros
-ROUTEROS_CONFIGURE_WITH=	librouteros=${LOCALBASE}
-
 RRDTOOL_LIB_DEPENDS=		librrd.so:databases/rrdtool
 RRDTOOL_CONFIGURE_ENABLE=	rrdcached rrdtool
 RRDTOOL_CONFIGURE_WITH=		librrd=${LOCALBASE}
@@ -250,8 +239,9 @@ SIGROK_USE=			GNOME=glib20
 SIGROK_CFLAGS=			`pkg-config --cflags glib-2.0`
 SIGROK_LIB_DEPENDS=		libsigrok.so:devel/libsigrok
 SIGROK_CONFIGURE_ENABLE=	sigrok
-SIGROK_CONFIGURE_WITH=		libsigrok
+SIGROK_CONFIGURE_WITH=		libsigrok=${LOCALBASE}
 SIGROK_USES=			gettext-runtime
+SIGROK_BROKEN=			fails to configure with sigrok option
 
 SNMP_LIB_DEPENDS=	libnetsnmp.so:net-mgmt/net-snmp
 SNMP_CONFIGURE_ENABLE=	snmp
@@ -276,8 +266,9 @@ VIRT_LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 VIRT_CONFIGURE_ENABLE=	virt
 VIRT_CONFIGURE_WITH=	virt=${LOCALBASE}
 
+XML_CFLAGS=		`pkg-config --cflags libxml-2.0`
 XML_LIB_DEPENDS=	libxml2.so:textproc/libxml2
-XML_CONFIGURE_WITH=	libxml2=${LOCALBASE}
+XML_CONFIGURE_WITH=	libxml2
 
 ZOOKEEPER_LIB_DEPENDS=		libzookeeper_mt.so:devel/libzookeeper
 ZOOKEEPER_CONFIGURE_ENABLE=	zookeeper

@@ -3,7 +3,7 @@
 PORTNAME=	bareos
 DISTVERSIONPREFIX=	Release/
 DISTVERSION=	18.2.6
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	sysutils
 PKGNAMEPREFIX?=	#
 PKGNAMESUFFIX?=	-server
@@ -157,7 +157,7 @@ CMAKE_ARGS+=	-Dbuild-dird=ON \
 # Server default database
 
 MYSQL_CMAKE_ON=		-Dmysql=ON
-MYSQL_USE=	MYSQL=yes
+MYSQL_USES=	mysql
 SQLITE3_CMAKE_ON=	-Dsqlite3=ON
 SQLITE3_LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 PGSQL_CMAKE_ON=		-Dpostgresql=ON

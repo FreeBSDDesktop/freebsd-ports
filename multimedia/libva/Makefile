@@ -19,7 +19,10 @@ USES=		meson pkgconfig
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 GH_ACCOUNT=	intel
-LDFLAGS+=	-lpthread # for pthread_getthreadid_np
+# -lpthread is not necessary if pthread_getthreadid_np is a libc stub
+LDFLAGS+=	${LDFLAGS_${OPSYS}_${OSREL}}
+LDFLAGS_FreeBSD_11.3=	-lpthread
+LDFLAGS_FreeBSD_12.0=	-lpthread
 
 OPTIONS_DEFINE=	GLX WAYLAND X11
 OPTIONS_DEFAULT=GLX WAYLAND X11
@@ -35,6 +38,7 @@ GLX_IMPLIES=		X11
 WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland
 WAYLAND_MESON_YES=	with_wayland
 
+X11_USES=		xorg
 X11_USE=		XORG=x11,xorgproto,xext,xfixes
 X11_MESON_YES=		with_x11
 

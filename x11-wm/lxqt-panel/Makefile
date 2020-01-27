@@ -3,7 +3,7 @@
 
 PORTNAME=	lxqt-panel
 PORTVERSION=	0.14.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-wm
 MASTER_SITES=	LXQT
 
@@ -19,7 +19,7 @@ LIB_DEPENDS=	libdbusmenu-qt5.so:devel/libdbusmenu-qt \
 RUN_DEPENDS=	lxmenu-data>=0.1.2:x11/lxmenu-data
 
 USES=	cmake compiler:c++14-lang gettext-runtime kde:5 qt:5 gnome \
-	localbase:ldflags lxqt pkgconfig tar:xz
+	localbase:ldflags lxqt pkgconfig tar:xz xorg
 USE_QT=	buildtools_build qmake_build core dbus gui svg widgets \
 	x11extras xml
 USE_KDE=	windowsystem

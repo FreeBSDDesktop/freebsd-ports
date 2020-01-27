@@ -3,6 +3,7 @@
 
 PORTNAME=	libcec
 PORTVERSION=	4.0.4
+PORTREVISION=	1
 DISTVERSIONPREFIX=	${PORTNAME}-
 CATEGORIES=	multimedia
 
@@ -51,6 +52,7 @@ CMAKE_ARGS+=	-DSKIP_PYTHON_WRAPPER:BOOL=true
 .endif
 
 .if ${PORT_OPTIONS:MX11}
+USES+=		xorg
 USE_XORG=	x11 xorgproto xrandr
 .endif
 

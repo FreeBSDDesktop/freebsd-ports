@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	cptutils
-PORTVERSION=	1.71
+PORTVERSION=	1.72
 CATEGORIES=	graphics
 MASTER_SITES=	http://soliton.vm.bytemark.co.uk/pub/jjg/src/
 
@@ -11,6 +11,9 @@ COMMENT=	Convert and manipulate colour gradients
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+DEPRECATED=	depends on expired textproc/xml2
+EXPIRATION_DATE=2019-12-31
 
 BUILD_DEPENDS=	gengetopt:devel/gengetopt \
 		gperf:devel/gperf \

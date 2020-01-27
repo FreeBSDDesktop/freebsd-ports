@@ -3,7 +3,7 @@
 
 PORTNAME=	kana-no-quiz
 DISTVERSION=	1.9.5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	japanese
 MASTER_SITES=	SF/${PORTNAME}/Program%20releases/version%20${DISTVERSION}
 DISTNAME=	Kana_no_quiz-${DISTVERSION}
@@ -19,7 +19,7 @@ RUN_DEPENDS=	${PYGAME}
 NO_BUILD=	yes
 NO_ARCH=	yes
 
-USES=		gettext python:2.7 tar:bzip2
+USES=		gettext gnome python:2.7 tar:bzip2
 USE_GNOME=	pygtk2:run
 USE_PYTHON=	distutils autoplist
 

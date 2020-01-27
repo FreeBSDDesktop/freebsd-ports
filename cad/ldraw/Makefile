@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ldraw
-DISTVERSION=	20181208
+DISTVERSION=	20190628
 PORTEPOCH=	1
 CATEGORIES=	cad
 MASTER_SITES=	https://www.ldraw.org/library/updates/:parts \

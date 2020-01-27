@@ -3,7 +3,7 @@
 
 PORTNAME=	ace
 PORTVERSION=	6.5.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	ftp://download.dre.vanderbilt.edu/previous_versions/ \
 		http://download.dre.vanderbilt.edu/previous_versions/
@@ -48,6 +48,7 @@ TK_MAKE_ENV=		tk=1
 TRIO_DESC=		Trio portable string functions
 TRIO_BUILD_DEPENDS=	trio>=0:devel/trio
 TRIO_MAKE_ENV=		trio=1
+X11_USES=		xorg
 X11_USE=		XORG=xt
 X11_MAKE_ENV=		xt=1
 

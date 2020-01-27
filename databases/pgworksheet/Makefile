@@ -3,7 +3,7 @@
 
 PORTNAME=	pgworksheet
 PORTVERSION=	1.9
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	databases
 MASTER_SITES=	http://pgfoundry.org/frs/download.php/1695/
 
@@ -14,7 +14,7 @@ LICENSE=	GPLv2
 
 RUN_DEPENDS=	${PYTHON_SITELIBDIR}/pyPgSQL/libpq/__init__.py:databases/py-pyPgSQL@${PY_FLAVOR}
 
-USES=		pgsql python:2.7 tar:bzip2
+USES=		gnome pgsql python:2.7 tar:bzip2
 USE_GNOME=	pygtk2
 USE_PYTHON=	distutils autoplist
 

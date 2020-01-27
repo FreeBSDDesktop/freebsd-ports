@@ -3,6 +3,7 @@
 
 PORTNAME=	magit
 PORTVERSION=	2.90.1
+PORTREVISION=	1
 CATEGORIES=	devel elisp
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${PORTVERSION}/
 PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
@@ -37,11 +38,6 @@ MAKE_ENV+=	INSTALL_INFO=install-info \
 		docdir=${DOCSDIR}
 PLIST_SUB+=	ELISPDIR=${ELISPDIR}
 
-OPTIONS_DEFINE=			DOCS GIT_SUBVERSION
-GIT_SUBVERSION_DESC=		Use devel/git-subversion as backend
-GIT_SUBVERSION_BUILD_DEPENDS=	git-subversion>0:devel/git-subversion
-GIT_SUBVERSION_BUILD_DEPENDS_OFF=	git>0:devel/git
-GIT_SUBVERSION_RUN_DEPENDS=	git-subversion>0:devel/git-subversion
-GIT_SUBVERSION_RUN_DEPENDS_OFF=	git>0:devel/git
+OPTIONS_DEFINE=			DOCS
 
 .include <bsd.port.mk>

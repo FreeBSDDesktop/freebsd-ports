@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	anydesk
-DISTVERSION=	5.1.0
+DISTVERSION=	5.1.1
 CATEGORIES=	deskutils
 MASTER_SITES=	https://download.anydesk.com/freebsd/
 DISTNAME=	${PORTNAME}-freebsd-${PORTVERSION}-${ARCH:S/amd64/x86_64/:S/i386/i386/}
@@ -22,7 +22,7 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libinotify.so:devel/libinotify \
 		libpolkit-gobject-1.so:sysutils/polkit
 
-USES=		gl gnome
+USES=		gl gnome xorg
 
 USE_GL=		gl glu
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk20 pangox-compat

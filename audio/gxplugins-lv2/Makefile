@@ -3,6 +3,7 @@
 PORTNAME=	gxplugins
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.7
+PORTREVISION=	1
 CATEGORIES=	audio
 PKGNAMESUFFIX=	-lv2
 DIST_SUBDIR=	${PORTNAME}
@@ -15,7 +16,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	lv2>0:audio/lv2
 
-USES=		compiler:c++11-lang gettext-runtime gmake gnome localbase pkgconfig
+USES=		compiler:c++11-lang gettext-runtime gmake gnome localbase \
+		pkgconfig xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	brummer10
 GH_PROJECT=	GxPlugins.lv2

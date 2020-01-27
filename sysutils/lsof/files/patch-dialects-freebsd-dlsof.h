@@ -1,6 +1,14 @@
---- dialects/freebsd/dlsof.h.orig	2019-05-22 14:37:20 UTC
+--- dialects/freebsd/dlsof.h.orig	2019-05-08 07:32:25 UTC
 +++ dialects/freebsd/dlsof.h
-@@ -45,6 +45,12 @@
+@@ -38,6 +38,7 @@
+ #if	!defined(FREEBSD_LSOF_H)
+ #define	FREEBSD_LSOF_H	1
+ 
++#include <stddef.h>
+ #include <stdlib.h>
+ #include <dirent.h>
+ #include <nlist.h>
+@@ -45,6 +46,12 @@
  #include <signal.h>
  #include <unistd.h>
  
@@ -13,3 +21,16 @@
  # if	FREEBSDV>=4000
  #  if	FREEBSDV>=5000
  #   if	FREEBSDV<6020
+@@ -104,6 +111,12 @@ typedef	struct device	*device_t;
+ 
+ 
+ #include <sys/conf.h>
++
++/* 
++ * include <stdbool.h> for refcount(9)
++ */
++#include <stdbool.h>
++ 
+ 
+ #  if	defined(HAS_VM_MEMATTR_T)
+ #undef	vm_memattr_t

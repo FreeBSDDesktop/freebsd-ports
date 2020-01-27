@@ -3,7 +3,7 @@
 
 PORTNAME=	c++-gtk-utils
 PORTVERSION=	2.2.15
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF/cxx-gtk-utils/cxx-gtk-utils/${PORTVERSION}/
 
@@ -17,7 +17,8 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
 GNU_CONFIGURE=	yes
-USES=		compiler:c++11-lib gettext-runtime libtool pathfix pkgconfig
+USES=		compiler:c++11-lib gettext-runtime gnome libtool pathfix \
+		pkgconfig
 USE_GNOME=	cairo gdkpixbuf2 gtk20
 USE_LDCONFIG=	yes
 

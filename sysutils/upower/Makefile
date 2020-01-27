@@ -3,11 +3,11 @@
 
 PORTNAME=	upower
 PORTVERSION=	0.99.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://upower.freedesktop.org/releases/
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	D-Bus daemon for simplifying power management tasks
 
 LICENSE=	GPLv2

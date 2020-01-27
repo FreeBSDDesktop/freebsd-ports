@@ -3,13 +3,15 @@
 
 PORTNAME=	pysycache
 PORTVERSION=	2.0
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	games python
 MASTER_SITES=	http://download.gna.org/py4childs/${PORTNAME}/v${PORTVERSION}/
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Educational software made in python
+
+BROKEN=		unfetchable
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING

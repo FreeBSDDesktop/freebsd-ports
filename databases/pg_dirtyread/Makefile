@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	pg_dirtyread
-PORTVERSION=	2.1
+PORTVERSION=	2.2
 CATEGORIES=	databases
-PKGNAMEPREFIX=	postgresql${PGSQL_VER:S/.//}-
+PKGNAMEPREFIX=	postgresql${PGSQL_VER_NODOT}-
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Read dead but unvacuumed tuples from a PostgreSQL relation

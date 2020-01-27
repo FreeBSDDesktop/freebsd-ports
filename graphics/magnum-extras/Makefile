@@ -3,6 +3,7 @@
 PORTNAME=	magnum-extras
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2019.01
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -19,7 +20,7 @@ LIB_DEPENDS=	libassimp.so:multimedia/assimp \
 		libMagnum.so:graphics/magnum \
 		libpng.so:graphics/png
 
-USES=		cmake compiler:c++14-lang gl
+USES=		cmake compiler:c++14-lang gl sdl
 USE_GITHUB=	yes
 GH_ACCOUNT=	mosra
 GH_TUPLE=	mosra:toolchains:fc22ff5:t/toolchains

@@ -2,10 +2,13 @@
 
 PORTNAME=	libcyaml
 DISTVERSION=	0.1.0
+PORTREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	C library for reading and writing YAML
+
+BROKEN=		unfetchable
 
 LICENSE=	ISCL
 

@@ -3,10 +3,10 @@
 
 PORTNAME=	trytond28_account_invoice
 PORTVERSION=	2.8.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	finance python
 MASTER_SITES=	CHEESESHOP \
-		http://downloads.tryton.org/${PORTVERSION:R}/
+		http://downloads-cdn.tryton.org/${PORTVERSION:R}/
 DISTNAME=	trytond_account_invoice-${PORTVERSION}
 
 MAINTAINER=	matthias@petermann-it.de
