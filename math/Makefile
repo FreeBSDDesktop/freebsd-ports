@@ -7,6 +7,7 @@
     SUBDIR += GiNaC
     SUBDIR += PDL
     SUBDIR += R
+    SUBDIR += R-cran-ADGofTest
     SUBDIR += R-cran-Amelia
     SUBDIR += R-cran-BsMD
     SUBDIR += R-cran-CVST
@@ -35,6 +36,8 @@
     SUBDIR += R-cran-SparseM
     SUBDIR += R-cran-VGAM
     SUBDIR += R-cran-Zelig
+    SUBDIR += R-cran-acepack
+    SUBDIR += R-cran-alabama
     SUBDIR += R-cran-assertthat
     SUBDIR += R-cran-backports
     SUBDIR += R-cran-bdsmatrix
@@ -97,6 +100,7 @@
     SUBDIR += R-cran-robustbase
     SUBDIR += R-cran-sandwich
     SUBDIR += R-cran-scatterplot3d
+    SUBDIR += R-cran-sets
     SUBDIR += R-cran-sf
     SUBDIR += R-cran-sm
     SUBDIR += R-cran-sp
@@ -113,6 +117,7 @@
     SUBDIR += SCIP
     SUBDIR += SoPlex
     SUBDIR += aamath
+    SUBDIR += abella
     SUBDIR += abs
     SUBDIR += acalc
     SUBDIR += add
@@ -126,6 +131,7 @@
     SUBDIR += analitza
     SUBDIR += ann
     SUBDIR += antic
+    SUBDIR += apache-commons-math
     SUBDIR += apc
     SUBDIR += apron
     SUBDIR += arb
@@ -139,7 +145,6 @@
     SUBDIR += atlas
     SUBDIR += barvinok
     SUBDIR += bcal
-    SUBDIR += biggles
     SUBDIR += bitwise
     SUBDIR += blacs
     SUBDIR += blas
@@ -154,6 +159,7 @@
     SUBDIR += bsdnt
     SUBDIR += btor2tools
     SUBDIR += cadabra2
+    SUBDIR += cadical
     SUBDIR += calc
     SUBDIR += calcoo
     SUBDIR += calctool
@@ -193,6 +199,8 @@
     SUBDIR += cppad
     SUBDIR += crlibm
     SUBDIR += cryptominisat
+    SUBDIR += csdp
+    SUBDIR += ctl-sat
     SUBDIR += curv
     SUBDIR += cvc3
     SUBDIR += cvc4
@@ -204,7 +212,6 @@
     SUBDIR += djbfft
     SUBDIR += drgeo
     SUBDIR += dsdp
-    SUBDIR += dynare
     SUBDIR += e
     SUBDIR += ecos
     SUBDIR += edenmath
@@ -294,7 +301,6 @@
     SUBDIR += ised
     SUBDIR += jacal
     SUBDIR += jags
-    SUBDIR += jakarta-commons-math3
     SUBDIR += jama
     SUBDIR += jeuclid
     SUBDIR += jlatexmath
@@ -348,7 +354,6 @@
     SUBDIR += ltl
     SUBDIR += ltl2ba
     SUBDIR += lybniz
-    SUBDIR += mandelbulber2
     SUBDIR += mate-calc
     SUBDIR += math77
     SUBDIR += mathgl
@@ -360,7 +365,6 @@
     SUBDIR += mbasecalc
     SUBDIR += mcsim
     SUBDIR += metis
-    SUBDIR += metis-edf
     SUBDIR += metis4
     SUBDIR += mfem
     SUBDIR += mingw32-libgmp
@@ -398,12 +402,14 @@
     SUBDIR += octave
     SUBDIR += octave-forge
     SUBDIR += octave-forge-actuarial
+    SUBDIR += octave-forge-audio
     SUBDIR += octave-forge-base
     SUBDIR += octave-forge-bim
     SUBDIR += octave-forge-bioinfo
     SUBDIR += octave-forge-bsltl
     SUBDIR += octave-forge-cgi
     SUBDIR += octave-forge-civil-engineering
+    SUBDIR += octave-forge-communications
     SUBDIR += octave-forge-control
     SUBDIR += octave-forge-data-smoothing
     SUBDIR += octave-forge-database
@@ -435,6 +441,8 @@
     SUBDIR += octave-forge-lssa
     SUBDIR += octave-forge-ltfat
     SUBDIR += octave-forge-mapping
+    SUBDIR += octave-forge-matgeom
+    SUBDIR += octave-forge-mechanics
     SUBDIR += octave-forge-miscellaneous
     SUBDIR += octave-forge-missing-functions
     SUBDIR += octave-forge-msh
@@ -649,8 +657,6 @@
     SUBDIR += pecl-bitset
     SUBDIR += pecl-stats2
     SUBDIR += petiga
-    SUBDIR += php71-bcmath
-    SUBDIR += php71-gmp
     SUBDIR += php72-bcmath
     SUBDIR += php72-gmp
     SUBDIR += php73-bcmath
@@ -665,6 +671,7 @@
     SUBDIR += ploticus-nox11
     SUBDIR += plplot
     SUBDIR += plplot-ada
+    SUBDIR += poly2tri
     SUBDIR += polylib
     SUBDIR += primegen
     SUBDIR += primesieve
@@ -684,6 +691,7 @@
     SUBDIR += py-algopy
     SUBDIR += py-altgraph
     SUBDIR += py-apgl
+    SUBDIR += py-arviz
     SUBDIR += py-autograd
     SUBDIR += py-basemap
     SUBDIR += py-basemap-data
@@ -706,15 +714,14 @@
     SUBDIR += py-ffc
     SUBDIR += py-fiat
     SUBDIR += py-fpconst
-    SUBDIR += py-gato
     SUBDIR += py-gau2grid
     SUBDIR += py-gimmik
     SUBDIR += py-gmpy
     SUBDIR += py-gmpy2
-    SUBDIR += py-gnuplot
     SUBDIR += py-grandalf
     SUBDIR += py-graphillion
     SUBDIR += py-gym
+    SUBDIR += py-hdbscan
     SUBDIR += py-igakit
     SUBDIR += py-igraph
     SUBDIR += py-intspan
@@ -725,7 +732,6 @@
     SUBDIR += py-levmar
     SUBDIR += py-libpoly
     SUBDIR += py-luminol
-    SUBDIR += py-mathdom
     SUBDIR += py-matplotlib
     SUBDIR += py-matplotlib-scalebar
     SUBDIR += py-mpmath
@@ -748,7 +754,6 @@
     SUBDIR += py-piranha
     SUBDIR += py-plastex
     SUBDIR += py-primme
-    SUBDIR += py-probstat
     SUBDIR += py-pyFFTW
     SUBDIR += py-pyasp
     SUBDIR += py-pybloom
@@ -762,6 +767,7 @@
     SUBDIR += py-pymc3
     SUBDIR += py-pyneqsys
     SUBDIR += py-pynleq2
+    SUBDIR += py-pynndescent
     SUBDIR += py-pyodeint
     SUBDIR += py-pyodesys
     SUBDIR += py-pysparse
@@ -773,7 +779,6 @@
     SUBDIR += py-random2
     SUBDIR += py-rapi
     SUBDIR += py-roman
-    SUBDIR += py-rpy
     SUBDIR += py-rpy2
     SUBDIR += py-scientific
     SUBDIR += py-scikit-umfpack
@@ -785,6 +790,7 @@
     SUBDIR += py-spectral
     SUBDIR += py-spot
     SUBDIR += py-statsmodels
+    SUBDIR += py-statsmodels010
     SUBDIR += py-svgmath
     SUBDIR += py-sym
     SUBDIR += py-symcxx
@@ -809,6 +815,7 @@
     SUBDIR += reduce
     SUBDIR += reduce-psl
     SUBDIR += reed-solomon
+    SUBDIR += rehearse
     SUBDIR += rexx-regmath
     SUBDIR += rkward-kde
     SUBDIR += rngstreams
@@ -839,6 +846,7 @@
     SUBDIR += sfst
     SUBDIR += simd-viterbi
     SUBDIR += singular
+    SUBDIR += sisl
     SUBDIR += slatec
     SUBDIR += sleef
     SUBDIR += slepc
@@ -863,6 +871,7 @@
     SUBDIR += taucs
     SUBDIR += tblis
     SUBDIR += tetgen
+    SUBDIR += teyjus
     SUBDIR += timbl
     SUBDIR += tmv
     SUBDIR += tomsfastmath
@@ -881,6 +890,7 @@
     SUBDIR += vowpal_wabbit
     SUBDIR += vtk6
     SUBDIR += vtk8
+    SUBDIR += wavelib
     SUBDIR += wcalc
     SUBDIR += wfmath
     SUBDIR += why3

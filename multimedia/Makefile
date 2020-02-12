@@ -40,11 +40,9 @@
     SUBDIR += clutter-gst3
     SUBDIR += cmrt
     SUBDIR += cmrtlib
-    SUBDIR += cuse4bsd-kmod
     SUBDIR += cx88
     SUBDIR += dav1d
     SUBDIR += deforaos-player
-    SUBDIR += devede
     SUBDIR += din
     SUBDIR += dirac
     SUBDIR += dragon
@@ -77,7 +75,6 @@
     SUBDIR += gaupol
     SUBDIR += gavl
     SUBDIR += gdialog
-    SUBDIR += gdvrecv
     SUBDIR += gmerlin
     SUBDIR += gmimms
     SUBDIR += gmmlib
@@ -137,6 +134,7 @@
     SUBDIR += gstreamer1-plugins-mpeg2dec
     SUBDIR += gstreamer1-plugins-mpeg2enc
     SUBDIR += gstreamer1-plugins-mplex
+    SUBDIR += gstreamer1-plugins-msdk
     SUBDIR += gstreamer1-plugins-openh264
     SUBDIR += gstreamer1-plugins-resindvd
     SUBDIR += gstreamer1-plugins-rtmp
@@ -163,6 +161,7 @@
     SUBDIR += handbrake
     SUBDIR += harvid
     SUBDIR += imagination
+    SUBDIR += intel-media-sdk
     SUBDIR += iriverter
     SUBDIR += iso2mkv
     SUBDIR += jmref
@@ -176,6 +175,7 @@
     SUBDIR += kodi
     SUBDIR += kodi-addon-inputstream.adaptive-devel
     SUBDIR += kodi-addon-peripheral-joystick
+    SUBDIR += kodi-addon-peripheral.joystick-devel
     SUBDIR += kodi-addon-pvr-hts
     SUBDIR += kodi-addon-pvr-iptvsimple
     SUBDIR += kodi-addon-vfs.libarchive-devel
@@ -235,8 +235,6 @@
     SUBDIR += libxine
     SUBDIR += libxspf
     SUBDIR += libzen
-    SUBDIR += linux-c6-libtheora
-    SUBDIR += linux-c6-libv4l
     SUBDIR += linux-c7-libtheora
     SUBDIR += linux-c7-libv4l
     SUBDIR += linux-tsmuxer
@@ -259,7 +257,6 @@
     SUBDIR += mkxvcd
     SUBDIR += mlt
     SUBDIR += mlt-qt5
-    SUBDIR += mmpython
     SUBDIR += mmsclient
     SUBDIR += mmsrip
     SUBDIR += motion
@@ -277,6 +274,7 @@
     SUBDIR += mplex
     SUBDIR += mps-youtube
     SUBDIR += mpv
+    SUBDIR += mpv-mpris
     SUBDIR += msdl
     SUBDIR += msopenh264
     SUBDIR += mswebrtc
@@ -350,7 +348,6 @@
     SUBDIR += py-soco
     SUBDIR += py-subliminal
     SUBDIR += py-tvnamer
-    SUBDIR += pymp
     SUBDIR += qmmp-plugin-pack-qt5
     SUBDIR += qmmp-qt5
     SUBDIR += qt-faststart

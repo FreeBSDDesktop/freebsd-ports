@@ -12,6 +12,7 @@
     SUBDIR += crashmail
     SUBDIR += diablo
     SUBDIR += fidogate
+    SUBDIR += fidogate4
     SUBDIR += golded+
     SUBDIR += gup
     SUBDIR += hellanzb
@@ -53,7 +54,6 @@
     SUBDIR += p5-POE-Component-Client-NNTP
     SUBDIR += p5-POE-Component-Server-NNTP
     SUBDIR += pan
-    SUBDIR += papercut
     SUBDIR += pgpmoose
     SUBDIR += plor
     SUBDIR += py-pynzb

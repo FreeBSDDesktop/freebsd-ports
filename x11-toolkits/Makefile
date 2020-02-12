@@ -10,7 +10,6 @@
     SUBDIR += bwidget
     SUBDIR += c++-gtk-utils
     SUBDIR += ctk
-    SUBDIR += diorite
     SUBDIR += flowcanvas
     SUBDIR += fltk
     SUBDIR += fox14
@@ -83,8 +82,6 @@
     SUBDIR += libbonoboui-reference
     SUBDIR += libdazzle
     SUBDIR += libgdiplus
-    SUBDIR += libgnomeprintui
-    SUBDIR += libgnomeprintuimm
     SUBDIR += libgnomeui
     SUBDIR += libgnomeui-reference
     SUBDIR += libgnomeuimm26
@@ -97,11 +94,6 @@
     SUBDIR += libwnck3
     SUBDIR += libxaw3dxft
     SUBDIR += libxfce4gui
-    SUBDIR += linux-c6-gtk2
-    SUBDIR += linux-c6-openmotif
-    SUBDIR += linux-c6-pango
-    SUBDIR += linux-c6-qt47-x11
-    SUBDIR += linux-c6-tk85
     SUBDIR += linux-c7-gtk2
     SUBDIR += linux-c7-gtk3
     SUBDIR += linux-c7-openmotif
@@ -117,7 +109,6 @@
     SUBDIR += nanogui
     SUBDIR += neXtaw
     SUBDIR += ntk
-    SUBDIR += nucleo
     SUBDIR += ocaml-lablgtk2
     SUBDIR += ocaml-labltk
     SUBDIR += open-motif
@@ -185,14 +176,12 @@
     SUBDIR += py-gtk2
     SUBDIR += py-gtkglext
     SUBDIR += py-gtksourceview
-    SUBDIR += py-gui
     SUBDIR += py-kivy
     SUBDIR += py-kiwi-gtk
     SUBDIR += py-qt5-gui
     SUBDIR += py-qt5-quick
     SUBDIR += py-qt5-quickwidgets
     SUBDIR += py-qt5-widgets
-    SUBDIR += py-sexy
     SUBDIR += py-tkinter
     SUBDIR += py-tktreectrl
     SUBDIR += py-vte
@@ -237,7 +226,7 @@
     SUBDIR += shared-desktop-ontologies
     SUBDIR += skinlf
     SUBDIR += slingshot
-    SUBDIR += soqt-devel
+    SUBDIR += soqt
     SUBDIR += swt
     SUBDIR += tepl
     SUBDIR += termit

@@ -1,17 +1,14 @@
-# Created by: Piotr Kubaj <pkubaj@anongoth.pl>
+# Created by: Piotr Kubaj <pkubaj@FreeBSD.org>
 # $FreeBSD$
 
 PORTNAME=	exo
-PORTVERSION=	2.0
-PORTREVISION=	1
+PORTVERSION=	2
+PORTREVISION=	2
 CATEGORIES=	x11-fonts
-MASTER_SITES=	http://www.ndiscovered.com/downloads/exo2/
-DISTNAME=	EXO_2_OTF
+MASTER_SITES=	http://ndiscovered.com/archives/
 
-MAINTAINER=	pkubaj@anongoth.pl
+MAINTAINER=	pkubaj@FreeBSD.org
 COMMENT=	Geometric sans serif font with a technological feel
-
-BROKEN=		unfetchable
 
 LICENSE=	OFL11
 

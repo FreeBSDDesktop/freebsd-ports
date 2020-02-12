@@ -1,16 +1,16 @@
-# Created by: Loïc Bartoletti <lbartoletti@tuxfamily.org>
+# Created by: Loïc Bartoletti <lbartoletti@FreeBSD.org>
 # $FreeBSD$
 
 PORTNAME=	codeblocks
 PORTVERSION=	18.04
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	devel
 MASTER_SITES=	http://download.tuxfamily.org/bartcoding/FreeBSD/ \
 		${MASTER_SITE_LOCAL}
 PKGNAMESUFFIX=	-devel
 DISTNAME=	${PORTNAME}-${PORTVERSION}-${SVN_REV}
 
-MAINTAINER=	lbartoletti@tuxfamily.org
+MAINTAINER=	lbartoletti@FreeBSD.org
 COMMENT=	Open source, cross-platform, free C/C++ IDE
 
 LICENSE=	GPLv3 LGPL3

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	lxqt-panel
-PORTVERSION=	0.14.0
-PORTREVISION=	2
+PORTVERSION=	0.14.1
 CATEGORIES=	x11-wm
 MASTER_SITES=	LXQT
 
@@ -11,6 +10,7 @@ MAINTAINER=	jsm@FreeBSD.org
 COMMENT=	Panel for the LXQt desktop
 
 LICENSE=	LGPL21+
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libdbusmenu-qt5.so:devel/libdbusmenu-qt \
 		libxkbcommon.so:x11/libxkbcommon \

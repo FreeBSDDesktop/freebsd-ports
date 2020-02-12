@@ -1,13 +1,13 @@
 # $FreeBSD$
 
 PORTNAME=	gcc
-PORTVERSION=	6.4.0
+PORTVERSION=	6.5.0
 CATEGORIES=	devel
 MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
 PKGNAMEPREFIX=	${TARGETARCH}-
 PKGNAMESUFFIX=	${SUFFIX}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	jhb@FreeBSD.org
 COMMENT=	Cross GNU Compiler Collection for ${TARGETARCH}
 
 LICENSE=	GPLv3 GPLv3RLE
@@ -98,7 +98,7 @@ PLIST_SUB+=	FLOAT_H="@comment "
 PLIST_SUB+=	FLOAT_H=""
 .endif
 
-PLIST=		${.CURDIR}/pkg-plist
+PLIST=		${.CURDIR}/pkg-plist ${.CURDIR}/pkg-plist.common
 
 .if ${TARGETARCH} == "aarch64"
 PLIST+=		${.CURDIR}/pkg-plist.aarch64

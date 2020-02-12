@@ -3,8 +3,9 @@
 
 PORTNAME=	monero-cli
 # To build from an arbitrary git commit comment PORTVERSION and PORTREVISION (if present)
-PORTVERSION=	0.15.0.0
+PORTVERSION=	0.15.0.1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 # and uncomment the following two lines (use for example -git-HEAD or -git-b6420e1)
 #PORTVERSION=	0
 #PKGNAMESUFFIX=	-git-HEAD
@@ -81,6 +82,8 @@ CMAKE_ARGS+=	-DLD_RAW_FLAGS:STRING=-m${LD_EMULATION}
 # keep in sync with all platforms where libunwind is available
 .if (${ARCH} == amd64 || ${ARCH} == i386)
 LIB_DEPENDS+=	libunwind.so:devel/libunwind
+.else
+CMAKE_ARGS+=	-DSTACK_TRACE:BOOL=OFF
 .endif
 
 CMAKE_ARGS+=	-DMANUAL_SUBMODULES:BOOL=ON

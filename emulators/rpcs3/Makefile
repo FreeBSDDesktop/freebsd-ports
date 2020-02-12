@@ -2,8 +2,8 @@
 
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.7-9160 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-g8d5ef2c7b
+DISTVERSION=	0.0.8-9528 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-g54da9ac7e
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -25,18 +25,18 @@ ONLY_FOR_ARCHS_REASON=	requires int128 and SSE2
 USE_GITHUB=	yes
 GH_ACCOUNT=	RPCS3
 GH_TUPLE=	RPCS3:hidapi:hidapi-0.8.0-rc1-27-g9220f5e:hidapi/3rdparty/hidapi \
-		RPCS3:llvm:9836c299733e:llvm/llvm \
+		RPCS3:llvm:9fb67ecaea74:llvm/llvm \
 		Cyan4973:xxHash:v0.6.5:xxHash/3rdparty/xxHash \
-		FNA-XNA:FAudio:19.11:FAudio/3rdparty/FAudio \
+		FNA-XNA:FAudio:20.02:FAudio/3rdparty/FAudio \
 		jbeder:yaml-cpp:yaml-cpp-0.6.2-23-geca9cfd:yamlcpp/3rdparty/yaml-cpp \
 		kobalicek:asmjit:fc251c9:asmjit/asmjit \
-		KhronosGroup:glslang:7.11.3214:glslang/Vulkan/glslang \
+		KhronosGroup:glslang:7.13.3496:glslang/Vulkan/glslang \
 		tcbrindle:span:9d7559a:span/3rdparty/span \
 		USCiLab:cereal:v1.2.0:cereal/3rdparty/cereal \
 		zeux:pugixml:v1.9-51-g8bf806c:pugixml/3rdparty/pugixml
 
 USES=		cmake compiler:c++17-lang gl iconv:wchar_t localbase:ldflags \
-		openal:soft pkgconfig qt:5 xorg
+		openal:soft pkgconfig python:3.4+,build qt:5 xorg
 USE_GL=		gl glew
 USE_QT=		qmake_build buildtools_build core concurrent dbus declarative gui network widgets
 USE_XORG=	x11

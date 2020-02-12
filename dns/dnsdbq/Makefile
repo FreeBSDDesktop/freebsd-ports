@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	dnsdbq
-PORTVERSION=	1.4.0
+PORTVERSION=	1.5.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	dns
 
@@ -20,11 +20,13 @@ USES=		compiler:c11 localbase
 USE_GITHUB=	yes
 GH_ACCOUNT=	dnsdb
 
+PORTSCOUT=	limit:^1
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/man1/
 	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.man ${STAGEDIR}${PREFIX}/share/man/man1/${PORTNAME}.1
 
-PLIST_FILES=	bin/${PORTNAME} share/man/man1/${PORTNAME}.1
+PLIST_FILES=	bin/${PORTNAME} share/man/man1/${PORTNAME}.1.gz
 
 .include <bsd.port.mk>

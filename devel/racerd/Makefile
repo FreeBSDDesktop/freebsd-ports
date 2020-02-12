@@ -5,7 +5,7 @@ PORTNAME=	racerd
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.1.1-56
 DISTVERSIONSUFFIX=	-g29cd4c6
-PORTREVISION=	15
+PORTREVISION=	16
 CATEGORIES=	devel
 
 MAINTAINER=	ultima@FreeBSD.org
@@ -13,6 +13,10 @@ COMMENT=	Rust semantic analysis server powered by Racer
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=	Old, unmaintained, and fails to build with Rust 1.41.0 or newer; use rls from lang/rust instead
+EXPIRATION_DATE=	2020-02-25
+BROKEN=		fails to build with Rust 1.41.0
 
 USES=		cargo
 USE_GITHUB=	yes

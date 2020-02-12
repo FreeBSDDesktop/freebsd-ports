@@ -54,8 +54,8 @@ NOPRECIOUSMAKEVARS=	yes
 
 JDK_MAJOR_VERSION=	13
 JDK_MINOR_VERSION=	0
-JDK_PATCH_VERSION=	1
-JDK_BUILD_NUMBER=	9
+JDK_PATCH_VERSION=	2
+JDK_BUILD_NUMBER=	8
 BSD_JDK_VERSION=	1
 
 GNU_CONFIGURE=	yes
@@ -130,6 +130,9 @@ MAKE_ENV+=	USE_CLANG=true
 .if ${ARCH} == aarch64 || ${ARCH} == powerpc64
 CONFIGURE_ARGS+=	--disable-warnings-as-errors \
 			--disable-dtrace
+.endif
+.if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
+CONFIGURE_ARGS+=	--disable-precompiled-headers
 .endif
 .if ${ARCH} != amd64
 CONFIGURE_ARGS+=	--enable-aot=no

@@ -15,13 +15,15 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/wayland-protocols.pc:graphics/wayl
 LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
 		libinput.so:x11/libinput
 
+CONFLICTS_INSTALL=	${PORTNAME}-devel
+
 MASTERDIR=	${.CURDIR}/../xorg-server
 DESCR=		${.CURDIR}/pkg-descr
 DISTINFO_FILE=	${.CURDIR}/distinfo
 PATCHDIR=	${.CURDIR}/files
 
 SLAVE_PORT=	yes
-OPTIONS_EXCLUDE=DEVD HAL SUID
+OPTIONS_EXCLUDE=DEVD HAL SUID UDEV
 
 USE_XORG=	x11 xext xfont2
 USE_GL+=	egl gbm
