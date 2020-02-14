@@ -1,8 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	vapoursynth
-PORTVERSION=	R47.2
+DISTVERSION=	R48
 CATEGORIES=	multimedia
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	a9b657d8b014.patch:-p1 4d4f8cbf272c.patch:-p1
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Video processing framework with simplicity in mind
@@ -125,7 +128,7 @@ post-install-DOCS-on:
 		"${PORTDOCS}" ${STAGEDIR}${DOCSDIR})
 	@if [ -n "${PORT_OPTIONS:MVSPIPE}" ]; then \
 		${INSTALL_MAN} -v ${WRKSRC}/doc/_build/man/vspipe.1 \
-			${STAGEDIR}${MAN1PREFIX}/man/man1; \
+			${STAGEDIR}${PREFIX}/share/man/man1; \
 	fi
 
 .include <bsd.port.mk>

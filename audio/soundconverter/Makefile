@@ -11,13 +11,16 @@ MASTER_SITES=	https://launchpad.net/soundconverter/trunk/2.1.6/+download/ \
 MAINTAINER=	portmaster@BSDforge.com
 COMMENT=	Sound conversion application for the GNOME environment
 
+DEPRECATED=	Old, uses EOLed python27
+EXPIRATION_DATE=	2020-02-17
+
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gstreamer>=0.10:multimedia/py-gstreamer@${PY_FLAVOR}
 
 NO_ARCH=	yes
-USES=		desktop-file-utils gettext-tools gmake python:2.7 \
+USES=		desktop-file-utils gettext-tools gmake gnome python:2.7 \
 		shebangfix tar:xz
 
 SHEBANG_FILES=	bin/soundconverter.py

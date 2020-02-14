@@ -4,7 +4,7 @@ PORTNAME=	clover
 PORTVERSION=	${MESAVERSION}
 CATEGORIES=	lang
 
-COMMENT=	Mesa "Clover" OpenCL library
+COMMENT=	Mesa OpenCL implementation for AMD GPUs
 
 BUILD_DEPENDS=	libclc>=0.3.0:devel/libclc \
 		opencl>=0:devel/opencl

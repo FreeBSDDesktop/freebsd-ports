@@ -3,7 +3,7 @@
 
 PORTNAME?=	libpurple
 PORTVERSION=	2.13.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES?=	net-im
 MASTER_SITES=	SF/pidgin/Pidgin/${PORTVERSION}
 DISTNAME=	pidgin-${PORTVERSION}
@@ -11,7 +11,8 @@ DISTNAME=	pidgin-${PORTVERSION}
 MAINTAINER?=	marcus@FreeBSD.org
 COMMENT?=	Backend library for the Pidgin multi-protocol messaging client
 
-USES+=		cpe gettext gmake libtool localbase pathfix pkgconfig tar:bzip2
+USES+=		cpe gettext gmake gnome libtool localbase pathfix pkgconfig \
+		tar:bzip2
 USE_GNOME?=	gnomeprefix intltool glib20 libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS?=--disable-gtkui \
@@ -177,8 +178,8 @@ LIB_DEPENDS+=		libnss3.so:security/nss
 CONFIGURE_ARGS+=	--enable-nss=yes \
 			--with-nspr-includes=${LOCALBASE}/include/nspr \
 			--with-nspr-libs=${LOCALBASE}/lib \
-			--with-nss-includes=${LOCALBASE}/include/nss/nss \
-			--with-nss-libs=${LOCALBASE}/lib/nss
+			--with-nss-includes=${LOCALBASE}/include/nss \
+			--with-nss-libs=${LOCALBASE}/lib
 PLIST_SUB+=		NSS=""
 .else
 CONFIGURE_ARGS+=	--enable-nss=no

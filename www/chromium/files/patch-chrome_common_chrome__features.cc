@@ -1,6 +1,6 @@
---- chrome/common/chrome_features.cc.orig	2019-07-24 18:58:13 UTC
+--- chrome/common/chrome_features.cc.orig	2019-12-16 21:51:24 UTC
 +++ chrome/common/chrome_features.cc
-@@ -98,13 +98,13 @@ const base::Feature kAutoFetchOnNetErrorPage{"AutoFetc
+@@ -86,13 +86,13 @@ const base::Feature kAutoFetchOnNetErrorPage{"AutoFetc
                                               base::FEATURE_DISABLED_BY_DEFAULT};
  #endif  // defined(OS_ANDROID)
  
@@ -16,9 +16,9 @@
  
  // Enables or disables whether permission prompts are automatically blocked
  // after the user has explicitly dismissed them too many times.
-@@ -150,7 +150,7 @@ const base::Feature kThirdPartyModulesBlocking{
-     "ThirdPartyModulesBlocking", base::FEATURE_DISABLED_BY_DEFAULT};
- #endif
+@@ -152,7 +152,7 @@ const base::Feature kThirdPartyModulesBlocking{
+ const base::Feature kTLS13HardeningForLocalAnchors{
+     "TLS13HardeningForLocalAnchors", base::FEATURE_DISABLED_BY_DEFAULT};
  
 -#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_MACOSX)
 +#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_MACOSX) || defined(OS_BSD)

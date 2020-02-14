@@ -2,7 +2,7 @@
 
 PORTNAME=	openturns
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.13
+DISTVERSION=	1.14
 PORTREVISION=	3
 CATEGORIES=	math
 
@@ -18,7 +18,6 @@ LIB_DEPENDS=	libceres.so:math/ceres-solver \
 		libcminpack.so:math/cminpack \
 		libgflags.so:devel/gflags \
 		libglog.so:devel/glog \
-		libmuparser.so:math/muparser \
 		libnlopt.so:math/nlopt \
 		libopt.so:math/optpp \
 		libtbb.so:devel/tbb \

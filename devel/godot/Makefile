@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	godot
-DISTVERSION=	3.1.1
+DISTVERSION=	3.1.2
 DISTVERSIONSUFFIX=	-stable
-PORTREVISION=	2
 CATEGORIES=	devel games
 
 MAINTAINER=	FreeBSD@Shaneware.biz
@@ -15,9 +14,6 @@ LICENSE_COMB=		multi
 LICENSE_FILE_CC-BY-3.0=	${WRKSRC}/LOGO_LICENSE.md
 LICENSE_FILE_MIT=	${WRKSRC}/LICENSE.txt
 
-BROKEN_armv6=		tries to build NEON files without -march=armv7-a -mfpu=neon
-BROKEN_powerpc64=	fails to compile: inv_txfm_sse2.h:14:32: emmintrin.h: No such file or directory
-
 BUILD_DEPENDS=	yasm:devel/yasm
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libpng.so:graphics/png
@@ -25,14 +21,15 @@ RUN_DEPENDS=	xdg-user-dir:devel/xdg-user-dirs \
 		xdg-open:devel/xdg-utils \
 		xmessage:x11/xmessage
 
-USES=		compiler:c++14-lang pkgconfig scons ssl
+USES=		compiler:c++14-lang gl pkgconfig scons ssl xorg
 USE_XORG=	x11 xcursor xi xinerama xrandr xrender
 USE_GL=		gl glew glu
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	godotengine
 
-MAKE_ARGS+=		platform=x11 builtin_libpng=False builtin_openssl=False verbose=True
+MAKE_ARGS+=		platform=x11 builtin_libpng=False \
+			builtin_openssl=False verbose=True
 MAKE_ARGS+=		${MAKE_ARGS_${CHOSEN_COMPILER_TYPE}}
 MAKE_ARGS_clang=	use_llvm=True
 CXXFLAGS+=		-DRTAUDIO_ENABLED
@@ -51,8 +48,8 @@ AUDIO_DESC=		Audio support
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_MAKE_ARGS=		alsa=True
 EXAMPLES_GH_PROJECT=	godot-demo-projects:DEMOS
-# master at 23/3
-EXAMPLES_GH_TAGNAME=	17e80079e3fc:DEMOS
+# master at 13/12
+EXAMPLES_GH_TAGNAME=	c34a2b423bcb:DEMOS
 EXAMPLES_PORTEXAMPLES=	*
 # mono support doesn't build at present
 MONO_USES=		mono:nuget
@@ -75,6 +72,14 @@ PLIST_FILES=		bin/${GODOTFILE}
 .ifmake makesum
 # Always include optional distfiles
 .MAKEFLAGS:	WITH="${OPTIONS_DEFINE}" OPTIONS_EXCLUDE=
+.endif
+
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} != aarch64 && ${ARCH} != amd64 && ${ARCH} != i386 && ${ARCH} != armv6 && ${ARCH} != armv7
+# use system libvpx on archs that break with built-in
+LIB_DEPENDS+=	libvpx.so:multimedia/libvpx
+MAKE_ARGS+=		builtin_libvpx=False
 .endif
 
 post-patch:
@@ -109,4 +114,4 @@ do-install-TOOLS-on:
 	${INSTALL_DATA} ${WRKSRC}/icon.svg \
 		${STAGEDIR}${PREFIX}/share/pixmaps/${GODOTFILE}.svg
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	protobuf
-PORTVERSION=	3.9.2
+PORTVERSION=	3.11.3
 DISTVERSIONPREFIX=	all-
 PORTEPOCH=	1
 CATEGORIES=	devel
@@ -16,8 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_sparc64=	fails to compile: no atomic ops available
 
-TEST_DEPENDS=	googlemock>=0:devel/googlemock \
-		googletest>=0:devel/googletest
+TEST_DEPENDS=	googletest>=0:devel/googletest
 
 USES=		compiler:c++11-lang gmake libtool localbase pathfix pkgconfig
 

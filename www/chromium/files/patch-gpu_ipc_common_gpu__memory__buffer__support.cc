@@ -1,4 +1,4 @@
---- gpu/ipc/common/gpu_memory_buffer_support.cc.orig	2019-06-04 18:55:24 UTC
+--- gpu/ipc/common/gpu_memory_buffer_support.cc.orig	2019-12-16 21:50:48 UTC
 +++ gpu/ipc/common/gpu_memory_buffer_support.cc
 @@ -12,7 +12,7 @@
  #include "gpu/ipc/common/gpu_memory_buffer_impl_io_surface.h"
@@ -36,16 +36,16 @@
    return gfx::NATIVE_PIXMAP;
  #elif defined(OS_WIN)
    return gfx::DXGI_SHARED_HANDLE;
-@@ -111,7 +111,7 @@ bool GpuMemoryBufferSupport::IsNativeGpuMemoryBufferCo
+@@ -112,7 +112,7 @@ bool GpuMemoryBufferSupport::IsNativeGpuMemoryBufferCo
  #elif defined(USE_OZONE)
-   return ui::OzonePlatform::EnsureInstance()->IsNativePixmapConfigSupported(
-       format, usage);
+   return ui::OzonePlatform::GetInstance()->IsNativePixmapConfigSupported(format,
+                                                                          usage);
 -#elif defined(OS_LINUX)
 +#elif defined(OS_LINUX) || defined(OS_BSD)
    return false;  // TODO(julian.isorce): Add linux support.
  #elif defined(OS_WIN)
    switch (usage) {
-@@ -167,7 +167,7 @@ GpuMemoryBufferSupport::CreateGpuMemoryBufferImplFromH
+@@ -168,7 +168,7 @@ GpuMemoryBufferSupport::CreateGpuMemoryBufferImplFromH
        return GpuMemoryBufferImplIOSurface::CreateFromHandle(
            std::move(handle), size, format, usage, std::move(callback));
  #endif

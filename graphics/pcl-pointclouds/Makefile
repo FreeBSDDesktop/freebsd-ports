@@ -2,13 +2,9 @@
 
 PORTNAME=	pcl
 DISTVERSIONPREFIX=	${PORTNAME}-
-DISTVERSION=	1.9.1
-PORTREVISION=	7
+DISTVERSION=	1.10.0
 CATEGORIES=	graphics math
 PKGNAMESUFFIX=	-pointclouds
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	5605910a26f2.patch:-p1
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Point Cloud Library
@@ -27,7 +23,8 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libpcap.so:net/libpcap \
 		libtiff.so:graphics/tiff
 
-USES=		cmake compiler eigen:3 jpeg python
+USES=		cmake compiler eigen:3 jpeg python xorg
+LLD_UNSAFE=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	PointCloudLibrary
 USE_XORG=	x11 xext xt ice sm

@@ -2,6 +2,7 @@
 
 PORTNAME=	plasma-desktop
 DISTVERSION=	${KDE_PLASMA_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11 kde kde-plasma
 
 MAINTAINER=	kde@FreeBSD.org
@@ -12,25 +13,27 @@ COMMENT=	Plasma5 plasma desktop
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
+		libxkbcommon.so:x11/libxkbcommon \
 		libxcb-image.so:x11/xcb-util-image \
 		libxcb-keysyms.so:x11/xcb-util-keysyms \
 		libxcb-util.so:x11/xcb-util \
 		libxkbfile.so:x11/libxkbfile
 RUN_DEPENDS=	iso-codes>=0:misc/iso-codes \
 		xf86-input-evdev>0:x11-drivers/xf86-input-evdev \
-		xf86-input-libinput>0:x11-drivers/xf86-input-libinput
+		xf86-input-libinput>0:x11-drivers/xf86-input-libinput \
+		setxkbmap:x11/setxkbmap
 BUILD_DEPENDS=	xf86-input-evdev>0:x11-drivers/xf86-input-evdev \
 		xf86-input-libinput>0:x11-drivers/xf86-input-libinput
 
-USES=		cmake compiler:c++11-lib cpe desktop-file-utils \
-		gettext kde:5 pkgconfig qt:5 tar:xz
+USES=		cmake compiler:c++11-lib cpe desktop-file-utils gettext gnome \
+		kde:5 pkgconfig python:3.5+,run qt:5 shebangfix tar:xz xorg
 USE_GNOME=	glib20
 USE_KDE=	activities activities-stats archive attica auth baloo \
 		bookmarks codecs completion config configwidgets coreaddons \
 		crash dbusaddons doctools ecm emoticons filemetadata \
 		globalaccel guiaddons i18n iconthemes init itemmodels \
 		itemviews jobwidgets kcmutils kdeclarative kdelibs4support \
-		kio newstuff notifications \
+		kio libksysguard newstuff notifications \
 		notifyconfig package parts people plasma-framework \
 		plasma-workspace runner service solid \
 		sonnet textwidgets unitconversion wallet \
@@ -41,6 +44,9 @@ USE_QT=		concurrent core dbus declarative gui network phonon4 printsupport \
 		sql svg widgets x11extras xml \
 		buildtools_build qmake_build
 USE_XORG=	ice sm x11 xcb xcursor xext xfixes xft xi xrender
+
+
+SHEBANG_FILES=	kcms/ksmserver/kconf_update/ksmserver_update_loginMode_value.py
 
 OPTIONS_DEFINE=	SYNAPTICS
 OPTIONS_SUB=	yes

@@ -2,17 +2,18 @@
 # $FreeBSD$
 
 PORTNAME=	qemu
-PORTVERSION=	2.11.50.g20191029
+PORTVERSION=	2.11.50.g20191211
+PORTREVISION=	3
 CATEGORIES=	emulators
 PKGNAMESUFFIX?=	-sbruno
 DIST_SUBDIR=	qemu/${PORTVERSION}
 
-MAINTAINER=	sbruno@FreeBSD.org
+MAINTAINER=	emulation@FreeBSD.org
 COMMENT?=	QEMU CPU Emulator - github bsd-user branch
 
 LICENSE=	GPLv2
 USE_GITHUB=	yes
-GH_TUPLE=	seanbruno:qemu-bsd-user:25ce28e \
+GH_TUPLE=	seanbruno:qemu-bsd-user:d587db6	\
 		qemu:keycodemapdb:10739aa:keycodemapdb/ui/keycodemapdb
 HAS_CONFIGURE=	yes
 USES=		bison compiler:c11 gmake perl5 pkgconfig python:2.7,build
@@ -40,6 +41,8 @@ OPTIONS_DEFAULT=X11 GTK2 OPENGL GNUTLS SASL JPEG PNG CDROM_DMA CURL PCAP
 
 .if !defined(QEMU_USER_STATIC)
 CONFLICTS_INSTALL=	qemu-[0-9]* qemu-devel-*
+.else
+CONFLICTS_INSTALL=	qemu-user-static-devel-*
 .endif
 
 .if defined(QEMU_USER_STATIC)
@@ -50,6 +53,7 @@ CONFIGURE_ARGS+=	--disable-tools
 .endif
 .else
 # qemu-system-* targets require pixman to build, add an explicit dependency.
+USES+=		xorg
 USE_XORG=	pixman
 .endif
 
@@ -58,6 +62,7 @@ USE_XORG=	pixman
 .if defined(QEMU_USER_STATIC)
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libglib-2.0.a:devel/glib20
 .else
+USES+=		gnome
 USE_GNOME+=	glib20
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libfdt.so:sysutils/dtc
 .endif
@@ -71,7 +76,7 @@ CONFIGURE_ARGS+=	--disable-libssh2
 PORTDOCS=	docs qemu-doc.html
 
 .if defined(QEMU_USER_STATIC)
-.if ${ARCH} != "amd64"
+.if ${ARCH} != "amd64" && ${ARCH} != "powerpc64"
 CONFIGURE_ARGS+=	--target-list=i386-bsd-user,sparc-bsd-user,arm-bsd-user,mips-bsd-user,mipsel-bsd-user,ppc-bsd-user
 .else
 CONFIGURE_ARGS+=	--target-list=i386-bsd-user,x86_64-bsd-user,sparc-bsd-user,sparc64-bsd-user,arm-bsd-user,mips-bsd-user,mipsel-bsd-user,mips64-bsd-user,mips64el-bsd-user,ppc-bsd-user,ppc64-bsd-user,aarch64-bsd-user
@@ -106,7 +111,7 @@ PLIST_SUB+=	BSD_USER=""
 IGNORE=		bsd-user targets not tested on sparc64
 .endif
 .endif
-.if empty(PORT_OPTIONS:MBSD_USER) || ${ARCH} != "amd64"
+.if empty(PORT_OPTIONS:MBSD_USER) || (${ARCH} != "amd64" && ${ARCH} != "powerpc64")
 PLIST_SUB+=	BSD_USER64="@comment "
 .else
 PLIST_SUB+=	BSD_USER64=""
@@ -126,7 +131,6 @@ PLIST_SUB+=	SOFTMMU=""
 PLIST_SUB+=	STATIC=""
 .endif
 
-SSP_CFLAGS?=	-fstack-protector # XXX -strong crashes qemu-user-static
 WITHOUT_CPU_CFLAGS=yes	#to avoid problems with register allocation
 CFLAGS:=	${CFLAGS:C/-fno-tree-vrp//}
 CFLAGS+=	-Wno-address-of-packed-member
@@ -143,6 +147,7 @@ CONFIGURE_ARGS+=	--prefix=${PREFIX} --cc=${CC} --enable-docs \
 CONFIGURE_ARGS+=	--disable-sdl
 .else
 CONFIGURE_ARGS+=	--enable-sdl
+USES+=		sdl
 USE_SDL=	sdl
 .endif
 
@@ -151,7 +156,7 @@ CONFIGURE_ARGS+=	--disable-gtk --disable-vte
 PLIST_SUB+=	GTK2="@comment "
 .else
 USE_GNOME+=	gtk20 vte
-USES+=		gettext
+USES+=		gettext gnome
 PLIST_SUB+=	GTK2=""
 .endif
 
@@ -189,7 +194,8 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl
 .if empty(PORT_OPTIONS:MOPENGL)
 CONFIGURE_ARGS+=	--disable-opengl
 .else
-USE_GL=		yes
+USES+=		gl
+USE_GL=		glu
 .endif
 
 .if empty(PORT_OPTIONS:MUSBREDIR)

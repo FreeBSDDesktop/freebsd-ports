@@ -1,8 +1,8 @@
---- chrome/test/BUILD.gn.orig	2019-07-24 18:58:15 UTC
+--- chrome/test/BUILD.gn.orig	2020-01-07 21:53:20 UTC
 +++ chrome/test/BUILD.gn
-@@ -5475,7 +5475,7 @@ test("chrome_app_unittests") {
-     "//components/crash/core/common",
-     "//components/flags_ui:switches",
+@@ -5870,7 +5870,7 @@ test("chrome_app_unittests") {
+     "//components/safe_browsing:buildflags",
+     "//components/tracing",
    ]
 -  if (!is_fuchsia) {
 +  if (!is_fuchsia && !is_bsd) {

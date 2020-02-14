@@ -1,6 +1,6 @@
---- services/network/network_service.h.orig	2019-07-24 18:58:34 UTC
+--- services/network/network_service.h.orig	2019-12-16 21:51:27 UTC
 +++ services/network/network_service.h
-@@ -176,7 +176,7 @@ class COMPONENT_EXPORT(NETWORK_SERVICE) NetworkService
+@@ -143,7 +143,7 @@ class COMPONENT_EXPORT(NETWORK_SERVICE) NetworkService
        mojom::NetworkService::GetNetworkListCallback callback) override;
    void UpdateCRLSet(base::span<const uint8_t> crl_set) override;
    void OnCertDBChanged() override;

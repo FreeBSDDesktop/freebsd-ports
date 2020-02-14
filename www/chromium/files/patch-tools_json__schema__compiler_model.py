@@ -1,4 +1,4 @@
---- tools/json_schema_compiler/model.py.orig	2019-06-04 18:55:48 UTC
+--- tools/json_schema_compiler/model.py.orig	2019-12-16 21:51:07 UTC
 +++ tools/json_schema_compiler/model.py
 @@ -605,7 +605,7 @@ class Platforms(object):
    """

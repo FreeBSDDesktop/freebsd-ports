@@ -86,6 +86,7 @@
     SUBDIR += clash
     SUBDIR += cloud-init
     SUBDIR += cloud-init-azure
+    SUBDIR += cloudflared
     SUBDIR += clusterit
     SUBDIR += cnd
     SUBDIR += concourse-fly
@@ -115,6 +116,7 @@
     SUBDIR += dgd-lpmud
     SUBDIR += dhcp6
     SUBDIR += dhcpcd
+    SUBDIR += dhcpcd-devel
     SUBDIR += dhcpcd-ui
     SUBDIR += dhcpd
     SUBDIR += dhcpd-pools
@@ -140,6 +142,7 @@
     SUBDIR += elixir-kafka_ex
     SUBDIR += elixir-oauth2
     SUBDIR += empty
+    SUBDIR += endlessh
     SUBDIR += enet
     SUBDIR += erlang-ranch
     SUBDIR += erlang-xmlrpc
@@ -147,6 +150,7 @@
     SUBDIR += etrace
     SUBDIR += eventviews
     SUBDIR += exabgp
+    SUBDIR += exabgp4
     SUBDIR += exaddos
     SUBDIR += fb
     SUBDIR += fiche
@@ -185,7 +189,6 @@
     SUBDIR += glflow
     SUBDIR += glib-networking
     SUBDIR += glusterfs
-    SUBDIR += gnatsd
     SUBDIR += gnet2
     SUBDIR += gnetcat
     SUBDIR += gnome-nettool
@@ -209,6 +212,8 @@
     SUBDIR += grilo
     SUBDIR += grilo-plugins
     SUBDIR += grive2
+    SUBDIR += grpcox
+    SUBDIR += grpcui
     SUBDIR += grpcurl
     SUBDIR += grsync
     SUBDIR += gsk
@@ -218,7 +223,6 @@
     SUBDIR += gstreamer1-plugins-libmms
     SUBDIR += gstreamer1-plugins-srtp
     SUBDIR += gtk-vnc
-    SUBDIR += gtknetcat
     SUBDIR += guacamole-server
     SUBDIR += gupnp
     SUBDIR += gupnp-av
@@ -234,6 +238,7 @@
     SUBDIR += haproxy17
     SUBDIR += haproxy18
     SUBDIR += haproxy19
+    SUBDIR += haproxy21
     SUBDIR += hexinject
     SUBDIR += hinfo
     SUBDIR += hlmaster
@@ -318,6 +323,7 @@
     SUBDIR += knc
     SUBDIR += knxd
     SUBDIR += kontactinterface
+    SUBDIR += kpeoplevcard
     SUBDIR += kpimtextedit
     SUBDIR += krdc
     SUBDIR += krfb
@@ -368,6 +374,7 @@
     SUBDIR += libnatpmp
     SUBDIR += libnet
     SUBDIR += libnfs
+    SUBDIR += libngtcp2
     SUBDIR += libnids
     SUBDIR += libnss-cache
     SUBDIR += libnss-mysql
@@ -408,9 +415,6 @@
     SUBDIR += liferea
     SUBDIR += linknx
     SUBDIR += linphone
-    SUBDIR += linux-c6-avahi-libs
-    SUBDIR += linux-c6-openldap
-    SUBDIR += linux-c6-tcp_wrappers-libs
     SUBDIR += linux-c7-avahi-libs
     SUBDIR += linux-c7-openldap
     SUBDIR += linux-c7-tcp_wrappers-libs
@@ -418,6 +422,7 @@
     SUBDIR += lla
     SUBDIR += ltm
     SUBDIR += lualdap
+    SUBDIR += lualdap-51
     SUBDIR += luasocket
     SUBDIR += luasocket-51
     SUBDIR += luasocket-53
@@ -462,6 +467,7 @@
     SUBDIR += mping
     SUBDIR += mptsd
     SUBDIR += mrouted
+    SUBDIR += mrtparse
     SUBDIR += msend
     SUBDIR += mtr
     SUBDIR += mtr-nox11
@@ -469,6 +475,7 @@
     SUBDIR += nakenchat
     SUBDIR += nanomsg
     SUBDIR += nast
+    SUBDIR += nats-server
     SUBDIR += nats-streaming-server
     SUBDIR += nats-top
     SUBDIR += nbd-server
@@ -477,6 +484,7 @@
     SUBDIR += ndisc6
     SUBDIR += ndpi
     SUBDIR += ndproxy
+    SUBDIR += neatvnc
     SUBDIR += nepenthes
     SUBDIR += net6
     SUBDIR += netatalk3
@@ -510,7 +518,6 @@
     SUBDIR += nss_ldap
     SUBDIR += nsscache
     SUBDIR += ntimed
-    SUBDIR += ntlmaps
     SUBDIR += ntopng
     SUBDIR += ntp
     SUBDIR += ntp-devel
@@ -956,10 +963,6 @@
     SUBDIR += pen
     SUBDIR += pfinger
     SUBDIR += phamm
-    SUBDIR += php71-ldap
-    SUBDIR += php71-soap
-    SUBDIR += php71-sockets
-    SUBDIR += php71-xmlrpc
     SUBDIR += php72-ldap
     SUBDIR += php72-soap
     SUBDIR += php72-sockets
@@ -973,6 +976,7 @@
     SUBDIR += php74-sockets
     SUBDIR += php74-xmlrpc
     SUBDIR += phpldapadmin
+    SUBDIR += pichi
     SUBDIR += pim6-tools
     SUBDIR += pim6dd
     SUBDIR += pim6sd
@@ -986,10 +990,10 @@
     SUBDIR += pktanon
     SUBDIR += pload
     SUBDIR += plugdaemon
-    SUBDIR += polyorb
     SUBDIR += poptop
     SUBDIR += portfwd
     SUBDIR += pptpclient
+    SUBDIR += proby
     SUBDIR += proftpd-mod_ldap
     SUBDIR += prosearch
     SUBDIR += proxy-connect
@@ -1014,7 +1018,7 @@
     SUBDIR += py-cjdns
     SUBDIR += py-cloudflare-scrape
     SUBDIR += py-cloudflare-scrape-js2py
-    SUBDIR += py-coherence
+    SUBDIR += py-cloudscraper
     SUBDIR += py-confluent-kafka
     SUBDIR += py-cymruwhois
     SUBDIR += py-dpkt
@@ -1067,11 +1071,14 @@
     SUBDIR += py-pcapy
     SUBDIR += py-port-for
     SUBDIR += py-portend
+    SUBDIR += py-pyenet
     SUBDIR += py-pygeoip
     SUBDIR += py-pyicap
+    SUBDIR += py-pynamecheap
     SUBDIR += py-pynmsg
     SUBDIR += py-pynsq
     SUBDIR += py-pypcap
+    SUBDIR += py-pyroute2
     SUBDIR += py-pysendfile
     SUBDIR += py-pyshark
     SUBDIR += py-pysmb
@@ -1108,7 +1115,6 @@
     SUBDIR += py-smart_open
     SUBDIR += py-smbpasswd
     SUBDIR += py-soap2py
-    SUBDIR += py-soappy
     SUBDIR += py-socketio-client
     SUBDIR += py-softlayer
     SUBDIR += py-speedtest-cli
@@ -1119,11 +1125,10 @@
     SUBDIR += py-suds-jurko
     SUBDIR += py-terminado
     SUBDIR += py-tofu
-    SUBDIR += py-tweepy
+    SUBDIR += py-transip
     SUBDIR += py-twitter-tools
     SUBDIR += py-txamqp
     SUBDIR += py-txrestapi
-    SUBDIR += py-upnp-inspector
     SUBDIR += py-uritemplate
     SUBDIR += py-uritools
     SUBDIR += py-urlextract
@@ -1131,15 +1136,12 @@
     SUBDIR += py-wmi-query
     SUBDIR += py-wolframalpha
     SUBDIR += py-wsproto
-    SUBDIR += py-xmlrpc
     SUBDIR += py-zeep
     SUBDIR += py-zeroconf
     SUBDIR += py-zope.proxy
-    SUBDIR += py-zsi
     SUBDIR += pygopherd
     SUBDIR += pynids
     SUBDIR += pyrad
-    SUBDIR += pythondirector
     SUBDIR += qadsl
     SUBDIR += qoauth-qt5
     SUBDIR += qt5-network
@@ -1195,7 +1197,9 @@
     SUBDIR += rtg
     SUBDIR += rtpbreak
     SUBDIR += rtpproxy
+    SUBDIR += rtptools
     SUBDIR += rubygem-activestorage52
+    SUBDIR += rubygem-activestorage60
     SUBDIR += rubygem-amazon-ec2
     SUBDIR += rubygem-amq-protocol
     SUBDIR += rubygem-amqp
@@ -1259,6 +1263,7 @@
     SUBDIR += rubygem-google-cloud-bigtable
     SUBDIR += rubygem-google-cloud-core
     SUBDIR += rubygem-google-cloud-env
+    SUBDIR += rubygem-google-cloud-errors
     SUBDIR += rubygem-google-cloud-logging
     SUBDIR += rubygem-google-cloud-pubsub
     SUBDIR += rubygem-google-cloud-spanner
@@ -1346,7 +1351,6 @@
     SUBDIR += ryu
     SUBDIR += s3ql
     SUBDIR += samba410
-    SUBDIR += samba48
     SUBDIR += samplicator
     SUBDIR += savvycan
     SUBDIR += sbd
@@ -1373,7 +1377,6 @@
     SUBDIR += sie-nmsg
     SUBDIR += simpleproxy
     SUBDIR += sip_scenario
-    SUBDIR += sippy_b2bua
     SUBDIR += siproxd
     SUBDIR += sipsak
     SUBDIR += skstream
@@ -1409,6 +1412,7 @@
     SUBDIR += ssspl
     SUBDIR += ssvnc
     SUBDIR += stone
+    SUBDIR += storj
     SUBDIR += stund
     SUBDIR += subnetcalc
     SUBDIR += suckblow
@@ -1433,12 +1437,14 @@
     SUBDIR += tcpmssd
     SUBDIR += tcpproxy
     SUBDIR += tcpreen
+    SUBDIR += tcprtt
     SUBDIR += tcpsg
     SUBDIR += tcpshow
     SUBDIR += tcpslice
     SUBDIR += tcpsplit
     SUBDIR += tcpstat
     SUBDIR += tcptestsuite
+    SUBDIR += tcptrace
     SUBDIR += tcptraceroute
     SUBDIR += tcpview
     SUBDIR += tcpwatch
@@ -1510,6 +1516,7 @@
     SUBDIR += wackamole
     SUBDIR += wakeonlan
     SUBDIR += waypipe
+    SUBDIR += wayvnc
     SUBDIR += whois
     SUBDIR += widentd
     SUBDIR += wireguard

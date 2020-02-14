@@ -31,7 +31,6 @@
     SUBDIR += chaiscript
     SUBDIR += chez-scheme
     SUBDIR += chibi-scheme
-    SUBDIR += chicken
     SUBDIR += chicken5
     SUBDIR += cim
     SUBDIR += cjs
@@ -65,11 +64,6 @@
     SUBDIR += erlang-java
     SUBDIR += erlang-man
     SUBDIR += erlang-riak
-    SUBDIR += erlang-runtime15
-    SUBDIR += erlang-runtime16
-    SUBDIR += erlang-runtime17
-    SUBDIR += erlang-runtime18
-    SUBDIR += erlang-runtime19
     SUBDIR += erlang-runtime20
     SUBDIR += erlang-runtime21
     SUBDIR += erlang-runtime22
@@ -104,7 +98,6 @@
     SUBDIR += gcc6
     SUBDIR += gcc6-aux
     SUBDIR += gcc7
-    SUBDIR += gcc7-devel
     SUBDIR += gcc8
     SUBDIR += gcc8-devel
     SUBDIR += gcc9
@@ -121,7 +114,6 @@
     SUBDIR += gnatdroid-binutils-x86
     SUBDIR += gnatdroid-sysroot
     SUBDIR += gnatdroid-sysroot-x86
-    SUBDIR += gnatdroid-x86
     SUBDIR += gnu-apl
     SUBDIR += gnu-cobol
     SUBDIR += gnustep-base
@@ -133,6 +125,7 @@
     SUBDIR += groovy
     SUBDIR += gscheme
     SUBDIR += guile
+    SUBDIR += guile1
     SUBDIR += guile2
     SUBDIR += harbour
     SUBDIR += haskell-mode.el
@@ -145,6 +138,7 @@
     SUBDIR += icc
     SUBDIR += ici
     SUBDIR += icon
+    SUBDIR += intel-compute-runtime
     SUBDIR += intercal
     SUBDIR += io
     SUBDIR += io-devel
@@ -153,7 +147,6 @@
     SUBDIR += janet
     SUBDIR += jimtcl
     SUBDIR += jruby
-    SUBDIR += js_of_ocaml
     SUBDIR += julia
     SUBDIR += julia06
     SUBDIR += julia07
@@ -173,7 +166,6 @@
     SUBDIR += libobjc2
     SUBDIR += librep
     SUBDIR += libstdc++_stldoc_4.2.2
-    SUBDIR += linux-c6-tcl85
     SUBDIR += linux-c7-tcl85
     SUBDIR += linux-dotnet-cli
     SUBDIR += linux-dotnet-runtime
@@ -270,13 +262,9 @@
     SUBDIR += perl5.30
     SUBDIR += petite-chez
     SUBDIR += pfe
-    SUBDIR += purescript
-    SUBDIR += phantomjs
     SUBDIR += pharo
     SUBDIR += phc
     SUBDIR += php-mode.el
-    SUBDIR += php71
-    SUBDIR += php71-extensions
     SUBDIR += php72
     SUBDIR += php72-extensions
     SUBDIR += php73
@@ -289,9 +277,9 @@
     SUBDIR += polyml
     SUBDIR += ponyc
     SUBDIR += ptoc
+    SUBDIR += purescript
     SUBDIR += py-hy
     SUBDIR += py-mx-base
-    SUBDIR += py-prolog
     SUBDIR += py-qt5-qml
     SUBDIR += py-textX
     SUBDIR += pypy
@@ -309,6 +297,7 @@
     SUBDIR += python35
     SUBDIR += python36
     SUBDIR += python37
+    SUBDIR += python38
     SUBDIR += qmasm
     SUBDIR += qscheme
     SUBDIR += quickjs
@@ -322,10 +311,10 @@
     SUBDIR += rexx-regutil
     SUBDIR += rexx-wrapper
     SUBDIR += rhino
-    SUBDIR += rubinius
     SUBDIR += ruby24
     SUBDIR += ruby25
     SUBDIR += ruby26
+    SUBDIR += ruby27
     SUBDIR += runawk
     SUBDIR += rust
     SUBDIR += rust-nightly
@@ -337,7 +326,6 @@
     SUBDIR += scala-docs
     SUBDIR += scheme48
     SUBDIR += scm
-    SUBDIR += sdcc
     SUBDIR += see
     SUBDIR += seed7
     SUBDIR += siod
@@ -355,6 +343,7 @@
     SUBDIR += spidermonkey185
     SUBDIR += spidermonkey24
     SUBDIR += spidermonkey52
+    SUBDIR += spidermonkey60
     SUBDIR += spl
     SUBDIR += squeak
     SUBDIR += squirrel
@@ -375,9 +364,11 @@
     SUBDIR += twelf
     SUBDIR += ucc
     SUBDIR += urweb
+    SUBDIR += v
     SUBDIR += v8
     SUBDIR += vala
     SUBDIR += visualworks
+    SUBDIR += voc
     SUBDIR += yabasic
     SUBDIR += yap
     SUBDIR += yap-devel

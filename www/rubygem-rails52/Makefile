@@ -2,12 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	rails
-PORTVERSION=	5.2.3
+PORTVERSION=	5.2.4.1
+PORTREVISION=	1
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	52
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Full-stack web application framework
 
 LICENSE=	MIT
@@ -39,7 +40,7 @@ RUN_DEPENDS=	rubygem-actioncable52>=${PORTVERSION}:www/rubygem-actioncable52 \
 		rubygem-sqlite3>=1.3.6:databases/rubygem-sqlite3 \
 		rubygem-turbolinks>=5:www/rubygem-turbolinks \
 		rubygem-uglifier>=1.3.0:www/rubygem-uglifier \
-		rubygem-web-console-rails52>=3.3.0:devel/rubygem-web-console-rails52
+		rubygem-web-console3-rails52>=3.3.0:devel/rubygem-web-console3-rails52
 
 USES=		cpe gem
 USE_RUBY=	yes

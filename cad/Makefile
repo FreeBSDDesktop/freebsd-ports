@@ -4,6 +4,7 @@
     COMMENT = CAD tools
 
     SUBDIR += NASTRAN-95
+    SUBDIR += PrusaSlicer
     SUBDIR += abc
     SUBDIR += admesh
     SUBDIR += adms
@@ -12,10 +13,12 @@
     SUBDIR += astk-serveur
     SUBDIR += atlc
     SUBDIR += basicdsp
-    SUBDIR += brickutils
+    SUBDIR += brlcad
     SUBDIR += calculix
     SUBDIR += calculix-ccx
+    SUBDIR += caneda
     SUBDIR += cascade
+    SUBDIR += cascade-compiler
     SUBDIR += chipvault
     SUBDIR += cura-engine
     SUBDIR += digital
@@ -31,6 +34,7 @@
     SUBDIR += gdsreader
     SUBDIR += gdt
     SUBDIR += geda
+    SUBDIR += gerbv
     SUBDIR += ghdl
     SUBDIR += gmsh
     SUBDIR += gnucap
@@ -54,12 +58,14 @@
     SUBDIR += kicad-library-templates
     SUBDIR += kicad-library-templates-devel
     SUBDIR += klayout
+    SUBDIR += ktechlab
     SUBDIR += ldraw
     SUBDIR += leocad
     SUBDIR += lepton-eda
     SUBDIR += libopencad
     SUBDIR += librecad
     SUBDIR += libredwg
+    SUBDIR += librepcb
     SUBDIR += linux-eagle5
     SUBDIR += linuxcnc-devel
     SUBDIR += logisim
@@ -72,6 +78,7 @@
     SUBDIR += openscad
     SUBDIR += openscad-devel
     SUBDIR += openvsp
+    SUBDIR += oregano
     SUBDIR += p5-GDS2
     SUBDIR += p5-Verilog-Perl
     SUBDIR += pcb
@@ -82,7 +89,6 @@
     SUBDIR += py-pycam
     SUBDIR += py-pyfda
     SUBDIR += python-gdsii
-    SUBDIR += pythoncad
     SUBDIR += qcad
     SUBDIR += qelectrotech
     SUBDIR += qmls
@@ -101,7 +107,9 @@
     SUBDIR += varkon
     SUBDIR += verilator
     SUBDIR += verilog-mode.el
+    SUBDIR += veroroute
     SUBDIR += xcircuit
+    SUBDIR += yosys
     SUBDIR += z88
     SUBDIR += zcad
 

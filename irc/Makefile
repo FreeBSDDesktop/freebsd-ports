@@ -24,6 +24,7 @@
     SUBDIR += dxirc
     SUBDIR += eggdrop
     SUBDIR += eggdrop-devel
+    SUBDIR += eggdrop16
     SUBDIR += epic4
     SUBDIR += epic5
     SUBDIR += evangeline
@@ -96,7 +97,6 @@
     SUBDIR += py-irc
     SUBDIR += py-limnoria
     SUBDIR += py-supybot
-    SUBDIR += py-supybot-plugins
     SUBDIR += quassel
     SUBDIR += quassel-core
     SUBDIR += quirc

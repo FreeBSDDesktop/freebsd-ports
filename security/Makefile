@@ -20,6 +20,7 @@
     SUBDIR += afl
     SUBDIR += afl++
     SUBDIR += afterglow
+    SUBDIR += age
     SUBDIR += aide
     SUBDIR += akmos
     SUBDIR += amap
@@ -50,7 +51,6 @@
     SUBDIR += belier
     SUBDIR += bfbtester
     SUBDIR += binwalk
-    SUBDIR += blindelephant
     SUBDIR += boringssl
     SUBDIR += botan110
     SUBDIR += botan2
@@ -71,7 +71,6 @@
     SUBDIR += ccsrch
     SUBDIR += certificate-transparency
     SUBDIR += cfs
-    SUBDIR += cfv
     SUBDIR += chaosreader
     SUBDIR += checkpassword
     SUBDIR += checkpassword-pam
@@ -86,7 +85,6 @@
     SUBDIR += cl-md5-sbcl
     SUBDIR += clamassassin
     SUBDIR += clamav
-    SUBDIR += clamav-milter
     SUBDIR += clamav-unofficial-sigs
     SUBDIR += clamd-stream-client
     SUBDIR += clamfs
@@ -149,6 +147,7 @@
     SUBDIR += fakebo
     SUBDIR += fakeident
     SUBDIR += fakeroot
+    SUBDIR += farmhash
     SUBDIR += fbopenssl
     SUBDIR += fcheck
     SUBDIR += fcrackzip
@@ -162,7 +161,6 @@
     SUBDIR += fprintd
     SUBDIR += fragroute
     SUBDIR += fragrouter
-    SUBDIR += fsh
     SUBDIR += fswatch
     SUBDIR += ftimes
     SUBDIR += fuzz
@@ -171,7 +169,6 @@
     SUBDIR += fwknop
     SUBDIR += fwlogwatch
     SUBDIR += gag
-    SUBDIR += gcipher
     SUBDIR += gcr
     SUBDIR += git-crypt
     SUBDIR += git-remote-gcrypt
@@ -181,6 +178,7 @@
     SUBDIR += gnome-ssh-askpass
     SUBDIR += gnomint
     SUBDIR += gnupg
+    SUBDIR += gnupg-pkcs11-scd
     SUBDIR += gnupg1
     SUBDIR += gnutls
     SUBDIR += go-cve-dictionary
@@ -208,12 +206,15 @@
     SUBDIR += hashcat
     SUBDIR += hashcat-legacy
     SUBDIR += heimdal
+    SUBDIR += helib
     SUBDIR += highwayhash
     SUBDIR += hitch
     SUBDIR += hlfl
     SUBDIR += hmap
     SUBDIR += hockeypuck
     SUBDIR += honggfuzz
+    SUBDIR += honeytrap
+    SUBDIR += horcrux
     SUBDIR += hotssh
     SUBDIR += hpenc
     SUBDIR += hydra
@@ -223,6 +224,7 @@
     SUBDIR += idea
     SUBDIR += identify
     SUBDIR += ike
+    SUBDIR += imds-filterd
     SUBDIR += integrit
     SUBDIR += ipfcount
     SUBDIR += ipfilter2dshield
@@ -238,8 +240,7 @@
     SUBDIR += john
     SUBDIR += kbfsd
     SUBDIR += kc24
-    SUBDIR += kdbx-viewer
-    SUBDIR += kedpm
+    SUBDIR += kdbxviewer
     SUBDIR += keepass
     SUBDIR += keepass-plugin-keepassrpc
     SUBDIR += keepassx-devel
@@ -257,8 +258,8 @@
     SUBDIR += knocker
     SUBDIR += kpcli
     SUBDIR += kpkpass
+    SUBDIR += kpmenu
     SUBDIR += krb5
-    SUBDIR += krb5-115
     SUBDIR += krb5-116
     SUBDIR += krb5-117
     SUBDIR += krb5-appl
@@ -302,7 +303,7 @@
     SUBDIR += libpwstor
     SUBDIR += libressl
     SUBDIR += libressl-devel
-    SUBDIR += libscep 
+    SUBDIR += libscep
     SUBDIR += libscrypt
     SUBDIR += libsecret
     SUBDIR += libsectok
@@ -316,16 +317,6 @@
     SUBDIR += libwhisker
     SUBDIR += libyubikey
     SUBDIR += libzrtpcppcore
-    SUBDIR += linux-c6-audit-libs
-    SUBDIR += linux-c6-cyrus-sasl2
-    SUBDIR += linux-c6-gnutls
-    SUBDIR += linux-c6-libgcrypt
-    SUBDIR += linux-c6-libgpg-error
-    SUBDIR += linux-c6-libssh2
-    SUBDIR += linux-c6-libtasn1
-    SUBDIR += linux-c6-nss
-    SUBDIR += linux-c6-openssl
-    SUBDIR += linux-c6-pam
     SUBDIR += linux-c7-cyrus-sasl2
     SUBDIR += linux-c7-gnutls
     SUBDIR += linux-c7-libgcrypt
@@ -412,7 +403,6 @@
     SUBDIR += openssh-portable
     SUBDIR += openssl
     SUBDIR += openssl-unsafe
-    SUBDIR += openssl111
     SUBDIR += openssl_tpm_engine
     SUBDIR += openvas8
     SUBDIR += openvas8-cli
@@ -447,6 +437,7 @@
     SUBDIR += p11-kit
     SUBDIR += p5-Alt-Crypt-RSA-BigInt
     SUBDIR += p5-Apache-Htpasswd
+    SUBDIR += p5-App-Acmeman
     SUBDIR += p5-App-Genpass
     SUBDIR += p5-App-TLSMe
     SUBDIR += p5-Auth-YubikeyDecrypter
@@ -525,6 +516,7 @@
     SUBDIR += p5-Crypt-GeneratePassword
     SUBDIR += p5-Crypt-HCE_MD5
     SUBDIR += p5-Crypt-HCE_SHA
+    SUBDIR += p5-Crypt-HSXKPasswd
     SUBDIR += p5-Crypt-IDEA
     SUBDIR += p5-Crypt-Imail
     SUBDIR += p5-Crypt-Juniper
@@ -712,6 +704,7 @@
     SUBDIR += p5-openxpki-i18n
     SUBDIR += p5-plog
     SUBDIR += pad
+    SUBDIR += palisade
     SUBDIR += pam-modules
     SUBDIR += pam-mysql
     SUBDIR += pam-pgsql
@@ -736,7 +729,6 @@
     SUBDIR += pam_yubico
     SUBDIR += pamtester
     SUBDIR += paperkey
-    SUBDIR += parano
     SUBDIR += passivedns
     SUBDIR += pbc
     SUBDIR += pbnj
@@ -786,10 +778,6 @@
     SUBDIR += pgpdump
     SUBDIR += pgpgpg
     SUBDIR += pgpin
-    SUBDIR += php71-filter
-    SUBDIR += php71-hash
-    SUBDIR += php71-mcrypt
-    SUBDIR += php71-openssl
     SUBDIR += php72-filter
     SUBDIR += php72-hash
     SUBDIR += php72-openssl
@@ -845,10 +833,7 @@
     SUBDIR += pwman3
     SUBDIR += pwned-check
     SUBDIR += pxytest
-    SUBDIR += py-AccessControl
     SUBDIR += py-PF
-    SUBDIR += py-Products.PlonePAS
-    SUBDIR += py-Products.PluggableAuthService
     SUBDIR += py-RestrictedPython
     SUBDIR += py-SecretStorage
     SUBDIR += py-YubiOTP
@@ -859,7 +844,6 @@
     SUBDIR += py-asyncssh
     SUBDIR += py-backports.ssl_match_hostname
     SUBDIR += py-bcrypt
-    SUBDIR += py-borg.localrole
     SUBDIR += py-btchip-python
     SUBDIR += py-cerealizer
     SUBDIR += py-certbot
@@ -884,10 +868,10 @@
     SUBDIR += py-ckcc-protocol
     SUBDIR += py-cpe
     SUBDIR += py-cracklib
-    SUBDIR += py-cryptkit
     SUBDIR += py-cryptlib_py
     SUBDIR += py-cryptography
     SUBDIR += py-cryptography-vectors
+    SUBDIR += py-ctypescrypto
     SUBDIR += py-cybox
     SUBDIR += py-dfdatetime
     SUBDIR += py-dfvfs
@@ -897,7 +881,6 @@
     SUBDIR += py-ed25519ll
     SUBDIR += py-exscript
     SUBDIR += py-fail2ban
-    SUBDIR += py-fchksum
     SUBDIR += py-fido2
     SUBDIR += py-first-server
     SUBDIR += py-flask-httpauth
@@ -927,7 +910,6 @@
     SUBDIR += py-m2crypto
     SUBDIR += py-maec
     SUBDIR += py-mcrypt
-    SUBDIR += py-mhash
     SUBDIR += py-mixbox
     SUBDIR += py-mnemonic
     SUBDIR += py-msoffcrypto-tool
@@ -947,13 +929,7 @@
     SUBDIR += py-pbkdf2
     SUBDIR += py-pgpdump
     SUBDIR += py-plaso
-    SUBDIR += py-plone.app.openid
-    SUBDIR += py-plone.keyring
-    SUBDIR += py-plone.openid
-    SUBDIR += py-plone.protect
-    SUBDIR += py-plone.session
     SUBDIR += py-potr
-    SUBDIR += py-pow
     SUBDIR += py-pyaes
     SUBDIR += py-pyaff4
     SUBDIR += py-pyaxo
@@ -962,15 +938,15 @@
     SUBDIR += py-pycrypto
     SUBDIR += py-pycryptodome
     SUBDIR += py-pycryptodomex
-    SUBDIR += py-pycryptopp
     SUBDIR += py-pydeep
     SUBDIR += py-pyelliptic
     SUBDIR += py-pylibacl
-    SUBDIR += py-pymacaroons-pynacl
+    SUBDIR += py-pymacaroons
     SUBDIR += py-pynacl
     SUBDIR += py-pyotp
     SUBDIR += py-pyptlib
     SUBDIR += py-pysaml2
+    SUBDIR += py-pysaml24
     SUBDIR += py-pyscard
     SUBDIR += py-pysha3
     SUBDIR += py-pysodium
@@ -1009,13 +985,13 @@
     SUBDIR += py-taxii2-client
     SUBDIR += py-tlslite
     SUBDIR += py-trezor
-    SUBDIR += py-trustedpickle
     SUBDIR += py-trustme
     SUBDIR += py-tuf
-    SUBDIR += py-twofish
     SUBDIR += py-txtorcon
+    SUBDIR += py-vici
     SUBDIR += py-virustotal-api
     SUBDIR += py-volatility
+    SUBDIR += py-volatility3
     SUBDIR += py-vulndb
     SUBDIR += py-xmlsec
     SUBDIR += py-yara
@@ -1062,7 +1038,6 @@
     SUBDIR += reop
     SUBDIR += retranslator
     SUBDIR += revealrk
-    SUBDIR += revelation
     SUBDIR += rhash
     SUBDIR += ridl
     SUBDIR += rifiuti2
@@ -1220,7 +1195,7 @@
     SUBDIR += sops
     SUBDIR += spass
     SUBDIR += spass-qt5
-    SUBDIR += spike-proxy
+    SUBDIR += spm
     SUBDIR += spybye
     SUBDIR += sqlmap
     SUBDIR += sqlninja
@@ -1286,7 +1261,6 @@
     SUBDIR += tsshbatch
     SUBDIR += tthsum
     SUBDIR += u2f-devd
-    SUBDIR += umit
     SUBDIR += unhide
     SUBDIR += unicornscan
     SUBDIR += unssh
@@ -1328,6 +1302,7 @@
     SUBDIR += yubikey-personalization-gui
     SUBDIR += yubioath-desktop
     SUBDIR += zebedee
+    SUBDIR += zeek
     SUBDIR += zenmap
     SUBDIR += zeronet
     SUBDIR += zxid

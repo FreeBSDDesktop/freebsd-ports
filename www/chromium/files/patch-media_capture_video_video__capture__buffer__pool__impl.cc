@@ -1,6 +1,6 @@
---- media/capture/video/video_capture_buffer_pool_impl.cc.orig	2019-06-04 18:55:25 UTC
+--- media/capture/video/video_capture_buffer_pool_impl.cc.orig	2019-12-16 21:50:49 UTC
 +++ media/capture/video/video_capture_buffer_pool_impl.cc
-@@ -58,7 +58,7 @@ VideoCaptureBufferPoolImpl::CreateSharedMemoryViaRawFi
+@@ -59,7 +59,7 @@ VideoCaptureBufferPoolImpl::CreateSharedMemoryViaRawFi
      int buffer_id) {
  // This requires platforms where base::SharedMemoryHandle is backed by a
  // file descriptor.

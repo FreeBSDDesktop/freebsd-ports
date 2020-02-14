@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	cherrytree
-DISTVERSION=	0.38.9
+DISTVERSION=	0.38.11
 CATEGORIES=	deskutils
 MASTER_SITES=	https://www.giuspen.com/software/
 
@@ -9,6 +9,9 @@ MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Hierarchical note taking application
 
 LICENSE=	GPLv3
+
+DEPRECATED=	Old, uses EOLed python27
+EXPIRATION_DATE=	2020-02-28
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gtksourceview>0:x11-toolkits/py-gtksourceview
 

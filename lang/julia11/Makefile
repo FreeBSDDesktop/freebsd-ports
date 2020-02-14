@@ -3,7 +3,7 @@
 
 PORTNAME=	julia
 PORTVERSION=	1.1.1
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONSUFFIX=	-full
 CATEGORIES=	lang math
 MASTER_SITES=	https://github.com/JuliaLang/julia/releases/download/v${PORTVERSION}/
@@ -91,6 +91,7 @@ GPL_LIBS_MAKE_ARGS=	USE_SYSTEM_SUITESPARSE=0
 GPL_LIBS_VARS=	USE_GPL_LIBS=1
 
 DESKTOP_DESC=	Install icon, .desktop and appdata files
+DESKTOP_USES=	gnome
 DESKTOP_VARS=	INSTALL_TARGET+=install-desktop \
 		INSTALLS_ICONS=yes
 
@@ -105,7 +106,7 @@ OPENBLAS_DESC=	Private OpenBLAS v0.3.3\
 		(ports tree: v${:!${MAKE} -C ${PORTSDIR}/math/openblas -V PORTVERSION!})
 OPENBLAS_MAKE_ARGS=	USE_SYSTEM_BLAS=0 OPENBLAS_DYNAMIC_ARCH=1
 OPENBLAS_MAKE_ARGS_OFF=	USE_SYSTEM_BLAS=1
-OPENBLAS_LIB_DEPENDS_OFF=	libopenblasp.so:math/openblas
+OPENBLAS_LIB_DEPENDS_OFF=	libopenblas.so:math/openblas
 
 .include <bsd.port.options.mk>
 
@@ -149,8 +150,8 @@ post-patch-OPENBLAS-on:
 	${CP} ${FILESDIR}/extra-patch-openblas-fix-arch.patch ${WRKSRC}/deps/patches/openblas-fix-arch.patch
 
 post-patch-OPENBLAS-off:
-	echo "LIBBLAS= -lopenblasp -L${LOCALBASE}/lib" >> ${WRKSRC}/Make.user
-	echo "LIBBLASNAME=libopenblasp" >> ${WRKSRC}/Make.user
+	echo "LIBBLAS= -lopenblas -L${LOCALBASE}/lib" >> ${WRKSRC}/Make.user
+	echo "LIBBLASNAME=libopenblas" >> ${WRKSRC}/Make.user
 	echo 'LIBLAPACK= $$(LIBBLAS)' >> ${WRKSRC}/Make.user
 	echo 'LIBLAPACKNAME= $$(LIBBLASNAME)' >> ${WRKSRC}/Make.user
 

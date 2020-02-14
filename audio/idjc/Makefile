@@ -12,6 +12,9 @@ COMMENT=	Shoutcast/Icecast DJ Console
 
 LICENSE=	LGPL20
 
+DEPRECATED=	Old, uses EOLed python27
+EXPIRATION_DATE=	2020-03-01
+
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libavutil.so:multimedia/ffmpeg \
 		libjack.so:audio/jack \
@@ -33,7 +36,7 @@ RUN_DEPENDS=	oggenc:audio/vorbis-tools \
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	YES
 
-USES=		compiler:nestedfct desktop-file-utils gettext gmake \
+USES=		compiler:nestedfct desktop-file-utils gettext gmake gnome \
 		libtool pathfix pkgconfig python:2.7
 LDFLAGS+=	-L${LOCALBASE}/lib
 NLS_USES=	gettext

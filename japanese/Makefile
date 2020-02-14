@@ -7,6 +7,7 @@
     SUBDIR += CGdic-fpw
     SUBDIR += FreeWnn-lib
     SUBDIR += FreeWnn-server
+    SUBDIR += R-cran-zipangu
     SUBDIR += Wnn6-lib
     SUBDIR += Wnn7-lib
     SUBDIR += a2ps
@@ -24,6 +25,7 @@
     SUBDIR += bugzilla50
     SUBDIR += canna-lib
     SUBDIR += canna-server
+    SUBDIR += cannadic
     SUBDIR += cdrom2
     SUBDIR += celrw
     SUBDIR += chasen-base
@@ -65,6 +67,7 @@
     SUBDIR += font-elisa8
     SUBDIR += font-genjyuugothic
     SUBDIR += font-genshingothic
+    SUBDIR += font-hackgen
     SUBDIR += font-ipa
     SUBDIR += font-ipa-uigothic
     SUBDIR += font-ipaex
@@ -128,7 +131,6 @@
     SUBDIR += jstrings
     SUBDIR += jvim3
     SUBDIR += kakasi
-    SUBDIR += kana-no-quiz
     SUBDIR += kanjipad
     SUBDIR += kasumi
     SUBDIR += kbanner
@@ -199,6 +201,7 @@
     SUBDIR += p5-Lingua-JA-Moji
     SUBDIR += p5-Lingua-JA-Numbers
     SUBDIR += p5-Lingua-JA-Regular-Unicode
+    SUBDIR += p5-Lingua-JA-Romanize-Japanese
     SUBDIR += p5-Lingua-JA-Summarize-Extract
     SUBDIR += p5-MeCab
     SUBDIR += p5-Number-Phone-JP

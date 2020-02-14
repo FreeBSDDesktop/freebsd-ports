@@ -15,6 +15,9 @@ COMMENT=	Old-school, puzzle game similar to Solomon's Key
 LICENSE=	PD
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+DEPRECATED=	Old, uses EOLed python27
+EXPIRATION_DATE=	2020-03-01
+
 RUN_DEPENDS=	${PYGAME}
 
 USES=		python:2.7 shebangfix
@@ -37,6 +40,7 @@ OPTIONS_DEFAULT=EDITOR
 OPTIONS_SUB=	yes
 
 EDITOR_DESC=	Enable editor
+EDITOR_USES=	gnome
 EDITOR_USE=	gnome=pygtk2
 
 post-patch:

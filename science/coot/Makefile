@@ -12,6 +12,10 @@ DIST_SUBDIR=	${PORTNAME}
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Crystallographic Object-Oriented Toolkit
 
+BROKEN=		unfetchable
+DEPRECATED=	Broken, uses EOLed python27
+EXPIRATION_DATE=	2020-02-19
+
 LICENSE=	LGPL3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
@@ -30,7 +34,9 @@ LIB_DEPENDS=	libccp4c.so:science/libccp4 \
 		libssm.so:science/libssm
 RUN_DEPENDS=	bash:shells/bash
 
-USES=		compiler:c++11-lang desktop-file-utils fortran gettext-runtime gl gmake gnome libtool localbase:ldflags pkgconfig python:2.7 shebangfix sqlite
+USES=		compiler:c++11-lang desktop-file-utils fortran gettext-runtime \
+		gl gmake gnome libtool localbase:ldflags pkgconfig python:2.7 \
+		shebangfix sqlite xorg
 SHEBANG_FILES=	src/coot.in
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared --disable-static --with-goocanvas-prefix=${LOCALBASE}

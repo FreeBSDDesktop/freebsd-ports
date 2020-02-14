@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	xpra
-PORTVERSION=	2.5.1
-PORTREVISION=	4
+PORTVERSION=	2.5.3
 CATEGORIES=	x11
 MASTER_SITES=	http://xpra.org/src/
 
@@ -10,6 +9,9 @@ MAINTAINER=	swills@FreeBSD.org
 COMMENT=	Xpra gives you persistent remote applications for X
 
 LICENSE=	GPLv2
+
+DEPRECATED=	Old, uses EOLed python27
+EXPIRATION_DATE=	2020-03-02
 
 BUILD_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}gtk2>2:x11-toolkits/py-gtk2@${PY_FLAVOR} \
@@ -41,7 +43,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/X11/xkb/rules/base:x11/xkeyboard-config \
 		Xvfb:x11-servers/xorg-vfbserver
 
 USES=		desktop-file-utils fortran gettext-runtime gnome pkgconfig \
-		python:2.7 shared-mime-info shebangfix tar:xz
+		python:2.7 shared-mime-info shebangfix tar:xz xorg
 
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk20 pango
 USE_PYTHON=	cython distutils
