@@ -1,6 +1,6 @@
 --- config/devd.c.orig	2017-03-16 05:24:43 UTC
 +++ config/devd.c
-@@ -0,0 +1,892 @@
+@@ -0,0 +1,855 @@
 +/*
 + * Copyright (c) 2012 Baptiste Daroussin
 + * Copyright (c) 2013, 2014 Alex Kozlov
@@ -46,6 +46,7 @@
 +#include <sys/mouse.h>
 +#include <sys/consio.h>
 +#include <sys/ioctl.h>
++#include <dev/evdev/input.h>
 +#include <dev/usb/usb_ioctl.h>
 +#include <dev/usb/usbhid.h>
 +
@@ -67,45 +68,7 @@
 +#include "config-backends.h"
 +#include "os.h"
 +
-+/* from: <linux/input.h> */
-+#define	_IOC_READ   IOC_OUT
-+struct input_id {
-+	uint16_t bustype;
-+	uint16_t vendor;
-+	uint16_t product;
-+	uint16_t version;
-+};
-+
-+#define	EVIOCGBIT(ev, len)	_IOC(_IOC_READ, 'E', 0x20 + (ev), (len))
-+#define	EVIOCGID		_IOR('E', 0x02, struct input_id)
-+#define	EVIOCGNAME(len)		_IOC(_IOC_READ, 'E', 0x06, (len))
-+#define	EVIOCGPHYS(len)		_IOC(_IOC_READ, 'E', 0x07, (len))
-+
-+#define	EV_KEY			0x01
-+#define	EV_REL			0x02
-+#define	EV_ABS			0x03
-+#define	BTN_MISC		0x100
-+#define	BTN_LEFT		0x110
-+#define	BTN_RIGHT		0x111
-+#define	BTN_MIDDLE		0x112
-+#define	BTN_JOYSTICK		0x120
-+#define	BTN_TOOL_PEN		0x140
-+#define	BTN_TOOL_FINGER		0x145
-+#define	BTN_TOUCH		0x14a
-+#define	BTN_STYLUS		0x14b
-+#define	BTN_STYLUS2		0x14c
-+#define	KEY_MAX			0x2ff
-+#define	KEY_CNT			(KEY_MAX + 1)
-+#define	REL_X			0x00
-+#define	REL_Y			0x01
-+#define	REL_MAX			0x0f
-+#define	REL_CNT			(REL_MAX + 1)
-+#define	ABS_X			0x00
-+#define	ABS_Y			0x01
-+#define	ABS_PRESSURE		0x18
-+#define	ABS_MT_SLOT		0x2f
-+#define	ABS_MAX			0x3f
-+#define	ABS_CNT			(ABS_MAX + 1)
++#define	_IOC_READ	IOC_OUT
 +
 +#define	ULONG_BITS		(sizeof(unsigned long) * 8)
 +#define	ULONG_CNT(__x)		(((__x) + ULONG_BITS - 1) / ULONG_BITS)
@@ -173,7 +136,7 @@
 +/* xdriver can be set via config "InputClass" section.
 + * Do not set xdriver name if device have more than one
 + * xf86-input-* drivers.
-+ * "input/event" can be hadled by: xf86-input-libinput,
++ * "input/event" can be handled by: xf86-input-libinput,
 + * xf86-input-evdev and xf86-input-wacom, let user choose.
 + */
 +static hw_type_t hw_types[] = {
