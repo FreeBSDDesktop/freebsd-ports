@@ -22,21 +22,15 @@ SLAVE_PORT?=	no
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	SUID
 OPTIONS_RADIO=	CONF
-OPTIONS_RADIO_CONF=	DEVD HAL UDEV
+OPTIONS_RADIO_CONF=	DEVD UDEV
 OPTIONS_DEFAULT=	DEVD SUID
 
 SUID_DESC=	Install setuid wrapper to allow startx as non-root
 CONF_DESC=	Backend to use for input device configuration
 DEVD_DESC=	Use devd (native)
-HAL_DESC=	Use HAL (deprecated)
 UDEV_DESC=	Use udev via libudev-devd for autoconfiguration of input devices
 
-OPTIONS_EXCLUDE_sparc64=	HAL
-
 DEVD_CONFIGURE_ENABLE=	config-devd
-HAL_CONFIGURE_ENABLE=	config-hal
-HAL_LIB_DEPENDS=	libhal.so:sysutils/hal \
-			libdbus-1.so:devel/dbus
 SUID_CONFIGURE_ENABLE=	suid-wrapper
 SUID_CONFIGURE_ON=	--libexecdir=${PREFIX}/bin	# set SUID_WRAPPER_DIR
 UDEV_CONFIGURE_ENABLE=	config-udev
@@ -83,7 +77,7 @@ CONFIGURE_ARGS+=--disable-dmx --disable-xephyr --disable-xnest --disable-xvfb \
 SUB_FILES=	pkg-install pkg-deinstall
 .else
 CONFIGURE_ARGS+=	--disable-xorg
-OPTIONS_EXCLUDE=	DEVD HAL UDEV SUID
+OPTIONS_EXCLUDE=	DEVD UDEV SUID
 # Set PLIST for slave ports so they only need to set PLIST_FILES
 PLIST=		${.CURDIR}/pkg-plist
 .endif
