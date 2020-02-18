@@ -2,6 +2,7 @@
 
 PORTNAME=	nextpnr
 DISTVERSION=	g20191026
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	manu@FreeBSD.org
@@ -10,6 +11,8 @@ COMMENT=	Portable FPGA place and route tool
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+NOT_FOR_ARCHS=	i386
+NOT_FOR_ARCHS_REASON=	clang segfault
 BROKEN_FreeBSD_11_powerpc64=	runaway build
 BROKEN_FreeBSD_12_powerpc64=	runaway build
 

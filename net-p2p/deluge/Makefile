@@ -2,14 +2,16 @@
 
 PORTNAME=	deluge
 PORTVERSION=	1.3.15
-PORTREVISION=	3
-PORTEPOCH=	1
+PORTEPOCH=	2
 CATEGORIES=	net-p2p python
 
 MAINTAINER=	rm@FreeBSD.org
 COMMENT=	Bittorrent client using Python, GTK2, and libtorrent-rasterbar
 
 LICENSE=	GPLv3
+
+DEPRECATED=	Old, uses EOLed python27
+EXPIRATION_DATE=	2020-03-01
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>=0.83:devel/py-dbus@${PY_FLAVOR} \
 		${PYGAME} \

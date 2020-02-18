@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	mujs
-DISTVERSION=	1.0.6-4
-DISTVERSIONSUFFIX=	-g6e62eb0
+DISTVERSION=	1.0.6-16
+DISTVERSIONSUFFIX=	-gfe71080
 CATEGORIES=	lang devel
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${PORTNAME}/commit/
@@ -30,6 +30,12 @@ PLIST_FILES=	bin/mujs \
 		lib/libmujs.so \
 		lib/libmujs.a \
 		libdata/pkgconfig/mujs.pc
+
+OPTIONS_DEFINE=		32BIT
+OPTIONS_DEFAULT=	32BIT
+
+32BIT_DESC=		32-bit address space to allow for larger programs
+32BIT_MAKE_ARGS=	XCFLAGS="-DJS_INSTRUCTION=int"
 
 post-install: # https://github.com/ccxvii/mujs/issues/99
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmujs.so

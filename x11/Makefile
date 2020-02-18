@@ -8,6 +8,7 @@
     SUBDIR += 9menu
     SUBDIR += admiral
     SUBDIR += alacritty
+    SUBDIR += albert
     SUBDIR += alltray
     SUBDIR += alttab
     SUBDIR += aminal
@@ -183,8 +184,6 @@
     SUBDIR += lightdm
     SUBDIR += lightdm-gtk-greeter
     SUBDIR += lilyterm
-    SUBDIR += linux-c6-pixman
-    SUBDIR += linux-c6-xorg-libs
     SUBDIR += linux-c7-libxkbcommon
     SUBDIR += linux-c7-pixman
     SUBDIR += linux-c7-xorg-libs
@@ -220,7 +219,6 @@
     SUBDIR += menu-cache
     SUBDIR += menulibre
     SUBDIR += metalock
-    SUBDIR += metisse
     SUBDIR += mkcomposecache
     SUBDIR += mlterm
     SUBDIR += mons
@@ -236,7 +234,6 @@
     SUBDIR += nvidia-settings
     SUBDIR += nvidia-xconfig
     SUBDIR += nxcomp
-    SUBDIR += ooxcb
     SUBDIR += p5-Clipboard
     SUBDIR += p5-X11-GUITest
     SUBDIR += p5-X11-IdleTime
@@ -281,7 +278,6 @@
     SUBDIR += rofi
     SUBDIR += rofi-calc
     SUBDIR += rofi-pass
-    SUBDIR += rox-wallpaper
     SUBDIR += roxbg
     SUBDIR += roxterm
     SUBDIR += rsibreak
@@ -306,6 +302,7 @@
     SUBDIR += slop
     SUBDIR += slurp
     SUBDIR += smproxy
+    SUBDIR += squeekboard
     SUBDIR += sselp
     SUBDIR += stalonetray
     SUBDIR += startup-notification
@@ -360,6 +357,7 @@
     SUBDIR += x3270
     SUBDIR += xaniroc
     SUBDIR += xantfarm
+    SUBDIR += xapps
     SUBDIR += xascii
     SUBDIR += xauth
     SUBDIR += xautolock

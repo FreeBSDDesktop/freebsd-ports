@@ -112,7 +112,6 @@
     SUBDIR += pidgin-libnotify
     SUBDIR += pidgin-manualsize
     SUBDIR += pidgin-osd
-    SUBDIR += pidgin-privacy-please
     SUBDIR += pidgin-rocketchat
     SUBDIR += pidgin-sipe
     SUBDIR += pidgin-skypeweb
@@ -128,9 +127,6 @@
     SUBDIR += purple-hangouts
     SUBDIR += purple-slack
     SUBDIR += py-fbmq
-    SUBDIR += py-jabber
-    SUBDIR += py-jabberbot
-    SUBDIR += py-libturpial
     SUBDIR += py-matrix-synapse
     SUBDIR += py-nbxmpp
     SUBDIR += py-punjab
@@ -143,7 +139,6 @@
     SUBDIR += py-toxcore-c
     SUBDIR += py-unmessage
     SUBDIR += py-xmpppy
-    SUBDIR += py-xmpppy-irc
     SUBDIR += qTox
     SUBDIR += quaternion
     SUBDIR += qxmpp-qt5

@@ -3,7 +3,7 @@
 
 PORTNAME=	raul
 PORTVERSION=	0.8.0
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES=	audio
 MASTER_SITES=	http://download.drobilla.net/
 
@@ -13,9 +13,12 @@ COMMENT=	C++ utility library primarily aimed at audio/musical applications
 LICENSE=	GPLv2 GPLv3
 LICENSE_COMB=	dual
 
+DEPRECATED=	Unmaintained, uses EOLed python27
+EXPIRATION_DATE=	2020-03-19
+
 LIB_DEPENDS=	libboost_date_time.so:devel/boost-libs
 
-USES=		gnome pkgconfig tar:bzip2 waf
+USES=		gnome pkgconfig python:2.7,build tar:bzip2 waf
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 

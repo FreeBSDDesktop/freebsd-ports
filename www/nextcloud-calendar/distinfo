@@ -1,3 +1,3 @@
-TIMESTAMP = 1568833382
-SHA256 (nextcloud/calendar-v1.7.1/calendar.tar.gz) = dfb995d30938b6f119216b0d42d90cf320107af859ad9d8aea6fba03fbbeb1b4
-SIZE (nextcloud/calendar-v1.7.1/calendar.tar.gz) = 1594265
+TIMESTAMP = 1581540258
+SHA256 (nextcloud/calendar-v2.0.1/calendar.tar.gz) = edb6c4db7a0b48f4fdfa2b165a3cd116d5405f4133146eae7d7aa8fc68319ea6
+SIZE (nextcloud/calendar-v2.0.1/calendar.tar.gz) = 3488205

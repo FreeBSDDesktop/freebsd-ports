@@ -3,6 +3,7 @@
 
 PORTNAME=	bastet
 PORTVERSION=	0.43.2
+PORTREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	http://fph.altervista.org/prog/files/
 
@@ -12,14 +13,12 @@ COMMENT=	Ncurses Tetris clone which is harder than every other Tetris
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_powerpc64=	does not build
-
 LIB_DEPENDS=	libboost_program_options.so:devel/boost-libs
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	fph
 
-USES=		gmake localbase:ldflags ncurses tar:tgz
+USES=		compiler:c++11-lang gmake localbase:ldflags ncurses tar:tgz
 
 PORTDOCS=	AUTHORS README NEWS
 

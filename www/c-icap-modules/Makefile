@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	c-icap
-PORTVERSION=	0.5.3
-PORTREVISION=	1
+PORTVERSION=	0.5.4
 CATEGORIES=	www security
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}${PKGNAMESUFFIX}/0.5.x/
 PKGNAMESUFFIX=	-modules
@@ -14,8 +13,6 @@ COMMENT=	Modules for c-icap: virus_scan and srv_url_check
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-BROKEN=		fails to build
 
 LIB_DEPENDS=	libicapapi.so:www/c-icap \
 		libclamav.so:security/clamav

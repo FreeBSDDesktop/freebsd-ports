@@ -3,6 +3,7 @@
 PORTNAME=	binutils
 PORTVERSION=	2.33.1
 PORTEPOCH=	0
+PORTREVISION=	1
 CATEGORIES=	base
 MASTER_SITES=	SOURCEWARE/binutils/releases
 PKGNAMEPREFIX=	${OPSYS:tl}-
@@ -35,6 +36,7 @@ CONFIGURE_ARGS+=	--disable-host-shared \
 			--disable-shared \
 			--disable-nls \
 			--with-system-zlib \
+			--with-sysroot="/" \
 			--enable-relro=no \
 			--enable-x86-relax-relocations=no \
 			--target=${BUTARGET}
@@ -48,6 +50,7 @@ BUREMOVE=	addr2line \
 		dlltool \
 		elfedit \
 		gprof \
+		objcopy \
 		nlmconv \
 		nm \
 		ranlib \
@@ -57,9 +60,6 @@ BUREMOVE=	addr2line \
 		strip \
 		windmc \
 		windres
-
-PLIST_SUB+=	OBJCOPY="@comment "
-BUREMOVE+=	objcopy
 
 OPTIONS_DEFINE=	RELRO STATIC 
 RELRO_DESC=	enable -z relro in ELF linker by default
@@ -97,12 +97,12 @@ PLIST_SUB+=	SPARC=""
 PLIST_SUB+=	SPARC="@comment "
 .endif
 
-.if ${ARCH} == "amd64"
-CONFIGURE_TARGET=	x86_64-portbld-freebsd${OSREL}
-.elif ${ARCH} == "powerpcspe"
-CONFIGURE_TARGET=	powerpc-portbld-freebsd${OSREL}
+.if ${HOSTARCH} == "amd64"
+CONFIGURE_TARGET=	x86_64-unknown-freebsd${OSREL}
+.elif ${HOSTARCH} == "powerpcspe"
+CONFIGURE_TARGET=	powerpc-unknown-freebsd${OSREL}
 .else
-CONFIGURE_TARGET=	${ARCH}-portbld-freebsd${OSREL}
+CONFIGURE_TARGET=	${HOSTARCH}-unknown-freebsd${OSREL}
 .endif
 
 post-patch:
@@ -112,23 +112,14 @@ post-install:
 	${RM} -r ${STAGEDIR}${PREFIX}/${PKGNAMEPREFIX:S/-$//}
 	${RM} ${STAGEDIR}${PREFIX}/${BUTARGET}/lib/ldscripts/i386bsd.*
 	@if [ -d ${STAGEDIR}${PREFIX}/${INFO_PATH:H} ] ; then rm -rf ${STAGEDIR}${PREFIX}/${INFO_PATH:H}; fi
-	${LN} -fs /usr/bin/${BUTARGET}-as ${STAGEDIR}/usr/bin/as
-	${LN} -fs /usr/bin/${BUTARGET}-ld ${STAGEDIR}/usr/bin/ld
-	${LN} -fs /usr/bin/${BUTARGET}-ld.bfd ${STAGEDIR}/usr/bin/ld.bfd
-	${LN} -fs /usr/bin/${BUTARGET}-objcopy ${STAGEDIR}/usr/bin/objcopy
-	${LN} -fs /usr/bin/${BUTARGET}-objdump ${STAGEDIR}/usr/bin/objdump
-	${LN} -fs ${BUTARGET}-as.1.gz ${STAGEDIR}/${MANDIR}1/as.1.gz
-	${LN} -fs ${BUTARGET}-ld.1.gz ${STAGEDIR}/${MANDIR}1/ld.1.gz
-	${LN} -fs ${BUTARGET}-objcopy.1.gz ${STAGEDIR}/${MANDIR}1/objcopy.1.gz
-	${LN} -fs ${BUTARGET}-objdump.1.gz ${STAGEDIR}/${MANDIR}1/objdump.1.gz
 	@${RM} -r ${STAGEDIR}${PREFIX}/include
 	@${RM} -r ${STAGEDIR}${PREFIX}/lib
 .for tool in ${BUREMOVE}
-	@${RM} ${STAGEDIR}${PREFIX}/bin/${BUTARGET}-${tool} \
-	    ${STAGEDIR}${PREFIX}/bin/${tool} \
-	    ${STAGEDIR}${MANPREFIX}/man/man1/${BUTARGET}-${tool}.1 \
+	@${RM} ${STAGEDIR}${PREFIX}/bin/${tool} \
 	    ${STAGEDIR}${MANPREFIX}/man/man1/${tool}.1 \
 	    ${STAGEDIR}${PREFIX}/${BUTARGET}/bin/${tool}
 .endfor
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/toolchains
+	${INSTALL_DATA} ${.CURDIR}/files/freebsd-binutils.mk ${STAGEDIR}${PREFIX}/share/toolchains/
 
 .include <bsd.port.post.mk>

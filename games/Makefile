@@ -10,7 +10,6 @@
     SUBDIR += 3dc
     SUBDIR += 3dpong
     SUBDIR += 3omns
-    SUBDIR += 4stattack
     SUBDIR += 54321
     SUBDIR += 7kaa
     SUBDIR += 90secondportraits
@@ -73,7 +72,6 @@
     SUBDIR += awele
     SUBDIR += ballerburg
     SUBDIR += banihstypos
-    SUBDIR += barbie_seahorse_adventures
     SUBDIR += barony
     SUBDIR += barrage
     SUBDIR += bass
@@ -104,9 +102,7 @@
     SUBDIR += bomberclone
     SUBDIR += bomberinstinct
     SUBDIR += bombherman
-    SUBDIR += bombz
     SUBDIR += bomns
-    SUBDIR += bouncy
     SUBDIR += bovo
     SUBDIR += braincurses
     SUBDIR += brainparty
@@ -123,7 +119,6 @@
     SUBDIR += bsdtris
     SUBDIR += bsp
     SUBDIR += bstone
-    SUBDIR += bubbros
     SUBDIR += bugsquish
     SUBDIR += bugsx
     SUBDIR += bumprace
@@ -144,7 +139,6 @@
     SUBDIR += cgoban
     SUBDIR += chapping
     SUBDIR += chessx
-    SUBDIR += childsplay
     SUBDIR += chocolate-doom
     SUBDIR += chroma
     SUBDIR += chromium-bsu
@@ -172,7 +166,6 @@
     SUBDIR += criticalmass
     SUBDIR += critterding
     SUBDIR += crossfire-client
-    SUBDIR += crossfire-server
     SUBDIR += crrcsim
     SUBDIR += cryptoslam
     SUBDIR += csmash
@@ -208,9 +201,9 @@
     SUBDIR += doom-wolfendoom
     SUBDIR += doomlegacy
     SUBDIR += doomsday
+    SUBDIR += dose-response
     SUBDIR += dreamchess
     SUBDIR += drm
-    SUBDIR += duckmaze
     SUBDIR += duel
     SUBDIR += dunelegacy
     SUBDIR += dungeon
@@ -253,7 +246,6 @@
     SUBDIR += f1spirit-remake
     SUBDIR += fairymax
     SUBDIR += falconseye
-    SUBDIR += farblazer
     SUBDIR += fargoal
     SUBDIR += fbg2
     SUBDIR += fightorperish
@@ -308,7 +300,6 @@
     SUBDIR += galaxis
     SUBDIR += galaxyhack
     SUBDIR += garden-of-coloured-lights
-    SUBDIR += gbottler
     SUBDIR += gbrainy
     SUBDIR += gcompris
     SUBDIR += gcompris-qt
@@ -320,7 +311,6 @@
     SUBDIR += gl-117
     SUBDIR += glaxium
     SUBDIR += glbsp
-    SUBDIR += glchess
     SUBDIR += glest
     SUBDIR += glest-data
     SUBDIR += glightoff
@@ -363,7 +353,6 @@
     SUBDIR += gracer
     SUBDIR += granatier
     SUBDIR += greed
-    SUBDIR += gretools
     SUBDIR += griels-quest
     SUBDIR += grubik
     SUBDIR += gshisen
@@ -391,6 +380,7 @@
     SUBDIR += hohlin
     SUBDIR += hoichess
     SUBDIR += holotz-castle
+    SUBDIR += homura
     SUBDIR += hoverboard-sdl
     SUBDIR += hs-scroll
     SUBDIR += hypatia_engine
@@ -473,7 +463,6 @@
     SUBDIR += ktuberling
     SUBDIR += kubrick
     SUBDIR += kuklomenos
-    SUBDIR += kye
     SUBDIR += ladder
     SUBDIR += lander
     SUBDIR += lapispuzzle
@@ -527,7 +516,6 @@
     SUBDIR += linux-ut2003-demo
     SUBDIR += linux-virtual-jay-peak
     SUBDIR += linwarrior
-    SUBDIR += liquidwar
     SUBDIR += lizzie
     SUBDIR += lm-solve
     SUBDIR += lmarbles
@@ -577,7 +565,6 @@
     SUBDIR += moon-buggy
     SUBDIR += moonlander
     SUBDIR += moonlight-embedded
-    SUBDIR += mopesnake
     SUBDIR += moria
     SUBDIR += motogt
     SUBDIR += mrboom
@@ -593,7 +580,6 @@
     SUBDIR += narcissu2
     SUBDIR += nazghul
     SUBDIR += nehquake
-    SUBDIR += nelly
     SUBDIR += nethack32
     SUBDIR += nethack33
     SUBDIR += nethack33-nox11
@@ -628,7 +614,6 @@
     SUBDIR += odamex
     SUBDIR += oldrunner
     SUBDIR += omega
-    SUBDIR += oneisenough
     SUBDIR += oneko
     SUBDIR += oneko-sakura
     SUBDIR += onscripter
@@ -731,24 +716,17 @@
     SUBDIR += prboom
     SUBDIR += prboom-plus
     SUBDIR += primateplunge
-    SUBDIR += ptkei
     SUBDIR += puckman
     SUBDIR += pushover
     SUBDIR += pvpgn
     SUBDIR += py-fife
     SUBDIR += py-mnemosyne
-    SUBDIR += py-poker-eval
     SUBDIR += py-sgflib
     SUBDIR += py-sgfsummary
-    SUBDIR += pycadia
-    SUBDIR += pydance
     SUBDIR += pyfa
     SUBDIR += pysolfc
     SUBDIR += pyspacewar
-    SUBDIR += pysycache
-    SUBDIR += pythonchess
     SUBDIR += pythonsudoku
-    SUBDIR += pytowerdefense
     SUBDIR += q2p
     SUBDIR += q2pro
     SUBDIR += q3cellshading
@@ -791,9 +769,11 @@
     SUBDIR += qwdtools
     SUBDIR += r1q2
     SUBDIR += railroad-rampage
+    SUBDIR += rawgl
     SUBDIR += redeclipse
     SUBDIR += redeclipse-data
     SUBDIR += redorblack
+    SUBDIR += regoth
     SUBDIR += reminiscence
     SUBDIR += renpy
     SUBDIR += renpy6
@@ -812,7 +792,6 @@
     SUBDIR += rocksndiamonds
     SUBDIR += rocksndiamonds-data
     SUBDIR += rottdc
-    SUBDIR += rtb
     SUBDIR += rubix
     SUBDIR += rubygem-fortune_gem
     SUBDIR += rubygem-lolcat
@@ -821,8 +800,6 @@
     SUBDIR += sarien
     SUBDIR += sauerbraten
     SUBDIR += scare
-    SUBDIR += schiff
-    SUBDIR += schwarzweiss
     SUBDIR += scid
     SUBDIR += scorched3d
     SUBDIR += scourge
@@ -843,7 +820,6 @@
     SUBDIR += seahaven
     SUBDIR += searchandrescue
     SUBDIR += searchandrescue-data
-    SUBDIR += secrettower
     SUBDIR += senken
     SUBDIR += sets
     SUBDIR += sex
@@ -853,12 +829,14 @@
     SUBDIR += simplevaders
     SUBDIR += simsu
     SUBDIR += simutrans
+    SUBDIR += simutrans-pak128
+    SUBDIR += simutrans-pak128.german
+    SUBDIR += simutrans-pak64
     SUBDIR += sjeng
     SUBDIR += ski
     SUBDIR += sl
     SUBDIR += slashem-tty
     SUBDIR += slump
-    SUBDIR += slune
     SUBDIR += sokoban
     SUBDIR += sol
     SUBDIR += solarconquest
@@ -881,14 +859,12 @@
     SUBDIR += stendhal
     SUBDIR += stockfish
     SUBDIR += stonesoup
-    SUBDIR += stonesoup-sdl
     SUBDIR += stormbaancoureur
     SUBDIR += stransball2
     SUBDIR += stratagus
     SUBDIR += stuntrally
     SUBDIR += sudoku_solver
     SUBDIR += sudsol
-    SUBDIR += super_mario_bros_python
     SUBDIR += super_methane_brothers
     SUBDIR += supertux
     SUBDIR += supertux2
@@ -941,7 +917,6 @@
     SUBDIR += ttt
     SUBDIR += tty-solitaire
     SUBDIR += tux-aqfh
-    SUBDIR += tuxfighter
     SUBDIR += tuxkart
     SUBDIR += tuxmath
     SUBDIR += tuxpaint
@@ -951,7 +926,6 @@
     SUBDIR += tuxracer
     SUBDIR += tuxtype
     SUBDIR += twind
-    SUBDIR += twitch
     SUBDIR += tycho
     SUBDIR += typespeed
     SUBDIR += tyrian-data
@@ -972,8 +946,7 @@
     SUBDIR += vavoom
     SUBDIR += vavoom-extras
     SUBDIR += vectoroids
-    SUBDIR += vegastrike
-    SUBDIR += vegastrike-data
+    SUBDIR += veloren
     SUBDIR += violetland
     SUBDIR += viruskiller
     SUBDIR += vitetris
@@ -983,6 +956,7 @@
     SUBDIR += volleyball
     SUBDIR += vor
     SUBDIR += vultures-eye
+    SUBDIR += vvvvvv
     SUBDIR += wanderer
     SUBDIR += wargus
     SUBDIR += warmux
@@ -1105,7 +1079,6 @@
     SUBDIR += xtgyoretsu
     SUBDIR += xtic
     SUBDIR += xtriangles
-    SUBDIR += xtris
     SUBDIR += xtrojka
     SUBDIR += xtron
     SUBDIR += xtruco
@@ -1122,7 +1095,6 @@
     SUBDIR += zatacka
     SUBDIR += zaz
     SUBDIR += zdoom
-    SUBDIR += zephulor
     SUBDIR += zhlt
     SUBDIR += zoom
     SUBDIR += ztrack

@@ -29,7 +29,7 @@ SUID_DESC=	Install setuid wrapper to allow startx as non-root
 CONF_DESC=	Backend to use for input device configuration
 DEVD_DESC=	Use devd (native)
 HAL_DESC=	Use HAL (deprecated)
-UDEV_DESC=	Use udev via libudev-devd (experimental)
+UDEV_DESC=	Use udev via libudev-devd for autoconfiguration of input devices
 
 OPTIONS_EXCLUDE_sparc64=	HAL
 
@@ -43,7 +43,22 @@ UDEV_CONFIGURE_ENABLE=	config-udev
 UDEV_CONFIGURE_ON=	--disable-config-udev-kms
 UDEV_LIB_DEPENDS=	libudev.so:devel/libudev-devd
 
-USES=		gmake gl libtool perl5 ssl tar:bzip2 xorg xorg-cat:xserver
+.include <bsd.port.options.mk>
+
+FONTPATH_ROOT?=	${LOCALBASE}/share/fonts
+FONTPATHD?=	${PREFIX}/etc/X11/fontpath.d
+DEFAULT_FONTPATH_LIST= \
+	${FONTPATH_ROOT}/misc/	\
+	${FONTPATH_ROOT}/TTF/ \
+	${FONTPATH_ROOT}/OTF/ \
+	${FONTPATH_ROOT}/Type1/ \
+	${FONTPATH_ROOT}/100dpi/ \
+	${FONTPATH_ROOT}/75dpi/ \
+	catalogue:${FONTPATHD}
+DEFAULT_FONTPATH_CMD=${ECHO_CMD} ${DEFAULT_FONTPATH_LIST} | ${TR} ' ' ,
+PLIST_SUB+=	FONTPATHD="${FONTPATHD:S,^${PREFIX}/,,}"
+
+USES=		gl gmake perl5 ssl xorg xorg-cat:xserver
 USE_PERL5=	build
 USE_GL+=	gl
 USE_XORG+=	pixman xau xdmcp xfont2 xkbfile xorgproto xshmfence xtrans
@@ -102,6 +117,7 @@ post-install:
 	${MV} ${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/libglx.so \
 		${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg/
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d
+	@${MKDIR} ${STAGEDIR}${FONTPATHD}
 .endif # ! SLAVE_PORT
 
 .include <bsd.port.post.mk>

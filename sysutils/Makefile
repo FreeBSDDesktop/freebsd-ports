@@ -39,7 +39,6 @@
     SUBDIR += android-file-transfer-qt5
     SUBDIR += ansible
     SUBDIR += ansible-sysrc
-    SUBDIR += ansible1
     SUBDIR += ansible23
     SUBDIR += ansible24
     SUBDIR += ansible25
@@ -87,7 +86,6 @@
     SUBDIR += baloo-widgets
     SUBDIR += bamf
     SUBDIR += bareos-client
-    SUBDIR += bareos-docs
     SUBDIR += bareos-server
     SUBDIR += bareos-traymonitor
     SUBDIR += bareos16-client
@@ -96,6 +94,9 @@
     SUBDIR += bareos17-client
     SUBDIR += bareos17-client-static
     SUBDIR += bareos17-server
+    SUBDIR += bareos18-client
+    SUBDIR += bareos18-server
+    SUBDIR += bareos18-traymonitor
     SUBDIR += barrier
     SUBDIR += bastille
     SUBDIR += batmon
@@ -120,7 +121,6 @@
     SUBDIR += bsdhwmon
     SUBDIR += bsdinfo
     SUBDIR += bsdisks
-    SUBDIR += bsdploy
     SUBDIR += bsdstats
     SUBDIR += bstack
     SUBDIR += btsixad
@@ -155,11 +155,13 @@
     SUBDIR += cfengine-masterfiles312
     SUBDIR += cfengine-masterfiles313
     SUBDIR += cfengine-masterfiles314
+    SUBDIR += cfengine-masterfiles315
     SUBDIR += cfengine310
     SUBDIR += cfengine311
     SUBDIR += cfengine312
     SUBDIR += cfengine313
     SUBDIR += cfengine314
+    SUBDIR += cfengine315
     SUBDIR += chgrep
     SUBDIR += chyves
     SUBDIR += cinnamon-control-center
@@ -204,6 +206,7 @@
     SUBDIR += cpu-x
     SUBDIR += cpuburn
     SUBDIR += cpuid
+    SUBDIR += cpuid2cpuflags
     SUBDIR += cpulimit
     SUBDIR += cpupdate
     SUBDIR += cramfs
@@ -255,7 +258,6 @@
     SUBDIR += docker
     SUBDIR += docker-compose
     SUBDIR += docker-credential-pass
-    SUBDIR += docker-freebsd
     SUBDIR += docker-machine
     SUBDIR += doctl
     SUBDIR += doinkd
@@ -305,7 +307,6 @@
     SUBDIR += etc_os-release
     SUBDIR += etcmerge
     SUBDIR += etcupdate
-    SUBDIR += eventlog
     SUBDIR += evhz
     SUBDIR += evtviewer
     SUBDIR += exa
@@ -322,7 +323,6 @@
     SUBDIR += fcron
     SUBDIR += fd
     SUBDIR += fdupes
-    SUBDIR += feather
     SUBDIR += fetchlog
     SUBDIR += ffs2recov
     SUBDIR += file
@@ -372,7 +372,6 @@
     SUBDIR += fusefs-encfs
     SUBDIR += fusefs-exfat
     SUBDIR += fusefs-ext2
-    SUBDIR += fusefs-ext4fuse
     SUBDIR += fusefs-funionfs
     SUBDIR += fusefs-fusepak
     SUBDIR += fusefs-fusexmp_fh
@@ -430,6 +429,7 @@
     SUBDIR += gkrelltop
     SUBDIR += gksu
     SUBDIR += glogg
+    SUBDIR += glow
     SUBDIR += gnome-control-center
     SUBDIR += gnome-mount
     SUBDIR += gnome-power-manager
@@ -458,10 +458,6 @@
     SUBDIR += gstreamer-plugins-hal
     SUBDIR += gstreamer1-plugins-cdio
     SUBDIR += gtk-imonc
-    SUBDIR += hachoir-metadata
-    SUBDIR += hachoir-subfile
-    SUBDIR += hachoir-urwid
-    SUBDIR += hachoir-wx
     SUBDIR += hal
     SUBDIR += hal-info
     SUBDIR += hardlink
@@ -476,7 +472,6 @@
     SUBDIR += helm
     SUBDIR += hextools
     SUBDIR += hexyl
-    SUBDIR += hfm
     SUBDIR += hfsexplorer
     SUBDIR += hfsutils
     SUBDIR += hidesvn
@@ -496,6 +491,7 @@
     SUBDIR += i2c-tools
     SUBDIR += i7z
     SUBDIR += iat
+    SUBDIR += iichid
     SUBDIR += immortal
     SUBDIR += incron
     SUBDIR += inotify-tools
@@ -546,6 +542,7 @@
     SUBDIR += jvmtop
     SUBDIR += jx
     SUBDIR += k3b
+    SUBDIR += k4dirstat
     SUBDIR += k8temp
     SUBDIR += kbackup
     SUBDIR += kcron
@@ -553,13 +550,13 @@
     SUBDIR += kdebugsettings
     SUBDIR += kdf
     SUBDIR += kdialog
-    SUBDIR += kdirstat
     SUBDIR += keyboard-daemon
     SUBDIR += kf5-baloo
     SUBDIR += kf5-kwallet
     SUBDIR += kfloppy
     SUBDIR += khelpcenter
     SUBDIR += kiconvtool
+    SUBDIR += kio-fuse
     SUBDIR += kldfind
     SUBDIR += kldpatch
     SUBDIR += kops
@@ -588,14 +585,13 @@
     SUBDIR += libsysstat
     SUBDIR += libudisks
     SUBDIR += liburcu
-    SUBDIR += life-preserver
     SUBDIR += lineak-defaultplugin
     SUBDIR += lineak-xosdplugin
     SUBDIR += lineakd
     SUBDIR += linrename
-    SUBDIR += linux-c6-lttng-ust
-    SUBDIR += linux-c6-userspace-rcu
+    SUBDIR += linux-c7-dosfstools
     SUBDIR += linux-c7-lttng-ust
+    SUBDIR += linux-c7-numactl-libs
     SUBDIR += linux-c7-userspace-rcu
     SUBDIR += linux-crashplan
     SUBDIR += linux-rkbin
@@ -611,6 +607,7 @@
     SUBDIR += logstash-forwarder
     SUBDIR += logstash5
     SUBDIR += logstash6
+    SUBDIR += logstash7
     SUBDIR += logtool
     SUBDIR += logwatch
     SUBDIR += lookat
@@ -678,10 +675,10 @@
     SUBDIR += mgeupsd
     SUBDIR += minikube
     SUBDIR += minimunin
+    SUBDIR += minipot
     SUBDIR += minipro
     SUBDIR += minirsyslogd
     SUBDIR += mixer
-    SUBDIR += mkdesktop
     SUBDIR += mkfile
     SUBDIR += mkfwimage
     SUBDIR += mkntpwd
@@ -766,6 +763,7 @@
     SUBDIR += opencorsairlink
     SUBDIR += openipmi
     SUBDIR += opensbi
+    SUBDIR += openseachest
     SUBDIR += openupsd
     SUBDIR += openzfs
     SUBDIR += openzfs-kmod
@@ -862,14 +860,9 @@
     SUBDIR += passwordsafe
     SUBDIR += patchelf
     SUBDIR += pax-utils
-    SUBDIR += pbi-manager
     SUBDIR += pbimaker
     SUBDIR += pc-networkmanager
     SUBDIR += pcapfix
-    SUBDIR += pcbsd-appweb
-    SUBDIR += pcbsd-libsh
-    SUBDIR += pcbsd-syscache
-    SUBDIR += pcbsd-utils
     SUBDIR += pciutils
     SUBDIR += pcpustat
     SUBDIR += pdixtract
@@ -887,6 +880,7 @@
     SUBDIR += pear-Translation2
     SUBDIR += pecl-proctitle
     SUBDIR += pefs-kmod
+    SUBDIR += perp
     SUBDIR += personality
     SUBDIR += pesign
     SUBDIR += pfetch
@@ -895,8 +889,6 @@
     SUBDIR += pftables
     SUBDIR += pftop
     SUBDIR += phantom
-    SUBDIR += php71-fileinfo
-    SUBDIR += php71-posix
     SUBDIR += php72-fileinfo
     SUBDIR += php72-posix
     SUBDIR += php73-fileinfo
@@ -966,11 +958,11 @@
     SUBDIR += py-azure-cli-base
     SUBDIR += py-azure-cli-core
     SUBDIR += py-azure-cli-telemetry
-    SUBDIR += py-bcfg2
     SUBDIR += py-bitrot
     SUBDIR += py-borgmatic
     SUBDIR += py-cdmi
     SUBDIR += py-cpuinfo
+    SUBDIR += py-cron-descriptor
     SUBDIR += py-croniter
     SUBDIR += py-crontab
     SUBDIR += py-diffoscope
@@ -1000,7 +992,6 @@
     SUBDIR += py-packet-python
     SUBDIR += py-pkginfo
     SUBDIR += py-ploy
-    SUBDIR += py-ploy_ansible
     SUBDIR += py-ploy_ec2
     SUBDIR += py-ploy_ezjail
     SUBDIR += py-ploy_fabric
@@ -1026,6 +1017,11 @@
     SUBDIR += py-supervisor
     SUBDIR += py-tarsnapper
     SUBDIR += py-tmuxp
+    SUBDIR += py-upt
+    SUBDIR += py-upt-cpan
+    SUBDIR += py-upt-freebsd
+    SUBDIR += py-upt-pypi
+    SUBDIR += py-upt-rubygems
     SUBDIR += py-uptime
     SUBDIR += py-zdaemon
     SUBDIR += pydf
@@ -1050,7 +1046,6 @@
     SUBDIR += rcm
     SUBDIR += rdate
     SUBDIR += rdiff-backup
-    SUBDIR += rdiff-backup-devel
     SUBDIR += rdup
     SUBDIR += read-edid
     SUBDIR += realsync
@@ -1126,6 +1121,7 @@
     SUBDIR += rubygem-httplog
     SUBDIR += rubygem-itamae
     SUBDIR += rubygem-librarian-puppet
+    SUBDIR += rubygem-license-acceptance
     SUBDIR += rubygem-log4r
     SUBDIR += rubygem-logify
     SUBDIR += rubygem-mogilefs-client
@@ -1178,6 +1174,7 @@
     SUBDIR += safe-rm
     SUBDIR += safecat
     SUBDIR += safecopy
+    SUBDIR += samdruckerclientshell
     SUBDIR += samefile
     SUBDIR += samesame
     SUBDIR += sample
@@ -1260,21 +1257,18 @@
     SUBDIR += symon
     SUBDIR += synergy
     SUBDIR += synergy-1
+    SUBDIR += sysctlbyname-improved-kmod
     SUBDIR += sysctlinfo-kmod
     SUBDIR += sysgather
     SUBDIR += sysinfo
     SUBDIR += syslinux
     SUBDIR += syslog-ng
-    SUBDIR += syslog-ng311
-    SUBDIR += syslog-ng315
-    SUBDIR += syslog-ng317
-    SUBDIR += syslog-ng318
-    SUBDIR += syslog-ng319
     SUBDIR += syslog-ng320
     SUBDIR += syslog-ng321
     SUBDIR += syslog-ng322
     SUBDIR += syslog-ng323
     SUBDIR += syslog-ng324
+    SUBDIR += syslog-ng325
     SUBDIR += syslogger
     SUBDIR += sysrc
     SUBDIR += system-tools-backends
@@ -1288,8 +1282,8 @@
     SUBDIR += tclsyslog
     SUBDIR += tcplist
     SUBDIR += tdir
+    SUBDIR += tealdeer
     SUBDIR += tenshi
-    SUBDIR += tentakel
     SUBDIR += terraform
     SUBDIR += terraform-provider-vultr
     SUBDIR += testdisk
@@ -1374,8 +1368,6 @@
     SUBDIR += u-boot-tools
     SUBDIR += u-boot-utilite
     SUBDIR += u-boot-wandboard
-    SUBDIR += u-boot-zedboard
-    SUBDIR += u-boot-zybo
     SUBDIR += ua
     SUBDIR += ucspi-ipc
     SUBDIR += ucspi-proxy
@@ -1417,10 +1409,12 @@
     SUBDIR += vbetool
     SUBDIR += vchanger
     SUBDIR += vcp
+    SUBDIR += vector
     SUBDIR += videogen
     SUBDIR += vii
     SUBDIR += vils
     SUBDIR += vimpager
+    SUBDIR += virt-what
     SUBDIR += virtualmin
     SUBDIR += vm-bhyve
     SUBDIR += vmdktool
@@ -1433,7 +1427,6 @@
     SUBDIR += vttest
     SUBDIR += vzvol
     SUBDIR += wait_on
-    SUBDIR += warden
     SUBDIR += watchdog
     SUBDIR += watchfolder
     SUBDIR += watchman
