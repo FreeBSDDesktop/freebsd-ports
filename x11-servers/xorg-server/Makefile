@@ -119,6 +119,9 @@ post-install:
 		${STAGEDIR}${PREFIX}/lib/xorg/modules/extensions/.xorg/
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/X11/xorg.conf.d
 	@${MKDIR} ${STAGEDIR}${FONTPATHD}
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/X11/xorg.conf.d
+	@${INSTALL_DATA} ${FILESDIR}/20-evdev-kbd.conf \
+		${STAGEDIR}${PREFIX}/share/X11/xorg.conf.d
 .endif # ! SLAVE_PORT
 
 .include <bsd.port.post.mk>
