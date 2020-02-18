@@ -21,7 +21,7 @@ USE_XORG=	x11 xext
 USE_GL+=	egl gbm
 
 CONFIGURE_ARGS+=--disable-dmx --disable-xephyr --disable-xnest --disable-xvfb \
-		--enable-xwayland 
+		--enable-xwayland --with-default-xkb-ruleset=evdev
 
 PLIST_FILES=	bin/Xwayland
 
