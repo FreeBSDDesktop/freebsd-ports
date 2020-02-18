@@ -63,6 +63,7 @@ USE_PERL5=	build
 USE_GL+=	gl
 USE_XORG+=	pixman xau xdmcp xfont2 xkbfile xorgproto xshmfence xtrans
 CONFIGURE_ARGS+=--without-doxygen --without-xmlto --without-fop \
+		--with-default-font-path="$$(${DEFAULT_FONTPATH_CMD})" \
 		--without-dtrace --with-shared-memory-dir=/tmp \
 		--disable-install-setuid
 INSTALL_TARGET=	install-strip
