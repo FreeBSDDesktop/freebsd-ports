@@ -65,7 +65,7 @@ USE_XORG+=	pixman xau xdmcp xfont2 xkbfile xorgproto xshmfence xtrans
 CONFIGURE_ARGS+=--without-doxygen --without-xmlto --without-fop \
 		--with-default-font-path="$$(${DEFAULT_FONTPATH_CMD})" \
 		--without-dtrace --with-shared-memory-dir=/tmp \
-		--disable-install-setuid
+		--disable-install-setuid --disable-unit-tests
 INSTALL_TARGET=	install-strip
 
 .if ${SLAVE_PORT} == "no" || ${PORTNAME} == "xephyr" || ${PORTNAME} == "xwayland"
