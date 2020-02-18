@@ -8,7 +8,7 @@
 *
 --- configure.ac.orig	2017-03-15 18:05:25 UTC
 +++ configure.ac
-@@ -328,9 +328,12 @@ case $host_cpu in
+@@ -266,9 +266,12 @@ case $host_cpu in
  	esac
  	GLX_ARCH_DEFINES="-D__GLX_ALIGN64 -mieee"
  	;;
@@ -22,7 +22,7 @@
  	;;
    i*86)
  	I386_VIDEO=yes
-@@ -628,6 +631,7 @@ AC_ARG_ENABLE(tslib,          AS_HELP_ST
+@@ -565,6 +568,7 @@ AC_ARG_ENABLE(xcsecurity,     AS_HELP_ST
  AC_ARG_ENABLE(dbe,            AS_HELP_STRING([--disable-dbe], [Build DBE extension (default: enabled)]), [DBE=$enableval], [DBE=yes])
  AC_ARG_ENABLE(xf86bigfont,    AS_HELP_STRING([--enable-xf86bigfont], [Build XF86 Big Font extension (default: disabled)]), [XF86BIGFONT=$enableval], [XF86BIGFONT=no])
  AC_ARG_ENABLE(dpms,           AS_HELP_STRING([--disable-dpms], [Build DPMS extension (default: enabled)]), [DPMSExtension=$enableval], [DPMSExtension=yes])
@@ -30,7 +30,7 @@
  AC_ARG_ENABLE(config-udev,    AS_HELP_STRING([--enable-config-udev], [Build udev support (default: auto)]), [CONFIG_UDEV=$enableval], [CONFIG_UDEV=auto])
  AC_ARG_ENABLE(config-udev-kms,    AS_HELP_STRING([--enable-config-udev-kms], [Build udev kms support (default: auto)]), [CONFIG_UDEV_KMS=$enableval], [CONFIG_UDEV_KMS=auto])
  AC_ARG_ENABLE(config-hal,     AS_HELP_STRING([--disable-config-hal], [Build HAL support (default: auto)]), [CONFIG_HAL=$enableval], [CONFIG_HAL=auto])
-@@ -924,10 +928,27 @@ if test "x$CONFIG_UDEV" = xyes && test "
+@@ -856,10 +860,27 @@ if test "x$CONFIG_UDEV" = xyes && test "
  	AC_MSG_ERROR([Hotplugging through both libudev and hal not allowed])
  fi
  
@@ -62,7 +62,7 @@
  fi
  AM_CONDITIONAL(CONFIG_UDEV, [test "x$CONFIG_UDEV" = xyes])
  if test "x$CONFIG_UDEV" = xyes; then
-@@ -975,7 +996,14 @@ AM_CONDITIONAL(CONFIG_HAL, [test "x$CONF
+@@ -907,7 +928,14 @@ AM_CONDITIONAL(CONFIG_HAL, [test "x$CONF
  
  if test "x$SYSTEMD_LOGIND" = xauto; then
          if test "x$HAVE_DBUS" = xyes -a "x$CONFIG_UDEV" = xyes ; then
@@ -78,7 +78,7 @@
          else
                  SYSTEMD_LOGIND=no
          fi
-@@ -2570,12 +2598,12 @@ AC_SUBST([prefix])
+@@ -2467,12 +2495,12 @@ AC_SUBST([prefix])
  
  AC_CONFIG_COMMANDS([sdksyms], [touch hw/xfree86/sdksyms.dep])
  

@@ -1,6 +1,10 @@
---- config/Makefile.in.orig	2019-02-26 11:29:01.000000000 -0800
-+++ config/Makefile.in	2019-04-30 16:10:19.634207000 -0700
-@@ -89,16 +89,18 @@
+* generated from patched Makefile.am; revise and regen instead of editing
+*
+* Build the devd config backend if activated
+*
+--- config/Makefile.in.orig	2017-03-16 05:24:43 UTC
++++ config/Makefile.in
+@@ -89,16 +89,18 @@ PRE_UNINSTALL = :
  POST_UNINSTALL = :
  build_triplet = @build@
  host_triplet = @host@
@@ -29,7 +33,7 @@
  subdir = config
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
  am__aclocal_m4_deps = $(top_srcdir)/m4/ac_define_dir.m4 \
-@@ -126,16 +128,18 @@
+@@ -126,16 +128,18 @@ am__DEPENDENCIES_1 =
  @CONFIG_UDEV_TRUE@am__DEPENDENCIES_3 = $(am__DEPENDENCIES_1)
  @CONFIG_HAL_TRUE@@CONFIG_UDEV_FALSE@am__DEPENDENCIES_4 =  \
  @CONFIG_HAL_TRUE@@CONFIG_UDEV_FALSE@	$(am__DEPENDENCIES_1)
@@ -86,7 +90,7 @@
  @CONFIG_UDEV_TRUE@@XORG_TRUE@xorgconfddir = $(datadir)/X11/$(XF86CONFIGDIR)
  @CONFIG_UDEV_TRUE@@XORG_TRUE@xorgconfd_DATA = 10-quirks.conf
  EXTRA_DIST = x11-input.fdi fdi2iclass.py 10-quirks.conf
-@@ -658,6 +664,7 @@
+@@ -658,6 +664,7 @@ distclean-compile:
  
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/config.Plo@am__quote@ # am--include-marker
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/dbus-core.Plo@am__quote@ # am--include-marker
@@ -94,19 +98,3 @@
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hal.Plo@am__quote@ # am--include-marker
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/udev.Plo@am__quote@ # am--include-marker
  @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/wscons.Plo@am__quote@ # am--include-marker
-@@ -846,6 +853,7 @@ clean-am: clean-generic clean-libtool clean-noinstLTLI
- distclean: distclean-am
- 		-rm -f ./$(DEPDIR)/config.Plo
- 	-rm -f ./$(DEPDIR)/dbus-core.Plo
-+	-rm -f ./$(DEPDIR)/devd.Plo
- 	-rm -f ./$(DEPDIR)/hal.Plo
- 	-rm -f ./$(DEPDIR)/udev.Plo
- 	-rm -f ./$(DEPDIR)/wscons.Plo
-@@ -896,6 +904,7 @@ installcheck-am:
- maintainer-clean: maintainer-clean-am
- 		-rm -f ./$(DEPDIR)/config.Plo
- 	-rm -f ./$(DEPDIR)/dbus-core.Plo
-+	-rm -f ./$(DEPDIR)/devd.Plo
- 	-rm -f ./$(DEPDIR)/hal.Plo
- 	-rm -f ./$(DEPDIR)/udev.Plo
- 	-rm -f ./$(DEPDIR)/wscons.Plo
