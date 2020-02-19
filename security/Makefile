@@ -212,8 +212,8 @@
     SUBDIR += hlfl
     SUBDIR += hmap
     SUBDIR += hockeypuck
-    SUBDIR += honggfuzz
     SUBDIR += honeytrap
+    SUBDIR += honggfuzz
     SUBDIR += horcrux
     SUBDIR += hotssh
     SUBDIR += hpenc
@@ -357,7 +357,6 @@
     SUBDIR += modsecurity3-apache
     SUBDIR += modsecurity3-nginx
     SUBDIR += monkeysphere
-    SUBDIR += morphis
     SUBDIR += munge
     SUBDIR += mussh
     SUBDIR += n2n
