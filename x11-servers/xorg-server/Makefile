@@ -31,7 +31,7 @@ OPTIONS_DEFAULT+=	${OPTIONS_DEFAULT_${OPSYS}_${OSREL:R}}
 
 SUID_DESC=	Install setuid wrapper to allow startx as non-root
 CONF_DESC=	Backend to use for input device configuration
-DEVD_DESC=	Use devd (native)
+DEVD_DESC=	Use devd for autoconfiguration of input devices
 UDEV_DESC=	Use udev via libudev-devd for autoconfiguration of input devices
 
 DEVD_CONFIGURE_ENABLE=	config-devd
