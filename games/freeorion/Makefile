@@ -12,13 +12,17 @@ COMMENT=	Turn-based space empire and galactic conquest game
 LICENSE=	GPLv2 CC-BY-SA-3.0
 LICENSE_COMB=	multi
 
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-08-15
+
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		${PY_BOOST}
 
 USE_GITHUB=	yes
 
 USES=		cmake compiler:c++14-lang python:2.7
-LLD_UNSAFE=	yes
+
+LDFLAGS_i386=	-Wl,-znotext
 
 PORTDOCS=	ChangeLog.md README.md
 PORTDATA=	*

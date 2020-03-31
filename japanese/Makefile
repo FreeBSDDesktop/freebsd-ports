@@ -109,7 +109,6 @@
     SUBDIR += gawk
     SUBDIR += gd
     SUBDIR += gedy
-    SUBDIR += gimp-help
     SUBDIR += groff
     SUBDIR += gskk
     SUBDIR += gsuica
@@ -217,6 +216,7 @@
     SUBDIR += plain2
     SUBDIR += plan
     SUBDIR += prn
+    SUBDIR += py-jaconv
     SUBDIR += py-mecab
     SUBDIR += py-tegaki
     SUBDIR += py-tegaki-gtk
@@ -261,7 +261,6 @@
     SUBDIR += suicavalue
     SUBDIR += t2ps
     SUBDIR += tdiary
-    SUBDIR += tegaki-recognize
     SUBDIR += tegaki-zinnia-japanese
     SUBDIR += tex-ptex
     SUBDIR += tgif

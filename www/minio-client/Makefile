@@ -2,6 +2,7 @@
 
 PORTNAME=	minio-client
 PORTVERSION=	${GH_TAGNAME:S/RELEASE.//:S/Z//:S/T/-/:S/-/./g}
+PORTREVISION=	2
 CATEGORIES=	www
 
 MAINTAINER=	jhixson@FreeBSD.org
@@ -26,8 +27,8 @@ MC=	${PORTNAME}
 .endif
 
 USE_GITHUB=	yes
-GHTAG=		RELEASE.2020-01-03T20-33-14Z
-COMMIT_ID=	6d1a41458bdb1eda4d7064af16dcf4692e2967bb
+GHTAG=		RELEASE.2020-03-14T01-23-37Z
+COMMIT_ID=	5b5d65a142c5562e412de022a3114e83378096a5
 GH_TUPLE=	minio:mc:${GHTAG}:DEFAULT \
 		StackExchange:wmi:cbe66965904d:stackexchange_wmi/vendor/github.com/StackExchange/wmi \
 		cheggaaa:pb:v1.0.28:cheggaaa_pb/vendor/github.com/cheggaaa/pb \
@@ -37,14 +38,14 @@ GH_TUPLE=	minio:mc:${GHTAG}:DEFAULT \
 		fatih:color:v1.7.0:fatih_color/vendor/github.com/fatih/color \
 		fatih:structs:v1.1.0:fatih_structs/vendor/github.com/fatih/structs \
 		go-check:check:788fd7840127:go_check_check/vendor/gopkg.in/check.v1 \
-		go-ini:ini:v1.48.0:go_ini_ini/vendor/gopkg.in/ini.v1 \
+		go-ini:ini:v1.52.0:go_ini_ini/vendor/gopkg.in/ini.v1 \
 		go-ole:go-ole:v1.2.4:go_ole_go_ole/vendor/github.com/go-ole/go-ole \
 		go-yaml:yaml:v2.2.4:go_yaml_yaml/vendor/gopkg.in/yaml.v2 \
 		gogo:protobuf:v1.2.1:gogo_protobuf/vendor/github.com/gogo/protobuf \
-		golang:crypto:497ca9f6d64f:golang_crypto/vendor/golang.org/x/crypto \
-		golang:net:83d349e8ac1a:golang_net/vendor/golang.org/x/net \
+		golang:crypto:1d94cc7ab1c6:golang_crypto/vendor/golang.org/x/crypto \
+		golang:net:16171245cfb2:golang_net/vendor/golang.org/x/net \
 		golang:protobuf:v1.3.2:golang_protobuf/vendor/github.com/golang/protobuf \
-		golang:sys:33540a1f6037:golang_sys/vendor/golang.org/x/sys \
+		golang:sys:12a6c2dcc1e4:golang_sys/vendor/golang.org/x/sys \
 		golang:text:v0.3.2:golang_text/vendor/golang.org/x/text \
 		google:go-genproto:24fa4b261c55:google_go_genproto/vendor/google.golang.org/genproto \
 		grpc:grpc-go:v1.22.0:grpc_grpc_go/vendor/google.golang.org/grpc \
@@ -58,8 +59,8 @@ GH_TUPLE=	minio:mc:${GHTAG}:DEFAULT \
 		mattn:go-isatty:v0.0.7:mattn_go_isatty/vendor/github.com/mattn/go-isatty \
 		mattn:go-runewidth:v0.0.5:mattn_go_runewidth/vendor/github.com/mattn/go-runewidth \
 		minio:cli:v1.22.0:minio_cli/vendor/github.com/minio/cli \
-		minio:minio-go:a5786a9c2a5b:minio_minio_go/vendor/github.com/minio/minio-go/v6 \
-		minio:minio:0b7bd024fb30:minio_minio/vendor/github.com/minio/minio \
+		minio:minio-go:097caa7760c7:minio_minio_go/vendor/github.com/minio/minio-go/v6 \
+		minio:minio:b1a2169dcc5b:minio_minio/vendor/github.com/minio/minio \
 		minio:sha256-simd:v0.1.1:minio_sha256_simd/vendor/github.com/minio/sha256-simd \
 		mitchellh:go-homedir:v1.1.0:mitchellh_go_homedir/vendor/github.com/mitchellh/go-homedir \
 		ncw:directio:v1.0.5:ncw_directio/vendor/github.com/ncw/directio \
@@ -71,11 +72,11 @@ GH_TUPLE=	minio:mc:${GHTAG}:DEFAULT \
 		shirou:gopsutil:v2.18.12:shirou_gopsutil/vendor/github.com/shirou/gopsutil
 
 PLIST_FILES=	bin/${MC}
-GO_BUILDFLAGS=	-ldflags=' \
+GO_BUILDFLAGS=	-ldflags=" \
 		-X github.com/minio/mc/cmd.Version=${GH_TAGNAME:C/RELEASE\.//:C|(..)-(..)-(..)Z|\1:\2:\3Z|} \
 		-X github.com/minio/mc/cmd.ReleaseTag=${GH_TAGNAME} \
 		-X github.com/minio/mc/cmd.CommitID=${COMMIT_ID} \
-		-X github.com/minio/mc/cmd.GOPATH=${WRKSRC} -s -w'
+		-X github.com/minio/mc/cmd.GOPATH=${WRKSRC} -s -w"
 GO_TARGET=	:${MC}
 
 .include <bsd.port.mk>

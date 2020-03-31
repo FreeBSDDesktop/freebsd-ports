@@ -61,7 +61,6 @@
     SUBDIR += claws-mail-pdf_viewer
     SUBDIR += claws-mail-perl
     SUBDIR += claws-mail-pgp
-    SUBDIR += claws-mail-python
     SUBDIR += claws-mail-rssyl
     SUBDIR += claws-mail-spamassassin
     SUBDIR += claws-mail-spamreport
@@ -519,9 +518,7 @@
     SUBDIR += py-pyzmail
     SUBDIR += py-spambayes
     SUBDIR += py-validate_email
-    SUBDIR += py-zope.sendmail
     SUBDIR += pymsgauth
-    SUBDIR += pysieved
     SUBDIR += pyzor
     SUBDIR += qconfirm
     SUBDIR += qmail
@@ -569,11 +566,9 @@
     SUBDIR += roundcube-html5_notifier
     SUBDIR += roundcube-identity_smtp
     SUBDIR += roundcube-login_info
-    SUBDIR += roundcube-markasjunk2
     SUBDIR += roundcube-mobilecube
     SUBDIR += roundcube-mvision2
     SUBDIR += roundcube-sauserprefs
-    SUBDIR += roundcube-sieverules
     SUBDIR += roundcube-thunderbird_labels
     SUBDIR += roundcube-umich
     SUBDIR += roundcube-veximaccountadmin
@@ -591,6 +586,7 @@
     SUBDIR += rubygem-email_reply_parser-discourse
     SUBDIR += rubygem-email_reply_trimmer
     SUBDIR += rubygem-exception_notification
+    SUBDIR += rubygem-gitlab-mail_room
     SUBDIR += rubygem-mail
     SUBDIR += rubygem-mail_room
     SUBDIR += rubygem-mailboxer
@@ -601,10 +597,11 @@
     SUBDIR += rubygem-premailer-rails
     SUBDIR += rubygem-premailer-rails-rails5
     SUBDIR += rubygem-premailer-rails-rails52
+    SUBDIR += rubygem-premailer-rails-rails60
     SUBDIR += rubygem-rmail
     SUBDIR += rubygem-roadie
-    SUBDIR += rubygem-roadie-rails
-    SUBDIR += rubygem-roadie-rails52
+    SUBDIR += rubygem-roadie-rails-rails4
+    SUBDIR += rubygem-roadie-rails-rails52
     SUBDIR += rubygem-roadie3
     SUBDIR += rubygem-ruby-qmail
     SUBDIR += rubygem-tmail

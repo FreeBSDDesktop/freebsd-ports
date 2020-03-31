@@ -15,7 +15,7 @@ CONFLICTS_BUILD=	ga # conflicts with include/error.h, already fixed in the head
 
 USES=		blaslapack:openblas cmake:noninja eigen:3 fortran localbase:ldflags shebangfix
 USE_GITHUB=	yes
-GH_TAGNAME=	patch_18Feb2020
+GH_TAGNAME=	patch_19Mar2020
 SHEBANG_GLOB=	*.sh *.bash
 SHEBANG_FILES=	lib/kokkos/bin/nvcc_wrapper
 
@@ -61,9 +61,7 @@ PORTSCOUT=	ignore:1 # due to a special version tagging scheme that this project 
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MOPENMP}
-USES+=	localbase
 CMAKE_ARGS+=	-DBUILD_OMP:BOOL=true
-LIB_DEPENDS+=	libomp.so:devel/openmp
 .endif
 
 post-patch:

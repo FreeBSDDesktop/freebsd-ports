@@ -3,7 +3,7 @@
 
 PORTNAME=	ghc
 PORTVERSION=	${GHC_VERSION}
-PORTREVISION=	3
+PORTREVISION=	6
 CATEGORIES=	lang haskell
 MASTER_SITES=	https://www.haskell.org/ghc/dist/${PORTVERSION}/:source \
 		LOCAL/arrowd/:boot \
@@ -21,7 +21,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 # other supported arches are added based on GHC_VERSION below
 ONLY_FOR_ARCHS=	amd64 i386
 
-USES=			autoreconf gmake iconv:translit localbase:ldflags ncurses perl5 tar:xz
+USES=			autoreconf compiler:c11 gmake iconv:translit \
+			localbase:ldflags ncurses perl5 tar:xz
 USE_LOCALE=		en_US.UTF-8
 USE_PERL5=		build
 GNU_CONFIGURE=		yes
@@ -49,9 +50,7 @@ DYNAMIC_DESC=		Add support for dynamic linking
 GMP_DESC=		Use GNU Multi-precision Library for big integers support
 PROFILE_DESC=		Add support for performance profiling
 
-DOCS_BUILD_DEPENDS+=	sphinx-build:textproc/py-sphinx
-DOCS_SUB_LIST=		WITH_DOCS="YES"
-DOCS_SUB_LIST_OFF=	WITH_DOCS="NO"
+DOCS_BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx
 
 DYNAMIC_CONFIGURE_WITH=	system-libffi \
 			ffi-includes=${LOCALBASE}/include \
@@ -87,6 +86,11 @@ ONLY_FOR_ARCHS+=	aarch64 armv6 armv7 powerpc64
 
 .include <bsd.port.pre.mk>
 
+# This version of ncurses is needed by bootstrap compiler
+.if ${OSVERSION} > 1300078 && empty(PORT_OPTIONS:MBOOT) && ${ARCH} != powerpc64
+BUILD_DEPENDS+=	${LOCALBASE}/lib/compat/libncursesw.so.8:misc/compat12x
+.endif
+
 .if ${GHC_VERSION_MAJOR} == 8 && ${GHC_VERSION_MINOR} <= 4
 LLVM_VERSION=		50
 # Turn off for old GHCs, see PR 228727
@@ -99,12 +103,11 @@ LLVM_VERSION=		60
 CONFIGURE_ARGS+=	--enable-dtrace=0
 .endif
 
-.if ${ARCH} == amd64 || ${ARCH} == i386
-BOOT_GHC_VERSION=	8.6.5
+.if defined(PPC_ABI) && ${PPC_ABI} == ELFv1
+BOOT_GHC_VERSION=      8.6.3
 .else
-BOOT_GHC_VERSION=	8.6.3
+BOOT_GHC_VERSION=	8.6.5
 .endif
-
 # LLVM version that bootstrap compiler uses
 BOOT_LLVM_VERSION=	60
 
@@ -128,11 +131,9 @@ _EXECUTABLES=	${GHC_LIBDIR}/bin/unlit \
 		${GHC_LIBDIR}/bin/hsc2hs \
 		${GHC_LIBDIR}/bin/runghc \
 		${GHC_LIBDIR}/bin/ghc \
+		${GHC_LIBDIR}/bin/haddock \
 		${GHC_LIBDIR}/bin/hp2ps
 
-.if ${PORT_OPTIONS:MDOCS}
-_EXECUTABLES+=	${GHC_LIBDIR}/bin/haddock
-.endif
 .if ${PORT_OPTIONS:MPROFILE}
 _EXECUTABLES+=	${GHC_LIBDIR}/bin/ghc-iserv-prof
 .endif
@@ -167,19 +168,12 @@ RUN_DEPENDS+=		llc${BOOT_LLVM_VERSION}:devel/llvm${BOOT_LLVM_VERSION}
 .endif
 
 .if ${ARCH} == aarch64 || ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == powerpc64
-USE_GCC=	yes
-
-.  if ${OSVERSION} < 1200086
-IGNORE=	lang/ghc requires at least FreeBSD 12.0-RELEASE
+.  if ${OSVERSION} < 1201000
+IGNORE=	lang/ghc requires at least FreeBSD 12.1-RELEASE
 .  endif
 .  ifdef QEMU_EMULATING
 IGNORE=	qemu-user-static isn't able to build lang/ghc, but it builds fine on a real hardware
 .  endif
-.endif
-
-# Use binutils strip if we are using gcc, as it is faster that base one. See PR 234949
-.if defined(USE_GCC)
-CONFIGURE_ENV+=	STRIP=${LOCALBASE}/bin/strip
 .endif
 
 PLIST_SUB+=	GHC_VERSION=${GHC_VERSION} GHC_LIBDIR=${GHC_LIBDIR_REL}
@@ -211,13 +205,14 @@ post-install-script:
 		-e 's,^${STAGEDIR}${PREFIX}/?,,' \
 		-e '/^${GHC_LIBDIR:C/\//\\\//g}\/package.conf.d\/package\.cache/s|^|@comment |g' \
 		>> ${TMPPLIST}
+.if ${PORT_OPTIONS:MDOCS}
 	${FIND} -ds ${STAGEDIR}${DOCSDIR} -type f -print | ${SED} -E \
 		-e 's,^${STAGEDIR}${PREFIX}/?,,' \
 		-e '/^${STAGEDIR:C/\//\\\//g}${DOCSDIR:C/\//\\\//g}\/html\/libraries\/doc-index-[^.]+\.html/s|^|@comment |g' \
 		-e '/^${STAGEDIR:C/\//\\\//g}${DOCSDIR:C/\//\\\//g}\/html\/libraries\/index[^\/.]*\.html/s|^|@comment|g' \
 		-e '/^${STAGEDIR:C/\//\\\//g}${DOCSDIR:C/\//\\\//g}\/html\/libraries\/[^\/]+\.png/s|^|@comment |g' \
 		>> ${TMPPLIST}
-.if ${PORT_OPTIONS:MDOCS}
+
 	# Cleanup the indexen created by gen_contents_index
 	${ECHO} "@postunexec ${RM} %D/${DOCSDIR_REL}/html/libraries/doc-index-*.html" >> ${TMPPLIST}
 	${ECHO} "@postunexec ${RM} %D/${DOCSDIR_REL}/html/libraries/index*.html" >> ${TMPPLIST}
@@ -230,12 +225,6 @@ post-patch:
 		s|%%AR%%|${AR}|; \
 		s|%%LD%%|${LD}|' \
 		${WRKSRC}/libraries/Cabal/Cabal/Distribution/Simple/Program/Builtin.hs
-# we must use binutils:ld on arm
-.if ${ARCH} == aarch64 || ${ARCH} == armv6 || ${ARCH} == armv7
-	@${REINPLACE_CMD} -e 's|LD_NO_GOLD=ld|LD_NO_GOLD=${LOCALBASE}/bin/ld|' \
-		${WRKSRC}/aclocal.m4
-.endif
-
 	@${REINPLACE_CMD} -e 's/@SettingsLlcCommand@/llc${LLVM_VERSION}/' ${WRKSRC}/settings.in
 	@${REINPLACE_CMD} -e 's/@SettingsOptCommand@/opt${LLVM_VERSION}/' ${WRKSRC}/settings.in
 
@@ -277,9 +266,7 @@ pre-configure: apply-slist
 post-install:
 	(for f in ${_EXECUTABLES} $$(${FIND} ${GHC_LIBDIR} -name '*.so*'); do \
 		${STRIP_CMD} $$f; done)
-.if ${PORT_OPTIONS:MDOCS}
-	${MV} ${STAGEDIR}${PREFIX}/bin/haddock ${STAGEDIR}${PREFIX}/bin/haddock-ghc-${GHC_VERSION}
-.endif
+	${RM} ${STAGEDIR}${PREFIX}/bin/haddock
 
 # Create a bootstrap compiler tar ball: run this in an interactive poudriere jail
 .PHONY: create-bootstrap
@@ -287,6 +274,7 @@ create-bootstrap:
 	cd ${WRKSRC} \
 		&& ${ECHO} "BIN_DIST_NAME=ghc-${GHC_VERSION}-boot" >> mk/build.mk \
 		&& ${ECHO} "BIN_DIST_TAR=ghc-${GHC_VERSION}-boot.tar" >> mk/build.mk \
+		&& ${ECHO} "HADDOCK_DOCS=NO" >> mk/build.mk \
 		&& ${GMAKE} binary-dist TAR_COMP=xz \
 		&& ${MV} ${WRKSRC}/ghc-${GHC_VERSION}-boot-${GHC_ARCH}-portbld-freebsd.tar.xz /tmp/ghc-${GHC_VERSION}-boot-${ARCH}-freebsd.tar.xz
 

@@ -23,6 +23,7 @@
     SUBDIR += R-cran-dygraphs
     SUBDIR += R-cran-farver
     SUBDIR += R-cran-ggplot2
+    SUBDIR += R-cran-ggrepel
     SUBDIR += R-cran-gridBase
     SUBDIR += R-cran-gridExtra
     SUBDIR += R-cran-munsell
@@ -66,6 +67,7 @@
     SUBDIR += barbecue
     SUBDIR += barcode
     SUBDIR += batik
+    SUBDIR += birdfont
     SUBDIR += bitmap
     SUBDIR += blend2d
     SUBDIR += blender
@@ -97,7 +99,6 @@
     SUBDIR += colord
     SUBDIR += colord-gtk
     SUBDIR += comical
-    SUBDIR += commons-utilities
     SUBDIR += compupic
     SUBDIR += converseen
     SUBDIR += cosmoplayer
@@ -133,7 +134,6 @@
     SUBDIR += djvusmooth
     SUBDIR += dmtx-utils
     SUBDIR += drawpile
-    SUBDIR += driconf
     SUBDIR += drm-current-kmod
     SUBDIR += drm-devel-kmod
     SUBDIR += drm-fbsd11.2-kmod
@@ -156,6 +156,7 @@
     SUBDIR += eog
     SUBDIR += eog-plugins
     SUBDIR += eom
+    SUBDIR += eos-movrec
     SUBDIR += epdfview
     SUBDIR += ephoto
     SUBDIR += epix
@@ -241,7 +242,6 @@
     SUBDIR += gimp-beautify-plugin
     SUBDIR += gimp-data-extras
     SUBDIR += gimp-gmic-plugin
-    SUBDIR += gimp-help
     SUBDIR += gimp-lensfun-plugin
     SUBDIR += gimp-lqr-plugin
     SUBDIR += gimp-refocus-plugin
@@ -341,6 +341,7 @@
     SUBDIR += ida
     SUBDIR += iec16022
     SUBDIR += iiview
+    SUBDIR += ikona
     SUBDIR += ilmbase
     SUBDIR += imageindex
     SUBDIR += imageviewer
@@ -544,8 +545,8 @@
     SUBDIR += mxp
     SUBDIR += mypaint
     SUBDIR += mypaint-brushes
+    SUBDIR += mypaint-brushes2
     SUBDIR += nanosvg
-    SUBDIR += nathive
     SUBDIR += netpbm
     SUBDIR += nip2
     SUBDIR += nomacs
@@ -695,6 +696,7 @@
     SUBDIR += p5-ming
     SUBDIR += panoglview
     SUBDIR += panomatic
+    SUBDIR += pastel
     SUBDIR += pcl-pointclouds
     SUBDIR += pdf2svg
     SUBDIR += pdfpc
@@ -788,7 +790,6 @@
     SUBDIR += py-cairocffi
     SUBDIR += py-cairosvg
     SUBDIR += py-cartopy
-    SUBDIR += py-chart
     SUBDIR += py-colour
     SUBDIR += py-descartes
     SUBDIR += py-django-easy-thumbnails
@@ -806,7 +807,7 @@
     SUBDIR += py-gizeh
     SUBDIR += py-glewpy
     SUBDIR += py-glfw
-    SUBDIR += py-goocanvas
+    SUBDIR += py-glooey
     SUBDIR += py-gphoto2
     SUBDIR += py-graph-core
     SUBDIR += py-graphviz
@@ -821,7 +822,6 @@
     SUBDIR += py-leather
     SUBDIR += py-mapclassify
     SUBDIR += py-mayavi
-    SUBDIR += py-mcomix
     SUBDIR += py-ming
     SUBDIR += py-mpl-scatter-density
     SUBDIR += py-nwdiag
@@ -832,6 +832,7 @@
     SUBDIR += py-openimageio
     SUBDIR += py-photocollage
     SUBDIR += py-pillow
+    SUBDIR += py-pillow6
     SUBDIR += py-pivy
     SUBDIR += py-plotly
     SUBDIR += py-png
@@ -845,7 +846,7 @@
     SUBDIR += py-pyganim
     SUBDIR += py-pygeoapi
     SUBDIR += py-pyglet
-    SUBDIR += py-pyglet12
+    SUBDIR += py-pyglet150
     SUBDIR += py-pygooglechart
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyinsane2
@@ -864,13 +865,14 @@
     SUBDIR += py-scikit-image
     SUBDIR += py-seqdiag
     SUBDIR += py-sorl-thumbnail
-    SUBDIR += py-soya3d
     SUBDIR += py-spectra
     SUBDIR += py-stltools
+    SUBDIR += py-svg.path
     SUBDIR += py-svgwrite
     SUBDIR += py-termtosvg
     SUBDIR += py-toyplot
     SUBDIR += py-traitsui
+    SUBDIR += py-vecrec
     SUBDIR += py-visvis
     SUBDIR += py-wand
     SUBDIR += py-webcolors
@@ -1000,6 +1002,7 @@
     SUBDIR += sxiv
     SUBDIR += synaesthesia
     SUBDIR += synfigstudio
+    SUBDIR += tachyon
     SUBDIR += telak
     SUBDIR += tesseract
     SUBDIR += tesseract-data
@@ -1021,7 +1024,6 @@
     SUBDIR += tweeny
     SUBDIR += ufraw
     SUBDIR += uniconvertor
-    SUBDIR += uniconvw
     SUBDIR += unpaper
     SUBDIR += urho3d
     SUBDIR += urt

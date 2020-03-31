@@ -9,10 +9,10 @@
     SUBDIR += akonadiconsole
     SUBDIR += akregator
     SUBDIR += alarm-clock-applet
-    SUBDIR += anamnesis
     SUBDIR += anydesk
     SUBDIR += appwrapper
     SUBDIR += aspostit
+    SUBDIR += ausweisapp2
     SUBDIR += autocutsel
     SUBDIR += baobab
     SUBDIR += basket
@@ -30,7 +30,6 @@
     SUBDIR += cfiles
     SUBDIR += charmtimetracker
     SUBDIR += chart
-    SUBDIR += cherrytree
     SUBDIR += clipit
     SUBDIR += conkyforecast
     SUBDIR += copyq
@@ -52,7 +51,6 @@
     SUBDIR += freemind
     SUBDIR += freeplane
     SUBDIR += ganttproject
-    SUBDIR += gbirthday
     SUBDIR += gcal
     SUBDIR += gcalcli
     SUBDIR += genius
@@ -93,14 +91,12 @@
     SUBDIR += gnustep-wrapper
     SUBDIR += go-for-it
     SUBDIR += goesimage
-    SUBDIR += gourmet
     SUBDIR += gpicker
     SUBDIR += grantlee-editor
     SUBDIR += grantleetheme
     SUBDIR += griffith
     SUBDIR += growl-for-linux
     SUBDIR += gsimplecal
-    SUBDIR += gtg
     SUBDIR += gtimer
     SUBDIR += gucharmap
     SUBDIR += gworkspace
@@ -166,7 +162,6 @@
     SUBDIR += myitcrm
     SUBDIR += nautilus-actions
     SUBDIR += nautilus-sendto
-    SUBDIR += nemo-extensions
     SUBDIR += nextcloudclient
     SUBDIR += note
     SUBDIR += noti
@@ -181,6 +176,7 @@
     SUBDIR += p5-Goo
     SUBDIR += pal
     SUBDIR += parcellite
+    SUBDIR += peaclock
     SUBDIR += pet
     SUBDIR += phpicalendar
     SUBDIR += pim-data-exporter
@@ -206,7 +202,6 @@
     SUBDIR += py-todoman
     SUBDIR += py-vdirsyncer
     SUBDIR += py-vobject
-    SUBDIR += pybookreader
     SUBDIR += qlipper
     SUBDIR += qownnotes
     SUBDIR += recoll
@@ -223,7 +218,6 @@
     SUBDIR += spice-gtk
     SUBDIR += sugarcrm
     SUBDIR += synapse
-    SUBDIR += syncthing-gtk
     SUBDIR += syncthingtray
     SUBDIR += sysctlview
     SUBDIR += systempreferences

@@ -324,11 +324,13 @@ _PYTHON_TEST_DEP=	yes
 WARNING+=	"PYTHON_DEFAULT must be a version present in PYTHON2_DEFAULT or PYTHON3_DEFAULT, if you want more Python flavors, set BUILD_ALL_PYTHON_FLAVORS in your make.conf"
 .endif
 
-.if ${_PYTHON_ARGS} == "2"
+.if ${_PYTHON_ARGS} == 2.7
+DEV_WARNING+=		"lang/python27 reached End of Life and will be removed on 2020-12-31, consider converting to a modern version of python"
+.elif ${_PYTHON_ARGS} == 2
 DEV_ERROR+=		"USES=python:2 is no longer supported, use USES=python:2.7"
-.elif ${_PYTHON_ARGS} == "3"
+.elif ${_PYTHON_ARGS} == 3
 DEV_ERROR+=		"USES=python:3 is no longer supported, use USES=python:3.5+ or an appropriate version range"
-.endif  # ${_PYTHON_ARGS} == "2"
+.endif  # ${_PYTHON_ARGS} == 2.7
 
 _PYTHON_VERSION:=	${PYTHON_DEFAULT}
 
@@ -629,8 +631,10 @@ PYNUMPY=	${PYTHON_PKGNAMEPREFIX}numpy>=1.15,1<1.19,1:math/py-numpy@${PY_FLAVOR}
 
 # Common Python modules that can be needed but only for some versions of Python.
 .if ${PYTHON_REL} < 3500
+PY_PILLOW=	${PYTHON_PKGNAMEPREFIX}pillow6>=6.0.0:graphics/py-pillow6@${PY_FLAVOR}
 PY_TYPING=	${PYTHON_PKGNAMEPREFIX}typing>=3.7.4:devel/py-typing@${PY_FLAVOR}
 .else
+PY_PILLOW=	${PYTHON_PKGNAMEPREFIX}pillow>=7.0.0:graphics/py-pillow@${PY_FLAVOR}
 PY_TYPING=
 .endif
 

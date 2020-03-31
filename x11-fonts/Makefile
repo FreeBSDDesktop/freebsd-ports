@@ -10,6 +10,7 @@
     SUBDIR += alegreya-sans
     SUBDIR += alfont
     SUBDIR += andika
+    SUBDIR += anomaly-mono
     SUBDIR += anonymous-pro
     SUBDIR += apl385
     SUBDIR += artwiz-aleczapka
@@ -80,7 +81,6 @@
     SUBDIR += font-ibm-type1
     SUBDIR += font-isas-misc
     SUBDIR += font-jis-misc
-    SUBDIR += font-manager
     SUBDIR += font-micro-misc
     SUBDIR += font-misc-cyrillic
     SUBDIR += font-misc-ethiopic
@@ -145,6 +145,7 @@
     SUBDIR += linuxlibertine
     SUBDIR += linuxlibertine-g
     SUBDIR += lohit
+    SUBDIR += manrope
     SUBDIR += manu-gothica
     SUBDIR += material-icons-ttf
     SUBDIR += materialdesign-ttf
@@ -169,6 +170,7 @@
     SUBDIR += noto-sc
     SUBDIR += noto-tc
     SUBDIR += nucleus
+    SUBDIR += office-code-pro
     SUBDIR += ohsnap
     SUBDIR += oldschool-pc-fonts
     SUBDIR += open-sans

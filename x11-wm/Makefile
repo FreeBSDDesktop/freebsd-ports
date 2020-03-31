@@ -16,11 +16,8 @@
     SUBDIR += blackbox
     SUBDIR += bspwm
     SUBDIR += cage
-    SUBDIR += ccsm
     SUBDIR += chamfer
-    SUBDIR += clementine-wm
     SUBDIR += compiz
-    SUBDIR += compiz-fusion
     SUBDIR += compiz-plugins-extra
     SUBDIR += compiz-plugins-main
     SUBDIR += compiz-plugins-unsupported
@@ -107,7 +104,6 @@
     SUBDIR += rubygem-uh-wm
     SUBDIR += sawfish
     SUBDIR += selectwm
-    SUBDIR += simple-ccsm
     SUBDIR += skippy-xd
     SUBDIR += spectrwm
     SUBDIR += stumpwm

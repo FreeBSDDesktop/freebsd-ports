@@ -3,7 +3,7 @@
 PORTNAME=	xen
 PKGNAMESUFFIX=	-tools
 PORTVERSION=	4.13.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils emulators
 MASTER_SITES=	http://downloads.xenproject.org/release/xen/${PORTVERSION}/
 
@@ -38,6 +38,7 @@ USES=		cpe gettext gmake gnome libtool localbase:ldflags perl5 \
 		pkgconfig python shebangfix iconv
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
+USE_PYTHON=	py3kplist
 HAS_CONFIGURE=	yes
 # Set ARCH=x86_64 in order to overwrite the environment ARCH=amd64
 MAKE_ARGS=	clang=y ARCH=x86_64
@@ -54,6 +55,9 @@ ALL_TARGET=		tools
 DOCS_ALL_TARGET=	docs
 INSTALL_TARGET=		install-tools
 DOCS_INSTALL_TARGET=	install-docs
+
+# Fix build with clang 10.0 (re convert enum constant to boolean)
+EXTRA_PATCHES+= ${PATCHDIR}/0001-libfsimage-fix-clang-10-build.patch:-p1
 
 .include <bsd.port.options.mk>
 
