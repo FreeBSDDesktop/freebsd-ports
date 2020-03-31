@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	opensc
-DISTVERSIONPREFIX=	${GH_PROJECT}-
-DISTVERSION=	0.20.0-rc3
+DISTVERSION=	0.20.0
 CATEGORIES=	security devel
 
 MAINTAINER=	ale@FreeBSD.org
@@ -11,7 +10,7 @@ COMMENT=	Libraries and utilities to access smart cards
 
 LICENSE=	LGPL21
 
-USES=		autoreconf compiler gmake libtool pkgconfig ssl
+USES=		autoreconf compiler:c11 gmake libtool pkgconfig ssl
 
 OPTIONS_SINGLE=	BACKEND
 OPTIONS_SINGLE_BACKEND=PCSC OPENCT CTAPI
@@ -70,12 +69,4 @@ CONFIGURE_ENV+=	XSLTPROC="${FALSE}"
 CONFIGURE_ARGS+=--without-xsl-stylesheetsdir
 .endif
 
-.include <bsd.port.pre.mk>
-
-.if ${CHOSEN_COMPILER_TYPE} == gcc
-post-patch:
-	${REINPLACE_CMD} -e '/-Wno-unused-but-set-variable/d' \
-		${WRKSRC}/src/tools/Makefile.am
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

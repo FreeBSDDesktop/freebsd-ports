@@ -3,8 +3,7 @@
 
 PORTNAME=	ceph
 DISTVERSIONPREFIX=	v
-DISTVERSION=	13.2.6
-PORTREVISION=	1
+DISTVERSION=	13.2.8
 CATEGORIES=	net
 PKGNAMESUFFIX=	13
 
@@ -13,6 +12,9 @@ COMMENT=	Ceph delivers object, block, and file storage in a unified system
 
 LICENSE=	GPLv2 LGPL3
 LICENSE_COMB=	dual
+
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
 
 # even though i386 will build, it is not really advised.
 ONLY_FOR_ARCHS=	amd64
@@ -45,7 +47,8 @@ RUN_DEPENDS=	\
 	jq:textproc/jq \
 	flock:sysutils/flock \
 	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
-	${PYTHON_PKGNAMEPREFIX}prettytable>=0:devel/py-prettytable@${PY_FLAVOR}
+	${PYTHON_PKGNAMEPREFIX}prettytable>=0:devel/py-prettytable@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}pecan>=0:www/py-pecan@${PY_FLAVOR}
 
 USES=		cmake:noninja fuse gettext-runtime gmake pkgconfig python:2.7 \
 		shebangfix ssl
@@ -104,6 +107,20 @@ USE_LDCONFIG=	yes
 USERS=		ceph
 GROUPS=		ceph
 
+PLIST_SUB=	CMAKE_BUILD_TYPE_regex=\bdebug\b
+
+.include <bsd.port.options.mk>
+
+# 11.2 and 12.0 RELEASE has clang60 and will give versioning errors
+.if (${OSVERSION} < 1102507) || (${OSVERSION} >= 1200000 && ${OSVERSION} < 1200099)
+BUILD_DEPENDS+= ${LOCALBASE}/bin/clang80:devel/llvm80
+CC=		clang80
+CXX=		clang++80
+ASM=		clang80
+.endif
+
+.include <bsd.port.pre.mk>
+
 pre-configure:
 	${LN} -s ${CONFIGURE_WRKSRC} ${WRKSRC}/build
 	${CP} files/file-git_version ${WRKSRC}/src/.git_version
@@ -151,4 +168,4 @@ post-install:
 	${RMDIR} ${STAGEDIR}${PREFIX}/etc/init.d
 	${INSTALL_DATA} ${WRKSRC}/src/sample.ceph.conf ${STAGEDIR}${PREFIX}/etc/ceph/ceph.conf.sample
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

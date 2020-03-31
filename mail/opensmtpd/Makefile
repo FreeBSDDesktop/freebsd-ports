@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	opensmtpd
-PORTVERSION=	6.6.0
+PORTVERSION=	6.6.4
 DISTVERSIONSUFFIX=	p1
 PORTEPOCH=	1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://www.opensmtpd.org/archives/
 
@@ -14,9 +14,6 @@ COMMENT=	Security- and simplicity-focused SMTP server from OpenBSD
 
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-BROKEN_SSL=	openssl
-BROKEN_SSL_REASON_openssl=		Openssl 1.0 API is EoL, upgrade to FreeBSD 12.x/13.x or add DEFAULT_VERSIONS+=ssl=[openssl111|libressl*] to /etc/make.conf
 
 LIB_DEPENDS=	libevent.so:devel/libevent
 
@@ -55,14 +52,20 @@ TABLE_DB_CONFIGURE_WITH=	table-db
 
 CONFIGURE_ARGS+=	--with-libasr=${LOCALBASE} \
 			--with-libevent=${LOCALBASE} \
-			--sysconfdir=${PREFIX}/etc/mail/
+			--sysconfdir=${PREFIX}/etc/mail/ \
+			--with-user-smtpd=_smtpd \
+			--with-user-queue=_smtpq \
+			--with-group-queue=_smtpq
 
 .include <bsd.port.pre.mk>
 
 .if ${OPSYS} == FreeBSD && \
-    ((${OSVERSION} < 1200084 && ${SSL_DEFAULT} == "base") || \
-    (${SSL_DEFAULT} == "openssl"))
-BROKEN=		Openssl 1.0 API is EoL, upgrade to FreeBSD 12.x/13.x or add DEFAULT_VERSIONS+=ssl=[openssl111|libressl*] to /etc/make.conf
+    (${OSVERSION} < 1200084 && ${SSL_DEFAULT} == "base")
+BROKEN=		Openssl 1.0 API is EoL, upgrade to FreeBSD 12.x/13.x or add DEFAULT_VERSIONS+=ssl=[openssl|libressl*] to /etc/make.conf
+.endif
+
+.if ${OPSYS} != OpenBSD
+CONFIGURE_ARGS+=	--with-path-mbox=/var/mail
 .endif
 
 post-install-TABLE_DB-on:

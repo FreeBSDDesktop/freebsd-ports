@@ -3,6 +3,7 @@
 
 PORTNAME=	virtualbox-ose
 PORTVERSION=	5.2.34
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.oracle.com/virtualbox/${PORTVERSION}/
 DISTFILES=	VirtualBox-${PORTVERSION}${EXTRACT_SUFX} ${GUESTADDITIONS}
@@ -14,6 +15,7 @@ COMMENT=	General-purpose full virtualizer for x86 hardware
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+PATCH_DEPENDS+=	${LOCALBASE}/share/kBuild/tools/GXX3.kmk:devel/kBuild
 BUILD_DEPENDS=	yasm:devel/yasm \
 		xsltproc:textproc/libxslt \
 		kmk:devel/kBuild \
@@ -28,8 +30,13 @@ CPE_PRODUCT=	vm_virtualbox
 
 WRKSRC=		${WRKDIR}/VirtualBox-${PORTVERSION}
 ONLY_FOR_ARCHS=	i386 amd64
-USES=		compiler:c++14-lang cpe gnome iconv pkgconfig ssl tar:bzip2
+USES=		cpe gnome iconv pkgconfig ssl tar:bzip2
 USE_GNOME=	libidl libxml2
+# machine/atomic.h may use features that are only available in GCC9.  This is
+# a workaround, anyways- we should be expressing USES= compiler:c++14-lang, but
+# contemporary clang miscompiles virtualbox in some fashion and yields runtime
+# breakage.
+USE_GCC=	any
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-java --passive-mesa
@@ -150,7 +157,7 @@ USES+=		python:2.7,build
 .if ${PORT_OPTIONS:MQT5}
 CONFIGURE_ARGS+=	--enable-qt5
 PLIST_SUB+=	QT=""
-USES+=		gl qmake:no_env qt:5
+USES+=		gl qmake:no_env qt:5 xorg
 USE_GL=		gl glu
 USE_QT=		buildtools_build core dbus gui linguisttools_build opengl
 USE_QT+=	printsupport widgets x11extras
@@ -199,20 +206,6 @@ KMK_CONFIG=	VBOX_LIBPATH_X11=${LOCALBASE} VBOX_FREEBSD_SRC=${SRC_BASE}/sys
 KMK_FLAGS+=	-j${MAKE_JOBS_NUMBER}
 
 .include <bsd.port.pre.mk>
-
-.if ${COMPILER_TYPE} == clang
-.if ${COMPILER_VERSION} >= 80
-# XXX PR236616: Clang 8 & 9 caused runtime problems.
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang${VBOX_LLVM_VER}:devel/llvm${VBOX_LLVM_VER}
-CC=		${LOCALBASE}/bin/clang${VBOX_LLVM_VER}
-CXX=		${LOCALBASE}/bin/clang++${VBOX_LLVM_VER}
-VBOX_LLVM_VER?=	70
-.endif
-PATCH_DEPENDS+=	${LOCALBASE}/share/kBuild/tools/GXX3.kmk:devel/kBuild
-EXTRA_PATCHES+=	${PATCHDIR}/extrapatch-Config.kmk \
-		${PATCHDIR}/extrapatch-src-VBox-Devices-PC-ipxe-Makefile.kmk \
-		${PATCHDIR}/extrapatch-src-recompiler-Makefile.kmk
-.endif
 
 .if ${PYTHON_MAJOR_VER} >= 3
 PLIST_SUB+=	PYTHON_PYCDIR=/__pycache__/ \
@@ -285,7 +278,6 @@ post-patch:
 	@${ECHO_CMD} 'VBOX_GCC_PEDANTIC_CXX = -Wshadow $$(VBOX_GCC_WARN) -Wno-long-long' >> \
 	    ${WRKSRC}/LocalConfig.kmk
 .endif
-.if ${COMPILER_TYPE} == clang
 	@${REINPLACE_CMD} -e 's| -finline-limit=8000||' \
 	    -e 's| -mpreferred-stack-boundary=2||' ${WRKSRC}/Config.kmk
 	@${REINPLACE_CMD} -e 's| -fpermissive||' ${WRKSRC}/Config.kmk \
@@ -294,7 +286,6 @@ post-patch:
 	@${SED} -e 's|GXX3|VBoxGccFreeBSD|g' \
 	    ${LOCALBASE}/share/kBuild/tools/GXX3.kmk > \
 	    ${WRKSRC}/tools/kBuildTools/VBoxGccFreeBSD.kmk
-.endif
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 	    ${WRKSRC}/Config.kmk ${WRKSRC}/configure \
 	    ${WRKSRC}/kBuild/header.kmk ${WRKSRC}/kBuild/units/qt4.kmk \

@@ -1,6 +1,6 @@
---- chrome/common/webui_url_constants.h.orig	2019-07-24 18:58:14 UTC
+--- chrome/common/webui_url_constants.h.orig	2020-03-03 18:53:53 UTC
 +++ chrome/common/webui_url_constants.h
-@@ -262,7 +262,7 @@ extern const char kChromeUIMetroFlowURL[];
+@@ -274,7 +274,7 @@ bool IsSystemWebUIHost(base::StringPiece host);
  extern const char kChromeUICastHost[];
  #endif
  
@@ -9,12 +9,12 @@
  extern const char kChromeUIDiscardsHost[];
  extern const char kChromeUIDiscardsURL[];
  extern const char kChromeUIHatsHost[];
-@@ -274,17 +274,17 @@ extern const char kChromeUIHatsURL[];
+@@ -286,17 +286,17 @@ extern const char kChromeUIHatsURL[];
  extern const char kChromeUILinuxProxyConfigHost[];
  #endif
  
--#if defined(OS_LINUX) || defined(OS_ANDROID)
-+#if defined(OS_LINUX) || defined(OS_ANDROID) || defined(OS_BSD)
+-#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_ANDROID)
++#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_ANDROID) || defined(OS_BSD)
  extern const char kChromeUISandboxHost[];
  #endif
  
@@ -26,7 +26,7 @@
  #endif
  
 -#if (defined(OS_LINUX) && defined(TOOLKIT_VIEWS)) || defined(USE_AURA)
-+#if ((defined(OS_BSD) || defined(OS_LINUX)) && defined(TOOLKIT_VIEWS)) || defined(USE_AURA)
++#if ((defined(OS_LINUX) || defined(OS_BSD)) && defined(TOOLKIT_VIEWS)) || defined(USE_AURA)
  extern const char kChromeUITabModalConfirmDialogHost[];
  #endif
  

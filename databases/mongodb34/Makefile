@@ -3,6 +3,7 @@
 PORTNAME=	mongodb
 DISTVERSIONPREFIX=	r
 DISTVERSION=	3.4.23
+PORTREVISION=	1
 CATEGORIES=	databases net
 MASTER_SITES=	https://fastdl.mongodb.org/src/ \
 		http://fastdl.mongodb.org/src/ \
@@ -16,6 +17,9 @@ COMMENT=	Distributed document-oriented "NoSQL" database
 # mongodb is AGPLv3, C++ driver is APACHE20
 LICENSE=	AGPLv3 APACHE20
 LICENSE_COMB=	multi
+
+DEPRECATED=	EOL January 2020; See https://www.mongodb.com/support-policy
+EXPIRATION_DATE=	2020-03-31
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	"Only supported on amd64 and aarch64 (i386 deprecated in v3)"

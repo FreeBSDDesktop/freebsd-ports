@@ -19,6 +19,7 @@
     SUBDIR += bandwidthd
     SUBDIR += bgpq
     SUBDIR += bgpq3
+    SUBDIR += bgpq4
     SUBDIR += bgpuma
     SUBDIR += blackbox_exporter
     SUBDIR += bpft
@@ -70,7 +71,6 @@
     SUBDIR += ettercap
     SUBDIR += fastnetmon
     SUBDIR += fetchconfig
-    SUBDIR += flow-extract
     SUBDIR += flow-tools
     SUBDIR += flowd
     SUBDIR += flowviewer
@@ -132,6 +132,7 @@
     SUBDIR += mrtg
     SUBDIR += mrtg-ping-probe
     SUBDIR += mtrace
+    SUBDIR += mysql-snmp
     SUBDIR += mysqld_exporter
     SUBDIR += nagcon
     SUBDIR += nagios
@@ -173,6 +174,7 @@
     SUBDIR += net-snmp
     SUBDIR += netbox
     SUBDIR += netdata
+    SUBDIR += netdata-go
     SUBDIR += netdisco
     SUBDIR += netdisco-mibs
     SUBDIR += netdot
@@ -280,10 +282,8 @@
     SUBDIR += pandorafms_agent
     SUBDIR += pandorafms_console
     SUBDIR += pandorafms_server
-    SUBDIR += pdagent-integrations
     SUBDIR += percona-monitoring-plugins
     SUBDIR += pftabled
-    SUBDIR += php71-snmp
     SUBDIR += php72-snmp
     SUBDIR += php73-snmp
     SUBDIR += php74-snmp
@@ -311,7 +311,6 @@
     SUBDIR += py-napalm-logs
     SUBDIR += py-ncclient
     SUBDIR += py-nxapi-plumbing
-    SUBDIR += py-pdagent
     SUBDIR += py-prometheus-client
     SUBDIR += py-pyIOSXR
     SUBDIR += py-pyang
@@ -368,7 +367,6 @@
     SUBDIR += softflowd
     SUBDIR += spectools
     SUBDIR += ssgless
-    SUBDIR += statsd
     SUBDIR += statsite
     SUBDIR += subcalc
     SUBDIR += super_mediator
@@ -393,11 +391,6 @@
     SUBDIR += xymon-client
     SUBDIR += xymon-server
     SUBDIR += yaf
-    SUBDIR += zabbix22-agent
-    SUBDIR += zabbix22-frontend
-    SUBDIR += zabbix22-java
-    SUBDIR += zabbix22-proxy
-    SUBDIR += zabbix22-server
     SUBDIR += zabbix3-agent
     SUBDIR += zabbix3-frontend
     SUBDIR += zabbix3-java

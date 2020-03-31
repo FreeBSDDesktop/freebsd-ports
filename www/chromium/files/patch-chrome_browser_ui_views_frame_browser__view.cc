@@ -1,6 +1,6 @@
---- chrome/browser/ui/views/frame/browser_view.cc.orig	2019-07-24 18:58:12 UTC
+--- chrome/browser/ui/views/frame/browser_view.cc.orig	2020-03-03 18:53:52 UTC
 +++ chrome/browser/ui/views/frame/browser_view.cc
-@@ -1557,7 +1557,7 @@ void BrowserView::UserChangedTheme(BrowserThemeChangeT
+@@ -1560,7 +1560,7 @@ void BrowserView::UserChangedTheme(BrowserThemeChangeT
    const bool should_use_native_frame = frame_->ShouldUseNativeFrame();
  
    bool must_regenerate_frame;

@@ -25,6 +25,7 @@
     SUBDIR += ion
     SUBDIR += jailkit
     SUBDIR += klish
+    SUBDIR += ksh2020
     SUBDIR += ksh93
     SUBDIR += ksh93-devel
     SUBDIR += lshell
@@ -45,7 +46,6 @@
     SUBDIR += sash
     SUBDIR += scponly
     SUBDIR += shell-include
-    SUBDIR += sparforte
     SUBDIR += starship
     SUBDIR += tcsh_nls
     SUBDIR += tcshrc

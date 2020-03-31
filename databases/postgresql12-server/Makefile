@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME?=	postgresql
-DISTVERSION?=	12.0
+DISTVERSION?=	12.2
 # PORTREVISION must be ?= otherwise, all slave ports get this PORTREVISION and
 # not their own.  Probably best to keep it at ?=0 when reset here too.
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	databases
 MASTER_SITES=	PGSQL/source/v${DISTVERSION}
 PKGNAMESUFFIX?= ${PORTVERSION:R}${COMPONENT}
@@ -92,8 +92,10 @@ TZDATA_DESC=	Use internal timezone database
 XML_DESC=	Build with XML data type
 
 .if ${DISTVERSION:C/([0-9]*).*/\1/} >= 11
-OPTIONS_DEFINE+=LLVM
-LLVM_DESC=	Build with support for JIT-compiling expressions
+OPTIONS_DEFINE+=	LLVM
+LLVM_DESC=		Build with support for JIT-compiling expressions
+OPTIONS_DEFAULT+=	${OPTIONS_DEFAULT_${CHOSEN_COMPILER_TYPE}}
+OPTIONS_DEFAULT_clang=	LLVM
 .endif
 
 .if ${DISTVERSION:C/([0-9]*).*/\1/} < 10
@@ -110,7 +112,7 @@ USES+=		pkgconfig
 # (requires dump/restore if modified.)
 OPTIONS_DEFINE+=	INTDATE
 INTDATE_DESC=		Builds with 64-bit date/time type
-OPTIONS_DEFAULT+=	TZDATA INTDATE
+OPTIONS_DEFAULT+=	INTDATE
 .endif
 
 .if !defined(SLAVE_ONLY)
@@ -172,6 +174,8 @@ SUB_LIST+=		PG_GROUP=${PG_GROUP} \
 
 .if ${ARCH} == "i386"
 USES+=		compiler:gcc-c++11-lib
+.else
+USES+=		compiler
 .endif
 
 .if ${DISTVERSION:C/([0-9]*).*/\1/} >= 11
