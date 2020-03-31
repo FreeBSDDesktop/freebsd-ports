@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	go
-PORTVERSION=	g20200205
-PORTREVISION=	1
+PORTVERSION=	g20200319
 CATEGORIES=	lang
 MASTER_SITES=	https://github.com/dmgk/go-bootstrap/releases/download/${BOOTSTRAP_TAG}/:bootstrap \
 		LOCAL/dmgk:bootstrap
@@ -33,7 +32,7 @@ USES=		shebangfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	golang
-GH_TAGNAME=	a068054af141c01df5a4519844f4b77273605f4e
+GH_TAGNAME=	564c76a268b75f56d6f465b82fba7f6fb929fd70
 
 SHEBANG_FILES=	misc/wasm/go_js_wasm_exec \
 		src/net/http/cgi/testdata/test.cgi
@@ -53,7 +52,7 @@ GO387_DESC=	Do not generate code with SSE2 (for old x86 CPU)
 GO387_VARS=	GO386=387
 
 BINARIES=	go gofmt
-BOOTSTRAP_TAG=	go1.14beta1
+BOOTSTRAP_TAG=	go1.14
 
 GOARCH_aarch64=	arm64
 GOARCH_amd64=	amd64
@@ -64,10 +63,16 @@ GOARCH_i386=	386
 GOARM_armv6=	6
 GOARM_armv7=	7
 
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} == aarch64 && ${OSVERSION} < 1200000
+IGNORE=	aarch64 support requires FreeBSD 12.0 or newer
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|^if ulimit -T|false \&\& &|' ${WRKSRC}/src/run.bash
 	# Needed only for untagged releases
-	${ECHO_CMD} "devel +${GH_TAGNAME}" > ${WRKSRC}/VERSION
+	# ${ECHO_CMD} "devel +${GH_TAGNAME}" > ${WRKSRC}/VERSION
 
 pre-build:
 	# Check that the running kernel has COMPAT_FREEBSD11 required by lang/go{,-devel} post-ino64
@@ -121,4 +126,4 @@ makesum:
 	${RM} ${DISTINFO_FILE}.tmp
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

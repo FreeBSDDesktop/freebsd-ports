@@ -19,6 +19,7 @@
     SUBDIR += avidemux
     SUBDIR += avidemux-cli
     SUBDIR += avidemux-plugins
+    SUBDIR += avidemux-qt5
     SUBDIR += avinfo
     SUBDIR += baka-mplayer
     SUBDIR += bcmatroska2
@@ -33,7 +34,6 @@
     SUBDIR += celluloid
     SUBDIR += cheese
     SUBDIR += chilitags
-    SUBDIR += cinelerra-gg
     SUBDIR += clipgrab
     SUBDIR += clive
     SUBDIR += clutter-gst
@@ -155,7 +155,6 @@
     SUBDIR += gstreamer1-vaapi
     SUBDIR += gstreamer1-validate
     SUBDIR += gstreamermm
-    SUBDIR += gtk-recordmydesktop
     SUBDIR += gtk-youtube-viewer
     SUBDIR += gxine
     SUBDIR += handbrake
@@ -312,6 +311,7 @@
     SUBDIR += phonon-vlc
     SUBDIR += photofilmstrip
     SUBDIR += php-pHash
+    SUBDIR += pipewire
     SUBDIR += pitivi
     SUBDIR += plexmediaserver
     SUBDIR += plexmediaserver-plexpass

@@ -27,6 +27,7 @@
     SUBDIR += R-cran-NMF
     SUBDIR += R-cran-RHmm
     SUBDIR += R-cran-RSvgDevice
+    SUBDIR += R-cran-raster
     SUBDIR += R-cran-RcppArmadillo
     SUBDIR += R-cran-RcppEigen
     SUBDIR += R-cran-RcppRoll
@@ -108,6 +109,7 @@
     SUBDIR += R-cran-spdep
     SUBDIR += R-cran-sspir
     SUBDIR += R-cran-stabledist
+    SUBDIR += R-cran-statmod
     SUBDIR += R-cran-survey
     SUBDIR += R-cran-truncnorm
     SUBDIR += R-cran-units
@@ -179,6 +181,7 @@
     SUBDIR += clblast
     SUBDIR += clfft
     SUBDIR += clingo
+    SUBDIR += cliquer
     SUBDIR += cln
     SUBDIR += cloog
     SUBDIR += clp
@@ -201,6 +204,7 @@
     SUBDIR += cryptominisat
     SUBDIR += csdp
     SUBDIR += ctl-sat
+    SUBDIR += cudd
     SUBDIR += curv
     SUBDIR += cvc3
     SUBDIR += cvc4
@@ -212,7 +216,19 @@
     SUBDIR += djbfft
     SUBDIR += drgeo
     SUBDIR += dsdp
+    SUBDIR += dune-alugrid
+    SUBDIR += dune-common
+    SUBDIR += dune-functions
+    SUBDIR += dune-geometry
+    SUBDIR += dune-grid
+    SUBDIR += dune-istl
+    SUBDIR += dune-localfunctions
+    SUBDIR += dune-pdelab
+    SUBDIR += dune-spgrid
+    SUBDIR += dune-typetree
+    SUBDIR += dune-uggrid
     SUBDIR += e
+    SUBDIR += eclib
     SUBDIR += ecos
     SUBDIR += edenmath
     SUBDIR += eigen2
@@ -231,6 +247,7 @@
     SUBDIR += facile
     SUBDIR += fann
     SUBDIR += fcl
+    SUBDIR += fcl05
     SUBDIR += fflas-ffpack
     SUBDIR += fftw
     SUBDIR += fftw-float
@@ -259,6 +276,7 @@
     SUBDIR += geogram
     SUBDIR += geonext
     SUBDIR += gexpr
+    SUBDIR += gf2x
     SUBDIR += gfan
     SUBDIR += gfanlib
     SUBDIR += ggobi
@@ -280,6 +298,7 @@
     SUBDIR += gnuplot-lite
     SUBDIR += gnuplot-tex-extras
     SUBDIR += gotoblas
+    SUBDIR += gp2c
     SUBDIR += grace
     SUBDIR += graphthing
     SUBDIR += gretl
@@ -292,6 +311,7 @@
     SUBDIR += hmat-oss
     SUBDIR += hpipm
     SUBDIR += hs-Agda
+    SUBDIR += hs-penrose
     SUBDIR += hs-semigroups
     SUBDIR += ideep
     SUBDIR += ignition-math
@@ -321,6 +341,7 @@
     SUBDIR += lapacke
     SUBDIR += laspack
     SUBDIR += latte-integrale
+    SUBDIR += lcalc
     SUBDIR += ldouble
     SUBDIR += lean
     SUBDIR += lemon
@@ -338,6 +359,7 @@
     SUBDIR += libpoly
     SUBDIR += libqalculate
     SUBDIR += libranlip
+    SUBDIR += librdata
     SUBDIR += librsb
     SUBDIR += libtommath
     SUBDIR += libtsnnls
@@ -349,11 +371,12 @@
     SUBDIR += lis
     SUBDIR += lll_spect
     SUBDIR += lp_solve
+    SUBDIR += lrcalc
     SUBDIR += lrng
     SUBDIR += lrslib
     SUBDIR += ltl
     SUBDIR += ltl2ba
-    SUBDIR += lybniz
+    SUBDIR += m4ri
     SUBDIR += mate-calc
     SUBDIR += math77
     SUBDIR += mathgl
@@ -365,7 +388,6 @@
     SUBDIR += mbasecalc
     SUBDIR += mcsim
     SUBDIR += metis
-    SUBDIR += metis4
     SUBDIR += mfem
     SUBDIR += mingw32-libgmp
     SUBDIR += minisat
@@ -485,7 +507,6 @@
     SUBDIR += octave-forge-zenity
     SUBDIR += octave-forge-zeromq
     SUBDIR += octomap
-    SUBDIR += ogdf
     SUBDIR += oleo
     SUBDIR += openblas
     SUBDIR += openfst
@@ -649,6 +670,11 @@
     SUBDIR += p5-bignum
     SUBDIR += pantheon-calculator
     SUBDIR += pari
+    SUBDIR += pari_elldata
+    SUBDIR += pari_galdata
+    SUBDIR += pari_galpol
+    SUBDIR += pari_nftables
+    SUBDIR += pari_seadata
     SUBDIR += parmetis
     SUBDIR += parmgridgen
     SUBDIR += pdal
@@ -666,6 +692,7 @@
     SUBDIR += physcalc
     SUBDIR += picosat
     SUBDIR += piranha
+    SUBDIR += planarity
     SUBDIR += plman
     SUBDIR += ploticus
     SUBDIR += ploticus-nox11
@@ -700,6 +727,7 @@
     SUBDIR += py-bottleneck
     SUBDIR += py-cdecimal
     SUBDIR += py-chaospy
+    SUBDIR += py-claripy
     SUBDIR += py-cma
     SUBDIR += py-colormath
     SUBDIR += py-cryptominisat
@@ -769,9 +797,11 @@
     SUBDIR += py-pynndescent
     SUBDIR += py-pyodeint
     SUBDIR += py-pyodesys
+    SUBDIR += py-pysmt
     SUBDIR += py-pysparse
     SUBDIR += py-pystan
     SUBDIR += py-pysym
+    SUBDIR += py-python-fcl
     SUBDIR += py-python-louvain
     SUBDIR += py-pyvtk
     SUBDIR += py-quadprog
@@ -795,10 +825,10 @@
     SUBDIR += py-symcxx
     SUBDIR += py-sympy
     SUBDIR += py-theano
+    SUBDIR += py-triangle
     SUBDIR += py-ufl
     SUBDIR += py-uncertainties
     SUBDIR += py-vincenty
-    SUBDIR += py-viper
     SUBDIR += py-yt
     SUBDIR += py-z3-solver
     SUBDIR += qalculate

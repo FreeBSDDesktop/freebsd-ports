@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	duplicity
-PORTVERSION=	0.8.10
-DISTVERSIONSUFFIX=	fin1558
-PORTREVISION=	2
+PORTVERSION=	0.8.11
+DISTVERSIONSUFFIX=	.1596
 CATEGORIES=	sysutils
 MASTER_SITES=	https://code.launchpad.net/duplicity/0.8-series/${PORTVERSION}/+download/
 PKGNAMESUFFIX=	-devel
@@ -14,6 +13,9 @@ COMMENT=	Backup tool that uses librsync and GnuPG
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+DEPRECATED=	Obsolete now, use sysutils/duplicity instead
+EXPIRATION_DATE=2020-03-30
 
 LIB_DEPENDS=	librsync.so:net/librsync2
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fasteners>=0:devel/py-fasteners@${PY_FLAVOR} \
@@ -28,11 +30,13 @@ USES=		localbase python shebangfix
 USE_PYTHON=	autoplist distutils noflavors
 USE_LDCONFIG=	yes
 
-CONFLICTS_INSTALL=	duplicity
+CONFLICTS_INSTALL=	duplicity duplicity07
 
 SHEBANG_FILES=	bin/duplicity bin/rdiffdir
 
 PORTDOCS=	CHANGELOG COPYING README README-REPO README-LOG
+
+POST_PLIST=	trim-duplicity-testing
 
 OPTIONS_DEFINE=		B2 DOCS FTP FTPS GDOCS NLS S3
 OPTIONS_GROUP=		GPG
@@ -90,5 +94,8 @@ post-install:
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|g} ${STAGEDIR}${DOCSDIR}
+
+trim-duplicity-testing:
+	@${REINPLACE_CMD} '/\/testing\//d' ${TMPPLIST}
 
 .include <bsd.port.mk>

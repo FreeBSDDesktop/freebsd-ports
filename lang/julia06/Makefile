@@ -4,7 +4,7 @@
 PORTNAME=	julia
 PORTVERSION=	0.6.4
 DISTVERSIONSUFFIX=	-full
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	lang math
 MASTER_SITES=	https://github.com/JuliaLang/julia/releases/download/v${PORTVERSION}/
 PKGNAMESUFFIX=	06
@@ -14,6 +14,9 @@ COMMENT=	Julia Language: A fresh approach to technical computing
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
 
 ONLY_FOR_ARCHS=	amd64 i386
 

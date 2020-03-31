@@ -2,6 +2,7 @@
 
 PORTNAME=	libvdpau
 PORTVERSION=	1.3
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 MAINTAINER=	madpilot@FreeBSD.org

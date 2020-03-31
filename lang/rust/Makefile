@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	rust
-PORTVERSION?=	1.41.0
-PORTREVISION?=	0
+PORTVERSION?=	1.42.0
+PORTREVISION?=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
 		LOCAL/tobik/rust:bootstrap \
@@ -44,10 +44,9 @@ TEST_ENV=	${MAKE_ENV} \
 
 CONFLICTS_INSTALL?=	rust-nightly
 
-PLIST_FILES=	lib/rustlib/components \
-		lib/rustlib/rust-installer-version
+OPTIONS_DEFINE=		DOCS GDB SOURCES WASM
+OPTIONS_DEFAULT=	SOURCES WASM
 
-OPTIONS_DEFINE=	DOCS GDB SOURCES WASM
 GDB_DESC=	Install ports gdb (necessary for debugging rust programs)
 SOURCES_DESC=	Install source files
 WASM_DESC=	Build the WebAssembly target (wasm32-unknown-unknown)
@@ -59,9 +58,9 @@ WASM_VARS_OFF=		_RUST_BUILD_WASM=false
 WASM_VARS=		_RUST_BUILD_WASM=true
 
 # See WRKSRC/src/stage0.txt for the date and version values.
-BOOTSTRAPS_DATE?=		2020-01-11
-RUST_BOOTSTRAP_VERSION?=	1.40.0
-CARGO_BOOTSTRAP_VERSION?=	0.41.0
+BOOTSTRAPS_DATE?=		2020-02-29
+RUST_BOOTSTRAP_VERSION?=	1.41.1
+CARGO_BOOTSTRAP_VERSION?=	0.42.0
 
 BOOTSTRAPS_SUFFIX?=		${BOOTSTRAPS_SUFFIX_${ARCH}}
 BOOTSTRAPS_SUFFIX_powerpc64?=	-${PPC_ABI:tl}
@@ -79,17 +78,11 @@ _CARGO_BOOTSTRAP=	${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/cargo-${CARGO_B
 
 .include <bsd.port.pre.mk>
 
-.if exists(${PATCHDIR}/libgit2)
-# lang/rust-bootstrap builds the bundled libgit2 and using the patch
-# to fix runtime with system libgit2 is incompatible with it.  Keep
-# it separate.
-EXTRA_PATCHES+=	${PATCHDIR}/libgit2
-.endif
 .if exists(${PATCHDIR}/${ARCH}${BOOTSTRAPS_SUFFIX})
 EXTRA_PATCHES+=	${PATCHDIR}/${ARCH}${BOOTSTRAPS_SUFFIX}
 .endif
 
-.if ${ARCH} == powerpc64 && ${PPC_ABI} == ELFv1
+.if ${ARCH} == powerpc64
 # The bootstrap is hardcoded to use gcc9
 # but we can build with a newer or older compiler as provided by USE_GCC=yes
 BUILD_DEPENDS+=	gcc9:lang/gcc9
@@ -187,58 +180,29 @@ do-configure:
 
 do-build:
 	@cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py build --config=config.toml \
-		--jobs=${MAKE_JOBS_NUMBER}
+		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} x.py build --jobs=${MAKE_JOBS_NUMBER}
 
 do-install:
 # DESTDIR not in MAKE_ENV as it would cause the bundled LLVM to be
 # staged into it during do-build.
 	@cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} DESTDIR=${STAGEDIR} ${PYTHON_CMD} \
-		x.py install --config=config.toml --jobs=${MAKE_JOBS_NUMBER}
-
-# In post-install, we use the manifests generated during Rust install
-# to in turn generate the PLIST. We do that, instead of the regular
-# `pkg-plist`, because several libraries have a computed filename based
-# on the absolute path of the source files. As it is user-specific, we
-# can't know their filename in advance.
-#
-# Both rustc and Cargo components install the same README.md and LICENSE
-# files. The install process backs up the first copy to install the
-# second. Thus here, we need to remove those backups. We also need to
-# dedup the entries in the generated PLIST, because both components'
-# manifests list them.
-#
-# We fix manpage entries in the generated manifests because Rust
-# installs them uncompressed but the Ports framework compresses them.
-post-install:
-	for f in ${STAGEDIR}${PREFIX}/lib/rustlib/manifest-*; do \
-	    ${REINPLACE_CMD} -i '' -E \
-	        -e 's,:${STAGEDIR},:,' \
-	        -e 's,(share/man/man[1-9]/.*\.[0-9]),\1.gz,' \
-	        "$$f"; \
-	    ${ECHO_CMD} "$${f#${STAGEDIR}}" >> ${TMPPLIST}; \
-	    ${AWK} '\
-	        /^file:/ { \
-	            file=$$0; \
-	            sub(/^file:/, "", file); \
-	            print file; \
-	        } \
-	        /^dir:/ { \
-	            dir=$$0; \
-	            sub(/^dir:/, "", dir); \
-	            system("find ${STAGEDIR}" dir " -type f | ${SED} -E -e \"s,${STAGEDIR},,\""); \
-	        }' \
-	        "$$f" >> ${TMPPLIST}; \
-	done
-	${RM} -r ${STAGEDIR}${PREFIX}/share/doc/rust/*.old
-	${SORT} -u < ${TMPPLIST} > ${TMPPLIST}.uniq
-	${MV} ${TMPPLIST}.uniq ${TMPPLIST}
-	@${RM} \
-	    ${STAGEDIR}${PREFIX}/lib/rustlib/install.log \
-	    ${STAGEDIR}${PREFIX}/lib/rustlib/uninstall.sh
-	@${FIND} ${STAGEDIR}${PREFIX}/bin -exec ${FILE} -i {} + | ${AWK} -F: \
-		'/executable|sharedlib/ { print $$1 }' | ${XARGS} ${STRIP_CMD}
+		x.py install --jobs=${MAKE_JOBS_NUMBER}
+# We autogenerate the plist file.  We do that, instead of the
+# regular pkg-plist, because several libraries have a computed
+# filename based on the absolute path of the source files.  As it
+# is user-specific, we cannot know their filename in advance.
+	@${RM} -r ${STAGEDIR}${DOCSDIR}/*.old \
+		${STAGEDIR}${DOCSDIR}/html/.lock \
+		${STAGEDIR}${DOCSDIR}/html/.stamp \
+		${STAGEDIR}${PREFIX}/lib/rustlib/install.log \
+		${STAGEDIR}${PREFIX}/lib/rustlib/manifest-* \
+		${STAGEDIR}${PREFIX}/lib/rustlib/uninstall.sh
+	@${FIND} ${STAGEDIR}${PREFIX}/bin ${STAGEDIR}${PREFIX}/lib -exec ${FILE} -i {} + | \
+		${AWK} -F: '/executable|sharedlib/ { print $$1 }' | ${XARGS} ${STRIP_CMD}
+	@${FIND} ${STAGEDIR}${PREFIX} -not -type d | \
+		${SED} -E -e 's,^${STAGEDIR}${PREFIX}/,,' \
+			-e 's,(share/man/man[1-9]/.*\.[0-9]),\1.gz,' >> ${TMPPLIST}
 
 post-install-SOURCES-on:
 # Silence stage-qa warnings by sanitizing permissions on sources
@@ -248,8 +212,7 @@ post-install-SOURCES-on:
 # Note that make test does not work when rust is already installed.
 do-test:
 	@cd ${WRKSRC} && \
-		${SETENV} ${TEST_ENV} ${PYTHON_CMD} x.py test --config=config.toml \
-		--jobs=${MAKE_JOBS_NUMBER}
+		${SETENV} ${TEST_ENV} ${PYTHON_CMD} x.py test --jobs=${MAKE_JOBS_NUMBER}
 
 .if !defined(_RUST_MAKESUM_GUARD)
 makesum:
