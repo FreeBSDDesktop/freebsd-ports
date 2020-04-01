@@ -20,7 +20,6 @@ To enable evdev in such a device, run the following:
 To make it persistent across reboots, add the following to /etc/sysctl.conf:
 
 kern.evdev.rcpt_mask=6
-
 EOM
 }
 ]
