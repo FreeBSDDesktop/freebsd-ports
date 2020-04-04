@@ -3437,6 +3437,7 @@
     SUBDIR += p5-Test-utf8
     SUBDIR += p5-Test2-Harness
     SUBDIR += p5-Test2-Plugin-DBIProfile
+    SUBDIR += p5-Test2-Plugin-IOEvents
     SUBDIR += p5-Test2-Plugin-MemUsage
     SUBDIR += p5-Test2-Plugin-NoWarnings
     SUBDIR += p5-Test2-Plugin-UUID
@@ -4400,6 +4401,7 @@
     SUBDIR += py-future
     SUBDIR += py-futures
     SUBDIR += py-futurist
+    SUBDIR += py-futurist1
     SUBDIR += py-fuzzywuzzy
     SUBDIR += py-fypp
     SUBDIR += py-game
@@ -4529,6 +4531,7 @@
     SUBDIR += py-jsonrpclib-pelix
     SUBDIR += py-jsonschema
     SUBDIR += py-jsonsir
+    SUBDIR += py-jupyter-telemetry
     SUBDIR += py-jupyter_client
     SUBDIR += py-jupyter_console
     SUBDIR += py-jupyter_core
@@ -4628,6 +4631,7 @@
     SUBDIR += py-natsort
     SUBDIR += py-natural
     SUBDIR += py-nbconvert
+    SUBDIR += py-nbdime
     SUBDIR += py-nbformat
     SUBDIR += py-nodeenv
     SUBDIR += py-nose
@@ -4888,6 +4892,7 @@
     SUBDIR += py-python-gist
     SUBDIR += py-python-gitlab
     SUBDIR += py-python-jenkins
+    SUBDIR += py-python-json-logger
     SUBDIR += py-python-jsonrpc-server
     SUBDIR += py-python-magic
     SUBDIR += py-python-mimeparse
@@ -5839,7 +5844,7 @@
     SUBDIR += rubygem-cucumber-formatter-dots
     SUBDIR += rubygem-cucumber-messages
     SUBDIR += rubygem-cucumber-rails
-    SUBDIR += rubygem-cucumber-tag_expressions
+    SUBDIR += rubygem-cucumber-tag-expressions
     SUBDIR += rubygem-cucumber-tag_expressions1
     SUBDIR += rubygem-cucumber-wire
     SUBDIR += rubygem-curses
@@ -6044,6 +6049,7 @@
     SUBDIR += rubygem-jenkins_api_client
     SUBDIR += rubygem-jeweler
     SUBDIR += rubygem-jira-ruby
+    SUBDIR += rubygem-jira-ruby1
     SUBDIR += rubygem-jmespath
     SUBDIR += rubygem-jquery-ui-themes
     SUBDIR += rubygem-jruby-jars
@@ -6467,6 +6473,7 @@
     SUBDIR += rubygem-webpacker-rails5
     SUBDIR += rubygem-webpacker-rails50
     SUBDIR += rubygem-webpacker-rails60
+    SUBDIR += rubygem-webpacker4-rails60
     SUBDIR += rubygem-will_paginate
     SUBDIR += rubygem-windows_error
     SUBDIR += rubygem-wisper
@@ -6505,6 +6512,7 @@
     SUBDIR += sdlskk
     SUBDIR += sdts++
     SUBDIR += sedsed
+    SUBDIR += sentry-cli
     SUBDIR += serd
     SUBDIR += serdisplib
     SUBDIR += sfml
@@ -6683,6 +6691,7 @@
     SUBDIR += violet
     SUBDIR += visualparadigm
     SUBDIR += vitables
+    SUBDIR += volk
     SUBDIR += vstr
     SUBDIR += vulkan-headers
     SUBDIR += vulkan-tools

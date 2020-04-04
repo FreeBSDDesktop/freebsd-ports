@@ -317,6 +317,7 @@
     SUBDIR += ideep
     SUBDIR += ignition-math
     SUBDIR += igraph
+    SUBDIR += iml
     SUBDIR += intervaltree
     SUBDIR += ipopt
     SUBDIR += ised
@@ -393,12 +394,12 @@
     SUBDIR += mingw32-libgmp
     SUBDIR += minisat
     SUBDIR += miracl
-    SUBDIR += mkl-dnn
     SUBDIR += mlpack
     SUBDIR += moab
     SUBDIR += moo
     SUBDIR += mpc
     SUBDIR += mpexpr
+    SUBDIR += mpfi
     SUBDIR += mpfr
     SUBDIR += mpfrc++
     SUBDIR += mpir
@@ -509,6 +510,7 @@
     SUBDIR += octave-forge-zeromq
     SUBDIR += octomap
     SUBDIR += oleo
+    SUBDIR += onednn
     SUBDIR += openblas
     SUBDIR += openfst
     SUBDIR += openlibm
@@ -842,6 +844,7 @@
     SUBDIR += qtiplot-doc
     SUBDIR += qwtplot3d
     SUBDIR += randlib
+    SUBDIR += rankwidth
     SUBDIR += rapid
     SUBDIR += reduce
     SUBDIR += reduce-psl
