@@ -1,6 +1,6 @@
---- test/xtest.c.orig	2019-04-30 16:40:02.828913000 -0700
-+++ test/xtest.c	2019-04-30 16:40:42.769713000 -0700
-@@ -59,10 +59,10 @@
+--- test/xtest.c.orig	2020-03-30 21:48:11 UTC
++++ test/xtest.c
+@@ -59,10 +59,10 @@ device_cursor_cleanup(DeviceIntPtr dev, ScreenPtr scre
  static void
  xtest_init_devices(void)
  {

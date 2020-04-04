@@ -1,8 +1,8 @@
 * Select the devd config backend if it is activated
 *
---- hw/xfree86/common/xf86Config.c.orig	2017-03-15 18:05:25 UTC
+--- hw/xfree86/common/xf86Config.c.orig	2020-03-30 21:48:11 UTC
 +++ hw/xfree86/common/xf86Config.c
-@@ -1375,13 +1375,16 @@ checkCoreInputDevices(serverLayoutPtr se
+@@ -1279,13 +1279,16 @@ checkCoreInputDevices(serverLayoutPtr servlayoutp, Boo
      }
  
      if (!xf86Info.forceInputDevices && !(foundPointer && foundKeyboard)) {

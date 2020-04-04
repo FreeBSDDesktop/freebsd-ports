@@ -2,11 +2,9 @@
 # $FreeBSD$
 
 PORTNAME?=	xorg-server
-PORTVERSION?=	1.20.8
+PORTVERSION?=	1.20.99.1.20200401
 PORTEPOCH?=	1
 CATEGORIES=	x11-servers
-MASTER_SITES=	XORG/individual/xserver
-DISTNAME=	xorg-server-${PORTVERSION}
 
 MAINTAINER=	x11@FreeBSD.org
 COMMENT?=	X.Org X server and related programs
@@ -56,6 +54,11 @@ DEFAULT_FONTPATH_CMD=${ECHO_CMD} ${DEFAULT_FONTPATH_LIST} | ${TR} ' ' ,
 PLIST_SUB+=	FONTPATHD="${FONTPATHD:S,^${PREFIX}/,,}"
 
 USES=		compiler:c11 gl gmake perl5 ssl xorg xorg-cat:xserver
+USE_GITLAB=	yes
+GL_SITE?=	https://gitlab.freedesktop.org
+GL_ACCOUNT=	xorg
+GL_PROJECT=	xserver
+GL_COMMIT=	5684d436e2b65cd0fe305460e437a2f69af29865
 USE_PERL5=	build
 USE_GL+=	gl
 USE_XORG+=	pixman xau xdmcp xfont2 xkbfile xorgproto xshmfence xtrans
@@ -69,6 +72,10 @@ INSTALL_TARGET=	install-strip
 LIB_DEPENDS+=	libdrm.so:graphics/libdrm \
 		libepoxy.so:graphics/libepoxy
 .else
+# DMX devel version needs bison
+.if ${PORTNAME} == "xorg-dmx"
+USES+=		bison
+.endif
 BUILD_DEPENDS+=	libepoxy>0:graphics/libepoxy	# only for configure
 .endif
 
@@ -104,9 +111,9 @@ PLIST_SUB+=	SPARC64=""
 PLIST_SUB+=	SPARC64="@comment "
 .endif
 
-post-patch:
-	@${REINPLACE_CMD} 's/test.*-traditional.*;/true;/' \
-		${WRKSRC}/configure
+#post-patch:
+#	@${REINPLACE_CMD} 's/test.*-traditional.*;/true;/' \
+#		${WRKSRC}/configure
 
 .if ${SLAVE_PORT} == "no"
 post-install:
