@@ -1,6 +1,6 @@
---- ui/base/ui_base_features.h.orig	2019-06-04 18:55:49 UTC
+--- ui/base/ui_base_features.h.orig	2020-03-03 18:54:06 UTC
 +++ ui/base/ui_base_features.h
-@@ -59,10 +59,10 @@ COMPONENT_EXPORT(UI_BASE_FEATURES)
+@@ -65,10 +65,10 @@ COMPONENT_EXPORT(UI_BASE_FEATURES)
  extern const base::Feature kEnableAutomaticUiAdjustmentsForTouch;
  #endif  // defined(OS_WIN) || defined(OS_CHROMEOS)
  
@@ -11,5 +11,5 @@
 -#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
 +#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
  
- // Used to have ash (Chrome OS system UI) run in its own process.
- // TODO(jamescook): Make flag only available in Chrome OS.
+ // Used to enable the new controls UI.
+ COMPONENT_EXPORT(UI_BASE_FEATURES)

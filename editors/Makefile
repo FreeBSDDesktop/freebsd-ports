@@ -10,6 +10,7 @@
     SUBDIR += aewan
     SUBDIR += apel
     SUBDIR += asedit
+    SUBDIR += atom
     SUBDIR += beav
     SUBDIR += biew
     SUBDIR += bitedit
@@ -217,9 +218,7 @@
     SUBDIR += puff
     SUBDIR += py-editorconfig
     SUBDIR += py-pynvim
-    SUBDIR += py-room
     SUBDIR += quilter
-    SUBDIR += rox-edit
     SUBDIR += rubygem-neovim
     SUBDIR += scite
     SUBDIR += se
@@ -248,11 +247,13 @@
     SUBDIR += vim
     SUBDIR += vim-console
     SUBDIR += vim-tiny
+    SUBDIR += vscode
     SUBDIR += web-mode
     SUBDIR += with-editor
     SUBDIR += wordgrinder
     SUBDIR += wxhexeditor
     SUBDIR += xcoral
+    SUBDIR += xed
     SUBDIR += xi-core
     SUBDIR += xi-term
     SUBDIR += xmlcopyeditor

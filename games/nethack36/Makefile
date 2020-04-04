@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	nethack36
-PORTVERSION=	3.6.2
-PORTREVISION=	1
+PORTVERSION=	3.6.6
 CATEGORIES=	games
 MASTER_SITES=	https://nethack.org/download/${PORTVERSION}/
 DISTNAME=	${TRUEPORTNAME}-${PORTVERSION:S/.//g}-src
@@ -18,7 +17,7 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USES=		alias compiler:c11 gmake ncurses tar:tgz
 
-WRKSRC=		${WRKDIR}/${TRUEPORTNAME}-${PORTVERSION}
+WRKSRC=		${WRKDIR}/NetHack-NetHack-${PORTVERSION}_Released
 
 MAKE_ENV=	GRAPHICS="${GRAPHICS}"
 PLIST_SUB=	HACKNAME="${HACKNAME}" \
@@ -36,6 +35,7 @@ DOCSDIR=	${PREFIX}/share/doc/${HACKNAME}
 PKGDEINSTALL=	${WRKDIR}/pkg-deinstall
 
 .if !defined(PKGNAMESUFFIX)
+USES+=		xorg
 USE_XORG=	xaw xpm xmu xext xt x11 sm ice
 CFLAGS+=	-DX11_GRAPHICS -DUSE_TILES
 GRAPHICS=	X11_GRAPHICS
@@ -61,7 +61,7 @@ post-patch:
 		's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/include/config.h
 	@${REINPLACE_CMD} -e \
 		's|<malloc.h>|<stdlib.h>|g' ${WRKSRC}/win/Qt/qt_win.cpp
-.for f in include/config.h sys/unix/Makefile.doc sys/unix/Makefile.src sys/unix/Makefile.top
+.for f in sys/unix/Makefile.doc sys/unix/Makefile.src sys/unix/Makefile.top
 	@${REINPLACE_CMD} -e 's|%%HACKNAME%%|${HACKNAME}|g' \
 		-e 's|%%HACKDIR%%|${PREFIX}/${HACKDIR}|g' \
 		-e 's|%%HACKEXT%%|${HACKEXT}|g' \

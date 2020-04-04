@@ -68,6 +68,7 @@
     SUBDIR += libbigwig
     SUBDIR += libgtextutils
     SUBDIR += libsbml
+    SUBDIR += linux-foldingathome
     SUBDIR += mafft
     SUBDIR += mapm3
     SUBDIR += migrate
@@ -86,6 +87,8 @@
     SUBDIR += p5-Bio-ASN1-EntrezGene
     SUBDIR += p5-Bio-Cluster
     SUBDIR += p5-Bio-Coordinate
+    SUBDIR += p5-Bio-DB-EMBL
+    SUBDIR += p5-Bio-DB-NCBIHelper
     SUBDIR += p5-Bio-Das
     SUBDIR += p5-Bio-Das-Lite
     SUBDIR += p5-Bio-FeatureIO
@@ -96,6 +99,7 @@
     SUBDIR += p5-Bio-NEXUS
     SUBDIR += p5-Bio-Phylo
     SUBDIR += p5-Bio-SCF
+    SUBDIR += p5-Bio-Variation
     SUBDIR += p5-BioPerl
     SUBDIR += p5-BioPerl-Run
     SUBDIR += p5-TrimGalore
@@ -132,7 +136,6 @@
     SUBDIR += py-pyfaidx
     SUBDIR += py-pysam
     SUBDIR += py-xenaPython
-    SUBDIR += pycogent
     SUBDIR += pyfasta
     SUBDIR += python-nexus
     SUBDIR += rainbow
@@ -162,7 +165,6 @@
     SUBDIR += trimadap
     SUBDIR += trimmomatic
     SUBDIR += ugene
-    SUBDIR += unanimity
     SUBDIR += vcflib
     SUBDIR += vcftools
     SUBDIR += velvet

@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	django-filter
-DISTVERSION=	2.1.0
+DISTVERSION=	2.2.0
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}dj22-
@@ -11,6 +11,8 @@ COMMENT=	Dynamic filtering for querysets with Django
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=	Obsolete, please use www/py-django-filter instead
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django22>=1.11:www/py-django22@${PY_FLAVOR}
 

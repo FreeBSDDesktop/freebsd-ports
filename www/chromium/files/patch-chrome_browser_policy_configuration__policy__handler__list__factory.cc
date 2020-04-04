@@ -1,6 +1,6 @@
---- chrome/browser/policy/configuration_policy_handler_list_factory.cc.orig	2019-07-24 18:58:10 UTC
+--- chrome/browser/policy/configuration_policy_handler_list_factory.cc.orig	2020-03-03 18:53:51 UTC
 +++ chrome/browser/policy/configuration_policy_handler_list_factory.cc
-@@ -109,7 +109,7 @@
+@@ -117,7 +117,7 @@
  #endif
  
  #if defined(OS_WIN) || defined(OS_MACOSX) || \
@@ -9,10 +9,10 @@
  #include "chrome/browser/browser_switcher/browser_switcher_prefs.h"
  #endif
  
-@@ -321,11 +321,11 @@ const PolicyToPreferenceMapEntry kSimplePolicyMap[] = 
-   { key::kSafeSitesFilterBehavior,
-     policy_prefs::kSafeSitesFilterBehavior,
-     base::Value::Type::INTEGER},
+@@ -357,11 +357,11 @@ const PolicyToPreferenceMapEntry kSimplePolicyMap[] = 
+   { key::kWebComponentsV0Enabled,
+     prefs::kWebComponentsV0Enabled,
+     base::Value::Type::BOOLEAN },
 -#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_CHROMEOS)
 +#if defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_CHROMEOS) || defined(OS_BSD)
    { key::kAuthNegotiateDelegateByKdcPolicy,
@@ -23,12 +23,21 @@
  #if defined(OS_POSIX)
    { key::kNtlmV2Enabled,
      prefs::kNtlmV2Enabled,
-@@ -1021,7 +1021,7 @@ const PolicyToPreferenceMapEntry kSimplePolicyMap[] = 
+@@ -1147,7 +1147,7 @@ const PolicyToPreferenceMapEntry kSimplePolicyMap[] = 
+     prefs::kExternalProtocolDialogShowAlwaysOpenCheckbox,
      base::Value::Type::BOOLEAN },
- 
  #if defined(OS_WIN) || defined(OS_MACOSX) || \
 -    (defined(OS_LINUX) && !defined(OS_CHROMEOS))
 +    (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
    { key::kAlternativeBrowserPath,
      browser_switcher::prefs::kAlternativeBrowserPath,
      base::Value::Type::STRING },
+@@ -1208,7 +1208,7 @@ const PolicyToPreferenceMapEntry kSimplePolicyMap[] = 
+     browser_switcher::prefs::kChromeParameters,
+     base::Value::Type::LIST },
+ #endif
+-#if defined(OS_LINUX) || defined(OS_WIN) || defined(OS_MACOSX)
++#if defined(OS_LINUX) || defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_BSD)
+   { key::kBrowserGuestModeEnforced,
+     prefs::kBrowserGuestModeEnforced,
+     base::Value::Type::BOOLEAN },

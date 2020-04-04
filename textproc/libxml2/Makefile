@@ -2,13 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	libxml2
-PORTVERSION=	2.9.9
+DISTVERSION=	2.9.10
 PORTREVISION?=	0
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	http://xmlsoft.org/sources/
 DIST_SUBDIR=	gnome2
 
-MAINTAINER?=	gnome@FreeBSD.org
+MAINTAINER?=	desktop@FreeBSD.org
 COMMENT?=	XML parser library for GNOME
 
 .if !defined(REFERENCE_PORT)
@@ -21,7 +21,7 @@ LICENSE_FILE_TRIO=	${FILESDIR}/LICENSE.TRIO
 LICENSE_PERMS_TRIO=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 GNU_CONFIGURE=	yes
-USES+=		compiler cpe gmake iconv libtool pathfix pkgconfig shebangfix
+USES+=		compiler cpe iconv libtool pathfix pkgconfig shebangfix
 CPE_VENDOR=	xmlsoft
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS?=--with-iconv=${ICONV_PREFIX} \

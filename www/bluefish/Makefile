@@ -14,11 +14,14 @@ COMMENT=	HTML editor designed for the experienced web designer
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
+
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libenchant.so:textproc/enchant
 
-USES=		desktop-file-utils gettext gmake libtool localbase pkgconfig python:2.7 \
-		shared-mime-info shebangfix tar:bzip2
+USES=		desktop-file-utils gettext gmake gnome libtool localbase \
+		pkgconfig python:2.7 shared-mime-info shebangfix tar:bzip2
 SHEBANG_FILES=	data/css_decompressor data/cssmin.py data/jsbeautify \
 		data/jsmin.py data/lorem-ipsum-generator
 python_OLD_CMD=	/usr/bin/python2.7

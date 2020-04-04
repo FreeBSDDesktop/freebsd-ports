@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	kodi
-DISTVERSION=	19.0.a20191014
+DISTVERSION=	19.0.a20200318
 PORTREVISION=	1
 CATEGORIES=	multimedia
 PKGNAMESUFFIX=	-devel
@@ -11,7 +11,7 @@ COMMENT=	Award winning media center application
 
 LICENSE=	GPLv2+
 
-ONLY_FOR_ARCHS=	amd64 armv6 armv7 i386
+ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386
 
 BUILD_DEPENDS=	flatbuffers>=0:devel/flatbuffers \
 		rapidjson>=0:devel/rapidjson \
@@ -57,9 +57,9 @@ USES=		autoreconf:build cmake:noninja compiler:c++11-lang gettext gl \
 USE_GITHUB=	yes
 GH_ACCOUNT=	xbmc
 GH_PROJECT=	xbmc
-GH_TAGNAME=	05488ed68e4dc4c3cf9e1c4b2907e87bd8f0a26b
-USE_GNOME=	libxml2 libxslt
+GH_TAGNAME=	809e36a24c453c27cbfae05e08c2f2e3951c2e8f
 USE_GL=		egl gl glu
+USE_GNOME=	libxml2 libxslt
 USE_JAVA=	yes
 JAVA_BUILD=	yes
 USE_LDCONFIG=	yes
@@ -81,18 +81,19 @@ PLIST_SUB=		ARCH=${_KODIARCH_${ARCH}:U${ARCH}} \
 			OPSYS=${OPSYS:tl}
 PORTDATA=		*
 
-OPTIONS_DEFINE=		AVAHI CEC DBUS LIBBLURAY MYSQL NFS SMB SSE UPNP VAAPI \
-			VDPAU WEBSERVER
-OPTIONS_DEFAULT=	DBUS GBM LIBBLURAY SNDIO UPNP VAAPI VDPAU WAYLAND \
-			WEBSERVER X11
-OPTIONS_DEFAULT_amd64=	SSE
-OPTIONS_GROUP=		SOUND
-OPTIONS_GROUP_SOUND=	PULSEAUDIO SNDIO
-OPTIONS_MULTI=		PLATFORM
-OPTIONS_MULTI_PLATFORM=	GBM WAYLAND X11
-OPTIONS_EXCLUDE_armv6=	SSE
-OPTIONS_EXCLUDE_armv7=	SSE
-OPTIONS_SUB=		yes
+OPTIONS_DEFINE=			AVAHI CEC DBUS LIBBLURAY MYSQL NFS SMB SSE UPNP \
+				VAAPI VDPAU WEBSERVER
+OPTIONS_DEFAULT=		AVAHI CEC DBUS GBM LIBBLURAY MYSQL NFS SMB \
+				SNDIO UPNP VAAPI VDPAU WAYLAND WEBSERVER X11
+OPTIONS_DEFAULT_amd64=		SSE
+OPTIONS_GROUP=			SOUND
+OPTIONS_GROUP_SOUND=		PULSEAUDIO SNDIO
+OPTIONS_MULTI=			PLATFORM
+OPTIONS_MULTI_PLATFORM=		GBM WAYLAND X11
+OPTIONS_EXCLUDE_aarch64=	SSE
+OPTIONS_EXCLUDE_armv6=		SSE
+OPTIONS_EXCLUDE_armv7=		SSE
+OPTIONS_SUB=			yes
 
 CEC_DESC=	CEC adapter support
 GBM_DESC=	GBM support (requires a kernel with evdev support)
@@ -180,10 +181,14 @@ post-patch:
 # (see CMAKE_ARGS).
 	@${REINPLACE_CMD} 's@KODI_DEPENDSBUILD@true@' \
 		${WRKSRC}/cmake/modules/FindLibDvd.cmake
-# Make sure freebsd.xml is in sync with linux.xml since the
-# upstream devs do not sync them
-	@${CP} ${WRKSRC}/system/settings/linux.xml \
-		${WRKSRC}/system/settings/freebsd.xml
+# Abort build if freebsd.xml and linux.xml differ again.  The
+# upstream devs forget to sync them.  When that happens it might
+# be time to file a PR again.
+	@cd ${WRKSRC}/system/settings && \
+		if ! /usr/bin/cmp -s freebsd.xml linux.xml; then \
+			${ECHO_MSG} "=> freebsd.xml out of sync with linux.xml again"; \
+			${FALSE}; \
+		fi
 # Make sure Kodi can find keyboard layouts from xkeyboard-config
 	@${REINPLACE_CMD} 's,/usr/share/X11/xkb/rules/,${LOCALBASE}/share/X11/xkb/rules/,g' \
 		${WRKSRC}/xbmc/platform/linux/input/LibInputSettings.cpp

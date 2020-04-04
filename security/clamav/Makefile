@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	clamav
-PORTVERSION=	0.101.4
+PORTVERSION=	0.102.2
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	https://www.clamav.net/downloads/production/
@@ -12,7 +12,8 @@ COMMENT=	Command line virus scanner written entirely in C
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libltdl.so:devel/libltdl \
+LIB_DEPENDS=	libmspack.so:archivers/libmspack \
+		libltdl.so:devel/libltdl \
 		libcurl.so:ftp/curl
 
 USES=		compiler cpe gmake gnome libtool ncurses pathfix pkgconfig ssl
@@ -30,13 +31,10 @@ PLIST_SUB+=	DBDIR=${DBDIR} \
 
 CONFIGURE_ARGS=	--libdir=${LOCALBASE}/lib \
 		--with-dbdir=${DBDIR} \
-		--disable-clamuko \
-		--disable-clamav \
 		--enable-bigstack \
-		--enable-readdir_r \
-		--enable-gethostbyname_r \
 		--disable-dependency-tracking \
-		--enable-clamdtop
+		--enable-clamdtop \
+		--with-system-libmspack=${LOCALBASE}/lib/libmspack.so
 
 CFLAGS_i386=	-march=i486
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -44,8 +42,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 # This port has a problem with -pthread,
 # force to use -lthr until it's not fixed.
 LDFLAGS+=	-lthr -L${LOCALBASE}/lib
-
-CONFLICTS?=	clamav-milter-[0-9]*
 
 SUB_FILES=	pkg-deinstall
 SUB_LIST+=	DBDIR=${DBDIR} \
@@ -62,23 +58,21 @@ SUB_LIST+=	DBDIR=${DBDIR} \
 PLIST_SUB+=	CLAMAVUSER=${CLAMAVUSER} \
 		CLAMAVGROUP=${CLAMAVGROUP}
 
-OPTIONS_DEFINE=	ARC ARJ LHA UNZOO UNRAR TESTS MILTER MSPACK LDAP ICONV STDERR \
-		EXPERIMENTAL DOCS IPV6 DMG_XAR JSON PCRE
+OPTIONS_DEFINE=	ARC ARJ DOCS DMG_XAR EXPERIMENTAL JSON LDAP ICONV IPV6 \
+		LHA MILTER PCRE STDERR TESTS UNZOO UNRAR
 
-OPTIONS_DEFAULT=	ARC ARJ UNZOO UNRAR DMG_XAR \
-			JSON PCRE MSPACK
+OPTIONS_DEFAULT=	ARC ARJ DMG_XAR JSON MILTER PCRE UNZOO UNRAR
 OPTIONS_SUB=	yes
 
 ARC_DESC=		Enable arch archives support
 ARJ_DESC=		Enable arj archives support
-LHA_DESC=		Enable lha archives support
-UNZOO_DESC=		Enable zoo archives support
-TESTS_DESC=		Run compile-time tests (req. python)
-MILTER_DESC=		Compile the milter interface
-MSPACK_DESC=		Get mspack support from ports (otherwise use bundled)
-STDERR_DESC=		Print logs to stderr instead of stdout
-EXPERIMENTAL_DESC=	Build experimental code
 DMG_XAR_DESC=		Enable DMG and XAR archives support
+EXPERIMENTAL_DESC=	Build experimental code
+LHA_DESC=		Enable lha archives support
+MILTER_DESC=		Compile the milter interface
+STDERR_DESC=		Print logs to stderr instead of stdout
+TESTS_DESC=		Run compile-time tests (req. python)
+UNZOO_DESC=		Enable zoo archives support
 
 ARC_RUN_DEPENDS=	arc:archivers/arc
 ARJ_RUN_DEPENDS=	arj:archivers/arj
@@ -99,8 +93,6 @@ MILTER_CONFIGURE_ENABLE=milter
 MILTER_LIB_DEPENDS+=	libmilter.so:mail/libmilter
 .endif
 MILTER_USE=		RC_SUBR=clamav-milter
-MSPACK_CONFIGURE_WITH=	system-libmspack=${LOCALBASE}/lib/libmspack.so
-MSPACK_LIB_DEPENDS=	libmspack.so:archivers/libmspack
 PCRE_CONFIGURE_WITH=	pcre
 PCRE_LIB_DEPENDS=	libpcre2-8.so:devel/pcre2
 STDERR_EXTRA_PATCHES=	${FILESDIR}/extra-patch-shared_output.c

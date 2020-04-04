@@ -1,6 +1,5 @@
 # $FreeBSD$
 
-PORTREVISION=	1
 PKGNAMESUFFIX=	-server
 CATEGORIES=	net x11-servers
 
@@ -15,11 +14,11 @@ LIB_DEPENDS=	libxshmfence.so:x11/libxshmfence
 RUN_DEPENDS+=	${LOCALBASE}/share/X11/xkb/rules/base:x11/xkeyboard-config \
 		xkbcomp:x11/xkbcomp
 
-USES+=		autoreconf:build gl jpeg libtool pkgconfig ssl
+USES+=		autoreconf:build gl jpeg libtool pkgconfig ssl xorg
 USE_LDCONFIG=	yes
 USE_GL+=	gl
-USE_XORG+=	ice pixman sm x11 xau xdamage xdmcp xext xfixes xfont xkbfile \
-		xorg-macros xorgproto xrandr xrender xtrans xtst
+USE_XORG+=	ice pixman sm x11 xau xdamage xdmcp xext xfixes xfont2 \
+		xkbfile xorg-macros xorgproto xrandr xrender xtrans xtst
 
 BINARY_WRAPPERS=	gm4
 
@@ -49,6 +48,8 @@ CONFIGURE_ARGS+=	\
 		--disable-selective-werror \
 		--disable-xwayland \
 		--with-fontrootdir=${LOCALBASE}/share/fonts
+
+CFLAGS+=	-I${LOCALBASE}/include/libdrm
 
 # This is server port, disabling some features
 # - disable vncviewer

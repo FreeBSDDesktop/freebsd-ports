@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	django-cacheops
-PORTVERSION=	4.1
+PORTVERSION=	4.2
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}dj22-
@@ -12,9 +12,11 @@ COMMENT=	Slick ORM cache with automatic granular event-driven invalidation
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+DEPRECATED=	Obsolete, please use www/py-django-cacheops instead
+
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django22>=1.8:www/py-django22@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}redis>=2.9.1:databases/py-redis@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}funcy>=1.8:devel/py-funcy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}funcy>=1.8<2.0:devel/py-funcy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>=1.4.0:devel/py-six@${PY_FLAVOR}
 
 USES=		python:3.5+

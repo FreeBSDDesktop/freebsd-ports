@@ -4,7 +4,7 @@
 # Remember to update www/py-django along with this port.
 
 PORTNAME=	django
-PORTVERSION=	1.11.25
+PORTVERSION=	1.11.29
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP \
 		https://www.djangoproject.com/m/releases/${PORTVERSION}/
@@ -19,6 +19,8 @@ COMMENT=	High-level Python Web Framework
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+DEPRECATED=	Django 1.11 is End-of-Life since April 2020. Switch to Django 2.2+ as soon as possible.
+
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR}
 
 NO_ARCH=	yes
@@ -27,7 +29,7 @@ USE_PYTHON=	autoplist distutils
 SHEBANG_FILES=	django/bin/django-admin.py \
 		django/conf/project_template/manage.py-tpl
 
-CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}django2[0-2]
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}django2[0-2] ${PYTHON_PKGNAMEPREFIX}django30
 CPE_VENDOR=		djangoproject
 
 DOCSDIR=	${PREFIX}/share/doc/py-django

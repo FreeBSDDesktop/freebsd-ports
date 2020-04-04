@@ -3,11 +3,18 @@
 
     COMMENT = Java language support
 
+    SUBDIR += apache-bcel
+    SUBDIR += apache-commons-beanutils
     SUBDIR += apache-commons-cli
+    SUBDIR += apache-commons-codec
     SUBDIR += apache-commons-collections
+    SUBDIR += apache-commons-dbcp
+    SUBDIR += apache-commons-discovery
+    SUBDIR += apache-commons-httpclient
     SUBDIR += apache-commons-lang
     SUBDIR += apache-commons-lang3
     SUBDIR += apache-commons-logging
+    SUBDIR += apache-commons-pool
     SUBDIR += apache-commons-primitives
     SUBDIR += aparapi
     SUBDIR += avis
@@ -41,15 +48,7 @@
     SUBDIR += intellij-ultimate
     SUBDIR += jad
     SUBDIR += jai
-    SUBDIR += jakarta-bcel
-    SUBDIR += jakarta-commons-beanutils
-    SUBDIR += jakarta-commons-codec
-    SUBDIR += jakarta-commons-dbcp
-    SUBDIR += jakarta-commons-discovery
-    SUBDIR += jakarta-commons-httpclient
-    SUBDIR += jakarta-commons-pool
     SUBDIR += jakarta-oro
-    SUBDIR += jakarta-regexp
     SUBDIR += jasmin
     SUBDIR += jattach
     SUBDIR += java-cup
@@ -66,11 +65,9 @@
     SUBDIR += jcommon
     SUBDIR += jd-gui
     SUBDIR += jdbcpool
-    SUBDIR += jdk10-doc
     SUBDIR += jdk11-doc
     SUBDIR += jdk12-doc
     SUBDIR += jdk8-doc
-    SUBDIR += jdk9-doc
     SUBDIR += jdom
     SUBDIR += jflex
     SUBDIR += jfreechart
@@ -102,6 +99,7 @@
     SUBDIR += openjdk11
     SUBDIR += openjdk12
     SUBDIR += openjdk13
+    SUBDIR += openjdk14
     SUBDIR += openjdk7
     SUBDIR += openjdk7-jre
     SUBDIR += openjdk8
@@ -127,6 +125,8 @@
     SUBDIR += wildfly14
     SUBDIR += wildfly15
     SUBDIR += wildfly16
+    SUBDIR += wildfly17
+    SUBDIR += wildfly18
     SUBDIR += wildfly90
     SUBDIR += xdoclet
 

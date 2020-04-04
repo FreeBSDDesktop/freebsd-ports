@@ -1,6 +1,6 @@
---- ui/gfx/gpu_memory_buffer.h.orig	2019-06-04 18:55:50 UTC
+--- ui/gfx/gpu_memory_buffer.h.orig	2020-03-03 18:54:06 UTC
 +++ ui/gfx/gpu_memory_buffer.h
-@@ -16,7 +16,7 @@
+@@ -15,7 +15,7 @@
  #include "ui/gfx/geometry/rect.h"
  #include "ui/gfx/gfx_export.h"
  
