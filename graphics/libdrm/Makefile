@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	libdrm
-PORTVERSION=	2.4.99
+PORTVERSION=	2.4.101
 PORTEPOCH=	1
 CATEGORIES=	graphics x11
-MASTER_SITES=	https://dri.freedesktop.org/libdrm/
 
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Userspace interface to kernel Direct Rendering Module services
@@ -15,7 +14,12 @@ LICENSE=	MIT
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pthread-stubs.pc:devel/libpthread-stubs
 LIB_DEPENDS=	libpciaccess.so:devel/libpciaccess
 
-USES=		gnome meson pkgconfig tar:bzip2
+USES=		gnome meson pkgconfig
+USE_GITLAB=	yes
+GL_SITE=	https://gitlab.freedesktop.org
+GL_ACCOUNT=	mesa
+GL_PROJECT=	drm
+GL_COMMIT=	cf1afec0173daed2160d74a5528e5dcd6ed61199
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	MANPAGES TESTS
@@ -63,12 +67,6 @@ PLIST_SUB+=	ARM_DRIVERS="@comment "
 PLIST_SUB+=	INTEL_DRIVER="@comment "
 PLIST_SUB+=	NOUVEAU_DRIVER="@comment "
 PLIST_SUB+=	RADEON_DRIVERS="@comment "
-.endif
-
-# This variable is not for users. So use a non-default name, intended for
-# people working on DRM kernel module development.
-.if ${OPSYS} == FreeBSD && !defined(LIBDRM_SKIP_RETURN_PATCH)
-EXTRA_PATCHES+=	${FILESDIR}/extra-xf86drm.c
 .endif
 
 .include <bsd.port.mk>
