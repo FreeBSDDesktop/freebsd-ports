@@ -300,7 +300,6 @@
     SUBDIR += it-hyphen
     SUBDIR += it-mythes
     SUBDIR += itstool
-    SUBDIR += itstool22
     SUBDIR += jade
     SUBDIR += jalingo
     SUBDIR += jarnal
@@ -415,7 +414,6 @@
     SUBDIR += ltxml
     SUBDIR += lua-lyaml
     SUBDIR += luaexpat
-    SUBDIR += luaexpat-51
     SUBDIR += lucene
     SUBDIR += lucene4
     SUBDIR += lucene5
@@ -1278,6 +1276,7 @@
     SUBDIR += py-hypua2jamo
     SUBDIR += py-isbnlib
     SUBDIR += py-isbntools
+    SUBDIR += py-jinja2-cli
     SUBDIR += py-jsonslicer
     SUBDIR += py-jsx-lexer
     SUBDIR += py-jtextfsm
@@ -1597,6 +1596,7 @@
     SUBDIR += rubygem-regexp_property_values
     SUBDIR += rubygem-representable
     SUBDIR += rubygem-reverse_markdown
+    SUBDIR += rubygem-rexml
     SUBDIR += rubygem-ri_cal
     SUBDIR += rubygem-rich
     SUBDIR += rubygem-rly
@@ -1605,6 +1605,7 @@
     SUBDIR += rubygem-rouge
     SUBDIR += rubygem-rouge2
     SUBDIR += rubygem-rouge312
+    SUBDIR += rubygem-rouge317
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-ruby-augeas
     SUBDIR += rubygem-ruby-xslt
@@ -1763,6 +1764,7 @@
     SUBDIR += tr-aspell
     SUBDIR += trang
     SUBDIR += translate-toolkit
+    SUBDIR += trdsql
     SUBDIR += ts-hunspell
     SUBDIR += tth
     SUBDIR += tttcmds

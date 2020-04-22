@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	erkale
-DISTVERSION=	g20200110
-PORTREVISION=	2
+DISTVERSION=	g20200416
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -26,10 +25,10 @@ FLAVORS=	serial parallel
 FLAVOR?=	${FLAVORS:[1]}
 serial_PKGNAMESUFFIX=	-serial
 
-USES=		cmake:noninja fortran pkgconfig
+USES=		cmake:noninja compiler:c11 fortran pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	susilehtola
-GH_TAGNAME=	0d0c895b0d9bcbcb523e7d7c3a11f590d18827d2
+GH_TAGNAME=	d2058856f8e762d904743900b580c73ea67a6f97
 USE_LDCONFIG=	yes
 
 TEST_TARGET=	test
@@ -55,6 +54,7 @@ NETLIB_USES=		blaslapack:netlib
 NETLIB_CMAKE_ON=	-DLAPACK_LIBRARIES:STRING=-llapack -DBLAS_LIBRARIES:STRING=-lblas
 NETLIB_LDFLAGS=		${LOCALBASE}/lib/libcblas.so ${LOCALBASE}/lib/liblapack.so ${LOCALBASE}/lib/libblas.so
 NETLIB_LIB_DEPENDS=	libcblas.so:math/cblas
+NETLIB_BROKEN=		choosing NETLIB causes a conflict: openblas-0.3.7_3,1 conflicts with cblas-1.0_12 on /usr/local/include/cblas.h
 
 OPENBLAS_USES=		blaslapack:openblas
 OPENBLAS_CMAKE_ON=	-DLAPACK_LIBRARIES:STRING=-lopenblas -DBLAS_LIBRARIES:STRING=-lopenblas

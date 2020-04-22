@@ -149,6 +149,7 @@
     SUBDIR += erlang-xmlrpc
     SUBDIR += eternalterminal
     SUBDIR += etrace
+    SUBDIR += evans
     SUBDIR += eventviews
     SUBDIR += exabgp
     SUBDIR += exabgp4
@@ -241,6 +242,7 @@
     SUBDIR += haproxy18
     SUBDIR += haproxy19
     SUBDIR += haproxy21
+    SUBDIR += hblock
     SUBDIR += hexinject
     SUBDIR += hinfo
     SUBDIR += hlmaster
@@ -282,6 +284,7 @@
     SUBDIR += ipsvd
     SUBDIR += ipxe
     SUBDIR += irrd
+    SUBDIR += irrd-legacy
     SUBDIR += isboot-kmod
     SUBDIR += isc-dhcp44-client
     SUBDIR += isc-dhcp44-relay
@@ -296,6 +299,7 @@
     SUBDIR += jsch
     SUBDIR += jumpgate
     SUBDIR += jwhois
+    SUBDIR += k6
     SUBDIR += kafka
     SUBDIR += kafkacat
     SUBDIR += kalarmcal
@@ -408,6 +412,7 @@
     SUBDIR += libtrace
     SUBDIR += libunp
     SUBDIR += libusipp
+    SUBDIR += libusrsctp
     SUBDIR += libutp
     SUBDIR += libvncserver
     SUBDIR += libwebsockets
@@ -426,10 +431,7 @@
     SUBDIR += lla
     SUBDIR += ltm
     SUBDIR += lualdap
-    SUBDIR += lualdap-51
     SUBDIR += luasocket
-    SUBDIR += luasocket-51
-    SUBDIR += luasocket-53
     SUBDIR += lvwimax
     SUBDIR += mDNSResponder
     SUBDIR += macchanger
@@ -551,7 +553,6 @@
     SUBDIR += openldap24-server
     SUBDIR += openmdns
     SUBDIR += openmpi
-    SUBDIR += openmpi2
     SUBDIR += openmpi3
     SUBDIR += openntpd
     SUBDIR += opennx
@@ -989,7 +990,6 @@
     SUBDIR += pimdd
     SUBDIR += pipsecd
     SUBDIR += pjsip
-    SUBDIR += pjsip-extsrtp
     SUBDIR += pkt-gen
     SUBDIR += pktanon
     SUBDIR += pload
@@ -1075,6 +1075,7 @@
     SUBDIR += py-port-for
     SUBDIR += py-portend
     SUBDIR += py-pyenet
+    SUBDIR += py-pyfixbuf
     SUBDIR += py-pygeoip
     SUBDIR += py-pyicap
     SUBDIR += py-pynamecheap
@@ -1354,6 +1355,7 @@
     SUBDIR += ryu
     SUBDIR += s3ql
     SUBDIR += samba410
+    SUBDIR += samba411
     SUBDIR += samplicator
     SUBDIR += savvycan
     SUBDIR += sbd
@@ -1504,6 +1506,7 @@
     SUBDIR += uriparser
     SUBDIR += urlendec
     SUBDIR += usbredir
+    SUBDIR += usockets
     SUBDIR += utftpd
     SUBDIR += v2ray
     SUBDIR += vblade

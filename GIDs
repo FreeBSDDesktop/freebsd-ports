@@ -191,22 +191,22 @@ fcron:*:247:
 signal-cli:*:248:
 sonarqube:*:249:
 sems:*:250:
-# free: 251
-# free: 252
+irrd:*:251:
+gonic:*:252:
 _adsuck:*:253:
 imds:*:254:
 _i2pd:*:255:
 _tor:*:256:
 _smtpd:*:257:
 _smtpq:*:258:
-# free: 259
+spiped:*:259:
 meta1s:*:260:
 meta1q:*:261:
 meta1c:*:262:meta1s
 meta1m:*:263:meta1s,meta1q
 meta1:*:264:
-# free: 265
-# free: 266
+sshout:*:265:
+step:*:266:
 # free: 267
 # free: 268
 # free: 269
@@ -917,7 +917,7 @@ boinc:*:973:
 radicale:*:974:
 unifi:*:975:
 minetest:*:976:
-# free: 977
+tests:*:977:
 _dnscrypt-proxy:*:978:
 ums:*:979:
 hbase:*:980:

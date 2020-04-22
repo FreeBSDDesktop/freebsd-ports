@@ -60,6 +60,7 @@
     SUBDIR += bruteforceblocker
     SUBDIR += bsdsfv
     SUBDIR += bsmtrace
+    SUBDIR += bsmtrace3
     SUBDIR += bugs
     SUBDIR += bzrtp
     SUBDIR += ca_root_nss
@@ -334,7 +335,6 @@
     SUBDIR += logcheck
     SUBDIR += lua-bcrypt
     SUBDIR += luasec
-    SUBDIR += luasec-51
     SUBDIR += lxqt-openssh-askpass
     SUBDIR += lxqt-sudo
     SUBDIR += lynis
@@ -1218,6 +1218,8 @@
     SUBDIR += sst
     SUBDIR += starttls
     SUBDIR += steghide
+    SUBDIR += step-certificates
+    SUBDIR += step-cli
     SUBDIR += stoken
     SUBDIR += strobe
     SUBDIR += strongswan
@@ -1229,10 +1231,10 @@
     SUBDIR += sudoscript
     SUBDIR += super
     SUBDIR += suricata
-    SUBDIR += suricata5
     SUBDIR += swatchdog
     SUBDIR += switzerland
     SUBDIR += symbion-sslproxy
+    SUBDIR += tailscale
     SUBDIR += tclsasl
     SUBDIR += tcpcrypt
     SUBDIR += teleport

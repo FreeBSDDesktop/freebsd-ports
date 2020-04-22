@@ -3,7 +3,7 @@
 
 PORTNAME=	opencascade
 PORTVERSION=	7.4.0
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	cad science
 MASTER_SITES=	LOCAL/thierry
 
@@ -122,6 +122,7 @@ post-install:
 	${MV} ${STAGEDIR}${OCCROOT}/bin/DRAWEXE-${PORTVERSION} ${STAGEDIR}${PREFIX}/bin/DRAWEXE
 	(cd ${STAGEDIR}${PREFIX}/bin &&							\
 	${LN} -sf DRAWEXE ${STAGEDIR}${OCCROOT}/bin/DRAWEXE)
+
 post-install-DOXYGEN-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKSRC}/doc/overview && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})

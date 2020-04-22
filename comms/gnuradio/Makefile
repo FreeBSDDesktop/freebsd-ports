@@ -2,7 +2,7 @@
 
 PORTNAME=	gnuradio
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.8.1.0-rc1
+DISTVERSION=	3.8.1.0
 CATEGORIES=	comms astro hamradio
 
 MAINTAINER=	hamradio@FreeBSD.org
@@ -48,8 +48,9 @@ LIB_DEPENDS=	libcodec2.so:audio/codec2 \
 		libzmq.so:net/libzmq4
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-USES=		cmake desktop-file-utils fortran gnome iconv \
-		perl5 pkgconfig pyqt:5 python:3.5+ qt:5 shared-mime-info shebangfix
+USES=		cmake compiler:c++11-lang desktop-file-utils fortran gnome \
+		iconv perl5 pkgconfig pyqt:5 python:3.5+ qt:5 shared-mime-info \
+		shebangfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	gnuradio

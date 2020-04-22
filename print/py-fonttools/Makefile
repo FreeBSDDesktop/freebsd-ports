@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	fonttools
-PORTVERSION=	4.7.0
+PORTVERSION=	4.8.0
 CATEGORIES=	print python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,6 +12,8 @@ COMMENT=	Open source library for manipulating fonts, written in Python
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ufolib2>=0:print/py-ufolib2@${PY_FLAVOR}
 
 USES=		python:3.6+ zip
 USE_PYTHON=	autoplist distutils

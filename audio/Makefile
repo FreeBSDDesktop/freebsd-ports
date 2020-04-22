@@ -53,15 +53,19 @@
     SUBDIR += baresip
     SUBDIR += baudline
     SUBDIR += bcg729
+    SUBDIR += bchoppr-lv2
     SUBDIR += beatslash-lv2
     SUBDIR += beep
     SUBDIR += beets
+    SUBDIR += bharvestr-lv2
+    SUBDIR += bjumblr-lv2
     SUBDIR += blop
     SUBDIR += blop-lv2
     SUBDIR += bristol
     SUBDIR += bs2b-lv2
     SUBDIR += bsequencer-lv2
     SUBDIR += bshapr-lv2
+    SUBDIR += bslizr-lv2
     SUBDIR += cadence
     SUBDIR += calf-lv2
     SUBDIR += cam
@@ -81,6 +85,7 @@
     SUBDIR += chordpack
     SUBDIR += chromaprint
     SUBDIR += clementine-player
+    SUBDIR += cli-visualizer
     SUBDIR += clunk
     SUBDIR += cmp3
     SUBDIR += cmt
@@ -184,6 +189,7 @@
     SUBDIR += fluidsynth
     SUBDIR += fluidsynth-dssi
     SUBDIR += fmit
+    SUBDIR += fogpad-lv2
     SUBDIR += fomp-lv2
     SUBDIR += foo-yc20
     SUBDIR += forked-daapd
@@ -232,6 +238,7 @@
     SUBDIR += gnustep-cdplayer
     SUBDIR += goattracker
     SUBDIR += gogglesmm
+    SUBDIR += gonic
     SUBDIR += goobox
     SUBDIR += gqradio
     SUBDIR += gradio
@@ -336,6 +343,7 @@
     SUBDIR += id3v2
     SUBDIR += ifp-line
     SUBDIR += infamous-plugins-lv2
+    SUBDIR += intersect-lv2
     SUBDIR += invada-studio-plugins-lv2
     SUBDIR += ir-lv2
     SUBDIR += jack
@@ -450,6 +458,7 @@
     SUBDIR += linux-c7-sdl_mixer
     SUBDIR += linux-laudio
     SUBDIR += linuxsampler
+    SUBDIR += liquidsfz
     SUBDIR += listener
     SUBDIR += lmms
     SUBDIR += logitechmediaserver
@@ -460,11 +469,12 @@
     SUBDIR += lollypop
     SUBDIR += lpac
     SUBDIR += lsp-plugins-lv2
-    SUBDIR += lua51-mpd
+    SUBDIR += lua-mpd
     SUBDIR += luppp
     SUBDIR += lv2
     SUBDIR += lv2file
     SUBDIR += lv2lint
+    SUBDIR += lv2proc
     SUBDIR += lvtk
     SUBDIR += lxmusic
     SUBDIR += mac
@@ -613,6 +623,7 @@
     SUBDIR += pear-Text_Spell_Audio
     SUBDIR += penguinsap
     SUBDIR += pianobar
+    SUBDIR += pianobooster
     SUBDIR += pianod2
     SUBDIR += picard
     SUBDIR += picard-plugins
@@ -715,6 +726,7 @@
     SUBDIR += sdl2_mixer
     SUBDIR += sdl_mixer
     SUBDIR += sdl_sound
+    SUBDIR += sfizz
     SUBDIR += sfront
     SUBDIR += shairplay
     SUBDIR += shairport-sync
@@ -741,6 +753,7 @@
     SUBDIR += soundtouch
     SUBDIR += sox
     SUBDIR += spc2it
+    SUBDIR += spectacle-lv2
     SUBDIR += spectrogram
     SUBDIR += speech-denoiser-lv2
     SUBDIR += speex
@@ -767,6 +780,7 @@
     SUBDIR += stymulator
     SUBDIR += suil
     SUBDIR += supercollider
+    SUBDIR += surge-synthesizer-lv2
     SUBDIR += sweep
     SUBDIR += swh-lv2
     SUBDIR += swhplugins
