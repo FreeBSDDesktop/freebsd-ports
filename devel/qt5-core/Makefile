@@ -35,7 +35,7 @@ QT_BINARIES=	yes
 QT_DEFINES=	GLIB
 QT_CONFIG=	glib icu
 
-MORE_WRKSRCS=	src/tools/bootstrap src/tools/qfloat16-tables src/corelib src/tools/qlalr
+MORE_WRKSRCS=	src/tools/bootstrap src/corelib src/tools/qlalr
 
 .include <bsd.port.pre.mk>
 # FreeBSD base gained /etc/os-release in r354922, which

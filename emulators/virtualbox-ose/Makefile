@@ -3,7 +3,7 @@
 
 PORTNAME=	virtualbox-ose
 PORTVERSION=	5.2.34
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.oracle.com/virtualbox/${PORTVERSION}/
 DISTFILES=	VirtualBox-${PORTVERSION}${EXTRACT_SUFX} ${GUESTADDITIONS}
@@ -30,13 +30,8 @@ CPE_PRODUCT=	vm_virtualbox
 
 WRKSRC=		${WRKDIR}/VirtualBox-${PORTVERSION}
 ONLY_FOR_ARCHS=	i386 amd64
-USES=		cpe gnome iconv pkgconfig ssl tar:bzip2
+USES=		compiler:c++14-lang cpe gnome iconv pkgconfig ssl tar:bzip2
 USE_GNOME=	libidl libxml2
-# machine/atomic.h may use features that are only available in GCC9.  This is
-# a workaround, anyways- we should be expressing USES= compiler:c++14-lang, but
-# contemporary clang miscompiles virtualbox in some fashion and yields runtime
-# breakage.
-USE_GCC=	any
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-java --passive-mesa
@@ -241,7 +236,9 @@ post-patch:
 	    ${WRKSRC}/LocalConfig.kmk
 	@${ECHO_CMD} 'VBOX_PATH_SHARED_LIBS = ${VBOX_DIR}' >> \
 	    ${WRKSRC}/LocalConfig.kmk
-	@${ECHO_CMD} 'VBOX_WITH_RUNPATH = ${VBOX_DIR}' >> \
+	# Please keep this even if using Clang to avoid repeated regressions.
+	# PR 245048
+	@${ECHO_CMD} "VBOX_WITH_RUNPATH = ${_GCC_RUNTIME:D${_GCC_RUNTIME}\:}${VBOX_DIR}" >> \
 	    ${WRKSRC}/LocalConfig.kmk
 	@${ECHO_CMD} 'VBOX_PATH_APP_PRIVATE = ${DATADIR}' >> \
 	    ${WRKSRC}/LocalConfig.kmk

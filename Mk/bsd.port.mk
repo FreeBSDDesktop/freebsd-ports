@@ -803,7 +803,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # MAKE_JOBS_NUMBER_LIMIT
 #				- Set a limit for maximum number of make jobs allowed to be
 #				  used.
-## cacche
+## ccache
 #
 # WITH_CCACHE_BUILD
 # 				- Enable CCACHE support (devel/ccache).  User settable.
@@ -1363,6 +1363,9 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .if defined(USE_LOCAL_MK)
 .include "${PORTSDIR}/Mk/bsd.local.mk"
 .endif
+.for odir in ${OVERLAYS}
+.sinclude "${odir}/Mk/bsd.overlay.mk"
+.endfor
 
 .if defined(USE_XORG) && (!defined(USES) || !${USES:Mxorg})
 DEV_WARNING+=		"Using USE_XORG alone is deprecated, please use USES=xorg"
@@ -1491,9 +1494,9 @@ DEV_ERROR+=		"FLAVORS contains flavors that are not all [a-z0-9_]: ${_BAD_FLAVOR
 
 .if !empty(FLAVOR)
 .  if empty(FLAVORS)
-IGNORE=	FLAVOR is defined (to ${FLAVOR}) while this port does not have FLAVORS.
+IGNORE=	FLAVOR is defined (to ${FLAVOR}) while this port does not have FLAVORS
 .  elif ! ${FLAVORS:M${FLAVOR}}
-IGNORE=	Unknown flavor '${FLAVOR}', possible flavors: ${FLAVORS}.
+IGNORE=	Unknown flavor '${FLAVOR}', possible flavors: ${FLAVORS}
 .  endif
 .endif
 
@@ -1946,6 +1949,9 @@ _FORCE_POST_PATTERNS=	rmdir kldxref mkfontscale mkfontdir fc-cache \
 .if defined(USE_LOCAL_MK)
 .include "${PORTSDIR}/Mk/bsd.local.mk"
 .endif
+.for odir in ${OVERLAYS}
+.sinclude "${odir}/Mk/bsd.overlay.mk"
+.endfor
 
 .if defined(USE_XORG) && (!defined(USES) || ( defined(USES) && !${USES:Mxorg} ))
 DEV_WARNING+=	"Using USE_XORG alone is deprecated, please use USES=xorg"
@@ -4334,9 +4340,8 @@ missing-packages:
 # Install missing dependencies from package
 install-missing-packages:
 	@_dirs=$$(${MISSING-DEPENDS-LIST}); \
-	if [ -n "$${_dirs}" ]; then \
-		${SU_CMD} "${PKG_BIN} install -A $$(${ECHO_CMD} "$${_dirs}" | ${SED} "s%${PORTSDIR}/%%g")"; \
-	fi
+	${ECHO_CMD} "$${_dirs}" | ${SED} "s%${PORTSDIR}/%%g" | \
+		${SU_CMD} "${XARGS} -o ${PKG_BIN} install -A"
 
 ################################################################
 # Everything after here are internal targets and really

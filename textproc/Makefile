@@ -300,7 +300,6 @@
     SUBDIR += it-hyphen
     SUBDIR += it-mythes
     SUBDIR += itstool
-    SUBDIR += itstool22
     SUBDIR += jade
     SUBDIR += jalingo
     SUBDIR += jarnal
@@ -415,7 +414,6 @@
     SUBDIR += ltxml
     SUBDIR += lua-lyaml
     SUBDIR += luaexpat
-    SUBDIR += luaexpat-51
     SUBDIR += lucene
     SUBDIR += lucene4
     SUBDIR += lucene5
@@ -480,7 +478,6 @@
     SUBDIR += p5-Algorithm-RabinKarp
     SUBDIR += p5-Apache-ParseLog
     SUBDIR += p5-Apache-Solr
-    SUBDIR += p5-Template-AutoFilter
     SUBDIR += p5-BibTeX-Parser
     SUBDIR += p5-BigIP-ParseConfig
     SUBDIR += p5-Bloom-Filter
@@ -779,6 +776,7 @@
     SUBDIR += p5-TOML-Parser
     SUBDIR += p5-TeX-Encode
     SUBDIR += p5-TeX-Hyphen
+    SUBDIR += p5-Template-AutoFilter
     SUBDIR += p5-Template-Declare
     SUBDIR += p5-Template-Extract
     SUBDIR += p5-Template-Magic
@@ -1278,6 +1276,8 @@
     SUBDIR += py-hypua2jamo
     SUBDIR += py-isbnlib
     SUBDIR += py-isbntools
+    SUBDIR += py-iso-639
+    SUBDIR += py-jinja2-cli
     SUBDIR += py-jsonslicer
     SUBDIR += py-jsx-lexer
     SUBDIR += py-jtextfsm
@@ -1324,6 +1324,7 @@
     SUBDIR += py-pyPEG2
     SUBDIR += py-pyahocorasick
     SUBDIR += py-pyaml
+    SUBDIR += py-pycountry
     SUBDIR += py-pyes
     SUBDIR += py-pygccxml
     SUBDIR += py-pygments
@@ -1597,6 +1598,7 @@
     SUBDIR += rubygem-regexp_property_values
     SUBDIR += rubygem-representable
     SUBDIR += rubygem-reverse_markdown
+    SUBDIR += rubygem-rexml
     SUBDIR += rubygem-ri_cal
     SUBDIR += rubygem-rich
     SUBDIR += rubygem-rly
@@ -1605,6 +1607,7 @@
     SUBDIR += rubygem-rouge
     SUBDIR += rubygem-rouge2
     SUBDIR += rubygem-rouge312
+    SUBDIR += rubygem-rouge317
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-ruby-augeas
     SUBDIR += rubygem-ruby-xslt
@@ -1763,6 +1766,7 @@
     SUBDIR += tr-aspell
     SUBDIR += trang
     SUBDIR += translate-toolkit
+    SUBDIR += trdsql
     SUBDIR += ts-hunspell
     SUBDIR += tth
     SUBDIR += tttcmds

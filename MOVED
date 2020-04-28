@@ -4634,7 +4634,6 @@ net/kphone||2013-07-26|Has expired: Depends on Qt 3.x
 net/krdesktop||2013-07-26|Has expired: Depends on Qt 3.x
 net/lanbrowsing||2013-07-26|Has expired: Depends on Qt 3.x
 net/pppload||2013-07-26|Has expired: Depends on Qt 3.x
-net/smb4k||2013-07-26|Has expired: Depends on Qt 3.x
 net/twinkle||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/eva||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/kmerlin||2013-07-26|Has expired: Depends on Qt 3.x
@@ -5851,7 +5850,6 @@ editors/axe||2014-04-11|Has expired: Unmaintained since 2000
 www/cgic||2014-04-11|Has expired: Unmaintained since 2000
 devel/orbitcpp||2014-04-11|Unused anymore, not libc++ friendly
 graphics/sodipodi|graphics/inkscape|2014-04-11|Sodipodi did not survive the Inkscape fork
-devel/g-wrap||2014-04-11|Unused, not stage friendly
 net/pvm++||2014-04-13|Has expired: Unmaintained since 2001
 devel/ixlib||2014-04-13|Has expired: Unmaintained since 2001
 mail/althea||2014-04-13|Has expired: Unmaintained since 2001
@@ -7499,7 +7497,6 @@ deskutils/ontv||2015-06-10|Has expired: Broken since update to gnome3
 deskutils/timer-applet||2015-06-10|Has expired: Broken since update to gnome3
 editors/scribes||2015-06-10|Has expired: Broken since update to gnome3
 games/gweled||2015-06-10|Has expired: Broken since update to gnome3
-games/py-pychess||2015-06-10|Has expired: Broken since update to gnome3
 graphics/gqview||2015-06-10|Has expired: Unmaintained upstream, preferences dialog broken, use graphics/geeqie fork
 lang/gcc47-aux||2015-06-10|Has expired: GCC 4.7 branch closed June 2014, move to lang/gcc-aux
 multimedia/arista||2015-06-10|Has expired: Broken since update to gnome3
@@ -9129,7 +9126,6 @@ security/py-crits||2017-04-19|Has expired: Does not build with py-django18 see p
 www/py-cactus||2017-04-19|Removed, depends on expired Django version
 devel/py-django16-tastypie-mongoengine|devel/py-django-tastypie-mongoengine|2017-04-19|Removed, uses expired Django version
 devel/freeocl|lang/pocl|2017-04-19|Has expired: Unfetchable for more than six months (google code has gone away); use lang/pocl instead
-net/librsync|net/librsync2|2017-04-28|Unmaintained, CVE-2014-8242, use net/librsync2 instead
 devel/stormlib-ghost++||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 devel/py-coil||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 devel/py-cmdln||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
@@ -9769,7 +9765,6 @@ audio/hydrogen-devel|audio/hydrogen|2018-01-17|Out of date: use audio/hydrogen f
 graphics/py-rabbyt||2018-01-19|Has expired: Development ceased, no longer used in the ports
 deskutils/py-spice-gtk|deskutils/spice-gtk|2018-01-20|Old style Python bindings dropped, no difference from the master port
 lang/py-clojure|lang/py-clojure_py|2018-01-26|Rename to match PyPI naming
-www/tomcat-devel|www/tomcat9|2018-01-26|Apache Tomcat 9.0.4 is the first stable release of the 9.0.x series
 devel/rubygem-toml|textproc/rubygem-toml|2018-01-27|Move to a better category
 emulators/raine||2018-01-28|Has expired: Broken for more than 6 months
 mail/libmapi||2018-01-28|Has expired: Broken for more than 6 months
@@ -10060,6 +10055,7 @@ textproc/elasticsearch-plugin-migration||2018-04-09|ElasticSearch 1.x End of Lif
 textproc/elasticsearch-plugin-sql||2018-04-09|ElasticSearch 1.x End of Life
 textproc/elasticsearch-river-rabbitmq||2018-04-09|ElasticSearch 1.x End of Life
 devel/libkgapi|devel/libkgapi-kde4|2018-04-11|Make room for KDE updates
+devel/py-boto3|www/py-boto3|2018-04-12|Remove duplicate port (see r467174)
 finance/libalkimia|finance/alkimia-qt4|2018-04-13|Project renamed
 security/py-zxcvbn-python|security/py-zxcvbn|2018-04-13|Renamed upstream
 devel/py-libusb115|devel/py-libusb1|2018-04-14|Unused and unmaintained upstream
@@ -10542,7 +10538,6 @@ devel/rubygem-sidekiq-limit_fetch||2018-11-01|Obsolete by www/gitlab-ce 11.4.x u
 textproc/rubygem-github-markup16|textproc/rubygem-github-markup|2018-11-01|Obsolete by www/gitlab-ce 11.4.x upgrade, please use textproc/rubygem-github-markup
 www/rubygem-dropzonejs-rails07|www/rubygem-dropzonejs-rails|2018-11-01|Obsolete by www/gitlab-ce 11.4.x upgrade, please use www/rubygem-dropzonejs-rails
 audio/icecast2|audio/icecast|2018-11-03|Use upstream naming
-security/openssl-devel|security/openssl111|2018-11-04|Use security/openssl111 instead
 irc/netwalker-ircc||2018-11-04|Has expired: Upstream gone, very old code base, use modern irc client instead
 x11-toolkits/qt5-quick|x11-toolkits/qt5-declarative|2018-11-04|Remove unnecessary split
 lang/qt5-qml|x11-toolkits/qt5-declarative|2018-11-04|Remove unnecessary split
@@ -11788,7 +11783,6 @@ games/jag||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/kardsgt||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/kcheckers||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/openpref||2019-03-16|Has expired: Qt4 has been EOL since december 2015
-games/pokerth||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/qgo||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/qtads||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/quackle||2019-03-16|Has expired: Qt4 has been EOL since december 2015
@@ -13085,7 +13079,6 @@ audio/maplay||2019-10-16|Has expired: Unfetchable, unmaintained
 audio/mbox||2019-10-16|Has expired: Unfetchable, unmaintained
 audio/nuvolaplayer||2019-10-16|Has expired: Unfetchable, unmaintained
 audio/vagalume||2019-10-16|Has expired: Unfetchable, unmaintained
-audio/wmsmixer||2019-10-16|Has expired: Unfetchable, unmaintained
 audio/xmms2-scrobbler||2019-10-16|Has expired: Unfetchable, unmaintained
 benchmarks/filebench||2019-10-16|Has expired: Unfetchable, unmaintained
 biology/chemeq||2019-10-16|Has expired: Unfetchable, unmaintained
@@ -14419,7 +14412,6 @@ graphics/driconf||2020-03-01|Has expired: Old, uses EOLed python27
 graphics/gimp-help||2020-03-01|Has expired: Broken
 graphics/nathive||2020-03-01|Has expired: Old, uses EOLed python27
 graphics/py-goocanvas||2020-03-01|Has expired: Old, uses EOLed python27
-graphics/py-mcomix||2020-03-01|Has expired: Old, uses EOLed python27
 graphics/uniconvw||2020-03-01|Has expired: Old, uses EOLed python27
 japanese/gimp-help||2020-03-01|Has expired: Broken
 java/jakarta-regexp||2020-03-01|Has expired: EOL: As of 2011-04-17, the Regexp project is retired
@@ -14444,7 +14436,6 @@ russian/gimp-help||2020-03-01|Has expired: Broken
 security/hotssh||2020-03-01|Has expired: Old, uses EOLed python27
 security/zenmap||2020-03-01|Has expired: Old, uses EOLed python27
 x11/py-xdot06|x11/py-xdot|2020-03-01|Has expired: Old, uses EOLed python27
-x11/terminator||2020-03-01|Has expired: Old, uses EOLed python27
 x11-fm/sunflower||2020-03-01|Has expired: Old, uses EOLed python27
 x11-toolkits/hippo-canvas||2020-03-01|Has expired: Old, uses EOLed python27
 x11-toolkits/py-kiwi-gtk||2020-03-01|Has expired: Old, uses EOLed python27
@@ -14501,9 +14492,61 @@ x11/rxvt|x11/rxvt-unicode|2020-03-20|Has expired: Abandonware: stable release 2.
 x11-wm/clementine-wm||2020-03-20|Removed, unmaintained and depends on expired x11/rxvt
 net/kdsoap|www/kdsoap|2020-03-21|Already existed in the tree
 security/openssh-portable@x509||2020-03-23|Has expired: X509 long broken without known users
-devel/py-antlr4-python2-runtime|devel/antlr4-python3-runtime|2020-03-25|Has expired: Uses EoL python27, please use devel/antlr4-python3-runtime instead
+devel/py-antlr4-python2-runtime|devel/py-antlr4-python3-runtime|2020-03-25|Has expired: Uses EoL python27, please use devel/antlr4-python3-runtime instead
 devel/sonarqube|devel/sonarqube-community|2020-03-26|Moved to make it clear that this is the community-edition
 devel/sonar-ant-task|devel/sonarqube-ant-task|2020-03-26|Moved due to name change upstream
 devel/rubygem-slack-notifier1|devel/rubygem-slack-notifier|2020-03-30|Obsolete, please use devel/rubygem-slack-notifier instead
 textproc/rubygem-diffy31|textproc/rubygem-diffy|2020-03-30|Obsolete, please use textproc/rubygem-diffy instead
 sysutils/py-crontab|sysutils/py-python-crontab|2020-03-31|Match canonical/registered (PyPI/CHEESESHOP) name
+security/w3af||2020-03-31|Has expired: Uses deprecated version of Python
+sysutils/duplicity-devel|sysutils/duplicity|2020-03-31|Has expired: Obsolete now, use sysutils/duplicity instead
+net-mgmt/tornova||2020-03-31|Has expired: Use EOL'd Python 2.7
+audio/py-ogg||2020-03-31|Has expired: Unmaintained, uses EOLed python27
+net-mgmt/onionlauncher||2020-03-31|Has expired: Use EOL'd Python 2.7
+databases/mongodb34|databases/mongodb36|2020-03-31|Has expired: EOL January 2020; See https://www.mongodb.com/support-policy
+graphics/sane-frontends||2020-03-31|Has expired: Unmaintained upstream, no consumers left
+lang/ruby24|lang/ruby26|2020-03-31|Has expired: Move to a new version (lang/ruby26 or above). Ruby 2.4 is in security maintenance phase and planned for EOL on March 31, 2020
+databases/pgpool|databases/pgpool-II-35|2020-03-31|Has expired: Reached EOL at 2019-10-31, please use pgpool-II-35 or higher
+net/pygopherd||2020-03-31|Has expired: Unmaintained, uses EOLed python27
+databases/mongodb34-tools|databases/mongodb36-tools|2020-03-31|Removed, part of expired MongoDB 3.4
+databases/py-pypuppetdb03|databases/py-pypuppetdb|2020-04-01|Has expired: Use databases/py-pypuppetdb instead
+www/py-puppetboard02|www/py-puppetboard|2020-04-01|Has expired: Use www/py-puppetboard instead
+www/py-puppetboard03|www/py-puppetboard|2020-04-01|Has expired: Use www/py-puppetboard instead
+net/librsync2|net/librsync|2020-04-02|Remove PKGNAMESUFFIX 3 years after librsync removal
+lang/beignet|lang/intel-compute-runtime|2020-04-02|Has expired: Deprecated upstream, use lang/intel-compute-runtime
+devel/rubygem-cucumber-tag_expressions|devel/rubygem-cucumber-tag-expressions|2020-04-04|Renamed by upstream
+math/mkl-dnn|math/onednn|2020-04-04|Project renamed
+devel/p5-Glib2|devel/p5-Glib|2020-04-07|Rename to match our p5- port naming
+devel/jucipp|editors/jucipp|2020-04-07|Remove duplicate
+www/py-django_polymorphic|www/py-django-polymorphic|2020-04-11|Match canonical/registered (PyPI/CHEESESHOP) name
+dns/dnsmasq-devel|dns/dnsmasq|2020-04-12|dnsmasq is newer than dnsmasq-devel
+databases/mariadb55-server|databases/mariadb102-server|2020-04-12|Has expired: Upstream end-of-life 2020-04-11, switch to a newer version
+databases/mariadb55-client|databases/mariadb102-client|2020-04-12|Has expired: Upstream end-of-life 2020-04-11, switch to a newer version
+devel/aws-c-commons|devel/aws-c-common|2020-04-12|Renamed to the correct name
+textproc/itstool22|textproc/itstool|2020-04-14|Has expired: Uses deprecated version of python, use textproc/itstool instead
+science/ncnn|misc/ncnn|2020-04-14|Move to misc/ because ncnn isn't related to science
+archivers/lua51-zlib|archivers/lua-zlib@lua51|2020-04-14|Switched to use flavors
+audio/lua51-mpd|audio/lua-mpd@lua51|2020-04-14|Switched to use flavors
+converters/lua51-iconv|converters/lua-iconv@lua51|2020-04-14|Switched to use flavors
+devel/lua51-bitop|devel/lua-bitop@lua51|2020-04-14|Switched to use flavors
+devel/lua51-cjson|devel/lua-cjson@lua51|2020-04-14|Switched to use flavors
+devel/lua51-libevent|devel/lua-libevent@lua51|2020-04-14|Switched to use flavors
+devel/luafilesystem-51|devel/luafilesystem@lua51|2020-04-14|Switched to use flavors
+net/lualdap-51|net/lualdap@lua51|2020-04-14|Switched to use flavors
+net/luasocket-51|net/luasocket@lua51|2020-04-14|Switched to use flavors
+net/luasocket-53|net/luasocket@lua53|2020-04-14|Switched to use flavors
+security/luasec-51|security/luasec@lua51|2020-04-14|Switched to use flavors
+textproc/luaexpat-51|textproc/luaexpat@lua51|2020-04-14|Switched to use flavors
+devel/libevdevPlus|devel/libevdevplus|2020-04-18|lowercase
+devel/libuIntputPlus|devel/libuinputplus|2020-04-18|lowercase
+net/pjsip-extsrtp||2020-04-18|Remove slave port not used anymore
+www/py-django-caching-app-plugins||2020-04-18|Doesn't work with Django 1.9+ and Python 3, no longer maintained
+net/openmpi2||2020-04-19|Removed, deprecated by upstream
+www/py-ddgr|www/ddgr|2020-04-19|Duplicate port
+sysutils/py-halite||2020-04-19|Hasexpired: Uses deprecated version of python
+security/suricata5|security/suricata|2020-04-20|Has expired: security/suricata is already at version 5
+finance/py-ebaysdk-python|finance/py-ebaysdk|2020-04-21|Renamed to match Pypy package
+emulators/qemu30|emulators/qemu31|2020-04-21|Has expired: No longer maintained by upstream
+editors/nano-devel||2020-04-23|Removed: Obsolete now, use editors/nano instead
+devel/py-liblarch||2020-04-25|Removed: uses deprecated version of python; no consumers left
+sysutils/DTraceToolkit|sysutils/dtrace-toolkit|2020-04-26|Renamed to match the package name

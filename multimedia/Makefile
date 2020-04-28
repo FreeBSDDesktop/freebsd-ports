@@ -59,6 +59,7 @@
     SUBDIR += dvdstyler
     SUBDIR += emby-server
     SUBDIR += emovix
+    SUBDIR += f3d
     SUBDIR += ffaudioconverter
     SUBDIR += ffdec
     SUBDIR += ffmpeg
@@ -244,6 +245,7 @@
     SUBDIR += lxdvdrip
     SUBDIR += m2tstoavi
     SUBDIR += m2vrequantiser
+    SUBDIR += makemkv
     SUBDIR += mediainfo
     SUBDIR += mencoder
     SUBDIR += mimms
@@ -284,8 +286,15 @@
     SUBDIR += naludump
     SUBDIR += nordlicht
     SUBDIR += nostt
+    SUBDIR += obs-audio-spectralizer
+    SUBDIR += obs-ndi
     SUBDIR += obs-qtwebkit
+    SUBDIR += obs-scrab
+    SUBDIR += obs-streamfx
     SUBDIR += obs-studio
+    SUBDIR += obs-transition-matrix
+    SUBDIR += obs-v4l2sink
+    SUBDIR += obs-websocket
     SUBDIR += oggvideotools
     SUBDIR += ogmrip
     SUBDIR += ogmtools
@@ -381,6 +390,7 @@
     SUBDIR += snappy
     SUBDIR += spigot
     SUBDIR += spook
+    SUBDIR += streamlink
     SUBDIR += subsync
     SUBDIR += subtitlecomposer
     SUBDIR += subtitleoffsetmodifier

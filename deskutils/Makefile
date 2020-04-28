@@ -238,6 +238,7 @@
     SUBDIR += tpb
     SUBDIR += treeline
     SUBDIR += treesheets
+    SUBDIR += ultralist
     SUBDIR += virt-manager
     SUBDIR += vit
     SUBDIR += when
@@ -261,6 +262,7 @@
     SUBDIR += xpostitPlus
     SUBDIR += xrolo
     SUBDIR += xwrits
+    SUBDIR += ydotool
     SUBDIR += zanshin
     SUBDIR += zim
     SUBDIR += znotes

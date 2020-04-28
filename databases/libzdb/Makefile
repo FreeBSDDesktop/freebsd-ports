@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	libzdb
-PORTVERSION=	3.2.1
+PORTVERSION=	3.2.2
 CATEGORIES=	databases
 MASTER_SITES=	https://www.tildeslash.com/libzdb/dist/
 
@@ -31,7 +31,17 @@ PGSQL_CONFIGURE_WITH=	postgresql=${LOCALBASE}/bin/pg_config
 PGSQL_USES=		pgsql
 SQLITE_CONFIGURE_WITH=	sqlite=${LOCALBASE}
 SQLITE_USES=		sqlite
-SSL_CONFIGURE_ENABLE=	openssl=${OPENSSLBASE}
 SSL_USES=		ssl
+
+.include <bsd.port.options.mk> 	 
+
+# See PR/237200 for details
+.if ${PORT_OPTIONS:MSSL} 	 
+.if ${SSL_DEFAULT} == base 	 
+CONFIGURE_ARGS+=        --enable-openssl 	 
+.else 	 
+CONFIGURE_ARGS+=        --enable-openssl=${OPENSSLBASE} 	 
+.endif 	 
+.endif
 
 .include <bsd.port.mk>

@@ -60,6 +60,7 @@
     SUBDIR += bruteforceblocker
     SUBDIR += bsdsfv
     SUBDIR += bsmtrace
+    SUBDIR += bsmtrace3
     SUBDIR += bugs
     SUBDIR += bzrtp
     SUBDIR += ca_root_nss
@@ -334,7 +335,6 @@
     SUBDIR += logcheck
     SUBDIR += lua-bcrypt
     SUBDIR += luasec
-    SUBDIR += luasec-51
     SUBDIR += lxqt-openssh-askpass
     SUBDIR += lxqt-sudo
     SUBDIR += lynis
@@ -405,6 +405,7 @@
     SUBDIR += openssh-askpass
     SUBDIR += openssh-portable
     SUBDIR += openssl
+    SUBDIR += openssl-devel
     SUBDIR += openssl-unsafe
     SUBDIR += openssl_tpm_engine
     SUBDIR += openvas8
@@ -934,6 +935,7 @@
     SUBDIR += py-passlib
     SUBDIR += py-pbkdf2
     SUBDIR += py-pgpdump
+    SUBDIR += py-pgpy
     SUBDIR += py-plaso
     SUBDIR += py-potr
     SUBDIR += py-pyaes
@@ -950,6 +952,7 @@
     SUBDIR += py-pymacaroons
     SUBDIR += py-pynacl
     SUBDIR += py-pyotp
+    SUBDIR += py-pyotp2289
     SUBDIR += py-pyptlib
     SUBDIR += py-pysaml2
     SUBDIR += py-pysaml24
@@ -1082,6 +1085,7 @@
     SUBDIR += rubygem-net-ssh
     SUBDIR += rubygem-net-ssh-gateway
     SUBDIR += rubygem-net-ssh-gateway1
+    SUBDIR += rubygem-net-ssh-krb
     SUBDIR += rubygem-net-ssh-multi
     SUBDIR += rubygem-net-ssh4
     SUBDIR += rubygem-net-telnet
@@ -1160,6 +1164,7 @@
     SUBDIR += secpanel
     SUBDIR += sectok
     SUBDIR += secure_delete
+    SUBDIR += sedutil
     SUBDIR += setaudit
     SUBDIR += sha
     SUBDIR += sha1collisiondetection
@@ -1217,6 +1222,8 @@
     SUBDIR += sst
     SUBDIR += starttls
     SUBDIR += steghide
+    SUBDIR += step-certificates
+    SUBDIR += step-cli
     SUBDIR += stoken
     SUBDIR += strobe
     SUBDIR += strongswan
@@ -1228,10 +1235,10 @@
     SUBDIR += sudoscript
     SUBDIR += super
     SUBDIR += suricata
-    SUBDIR += suricata5
     SUBDIR += swatchdog
     SUBDIR += switzerland
     SUBDIR += symbion-sslproxy
+    SUBDIR += tailscale
     SUBDIR += tclsasl
     SUBDIR += tcpcrypt
     SUBDIR += teleport
@@ -1274,7 +1281,6 @@
     SUBDIR += vuls
     SUBDIR += vuxml
     SUBDIR += vxquery
-    SUBDIR += w3af
     SUBDIR += wapiti
     SUBDIR += wazuh-agent
     SUBDIR += webfwlog

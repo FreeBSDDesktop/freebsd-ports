@@ -3,7 +3,7 @@
 PORTNAME=	boringtun
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.2.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	net
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -15,6 +15,8 @@ COMMENT=	CloudFlares Userspace WireGuard implementation in Rust
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+IGNORE=		has unclear project status because the only release was \
+		silently deleted upstream
 DEPRECATED=	Status of the project and motivation is unclear
 EXPIRATION_DATE=	2020-04-30
 

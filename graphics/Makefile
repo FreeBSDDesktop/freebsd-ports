@@ -322,6 +322,7 @@
     SUBDIR += gtkam
     SUBDIR += gts
     SUBDIR += guetzli
+    SUBDIR += guile-cairo
     SUBDIR += guilib
     SUBDIR += gwenview
     SUBDIR += hdr_tools
@@ -379,6 +380,7 @@
     SUBDIR += kamera
     SUBDIR += kamerka
     SUBDIR += kcolorchooser
+    SUBDIR += kcolorpicker
     SUBDIR += kdegraphics
     SUBDIR += kdegraphics-mobipocket
     SUBDIR += kdegraphics-svgpart
@@ -389,6 +391,7 @@
     SUBDIR += kf5-kquickcharts
     SUBDIR += kf5-prison
     SUBDIR += kgraphviewer
+    SUBDIR += kimageannotator
     SUBDIR += kimagemapeditor
     SUBDIR += kipi-plugins
     SUBDIR += kix-kmod
@@ -525,6 +528,7 @@
     SUBDIR += mapserver
     SUBDIR += mapyrus
     SUBDIR += megapov
+    SUBDIR += meh
     SUBDIR += mesa-demos
     SUBDIR += mesa-dri
     SUBDIR += mesa-libs
@@ -822,6 +826,7 @@
     SUBDIR += py-leather
     SUBDIR += py-mapclassify
     SUBDIR += py-mayavi
+    SUBDIR += py-mcomix
     SUBDIR += py-ming
     SUBDIR += py-mpl-scatter-density
     SUBDIR += py-nwdiag
@@ -850,6 +855,8 @@
     SUBDIR += py-pygooglechart
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyinsane2
+    SUBDIR += py-pymaging
+    SUBDIR += py-pymaging-png
     SUBDIR += py-pyocr
     SUBDIR += py-pypillowfight
     SUBDIR += py-pyproj
@@ -956,7 +963,6 @@
     SUBDIR += sampleicc
     SUBDIR += sane-backends
     SUBDIR += sane-epkowa
-    SUBDIR += sane-frontends
     SUBDIR += scale2x
     SUBDIR += scantailor
     SUBDIR += scr2png
@@ -1020,6 +1026,7 @@
     SUBDIR += tkpng
     SUBDIR += togl
     SUBDIR += ttygif
+    SUBDIR += ttyplot
     SUBDIR += tumble
     SUBDIR += tweeny
     SUBDIR += ufraw

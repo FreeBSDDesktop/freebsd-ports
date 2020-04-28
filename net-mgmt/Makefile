@@ -213,7 +213,6 @@
     SUBDIR += ocsinventory-ocsreports
     SUBDIR += ocsinventory-server
     SUBDIR += omping
-    SUBDIR += onionlauncher
     SUBDIR += openbmp
     SUBDIR += openlldp
     SUBDIR += openvmps
@@ -300,6 +299,8 @@
     SUBDIR += prometheus2
     SUBDIR += pushgateway
     SUBDIR += py-adal
+    SUBDIR += py-aggregate6
+    SUBDIR += py-arouteserver
     SUBDIR += py-ciscoconfparse
     SUBDIR += py-dnsdiag
     SUBDIR += py-ipcalc
@@ -375,7 +376,6 @@
     SUBDIR += tcptrack
     SUBDIR += telegraf
     SUBDIR += thanos
-    SUBDIR += tornova
     SUBDIR += torrus
     SUBDIR += triton-guesttools
     SUBDIR += unbound_exporter
