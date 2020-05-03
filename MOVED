@@ -13663,7 +13663,6 @@ security/linux-c6-pam||2019-12-31|Has expired: Superseded by CentOS 7
 sysutils/eventlog||2019-12-31|Has expired: No longer supported by Balabit
 sysutils/linux-c6-lttng-ust|sysutils/linux-c7-lttng-ust|2019-12-31|Has expired: Superseded by CentOS 7
 sysutils/linux-c6-userspace-rcu|sysutils/linux-c7-userspace-rcu|2019-12-31|Has expired: Superseded by CentOS 7
-sysutils/mkdesktop||2019-12-31|Has expired: defunct, will be deleted soon
 sysutils/syslog-ng311|sysutils/syslog-ng|2019-12-31|Has expired: No longer supported by Balabit
 sysutils/syslog-ng315|sysutils/syslog-ng|2019-12-31|Has expired: No longer supported by Balabit
 sysutils/syslog-ng317|sysutils/syslog-ng|2019-12-31|Has expired: No longer supported by Balabit
@@ -13973,7 +13972,6 @@ www/py-meld||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 www/py-mt||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 www/py-rhodecode||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 www/qooxdoo||2020-01-27|Has expired: Unmaintained, uses EOLed python27
-www/varnish-libvmod-maxminddb||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 x11/metisse||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 x11/ooxcb||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 x11-toolkits/diorite||2020-01-27|Has expired: Unmaintained, uses EOLed python27
@@ -14550,3 +14548,12 @@ emulators/qemu30|emulators/qemu31|2020-04-21|Has expired: No longer maintained b
 editors/nano-devel||2020-04-23|Removed: Obsolete now, use editors/nano instead
 devel/py-liblarch||2020-04-25|Removed: uses deprecated version of python; no consumers left
 sysutils/DTraceToolkit|sysutils/dtrace-toolkit|2020-04-26|Renamed to match the package name
+devel/k8048|devel/pickle|2020-04-28|Project renamed
+net-mgmt/bgpq|net-mgmt/bgpq3|2020-04-30|Has expired: Use net-mgmt/bgpq3 or net-mgmt/bgpq4
+net/boringtun||2020-04-30|Has expired: Status of the project and motivation is unclear
+dns/dnsperf||2020-04-30|Removed, depends on expired dns/bind914, not compatible with dns/bind916
+dns/bind914|dns/bind916|2020-04-30|Has expired: End of life, please migrate to a newer version of BIND9
+net/py-pcap|net/py-pypcap|2020-05-01|Has expired: Broken with python3 please consider using net/py-pypcap
+x11-drivers/xf86-video-tseng||2020-05-01|Has expired: broken
+x11-drivers/xf86-video-s3virge||2020-05-01|Has expired: broken
+net/py-smart_open|net/py-smart-open|2020-05-02|Rename to match upstream naming

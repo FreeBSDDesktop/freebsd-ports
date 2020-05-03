@@ -63,7 +63,6 @@
     SUBDIR += bnxt-kmod
     SUBDIR += boinc-client
     SUBDIR += boinc_curses
-    SUBDIR += boringtun
     SUBDIR += bosh-bootloader
     SUBDIR += bosh-cli
     SUBDIR += bounce
@@ -1070,7 +1069,6 @@
     SUBDIR += py-oauth2
     SUBDIR += py-paho-mqtt
     SUBDIR += py-pamqp
-    SUBDIR += py-pcap
     SUBDIR += py-pcapy
     SUBDIR += py-port-for
     SUBDIR += py-portend
@@ -1118,7 +1116,7 @@
     SUBDIR += py-s3transfer
     SUBDIR += py-sbws
     SUBDIR += py-shodan
-    SUBDIR += py-smart_open
+    SUBDIR += py-smart-open
     SUBDIR += py-smbpasswd
     SUBDIR += py-soap2py
     SUBDIR += py-socketio-client
@@ -1141,6 +1139,7 @@
     SUBDIR += py-urllib3
     SUBDIR += py-wmi-query
     SUBDIR += py-wolframalpha
+    SUBDIR += py-wsdd
     SUBDIR += py-wsproto
     SUBDIR += py-zeep
     SUBDIR += py-zeroconf

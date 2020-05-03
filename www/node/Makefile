@@ -1,9 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	node
-PORTVERSION=	13.12.0
+PORTVERSION=	13.13.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://nodejs.org/dist/v${PORTVERSION}/
 
@@ -77,6 +76,10 @@ LIB_DEPENDS+=	libcares.so:dns/c-ares\
 
 .if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
 EXTRA_PATCHES=		${PATCHDIR}/extra-patch-common.gypi
+.endif
+
+.if ${ARCH} == armv6 || ${ARCH} == armv7
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-tools_v8__gypfiles_v8.gyp
 .endif
 
 .if ${OPSYS} == FreeBSD && ${OSVERSION} < 1200085

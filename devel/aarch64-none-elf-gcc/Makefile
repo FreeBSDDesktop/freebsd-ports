@@ -19,7 +19,8 @@ BROKEN_mips64=		configure: error: cannot compute suffix of object files: cannot 
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \
 		libmpc.so:math/mpc
-BUILD_DEPENDS=	${GCC_TARGET}-as:devel/binutils@${PKGNAMEPREFIX:C/-$//:C/-/_/g}
+BUILD_DEPENDS=	${GCC_TARGET}-as:devel/binutils@${PKGNAMEPREFIX:C/-$//:C/-/_/g} \
+		objdump:devel/binutils@native
 RUN_DEPENDS=	${GCC_TARGET}-as:devel/binutils@${PKGNAMEPREFIX:C/-$//:C/-/_/g}
 
 USES=	gmake iconv libtool tar:xz makeinfo compiler:c++11-lang

@@ -2325,6 +2325,7 @@
     SUBDIR += twiki-TwistyPlugin
     SUBDIR += twiki-WysiwygPlugin
     SUBDIR += twms
+    SUBDIR += typo3-10
     SUBDIR += typo3-8
     SUBDIR += typo3-9
     SUBDIR += uchiwa
@@ -2340,6 +2341,7 @@
     SUBDIR += varnish-libvmod-awsrest
     SUBDIR += varnish-libvmod-digest
     SUBDIR += varnish-libvmod-dynamic
+    SUBDIR += varnish-libvmod-maxminddb
     SUBDIR += varnish-modules
     SUBDIR += varnish-nagios
     SUBDIR += varnish4
