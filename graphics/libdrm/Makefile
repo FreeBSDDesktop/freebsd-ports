@@ -19,7 +19,7 @@ USE_GITLAB=	yes
 GL_SITE=	https://gitlab.freedesktop.org
 GL_ACCOUNT=	mesa
 GL_PROJECT=	drm
-GL_COMMIT=	cf1afec0173daed2160d74a5528e5dcd6ed61199
+GL_COMMIT=	c997baf590de48ac5fc52a6e2df806e0a6f3acfc
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	MANPAGES TESTS
