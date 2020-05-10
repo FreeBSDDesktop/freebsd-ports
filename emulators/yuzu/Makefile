@@ -1,12 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	yuzu
-PORTVERSION=	s20200501
+PORTVERSION=	s20200508
 PORTREVISION?=	0
 CATEGORIES=	emulators
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	b4d0724a63e0.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/3859
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Nintendo Switch emulator/debugger
@@ -31,11 +28,11 @@ BUILD_DEPENDS=	boost-libs>=1.66:devel/boost-libs \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	3f4cabfd4
+GH_TAGNAME=	50c27d5ae
 GH_TUPLE=	yuzu-emu:unicorn:1.0.1-153-g73f45735:unicorn/externals/unicorn \
 		DarkLordZach:mbedtls:a280e60:mbedtls/externals/mbedtls \
 		KhronosGroup:SPIRV-Headers:2c51218:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
-		KhronosGroup:Vulkan-Headers:v1.2.136:Vulkan_Headers/externals/Vulkan-Headers \
+		KhronosGroup:Vulkan-Headers:v1.2.140:Vulkan_Headers/externals/Vulkan-Headers \
 		MerryMage:dynarmic:r3-1-ge7166e8b:dynarmic/externals/dynarmic \
 		ReinUsesLisp:sirit:414fc4d:sirit/externals/sirit \
 		arsenm:sanitizers-cmake:aab6948:sanitizers_cmake/externals/cubeb/cmake/sanitizers-cmake \
