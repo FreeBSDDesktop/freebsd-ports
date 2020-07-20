@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	blis
-PORTVERSION=	0.6.0
+PORTVERSION=	0.7.0
 CATEGORIES=	math
 
 MAINTAINER=	jmd@FreeBSD.org
@@ -11,8 +11,7 @@ COMMENT=	Software framework for high-performance BLAS-like libraries
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	bash:shells/bash \
-		llvm60>=0:devel/llvm60
+BUILD_DEPENDS=	bash:shells/bash
 
 OPTIONS_DEFINE=	PARA CBLAS
 PARA_DESC=	use pthread parallelization
@@ -23,7 +22,7 @@ OPTIONS_SUB=		yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	flame
 
-USES=		gmake python shebangfix
+USES=		compiler gmake python shebangfix
 USE_LDCONFIG=	yes
 SHEBANG_FILES=	build/flatten-headers.py
 
@@ -56,7 +55,15 @@ CONFIGURE_ARGS+=	generic
 PLIST_SUB+=	ARCH="generic"
 .endif
 
-CC=	${LOCALBASE}/bin/clang60
-CXX=	${LOCALBASE}/bin/clang++60
+.include <bsd.port.pre.mk>
 
-.include <bsd.port.mk>
+.if ${CHOSEN_COMPILER_TYPE} == gcc
+USE_GCC=	yes
+.else
+LLVM_VER=	90
+BUILD_DEPENDS+=	llvm${LLVM_VER}>=0:devel/llvm${LLVM_VER}
+CC=	${LOCALBASE}/bin/clang${LLVM_VER}
+CXX=	${LOCALBASE}/bin/clang++${LLVM_VER}
+.endif
+
+.include <bsd.port.post.mk>

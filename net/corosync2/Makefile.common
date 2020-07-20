@@ -5,14 +5,14 @@ PORTNAME=		corosync
 CATEGORIES=		net
 MASTER_SITES=		http://build.clusterlabs.org/corosync/releases/
 
-MAINTAINER=		dpejesh@yahoo.com
+MAINTAINER=		egypcio@FreeBSD.org
 COMMENT=		Corosync Cluster Engine
 
 LICENSE=		BSD3CLAUSE
 
 LIB_DEPENDS=		libnspr4.so:devel/nspr \
 			libnss3.so:security/nss \
-			libqb.so.0:devel/libqb
+			libqb.so:devel/libqb
 
 TEST_DEPENDS=		augparse:textproc/augeas
 

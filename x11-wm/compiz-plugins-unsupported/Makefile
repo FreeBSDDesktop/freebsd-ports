@@ -3,11 +3,12 @@
 
 PORTNAME=	compiz-plugins-unsupported
 PORTVERSION=	0.8.8
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	x11-wm
-MASTER_SITES=	http://releases.compiz.org/${PORTVERSION}/
+MASTER_SITES=	http://releases.compiz.org/${PORTVERSION}/ \
+		https://BSDforge.com/prolects/source/x11-wm/compiz-plugins-unsupported/
 
-MAINTAINER=	freebsd-ports@dan.me.uk
+MAINTAINER=	portmaster@BSDforge.com
 COMMENT=	Plugins for Compiz Composite Window Manager
 
 LICENSE=	GPLv2+
@@ -23,7 +24,7 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		gmake libtool:keepla pathfix pkgconfig tar:bzip2
+USES=		gl gmake gnome libtool:keepla pathfix pkgconfig tar:bzip2 xorg
 USE_GL=		yes
 USE_GNOME=	gconf2 intltool libxslt
 USE_XORG=	ice sm x11 xcomposite xdamage xext xfixes xinerama xorgproto xrandr

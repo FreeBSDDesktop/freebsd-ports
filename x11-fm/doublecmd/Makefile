@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	doublecmd
-PORTVERSION=	0.9.6
+PORTVERSION=	0.9.9
 CATEGORIES=	x11-fm
 MASTER_SITES=	SF/${PORTNAME}/Double%20Commander%20Source
 PKGNAMESUFFIX=	${LAZARUS_PKGNAMESUFFIX}
@@ -16,7 +16,7 @@ LICENSE=	GPLv2
 
 ONLY_FOR_ARCHS=	amd64 i386
 
-USES=		dos2unix desktop-file-utils fpc gnome lazarus:flavors
+USES=		dos2unix desktop-file-utils fpc gnome lazarus:flavors xorg
 
 PORTDOCS=	*
 

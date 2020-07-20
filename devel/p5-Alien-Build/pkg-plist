@@ -21,6 +21,7 @@
 %%SITE_PERL%%/Alien/Build/Plugin/Build.pod
 %%SITE_PERL%%/Alien/Build/Plugin/Build/Autoconf.pm
 %%SITE_PERL%%/Alien/Build/Plugin/Build/CMake.pm
+%%SITE_PERL%%/Alien/Build/Plugin/Build/Copy.pm
 %%SITE_PERL%%/Alien/Build/Plugin/Build/MSYS.pm
 %%SITE_PERL%%/Alien/Build/Plugin/Build/Make.pm
 %%SITE_PERL%%/Alien/Build/Plugin/Build/SearchDep.pm
@@ -67,6 +68,7 @@
 %%SITE_PERL%%/Alien/Build/Plugin/Probe.pod
 %%SITE_PERL%%/Alien/Build/Plugin/Probe/CBuilder.pm
 %%SITE_PERL%%/Alien/Build/Plugin/Probe/CommandLine.pm
+%%SITE_PERL%%/Alien/Build/Plugin/Probe/Vcpkg.pm
 %%SITE_PERL%%/Alien/Build/Plugin/Test/Mock.pm
 %%SITE_PERL%%/Alien/Build/Temp.pm
 %%SITE_PERL%%/Alien/Build/Util.pm
@@ -77,6 +79,7 @@
 %%SITE_PERL%%/Test/Alien/Build.pm
 %%SITE_PERL%%/Test/Alien/CanCompile.pm
 %%SITE_PERL%%/Test/Alien/CanPlatypus.pm
+%%SITE_PERL%%/Test/Alien/Diag.pm
 %%SITE_PERL%%/Test/Alien/Run.pm
 %%SITE_PERL%%/Test/Alien/Synthetic.pm
 %%SITE_PERL%%/alienfile.pm
@@ -103,6 +106,7 @@
 %%PERL5_MAN3%%/Alien::Build::Plugin::Build.3.gz
 %%PERL5_MAN3%%/Alien::Build::Plugin::Build::Autoconf.3.gz
 %%PERL5_MAN3%%/Alien::Build::Plugin::Build::CMake.3.gz
+%%PERL5_MAN3%%/Alien::Build::Plugin::Build::Copy.3.gz
 %%PERL5_MAN3%%/Alien::Build::Plugin::Build::MSYS.3.gz
 %%PERL5_MAN3%%/Alien::Build::Plugin::Build::Make.3.gz
 %%PERL5_MAN3%%/Alien::Build::Plugin::Build::SearchDep.3.gz
@@ -149,6 +153,7 @@
 %%PERL5_MAN3%%/Alien::Build::Plugin::Probe.3.gz
 %%PERL5_MAN3%%/Alien::Build::Plugin::Probe::CBuilder.3.gz
 %%PERL5_MAN3%%/Alien::Build::Plugin::Probe::CommandLine.3.gz
+%%PERL5_MAN3%%/Alien::Build::Plugin::Probe::Vcpkg.3.gz
 %%PERL5_MAN3%%/Alien::Build::Plugin::Test::Mock.3.gz
 %%PERL5_MAN3%%/Alien::Build::Temp.3.gz
 %%PERL5_MAN3%%/Alien::Build::Util.3.gz
@@ -159,6 +164,7 @@
 %%PERL5_MAN3%%/Test::Alien::Build.3.gz
 %%PERL5_MAN3%%/Test::Alien::CanCompile.3.gz
 %%PERL5_MAN3%%/Test::Alien::CanPlatypus.3.gz
+%%PERL5_MAN3%%/Test::Alien::Diag.3.gz
 %%PERL5_MAN3%%/Test::Alien::Run.3.gz
 %%PERL5_MAN3%%/Test::Alien::Synthetic.3.gz
 %%PERL5_MAN3%%/alienfile.3.gz

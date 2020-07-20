@@ -6,7 +6,7 @@ PORTVERSION=	1.86
 CATEGORIES=	net
 MASTER_SITES=	http://www.cs.ucla.edu/~kohler/ipsumdump/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	leres@FreeBSD.org
 COMMENT=	Produce ASCII summary of network traffic or tcpdump(1) file
 
 LICENSE=	CLICK
@@ -26,7 +26,6 @@ PLIST_FILES=	bin/ipaggcreate bin/ipsumdump bin/ipaggmanip \
 OPTIONS_DEFINE=	IPV6 DOCS
 OPTIONS_SUB=	yes
 
-IPV6_CATEGORIES=	ipv6
 IPV6_CONFIGURE_ENABLE=	ipv6
 
 # Try to unbreak parallel (-jX) builds

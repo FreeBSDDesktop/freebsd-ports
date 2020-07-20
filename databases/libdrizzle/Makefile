@@ -8,7 +8,7 @@ CATEGORIES=	databases
 MASTER_SITES=	http://launchpadlibrarian.net/41155299/ \
 		LOCAL/bdrewery/${PORTNAME}/
 
-MAINTAINER=	bdrewery@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Client and protocol library for the Drizzle database
 
 LICENSE=	BSD3CLAUSE
@@ -36,6 +36,8 @@ ALL_TARGET=	all doxygen
 
 .if ${ARCH} == "i386"
 CONFIGURE_ARGS+=--disable-64bit
+.elif ${ARCH:Mpowerpc*}
+USES+=		compiler:gcc-c++11-lib
 .endif
 
 post-install:

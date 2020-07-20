@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	bibtool
-PORTVERSION=	2.67
+PORTVERSION=	2.68
 CATEGORIES=	textproc print
 MASTER_SITES=	TEX_CTAN/biblio/bibtex/utils/${PORTNAME}
 DISTNAME=	BibTool-${PORTVERSION}
 
-MAINTAINER=	johans@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Command line manipulation of BibTeX files
 
 LICENSE=	GPLv2+

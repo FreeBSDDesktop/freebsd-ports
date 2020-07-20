@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	simgear
-PORTVERSION=	2018.3.2
-PORTREVISION=	4
+PORTVERSION=	2020.1.3
 CATEGORIES=	devel games
 MASTER_SITES=	SF/flightgear/release-${PORTVERSION:R}
 
@@ -19,7 +18,7 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libcurl.so:ftp/curl
 
 USES=		alias cmake compiler:c++11-lib cpe gl jpeg openal:al,alut \
-		tar:bzip2
+		tar:bzip2 xorg
 USE_XORG=	ice sm x11 xext xi xmu xt
 USE_GL=		gl glu glut
 
@@ -28,7 +27,8 @@ USE_LDCONFIG=	yes
 LDFLAGS_gcc=	-losgDB
 LDFLAGS+=	${LDFLAGS_${CHOSEN_COMPILER_TYPE}}
 
-CMAKE_ARGS+=	-DSYSTEM_EXPAT:BOOL=ON
+CMAKE_ARGS+=	-DSYSTEM_EXPAT:BOOL=ON \
+		-DENABLE_TESTS:BOOL=OFF
 
 post-patch:
 # Avoid conflict with C++20 <version> by adding .txt suffix

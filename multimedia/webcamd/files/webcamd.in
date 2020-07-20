@@ -3,7 +3,6 @@
 #
 # PROVIDE: webcamd
 # REQUIRE: FILESYSTEMS netif dbus
-# BEFORE: devd
 # KEYWORD: shutdown
 #
 # ================================================================
@@ -109,7 +108,7 @@ status_cmd="${name}_status"
 webcamd()
 {
   # When running early we need to pre-load some libraries
-  env LD_PRELOAD=%%LIBHAL%%%%LIBCUSE%% %%PREFIX%%/sbin/webcamd $*
+  env LD_PRELOAD=%%LIBHAL%% %%PREFIX%%/sbin/webcamd $*
 }
 
 webcamd_pids()

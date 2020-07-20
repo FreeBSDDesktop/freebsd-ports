@@ -3,7 +3,7 @@
 
 PORTNAME=	highlight
 PORTVERSION=	3.43
-PORTREVISION=	7
+PORTREVISION=	8
 PORTEPOCH=	3
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.andre-simon.de/zip/
@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	boost-libs>0:devel/boost-libs
 
-USES=		compiler:c++11-lib gmake lua:52 pkgconfig tar:bzip2
+USES=		compiler:c++11-lib gmake lua pkgconfig tar:bzip2
 USE_CXXSTD=	c++11
 MAKEFILE=	makefile
 MAKE_ARGS=	CXX="${CXX}" \

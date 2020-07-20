@@ -7,11 +7,14 @@ PORTREVISION=	1
 CATEGORIES=	misc
 MASTER_SITES=	http://matt.immute.net/src/mtail/
 
-MAINTAINER=	dg@syrec.org
+MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	Small tail workalike that performs output coloring
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
 
 USES=		python:2.7,run shebangfix tar:tgz
 

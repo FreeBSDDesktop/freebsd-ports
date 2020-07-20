@@ -1,6 +1,6 @@
---- content/browser/renderer_host/pepper/pepper_file_io_host.cc.orig	2019-05-04 09:07:21 UTC
+--- content/browser/renderer_host/pepper/pepper_file_io_host.cc.orig	2020-03-16 18:40:31 UTC
 +++ content/browser/renderer_host/pepper/pepper_file_io_host.cc
-@@ -432,7 +432,7 @@ void PepperFileIOHost::OnLocalFileOpened(
+@@ -433,7 +433,7 @@ void PepperFileIOHost::OnLocalFileOpened(
      ppapi::host::ReplyMessageContext reply_context,
      const base::FilePath& path,
      base::File::Error error_code) {
@@ -9,7 +9,7 @@
    // Quarantining a file before its contents are available is only supported on
    // Windows and Linux.
    if (!FileOpenForWrite(open_flags_) || error_code != base::File::FILE_OK) {
-@@ -452,7 +452,7 @@ void PepperFileIOHost::OnLocalFileOpened(
+@@ -454,7 +454,7 @@ void PepperFileIOHost::OnLocalFileOpened(
  #endif
  }
  

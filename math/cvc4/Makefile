@@ -2,7 +2,7 @@
 
 PORTNAME=	cvc4
 DISTVERSION=	1.7
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	math java
 MASTER_SITES+=	http://www.antlr3.org/download/:antlr3
 DISTFILES+=	antlr-3.4-complete.jar:antlr3
@@ -56,10 +56,10 @@ JAVA_CMAKE_BOOL=	BUILD_BINDINGS_JAVA
 JAVA_CMAKE_ON=		-DJAVA_INCLUDE_PATH:PATH=${JAVA_HOME}/include \
 			-DJAVA_AWT_LIBRARY:PATH=${JAVA_HOME}/jre/lib/${ARCH}/libjawt.so \
 			-DJAVA_JVM_LIBRARY:PATH=${JAVA_HOME}/jre/lib/${ATCH}/libjava.so
-JAVA_BUILD_DEPENDS=	swig3.0:devel/swig30
+JAVA_BUILD_DEPENDS=	swig:devel/swig
 
 PYTHON_CMAKE_BOOL=	BUILD_BINDINGS_PYTHON USE_PYTHON3
-PYTHON_BUILD_DEPENDS=	swig3.0:devel/swig30
+PYTHON_BUILD_DEPENDS=	swig:devel/swig
 
 READLINE_CMAKE_BOOL=	USE_READLINE
 READLINE_USES=		readline:port
@@ -84,7 +84,7 @@ CMAKE_ARGS+=		-DENABLE_GPL:BOOL=ON
 post-extract:
 	@${CP} ${DISTDIR}/antlr-3.4-complete.jar ${WRKDIR}/antlr3.jar
 	@${ECHO_CMD} "#!/bin/sh" > ${WRKDIR}/antlr3
-	@${ECHO_CMD} "JAVA_VERSION=1.7+ exec \"${LOCALBASE}/bin/java\" -classpath \"${WRKDIR}/antlr3.jar\" org.antlr.Tool \"\$$@\"" >> ${WRKDIR}/antlr3
+	@${ECHO_CMD} "exec \"${LOCALBASE}/bin/java\" -classpath \"${WRKDIR}/antlr3.jar\" org.antlr.Tool \"\$$@\"" >> ${WRKDIR}/antlr3
 	@${CHMOD} +x ${WRKDIR}/antlr3
 
 post-patch:

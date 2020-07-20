@@ -2,7 +2,7 @@
 
 PORTNAME=	sid-milter
 PORTVERSION=	1.0.0
-PORTREVISION=	6
+PORTREVISION=	8
 CATEGORIES=	mail
 MASTER_SITES=	SF/${PORTNAME}/SenderID%20Milter/${PORTVERSION}
 
@@ -19,7 +19,7 @@ DOCSFILES=	FEATURES INSTALL KNOWNBUGS LICENSE README README-SenderID \
 		RELEASE_NOTES rfc4406.txt rfc4407.txt rfc4408.txt
 INSTALL_WRKSRC=	${WRKSRC}/sid-filter
 PLIST_FILES=	libexec/sid-filter man/man8/sid-filter.8.gz
-USE_RC_SUBR=	milter-sid
+USE_RC_SUBR=	miltersid
 PORTDOCS=	${DOCSFILES}
 
 SITE+=		${FILESDIR}/site.config.m4
@@ -53,7 +53,7 @@ pre-configure:
 		-e "s|%%LOCALBASE%%|${LOCALBASE}|g" \
 		${SITE} > ${WCONF}/site.config.m4
 
-pre-configure-NH_MFROM_on:
+pre-configure-NH_MFROM-on:
 	${ECHO_CMD} \
 		'APPENDDEF(`confENVDEF'\'', `-D_FFR_NH_MFROM'\'')' \
 		>> ${WCONF}/site.config.m4

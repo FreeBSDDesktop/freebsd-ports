@@ -1,9 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	z3
-DISTVERSIONPREFIX=	Z3-
-DISTVERSION=	4.8.5
-PORTREVISION=	1
+DISTVERSIONPREFIX=	z3-
+DISTVERSION=	4.8.8
 CATEGORIES=	math
 
 MAINTAINER=	arrowd@FreeBSD.org
@@ -12,7 +11,7 @@ COMMENT=	Z3 Theorem Prover
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		compiler:c++11-lang python:2.7,build
+USES=		compiler:c++11-lang python:build
 USE_GITHUB=	yes
 GH_ACCOUNT=	Z3Prover
 
@@ -35,6 +34,7 @@ GMP_CONFIGURE_ON=	--gmp
 GMP_USES=		localbase:ldflags
 GMP_LIB_DEPENDS=	libgmp.so:math/gmp
 
+CXXFLAGS_powerpc=	-fPIC
 LDFLAGS_i386=		-Wl,-znotext
 BUILD_WRKSRC=		${WRKSRC}/build
 INSTALL_WRKSRC=		${WRKSRC}/build

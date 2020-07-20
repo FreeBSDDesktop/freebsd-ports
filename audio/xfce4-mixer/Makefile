@@ -3,7 +3,7 @@
 
 PORTNAME=	xfce4-mixer
 PORTVERSION=	4.11.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	audio xfce
 MASTER_SITES=	XFCE/apps
 DIST_SUBDIR=	xfce4
@@ -13,13 +13,16 @@ COMMENT=	Volume control for the Xfce desktop
 
 LICENSE=	GPLv2
 
+DEPRECATED=	Unsupported upstream since 2015. Try using audio/xfce4-pulseaudio-plugin.
+
 LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
 		libdbus-1.so:devel/dbus \
 		libunique-1.0.so:x11-toolkits/unique \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
-USES=		gmake libtool pkgconfig gettext-tools xfce tar:bzip2
+USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
+		tar:bzip2 xfce:gtk2
 USE_GNOME=	cairo glib20 gtk20 intlhack intltool libxml2
 USE_XFCE=	panel
 USE_GSTREAMER=	good

@@ -17,6 +17,7 @@
     SUBDIR += bibcursed
     SUBDIR += biblio-py
     SUBDIR += bibview
+    SUBDIR += brlaser
     SUBDIR += c2ps
     SUBDIR += catdvi
     SUBDIR += cdlabelgen
@@ -56,11 +57,9 @@
     SUBDIR += foomatic-db-engine
     SUBDIR += foomatic-db-hpijs
     SUBDIR += foomatic-filters
-    SUBDIR += foxitreader
     SUBDIR += fpdf
     SUBDIR += freetype
     SUBDIR += freetype2
-    SUBDIR += frescobaldi
     SUBDIR += ft2demos
     SUBDIR += ghostscript7-base
     SUBDIR += ghostscript7-commfont
@@ -100,10 +99,6 @@
     SUBDIR += latex2rtf
     SUBDIR += latexdiff
     SUBDIR += lgrind
-    SUBDIR += libgnomecups
-    SUBDIR += libgnomeprint
-    SUBDIR += libgnomeprint-reference
-    SUBDIR += libgnomeprintmm
     SUBDIR += libharu
     SUBDIR += libijs
     SUBDIR += libmspub01
@@ -114,7 +109,6 @@
     SUBDIR += libspectre
     SUBDIR += lilypond
     SUBDIR += lilypond-devel
-    SUBDIR += linux-c6-cups-libs
     SUBDIR += linux-c7-cups-libs
     SUBDIR += linux-c7-freetype
     SUBDIR += linux-c7-harfbuzz
@@ -154,7 +148,7 @@
     SUBDIR += pdf-tools
     SUBDIR += pdf4tcl
     SUBDIR += pdfbox
-    SUBDIR += pdfcube
+    SUBDIR += pdfchain
     SUBDIR += pdflib
     SUBDIR += pdflib-perl
     SUBDIR += pdfstitch
@@ -170,11 +164,7 @@
     SUBDIR += pkfonts360
     SUBDIR += pkfonts400
     SUBDIR += pkfonts600
-    SUBDIR += pkipplib
-    SUBDIR += pkpgcounter
-    SUBDIR += pmw
     SUBDIR += pnm2ppa
-    SUBDIR += poster
     SUBDIR += print-manager
     SUBDIR += ps2eps
     SUBDIR += pscal
@@ -182,15 +172,20 @@
     SUBDIR += pslib
     SUBDIR += pstotext
     SUBDIR += psutils
+    SUBDIR += py-font-v
+    SUBDIR += py-fontaine
+    SUBDIR += py-fontbakery
     SUBDIR += py-fonttools
-    SUBDIR += py-fonttools-lxml-ufo
+    SUBDIR += py-fonttools3
     SUBDIR += py-fpdf
+    SUBDIR += py-frescobaldi
     SUBDIR += py-pdf
     SUBDIR += py-pdf2
     SUBDIR += py-pollyreports
     SUBDIR += py-preppy
     SUBDIR += py-psautohint
     SUBDIR += py-pycups
+    SUBDIR += py-pycups1
     SUBDIR += py-pyscript
     SUBDIR += py-python-ly
     SUBDIR += py-qt5-printsupport
@@ -199,12 +194,13 @@
     SUBDIR += py-rtf
     SUBDIR += py-stapler
     SUBDIR += py-trml2pdf
+    SUBDIR += py-ttfautohint-py
+    SUBDIR += py-ufolib2
     SUBDIR += py-weasyprint
     SUBDIR += qpdf
     SUBDIR += qpdfview
     SUBDIR += qt5-printsupport
     SUBDIR += rlpr
-    SUBDIR += rprint
     SUBDIR += rtf2latex2e
     SUBDIR += rubygem-afm
     SUBDIR += rubygem-color
@@ -227,6 +223,8 @@
     SUBDIR += rubygem-ttfunk
     SUBDIR += scribus-devel
     SUBDIR += sgf2tex
+    SUBDIR += shrinkpdf
+    SUBDIR += simple-fb2-reader
     SUBDIR += splix
     SUBDIR += system-config-printer
     SUBDIR += t1utils
@@ -253,7 +251,7 @@
     SUBDIR += transfig
     SUBDIR += trueprint
     SUBDIR += ttf2pt1
-    SUBDIR += ttfquery
+    SUBDIR += ttfautohint
     SUBDIR += ttftot42
     SUBDIR += txtbdf2ps
     SUBDIR += typetools
@@ -261,7 +259,7 @@
     SUBDIR += xfce4-print
     SUBDIR += xmbibtex
     SUBDIR += xpdfopen
-    SUBDIR += xpp
+    SUBDIR += xreader
     SUBDIR += xtexsh
     SUBDIR += yatex
 

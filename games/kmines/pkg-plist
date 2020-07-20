@@ -41,6 +41,7 @@ share/locale/he/LC_MESSAGES/kmines.mo
 share/locale/hi/LC_MESSAGES/kmines.mo
 share/locale/hr/LC_MESSAGES/kmines.mo
 share/locale/hu/LC_MESSAGES/kmines.mo
+share/locale/id/LC_MESSAGES/kmines.mo
 share/locale/is/LC_MESSAGES/kmines.mo
 share/locale/it/LC_MESSAGES/kmines.mo
 share/locale/ja/LC_MESSAGES/kmines.mo
@@ -72,3 +73,4 @@ share/locale/wa/LC_MESSAGES/kmines.mo
 share/locale/zh_CN/LC_MESSAGES/kmines.mo
 share/locale/zh_TW/LC_MESSAGES/kmines.mo
 share/metainfo/org.kde.kmines.appdata.xml
+share/qlogging-categories5/kmines.categories

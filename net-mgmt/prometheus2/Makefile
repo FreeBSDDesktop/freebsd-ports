@@ -2,7 +2,7 @@
 
 PORTNAME=	prometheus
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.12.0
+DISTVERSION=	2.19.2
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	dor.bsd@xm0.uk
@@ -12,10 +12,11 @@ LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:modules gmake
-USE_GITHUB=	yes
-USE_RC_SUBR=	prometheus
 
-GO_PKGNAME=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
+USE_GITHUB=	yes
+GH_TUPLE=	ports-assets:net-mgmt_prometheus2:${DISTVERSIONFULL}:assets
+
+USE_RC_SUBR=	prometheus
 
 OPTIONS_DEFINE=	DOCS
 
@@ -50,16 +51,30 @@ PLIST_SUB+=	PORTNAME=${PORTNAME} \
 		PROMETHEUS_LOG_DIR=${PROMETHEUS_LOG_DIR}
 
 BUILD_USER?=	${USER}
-LD_FLAG_X_PREFIX=	-X ${GO_PKGNAME:H}/common/version
+LD_FLAG_X_PREFIX=	-X github.com/prometheus/common/version
 LD_FLAG_STRING=		-s \
 		${LD_FLAG_X_PREFIX}.Version=${PORTVERSION} \
 		${LD_FLAG_X_PREFIX}.Revision=${PORTREVISION} \
 		${LD_FLAG_X_PREFIX}.Branch=release-${PORTVERSION:R} \
-		${LD_FLAG_X_PREFIX}.BuildUser=${BUILD_USER}
+		${LD_FLAG_X_PREFIX}.BuildUser=${BUILD_USER} \
+		${LD_FLAG_X_PREFIX}.BuildDate=${SOURCE_DATE_EPOCH:U${SOURCE_DATE_EPOCH_CMD:sh}}
 
-GO_BUILDFLAGS=	-v -ldflags "${LD_FLAG_STRING}"
+GO_BUILDFLAGS=	-v -ldflags "${LD_FLAG_STRING}" -tags netgo,builtinassets
+
+# A tsdb binary already exists in databases/opentsdb. Rename ours to
+# avoid issues.
 GO_TARGET=	./cmd/prometheus \
-		./cmd/promtool
+		./cmd/promtool \
+		./tsdb/cmd/tsdb:promtsdb
+
+# Bring DISTINFO_FILE into scope so we can get the timestamp.
+.include <bsd.port.pre.mk>
+
+SOURCE_DATE_EPOCH_CMD=	date -ur $$(${GREP} TIMESTAMP ${DISTINFO_FILE} | ${SED} -e 's/[^0-9]//g') '+%Y%m%d-%T'
+
+post-patch:
+	@${LN} -s ${WRKSRC_assets}/web/ui/assets_vfsdata.go \
+		${WRKSRC}/web/ui/assets_vfadata.go
 
 post-install:
 	${INSTALL_DATA} \
@@ -81,4 +96,4 @@ post-install-DOCS-on:
 	cd ${WRKSRC}/docs && \
 		${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

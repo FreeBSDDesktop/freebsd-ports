@@ -3,8 +3,8 @@
 
 PORTNAME=	ntp
 PORTVERSION=	4.3.99
-PORTREVISION=	2
-CATEGORIES=	net ipv6
+PORTREVISION=	7
+CATEGORIES=	net
 MASTER_SITES=	http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-dev/ \
 		http://archive.ntp.org/ntp4/ntp-dev/
 PKGNAMESUFFIX=	-devel
@@ -13,9 +13,13 @@ DISTNAME=	${PORTNAME}-dev-${PORTVERSION:S/P/p/:S/r/-RC/:S/b/-beta/}
 MAINTAINER=	cy@FreeBSD.org
 COMMENT=	The Network Time Protocol Distribution
 
+FORBIDDEN=	See http://support.ntp.org/bin/view/Main/SecurityNotice#March_2020_ntp_4_2_8p14_NTP_Rele
+DEPRECATED=	Current devel branch of ntp is no longer published
+EXPIRATION_DATE=	2020-08-31
+
 LIB_DEPENDS=	libevent.so:devel/libevent
 
-CONFLICTS=	ntp-[0-9].* openntpd-*
+CONFLICTS=	ntp ntpsec openntpd
 
 USES=		cpe pathfix shebangfix libedit libtool localbase:ldflags \
 		pkgconfig gettext-runtime
@@ -77,6 +81,9 @@ ${D}_CONFIGURE_ENABLE=	${D}
 post-extract:
 	@${TOUCH} ${WRKSRC}/scripts/build/checkHtmlFileDates
 	@${CHMOD} +x ${WRKSRC}/scripts/build/checkHtmlFileDates
+
+post-configure:
+	@${ECHO_CMD} '#define HAVE_CLOSEFROM        1' >> ${WRKSRC}/config.h
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}

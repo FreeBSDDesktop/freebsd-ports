@@ -1,10 +1,13 @@
 include/entt/config/config.h
 include/entt/config/version.h
 include/entt/core/algorithm.hpp
+include/entt/core/attribute.h
 include/entt/core/family.hpp
+include/entt/core/fwd.hpp
 include/entt/core/hashed_string.hpp
 include/entt/core/ident.hpp
 include/entt/core/monostate.hpp
+include/entt/core/type_info.hpp
 include/entt/core/type_traits.hpp
 include/entt/core/utility.hpp
 include/entt/entity/actor.hpp
@@ -26,6 +29,7 @@ include/entt/locator/locator.hpp
 include/entt/meta/factory.hpp
 include/entt/meta/meta.hpp
 include/entt/meta/policy.hpp
+include/entt/meta/resolve.hpp
 include/entt/process/process.hpp
 include/entt/process/scheduler.hpp
 include/entt/resource/cache.hpp
@@ -37,6 +41,6 @@ include/entt/signal/dispatcher.hpp
 include/entt/signal/emitter.hpp
 include/entt/signal/fwd.hpp
 include/entt/signal/sigh.hpp
-lib/cmake/entt/EnTTConfig.cmake
-lib/cmake/entt/EnTTConfigVersion.cmake
-lib/cmake/entt/EnTTTargets.cmake
+lib/EnTT/cmake/EnTTConfig.cmake
+lib/EnTT/cmake/EnTTConfigVersion.cmake
+lib/EnTT/cmake/EnTTTargets.cmake

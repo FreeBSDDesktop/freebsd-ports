@@ -3,7 +3,7 @@
 
 PORTNAME=	squeak
 PORTVERSION=	4.10.2
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	lang
 MASTER_SITES=	http://www.squeakvm.org/unix/release/:vmsrc \
 		http://ftp.squeak.org/${IMAGE_VERSION}/:src \
@@ -31,7 +31,7 @@ LIB_DEPENDS=	libaudio.so:audio/nas \
 		libpulse-simple.so:audio/pulseaudio \
 		libv4l2.so:multimedia/libv4l
 
-USES=		pkgconfig
+USES=		gl gnome pkgconfig
 USE_GNOME=	cairo pango
 USE_GL=		gl
 HAS_CONFIGURE=	yes

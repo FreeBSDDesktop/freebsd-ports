@@ -1,10 +1,11 @@
-
 # $FreeBSD$
 
 PORTNAME=	gitea
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.9.3
+DISTVERSION=	1.12.2
 CATEGORIES=	www
+MASTER_SITES=	https://github.com/go-gitea/gitea/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
+DISTNAME=	gitea-src-${DISTVERSION}
 
 MAINTAINER=	stb@lassitu.de
 COMMENT=	Compact self-hosted Git service
@@ -14,12 +15,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	git:devel/git
 
-USES=		go:modules
-USE_GITHUB=	yes
-GH_ACCOUNT=	go-gitea
+USES=		gmake go:no_targets
 USE_RC_SUBR=	gitea
-
-GO_BUILDFLAGS=	-tags "${GO_TAGS}"
+NO_WRKSUBDIR=	yes
+PORTDATA=	*
 
 SUB_FILES+=	app.ini.sample
 SUB_LIST+=	GITUSER=${USERS}
@@ -27,13 +26,16 @@ SUB_LIST+=	GITUSER=${USERS}
 USERS=		git
 GROUPS=		git
 
-OPTIONS_DEFINE=	CERT PAM SQLITE
-OPTIONS_DEFAULT=	${OPTIONS_DEFINE}
+OPTIONS_DEFINE=	BINDATA GIT_LFS PAM SQLITE
+OPTIONS_DEFAULT=	GIT_LFS PAM SQLITE
+OPTIONS_SUB=	yes
 
-CERT_DESC=	Automatic creation of self-signed certificates
-PAM_DESC=	Authentication using PAM
+BINDATA_DESC=	Build a single monolithic binary, with all assets included
+GIT_LFS_DESC=	Support for Git Large File Storage (LFS)
+PAM_DESC=	Enable support for PAM
 
-CERT_VARS=	GO_TAGS+=cert
+BINDATA_VARS=	GO_TAGS+=bindata
+GIT_LFS_RUN_DEPENDS=	git-lfs:devel/git-lfs
 PAM_VARS=	GO_TAGS+=pam
 SQLITE_VARS=	GO_TAGS+="sqlite sqlite_unlock_notify"
 
@@ -47,24 +49,30 @@ DAEMONARGS=	-f
 
 SUB_LIST+=	DAEMONARGS="${DAEMONARGS}"
 
-post-patch:
-	# Gitea releases don't supply the release version number; the
-	# automatic method to obtain the version number in the Gitea build
-	# system only works when sources are checked out from git.
-	# See https://github.com/go-gitea/gitea/issues/1136#issuecomment-311622745
-	@${SED} -Ei .orig \
-		-e 's#^(var Version = )"[^"]+"#\1"${PORTVERSION}"#' \
-		${GO_WRKSRC}/main.go
+SSP_UNSAFE=	true
+# Default LDFLAGS are incompatible with build
+MAKE_ENV=	LDFLAGS="${LDFLAGS} ${EXTRA_LDFLAGS}"
+MAKE_ARGS=	GOPATH=${WRKDIR} TAGS="${GO_TAGS}"
+ALL_TARGET=	backend
+MAKE_JOBS_UNSAFE=	yes
 
+post-patch:
+	${ECHO_CMD} ${DISTVERSION} >${WRKSRC}/VERSION
+
+# Too lazy to figure out why go install won't work.
 do-install:
-	${INSTALL_PROGRAM} ${GO_WRKDIR_BIN}/${PORTNAME} ${STAGEDIR}${PREFIX}/sbin
+	# Go binary is statically linked and cannot be stripped, so use
+	# INSTALL_SCRIPT.
+	${INSTALL_SCRIPT} ${WRKSRC}/gitea ${STAGEDIR}${PREFIX}/sbin
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/conf
 	${INSTALL_DATA} ${WRKDIR}/app.ini.sample ${STAGEDIR}${ETCDIR}/conf/app.ini.sample
-	${INSTALL_DATA} ${GO_WRKSRC}/custom/conf/app.ini.sample ${STAGEDIR}${ETCDIR}/conf/app.ini.defaults
-	cd ${GO_WRKSRC} && ${COPYTREE_SHARE} "options public templates" ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/custom/conf/app.ini.sample ${STAGEDIR}${ETCDIR}/conf/app.ini.defaults
 
 	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/db/${PORTNAME}
 	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/log/${PORTNAME}
 	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/run/${PORTNAME}
+
+do-install-BINDATA-off:
+	cd ${WRKSRC} && ${COPYTREE_SHARE} "options public templates" ${STAGEDIR}${DATADIR}
 
 .include <bsd.port.mk>

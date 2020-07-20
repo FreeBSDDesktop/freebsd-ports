@@ -2,11 +2,12 @@
 
 PORTNAME=	colmap
 DISTVERSION=	3.5
-PORTREVISION=	9
+PORTREVISION=	11
 CATEGORIES=	graphics
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	b5ccc54e68e3.patch:-p1
+PATCHFILES+=	c9e31ee9cde4.patch:-p1 # https://github.com/colmap/colmap/pull/853
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Structure from motion and multi-view stereo
@@ -27,34 +28,33 @@ LIB_DEPENDS=	libboost_filesystem.so:devel/boost-libs \
 		libfreeimage.so:graphics/freeimage \
 		libceres.so:math/ceres-solver
 
-USES=		cmake compiler:${OPENMP}c++11-lib eigen:3 localbase qt:5 sqlite
+USES=		cmake compiler:${OPENMP}c++11-lib eigen:3 gl localbase qt:5 \
+		sqlite
 USE_GITHUB=	yes
 USE_GL=		gl glew
 USE_QT=		qmake_build buildtools_build core gui opengl_build widgets
 EXCLUDE=	SQLite
 EXTRACT_AFTER_ARGS=	${EXCLUDE:S,^,--exclude lib/,}
 CMAKE_OFF=	BOOST_STATIC CUDA_ENABLED
-CXXFLAGS+=	-D_GLIBCXX_USE_C99 -D_GLIBCXX_USE_C99_MATH_TR1 \
-		-D_DECLARE_C99_LDBL_MATH # XXX ports/193528
 LDFLAGS+=	-Wl,--as-needed # gflags, glu, xi, xmu
-TEST_TARGET=	test ARGS="-V"
+TEST_TARGET=	test
 
 OPTIONS_DEFINE=		CGAL DOCS OPENMP SIMD TEST
 OPTIONS_DEFAULT=	CGAL OPENMP SIMD
 
 CGAL_DESC=		Graph-cut on Delaunay triangulation based meshing algorithm
-CGAL_LIB_DEPENDS=	libCGAL.so:math/cgal
+CGAL_BUILD_DEPENDS=	cgal>0:math/cgal
 CGAL_CMAKE_BOOL=	CGAL_ENABLED
 
 DOCS_BUILD_DEPENDS=	gmake:devel/gmake \
-			sphinx-build:textproc/py-sphinx
+			sphinx-build:textproc/py-sphinx18
 DOCS_PORTDOCS=		*
 
 OPENMP_USES=		compiler:openmp
 OPENMP_CMAKE_BOOL=	OPENMP_ENABLED
 .if ${MACHINE_ARCH} == i386 || !exists(/usr/include/omp.h)
 # XXX base/230888 via #pragma omp atomic
-# XXX ports/199603 + ports/210337
+# XXX ports/199603: LLVM openmp in base doesn't support aarch64, armv6, armv7 yet
 OPENMP_VARS=		OPENMP=gcc-
 .endif
 

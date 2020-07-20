@@ -11,10 +11,8 @@ PKGNAMESUFFIX=	3
 MAINTAINER=	zeising@FreeBSD.org
 COMMENT?=	Nagios Remote Plugin Executor
 
-LICENSE=	GPLv2
-
-BROKEN_SSL=	libressl libressl-devel
-BROKEN_SSL_REASON=	nrpe3 does not work with libressl
+LICENSE=	GPLv2+
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	NagiosEnterprises

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	osm2pgsql
-PORTVERSION=	1.0.0
+PORTVERSION=	1.2.2
 CATEGORIES=	converters geography
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -20,10 +20,8 @@ GH_ACCOUNT=	openstreetmap
 
 USES=		cmake compiler:c++11-lang pgsql
 
-CXXFLAGS+=	"-DACCEPT_USE_OF_DEPRECATED_PROJ_API_H=1"
-
 PLIST_FILES=	bin/osm2pgsql \
-		man/man1/osm2pgsql.1.gz
+		share/man/man1/osm2pgsql.1.gz
 
 PORTDOCS=	AUTHORS ChangeLog README.md
 PORTDATA=	*
@@ -34,9 +32,6 @@ LUAJIT_DESC=		Build with LuaJIT support
 LUAJIT_CMAKE_BOOL=	WITH_LUAJIT
 LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
 LUAJIT_USES_OFF=	lua:53
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|share/man/man1|man/man1|' ${WRKSRC}/CMakeLists.txt
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

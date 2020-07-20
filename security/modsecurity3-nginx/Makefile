@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	modsecurity3-nginx
-DISTVERSION=	g20181129
+DISTVERSION=	1.0.1
 PORTREVISION=	1
 CATEGORIES=	security www
 MASTER_SITES=	http://nginx.org/download/
@@ -15,8 +15,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libmodsecurity.so:security/modsecurity3
 
+USES=		compiler:c11
 USE_GITHUB=	nodefault
-GH_TUPLE=	SpiderLabs:ModSecurity-nginx:d7101e1:modsecurity3
+GH_TUPLE=	SpiderLabs:ModSecurity-nginx:v1.0.1:modsecurity3
 
 HAS_CONFIGURE=	yes
 # Most arguments should be derived from www/nginx's Makefile to be in sync
@@ -79,7 +80,7 @@ _NGINX_TMPDIR=		${_NGINX_VARDIR}/tmp/nginx
 _NGINX_VARDIR=	/var
 
 _NGINX_PORTNAME=	nginx
-_NGINX_PORTVERSION=	1.16.0
+_NGINX_PORTVERSION=	1.18.0
 _NGINX_DISTNAME=	${_NGINX_PORTNAME}-${_NGINX_PORTVERSION}
 
 do-install:

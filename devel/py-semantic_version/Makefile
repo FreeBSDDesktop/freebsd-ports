@@ -2,30 +2,29 @@
 # $FreeBSD$
 
 PORTNAME=	semantic_version
-PORTVERSION=	2.6.0
-PORTREVISION=	1
-DISTVERSIONPREFIX=	v
+PORTVERSION=	2.8.5
+MASTER_SITES=	CHEESESHOP
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	loader@FreeBSD.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Python library provides a few tools to handle SemVer in Python
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django111>0:www/py-django111@${PY_FLAVOR}
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	rbarrois
-GH_PROJECT=	python-semanticversion
-
-NO_ARCH=	yes
-
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
+NO_ARCH=	yes
+
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} >= 3500
+TEST_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}django22>=0:www/py-django22@${PY_FLAVOR}
+
 do-test:
 	@(cd ${TEST_WRKSRC}; ${SETENV} ${TEST_ENV} ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test)
+.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

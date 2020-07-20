@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	mbdyn
-PORTVERSION=	1.7.2
-PORTREVISION=	8
+PORTVERSION=	1.7.3
+PORTREVISION=	1
 CATEGORIES=	science
 MASTER_SITES=	https://www.mbdyn.org/userfiles/downloads/
 
@@ -13,7 +13,8 @@ COMMENT=	MultiBody Dynamics analysis system
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN_powerpc=	Does not compile on powerpc
+BROKEN_powerpc=		Does not compile on powerpc
+BROKEN_powerpc64=	fails to compile: libraries/libmbutil/parser.h:275:3: error: expected identifier
 
 BUILD_DEPENDS=	libatomic_ops>0:devel/libatomic_ops
 LIB_DEPENDS=	libltdl.so:devel/libltdl \
@@ -52,7 +53,7 @@ GOTOBLAS_USES=	blaslapack:gotoblas
 METIS_CONFIGURE_ON=	--with-metis=yes
 METIS_CONFIGURE_OFF=	--with-metis=no
 METIS_CPPFLAGS=		-I${LOCALBASE}/include/metis
-METIS_LIB_DEPENDS=	libmetis.so:math/metis4
+METIS_LIB_DEPENDS=	libmetis.so:math/metis
 
 REFERENCE_CONFIGURE_ON=	--with-blas=blas
 REFERENCE_USES=	blaslapack:netlib

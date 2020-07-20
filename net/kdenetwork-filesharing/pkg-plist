@@ -1,5 +1,6 @@
 %%QT_PLUGINDIR%%/sambausershareplugin.so
 share/kservices5/sambausershareplugin.desktop
+share/locale/ast/LC_MESSAGES/kfileshare.mo
 share/locale/ar/LC_MESSAGES/kfileshare.mo
 share/locale/bg/LC_MESSAGES/kfileshare.mo
 share/locale/bs/LC_MESSAGES/kfileshare.mo
@@ -52,3 +53,4 @@ share/locale/ug/LC_MESSAGES/kfileshare.mo
 share/locale/uk/LC_MESSAGES/kfileshare.mo
 share/locale/zh_CN/LC_MESSAGES/kfileshare.mo
 share/locale/zh_TW/LC_MESSAGES/kfileshare.mo
+share/metainfo/org.kde.kdenetwork-filesharing.metainfo.xml

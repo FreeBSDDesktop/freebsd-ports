@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	ejabberd
-PORTVERSION=	19.08
+PORTVERSION=	20.04
+PORTREVISION=	1
 CATEGORIES=	net-im
 
 MAINTAINER=	ashish@FreeBSD.org
@@ -18,7 +19,8 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libpng.so:graphics/png \
 		libwebp.so:graphics/webp
 
-USES=		cpe gmake pkgconfig shebangfix ssl jpeg autoreconf:build
+USES=		compiler:c11 cpe gmake pkgconfig shebangfix ssl jpeg \
+		autoreconf:build
 
 USERS=		ejabberd
 GROUPS=		${USERS}
@@ -43,11 +45,14 @@ GH_TUPLE=	erlang-lager:lager:${LAGER_VER}:lager/deps/lager \
 		potatosalad:erlang-jose:${JOSE_VER}:jose/deps/jose \
 		processone:eimp:${EIMP_VER}:eimp/deps/eimp \
 		DeadZen:goldrush:${GOLDRUSH_VER}:goldrush/deps/goldrush \
-		dvv:base64url:f2c64ed8:base64url/deps/base64url \
+		dvv:base64url:v${BASE64URL_VER}:base64url/deps/base64url \
 		processone:ezlib:${EZLIB_VER}:ezlib/deps/ezlib \
 		processone:pkix:${PKIX_VER}:pkix/deps/pkix \
 		processone:mqtree:${MQTREE_VER}:mqtree/deps/mqtree \
-		processone:yconf:${YCONF_VER}:yconf/deps/yconf
+		processone:yconf:${YCONF_VER}:yconf/deps/yconf \
+		processone:p1_acme:${P1_ACME_VER}:p1_acme/deps/p1_acme \
+		benoitc:erlang-idna:${IDNA_VER}:idna/deps/idna \
+		benoitc:unicode_util_compat:${UNICODE_UTIL_COMPAT_VER}:unicode_util_compat/deps/unicode_util_compat
 
 OPTIONS_DEFINE=	ODBC PAM DOCS MYSQL PGSQL REDIS SIP SQLITE \
 		STUN TOOLS FULLXML
@@ -69,15 +74,18 @@ SUBS= 		PORTNAME=${PORTNAME} PORTVERSION=${PORTVERSION}		\
 		FAST_XML_VER=${FAST_XML_VER}				\
 		FAST_YAML_VER=${FAST_YAML_VER}				\
 		GOLDRUSH_VER=${GOLDRUSH_VER}				\
+		IDNA_VER=${IDNA_VER}					\
 		JIFFY_VER=${JIFFY_VER} JOSE_VER=${JOSE_VER}		\
 		LAGER_VER=${LAGER_VER} LUERL_VER=${LUERL_VER}		\
 		MQTREE_VER=${MQTREE_VER}				\
+		P1_ACME_VER=${P1_ACME_VER}				\
 		P1_MYSQL_VER=${P1_MYSQL_VER}				\
 		P1_OAUTH2_VER=${P1_OAUTH2_VER}				\
 		P1_PGSQL_VER=${P1_PGSQL_VER}				\
 		P1_UTILS_VER=${P1_UTILS_VER} PKIX_VER=${PKIX_VER}	\
 		SQLITE3_VER=${SQLITE3_VER}				\
 		STRINGPREP_VER=${STRINGPREP_VER} STUN_VER=${STUN_VER}	\
+		UNICODE_UTIL_COMPAT_VER=${UNICODE_UTIL_COMPAT_VER}	\
 		XMPP_VER=${XMPP_VER} YCONF_VER=${YCONF_VER}
 
 SUB_FILES=	pkg-message pkg-install
@@ -88,32 +96,35 @@ SUB_LIST=	${SUBS} \
 		EJABBERD_LIBDIR=${EJABBERD_LIBDIR}
 SHEBANG_FILES=	${WRKSRC}/ejabberdctl.template
 
-BASE64URL_VER=	0.0.1
-CACHE_TAB_VER=	1.0.20
-EIMP_VER=	1.0.12
-EPAM_VER=	1.0.6
+BASE64URL_VER=	1.0
+CACHE_TAB_VER=	1.0.22
+EIMP_VER=	1.0.14
+EPAM_VER=	1.0.7
 EREDIS_VER=	1.0.8
-ESIP_VER=	1.0.30
-EZLIB_VER=	1.0.6
-FAST_TLS_VER=	1.1.2
-FAST_XML_VER=	1.1.37
-FAST_YAML_VER=	1.0.20
+ESIP_VER=	1.0.33
+EZLIB_VER=	1.0.7
+FAST_TLS_VER=	1.1.5
+FAST_XML_VER=	1.1.40
+FAST_YAML_VER=	1.0.24
 GOLDRUSH_VER=	0.1.9
-JIFFY_VER=	0.14.8
-JOSE_VER=	1.8.4
+IDNA_VER=	6.0.0
+JIFFY_VER=	1.0.4
+JOSE_VER=	1.9.0
 LAGER_VER=	3.6.10
 LUERL_VER=	0.3
-MQTREE_VER=	1.0.4
-P1_MYSQL_VER=	1.0.11
-P1_OAUTH2_VER=	0.6.5
-P1_PGSQL_VER=	1.1.8
-P1_UTILS_VER=	1.0.16
-PKIX_VER=	1.0.3
+MQTREE_VER=	1.0.7
+P1_ACME_VER=	1.0.5
+P1_MYSQL_VER=	1.0.15
+P1_OAUTH2_VER=	0.6.6
+P1_PGSQL_VER=	1.1.9
+P1_UTILS_VER=	1.0.18
+PKIX_VER=	1.0.5
 SQLITE3_VER=	1.1.6
-STRINGPREP_VER=	1.0.17
-STUN_VER=	1.0.29
-XMPP_VER=	1.4.0
-YCONF_VER=	1.0.0
+STRINGPREP_VER=	1.0.19
+STUN_VER=	1.0.32
+UNICODE_UTIL_COMPAT_VER=	0.4.1
+XMPP_VER=	1.4.6
+YCONF_VER=	1.0.4
 
 OPTIONS_SUB=		yes
 SIP_DESC=	SIP support
@@ -142,6 +153,8 @@ FULLXML_CONFIGURE_ENABLE=	full-xml
 SQLITE_USES=		sqlite
 DOCS_MAKE_ARGS_OFF=	NOPORTDOCS=yes
 
+.include <bsd.port.pre.mk>
+
 pre-everything::
 	@if ${PKG_BIN} query %n-%v net-im/ejabberd; then \
 		${ECHO_MSG} needs to be uninstalled, before this port build could proceed. ; \
@@ -154,6 +167,11 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,^convert,${LOCALBASE}/bin/convert,' ${WRKSRC}/tools/captcha.sh
 	@${REINPLACE_CMD} -e 's,%%PORTVERSION%%,${PORTVERSION},' ${WRKSRC}/configure.ac
 	@${REINPLACE_CMD} -e '/vsn/s/git/"${JIFFY_VER}"/' ${WRKSRC}/deps/jiffy/src/jiffy.app.src
+	@${REINPLACE_CMD} -e '/vsn/s/0.0.1/${BASE64URL_VER}/' ${WRKSRC}/deps/base64url/src/base64url.app.src
+.if ${OSVERSION} < 1200000
+	# Disable LTO required by dependency, not available by default in < 12.x
+	@${REINPLACE_CMD} -e 's/$$FLTO_FLAG//' ${WRKSRC}/deps/jiffy/rebar.config
+.endif
 
 pre-configure:
 	cd ${WRKSRC} && ${SH} autogen.sh
@@ -182,4 +200,4 @@ post-install:
 	@${CHMOD} +x ${STAGEDIR}${PREFIX}/${EJABBERD_LIBDIR}/${PORTNAME}-${PORTVERSION}/lib/eimp-${EIMP_VER}/priv/bin/eimp
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/${EJABBERD_LIBDIR}/${PORTNAME}-${PORTVERSION}/lib/eimp-${EIMP_VER}/priv/bin/eimp
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

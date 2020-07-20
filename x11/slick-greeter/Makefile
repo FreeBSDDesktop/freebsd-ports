@@ -2,12 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	slick-greeter
-PORTVERSION=	1.2.7
-PORTREVISION=	1
+PORTVERSION=	1.3.0
 CATEGORIES=	x11
 
 MAINTAINER=	ericbsd@FreeBSD.org
-COMMENT=	A slick-looking LightDM greeter
+COMMENT=	Slick-looking LightDM greeter
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -16,7 +15,7 @@ LIB_DEPENDS=	liblightdm-gobject-1.so:x11/lightdm \
 		libcanberra-gtk3.so:audio/libcanberra-gtk3
 BUILD_DEPENDS=	valac:lang/vala
 
-USES=		autoreconf gettext gmake gnome localbase pkgconfig
+USES=		autoreconf gettext gmake gnome localbase pkgconfig xorg
 USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool
 
 USE_XORG=	x11

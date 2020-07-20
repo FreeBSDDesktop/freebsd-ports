@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	mysqlwsrep
-PORTVERSION?=	5.6.45
+PORTVERSION?=	5.6.48
 DISTVERSIONPREFIX?=	wsrep_
-DISTVERSIONSUFFIX?=	-25.27
-PORTREVISION?=	1
-CATEGORIES=	databases ipv6
+DISTVERSIONSUFFIX?=	-25.30
+PORTREVISION?=	0
+CATEGORIES=	databases
 PKGNAMESUFFIX=	56-server
 
 MAINTAINER=	devel@galeracluster.com
@@ -18,8 +18,6 @@ NOT_FOR_ARCHS=		aarch64 armv6 armv7 powerpc64
 NOT_FOR_ARCHS_REASON=	error: Unsupported platform
 
 RUN_DEPENDS=	bash:shells/bash \
-		lsof:sysutils/lsof \
-		netcat:net/netcat \
 		rsync:net/rsync \
 		socat:net/socat
 LIB_DEPENDS=	libevent.so:devel/libevent liblz4.so:archivers/liblz4
@@ -34,6 +32,7 @@ USES=		bison \
 		cmake:noninja \
 		compiler:c++11-lib \
 		compiler:c11 \
+		mysql:56 \
 		libedit \
 		perl5 \
 		shebangfix \
@@ -80,6 +79,7 @@ CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DOPENSSL_LIBRARY=${OPENSSLLIB}/libssl.so \
 		-DINSTALL_MYSQLTESTDIR=0 \
 		-DWITH_LIBWRAP=1 \
+		-DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 \
 		-DWITH_WSREP=1
 
 SHEBANG_FILES=	scripts/*.pl* scripts/*.sh scripts/wsrep_sst_*

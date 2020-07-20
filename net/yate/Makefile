@@ -8,7 +8,7 @@ CATEGORIES=	net
 MASTER_SITES=	http://yate.null.ro/tarballs/yate6/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-1
 
-MAINTAINER=	koue@chaosophia.net
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Yet Another Telephony Engine
 
 LICENSE=	GPLv2
@@ -73,8 +73,7 @@ ILBC_CONFIGURE_ENABLE=	ilbc
 ILBC_LIB_DEPENDS=	libilbc.so:net/ilbc
 
 MYSQL_CONFIGURE_WITH=	mysql
-MYSQL_USE=		mysql=yes
-MYSQL_USES=		ssl
+MYSQL_USES=		mysql ssl
 
 PGSQL_CONFIGURE_WITH=	libpq=${LOCALBASE}
 PGSQL_USES=		pgsql

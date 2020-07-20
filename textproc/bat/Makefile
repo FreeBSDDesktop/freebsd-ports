@@ -2,8 +2,8 @@
 
 PORTNAME=	bat
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.11.0
-PORTREVISION=	2
+DISTVERSION=	0.15.4
+PORTREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	pizzamig@FreeBSD.org
@@ -11,6 +11,7 @@ COMMENT=	Clone of cat with syntax highlighting
 
 LICENSE=	APACHE20
 
+BUILD_DEPENDS=	${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/libclang.so:devel/llvm${LLVM_DEFAULT}
 LIB_DEPENDS=	libgit2.so:devel/libgit2 \
 		libonig.so:devel/oniguruma
 
@@ -19,38 +20,48 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	sharkdp
 
 PLIST_FILES=	bin/bat \
-				man/man1/bat.1.gz
+		man/man1/bat.1.gz
 
-CARGO_CRATES=	adler32-1.0.3 \
-		aho-corasick-0.7.3 \
+CARGO_CRATES=	adler32-1.0.4 \
+		aho-corasick-0.7.10 \
 		ansi_colours-1.0.1 \
 		ansi_term-0.11.0 \
-		argon2rs-0.2.5 \
-		arrayvec-0.4.10 \
-		assert_cmd-0.11.1 \
-		atty-0.2.11 \
-		autocfg-0.1.2 \
-		backtrace-0.3.16 \
-		backtrace-sys-0.1.28 \
-		base64-0.10.1 \
-		bincode-1.1.4 \
-		bitflags-1.0.4 \
-		blake2-rfc-0.2.18 \
-		build_const-0.2.1 \
-		byteorder-1.3.1 \
-		cc-1.0.37 \
-		cfg-if-0.1.9 \
+		ansi_term-0.12.1 \
+		anymap-0.12.1 \
+		arrayref-0.3.6 \
+		arrayvec-0.5.1 \
+		assert_cmd-1.0.1 \
+		atty-0.2.14 \
+		autocfg-1.0.0 \
+		base64-0.11.0 \
+		base64-0.12.1 \
+		bincode-1.2.1 \
+		bit-set-0.5.1 \
+		bit-vec-0.5.1 \
+		bitflags-1.2.1 \
+		blake2b_simd-0.5.10 \
+		block-buffer-0.7.3 \
+		block-padding-0.1.5 \
+		bstr-0.2.12 \
+		byte-tools-0.3.1 \
+		byteorder-1.3.4 \
+		cc-1.0.52 \
+		cfg-if-0.1.10 \
+		chrono-0.4.11 \
 		clap-2.33.0 \
-		clicolors-control-1.0.0 \
-		cloudabi-0.0.3 \
-		console-0.7.5 \
-		constant_time_eq-0.1.3 \
+		console-0.11.2 \
+		constant_time_eq-0.1.5 \
 		content_inspector-0.2.4 \
-		crc-1.8.1 \
 		crc32fast-1.2.0 \
+		crossbeam-utils-0.7.2 \
 		difference-2.0.0 \
-		dirs-1.0.5 \
-		encode_unicode-0.3.5 \
+		digest-0.8.1 \
+		dirs-2.0.2 \
+		dirs-sys-0.3.4 \
+		doc-comment-0.3.3 \
+		dtoa-0.4.5 \
+		either-1.5.3 \
+		encode_unicode-0.3.6 \
 		encoding-0.2.33 \
 		encoding-index-japanese-1.20141219.5 \
 		encoding-index-korean-1.20141219.5 \
@@ -58,114 +69,127 @@ CARGO_CRATES=	adler32-1.0.3 \
 		encoding-index-singlebyte-1.20141219.5 \
 		encoding-index-tradchinese-1.20141219.5 \
 		encoding_index_tests-0.1.4 \
-		error-chain-0.12.1 \
-		escargot-0.4.0 \
-		escargot-0.5.0 \
-		failure-0.1.5 \
-		failure_derive-0.1.5 \
-		flate2-1.0.7 \
+		error-chain-0.12.2 \
+		fake-simd-0.1.2 \
+		fancy-regex-0.3.3 \
+		flate2-1.0.14 \
 		fnv-1.0.6 \
 		fuchsia-cprng-0.1.1 \
-		git2-0.8.0 \
-		glob-0.2.11 \
-		humantime-1.2.0 \
+		generic-array-0.12.3 \
+		getrandom-0.1.14 \
+		git2-0.13.5 \
+		glob-0.3.0 \
+		globset-0.4.5 \
+		hermit-abi-0.1.11 \
 		idna-0.1.5 \
-		itoa-0.4.4 \
+		idna-0.2.0 \
+		indexmap-1.3.2 \
+		itertools-0.8.2 \
+		itoa-0.4.5 \
+		jobserver-0.1.21 \
 		kernel32-sys-0.2.2 \
-		lazy_static-1.3.0 \
+		kstring-0.1.0 \
+		lazy_static-1.4.0 \
 		lazycell-1.2.1 \
-		libc-0.2.54 \
-		libgit2-sys-0.7.11 \
+		libc-0.2.69 \
+		libgit2-sys-0.12.5+1.0.0 \
 		libz-sys-1.0.25 \
 		line-wrap-0.1.1 \
 		linked-hash-map-0.5.2 \
-		lock_api-0.2.0 \
-		log-0.4.6 \
+		liquid-0.20.0 \
+		liquid-core-0.20.0 \
+		liquid-derive-0.20.0 \
+		liquid-lib-0.20.0 \
+		log-0.4.8 \
+		maplit-1.0.2 \
 		matches-0.1.8 \
-		memchr-2.2.0 \
-		miniz-sys-0.1.11 \
-		miniz_oxide-0.2.1 \
-		miniz_oxide_c_api-0.2.1 \
-		nodrop-0.1.13 \
-		numtoa-0.1.0 \
-		onig-4.3.2 \
-		onig_sys-69.1.0 \
-		parking_lot-0.8.0 \
-		parking_lot_core-0.5.0 \
+		memchr-2.3.3 \
+		miniz_oxide-0.3.6 \
+		num-integer-0.1.42 \
+		num-traits-0.2.11 \
+		once_cell-1.3.1 \
+		onig-6.0.0 \
+		onig_sys-69.5.0 \
+		opaque-debug-0.2.3 \
+		path_abs-0.5.0 \
 		percent-encoding-1.0.1 \
-		pkg-config-0.3.14 \
-		plist-0.4.1 \
-		predicates-1.0.1 \
+		percent-encoding-2.1.0 \
+		pest-2.1.3 \
+		pest_derive-2.1.0 \
+		pest_generator-2.1.3 \
+		pest_meta-2.1.3 \
+		pkg-config-0.3.17 \
+		plist-1.0.0 \
+		predicates-1.0.4 \
 		predicates-core-1.0.0 \
 		predicates-tree-1.0.0 \
-		proc-macro2-0.4.30 \
-		quick-error-1.2.2 \
-		quote-0.6.12 \
+		proc-macro-hack-0.5.15 \
+		proc-macro2-1.0.10 \
+		proc-quote-0.3.2 \
+		proc-quote-impl-0.3.2 \
+		quote-1.0.3 \
 		rand-0.4.6 \
-		rand-0.6.5 \
-		rand_chacha-0.1.1 \
 		rand_core-0.3.1 \
-		rand_core-0.4.0 \
-		rand_hc-0.1.0 \
-		rand_isaac-0.1.1 \
-		rand_jitter-0.1.4 \
-		rand_os-0.1.3 \
-		rand_pcg-0.1.2 \
-		rand_xorshift-0.1.1 \
+		rand_core-0.4.2 \
 		rdrand-0.4.0 \
-		redox_syscall-0.1.54 \
-		redox_termios-0.1.1 \
-		redox_users-0.3.0 \
-		regex-1.1.6 \
-		regex-syntax-0.6.6 \
-		remove_dir_all-0.5.1 \
-		rustc-demangle-0.1.14 \
-		rustc_version-0.2.3 \
-		ryu-0.2.8 \
-		safemem-0.3.0 \
-		same-file-1.0.4 \
-		scoped_threadpool-0.1.9 \
-		scopeguard-1.0.0 \
+		redox_syscall-0.1.56 \
+		redox_users-0.3.4 \
+		regex-1.3.7 \
+		regex-syntax-0.6.17 \
+		remove_dir_all-0.5.2 \
+		rust-argon2-0.7.0 \
+		ryu-1.0.3 \
+		safemem-0.3.3 \
+		same-file-1.0.6 \
 		semver-0.9.0 \
 		semver-parser-0.7.0 \
-		serde-1.0.91 \
-		serde_derive-1.0.91 \
-		serde_json-1.0.39 \
-		shell-words-0.1.0 \
-		smallvec-0.6.9 \
+		serde-1.0.110 \
+		serde_derive-1.0.110 \
+		serde_json-1.0.51 \
+		serde_yaml-0.8.12 \
+		sha-1-0.8.2 \
+		shell-words-1.0.0 \
+		smallvec-1.3.0 \
+		std_prelude-0.2.12 \
 		strsim-0.8.0 \
-		syn-0.15.34 \
-		synstructure-0.10.2 \
-		syntect-3.2.0 \
+		syn-1.0.17 \
+		syntect-4.2.0 \
 		tempdir-0.3.7 \
 		term_size-0.3.1 \
-		termion-1.5.2 \
-		termios-0.3.1 \
+		terminal_size-0.1.12 \
+		termios-0.3.2 \
 		textwrap-0.11.0 \
-		thread_local-0.3.6 \
+		thread_local-1.0.1 \
+		time-0.1.43 \
 		treeline-0.1.0 \
-		ucd-util-0.1.3 \
+		typenum-1.12.0 \
+		ucd-trie-0.1.3 \
 		unicode-bidi-0.3.4 \
-		unicode-normalization-0.1.8 \
-		unicode-width-0.1.5 \
-		unicode-xid-0.1.0 \
+		unicode-normalization-0.1.12 \
+		unicode-segmentation-1.6.0 \
+		unicode-width-0.1.7 \
+		unicode-xid-0.2.0 \
 		url-1.7.2 \
-		utf8-ranges-1.0.2 \
-		vcpkg-0.2.6 \
+		url-2.1.1 \
+		vcpkg-0.2.8 \
 		vec_map-0.8.1 \
-		version_check-0.1.5 \
-		walkdir-2.2.7 \
-		wild-2.0.1 \
+		version_check-0.9.1 \
+		wait-timeout-0.2.0 \
+		walkdir-2.3.1 \
+		wasi-0.9.0+wasi-snapshot-preview1 \
+		wild-2.0.3 \
 		winapi-0.2.8 \
-		winapi-0.3.7 \
+		winapi-0.3.8 \
 		winapi-build-0.1.1 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
-		winapi-util-0.1.2 \
+		winapi-util-0.1.5 \
 		winapi-x86_64-pc-windows-gnu-0.4.0 \
-		xml-rs-0.8.0 \
+		xml-rs-0.8.2 \
 		yaml-rust-0.4.3
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/bat
+	find ${WRKDIR}/target -name "bat.1" -exec cp {} ${WRKSRC}/doc/bat.1 \;
 	${INSTALL_MAN} ${WRKSRC}/doc/bat.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+
 .include <bsd.port.mk>

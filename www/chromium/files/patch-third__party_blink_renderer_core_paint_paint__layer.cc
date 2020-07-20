@@ -1,6 +1,6 @@
---- third_party/blink/renderer/core/paint/paint_layer.cc.orig	2019-04-30 22:23:01 UTC
+--- third_party/blink/renderer/core/paint/paint_layer.cc.orig	2020-05-13 18:40:34 UTC
 +++ third_party/blink/renderer/core/paint/paint_layer.cc
-@@ -103,7 +103,7 @@ namespace {
+@@ -107,7 +107,7 @@ namespace {
  static CompositingQueryMode g_compositing_query_mode =
      kCompositingQueriesAreOnlyAllowedInCertainDocumentLifecyclePhases;
  

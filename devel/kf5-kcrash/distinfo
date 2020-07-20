@@ -1,3 +1,5 @@
-TIMESTAMP = 1565017276
-SHA256 (KDE/frameworks/5.61.0/kcrash-5.61.0.tar.xz) = 83e6333ea0cd7d1ded3fa84f126e3c86a010d7bdb7fd183e7c5d42a8b8e74db8
-SIZE (KDE/frameworks/5.61.0/kcrash-5.61.0.tar.xz) = 22968
+TIMESTAMP = 1592074567
+SHA256 (KDE/frameworks/5.71.0/kcrash-5.71.0.tar.xz) = 526242aa9fde7cff11ecaa88bf75d6fbbfc412f46bf19a7a9e185f2adb616005
+SIZE (KDE/frameworks/5.71.0/kcrash-5.71.0.tar.xz) = 22620
+SHA256 (KDE/frameworks/5.71.0/223908ac1030a3a4fe297748101aafcf81076dbc.patch) = 2d5b310b3e569c75bf58a96efcbcdf8f3ec0e0eec2988e0b62d1fd6bd6334ff5
+SIZE (KDE/frameworks/5.71.0/223908ac1030a3a4fe297748101aafcf81076dbc.patch) = 1375

@@ -1,54 +1,48 @@
---- src/3rdparty/chromium/third_party/zlib/arm_features.c.orig	2019-01-16 11:59:47 UTC
+--- src/3rdparty/chromium/third_party/zlib/arm_features.c.orig	2020-03-22 20:03:48 UTC
 +++ src/3rdparty/chromium/third_party/zlib/arm_features.c
-@@ -10,20 +10,33 @@
- #include <pthread.h>
- #include <stdint.h>
+@@ -12,7 +12,7 @@
+ int ZLIB_INTERNAL arm_cpu_enable_crc32 = 0;
+ int ZLIB_INTERNAL arm_cpu_enable_pmull = 0;
  
--#if defined(ARMV8_OS_ANDROID)
-+int ZLIB_INTERNAL arm_cpu_enable_crc32 = 0;
-+int ZLIB_INTERNAL arm_cpu_enable_pmull = 0;
-+
-+static pthread_once_t cpu_check_inited_once = PTHREAD_ONCE_INIT;
-+
-+#if defined (__FreeBSD__)
+-#if defined(ARMV8_OS_ANDROID) || defined(ARMV8_OS_LINUX) || defined(ARMV8_OS_FUCHSIA)
++#if defined(ARMV8_OS_ANDROID) || defined(ARMV8_OS_LINUX) || defined(ARMV8_OS_FUCHSIA) || defined(ARMV8_OS_FREEBSD)
+ #include <pthread.h>
+ #endif
+ 
+@@ -27,13 +27,22 @@ int ZLIB_INTERNAL arm_cpu_enable_pmull = 0;
+ #include <zircon/types.h>
+ #elif defined(ARMV8_OS_WINDOWS)
+ #include <windows.h>
++#elif defined(ARMV8_OS_FREEBSD)
 +#include <machine/armreg.h>
 +#include <sys/types.h>
-+static void init_arm_features(void)
-+{
-+#if defined (__aarch64__)
-+    uint64_t id_aa64isar0;
-+
-+    id_aa64isar0 = READ_SPECIALREG(ID_AA64ISAR0_EL1);
-+    if (ID_AA64ISAR0_AES(id_aa64isar0) == ID_AA64ISAR0_AES_PMULL)
-+        arm_cpu_enable_pmull = 1;
-+    if (ID_AA64ISAR0_CRC32(id_aa64isar0) == ID_AA64ISAR0_CRC32_BASE)
-+        arm_cpu_enable_crc32 = 1;
++#ifndef ID_AA64ISAR0_AES_VAL
++#define ID_AA64ISAR0_AES_VAL ID_AA64ISAR0_AES
 +#endif
-+}
-+#elif defined(ARMV8_OS_ANDROID)
- #include <cpu-features.h>
- #elif defined(ARMV8_OS_LINUX)
- #include <asm/hwcap.h>
- #include <sys/auxv.h>
--#else
--#error ### No ARM CPU features detection in your platform/OS
--#endif
- 
--int ZLIB_INTERNAL arm_cpu_enable_crc32 = 0;
--int ZLIB_INTERNAL arm_cpu_enable_pmull = 0;
- 
--static pthread_once_t cpu_check_inited_once = PTHREAD_ONCE_INIT;
--
- static void init_arm_features(void)
- {
-     uint64_t flag_crc32 = 0, flag_pmull = 0, capabilities = 0;
-@@ -53,6 +66,9 @@ static void init_arm_features(void)
-     if (capabilities & flag_pmull)
-         arm_cpu_enable_pmull = 1;
- }
-+#else
-+#error ### No ARM CPU features detection in your platform/OS
++#ifndef ID_AA64ISAR0_CRC32_VAL
++#define ID_AA64ISAR0_CRC32_VAL ID_AA64ISAR0_CRC32
 +#endif
+ #else
+ #error arm_features.c ARM feature detection in not defined for your platform
+ #endif
  
+ static void _arm_check_features(void);
+ 
+-#if defined(ARMV8_OS_ANDROID) || defined(ARMV8_OS_LINUX) || defined(ARMV8_OS_FUCHSIA)
++#if defined(ARMV8_OS_ANDROID) || defined(ARMV8_OS_LINUX) || defined(ARMV8_OS_FUCHSIA) || defined(ARMV8_OS_FREEBSD)
+ static pthread_once_t cpu_check_inited_once = PTHREAD_ONCE_INIT;
  void ZLIB_INTERNAL arm_check_features(void)
  {
+@@ -86,5 +95,12 @@ static void _arm_check_features(void)
+ #elif defined(ARMV8_OS_WINDOWS)
+     arm_cpu_enable_crc32 = IsProcessorFeaturePresent(PF_ARM_V8_CRC32_INSTRUCTIONS_AVAILABLE);
+     arm_cpu_enable_pmull = IsProcessorFeaturePresent(PF_ARM_V8_CRYPTO_INSTRUCTIONS_AVAILABLE);
++#elif defined(ARMV8_OS_FREEBSD)
++    uint64_t id_aa64isar0;
++    id_aa64isar0 = READ_SPECIALREG(id_aa64isar0_el1);
++    if (ID_AA64ISAR0_AES_VAL(id_aa64isar0) == ID_AA64ISAR0_AES_PMULL)
++        arm_cpu_enable_pmull = 1;
++    if (ID_AA64ISAR0_CRC32_VAL(id_aa64isar0) == ID_AA64ISAR0_CRC32_BASE)
++        arm_cpu_enable_crc32 = 1;
+ #endif
+ }

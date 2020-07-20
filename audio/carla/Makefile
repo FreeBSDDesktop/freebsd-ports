@@ -2,8 +2,7 @@
 
 PORTNAME=	Carla
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.0.0
-PORTREVISION=	2
+DISTVERSION=	2.1.1
 CATEGORIES=	audio
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -19,7 +18,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyliblo>0:audio/py-pyliblo@${PY_FLAVOR}
 CONFLICTS_BUILD=	rtaudio-* rtmidi-*
 
 USES=		compiler:c++11-lib desktop-file-utils gl gmake gnome localbase \
-		pkgconfig pyqt:5 python:3.4+ qt:5 shared-mime-info shebangfix tar:bz2
+		pkgconfig pyqt:5 python:3.4+ qt:5 shared-mime-info shebangfix \
+		tar:bz2 xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	falkTX
 USE_PYQT=	core_run gui_run sip svg_run widgets_run xml_build  # "sip" should be "sip_build", but "import PyQt5.QtCore" wants "sip". See bug#225040
@@ -28,7 +28,7 @@ USE_QT=		core gui widgets buildtools_build
 USE_GL=		gl
 USE_XORG=	x11
 USE_LDCONFIG=	${PREFIX}/lib/carla
-SHEBANG_FILES=	data/carla-single source/native-plugins/resources/*
+SHEBANG_FILES=	data/carla-single data/carla-bridge-lv2-modgui source/native-plugins/resources/* source/frontend/*
 
 MAKE_ARGS=	HAVE_QT4=false \
 		EXTERNAL_PLUGINS=false \

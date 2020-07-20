@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	node_exporter
-PORTVERSION=	0.18.1
+PORTVERSION=	1.0.1
 DISTVERSIONPREFIX=v
 CATEGORIES=	sysutils
 
-MAINTAINER=	ports@ecadlabs.com
+MAINTAINER=	dor.bsd@xm0.uk
 COMMENT=	Prometheus exporter for machine metrics
 
 LICENSE=	APACHE20
@@ -32,7 +32,7 @@ TEST_TARGET=	test
 TEST_ENV=	PROMTOOL=${LOCALBASE}/bin/promtool
 
 BUILD_USER?=	${USER}
-LD_FLAG_X_PREFIX=	-X ${GO_PKGNAME}/vendor/${GO_PKGNAME:H}/common/version
+LD_FLAG_X_PREFIX=	-X ${GO_PKGNAME:H}/common/version
 LD_FLAG_STRING=	-s \
 		${LD_FLAG_X_PREFIX}.Version=${PORTVERSION} \
 		${LD_FLAG_X_PREFIX}.Revision=${PORTREVISION} \
@@ -40,17 +40,13 @@ LD_FLAG_STRING=	-s \
 		${LD_FLAG_X_PREFIX}.BuildUser=${BUILD_USER}
 GO_BUILDFLAGS=	-v -ldflags "${LD_FLAG_STRING}"
 
-OPTIONS_DEFINE=	DOCS EXAMPLES
+OPTIONS_DEFINE=	DOCS
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/docs && \
 		${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
-
-post-install-EXAMPLES-on:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/text_collector_examples
-	cd ${WRKSRC} && ${COPYTREE_SHARE} ./text_collector_examples ${STAGEDIR}${EXAMPLESDIR}
 
 # TestFileDescriptorLeak is being skipped at the moment because procfs(5) is
 # not properly detected.

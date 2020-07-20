@@ -753,6 +753,21 @@ share/help/id/mate-system-monitor/figures/systemMonitor.png
 share/help/id/mate-system-monitor/figures/viewMenu.png
 share/help/id/mate-system-monitor/index.docbook
 share/help/id/mate-system-monitor/legal.xml
+share/help/ie/mate-system-monitor/figures/addColumn.png
+share/help/ie/mate-system-monitor/figures/changePriority.png
+share/help/ie/mate-system-monitor/figures/colorPanel.png
+share/help/ie/mate-system-monitor/figures/columnContextMenu.png
+share/help/ie/mate-system-monitor/figures/mate-system-monitor_window.png
+share/help/ie/mate-system-monitor/figures/memoryMaps.png
+share/help/ie/mate-system-monitor/figures/moreInfo.png
+share/help/ie/mate-system-monitor/figures/processListing.png
+share/help/ie/mate-system-monitor/figures/sortButton.png
+share/help/ie/mate-system-monitor/figures/sortMenu.png
+share/help/ie/mate-system-monitor/figures/sortMenu2.png
+share/help/ie/mate-system-monitor/figures/systemMonitor.png
+share/help/ie/mate-system-monitor/figures/viewMenu.png
+share/help/ie/mate-system-monitor/index.docbook
+share/help/ie/mate-system-monitor/legal.xml
 share/help/is/mate-system-monitor/figures/addColumn.png
 share/help/is/mate-system-monitor/figures/changePriority.png
 share/help/is/mate-system-monitor/figures/colorPanel.png
@@ -1655,7 +1670,6 @@ share/locale/eu/LC_MESSAGES/mate-system-monitor.mo
 share/locale/fa/LC_MESSAGES/mate-system-monitor.mo
 share/locale/fi/LC_MESSAGES/mate-system-monitor.mo
 share/locale/fr/LC_MESSAGES/mate-system-monitor.mo
-share/locale/fr_CA/LC_MESSAGES/mate-system-monitor.mo
 share/locale/frp/LC_MESSAGES/mate-system-monitor.mo
 share/locale/fur/LC_MESSAGES/mate-system-monitor.mo
 share/locale/fy/LC_MESSAGES/mate-system-monitor.mo
@@ -1670,6 +1684,7 @@ share/locale/hu/LC_MESSAGES/mate-system-monitor.mo
 share/locale/hy/LC_MESSAGES/mate-system-monitor.mo
 share/locale/ia/LC_MESSAGES/mate-system-monitor.mo
 share/locale/id/LC_MESSAGES/mate-system-monitor.mo
+share/locale/ie/LC_MESSAGES/mate-system-monitor.mo
 share/locale/ig/LC_MESSAGES/mate-system-monitor.mo
 share/locale/is/LC_MESSAGES/mate-system-monitor.mo
 share/locale/it/LC_MESSAGES/mate-system-monitor.mo
@@ -1677,7 +1692,6 @@ share/locale/ja/LC_MESSAGES/mate-system-monitor.mo
 share/locale/jv/LC_MESSAGES/mate-system-monitor.mo
 share/locale/ka/LC_MESSAGES/mate-system-monitor.mo
 share/locale/kk/LC_MESSAGES/mate-system-monitor.mo
-share/locale/km/LC_MESSAGES/mate-system-monitor.mo
 share/locale/kn/LC_MESSAGES/mate-system-monitor.mo
 share/locale/ko/LC_MESSAGES/mate-system-monitor.mo
 share/locale/ks/LC_MESSAGES/mate-system-monitor.mo
@@ -1730,7 +1744,6 @@ share/locale/tt/LC_MESSAGES/mate-system-monitor.mo
 share/locale/ug/LC_MESSAGES/mate-system-monitor.mo
 share/locale/uk/LC_MESSAGES/mate-system-monitor.mo
 share/locale/ur/LC_MESSAGES/mate-system-monitor.mo
-share/locale/ur_PK/LC_MESSAGES/mate-system-monitor.mo
 share/locale/uz/LC_MESSAGES/mate-system-monitor.mo
 share/locale/vi/LC_MESSAGES/mate-system-monitor.mo
 share/locale/wa/LC_MESSAGES/mate-system-monitor.mo

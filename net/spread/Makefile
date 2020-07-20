@@ -3,9 +3,9 @@
 
 PORTNAME=	spread
 PORTVERSION=	3.17.4
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	net perl5
-MASTER_SITES=	http://bsdforge.com/projects/source/net/spread/
+MASTER_SITES=	https://BSDforge.com/projects/source/net/spread/
 DISTNAME=	${PORTNAME}-src-${PORTVERSION}
 
 MAINTAINER=	portmaster@bsdforge.com

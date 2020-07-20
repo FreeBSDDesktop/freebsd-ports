@@ -1,6 +1,11 @@
---- base/system/sys_info_freebsd.cc.orig	2019-03-11 22:00:51 UTC
+--- base/system/sys_info_freebsd.cc.orig	2020-06-15 18:59:42 UTC
 +++ base/system/sys_info_freebsd.cc
-@@ -13,26 +13,58 @@
+@@ -9,30 +9,76 @@
+ #include <sys/sysctl.h>
+ 
+ #include "base/logging.h"
++#include "base/strings/string_util.h"
+ 
  namespace base {
  
  int64_t SysInfo::AmountOfPhysicalMemoryImpl() {
@@ -21,11 +26,6 @@
    return static_cast<int64_t>(pages) * page_size;
  }
  
--// static
--uint64_t SysInfo::MaxSharedMemorySize() {
--  size_t limit;
--  size_t size = sizeof(limit);
--  if (sysctlbyname("kern.ipc.shmmax", &limit, &size, NULL, 0) < 0) {
 +int64_t SysInfo::AmountOfAvailablePhysicalMemoryImpl() {
 +  int page_size, r = 0;
 +  unsigned pgfree, pginact, pgcache;
@@ -40,14 +40,13 @@
 +  if(r == 0)
 +    r = sysctlbyname("vm.stats.vm.v_cache_count", &pgcache, &szpg, NULL, 0);
 +  if(r == -1) {
-     NOTREACHED();
-     return 0;
-   }
--  return static_cast<uint64_t>(limit);
++    NOTREACHED();
++    return 0;
++  }
 +  return static_cast<int64_t>((pgfree + pginact + pgcache) * page_size);
 +}
 +
-+// static
+ // static
 +std::string SysInfo::CPUModelName() {
 +  int mib[] = { CTL_HW, HW_MODEL };
 +  char name[256];
@@ -57,15 +56,28 @@
 +  return std::string();
 +}
 +
-+int SysInfo::NumberOfProcessors() {
-+  int mib[] = { CTL_HW, HW_NCPU };
-+  int ncpu;
-+  size_t size = sizeof(ncpu);
-+  if (sysctl(mib, base::size(mib), &ncpu, &size, NULL, 0) == -1) {
-+    NOTREACHED();
-+    return 1;
-+  }
-+  return ncpu;
++// static
+ uint64_t SysInfo::MaxSharedMemorySize() {
+   size_t limit;
+   size_t size = sizeof(limit);
++
+   if (sysctlbyname("kern.ipc.shmmax", &limit, &size, NULL, 0) < 0) {
+     NOTREACHED();
+     return 0;
+   }
++
+   return static_cast<uint64_t>(limit);
++}
++
++SysInfo::HardwareInfo SysInfo::GetHardwareInfoSync() {
++  HardwareInfo info;
++  // Set the manufacturer to "FreeBSD" and the model to
++  // an empty string.
++  info.manufacturer = "FreeBSD";
++  info.model = HardwareModelName();
++  DCHECK(IsStringUTF8(info.manufacturer));
++  DCHECK(IsStringUTF8(info.model));
++  return info;
  }
  
  }  // namespace base

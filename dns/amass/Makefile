@@ -2,7 +2,7 @@
 
 PORTNAME=	amass
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.0.27
+DISTVERSION=	3.7.4
 CATEGORIES=	dns
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -16,59 +16,91 @@ USES=		go:modules
 USE_GITHUB=	yes
 GH_ACCOUNT=	OWASP
 GH_PROJECT=	Amass
-GH_TUPLE=	PuerkitoBio:fetchbot:v1.1.2:puerkitobio_fetchbot/vendor/github.com/PuerkitoBio/fetchbot \
-		PuerkitoBio:goquery:v1.5.0:puerkitobio_goquery/vendor/github.com/PuerkitoBio/goquery \
+GH_TUPLE=	\
+		AndreasBriese:bbloom:46b345b51c96:andreasbriese_bbloom/vendor/github.com/AndreasBriese/bbloom \
+		PuerkitoBio:goquery:v1.5.1:puerkitobio_goquery/vendor/github.com/PuerkitoBio/goquery \
 		VividCortex:gohistogram:v1.0.0:vividcortex_gohistogram/vendor/github.com/VividCortex/gohistogram \
-		andybalholm:cascadia:v1.0.0:andybalholm_cascadia/vendor/github.com/andybalholm/cascadia \
-		beorn7:perks:v1.0.0:beorn7_perks/vendor/github.com/beorn7/perks \
+		alexbrainman:sspi:e580b900e9f5:alexbrainman_sspi/vendor/github.com/alexbrainman/sspi \
+		andybalholm:cascadia:v1.2.0:andybalholm_cascadia/vendor/github.com/andybalholm/cascadia \
+		beorn7:perks:v1.0.1:beorn7_perks/vendor/github.com/beorn7/perks \
 		boltdb:bolt:v1.3.1:boltdb_bolt/vendor/github.com/boltdb/bolt \
-		caffix:cloudflare-roundtripper:4c29d231c9cb:caffix_cloudflare_roundtripper/vendor/github.com/caffix/cloudflare-roundtripper \
-		cayleygraph:cayley:v0.7.5:cayleygraph_cayley/vendor/github.com/cayleygraph/cayley \
-		cenkalti:backoff:v2.1.1:cenkalti_backoff/vendor/github.com/cenkalti/backoff \
-		chromedp:cdproto:dd39f0bf0a54:chromedp_cdproto/vendor/github.com/chromedp/cdproto \
-		chromedp:chromedp:d55cf9043e05:chromedp_chromedp/vendor/github.com/chromedp/chromedp \
-		dghubble:go-twitter:53f972dc4b06:dghubble_go_twitter/vendor/github.com/dghubble/go-twitter \
-		dghubble:sling:v1.2.0:dghubble_sling/vendor/github.com/dghubble/sling \
-		fatih:color:v1.7.0:fatih_color/vendor/github.com/fatih/color \
-		fpfeng:httpcache:6b8f16a92be3:fpfeng_httpcache/vendor/github.com/fpfeng/httpcache \
-		geziyor:geziyor:71683ec6de71:geziyor_geziyor/vendor/github.com/geziyor/geziyor \
-		go-ini:ini:v1.42.0:go_ini_ini/vendor/github.com/go-ini/ini \
-		go-kit:kit:v0.8.0:go_kit_kit/vendor/github.com/go-kit/kit \
-		go-sourcemap:sourcemap:v1.0.5:go_sourcemap_sourcemap/vendor/gopkg.in/sourcemap.v1 \
+		cayleygraph:cayley:v0.7.7:cayleygraph_cayley/vendor/github.com/cayleygraph/cayley \
+		cayleygraph:quad:v1.2.4:cayleygraph_quad/vendor/github.com/cayleygraph/quad \
+		cenkalti:backoff:v2.2.1:cenkalti_backoff/vendor/github.com/cenkalti/backoff \
+		cespare:xxhash:v2.1.1:cespare_xxhash_v2/vendor/github.com/cespare/xxhash/v2 \
+		chromedp:cdproto:0de008e41fa0:chromedp_cdproto/vendor/github.com/chromedp/cdproto \
+		chromedp:chromedp:v0.5.3:chromedp_chromedp/vendor/github.com/chromedp/chromedp \
+		cjoudrey:gluaurl:31cbb9bef199:cjoudrey_gluaurl/vendor/github.com/cjoudrey/gluaurl \
+		dennwc:base:v1.0.0:dennwc_base/vendor/github.com/dennwc/base \
+		dghubble:go-twitter:39e5462e111f:dghubble_go_twitter/vendor/github.com/dghubble/go-twitter \
+		dghubble:sling:v1.3.0:dghubble_sling/vendor/github.com/dghubble/sling \
+		fatih:color:v1.9.0:fatih_color/vendor/github.com/fatih/color \
+		geziyor:geziyor:cfb16fe1ee0e:geziyor_geziyor/vendor/github.com/geziyor/geziyor \
+		go-ini:ini:v1.55.0:go_ini_ini_1/vendor/gopkg.in/ini.v1 \
+		go-ini:ini:v1.57.0:go_ini_ini/vendor/github.com/go-ini/ini \
+		go-kit:kit:v0.10.0:go_kit_kit/vendor/github.com/go-kit/kit \
+		gobuffalo:logger:v1.0.3:gobuffalo_logger/vendor/github.com/gobuffalo/logger \
+		gobuffalo:packd:v1.0.0:gobuffalo_packd/vendor/github.com/gobuffalo/packd \
+		gobuffalo:packr:v2.8.0:gobuffalo_packr_v2/vendor/github.com/gobuffalo/packr \
 		gobwas:httphead:2c6c146eadee:gobwas_httphead/vendor/github.com/gobwas/httphead \
 		gobwas:pool:v0.2.0:gobwas_pool/vendor/github.com/gobwas/pool \
-		gobwas:ws:v1.0.1:gobwas_ws/vendor/github.com/gobwas/ws \
-		gogo:protobuf:v1.1.1:gogo_protobuf/vendor/github.com/gogo/protobuf \
-		golang:appengine:v1.4.0:golang_appengine/vendor/google.golang.org/appengine \
-		golang:crypto:c2843e01d9a2:golang_crypto/vendor/golang.org/x/crypto \
-		golang:net:f3200d17e092:golang_net/vendor/golang.org/x/net \
-		golang:oauth2:0f29369cfe45:golang_oauth2/vendor/golang.org/x/oauth2 \
-		golang:protobuf:v1.3.1:golang_protobuf/vendor/github.com/golang/protobuf \
-		golang:sys:1e42afee0f76:golang_sys/vendor/golang.org/x/sys \
+		gobwas:ws:v1.0.3:gobwas_ws/vendor/github.com/gobwas/ws \
+		gogo:protobuf:v1.3.1:gogo_protobuf/vendor/github.com/gogo/protobuf \
+		golang:appengine:v1.6.6:golang_appengine/vendor/google.golang.org/appengine \
+		golang:crypto:70a84ac30bf9:golang_crypto/vendor/golang.org/x/crypto \
+		golang:lint:738671d3881b:golang_lint/vendor/golang.org/x/lint \
+		golang:net:627f9648deb9:golang_net/vendor/golang.org/x/net \
+		golang:oauth2:bf48bf16ab8d:golang_oauth2/vendor/golang.org/x/oauth2 \
+		golang:protobuf:v1.4.2:golang_protobuf/vendor/github.com/golang/protobuf \
+		golang:sync:43a5402ce75a:golang_sync/vendor/golang.org/x/sync \
+		golang:sys:6fdc65e7d980:golang_sys/vendor/golang.org/x/sys \
 		golang:text:v0.3.2:golang_text/vendor/golang.org/x/text \
+		golang:tools:cef9fc3bc8f0:golang_tools/vendor/golang.org/x/tools \
 		google:go-querystring:v1.0.0:google_go_querystring/vendor/github.com/google/go-querystring \
 		google:uuid:v1.1.1:google_uuid/vendor/github.com/google/uuid \
-		gorilla:websocket:v1.4.0:gorilla_websocket/vendor/github.com/gorilla/websocket \
-		irfansharif:cfilter:v0.1.1:irfansharif_cfilter/vendor/github.com/irfansharif/cfilter \
+		gorilla:websocket:v1.4.2:gorilla_websocket/vendor/github.com/gorilla/websocket \
+		hashicorp:go-uuid:v1.0.2:hashicorp_go_uuid/vendor/github.com/hashicorp/go-uuid \
+		hidal-go:hidalgo:42e03f3b5eaa:hidal_go_hidalgo/vendor/github.com/hidal-go/hidalgo \
+		inconshreveable:mousetrap:v1.0.0:inconshreveable_mousetrap/vendor/github.com/inconshreveable/mousetrap \
+		jcmturner:aescts:v2.0.0:jcmturner_aescts_v2/vendor/github.com/jcmturner/aescts \
+		jcmturner:dnsutils:v2.0.0:jcmturner_dnsutils_v2/vendor/github.com/jcmturner/dnsutils \
+		jcmturner:gofork:v1.0.0:jcmturner_gofork/vendor/github.com/jcmturner/gofork \
+		jcmturner:goidentity:v6.0.1:jcmturner_goidentity_v6/vendor/github.com/jcmturner/goidentity \
+		jcmturner:gokrb5:v8.3.0:jcmturner_gokrb5_v8/vendor/github.com/jcmturner/gokrb5 \
+		jcmturner:rpc:v2.0.2:jcmturner_rpc_v2/vendor/github.com/jcmturner/rpc \
 		jmoiron:sqlx:v1.2.0:jmoiron_sqlx/vendor/github.com/jmoiron/sqlx \
-		johnnadratowski:golang-neo4j-bolt-driver:6b24c0085aae:johnnadratowski_golang_neo4j_bolt_driver/vendor/github.com/johnnadratowski/golang-neo4j-bolt-driver \
-		knq:sysutil:f05b59f0f307:knq_sysutil/vendor/github.com/knq/sysutil \
-		lib:pq:v1.1.1:lib_pq/vendor/github.com/lib/pq \
-		mailru:easyjson:1ea4449da983:mailru_easyjson/vendor/github.com/mailru/easyjson \
-		mattn:go-colorable:v0.1.2:mattn_go_colorable/vendor/github.com/mattn/go-colorable \
-		mattn:go-isatty:v0.0.8:mattn_go_isatty/vendor/github.com/mattn/go-isatty \
+		karrick:godirwalk:v1.15.6:karrick_godirwalk/vendor/github.com/karrick/godirwalk \
+		knq:sysutil:15668db23d08:knq_sysutil/vendor/github.com/knq/sysutil \
+		konsorten:go-windows-terminal-sequences:v1.0.3:konsorten_go_windows_terminal_sequences/vendor/github.com/konsorten/go-windows-terminal-sequences \
+		layeh:gopher-json:97fed8db8427:layeh_gopher_json/vendor/layeh.com/gopher-json \
+		lib:pq:v1.6.0:lib_pq/vendor/github.com/lib/pq \
+		mailru:easyjson:v0.7.1:mailru_easyjson/vendor/github.com/mailru/easyjson \
+		markbates:errx:v1.1.0:markbates_errx/vendor/github.com/markbates/errx \
+		markbates:oncer:v1.0.0:markbates_oncer/vendor/github.com/markbates/oncer \
+		markbates:safe:v1.0.1:markbates_safe/vendor/github.com/markbates/safe \
+		mattn:go-colorable:v0.1.6:mattn_go_colorable/vendor/github.com/mattn/go-colorable \
+		mattn:go-isatty:v0.0.12:mattn_go_isatty/vendor/github.com/mattn/go-isatty \
 		matttproud:golang_protobuf_extensions:v1.0.1:matttproud_golang_protobuf_extensions/vendor/github.com/matttproud/golang_protobuf_extensions \
-		miekg:dns:v1.1.15:miekg_dns/vendor/github.com/miekg/dns \
-		mitchellh:go-homedir:v1.1.0:mitchellh_go_homedir/vendor/github.com/mitchellh/go-homedir \
-		pkg:errors:v0.8.1:pkg_errors/vendor/github.com/pkg/errors \
-		prometheus:client_golang:v1.0.0:prometheus_client_golang/vendor/github.com/prometheus/client_golang \
-		prometheus:client_model:fd36f4220a90:prometheus_client_model/vendor/github.com/prometheus/client_model \
-		prometheus:common:v0.4.1:prometheus_common/vendor/github.com/prometheus/common \
-		prometheus:procfs:v0.0.2:prometheus_procfs/vendor/github.com/prometheus/procfs \
-		qasaur:gremgo:fa23ada7c5da:qasaur_gremgo/vendor/github.com/qasaur/gremgo \
-		robertkrimen:otto:15f95af6e78d:robertkrimen_otto/vendor/github.com/robertkrimen/otto \
-		satori:go.uuid:v1.2.0:satori_go_uuid/vendor/github.com/satori/go.uuid \
-		tylertreat:BoomFilters:611b3dbe80e8:tylertreat_boomfilters/vendor/github.com/tylertreat/BoomFilters
+		miekg:dns:v1.1.29:miekg_dns/vendor/github.com/miekg/dns \
+		northwesternmutual:grammes:v1.1.2:northwesternmutual_grammes/vendor/github.com/northwesternmutual/grammes \
+		pkg:errors:v0.9.1:pkg_errors/vendor/github.com/pkg/errors \
+		prometheus:client_golang:v1.6.0:prometheus_client_golang/vendor/github.com/prometheus/client_golang \
+		prometheus:client_model:v0.2.0:prometheus_client_model/vendor/github.com/prometheus/client_model \
+		prometheus:common:v0.10.0:prometheus_common/vendor/github.com/prometheus/common \
+		prometheus:procfs:v0.0.11:prometheus_procfs/vendor/github.com/prometheus/procfs \
+		protocolbuffers:protobuf-go:v1.24.0:protocolbuffers_protobuf_go/vendor/google.golang.org/protobuf \
+		rakyll:statik:v0.1.7:rakyll_statik/vendor/github.com/rakyll/statik \
+		rogpeppe:go-internal:v1.6.0:rogpeppe_go_internal/vendor/github.com/rogpeppe/go-internal \
+		sirupsen:logrus:v1.6.0:sirupsen_logrus/vendor/github.com/sirupsen/logrus \
+		spf13:cobra:v1.0.0:spf13_cobra/vendor/github.com/spf13/cobra \
+		spf13:pflag:v1.0.5:spf13_pflag/vendor/github.com/spf13/pflag \
+		temoto:robotstxt:v1.1.1:temoto_robotstxt/vendor/github.com/temoto/robotstxt \
+		tylertreat:BoomFilters:42a7b4300c0c:tylertreat_boomfilters/vendor/github.com/tylertreat/BoomFilters \
+		uber-go:atomic:v1.6.0:uber_go_atomic/vendor/go.uber.org/atomic \
+		uber-go:multierr:v1.5.0:uber_go_multierr/vendor/go.uber.org/multierr \
+		uber-go:zap:v1.15.0:uber_go_zap/vendor/go.uber.org/zap \
+		yuin:gluare:d7c94f1a80ed:yuin_gluare/vendor/github.com/yuin/gluare \
+		yuin:gopher-lua:dc2b0ca8b37e:yuin_gopher_lua/vendor/github.com/yuin/gopher-lua
 
 GO_TARGET=	./cmd/${PORTNAME}
 

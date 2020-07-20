@@ -2,11 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	sympa
-DISTVERSION=	6.2.44
+DISTVERSION=	6.2.56
+PORTREVISION=	1
 CATEGORIES=	mail
 
 MAINTAINER=	dgeo@centrale-marseille.fr
-COMMENT=	Sympa is an electronic mailing list manager
+COMMENT=	Electronic mailing list manager
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -33,7 +34,7 @@ RUN_DEPENDS=	\
 	p5-HTML-StripScripts-Parser>=1.03:www/p5-HTML-StripScripts-Parser	\
 	p5-HTML-Tree>=0:www/p5-HTML-Tree	\
 	p5-IO-Socket-SSL>=0.90:security/p5-IO-Socket-SSL	\
-	p5-IO-stringy>=0:devel/p5-IO-stringy	\
+	p5-IO-Stringy>=0:devel/p5-IO-Stringy	\
 	p5-Locale-libintl>=1.22:devel/p5-Locale-libintl	\
 	p5-Mail-Tools>=0:mail/p5-Mail-Tools	\
 	p5-Mail-DKIM>=0.55:mail/p5-Mail-DKIM	\
@@ -49,7 +50,7 @@ RUN_DEPENDS=	\
 	p5-Template-Toolkit>=2.21:www/p5-Template-Toolkit	\
 	p5-Term-ProgressBar>=2.09:devel/p5-Term-ProgressBar	\
 	p5-Time-HiRes>=1.29:devel/p5-Time-HiRes	\
-	p5-Unicode-LineBreak>=2011.05:textproc/p5-Unicode-LineBreak	\
+	p5-Unicode-LineBreak>=2019.001:textproc/p5-Unicode-LineBreak	\
 	p5-URI>=1.35:net/p5-URI	\
 	p5-XML-LibXML>=1.70:textproc/p5-XML-LibXML	\
 	mhonarc>=0:www/mhonarc
@@ -63,13 +64,8 @@ USE_RC_SUBR=	sympa
 # Ignore alpha/beta versions
 PORTSCOUT=	limit:^[0-9]+(\.[0-9]+)*$$
 
-PORTDOCS=	NEWS.md
-
 USERS=		sympa
 GROUPS=		sympa
-SHEBANG_FILES=	po/sympa/xgettext.pl \
-		po/sympa/add-lang.pl
-
 GNU_CONFIGURE=	yes
 ICONSDIR?=	www/icons
 CONFIGURE_ARGS+=--enable-fhs	\

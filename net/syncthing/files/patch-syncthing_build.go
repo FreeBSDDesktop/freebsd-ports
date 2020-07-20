@@ -1,11 +1,11 @@
---- syncthing/build.go.orig	2019-04-04 16:46:36 UTC
+--- syncthing/build.go.orig	2020-06-02 09:38:39 UTC
 +++ syncthing/build.go
-@@ -398,7 +398,7 @@ func build(target target, tags []string) {
+@@ -404,7 +404,7 @@
+ 		defer shouldCleanupSyso(sysoPath)
+ 	}
  
- 	rmr(target.BinaryName())
- 
--	args := []string{"build", "-v"}
-+	args := []string{"build"}
- 	args = appendParameters(args, tags, target)
- 
- 	os.Setenv("GOOS", goos)
+-	args := []string{"install", "-v"}
++	args := []string{"install"}
+ 	args = appendParameters(args, tags, target.buildPkgs...)
+ 	runPrint(goCmd, args...)
+ }

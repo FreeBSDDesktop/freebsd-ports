@@ -9,13 +9,17 @@ MASTER_SITES=	http://www.galago-project.org/files/releases/source/notify-python/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	gnome@FreeBSD.org
-COMMENT=	python bindings for libnotify
+COMMENT=	Python bindings for libnotify
+
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
 
 OPTIONS_DEFINE=	DOCS
 
 LIB_DEPENDS=	libnotify.so:devel/libnotify
 
-USES=		gmake libtool:keepla pathfix pkgconfig python:2.7 tar:bzip2
+USES=		gmake gnome libtool:keepla pathfix pkgconfig python:2.7 \
+		tar:bzip2
 USE_GNOME=	pygtk2
 USE_PYTHON=	flavors
 INSTALL_TARGET=	install-strip

@@ -7,12 +7,11 @@
     SUBDIR += adsuck
     SUBDIR += amass
     SUBDIR += ares
-    SUBDIR += autotrust
     SUBDIR += axfr2acl
     SUBDIR += bind-tools
     SUBDIR += bind9-devel
     SUBDIR += bind911
-    SUBDIR += bind914
+    SUBDIR += bind916
     SUBDIR += bindgraph
     SUBDIR += bundy
     SUBDIR += c-ares
@@ -36,6 +35,7 @@
     SUBDIR += dnsblast
     SUBDIR += dnscap
     SUBDIR += dnscheckengine
+    SUBDIR += dnscontrol
     SUBDIR += dnscrypt-proxy2
     SUBDIR += dnscrypt-wrapper
     SUBDIR += dnsdbck
@@ -49,7 +49,6 @@
     SUBDIR += dnsmasq
     SUBDIR += dnsmasq-devel
     SUBDIR += dnsmax-perl
-    SUBDIR += dnsperf
     SUBDIR += dnsproxy
     SUBDIR += dnsrecon
     SUBDIR += dnsreflector
@@ -69,12 +68,10 @@
     SUBDIR += dsp
     SUBDIR += dynip
     SUBDIR += erlang-idna
-    SUBDIR += ez-ipupdate
     SUBDIR += fastresolve
     SUBDIR += firedns
     SUBDIR += flamethrower
     SUBDIR += fpdns
-    SUBDIR += gdnsd
     SUBDIR += gdnsd2
     SUBDIR += gdnsd3
     SUBDIR += gen6dns
@@ -103,7 +100,6 @@
     SUBDIR += libidn2
     SUBDIR += libnspsl
     SUBDIR += libpsl
-    SUBDIR += linux-c6-libasyncns
     SUBDIR += linux-c7-libasyncns
     SUBDIR += mDNSResponder_nss
     SUBDIR += maradns
@@ -111,6 +107,7 @@
     SUBDIR += mydns
     SUBDIR += mydns-ng
     SUBDIR += namesilo_ddns
+    SUBDIR += nextdns
     SUBDIR += noip
     SUBDIR += nsd
     SUBDIR += nsec3walker
@@ -169,7 +166,6 @@
     SUBDIR += p5-POE-Component-Resolver
     SUBDIR += p5-POE-Component-Server-DNS
     SUBDIR += p5-POE-Filter-DNS-TCP
-    SUBDIR += p5-Stanford-DNSserver
     SUBDIR += p5-Tie-DNS
     SUBDIR += p5-URBL-Prepare
     SUBDIR += packetq
@@ -196,6 +192,7 @@
     SUBDIR += py-namebench
     SUBDIR += py-ns1-python
     SUBDIR += py-publicsuffix
+    SUBDIR += py-publicsuffix2
     SUBDIR += py-publicsuffixlist
     SUBDIR += py-py3dns
     SUBDIR += py-pybonjour
@@ -209,9 +206,11 @@
     SUBDIR += rbldnsd
     SUBDIR += rbllookup
     SUBDIR += rbllookup-ng
+    SUBDIR += rdap
     SUBDIR += renewck
     SUBDIR += rpsl2acl
     SUBDIR += rubygem-dnsruby
+    SUBDIR += rubygem-gitlab-net-dns
     SUBDIR += rubygem-idn-ruby
     SUBDIR += rubygem-net-dns
     SUBDIR += rubygem-public_suffix
@@ -240,7 +239,6 @@
     SUBDIR += wrapsrv
     SUBDIR += yadifa
     SUBDIR += zkt
-    SUBDIR += zonecheck
     SUBDIR += zonenotify
 
 .include <bsd.port.subdir.mk>

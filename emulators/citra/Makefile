@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	citra
-PORTVERSION=	s20190906
-PORTREVISION?=	1
+PORTVERSION=	s20200714
+PORTREVISION?=	0
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -19,28 +19,31 @@ LICENSE_FILE_LGPL21+ =	${_LICENSE_STORE}/LGPL21 # soundtouch
 LICENSE_FILE_MIT=	${WRKSRC}/externals/enet/LICENSE
 LICENSE_FILE_OpenSSL=	${WRKSRC}/externals/libressl/COPYING
 
-BUILD_DEPENDS=	boost-libs>=1.66:devel/boost-libs
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	citra-emu
-GH_TAGNAME=	4bc22aa35
-GH_TUPLE=	citra-emu:ext-libressl-portable:7d01cb0:libressl/externals/libressl \
+GH_TAGNAME=	d88d22080
+GH_TUPLE=	citra-emu:ext-boost:36603a1:boost/externals/boost \
+		citra-emu:ext-libressl-portable:7d01cb0:libressl/externals/libressl \
 		citra-emu:ext-soundtouch:060181e:soundtouch/externals/soundtouch \
-		MerryMage:dynarmic:r1-992-g4e6848d1:dynarmic/externals/dynarmic \
-		arsenm:sanitizers-cmake:f09151b:sanitizers_cmake/externals/cubeb/cmake/sanitizers-cmake \
+		MerryMage:dynarmic:r2-37-g8d1699ba:dynarmic/externals/dynarmic \
+		arsenm:sanitizers-cmake:aab6948:sanitizers_cmake/externals/cubeb/cmake/sanitizers-cmake \
 		arun11299:cpp-jwt:v1.1.1:cpp_jwt/externals/cpp-jwt \
 		benhoyt:inih:r42-6-g2023872:inih/externals/inih/inih \
 		catchorg:Catch2:v2.3.0:catch/externals/catch \
-		fmtlib:fmt:5.3.0:fmt/externals/fmt \
+		facebook:zstd:v1.4.4:zstd/externals/zstd \
+		fmtlib:fmt:6.0.0-56-g4b8f8fac:fmt/externals/fmt \
 		herumi:xbyak:v5.71:xbyak/externals/xbyak \
-		kinetiknz:cubeb:cubeb-0.2-1039-g44341a1:cubeb/externals/cubeb \
+		kinetiknz:cubeb:cubeb-0.2-1194-g616d773:cubeb/externals/cubeb \
 		lsalzman:enet:0eaf48e:enet/externals/enet \
+		lvandeve:lodepng:31d9704:lodepng/externals/lodepng/lodepng \
 		neobrain:nihstro:fd69de1:nihstro/externals/nihstro \
 		weidai11:cryptopp:CRYPTOPP_7_0_0-23-gf320e7d9:cryptopp/externals/cryptopp/cryptopp \
-		wwylele:teakra:e6ea0ea:teakra/externals/teakra
+		wwylele:teakra:3e032a7:teakra/externals/teakra
 
-USES=		cmake compiler:c++17-lang iconv localbase:ldflags
+USES=		cmake compiler:c++17-lang iconv localbase:ldflags sdl
 USE_SDL=	sdl2
+# XXX https://github.com/citra-emu/citra/issues/5234
+#CMAKE_ON=	USE_SYSTEM_BOOST
 LDFLAGS+=	-Wl,--as-needed # Qt5Network
 TEST_TARGET=	test
 
@@ -70,28 +73,23 @@ SNDIO_CMAKE_BOOL=	USE_SNDIO
 SDL_CMAKE_BOOL=	ENABLE_SDL2
 SDL_PLIST_FILES=bin/${PORTNAME} \
 		bin/${PORTNAME}-room \
-		man/man6/${PORTNAME}.6.gz
+		share/man/man6/${PORTNAME}.6.gz
 
 QT5_USES=	desktop-file-utils qt:5 shared-mime-info
 QT5_USE=	QT=qmake_build,buildtools_build,concurrent_build,core,gui,multimedia,opengl,widgets
 QT5_CMAKE_BOOL=	ENABLE_QT
 QT5_PLIST_FILES=bin/${PORTNAME}-qt \
 		"@comment bin/${PORTNAME}-room" \
-		man/man6/${PORTNAME}-qt.6.gz \
 		share/applications/${PORTNAME}.desktop \
 		share/icons/hicolor/scalable/apps/${PORTNAME}.svg \
+		share/man/man6/${PORTNAME}-qt.6.gz \
 		share/mime/packages/${PORTNAME}.xml
 
 post-patch:
-	@${REINPLACE_CMD} -e 's,share/man,man,' \
-		-e '/check_submodules_present()/d' \
+	@${REINPLACE_CMD} -e '/check_submodules_present()/d' \
 		${WRKSRC}/CMakeLists.txt
 	@${REINPLACE_CMD} -e 's/@GIT_BRANCH@/master/' \
 		-e 's/@GIT_DESC@/${GH_TAGNAME}/' \
 		${WRKSRC}/src/common/scm_rev.cpp.in
-
-.ifndef QEMU_EMULATING
-pre-install:	do-test
-.endif
 
 .include <bsd.port.mk>

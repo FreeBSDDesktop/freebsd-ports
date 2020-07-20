@@ -1,39 +1,37 @@
 # $FreeBSD$
 
 PORTNAME=	keepassxc
-DISTVERSION=	2.4.3
-PORTREVISION=	1
+DISTVERSION=	2.6.0
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/keepassxreboot/keepassxc/releases/download/${DISTVERSION}/${PORTNAME}-${DISTVERSION}-src.tar.xz?dummy=/
 
 PATCH_SITES=	https://github.com/keepassxreboot/keepassxc/commit/
-PATCHFILES=	ef3c2daef142cc4dc60ec779d1019d50ed679a99.patch:-p1
+PATCHFILES=	4f1d8943d6bae8d03aef81cdc9689acc60008a0e.patch:-p1 \
+		2fe74c294774aeb2a2b32f55fe7ae4096d067215.patch:-p1 \
+		76f33237b0f387c04b840eadf37b94bf0d412dd4.patch:-p1
 
 MAINTAINER=	melanhit@gmail.com
 COMMENT=	KeePass Cross-platform Community Edition
 
-LICENSE=	APACHE20 BOOST-1.0 BSD3CLAUSE CC0-1.0 GPLv2 GPLv3 LGPL21 \
-		LGPL3 NOKIA-LGPL-EXCEPTION
+LICENSE=	APACHE20 BSD3CLAUSE CC0-1.0 GPLv2 GPLv3 LGPL21 LGPL3 MIT \
+		NOKIA-LGPL-EXCEPTION
 LICENSE_COMB=	multi
-LICENSE_NAME_BOOST-1.0=			Boost Software License version 1.0
 LICENSE_NAME_NOKIA-LGPL-EXCEPTION=	Nokia Qt LGPL Exception version 1.1
-LICENSE_FILE_BOOST-1.0=			${WRKSRC}/LICENSE.BOOST-1.0
 LICENSE_FILE_NOKIA-LGPL-EXCEPTION=	${WRKSRC}/LICENSE.NOKIA-LGPL-EXCEPTION
-LICENSE_PERMS_BOOST-1.0=		dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_NOKIA-LGPL-EXCEPTION=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+BUILD_DEPENDS=	asciidoctor:textproc/rubygem-asciidoctor
 LIB_DEPENDS=	libargon2.so:security/libargon2 \
 		libgcrypt.so:security/libgcrypt \
 		libgpg-error.so:security/libgpg-error \
 		libqrencode.so:graphics/libqrencode \
 		libsodium.so:security/libsodium
 
-USES=		cmake compiler:c++11-lang desktop-file-utils qt:5 \
-		shared-mime-info tar:xz
-USE_QT=		buildtools_build concurrent core dbus gui linguisttools network \
-		qmake_build svg testlib widgets
+USES=		cmake compiler:c++11-lang desktop-file-utils qt:5 readline \
+		shared-mime-info tar:xz xorg
+USE_QT=		concurrent core dbus gui network svg widgets buildtools_build \
+		linguisttools_build qmake_build testlib_build
 USE_XORG=	x11
-USE_LDCONFIG=	yes
 
 CMAKE_OFF=	WITH_XC_UPDATECHECK
 

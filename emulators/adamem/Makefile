@@ -9,13 +9,14 @@ MASTER_SITES=	http://www.komkon.org/~dekogel/files/coleco/
 DISTNAME=	${PORTNAME}
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT=	ADAMEm is a portable Coleco ADAM and ColecoVision emulator
+COMMENT=	Portable Coleco ADAM and ColecoVision emulator
 
 BROKEN_aarch64=		fails to build: regparm is not valid on this platform
 BROKEN_armv6=		fails to build: regparm is not valid on this platform
 BROKEN_armv7=		fails to build: regparm is not valid on this platform
 
 NO_WRKSUBDIR=	yes
+USES=		xorg
 USE_XORG=	sm x11 xau xext xfixes xi xrandr
 
 MAKE_ARGS=	CC="${CC}" LD="${CC}"

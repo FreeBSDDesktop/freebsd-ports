@@ -16,6 +16,10 @@ COMMENT=	Pre seeded toolchain to cross build FreeBSD base
 
 LLVM_SUFFIX?=	-devel
 
+.if ${LLVM_SUFFIX} == "-devel"
+IGNORE=	Subsumed into devel/llvm-devel
+.endif
+
 NO_BUILD=	yes
 
 XCC?=		clang${LLVM_SUFFIX}
@@ -33,8 +37,10 @@ SUB_LIST=	XCC=${XCC} \
 		XLD=${XLD} \
 		X_COMPILER_TYPE=${X_COMPILER_TYPE}
 
-PLIST_FILES=	share/toolchains/llvm${LLVM_SUFFIX}.mk \
-		llvm${LLVM_SUFFIX}/bin/ld
+PLIST_FILES=	share/toolchains/llvm${LLVM_SUFFIX}.mk
+.ifndef NO_LLD_LINK
+PLIST_FILES+=	llvm${LLVM_SUFFIX}/bin/ld
+.endif
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/toolchains/

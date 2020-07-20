@@ -1,6 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	serialport
+PORTREVISION=	1
 CATEGORIES=	comms devel python
 
 MAINTAINER=	kde@FreeBSD.org
@@ -12,7 +13,7 @@ RUN_DEPENDS=	${PY_ENUM34}
 CONFIGURE_ARGS=	--enable QtSerialPort
 PYQT_DIST=	yes
 
-USES=		python pyqt:5 qt:5
+USES=		gl python pyqt:5 qt:5
 USE_GL=		gl
 USE_PYQT=	sip_build core_run
 USE_PYTHON=	concurrent flavors py3kplist

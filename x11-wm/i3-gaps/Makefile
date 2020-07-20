@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	i3
-DISTVERSION=	4.17.1
+DISTVERSION=	4.18.1
 CATEGORIES=	x11-wm
 PKGNAMESUFFIX=	-gaps
 
-MAINTAINER=	dg@syrec.org
+MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	Fork of i3 tiling window manager with more features, including gaps
 
 LICENSE=	BSD3CLAUSE
@@ -34,8 +34,8 @@ USES=		autoreconf compiler:c11 gettext-runtime gmake gnome iconv \
 		localbase perl5 pkgconfig xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	Airblader
-USE_PERL5=	run
 USE_GNOME=	glib20
+USE_PERL5=	run
 USE_XORG=	xcb
 
 GNU_CONFIGURE=	yes
@@ -46,7 +46,6 @@ CONFLICTS_INSTALL=	i3
 
 OPTIONS_DEFINE=		DOCS
 
-post-patch-DOCS-off:
-	@${REINPLACE_CMD} 's|print_BUILD_DOCS=yes|print_BUILD_DOCS=no|' ${WRKSRC}/configure.ac
+DOCS_CONFIGURE_ENABLE=	docs
 
 .include <bsd.port.mk>

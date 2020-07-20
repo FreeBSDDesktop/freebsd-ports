@@ -3,7 +3,7 @@
 PORTNAME=	grok_exporter
 PORTVERSION=	0.2.3
 DISTVERSIONPREFIX=v
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	gasol.wu@gmail.com
@@ -12,7 +12,7 @@ COMMENT=	Export Prometheus metrics from arbitrary unstructured log data
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	amd64
+ONLY_FOR_ARCHS=	aarch64 amd64
 
 LIB_DEPENDS=	libonig.so:devel/oniguruma
 
@@ -28,12 +28,10 @@ GO_PKGNAME=	github.com/${GH_ACCOUNT}/${PORTNAME}
 USE_RC_SUBR=	grok_exporter
 SUB_FILES=	config.yml
 
-do-build:
+post-patch:
 	${LN} -sf ${WRKSRC}/tailer/fileTailer_darwin.go ${WRKSRC}/tailer/fileTailer_freebsd.go
-	@(cd ${GO_WRKSRC}; ${SETENV} ${MAKE_ENV} ${GO_ENV} ${GO_CMD} build -o ${PORTNAME} .)
 
-do-install:
-	${INSTALL_PROGRAM} ${GO_WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+post-install:
 	${MKDIR} ${STAGEDIR}${ETCDIR}
 	${INSTALL_DATA} ${WRKDIR}/config.yml ${STAGEDIR}${ETCDIR}
 	@(cd ${WRKSRC} && ${COPYTREE_SHARE} example ${STAGEDIR}${DATADIR})

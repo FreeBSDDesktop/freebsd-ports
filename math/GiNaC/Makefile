@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	GiNaC
-PORTVERSION=	1.7.6
+PORTVERSION=	1.7.10
 CATEGORIES=	math
 MASTER_SITES=	ftp://ftpthep.physik.uni-mainz.de/pub/GiNaC/ \
 		http://www.ginac.de/
@@ -24,7 +24,6 @@ INSTALL_TARGET=	install-strip
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-CXXFLAGS+=	-D_GLIBCXX_USE_C99
 
 INFO=		ginac ginac-examples
 
@@ -36,5 +35,11 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|unsigned|size_t|g' \
 		${WRKSRC}/ginac/parser/parser.cpp
 .endif
+	@${REINPLACE_CMD} -e 's|python3|${PYTHON_CMD}|' \
+		${WRKSRC}/scripts/yaptu.py \
+		${WRKSRC}/scripts/fixupind.py \
+		${WRKSRC}/ginac/function.py \
+		${WRKSRC}/ginsh/ginsh_fcn_help.py \
+		${WRKSRC}/ginsh/ginsh_op_help.py
 
 .include <bsd.port.post.mk>

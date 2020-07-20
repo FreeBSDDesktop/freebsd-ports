@@ -1,9 +1,9 @@
---- src/python/grpcio/grpc_core_dependencies.py.orig	2019-04-15 23:12:51 UTC
+--- src/python/grpcio/grpc_core_dependencies.py.orig	2020-06-22 21:42:27 UTC
 +++ src/python/grpcio/grpc_core_dependencies.py
-@@ -657,54 +657,4 @@ CORE_SOURCE_FILES = [
-     'third_party/zlib/trees.c',
-     'third_party/zlib/uncompr.c',
-     'third_party/zlib/zutil.c',
+@@ -791,56 +791,6 @@ CORE_SOURCE_FILES = [
+     'third_party/boringssl-with-bazel/src/ssl/tls13_server.cc',
+     'third_party/boringssl-with-bazel/src/ssl/tls_method.cc',
+     'third_party/boringssl-with-bazel/src/ssl/tls_record.cc',
 -    'third_party/cares/cares/ares__close_sockets.c',
 -    'third_party/cares/cares/ares__get_hostent.c',
 -    'third_party/cares/cares/ares__read_line.c',
@@ -54,4 +54,6 @@
 -    'third_party/cares/cares/inet_net_pton.c',
 -    'third_party/cares/cares/inet_ntop.c',
 -    'third_party/cares/cares/windows_port.c',
- ]
+     'third_party/upb/upb/decode.c',
+     'third_party/upb/upb/encode.c',
+     'third_party/upb/upb/msg.c',

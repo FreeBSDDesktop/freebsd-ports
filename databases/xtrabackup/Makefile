@@ -1,16 +1,15 @@
-# Created by: Alex Samorukov <samm@os2.kiev.ua>
+# Created by: Alex Samorukov <samm@freebsd.org>
 # $FreeBSD$
 
 PORTNAME=	xtrabackup
-DISTVERSION=	2.4.12
-PORTREVISION=	1
+DISTVERSION=	2.4.20
 CATEGORIES=	databases
-MASTER_SITES=	https://www.percona.com/downloads/XtraBackup/Percona-XtraBackup-${PORTVERSION}/source/tarball/:xtrabackup \
-		SF/boost/boost/1.59.0/:boost
+MASTER_SITES=	https://www.percona.com/downloads/Percona-XtraBackup-${PORTVERSION:R}/Percona-XtraBackup-${PORTVERSION}/source/tarball/:xtrabackup \
+		https://ftp.osuosl.org/pub/blfs/conglomeration/boost/:boost SF/boost/boost/1.59.0/:boost
 DISTFILES=	percona-${PORTNAME}-${PORTVERSION}.tar.gz:xtrabackup \
 		boost_1_59_0.tar.bz2:boost
 
-MAINTAINER=	aleks@twindb.com
+MAINTAINER=	samm@FreeBSD.org
 COMMENT=	OpenSource version of InnoDB backup with support of Percona extensions
 
 LICENSE=	GPLv2
@@ -32,9 +31,10 @@ RUN_DEPENDS=	qpress:archivers/qpress
 # autotool is in use for 5.1 builds
 USES=		alias autoreconf:build bison cmake:noninja compiler:c++11-lang \
 		cpe gettext libtool perl5 shebangfix
+USE_CXXSTD=	c++11
 CPE_VENDOR=	percona
 SHEBANG_FILES=	storage/innobase/xtrabackup/xbcloud_osenv.sh
-CMAKE_ARGS=	-DWITH_BOOST=${WRKDIR}/boost_1_59_0
+CMAKE_ARGS=	-DWITH_BOOST=${WRKDIR}/boost_1_59_0 -DWITH_VERSION_CHECK=OFF
 
 WRKSRC=		${WRKDIR}/percona-${PORTNAME}-${PORTVERSION}
 

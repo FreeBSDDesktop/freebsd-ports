@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	hyperrogue
-PORTVERSION=	10.5e
-PORTREVISION=	1
+PORTVERSION=	11.3o
 DISTVERSIONPREFIX=	v
 CATEGORIES=	games
 
@@ -13,12 +12,14 @@ COMMENT=	Roguelike in a non-euclidean world
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN_FreeBSD_11=	does not build: hyperrogue-hyper.o: file not recognized: File format not recognized
+
 LIB_DEPENDS=	libpng.so:graphics/png
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	zenorogue
 
-USES=		autoreconf compiler:c++11-lang gl localbase sdl
+USES=		autoreconf compiler:c++11-lang gl localbase sdl xorg
 GNU_CONFIGURE=	yes
 USE_SDL=	sdl mixer gfx ttf
 USE_GL=		gl glew
@@ -28,6 +29,8 @@ CFLAGS:=	${CFLAGS:C/-O[0-9]//} -DFHS
 CXXFLAGS:=	${CXXFLAGS:C/-O[0-9]//} -DFHS
 
 PORTDOCS=	README.md
+PORTDATA=	*
+PLIST_FILES=	bin/hyperrogue share/pixmaps/hyperrogue.ico
 
 DESKTOP_ENTRIES="HyperRogue" \
 		"" \

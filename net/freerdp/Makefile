@@ -2,12 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	freerdp
-DISTVERSION=	2.0.0-rc4
-PORTREVISION=	5
-CATEGORIES=	net comms ipv6
+DISTVERSION=	2.1.1
+PORTREVISION=	0
+CATEGORIES=	net comms
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES=	649f49f.patch:-p1 effa8b8.patch:-p1 0c83efa.patch:-p1
+# FreeBSD doesn't have O_TMPFILE, must use shm_open w/ SHM_ANON instead.
+PATCHFILES=	1b5e234135b0.patch:-p1
 
 MAINTAINER=	kevans@FreeBSD.org
 COMMENT=	Free implementation of Remote Desktop Protocol
@@ -18,12 +19,21 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BROKEN_SSL=	libressl-devel
 BROKEN_SSL_REASON_libressl-devel=	fails to compile: no member named 'alert_dispatch' in 'struct ssl3_state_st'
 
-LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim
+LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib	\
+		libepoll-shim.so:devel/libepoll-shim	\
+		libudev.so:devel/libudev-devd		\
+		libuuid.so:misc/e2fsprogs-libuuid
 
 USES=		alias cmake compiler:c++11-lib cpe gettext gnome localbase pathfix pkgconfig ssl
 USE_LDCONFIG=	yes
 
 CPE_VENDOR=	freerdp_project
+
+PATCHVERSION=	${PORTVERSION}
+MAJORVERSION=	${PORTVERSION:R:R}
+
+PLIST_SUB+=	PATCHVERSION="${PATCHVERSION}"
+PLIST_SUB+=	MAJORVERSION="${MAJORVERSION}"
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	FreeRDP
@@ -46,6 +56,7 @@ CMAKE_ARGS+=	-DWITH_CHANNELS:BOOL=ON \
 		-DWITH_THIRD_PARTY:BOOL=OFF \
 		-DWITH_VALGRIND_MEMCHECK:BOOL=OFF -DWITH_X264:BOOL=OFF \
 		-DWITH_ZLIB:BOOL=ON \
+		-DCHANNEL_URBDRC_CLIENT:BOOL=ON \
 		${CMAKE_ARGS_${ARCH}}
 
 CMAKE_ARGS_aarch64=	-DWITH_NEON=ON
@@ -83,6 +94,7 @@ GSM_LIB_DEPENDS=	libgsm.so:audio/gsm
 GSM_CMAKE_BOOL=		WITH_GSM
 
 GSTREAMER_CMAKE_BOOL=	WITH_GSTREAMER_1_0
+GSTREAMER_USES=		gnome xorg
 GSTREAMER_USE=		gnome=glib20 gstreamer1=yes xorg=x11,xext,xorgproto,xrandr
 GSTREAMER_LIB_DEPENDS=	libgstbase-1.0.so:multimedia/gstreamer1
 
@@ -135,6 +147,7 @@ X11_CMAKE_ON=		-DWITH_X11:BOOL=ON -DWITH_XCURSOR:BOOL=ON \
 			-DWITH_XRENDER:BOOL=ON -DWITH_XSHM:BOOL=ON \
 			-DWITH_XV:BOOL=ON
 X11_CMAKE_OFF=		-DWITH_X11:BOOL=OFF -DWITH_XKBFILE:BOOL=OFF
+X11_USES=		xorg
 X11_USE=		xorg=x11,xcursor,xext,xorgproto,xfixes,xi,xinerama,xkbfile,xrandr,xrender,xv
 
 post-patch:
@@ -155,5 +168,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|gsm/gsm.h|gsm.h|' \
 		${WRKSRC}/cmake/FindGSM.cmake \
 		${WRKSRC}/libfreerdp/codec/dsp.c
+
+pre-configure:
+	${CP} ${FILESDIR}/mntent.h ${WRKSRC}/rdtk/include
+	${CP} ${FILESDIR}/mntent_compat.c ${WRKSRC}/channels/rdpdr/client
 
 .include <bsd.port.mk>

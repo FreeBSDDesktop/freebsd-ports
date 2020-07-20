@@ -3,7 +3,7 @@
 
 PORTNAME=	CoinMP
 PORTVERSION=	1.8.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	math
 MASTER_SITES=	http://www.coin-or.org/download/source/CoinMP/
 
@@ -15,7 +15,6 @@ LICENSE_NAME=	Common Public License, Version 1.0
 LICENSE_FILE=	${WRKSRC}/CoinMP/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-# note: with ogdf only if build with COIN option
 CONFLICTS=	clp-[0-9]* ogdf-[0-9]*
 
 GNU_CONFIGURE=	yes

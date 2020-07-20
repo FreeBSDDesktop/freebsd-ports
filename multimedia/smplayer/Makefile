@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	smplayer
-DISTVERSION=	18.10.0
-PORTREVISION=	2
+DISTVERSION=	19.10.2
 CATEGORIES=	multimedia audio kde
 MASTER_SITES=	SF/${PORTNAME}/SMPlayer/${PORTVERSION}
 
@@ -13,11 +12,12 @@ COMMENT=	Complete front-end based on Qt for mplayer
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/Copying.txt
 
-USES=		cpe compiler:c++11-lang desktop-file-utils dos2unix gmake \
-		qmake qt:5 tar:bzip2
+USES=		cpe compiler:c++11-lang desktop-file-utils dos2unix gl \
+		gmake qmake qt:5 tar:bzip2 xorg
+USE_GL=		gl
 USE_QT=		buildtools_build linguisttools_build \
 		core dbus gui network script widgets xml
-USE_XORG=	x11
+USE_XORG=	x11 xext
 
 CPE_VENDOR=	ricardo_villalba
 DOS2UNIX_REGEX=	.*.[^p][^n][^g]$
@@ -35,7 +35,6 @@ OPTIONS_MULTI_ENGINE=	MPLAYER MPV
 OPTIONS_DEFINE=		DOCS DEBUG SKINS THEMES
 OPTIONS_DEFAULT=	MPV SKINS THEMES
 
-TOOLKIT_DESC=	Qt toolkit version
 ENGINE_DESC=	Multimedia engine
 MPLAYER_DESC=	Allow to use MPlayer as multimedia engine
 MPV_DESC=	Allow to use mpv as multimedia engine
@@ -59,7 +58,6 @@ SUB_FILES=	pkg-message
 post-patch:
 	@${REINPLACE_CMD} -e 's|&& $$(QMAKE) $$(QMAKE_OPTS)||; \
 		s|lrelease|${LRELEASE}|; \
-		s|/share/man|/man|g; \
 		s| make| ${MAKE_CMD}|g' \
 		${WRKSRC}/Makefile
 	@${REINPLACE_CMD} -e 's|-O2 -W -Wall -Werror|${CFLAGS}|' \

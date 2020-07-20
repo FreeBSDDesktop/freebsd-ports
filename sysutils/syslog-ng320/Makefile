@@ -3,7 +3,7 @@
 
 PORTNAME=	syslog-ng
 DISTVERSION=	3.20.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/balabit/syslog-ng/releases/download/syslog-ng-${DISTVERSION}/
 .if !defined(MASTERDIR)
@@ -15,13 +15,14 @@ COMMENT=	Powerful syslogd replacement
 
 BROKEN_sparc64=		fails to link: Internal error: Segmentation fault (program ld)
 
-DEPRECATED=	Agreed upon upstream six month deprecation policy
-EXPIRATION_DATE=	2020-03-03
+DEPRECATED=	Agreed upon upstream one year deprecation policy
+EXPIRATION_DATE=	2020-10-09
+
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libuuid.so:misc/e2fsprogs-libuuid
 
-USES=		autoreconf:build compiler:c11 gmake libtool pathfix pkgconfig \
-		ssl gettext-runtime python:3.5+,build shebangfix
+USES=		autoreconf:build compiler:c11 gettext-runtime gmake gnome \
+		libtool pathfix pkgconfig python:3.5+,build shebangfix ssl
 
 CONFLICTS?=	syslog-ng-[0-9]* syslog-ng[0-9]-[0-9]* \
 		syslog-ng[0-9][0-9]-[0-9]* \

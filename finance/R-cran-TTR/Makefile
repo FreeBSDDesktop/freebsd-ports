@@ -2,15 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	TTR
-DISTVERSION=	0.23-4
-PORTREVISION=	2
+DISTVERSION=	0.23-6
+PORTREVISION=	1
 CATEGORIES=	finance
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
 MAINTAINER=	tota@FreeBSD.org
 COMMENT=	Technical Trading Rules
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2+
 
 CRAN_DEPENDS=	R-cran-xts>=0.10.0:math/R-cran-xts \
 		R-cran-zoo>0:math/R-cran-zoo \

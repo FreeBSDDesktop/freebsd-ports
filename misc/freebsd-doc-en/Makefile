@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	freebsd-doc
-PORTVERSION=	53316
+PORTVERSION=	54313
 PORTEPOCH=	1
 CATEGORIES=	misc docs
 MASTER_SITES=	LOCAL/blackend
@@ -14,6 +14,7 @@ COMMENT?=	Documentation from the FreeBSD Documentation Project
 LICENSE=	BSD2CLAUSE
 
 BROKEN_aarch64=		fails to build: Exception in thread "main" java.lang.StackOverflowError at org.apache.fop.hyphenation.TernaryTree.insert(TernaryTree.java:180)
+BROKEN_powerpc64=	fails to build: Java Runtime Environment: SIGSEGV happened inside stack but outside yellow and red zone.
 
 BUILD_DEPENDS=	docproj>=2.0_6:textproc/docproj
 
@@ -27,8 +28,8 @@ MAKE_ARGS=	FORMATS="${DOCFORMAT}" \
 		INSTALL_COMPRESSED= \
 		DOCDIR=${STAGEDIR}${PREFIX}/${DOCBASE} \
 		DOCOWN=${SHAREOWN} \
-		DOCGRP=${SHAREGRP}
-MAKE_JOBS_UNSAFE=	yes
+		DOCGRP=${SHAREGRP} \
+		DISPLAY=""
 NO_ARCH=	yes
 
 # To populate correctly the stage directory

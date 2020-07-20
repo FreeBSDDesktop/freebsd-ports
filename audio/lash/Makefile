@@ -19,7 +19,7 @@ LIB_DEPENDS=	libjack.so:audio/jack \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libuuid.so:misc/e2fsprogs-libuuid
 
-USES=		gmake pathfix pkgconfig libtool
+USES=		gmake gnome libtool pathfix pkgconfig
 USE_GNOME=	gtk20 libxml2 gdkpixbuf2 cairo
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-alsa-midi
@@ -36,8 +36,7 @@ OPTIONS_SUB=	yes
 
 PYTHON_DESC=	Build pylash
 PYTHON_USES=	python
-PYTHON_BUILD_DEPENDS=	swig3.0:devel/swig30
-PYTHON_BINARY_ALIAS=	swig=swig3.0
+PYTHON_BUILD_DEPENDS=	swig:devel/swig
 PYTHON_CONFIGURE_ENABLE=pylash
 PYTHON_BROKEN=	Does not package
 

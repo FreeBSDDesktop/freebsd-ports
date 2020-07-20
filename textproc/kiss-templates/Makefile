@@ -1,12 +1,11 @@
-# Created by: Andreas Sommer <andreas.sommer87@googlemail.com>
 # $FreeBSD$
 
 PORTNAME=		kiss-templates
 PORTVERSION=		0.19
-PORTREVISION=		12
+PORTREVISION=		13
 CATEGORIES=		textproc
 
-MAINTAINER=		andreas.sommer87@googlemail.com
+MAINTAINER=		ports@FreeBSD.org
 COMMENT=		Type safe "Keep it simple, stupid" text templates for C++
 
 LICENSE=		BSD2CLAUSE

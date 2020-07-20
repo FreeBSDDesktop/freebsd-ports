@@ -1,6 +1,6 @@
---- chrome/browser/resources/settings/appearance_page/appearance_browser_proxy.js.orig	2019-03-11 22:00:54 UTC
+--- chrome/browser/resources/settings/appearance_page/appearance_browser_proxy.js.orig	2020-05-13 18:40:22 UTC
 +++ chrome/browser/resources/settings/appearance_page/appearance_browser_proxy.js
-@@ -35,7 +35,7 @@ cr.define('settings', function() {
+@@ -24,7 +24,7 @@ cr.define('settings', function() {
  
      useDefaultTheme() {}
  
@@ -9,7 +9,7 @@
      useSystemTheme() {}
  
      // </if>
-@@ -93,7 +93,7 @@ cr.define('settings', function() {
+@@ -64,7 +64,7 @@ cr.define('settings', function() {
        chrome.send('useDefaultTheme');
      }
  

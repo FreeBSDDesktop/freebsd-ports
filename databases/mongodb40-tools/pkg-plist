@@ -4,9 +4,9 @@
 %%MONGOFILES%%bin/mongofiles
 %%MONGOIMPORT%%bin/mongoimport
 %%MONGORESTORE%%bin/mongorestore
-%%MONGOTOP%%bin/mongoreplay
+%%MONGOREPLAY%%bin/mongoreplay
 %%MONGOSTAT%%bin/mongostat
 %%MONGOTOP%%bin/mongotop
-%%PORTDOCS%%%%DOCSDIR%%/README.md
 %%PORTDOCS%%%%DOCSDIR%%/CONTRIBUTING.md
+%%PORTDOCS%%%%DOCSDIR%%/README.md
 %%PORTDOCS%%%%DOCSDIR%%/THIRD-PARTY-NOTICES

@@ -3,6 +3,7 @@
 
 PORTNAME=	sound-of-sorting
 PORTVERSION=	0.6.5
+PORTREVISION=	1
 DISTVERSIONPREFIX=	${PORTNAME}-
 CATEGORIES=	math
 
@@ -10,6 +11,8 @@ MAINTAINER=	se@FreeBSD.org
 COMMENT=	Visualization and "Audibilization" of Sorting Algorithms
 
 LICENSE=	GPLv3
+
+USES=		sdl
 
 GNU_CONFIGURE=	yes
 USE_SDL=	sdl

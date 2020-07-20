@@ -19,15 +19,14 @@ RESTRICTED=	May be covered by patents
 CONFLICTS=	autopano-sift-[0-9]*
 
 USE_GNOME=	libxml2
-USES=		cmake jpeg
+USES=		cmake gnome jpeg
 
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|share/man|man|' -e '/set(all_libs/s/$$/ m/' \
-		${WRKSRC}/CMakeLists.txt
+	@${REINPLACE_CMD} -e '/set(all_libs/s/$$/ m/' ${WRKSRC}/CMakeLists.txt
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

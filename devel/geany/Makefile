@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	geany
-PORTVERSION=	1.35
-PORTREVISION=	1
+PORTVERSION=	1.36
 CATEGORIES=	devel editors
 MASTER_SITES=	http://download.geany.org/ SF
 
@@ -34,7 +33,7 @@ INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 SHEBANG_FILES=	scripts/gen-api-gtkdoc.py
 
-OPTIONS_DEFINE=	VTE NLS DOCS
+OPTIONS_DEFINE=	DOCS NLS THEMES VTE
 OPTIONS_DEFAULT=	VTE
 OPTIONS_SUB=	yes
 
@@ -44,6 +43,9 @@ NLS_CONFIGURE_ENABLE=	nls
 VTE_DESC=	Embedded virtual terminal
 VTE_CONFIGURE_ENABLE=	vte
 VTE_USE=	GNOME=vte
+
+THEMES_DESC=	Additional color schemes
+THEMES_RUN_DEPENDS=	${LOCALBASE}/share/geany/colorschemes/bespin.conf:devel/geany-themes
 
 .if ${FLAVOR} == gtk2
 USE_GNOME+=	gtk20

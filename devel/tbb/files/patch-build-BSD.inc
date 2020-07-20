@@ -1,6 +1,6 @@
---- build/BSD.inc.orig	2019-03-21 15:28:21 UTC
+--- build/BSD.inc.orig	2020-03-30 11:38:06 UTC
 +++ build/BSD.inc
-@@ -26,17 +26,26 @@ ifndef arch
+@@ -22,17 +22,29 @@ ifndef arch
          ifeq ($(shell uname -m),amd64)
                  export arch:=intel64
          endif
@@ -13,10 +13,13 @@
 +        ifeq ($(shell uname -p),powerpc64)
 +                export arch:=powerpc64
 +        endif
++        ifeq ($(shell uname -p),powerpc)
++                export arch:=powerpc
++        endif
  endif
  
  ifndef runtime
--        clang_version:=$(shell clang -v 2>&1 | grep version | sed "s/.*version \([0-9]*\.[0-9]*\).*/\1/")
+-        clang_version:=$(shell clang --version | sed -n "1s/.*version \(.*[0-9]\) .*/\1/p")
 +        clang_version:=$(shell $(CC) -dumpversion)
          os_version:=$(shell uname -r)
          os_kernel_version:=$(shell uname -r | sed -e 's/-.*$$//')
@@ -30,7 +33,7 @@
  debugger ?= gdb
  
  CMD=$(SHELL) -c
-@@ -46,7 +55,7 @@ RD?=rmdir
+@@ -42,7 +54,7 @@ RD?=rmdir
  MD?=mkdir -p
  NUL= /dev/null
  SLASH=/

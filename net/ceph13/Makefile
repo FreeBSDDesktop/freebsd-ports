@@ -3,8 +3,7 @@
 
 PORTNAME=	ceph
 DISTVERSIONPREFIX=	v
-DISTVERSION=	13.2.6
-PORTREVISION=	1
+DISTVERSION=	13.2.8
 CATEGORIES=	net
 PKGNAMESUFFIX=	13
 
@@ -14,6 +13,9 @@ COMMENT=	Ceph delivers object, block, and file storage in a unified system
 LICENSE=	GPLv2 LGPL3
 LICENSE_COMB=	dual
 
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
+
 # even though i386 will build, it is not really advised.
 ONLY_FOR_ARCHS=	amd64
 
@@ -21,7 +23,7 @@ BUILD_DEPENDS=	\
 	bash:shells/bash \
 	git:devel/git \
 	yasm:devel/yasm \
-	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR} \
+	${PY_SPHINX} \
 	gperf:devel/gperf \
 	${LOCALBASE}/lib/libatomic_ops.a:devel/libatomic_ops
 LIB_DEPENDS=	\
@@ -45,7 +47,8 @@ RUN_DEPENDS=	\
 	jq:textproc/jq \
 	flock:sysutils/flock \
 	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
-	${PYTHON_PKGNAMEPREFIX}prettytable>=0:devel/py-prettytable@${PY_FLAVOR}
+	${PYTHON_PKGNAMEPREFIX}prettytable>=0:devel/py-prettytable@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}pecan>=0:www/py-pecan@${PY_FLAVOR}
 
 USES=		cmake:noninja fuse gettext-runtime gmake pkgconfig python:2.7 \
 		shebangfix ssl
@@ -103,6 +106,8 @@ USE_LDCONFIG=	yes
 
 USERS=		ceph
 GROUPS=		ceph
+
+PLIST_SUB=	CMAKE_BUILD_TYPE_regex=\bdebug\b
 
 pre-configure:
 	${LN} -s ${CONFIGURE_WRKSRC} ${WRKSRC}/build

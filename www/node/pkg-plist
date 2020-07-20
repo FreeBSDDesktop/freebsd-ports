@@ -1,6 +1,13 @@
 bin/node
 include/node/common.gypi
 include/node/config.gypi
+include/node/cppgc/allocation.h
+include/node/cppgc/finalizer-trait.h
+include/node/cppgc/garbage-collected.h
+include/node/cppgc/gc-info.h
+include/node/cppgc/heap.h
+include/node/cppgc/internals.h
+include/node/cppgc/platform.h
 include/node/js_native_api.h
 include/node/js_native_api_types.h
 include/node/libplatform/libplatform.h
@@ -187,6 +194,11 @@ include/node/node_version.h
 %%BUNDLED_SSL%%include/node/openssl/archs/linux64-mips64/asm/crypto/include/internal/dso_conf.h
 %%BUNDLED_SSL%%include/node/openssl/archs/linux64-mips64/asm/include/openssl/opensslconf.h
 %%BUNDLED_SSL%%include/node/openssl/archs/linux64-mips64/asm/include/progs.h
+%%BUNDLED_SSL%%include/node/openssl/archs/linux64-mips64/asm_avx2/crypto/buildinf.h
+%%BUNDLED_SSL%%include/node/openssl/archs/linux64-mips64/asm_avx2/crypto/include/internal/bn_conf.h
+%%BUNDLED_SSL%%include/node/openssl/archs/linux64-mips64/asm_avx2/crypto/include/internal/dso_conf.h
+%%BUNDLED_SSL%%include/node/openssl/archs/linux64-mips64/asm_avx2/include/openssl/opensslconf.h
+%%BUNDLED_SSL%%include/node/openssl/archs/linux64-mips64/asm_avx2/include/progs.h
 %%BUNDLED_SSL%%include/node/openssl/archs/linux64-mips64/no-asm/crypto/buildinf.h
 %%BUNDLED_SSL%%include/node/openssl/archs/linux64-mips64/no-asm/crypto/include/internal/bn_conf.h
 %%BUNDLED_SSL%%include/node/openssl/archs/linux64-mips64/no-asm/crypto/include/internal/dso_conf.h
@@ -439,10 +451,10 @@ include/node/node_version.h
 %%BUNDLED_SSL%%include/node/openssl/x509err.h
 %%BUNDLED_SSL%%include/node/openssl/x509v3.h
 %%BUNDLED_SSL%%include/node/openssl/x509v3err.h
+include/node/v8-fast-api-calls.h
 include/node/v8-internal.h
 include/node/v8-platform.h
 include/node/v8-profiler.h
-include/node/v8-testing.h
 include/node/v8-util.h
 include/node/v8-value-serializer-version.h
 include/node/v8-version.h

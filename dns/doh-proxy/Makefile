@@ -2,9 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	doh-proxy
-DISTVERSION=	0.1.19
-PORTREVISION=	0
+DISTVERSION=	0.3.3
+PORTREVISION=	2
 CATEGORIES=	dns
+MASTER_SITES=	CRATESIO
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	mat@FreeBSD.org
 COMMENT=	DNS-over-HTTP server proxy
@@ -12,13 +14,7 @@ COMMENT=	DNS-over-HTTP server proxy
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-# jemalloc-sys-0.1.8 needs gmake
-BUILD_DEPENDS=	gmake:devel/gmake
-
 USES=		cargo
-USE_GITHUB=	yes
-GH_ACCOUNT=	jedisct1
-GH_PROJECT=	rust-doh
 
 PLIST_FILES=	bin/doh-proxy
 

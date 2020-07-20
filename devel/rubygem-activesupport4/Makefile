@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	activesupport
-PORTVERSION=	4.2.11.1
+PORTVERSION=	4.2.11.3
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	4
@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 RUN_DEPENDS=	rubygem-i18n>=0.7,2:devel/rubygem-i18n \
 		rubygem-minitest>=5.1<6:devel/rubygem-minitest \
 		rubygem-thread_safe>=0.3.4<1:devel/rubygem-thread_safe \
-		rubygem-tzinfo>=1.1<2:devel/rubygem-tzinfo
+		rubygem-tzinfo1>=1.1<2:devel/rubygem-tzinfo1
 
 USES=		gem
 USE_RUBY=	yes

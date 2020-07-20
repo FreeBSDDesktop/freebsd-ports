@@ -1,6 +1,6 @@
 LICENSE=	GPLv2
 
-MUNIN_VERSION=	2.0.49
+MUNIN_VERSION=	2.0.64
 MUNIN_SITES=	http://downloads.munin-monitoring.org/munin/stable/${MUNIN_VERSION}/
 DISTINFO_FILE=	${.CURDIR}/../../sysutils/munin-common/distinfo
 PATCHDIR=	${.CURDIR}/../../sysutils/munin-common/files
@@ -21,7 +21,6 @@ MUNIN_DIRS=	BINDIR=${PREFIX}/bin \
 		HTMLDIR=${WWWDIR} \
 		LIBDIR=${DATADIR} \
 		LOGDIR=${LOGDIR} \
-		MANDIR=${MANPREFIX}/man \
 		SBINDIR=${PREFIX}/sbin \
 		STATEDIR=${STATEDIR} \
 		SPOOLDIR=${SPOOLDIR}

@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	geomdl
-PORTVERSION=	5.2.8
+PORTVERSION=	5.2.9
 CATEGORIES=	graphics python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	lbartoletti@tuxfamily.org
+MAINTAINER=	lbartoletti@FreeBSD.org
 COMMENT=	Object-oriented pure Python B-Spline and NURBS library
 
 LICENSE=	MIT

@@ -3,7 +3,7 @@
 
 PORTNAME=	mayavi
 PORTVERSION=	4.5.0
-PORTREVISION=	6
+PORTREVISION=	8
 CATEGORIES=	graphics science python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -23,7 +23,7 @@ LICENSE_FILE_APACHE11=	${WRKSRC}/LICENSE_COLORBREWER.txt
 # See ${WRKSRC}/image_LICENSE.txt for per file license information
 
 BUILD_DEPENDS=	vtk6>=6.1.0_8:math/vtk6 \
-		${PYTHON_PKGNAMEPREFIX}sphinx>=1.3.1_2:textproc/py-sphinx@${PY_FLAVOR}
+		${PY_SPHINX}
 RUN_DEPENDS=	vtk6>=6.1.0_8:math/vtk6 \
 		${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}envisage>=4.4.0:devel/py-envisage@${PY_FLAVOR} \
@@ -33,7 +33,7 @@ RUN_DEPENDS=	vtk6>=6.1.0_8:math/vtk6 \
 
 USES=		python:2.7 shebangfix tar:bzip2
 USE_PYTHON=	autoplist distutils
-USE_WX=		2.8+
+USE_WX=		3.0+
 WX_COMPS=	python:run
 SHEBANG_FILES=	mayavi/tests/csv_files/csv_2_py
 

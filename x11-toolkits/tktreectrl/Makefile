@@ -14,12 +14,10 @@ LICENSE_NAME=	Tcl/Tk License
 LICENSE_FILE=	${WRKSRC}/license.terms
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES=		tk:tea
+USES=		tk:tea xorg
 USE_LDCONFIG=	${PREFIX}/lib/${TCL_PKG}
 USE_XORG=	x11
-TCL_PKG=	treectrl${PORTVERSION}
 
-post-patch:
-	@${REINPLACE_CMD} -e 's/FreeBSD-\*/&|DragonFly-*/' ${WRKSRC}/configure
+TCL_PKG=	treectrl${PORTVERSION}
 
 .include <bsd.port.mk>

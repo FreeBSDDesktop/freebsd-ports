@@ -3,7 +3,7 @@
 
 PORTNAME=	xfce4-print
 PORTVERSION=	4.6.1
-PORTREVISION=	15
+PORTREVISION=	17
 CATEGORIES=	print xfce
 MASTER_SITES=	XFCE/archive
 DISTNAME=	xfprint-${DISTVERSIONFULL}
@@ -14,35 +14,33 @@ COMMENT=	Print system support for the Xfce Desktop
 
 LICENSE=	GPLv2
 
+DEPRECATED=	Unsupported upstream since 2009.
+
 BUILD_DEPENDS=	a2ps:print/a2ps
 RUN_DEPENDS=	a2ps:print/a2ps
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
-		libfreetype.so:print/freetype2 \
-		libdbus-glib-1.so:devel/dbus-glib \
-		libdbus-1.so:devel/dbus
+		libfreetype.so:print/freetype2
 
-USES=		gettext-tools gmake gnome libtool pathfix pkgconfig \
-		tar:bzip2 xfce
-USE_GNOME=	cairo glib20 gtk20 intlhack intltool
+USES=		compiler:c11 gettext-tools gmake gnome libtool pathfix \
+		pkgconfig tar:bzip2 xfce:gtk2 xorg
+USE_GNOME=	cairo glib20 gtk20 intltool
 USE_LDCONFIG=	yes
 USE_XFCE=	libgui xfconf
 USE_XORG=	x11
 
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-cups
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=		LETTER NLS
 OPTIONS_SINGLE=		PRINTMETHOD
-OPTIONS_SINGLE_PRINTMETHOD=	LPR CUPS
+OPTIONS_SINGLE_PRINTMETHOD=	LPR
 OPTIONS_DEFAULT=	LPR
 OPTIONS_SUB=		yes
 
 LETTER_DESC=	Use letter paper format instead of A4
 LPR_DESC=	LPR printing system support
-
-CUPS_CONFIGURE_ENABLE=	cups
-CUPS_LIB_DEPENDS=	libcups.so:print/cups
 
 LETTER_CONFIGURE_ENABLE=letter
 LPR_CONFIGURE_ENABLE=	bsdlpr

@@ -1,14 +1,28 @@
---- build/FreeBSD.gcc.inc.orig	2019-03-21 15:28:21 UTC
+--- build/FreeBSD.gcc.inc.orig	2020-03-30 11:38:06 UTC
 +++ build/FreeBSD.gcc.inc
-@@ -60,6 +60,11 @@ ifeq (ia64,$(arch))
- endif 
+@@ -26,7 +26,7 @@ WARNING_SUPPRESS = -Wno-parentheses
  
+ CPLUS = g++ 
+ CONLY = gcc
+-LIB_LINK_FLAGS = -shared
++LIB_LINK_FLAGS = -shared -Wl,-soname=$(BUILDING_LIBRARY)
+ LIBS = -lpthread 
+ C_FLAGS = $(CPLUS_FLAGS)
+ 
+@@ -58,6 +58,16 @@ endif 
  ifeq (intel64,$(arch))
+     CPLUS_FLAGS += -m64
+     LIB_LINK_FLAGS += -m64
++endif 
++
++ifeq (powerpc64,$(arch))
 +    CPLUS_FLAGS += -m64
 +    LIB_LINK_FLAGS += -m64
 +endif 
 +
-+ifeq (powerpc64,$(arch))
-     CPLUS_FLAGS += -m64
-     LIB_LINK_FLAGS += -m64
++ifeq (powerpc,$(arch))
++    CPLUS_FLAGS += -m32
++    LIB_LINK_FLAGS += -m32
  endif 
+ 
+ ifeq (ia32,$(arch))

@@ -10,9 +10,9 @@ COMMENT=	Automatic mouse click tool for KDE
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cmake compiler:c++11-lang gettext kde:5 qt:5 tar:xz
+USES=		cmake compiler:c++11-lang gettext kde:5 qt:5 tar:xz xorg
 USE_KDE=	auth codecs config configwidgets coreaddons dbusaddons \
-		ecm i18n iconthemes notifications widgetsaddons xmlgui
+		ecm i18n iconthemes notifications widgetsaddons windowsystem xmlgui
 USE_QT=		core dbus gui phonon4 widgets xml \
 		buildtools_build qmake_build
 USE_XORG=	ice sm x11 xext xtst

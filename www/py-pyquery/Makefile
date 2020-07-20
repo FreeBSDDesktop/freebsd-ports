@@ -3,7 +3,7 @@
 
 PORTNAME=	pyquery
 PORTVERSION=	1.2.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,6 +12,9 @@ MAINTAINER=	nivit@FreeBSD.org
 COMMENT=	Jquery-like library for python
 
 LICENSE=	BSD3CLAUSE
+
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-08-15
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cssselect>=0.6.1:www/py-cssselect@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}lxml>=2.1:devel/py-lxml@${PY_FLAVOR} \
@@ -28,13 +31,17 @@ USES=		python:2.7 zip
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0:textproc/py-sphinx@${PY_FLAVOR}
+DOCS_BUILD_DEPENDS=	${PY_SPHINX}
 DOCS_VARS=	PYDISTUTILS_BUILD_TARGET+="build_sphinx -a -E"
+
+PORTDOCS=	*
+
+post-build-DOCS-on:
+	@${RM} ${WRKSRC}/build/sphinx/html/.buildinfo
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	@(cd ${WRKSRC}/build/sphinx/html && \
-	${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR} \
-		"! -name .buildinfo -or ! -name objects.inv")
+	${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR} "! -name objects.inv")
 
 .include <bsd.port.mk>

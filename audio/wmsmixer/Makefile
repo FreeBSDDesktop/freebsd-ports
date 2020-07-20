@@ -5,18 +5,16 @@ PORTNAME=	wmsmixer
 PORTVERSION=	0.5.1
 PORTREVISION=	1
 CATEGORIES=	audio windowmaker
-MASTER_SITES=	http://redundancy.redundancy.org/mirror/
+MASTER_SITES=	https://www.dockapps.net/download/
 
-MAINTAINER=	ports@FreeBSD.org
-COMMENT=	Audio mixer for the WindowMaker dock
+MAINTAINER=	blackend@FreeBSD.org
+COMMENT=	Audio mixer for the Window Maker dock
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN=		unfetchable
-
-USES=		alias imake
-USE_XORG=	xpm
+USES=		alias imake xorg
+USE_XORG=	x11 xext xpm
 MAKE_ARGS=	CC="${CXX}" CFLAGS="${CXXFLAGS}"
 
 PLIST_FILES=	bin/wmsmixer

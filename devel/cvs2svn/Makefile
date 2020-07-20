@@ -11,6 +11,9 @@ MASTER_SITES=	http://cvs2svn.tigris.org/files/documents/1462/49543/ \
 MAINTAINER=	ohauer@FreeBSD.org
 COMMENT=	CVS to Subversion Repository Converter
 
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
+
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gdbm>0:databases/py-gdbm@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gdbm>0:databases/py-gdbm@${PY_FLAVOR} \
 		cvs:devel/cvs
@@ -32,14 +35,7 @@ SUBVERSION_DESC=	Build with subversion support
 GIT_DESC=		Build with git support
 BAZAAR_DESC=		Build with Bazaar support
 
-.if defined(WITH_SUBVERSION_VER) && ${WITH_SUBVERSION_VER} == LTS
 SUBVERSION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}subversion-lts>=0:devel/py-subversion@${PY_FLAVOR}
-.elif defined(WITH_SUBVERSION_VER) && ${WITH_SUBVERSION_VER} == 19
-SUBVERSION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}subversion19>=0:devel/py-subversion@${PY_FLAVOR}
-.else
-# default version
-SUBVERSION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}subversion>=0:devel/py-subversion@${PY_FLAVOR}
-.endif
 
 GIT_RUN_DEPENDS=	${LOCALBASE}/bin/git:devel/git
 BAZAAR_RUN_DEPENDS=	${LOCALBASE}/bin/bzr:devel/bzr

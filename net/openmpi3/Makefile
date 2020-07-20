@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	openmpi
-PORTVERSION=	3.1.4
-PORTREVISION=	2
+PORTVERSION=	3.1.6
 CATEGORIES=	net parallel
 MASTER_SITES=	http://www.open-mpi.org/software/ompi/v${PORTVERSION:R}/downloads/
 PKGNAMESUFFIX=	3
@@ -13,7 +12,6 @@ COMMENT=	High Performance Message Passing Library
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_aarch64=		fails to package: pkg-static: mca_patcher_overwrite.la: No such file or directory
 BROKEN_armv6=		fails to package: pkg-static: mca_patcher_overwrite.la: No such file or directory
 BROKEN_armv7=		fails to package: pkg-static: mca_patcher_overwrite.la: No such file or directory
 BROKEN_sparc64=		fails to compile on sparc64
@@ -64,6 +62,7 @@ OPTIONS_DEFINE=	DEBUG IPV6 SLURM TORQUE
 TORQUE_DESC=	Enable Torque support
 SLURM_DESC=	Enable SLURM support
 OPTIONS_DEFAULT=	SLURM
+OPTIONS_EXCLUDE_i386=	SLURM
 OPTIONS_SUB=	yes
 
 DEBUG_CONFIGURE_ENABLE=	debug

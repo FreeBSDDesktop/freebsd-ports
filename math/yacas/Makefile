@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	yacas
-PORTVERSION=	1.7.0
-PORTREVISION=	1
+PORTVERSION=	1.9.1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	gahr@FreeBSD.org
@@ -15,7 +15,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 TEST_DEPENDS=	bash:shells/bash \
 
-BUILD_DEPENDS=	gtest-config:devel/googletest
+BUILD_DEPENDS=	googletest>0:devel/googletest
+
+USES=		cmake compiler:c++17-lang
 
 CMAKE_ARGS=	-DENABLE_DOCS:BOOL=OFF \
 		-DENABLE_CYACAS_CONSOLE:BOOL=ON \
@@ -27,18 +29,10 @@ CMAKE_ARGS=	-DENABLE_DOCS:BOOL=OFF \
 
 TEST_TARGET=	test
 
-USES=		cmake compiler:c++17-lang
-USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	grzegorzmazur
 
 PLIST_SUB=	SHLIB_VERSION=${PORTVERSION:S/.//}.0
-
-.include <bsd.port.pre.mk>
-
-.if ${CHOSEN_COMPILER_TYPE} == "gcc"
-CXXFLAGS+=	-D_GLIBCXX_USE_C99
-.endif
 
 post-patch:
 #	Can't use USES=shebangfix here, cause the path appears several
@@ -47,4 +41,5 @@ post-patch:
 		${WRKSRC}/tests/test-yacas
 	@${REINPLACE_CMD} -e '/^install/s|^|#|' \
 		${WRKSRC}/tests/CMakeLists.txt
-.include <bsd.port.post.mk>
+
+.include <bsd.port.mk>

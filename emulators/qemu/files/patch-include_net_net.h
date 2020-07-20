@@ -1,6 +1,6 @@
---- include/net/net.h.orig	2019-04-12 03:28:28 UTC
+--- include/net/net.h.orig	2020-06-25 18:12:17 UTC
 +++ include/net/net.h
-@@ -210,8 +210,8 @@ void qmp_netdev_add(QDict *qdict, QObject **ret, Error
+@@ -208,8 +208,8 @@ void qmp_netdev_add(QDict *qdict, QObject **ret, Error
  int net_hub_id_for_client(NetClientState *nc, int *id);
  NetClientState *net_hub_port_find(int hub_id);
  

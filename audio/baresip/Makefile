@@ -77,6 +77,7 @@ PORT_OPTIONS+=	PULSE
 .endif
 
 .if ${PORT_OPTIONS:MSDL}
+USES+=		sdl
 USE_SDL=	sdl sound
 .endif
 
@@ -95,6 +96,7 @@ BROKEN=	OPTIONS marked as BROKEN have not been updated to the new Baresip API
 .endfor
 
 .if ${PORT_OPTIONS:MX11}
+USES+=		xorg
 USE_XORG=	x11
 .endif
 

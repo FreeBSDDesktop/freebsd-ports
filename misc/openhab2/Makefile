@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	openhab2
-PORTVERSION=	2.4.0
-#PORTREVISION=	3
+PORTVERSION=	2.5.6
+PORTREVISION=	1
 CATEGORIES=	misc java
 MASTER_SITES=	https://bintray.com/openhab/mvn/download_file?file_path=org%2Fopenhab%2Fdistro%2Fopenhab%2F${PORTVERSION}/
 DISTNAME=	openhab-${PORTVERSION}
@@ -24,6 +24,8 @@ NO_ARCH=	yes
 
 USERS=	openhab
 GROUPS=	openhab
+
+PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 post-patch:
 	@${REINPLACE_CMD} -e "s:%%LOCALBASE%%:${LOCALBASE}:g" ${WRKSRC}/runtime/bin/setenv
@@ -63,5 +65,9 @@ do-install:
 .endfor
 	${INSTALL_SCRIPT} ${WRKDIR}/update.freebsd ${STAGEDIR}${PREFIX}/libexec/${PORTNAME}/runtime/bin/
 	(cd ${WRKSRC}/userdata && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/${PORTNAME})
+
+gen-plist:
+	${FIND} ${STAGEDIR} -type f | sed -e "s:${STAGEDIR}${PREFIX}/::g ; s:${PORTVERSION}:%%PORTVERSION%%:g" | sort -u | grep libexec/ >pkg-plist.new
+	egrep '^(@|#|%)' pkg-plist >>pkg-plist.new
 
 .include <bsd.port.mk>

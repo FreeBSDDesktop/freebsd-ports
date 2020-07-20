@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	Horde_Image
-PORTVERSION=	2.6.0
+PORTVERSION=	2.6.1
 CATEGORIES=	graphics www pear
 PKGNAMEPREFIX=	${PEAR_PKGNAMEPREFIX}
 
@@ -17,6 +17,7 @@ USE_HORDE_RUN=	Horde_Exception \
 OPTIONS_DEFINE=	GD
 GD_DESC=	Depend on PHP gd extension
 
-GD_USE=	PHP=gd
+GD_USES=	php
+GD_USE=		PHP=gd
 
 .include <bsd.port.mk>

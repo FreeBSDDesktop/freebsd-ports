@@ -2,16 +2,16 @@
 
 PORTNAME=	flightgear-terragear
 PORTVERSION=	20171007
-PORTREVISION=	8
+PORTREVISION=	12
 CATEGORIES=	games
 
-MAINTAINER=	mike.d.ft402@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Tools for building scenery for the FlightGear project
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	libCGAL.so:math/cgal \
-		libgdal.so:graphics/gdal \
+BUILD_DEPENDS=	cgal>0:math/cgal
+LIB_DEPENDS=	libgdal.so:graphics/gdal \
 		libmpfr.so:math/mpfr \
 		libgmp.so:math/gmp \
 		libboost_thread.so:devel/boost-libs \

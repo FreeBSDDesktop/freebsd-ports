@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	fcitx
-PORTVERSION=	4.2.9.6
-PORTREVISION=	3
+PORTVERSION=	4.2.9.7
 CATEGORIES=	chinese x11
 MASTER_SITES=	http://download.fcitx-im.org/fcitx/:fcitx \
 		http://download.fcitx-im.org/data/:data
@@ -26,6 +25,8 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
 		${LOCALBASE}/libdata/pkgconfig/xkeyboard-config.pc:x11/xkeyboard-config
 LIB_DEPENDS=	libcairo.so:graphics/cairo \
 		libdbus-1.so:devel/dbus \
+		libenchant-2.so:textproc/enchant2 \
+		libjson-c.so:devel/json-c \
 		libXfixes.so:x11/libXfixes \
 		libXinerama.so:x11/libXinerama \
 		libXrender.so:x11/libXrender \
@@ -45,7 +46,7 @@ USE_XORG=	x11 xext xkbfile sm ice
 USE_LDCONFIG=	yes
 USES=		compiler:c++11-lang gnome tar:xz cmake:noninja desktop-file-utils \
 		gettext-tools:build,run gettext-runtime iconv:wchar_t \
-		kde:5 pkgconfig shared-mime-info compiler:c++14-lang
+		kde:5 pkgconfig shared-mime-info compiler:c++14-lang xorg
 INSTALLS_ICONS=	yes
 
 OPTIONS_DEFINE=	GTK2 GTK3 OPENCC TPUNC DOCS

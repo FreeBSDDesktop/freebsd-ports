@@ -45,6 +45,7 @@ include/yacas/substitute.h
 include/yacas/tokenizer.h
 include/yacas/utf8.h
 include/yacas/utf8/checked.h
+include/yacas/utf8/cpp11.h
 include/yacas/utf8/core.h
 include/yacas/utf8/unchecked.h
 include/yacas/xmltokenizer.h
@@ -190,6 +191,7 @@ lib/libyacas_mp.a
 %%DATADIR%%/scripts/simplify.rep/factorial.ys.def
 %%DATADIR%%/scripts/solve.rep/code.ys
 %%DATADIR%%/scripts/solve.rep/code.ys.def
+%%DATADIR%%/scripts/solve.rep/om.ys
 %%DATADIR%%/scripts/specfunc.rep/bernou.ys
 %%DATADIR%%/scripts/specfunc.rep/bernou.ys.def
 %%DATADIR%%/scripts/specfunc.rep/bessel.ys

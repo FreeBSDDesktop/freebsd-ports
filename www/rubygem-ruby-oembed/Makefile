@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ruby-oembed
-PORTVERSION=	0.12.0
+PORTVERSION=	0.13.1
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
@@ -12,8 +12,9 @@ COMMENT=	oEmbed consumer library
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-NO_ARCH=	yes
-USE_RUBY=	yes
 USES=		gem
+USE_RUBY=	yes
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

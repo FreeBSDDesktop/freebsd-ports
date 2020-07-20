@@ -301,6 +301,7 @@ include/kdevplatform/sublime/controller.h
 include/kdevplatform/sublime/document.h
 include/kdevplatform/sublime/mainwindow.h
 include/kdevplatform/sublime/mainwindowoperator.h
+include/kdevplatform/sublime/message.h
 include/kdevplatform/sublime/sublimedefs.h
 include/kdevplatform/sublime/sublimeexport.h
 include/kdevplatform/sublime/tooldocument.h
@@ -315,6 +316,7 @@ include/kdevplatform/util/embeddedfreetree.h
 include/kdevplatform/util/environmentprofilelist.h
 include/kdevplatform/util/environmentselectionwidget.h
 include/kdevplatform/util/executecompositejob.h
+include/kdevplatform/util/filesystemhelpers.h
 include/kdevplatform/util/focusedtreeview.h
 include/kdevplatform/util/foregroundlock.h
 include/kdevplatform/util/formattinghelpers.h
@@ -333,6 +335,7 @@ include/kdevplatform/util/stack.h
 include/kdevplatform/util/texteditorhelpers.h
 include/kdevplatform/util/utilexport.h
 include/kdevplatform/util/widgetcolorizer.h
+include/kdevplatform/util/wildcardhelpers.h
 include/kdevplatform/util/zoomcontroller.h
 include/kdevplatform/vcs/dvcs/dvcsevent.h
 include/kdevplatform/vcs/dvcs/dvcsjob.h
@@ -374,7 +377,9 @@ lib/cmake/KDevPlatform/KDevPlatformTargets.cmake
 lib/cmake/KDevelop/KDevelopConfig.cmake
 lib/cmake/KDevelop/KDevelopConfigVersion.cmake
 lib/cmake/KDevelop/KDevelopTargets.cmake
+lib/libKDevCMakeCommon.so.%%PLATFORM_VER%%
 lib/libKDevClangPrivate.so.%%PLATFORM_VER%%
+lib/libKDevCompileAnalyzerCommon.so.%%PLATFORM_VER%%
 lib/libKDevPlatformDebugger.so
 lib/libKDevPlatformDebugger.so.%%SO_VER_LONG%%
 lib/libKDevPlatformDebugger.so.%%SO_VER%%
@@ -408,7 +413,6 @@ lib/libKDevPlatformUtil.so.%%SO_VER%%
 lib/libKDevPlatformVcs.so
 lib/libKDevPlatformVcs.so.%%SO_VER_LONG%%
 lib/libKDevPlatformVcs.so.%%SO_VER%%
-lib/libkdevcmakecommon.so
 %%QT_PLUGINDIR%%/grantlee/%%GRANTLEE_VERSION_SHORT%%/kdev_filters.so
 %%QT_PLUGINDIR%%/kdevplatform/%%PLATFORM_VER%%/kdevandroid.so
 %%QT_PLUGINDIR%%/kdevplatform/%%PLATFORM_VER%%/kdevappwizard.so
@@ -444,7 +448,6 @@ lib/libkdevcmakecommon.so
 %%QT_PLUGINDIR%%/kdevplatform/%%PLATFORM_VER%%/kdevgit.so
 %%QT_PLUGINDIR%%/kdevplatform/%%PLATFORM_VER%%/kdevgrepview.so
 %%QT_PLUGINDIR%%/kdevplatform/%%PLATFORM_VER%%/kdevheaptrack.so
-%%QT_PLUGINDIR%%/kdevplatform/%%PLATFORM_VER%%/kdevkdeprovider.so
 %%QT_PLUGINDIR%%/kdevplatform/%%PLATFORM_VER%%/kdevkonsoleview.so
 %%QT_PLUGINDIR%%/kdevplatform/%%PLATFORM_VER%%/kdevlldb.so
 %%QT_PLUGINDIR%%/kdevplatform/%%PLATFORM_VER%%/kdevmakebuilder.so
@@ -746,6 +749,9 @@ share/kdevqmljssupport/propertywidgets/README
 share/kdevqmljssupport/propertywidgets/Spacing.qml
 share/kdevqmljssupport/propertywidgets/Width.qml
 share/knotifications5/kdevelop.notifyrc
+share/knsrcfiles/kdevappwizard.knsrc
+share/knsrcfiles/kdevelop-qthelp.knsrc
+share/knsrcfiles/kdevfiletemplates.knsrc
 share/kservices5/kdevelopsessions.desktop
 share/kservices5/plasma-applet-kdevelopsessions.desktop
 share/kservices5/plasma-dataengine-kdevelopsessions.desktop
@@ -783,7 +789,6 @@ share/locale/ast/LC_MESSAGES/kdevgdb.mo
 share/locale/ast/LC_MESSAGES/kdevghprovider.mo
 share/locale/ast/LC_MESSAGES/kdevgit.mo
 share/locale/ast/LC_MESSAGES/kdevgrepview.mo
-share/locale/ast/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/ast/LC_MESSAGES/kdevkonsole.mo
 share/locale/ast/LC_MESSAGES/kdevlldb.mo
 share/locale/ast/LC_MESSAGES/kdevmakebuilder.mo
@@ -848,7 +853,6 @@ share/locale/bs/LC_MESSAGES/kdevgdb.mo
 share/locale/bs/LC_MESSAGES/kdevghprovider.mo
 share/locale/bs/LC_MESSAGES/kdevgit.mo
 share/locale/bs/LC_MESSAGES/kdevgrepview.mo
-share/locale/bs/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/bs/LC_MESSAGES/kdevkonsole.mo
 share/locale/bs/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/bs/LC_MESSAGES/kdevmanpage.mo
@@ -884,6 +888,7 @@ share/locale/ca/LC_MESSAGES/kdevclazy.mo
 share/locale/ca/LC_MESSAGES/kdevcmake.mo
 share/locale/ca/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/ca/LC_MESSAGES/kdevcodeutils.mo
+share/locale/ca/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/ca/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/ca/LC_MESSAGES/kdevcppcheck.mo
 share/locale/ca/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -907,7 +912,6 @@ share/locale/ca/LC_MESSAGES/kdevghprovider.mo
 share/locale/ca/LC_MESSAGES/kdevgit.mo
 share/locale/ca/LC_MESSAGES/kdevgrepview.mo
 share/locale/ca/LC_MESSAGES/kdevheaptrack.mo
-share/locale/ca/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/ca/LC_MESSAGES/kdevkonsole.mo
 share/locale/ca/LC_MESSAGES/kdevlldb.mo
 share/locale/ca/LC_MESSAGES/kdevmakebuilder.mo
@@ -949,6 +953,7 @@ share/locale/ca@valencia/LC_MESSAGES/kdevclazy.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevcmake.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevcodeutils.mo
+share/locale/ca@valencia/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevcppcheck.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -972,7 +977,6 @@ share/locale/ca@valencia/LC_MESSAGES/kdevghprovider.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevgit.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevgrepview.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevheaptrack.mo
-share/locale/ca@valencia/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevkonsole.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevlldb.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevmakebuilder.mo
@@ -993,6 +997,7 @@ share/locale/ca@valencia/LC_MESSAGES/kdevqmakemanager.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevqmljs.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevqthelp.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevquickopen.mo
+share/locale/ca@valencia/LC_MESSAGES/kdevscratchpad.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevsourceformatter.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevstandardoutputview.mo
 share/locale/ca@valencia/LC_MESSAGES/kdevsubversion.mo
@@ -1013,6 +1018,7 @@ share/locale/cs/LC_MESSAGES/kdevclazy.mo
 share/locale/cs/LC_MESSAGES/kdevcmake.mo
 share/locale/cs/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/cs/LC_MESSAGES/kdevcodeutils.mo
+share/locale/cs/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/cs/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/cs/LC_MESSAGES/kdevcppcheck.mo
 share/locale/cs/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -1036,7 +1042,6 @@ share/locale/cs/LC_MESSAGES/kdevghprovider.mo
 share/locale/cs/LC_MESSAGES/kdevgit.mo
 share/locale/cs/LC_MESSAGES/kdevgrepview.mo
 share/locale/cs/LC_MESSAGES/kdevheaptrack.mo
-share/locale/cs/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/cs/LC_MESSAGES/kdevkonsole.mo
 share/locale/cs/LC_MESSAGES/kdevlldb.mo
 share/locale/cs/LC_MESSAGES/kdevmakebuilder.mo
@@ -1092,7 +1097,6 @@ share/locale/da/LC_MESSAGES/kdevgdb.mo
 share/locale/da/LC_MESSAGES/kdevghprovider.mo
 share/locale/da/LC_MESSAGES/kdevgit.mo
 share/locale/da/LC_MESSAGES/kdevgrepview.mo
-share/locale/da/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/da/LC_MESSAGES/kdevkonsole.mo
 share/locale/da/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/da/LC_MESSAGES/kdevmanpage.mo
@@ -1132,6 +1136,7 @@ share/locale/de/LC_MESSAGES/kdevcustomdefinesandincludes.mo
 share/locale/de/LC_MESSAGES/kdevcustommake.mo
 share/locale/de/LC_MESSAGES/kdevcustomscript.mo
 share/locale/de/LC_MESSAGES/kdevdebuggercommon.mo
+share/locale/de/LC_MESSAGES/kdevdocker.mo
 share/locale/de/LC_MESSAGES/kdevdocumentswitcher.mo
 share/locale/de/LC_MESSAGES/kdevdocumentview.mo
 share/locale/de/LC_MESSAGES/kdevelop.mo
@@ -1147,7 +1152,6 @@ share/locale/de/LC_MESSAGES/kdevghprovider.mo
 share/locale/de/LC_MESSAGES/kdevgit.mo
 share/locale/de/LC_MESSAGES/kdevgrepview.mo
 share/locale/de/LC_MESSAGES/kdevheaptrack.mo
-share/locale/de/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/de/LC_MESSAGES/kdevkonsole.mo
 share/locale/de/LC_MESSAGES/kdevlldb.mo
 share/locale/de/LC_MESSAGES/kdevmakebuilder.mo
@@ -1168,6 +1172,7 @@ share/locale/de/LC_MESSAGES/kdevqmakemanager.mo
 share/locale/de/LC_MESSAGES/kdevqmljs.mo
 share/locale/de/LC_MESSAGES/kdevqthelp.mo
 share/locale/de/LC_MESSAGES/kdevquickopen.mo
+share/locale/de/LC_MESSAGES/kdevscratchpad.mo
 share/locale/de/LC_MESSAGES/kdevsourceformatter.mo
 share/locale/de/LC_MESSAGES/kdevstandardoutputview.mo
 share/locale/de/LC_MESSAGES/kdevsubversion.mo
@@ -1199,7 +1204,6 @@ share/locale/el/LC_MESSAGES/kdevfilemanager.mo
 share/locale/el/LC_MESSAGES/kdevgdb.mo
 share/locale/el/LC_MESSAGES/kdevgit.mo
 share/locale/el/LC_MESSAGES/kdevgrepview.mo
-share/locale/el/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/el/LC_MESSAGES/kdevkonsole.mo
 share/locale/el/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/el/LC_MESSAGES/kdevmanpage.mo
@@ -1231,6 +1235,7 @@ share/locale/en_GB/LC_MESSAGES/kdevclazy.mo
 share/locale/en_GB/LC_MESSAGES/kdevcmake.mo
 share/locale/en_GB/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/en_GB/LC_MESSAGES/kdevcodeutils.mo
+share/locale/en_GB/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/en_GB/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/en_GB/LC_MESSAGES/kdevcppcheck.mo
 share/locale/en_GB/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -1254,7 +1259,6 @@ share/locale/en_GB/LC_MESSAGES/kdevghprovider.mo
 share/locale/en_GB/LC_MESSAGES/kdevgit.mo
 share/locale/en_GB/LC_MESSAGES/kdevgrepview.mo
 share/locale/en_GB/LC_MESSAGES/kdevheaptrack.mo
-share/locale/en_GB/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/en_GB/LC_MESSAGES/kdevkonsole.mo
 share/locale/en_GB/LC_MESSAGES/kdevlldb.mo
 share/locale/en_GB/LC_MESSAGES/kdevmakebuilder.mo
@@ -1327,6 +1331,7 @@ share/locale/es/LC_MESSAGES/kdevclazy.mo
 share/locale/es/LC_MESSAGES/kdevcmake.mo
 share/locale/es/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/es/LC_MESSAGES/kdevcodeutils.mo
+share/locale/es/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/es/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/es/LC_MESSAGES/kdevcppcheck.mo
 share/locale/es/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -1350,7 +1355,6 @@ share/locale/es/LC_MESSAGES/kdevghprovider.mo
 share/locale/es/LC_MESSAGES/kdevgit.mo
 share/locale/es/LC_MESSAGES/kdevgrepview.mo
 share/locale/es/LC_MESSAGES/kdevheaptrack.mo
-share/locale/es/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/es/LC_MESSAGES/kdevkonsole.mo
 share/locale/es/LC_MESSAGES/kdevlldb.mo
 share/locale/es/LC_MESSAGES/kdevmakebuilder.mo
@@ -1407,7 +1411,6 @@ share/locale/et/LC_MESSAGES/kdevgdb.mo
 share/locale/et/LC_MESSAGES/kdevghprovider.mo
 share/locale/et/LC_MESSAGES/kdevgit.mo
 share/locale/et/LC_MESSAGES/kdevgrepview.mo
-share/locale/et/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/et/LC_MESSAGES/kdevkonsole.mo
 share/locale/et/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/et/LC_MESSAGES/kdevmanpage.mo
@@ -1462,7 +1465,6 @@ share/locale/fi/LC_MESSAGES/kdevgdb.mo
 share/locale/fi/LC_MESSAGES/kdevghprovider.mo
 share/locale/fi/LC_MESSAGES/kdevgit.mo
 share/locale/fi/LC_MESSAGES/kdevgrepview.mo
-share/locale/fi/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/fi/LC_MESSAGES/kdevkonsole.mo
 share/locale/fi/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/fi/LC_MESSAGES/kdevmanpage.mo
@@ -1499,6 +1501,7 @@ share/locale/fr/LC_MESSAGES/kdevclazy.mo
 share/locale/fr/LC_MESSAGES/kdevcmake.mo
 share/locale/fr/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/fr/LC_MESSAGES/kdevcodeutils.mo
+share/locale/fr/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/fr/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/fr/LC_MESSAGES/kdevcppcheck.mo
 share/locale/fr/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -1522,7 +1525,6 @@ share/locale/fr/LC_MESSAGES/kdevghprovider.mo
 share/locale/fr/LC_MESSAGES/kdevgit.mo
 share/locale/fr/LC_MESSAGES/kdevgrepview.mo
 share/locale/fr/LC_MESSAGES/kdevheaptrack.mo
-share/locale/fr/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/fr/LC_MESSAGES/kdevkonsole.mo
 share/locale/fr/LC_MESSAGES/kdevlldb.mo
 share/locale/fr/LC_MESSAGES/kdevmakebuilder.mo
@@ -1629,7 +1631,6 @@ share/locale/gl/LC_MESSAGES/kdevghprovider.mo
 share/locale/gl/LC_MESSAGES/kdevgit.mo
 share/locale/gl/LC_MESSAGES/kdevgrepview.mo
 share/locale/gl/LC_MESSAGES/kdevheaptrack.mo
-share/locale/gl/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/gl/LC_MESSAGES/kdevkonsole.mo
 share/locale/gl/LC_MESSAGES/kdevlldb.mo
 share/locale/gl/LC_MESSAGES/kdevmakebuilder.mo
@@ -1713,7 +1714,6 @@ share/locale/hu/LC_MESSAGES/kdevgdb.mo
 share/locale/hu/LC_MESSAGES/kdevghprovider.mo
 share/locale/hu/LC_MESSAGES/kdevgit.mo
 share/locale/hu/LC_MESSAGES/kdevgrepview.mo
-share/locale/hu/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/hu/LC_MESSAGES/kdevkonsole.mo
 share/locale/hu/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/hu/LC_MESSAGES/kdevmanpage.mo
@@ -1750,6 +1750,7 @@ share/locale/it/LC_MESSAGES/kdevclazy.mo
 share/locale/it/LC_MESSAGES/kdevcmake.mo
 share/locale/it/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/it/LC_MESSAGES/kdevcodeutils.mo
+share/locale/it/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/it/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/it/LC_MESSAGES/kdevcppcheck.mo
 share/locale/it/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -1773,7 +1774,6 @@ share/locale/it/LC_MESSAGES/kdevghprovider.mo
 share/locale/it/LC_MESSAGES/kdevgit.mo
 share/locale/it/LC_MESSAGES/kdevgrepview.mo
 share/locale/it/LC_MESSAGES/kdevheaptrack.mo
-share/locale/it/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/it/LC_MESSAGES/kdevkonsole.mo
 share/locale/it/LC_MESSAGES/kdevlldb.mo
 share/locale/it/LC_MESSAGES/kdevmakebuilder.mo
@@ -1815,6 +1815,7 @@ share/locale/ja/LC_MESSAGES/kdevclazy.mo
 share/locale/ja/LC_MESSAGES/kdevcmake.mo
 share/locale/ja/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/ja/LC_MESSAGES/kdevcodeutils.mo
+share/locale/ja/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/ja/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/ja/LC_MESSAGES/kdevcppcheck.mo
 share/locale/ja/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -1838,7 +1839,6 @@ share/locale/ja/LC_MESSAGES/kdevghprovider.mo
 share/locale/ja/LC_MESSAGES/kdevgit.mo
 share/locale/ja/LC_MESSAGES/kdevgrepview.mo
 share/locale/ja/LC_MESSAGES/kdevheaptrack.mo
-share/locale/ja/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/ja/LC_MESSAGES/kdevkonsole.mo
 share/locale/ja/LC_MESSAGES/kdevlldb.mo
 share/locale/ja/LC_MESSAGES/kdevmakebuilder.mo
@@ -1893,7 +1893,6 @@ share/locale/kk/LC_MESSAGES/kdevgdb.mo
 share/locale/kk/LC_MESSAGES/kdevghprovider.mo
 share/locale/kk/LC_MESSAGES/kdevgit.mo
 share/locale/kk/LC_MESSAGES/kdevgrepview.mo
-share/locale/kk/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/kk/LC_MESSAGES/kdevkonsole.mo
 share/locale/kk/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/kk/LC_MESSAGES/kdevmanpage.mo
@@ -1919,11 +1918,18 @@ share/locale/ko/LC_MESSAGES/kdevandroid.mo
 share/locale/ko/LC_MESSAGES/kdevappwizard.mo
 share/locale/ko/LC_MESSAGES/kdevastyle.mo
 share/locale/ko/LC_MESSAGES/kdevbazaar.mo
+share/locale/ko/LC_MESSAGES/kdevclang.mo
+share/locale/ko/LC_MESSAGES/kdevclangtidy.mo
 share/locale/ko/LC_MESSAGES/kdevclassbrowser.mo
+share/locale/ko/LC_MESSAGES/kdevclazy.mo
+share/locale/ko/LC_MESSAGES/kdevcmake.mo
 share/locale/ko/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/ko/LC_MESSAGES/kdevcodeutils.mo
+share/locale/ko/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/ko/LC_MESSAGES/kdevcontextbrowser.mo
+share/locale/ko/LC_MESSAGES/kdevcppcheck.mo
 share/locale/ko/LC_MESSAGES/kdevcustombuildsystem.mo
+share/locale/ko/LC_MESSAGES/kdevcustomdefinesandincludes.mo
 share/locale/ko/LC_MESSAGES/kdevcustommake.mo
 share/locale/ko/LC_MESSAGES/kdevcustomscript.mo
 share/locale/ko/LC_MESSAGES/kdevdebuggercommon.mo
@@ -1943,11 +1949,11 @@ share/locale/ko/LC_MESSAGES/kdevghprovider.mo
 share/locale/ko/LC_MESSAGES/kdevgit.mo
 share/locale/ko/LC_MESSAGES/kdevgrepview.mo
 share/locale/ko/LC_MESSAGES/kdevheaptrack.mo
-share/locale/ko/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/ko/LC_MESSAGES/kdevkonsole.mo
 share/locale/ko/LC_MESSAGES/kdevlldb.mo
 share/locale/ko/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/ko/LC_MESSAGES/kdevmanpage.mo
+share/locale/ko/LC_MESSAGES/kdevmesonmanager.mo
 share/locale/ko/LC_MESSAGES/kdevninja.mo
 share/locale/ko/LC_MESSAGES/kdevokteta.mo
 share/locale/ko/LC_MESSAGES/kdevopenwith.mo
@@ -1963,6 +1969,7 @@ share/locale/ko/LC_MESSAGES/kdevqmakemanager.mo
 share/locale/ko/LC_MESSAGES/kdevqmljs.mo
 share/locale/ko/LC_MESSAGES/kdevqthelp.mo
 share/locale/ko/LC_MESSAGES/kdevquickopen.mo
+share/locale/ko/LC_MESSAGES/kdevscratchpad.mo
 share/locale/ko/LC_MESSAGES/kdevsourceformatter.mo
 share/locale/ko/LC_MESSAGES/kdevstandardoutputview.mo
 share/locale/ko/LC_MESSAGES/kdevsubversion.mo
@@ -1972,7 +1979,6 @@ share/locale/ko/LC_MESSAGES/kdevvcsprojectintegration.mo
 share/locale/ko/LC_MESSAGES/kdevwelcomepage.mo
 share/locale/ko/LC_MESSAGES/plasma_applet_kdevelopsessions.mo
 share/locale/ko/LC_MESSAGES/plasma_runner_kdevelopsessions.mo
-share/locale/ku/LC_MESSAGES/kdevelop.mo
 share/locale/lt/LC_MESSAGES/kdevappwizard.mo
 share/locale/lt/LC_MESSAGES/kdevastyle.mo
 share/locale/lt/LC_MESSAGES/kdevclangtidy.mo
@@ -1999,7 +2005,6 @@ share/locale/lt/LC_MESSAGES/kdevgdb.mo
 share/locale/lt/LC_MESSAGES/kdevghprovider.mo
 share/locale/lt/LC_MESSAGES/kdevgit.mo
 share/locale/lt/LC_MESSAGES/kdevgrepview.mo
-share/locale/lt/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/lt/LC_MESSAGES/kdevkonsole.mo
 share/locale/lt/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/lt/LC_MESSAGES/kdevmanpage.mo
@@ -2147,7 +2152,6 @@ share/locale/nds/LC_MESSAGES/kdevgdb.mo
 share/locale/nds/LC_MESSAGES/kdevghprovider.mo
 share/locale/nds/LC_MESSAGES/kdevgit.mo
 share/locale/nds/LC_MESSAGES/kdevgrepview.mo
-share/locale/nds/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/nds/LC_MESSAGES/kdevkonsole.mo
 share/locale/nds/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/nds/LC_MESSAGES/kdevmanpage.mo
@@ -2183,6 +2187,7 @@ share/locale/nl/LC_MESSAGES/kdevclazy.mo
 share/locale/nl/LC_MESSAGES/kdevcmake.mo
 share/locale/nl/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/nl/LC_MESSAGES/kdevcodeutils.mo
+share/locale/nl/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/nl/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/nl/LC_MESSAGES/kdevcppcheck.mo
 share/locale/nl/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -2206,7 +2211,6 @@ share/locale/nl/LC_MESSAGES/kdevghprovider.mo
 share/locale/nl/LC_MESSAGES/kdevgit.mo
 share/locale/nl/LC_MESSAGES/kdevgrepview.mo
 share/locale/nl/LC_MESSAGES/kdevheaptrack.mo
-share/locale/nl/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/nl/LC_MESSAGES/kdevkonsole.mo
 share/locale/nl/LC_MESSAGES/kdevlldb.mo
 share/locale/nl/LC_MESSAGES/kdevmakebuilder.mo
@@ -2312,7 +2316,6 @@ share/locale/pl/LC_MESSAGES/kdevghprovider.mo
 share/locale/pl/LC_MESSAGES/kdevgit.mo
 share/locale/pl/LC_MESSAGES/kdevgrepview.mo
 share/locale/pl/LC_MESSAGES/kdevheaptrack.mo
-share/locale/pl/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/pl/LC_MESSAGES/kdevkonsole.mo
 share/locale/pl/LC_MESSAGES/kdevlldb.mo
 share/locale/pl/LC_MESSAGES/kdevmakebuilder.mo
@@ -2354,6 +2357,7 @@ share/locale/pt/LC_MESSAGES/kdevclazy.mo
 share/locale/pt/LC_MESSAGES/kdevcmake.mo
 share/locale/pt/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/pt/LC_MESSAGES/kdevcodeutils.mo
+share/locale/pt/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/pt/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/pt/LC_MESSAGES/kdevcppcheck.mo
 share/locale/pt/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -2377,7 +2381,6 @@ share/locale/pt/LC_MESSAGES/kdevghprovider.mo
 share/locale/pt/LC_MESSAGES/kdevgit.mo
 share/locale/pt/LC_MESSAGES/kdevgrepview.mo
 share/locale/pt/LC_MESSAGES/kdevheaptrack.mo
-share/locale/pt/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/pt/LC_MESSAGES/kdevkonsole.mo
 share/locale/pt/LC_MESSAGES/kdevlldb.mo
 share/locale/pt/LC_MESSAGES/kdevmakebuilder.mo
@@ -2419,6 +2422,7 @@ share/locale/pt_BR/LC_MESSAGES/kdevclazy.mo
 share/locale/pt_BR/LC_MESSAGES/kdevcmake.mo
 share/locale/pt_BR/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/pt_BR/LC_MESSAGES/kdevcodeutils.mo
+share/locale/pt_BR/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/pt_BR/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/pt_BR/LC_MESSAGES/kdevcppcheck.mo
 share/locale/pt_BR/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -2442,7 +2446,6 @@ share/locale/pt_BR/LC_MESSAGES/kdevghprovider.mo
 share/locale/pt_BR/LC_MESSAGES/kdevgit.mo
 share/locale/pt_BR/LC_MESSAGES/kdevgrepview.mo
 share/locale/pt_BR/LC_MESSAGES/kdevheaptrack.mo
-share/locale/pt_BR/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/pt_BR/LC_MESSAGES/kdevkonsole.mo
 share/locale/pt_BR/LC_MESSAGES/kdevlldb.mo
 share/locale/pt_BR/LC_MESSAGES/kdevmakebuilder.mo
@@ -2503,14 +2506,18 @@ share/locale/ro/LC_MESSAGES/kdevqthelp.mo
 share/locale/ro/LC_MESSAGES/kdevquickopen.mo
 share/locale/ro/LC_MESSAGES/kdevstandardoutputview.mo
 share/locale/ro/LC_MESSAGES/kdevsubversion.mo
+share/locale/ru/LC_MESSAGES/kdevandroid.mo
 share/locale/ru/LC_MESSAGES/kdevappwizard.mo
 share/locale/ru/LC_MESSAGES/kdevastyle.mo
+share/locale/ru/LC_MESSAGES/kdevbazaar.mo
 share/locale/ru/LC_MESSAGES/kdevclang.mo
 share/locale/ru/LC_MESSAGES/kdevclangtidy.mo
 share/locale/ru/LC_MESSAGES/kdevclassbrowser.mo
+share/locale/ru/LC_MESSAGES/kdevclazy.mo
 share/locale/ru/LC_MESSAGES/kdevcmake.mo
 share/locale/ru/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/ru/LC_MESSAGES/kdevcodeutils.mo
+share/locale/ru/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/ru/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/ru/LC_MESSAGES/kdevcppcheck.mo
 share/locale/ru/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -2518,6 +2525,7 @@ share/locale/ru/LC_MESSAGES/kdevcustomdefinesandincludes.mo
 share/locale/ru/LC_MESSAGES/kdevcustommake.mo
 share/locale/ru/LC_MESSAGES/kdevcustomscript.mo
 share/locale/ru/LC_MESSAGES/kdevdebuggercommon.mo
+share/locale/ru/LC_MESSAGES/kdevdocker.mo
 share/locale/ru/LC_MESSAGES/kdevdocumentswitcher.mo
 share/locale/ru/LC_MESSAGES/kdevdocumentview.mo
 share/locale/ru/LC_MESSAGES/kdevelop.mo
@@ -2527,18 +2535,23 @@ share/locale/ru/LC_MESSAGES/kdevexecutescript.mo
 share/locale/ru/LC_MESSAGES/kdevexternalscript.mo
 share/locale/ru/LC_MESSAGES/kdevfilemanager.mo
 share/locale/ru/LC_MESSAGES/kdevfiletemplates.mo
+share/locale/ru/LC_MESSAGES/kdevflatpak.mo
 share/locale/ru/LC_MESSAGES/kdevgdb.mo
 share/locale/ru/LC_MESSAGES/kdevghprovider.mo
 share/locale/ru/LC_MESSAGES/kdevgit.mo
 share/locale/ru/LC_MESSAGES/kdevgrepview.mo
-share/locale/ru/LC_MESSAGES/kdevkdeprovider.mo
+share/locale/ru/LC_MESSAGES/kdevheaptrack.mo
 share/locale/ru/LC_MESSAGES/kdevkonsole.mo
+share/locale/ru/LC_MESSAGES/kdevlldb.mo
 share/locale/ru/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/ru/LC_MESSAGES/kdevmanpage.mo
+share/locale/ru/LC_MESSAGES/kdevmesonmanager.mo
 share/locale/ru/LC_MESSAGES/kdevninja.mo
 share/locale/ru/LC_MESSAGES/kdevokteta.mo
 share/locale/ru/LC_MESSAGES/kdevopenwith.mo
+share/locale/ru/LC_MESSAGES/kdevoutlineview.mo
 share/locale/ru/LC_MESSAGES/kdevpatchreview.mo
+share/locale/ru/LC_MESSAGES/kdevperforce.mo
 share/locale/ru/LC_MESSAGES/kdevplatform.mo
 share/locale/ru/LC_MESSAGES/kdevproblemreporter.mo
 share/locale/ru/LC_MESSAGES/kdevprojectfilter.mo
@@ -2548,6 +2561,8 @@ share/locale/ru/LC_MESSAGES/kdevqmakemanager.mo
 share/locale/ru/LC_MESSAGES/kdevqmljs.mo
 share/locale/ru/LC_MESSAGES/kdevqthelp.mo
 share/locale/ru/LC_MESSAGES/kdevquickopen.mo
+share/locale/ru/LC_MESSAGES/kdevscratchpad.mo
+share/locale/ru/LC_MESSAGES/kdevsourceformatter.mo
 share/locale/ru/LC_MESSAGES/kdevstandardoutputview.mo
 share/locale/ru/LC_MESSAGES/kdevsubversion.mo
 share/locale/ru/LC_MESSAGES/kdevswitchtobuddy.mo
@@ -2568,6 +2583,7 @@ share/locale/sk/LC_MESSAGES/kdevclazy.mo
 share/locale/sk/LC_MESSAGES/kdevcmake.mo
 share/locale/sk/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/sk/LC_MESSAGES/kdevcodeutils.mo
+share/locale/sk/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/sk/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/sk/LC_MESSAGES/kdevcppcheck.mo
 share/locale/sk/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -2591,7 +2607,6 @@ share/locale/sk/LC_MESSAGES/kdevghprovider.mo
 share/locale/sk/LC_MESSAGES/kdevgit.mo
 share/locale/sk/LC_MESSAGES/kdevgrepview.mo
 share/locale/sk/LC_MESSAGES/kdevheaptrack.mo
-share/locale/sk/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/sk/LC_MESSAGES/kdevkonsole.mo
 share/locale/sk/LC_MESSAGES/kdevlldb.mo
 share/locale/sk/LC_MESSAGES/kdevmakebuilder.mo
@@ -2646,7 +2661,6 @@ share/locale/sl/LC_MESSAGES/kdevgdb.mo
 share/locale/sl/LC_MESSAGES/kdevghprovider.mo
 share/locale/sl/LC_MESSAGES/kdevgit.mo
 share/locale/sl/LC_MESSAGES/kdevgrepview.mo
-share/locale/sl/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/sl/LC_MESSAGES/kdevkonsole.mo
 share/locale/sl/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/sl/LC_MESSAGES/kdevmanpage.mo
@@ -2681,6 +2695,7 @@ share/locale/sv/LC_MESSAGES/kdevclazy.mo
 share/locale/sv/LC_MESSAGES/kdevcmake.mo
 share/locale/sv/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/sv/LC_MESSAGES/kdevcodeutils.mo
+share/locale/sv/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/sv/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/sv/LC_MESSAGES/kdevcppcheck.mo
 share/locale/sv/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -2704,7 +2719,6 @@ share/locale/sv/LC_MESSAGES/kdevghprovider.mo
 share/locale/sv/LC_MESSAGES/kdevgit.mo
 share/locale/sv/LC_MESSAGES/kdevgrepview.mo
 share/locale/sv/LC_MESSAGES/kdevheaptrack.mo
-share/locale/sv/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/sv/LC_MESSAGES/kdevkonsole.mo
 share/locale/sv/LC_MESSAGES/kdevlldb.mo
 share/locale/sv/LC_MESSAGES/kdevmakebuilder.mo
@@ -2769,7 +2783,6 @@ share/locale/tr/LC_MESSAGES/kdevgdb.mo
 share/locale/tr/LC_MESSAGES/kdevghprovider.mo
 share/locale/tr/LC_MESSAGES/kdevgit.mo
 share/locale/tr/LC_MESSAGES/kdevgrepview.mo
-share/locale/tr/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/tr/LC_MESSAGES/kdevkonsole.mo
 share/locale/tr/LC_MESSAGES/kdevlldb.mo
 share/locale/tr/LC_MESSAGES/kdevmakebuilder.mo
@@ -2818,7 +2831,6 @@ share/locale/ug/LC_MESSAGES/kdevfiletemplates.mo
 share/locale/ug/LC_MESSAGES/kdevgdb.mo
 share/locale/ug/LC_MESSAGES/kdevgit.mo
 share/locale/ug/LC_MESSAGES/kdevgrepview.mo
-share/locale/ug/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/ug/LC_MESSAGES/kdevkonsole.mo
 share/locale/ug/LC_MESSAGES/kdevmakebuilder.mo
 share/locale/ug/LC_MESSAGES/kdevmanpage.mo
@@ -2853,6 +2865,7 @@ share/locale/uk/LC_MESSAGES/kdevclazy.mo
 share/locale/uk/LC_MESSAGES/kdevcmake.mo
 share/locale/uk/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/uk/LC_MESSAGES/kdevcodeutils.mo
+share/locale/uk/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/uk/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/uk/LC_MESSAGES/kdevcppcheck.mo
 share/locale/uk/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -2876,7 +2889,6 @@ share/locale/uk/LC_MESSAGES/kdevghprovider.mo
 share/locale/uk/LC_MESSAGES/kdevgit.mo
 share/locale/uk/LC_MESSAGES/kdevgrepview.mo
 share/locale/uk/LC_MESSAGES/kdevheaptrack.mo
-share/locale/uk/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/uk/LC_MESSAGES/kdevkonsole.mo
 share/locale/uk/LC_MESSAGES/kdevlldb.mo
 share/locale/uk/LC_MESSAGES/kdevmakebuilder.mo
@@ -2907,7 +2919,6 @@ share/locale/uk/LC_MESSAGES/kdevvcsprojectintegration.mo
 share/locale/uk/LC_MESSAGES/kdevwelcomepage.mo
 share/locale/uk/LC_MESSAGES/plasma_applet_kdevelopsessions.mo
 share/locale/uk/LC_MESSAGES/plasma_runner_kdevelopsessions.mo
-share/locale/xh/LC_MESSAGES/kdevelop.mo
 share/locale/zh_CN/LC_MESSAGES/kdevandroid.mo
 share/locale/zh_CN/LC_MESSAGES/kdevappwizard.mo
 share/locale/zh_CN/LC_MESSAGES/kdevastyle.mo
@@ -2919,6 +2930,7 @@ share/locale/zh_CN/LC_MESSAGES/kdevclazy.mo
 share/locale/zh_CN/LC_MESSAGES/kdevcmake.mo
 share/locale/zh_CN/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/zh_CN/LC_MESSAGES/kdevcodeutils.mo
+share/locale/zh_CN/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/zh_CN/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/zh_CN/LC_MESSAGES/kdevcppcheck.mo
 share/locale/zh_CN/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -2942,7 +2954,6 @@ share/locale/zh_CN/LC_MESSAGES/kdevghprovider.mo
 share/locale/zh_CN/LC_MESSAGES/kdevgit.mo
 share/locale/zh_CN/LC_MESSAGES/kdevgrepview.mo
 share/locale/zh_CN/LC_MESSAGES/kdevheaptrack.mo
-share/locale/zh_CN/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/zh_CN/LC_MESSAGES/kdevkonsole.mo
 share/locale/zh_CN/LC_MESSAGES/kdevlldb.mo
 share/locale/zh_CN/LC_MESSAGES/kdevmakebuilder.mo
@@ -2984,6 +2995,7 @@ share/locale/zh_TW/LC_MESSAGES/kdevclazy.mo
 share/locale/zh_TW/LC_MESSAGES/kdevcmake.mo
 share/locale/zh_TW/LC_MESSAGES/kdevcmakebuilder.mo
 share/locale/zh_TW/LC_MESSAGES/kdevcodeutils.mo
+share/locale/zh_TW/LC_MESSAGES/kdevcompileanalyzercommon.mo
 share/locale/zh_TW/LC_MESSAGES/kdevcontextbrowser.mo
 share/locale/zh_TW/LC_MESSAGES/kdevcppcheck.mo
 share/locale/zh_TW/LC_MESSAGES/kdevcustombuildsystem.mo
@@ -3007,7 +3019,6 @@ share/locale/zh_TW/LC_MESSAGES/kdevghprovider.mo
 share/locale/zh_TW/LC_MESSAGES/kdevgit.mo
 share/locale/zh_TW/LC_MESSAGES/kdevgrepview.mo
 share/locale/zh_TW/LC_MESSAGES/kdevheaptrack.mo
-share/locale/zh_TW/LC_MESSAGES/kdevkdeprovider.mo
 share/locale/zh_TW/LC_MESSAGES/kdevkonsole.mo
 share/locale/zh_TW/LC_MESSAGES/kdevlldb.mo
 share/locale/zh_TW/LC_MESSAGES/kdevmakebuilder.mo
@@ -3028,6 +3039,7 @@ share/locale/zh_TW/LC_MESSAGES/kdevqmakemanager.mo
 share/locale/zh_TW/LC_MESSAGES/kdevqmljs.mo
 share/locale/zh_TW/LC_MESSAGES/kdevqthelp.mo
 share/locale/zh_TW/LC_MESSAGES/kdevquickopen.mo
+share/locale/zh_TW/LC_MESSAGES/kdevscratchpad.mo
 share/locale/zh_TW/LC_MESSAGES/kdevsourceformatter.mo
 share/locale/zh_TW/LC_MESSAGES/kdevstandardoutputview.mo
 share/locale/zh_TW/LC_MESSAGES/kdevsubversion.mo

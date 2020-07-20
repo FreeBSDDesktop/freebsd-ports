@@ -8,10 +8,13 @@ PORTREVISION=	8
 CATEGORIES=	net
 
 MAINTAINER=	rodrigo@FreeBSD.org
-COMMENT=	Splat is the Scalable Periodic LDAP Attribute Transmogrifier
+COMMENT=	Scalable Periodic LDAP Attribute Transmogrifier
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zconfig>0:devel/py-zconfig@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}ldap>=2.3.1:net/py-ldap@${PY_FLAVOR}

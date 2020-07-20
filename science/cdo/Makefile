@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	cdo
-PORTVERSION=	1.9.7
-PORTREVISION=	2
+PORTVERSION=	1.9.8
+PORTREVISION=	1
 CATEGORIES=	science
-MASTER_SITES=	https://code.mpimet.mpg.de/attachments/download/20101/ \
+MASTER_SITES=	https://code.mpimet.mpg.de/attachments/download/20826/ \
 		LOCAL/sunpoet
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -36,7 +36,6 @@ CONFIGURE_ARGS=	--disable-data \
 		--enable-cdi-lib \
 		--program-transform-name="" \
 		--with-zlib=/usr
-CXXFLAGS+=	-DACCEPT_USE_OF_DEPRECATED_PROJ_API_H
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 MAKE_JOBS_UNSAFE=	yes

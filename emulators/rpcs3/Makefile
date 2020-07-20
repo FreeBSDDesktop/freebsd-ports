@@ -2,9 +2,12 @@
 
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.7-8690 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-g27af75fe7
+DISTVERSION=	0.0.11-10657 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-ge70e534bf
 CATEGORIES=	emulators
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	9bf356212166.patch:-p1 # https://github.com/RPCS3/rpcs3/pull/8584
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	PS3 emulator/debugger
@@ -12,10 +15,12 @@ COMMENT=	PS3 emulator/debugger
 LICENSE=	BSD3CLAUSE BSL GPLv2 MIT ZLIB
 LICENSE_COMB=	multi
 LICENSE_FILE_BSD3CLAUSE=${WRKSRC_cereal}/LICENSE
-LICENSE_FILE_MIT=	${WRKSRC_GSL}/LICENSE
+LICENSE_FILE_BSL=	${WRKSRC_span}/LICENSE_1_0.txt
+LICENSE_FILE_MIT=	${WRKSRC_pugixml}/LICENSE.md
 LICENSE_FILE_ZLIB=	${WRKSRC_asmjit}/LICENSE.md
 
-LIB_DEPENDS=	libpng.so:graphics/png \
+LIB_DEPENDS=	libcurl.so:ftp/curl \
+		libpng.so:graphics/png \
 		libavcodec.so:multimedia/ffmpeg
 
 ONLY_FOR_ARCHS=	amd64
@@ -24,38 +29,38 @@ ONLY_FOR_ARCHS_REASON=	requires int128 and SSE2
 USE_GITHUB=	yes
 GH_ACCOUNT=	RPCS3
 GH_TUPLE=	RPCS3:hidapi:hidapi-0.8.0-rc1-27-g9220f5e:hidapi/3rdparty/hidapi \
-		RPCS3:llvm:b860b5e8f4ee:llvm/llvm \
+		RPCS3:llvm-mirror:f5679565d348:llvm/llvm \
 		Cyan4973:xxHash:v0.6.5:xxHash/3rdparty/xxHash \
-		jbeder:yaml-cpp:yaml-cpp-0.6.2-23-geca9cfd:yamlcpp/3rdparty/yaml-cpp \
+		FNA-XNA:FAudio:20.05:FAudio/3rdparty/FAudio \
+		jbeder:yaml-cpp:yaml-cpp-0.6.3-30-g6a211f0:yamlcpp/3rdparty/yaml-cpp \
 		kobalicek:asmjit:fc251c9:asmjit/asmjit \
-		KhronosGroup:glslang:7.11.3214:glslang/Vulkan/glslang \
-		Microsoft:GSL:v2.0.0:GSL/3rdparty/GSL \
-		USCiLab:cereal:v1.2.0:cereal/3rdparty/cereal \
+		KhronosGroup:SPIRV-Headers:1.5.3:spirv_headers/Vulkan/spirv-headers \
+		KhronosGroup:SPIRV-Tools:v2020.2-42-g49ca250b:spirv_tools/Vulkan/spirv-tools \
+		KhronosGroup:glslang:8.13.3743:glslang/Vulkan/glslang \
+		tcbrindle:span:9d7559a:span/3rdparty/span \
+		USCiLab:cereal:v1.3.0-5-g60c69df9:cereal/3rdparty/cereal \
 		zeux:pugixml:v1.9-51-g8bf806c:pugixml/3rdparty/pugixml
 
-USES=		cmake compiler:c++17-lang iconv:wchar_t localbase:ldflags \
-		openal:soft pkgconfig qt:5
+USES=		cmake compiler:c++17-lang gl iconv:wchar_t localbase:ldflags \
+		openal:soft pkgconfig python:3.4+,build qt:5 xorg
 USE_GL=		gl glew
-USE_QT=		qmake_build buildtools_build core dbus declarative gui network widgets
+USE_QT=		qmake_build buildtools_build core concurrent dbus gui widgets
 USE_XORG=	x11
-CMAKE_ON=	CMAKE_SKIP_RPATH USE_SYSTEM_FFMPEG USE_SYSTEM_LIBPNG
-CMAKE_OFF=	USE_NATIVE_INSTRUCTIONS
+CMAKE_ON=	CMAKE_SKIP_RPATH USE_SYSTEM_CURL USE_SYSTEM_FFMPEG USE_SYSTEM_LIBPNG
+CMAKE_OFF=	USE_NATIVE_INSTRUCTIONS USE_PRECOMPILED_HEADERS
 LDFLAGS+=	-Wl,--as-needed # GLU
 
-# XXX Drop after FreeBSD 12.0 EOL
-.if exists(/usr/lib/clang/6.0.1)
-LLD_UNSAFE=	yes # XXX ports/219089
+# XXX Drop after FreeBSD 11.3/12.1 EOL
+.if (exists(/usr/lib/clang/8.0.0) || exists(/usr/lib/clang/8.0.1)) && ${CXX} == c++
+BUILD_DEPENDS+=	clang++${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
+USES:=		${USES:Ncompiler*}
+CC=		clang${LLVM_DEFAULT}
+CXX=		clang++${LLVM_DEFAULT}
+CPP=		clang-cpp${LLVM_DEFAULT}
 .endif
 
-# XXX Remove after FreeBSD 11.2/12.0 reach EOL i.e., around 2020-02-01
-.if !exists(/usr/include/c++/v1/charconv) && exists(/usr/lib/libc++.so)
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-revert-f9ad6358563b
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-revert-4504ac2d1248
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-revert-5bd17a44c972
-.endif
-
-OPTIONS_DEFINE=	ALSA EVDEV GDB LLVM PULSEAUDIO VULKAN
-OPTIONS_DEFAULT=LLVM VULKAN
+OPTIONS_DEFINE=	ALSA EVDEV FAUDIO PULSEAUDIO VULKAN
+OPTIONS_DEFAULT=EVDEV FAUDIO VULKAN
 
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins
@@ -66,12 +71,10 @@ EVDEV_CMAKE_BOOL=	USE_LIBEVDEV
 EVDEV_BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto
 EVDEV_LIB_DEPENDS=	libevdev.so:devel/libevdev
 
-GDB_DESC=		GDB remote stub (powerpc64 target)
-GDB_CMAKE_BOOL=		WITH_GDB
-GDB_BROKEN=		https://github.com/RPCS3/rpcs3/issues/5946
-
-LLVM_DESC=		LLVM-based PPU recompiler
-LLVM_CMAKE_BOOL_OFF=	WITHOUT_LLVM
+FAUDIO_DESC=		FAudio audio support
+FAUDIO_USES=		sdl
+FAUDIO_USE=		SDL=sdl2
+FAUDIO_CMAKE_BOOL=	USE_FAUDIO
 
 PULSEAUDIO_LIB_DEPENDS=	libpulse-simple.so:audio/pulseaudio
 PULSEAUDIO_CMAKE_BOOL=	USE_PULSE
@@ -82,9 +85,9 @@ VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 VULKAN_CMAKE_BOOL=	USE_VULKAN
 
 post-patch:
-	@${REINPLACE_CMD} -e '/GIT_BRANCH/s/unknown/master/' \
-		-e '/GIT_TAG/s/unknown/${GH_TAGNAME:C/-.*//}/' \
-		-e '/GIT_VERSION/s/unknown/${GH_TAGNAME:C/[^-]*-//}/' \
+	@${REINPLACE_CMD} -e '/GIT_BRANCH/s/local_build/master/' \
+		 -e '/GIT_FULL_BRANCH/s/local_build/${GH_ACCOUNT}\/${GH_PROJECT}\/master/' \
+		-e '/GIT_VERSION/s/local_build/${GH_TAGNAME:C/[^-]*-//}/' \
 		${WRKSRC}/${PORTNAME}/git-version.cmake
 
 .include <bsd.port.mk>

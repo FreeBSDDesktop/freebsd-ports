@@ -2,8 +2,7 @@
 
 PORTNAME=		canu
 DISTVERSIONPREFIX=	v
-DISTVERSION=		1.8
-PORTREVISION=		5
+DISTVERSION=		2.0
 CATEGORIES=		biology java perl5
 
 MAINTAINER=	jwb@FreeBSD.org
@@ -11,6 +10,8 @@ COMMENT=	Single molecule sequence assembler
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKDIR}/${PORTNAME}-${PORTVERSION}/README.license.GPL
+
+BROKEN_powerpc64=	fails to build: utgcns/libboost/boost/smart_ptr/detail/sp_counted_impl.hpp:81:5: error: 'get_deleter' declared as a 'virtual' field
 
 LIB_DEPENDS=	libboost_regex.so:devel/boost-libs
 RUN_DEPENDS=	gnuplot:math/gnuplot
@@ -41,9 +42,6 @@ pre-configure:
 		-e 's|-funroll-loops||g' \
 		-e 's|-fexpensive-optimizations||g' \
 		${WRKSRC}/Makefile
-	@${REINPLACE_CMD} \
-		-e 's|\\$$bin/mhap-|${JAVAJARDIR}/mhap-|g' \
-		${WRKSRC}/pipelines/canu/OverlapMhap.pm
 	@${REINPLACE_CMD} \
 		-e 's|RealBin/lib|RealBin/../${SITE_PERL_REL}/canu|g' \
 		${WRKSRC}/pipelines/canu.pl

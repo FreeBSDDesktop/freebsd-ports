@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	irsim
-PORTVERSION=	9.7.100
-PORTREVISION=	1
+DISTVERSION=	9.7.108
 CATEGORIES=	cad
 MASTER_SITES=	http://opencircuitdesign.com/irsim/archive/
 
@@ -25,7 +24,7 @@ TCL_USES=		tk:tea
 
 CONFIGURE_WRKSRC=	${WRKSRC}/scripts
 
-USES=	gmake tar:tgz
+USES=	gmake tar:tgz xorg
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
 

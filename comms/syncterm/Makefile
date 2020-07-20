@@ -11,6 +11,8 @@ COMMENT=	ANSI-BBS terminal which supports telnet, rlogin, and SSH
 
 LICENSE=	GPLv2
 
+BUILD_DEPENDS=	as:devel/binutils
+
 WRKSRC=		${WRKDIR}/syncterm-${PORTVERSION}/src/syncterm
 USES=		gmake perl5 tar:tgz
 USE_PERL5=	build
@@ -31,9 +33,11 @@ MAKE_ARGS+=	RELEASE=1
 OPTIONS_DEFINE=	X11 SDL
 OPTIONS_DEFAULT=	X11 SDL
 
+X11_USES=	xorg
 X11_USE=	xorg=x11
 X11_MAKE_ARGS_OFF=	NO_X=1
 
+SDL_USES=	sdl
 SDL_USE=	SDL=sdl
 SDL_MAKE_ARGS=	USE_SDL=1
 SDL_MAKE_ARGS_OFF=	WITHOUT_SDL=1

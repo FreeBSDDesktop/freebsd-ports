@@ -3,11 +3,11 @@
 
 PORTNAME=	stone
 PORTVERSION=	2.3e
-CATEGORIES=	net ipv6
+CATEGORIES=	net
 MASTER_SITES=	http://www.gcd.org/sengoku/stone/
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT=	Stone is a TCP/IP packet repeater in the application layer
+COMMENT=	TCP/IP packet repeater in the application layer
 
 LICENSE=	GPLv2
 

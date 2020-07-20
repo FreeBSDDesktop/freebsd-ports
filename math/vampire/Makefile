@@ -1,14 +1,14 @@
 # $FreeBSD$
 
 PORTNAME=	vampire
-DISTVERSION=	4.4
+DISTVERSION=	4.5.1
 CATEGORIES=	math
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Automatic theorem prover
 
 LICENSE=	BSD2CLAUSE
-xLICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_FILE=	${WRKSRC}/LICENCE
 
 USES=		compiler:c++11-lang gmake
 USE_GITHUB=	yes

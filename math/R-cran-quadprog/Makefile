@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	quadprog
-DISTVERSION=	1.5-5
-PORTREVISION=	9
+DISTVERSION=	1.5-8
+PORTREVISION=	1
 CATEGORIES=	math
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
-MAINTAINER=	dbn@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Functions to solve Quadratic Programming Problems
 
 LICENSE=	GPLv2 GPLv3

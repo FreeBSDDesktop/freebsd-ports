@@ -1,10 +1,9 @@
 # $FreeBSD$
 
 PORTNAME?=	alpine
-DISTVERSION=	2.21.99999
-PORTREVISION=	1
-CATEGORIES?=	mail news ipv6
-MASTER_SITES=	http://repo.or.cz/alpine.git/snapshot/${GIT_COMMIT}${EXTRACT_SUFX}?dummy=/
+DISTVERSION=	2.23.2
+CATEGORIES?=	mail news
+MASTER_SITES=	https://repo.or.cz/alpine.git/snapshot/${GIT_COMMIT}${EXTRACT_SUFX}?dummy=/
 
 MAINTAINER=	mbeis@xs4all.nl
 COMMENT?=	Mail and news client descended from Pine
@@ -31,7 +30,7 @@ CONFIGURE_ARGS+=	--with-debug-level=2 \
 MAKE_ARGS+=		CC="${CC}" CXX="${CXX}" GCCCFLAGS="${CFLAGS}"
 # When you update please double check that the commit corresponds to
 # the actual version you've set in PORTVERSION.
-GIT_COMMIT=		abeb2c25935ef8c75f1e5deef0f81276754dc975
+GIT_COMMIT=		7b8875f8bb237a156a1250629e8c684706bd202f
 GIT_COMMIT_SHORT=	${GIT_COMMIT:C/^(.......).*/\1/}
 WRKSRC=			${WRKDIR}/alpine-${GIT_COMMIT_SHORT}
 
@@ -65,7 +64,7 @@ LDAP_CFLAGS=			-I${LOCALBASE}/include
 LDAP_LDFLAGS=			-L${LOCALBASE}/lib
 
 # Option MAILDIR
-MAILDIR_PATCH_SITES=		http://alpine.x10host.com/alpine/alpha/patches/alpine-2.21.99999/
+MAILDIR_PATCH_SITES=		http://alpine.x10host.com/alpine/alpha/patches/alpine-2.23/
 MAILDIR_PATCHFILES+=		maildir.patch.gz:-p1
 
 # Option MOUSE

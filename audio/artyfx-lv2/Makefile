@@ -14,10 +14,12 @@ COMMENT=	ArtyFX plugin bundle
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN=		lv2_ui.cxx:139:3: error: cannot initialize a member subobject of type 'LV2UI_Handle'
+
 BUILD_DEPENDS=	lv2>0:audio/lv2
 LIB_DEPENDS=	libsndfile.so:audio/libsndfile
 
-USES=		cmake compiler:c++11-lang gnome localbase:ldflags pkgconfig
+USES=		cmake compiler:c++11-lang gnome localbase:ldflags pkgconfig xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	openAVproductions
 GH_PROJECT=	openAV-ArtyFX

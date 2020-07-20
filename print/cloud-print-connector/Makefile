@@ -3,7 +3,7 @@
 PORTNAME=	cloud-print-connector
 PORTVERSION=	1.16
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print
 
 MAINTAINER=	swills@FreeBSD.org
@@ -11,6 +11,8 @@ COMMENT=	Share CUPS printers via Google Cloud Print
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN=		cups.c:42:12: error: incomplete definition of type 'struct _ipp_s'
 
 LIB_DEPENDS=	libcups.so:print/cups \
 		libavahi-client.so:net/avahi-app \

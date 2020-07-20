@@ -5,9 +5,9 @@ PORTNAME=	compiz-plugins-main
 PORTVERSION=	0.8.8
 PORTREVISION=	6
 CATEGORIES=	x11-wm
-MASTER_SITES=	http://releases.compiz.org/${PORTVERSION}/
+MASTER_SITES=	https://BSDforge.com/projects/source/x11-wm/compiz-plugins-main/
 
-MAINTAINER=	freebsd-ports@dan.me.uk
+MAINTAINER=	portmaster@BSDforge.com
 COMMENT=	Plugins for Compiz Composite Window Manager
 
 LICENSE=	GPLv2+
@@ -22,7 +22,8 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		gmake jpeg libtool:keepla pathfix pkgconfig tar:bzip2
+USES=		gl gmake gnome jpeg libtool:keepla pathfix pkgconfig tar:bzip2 \
+		xorg
 USE_CSTD=	gnu89
 USE_GL=		yes
 USE_GNOME=	gconf2 intltool libxslt

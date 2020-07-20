@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	posix
-PORTVERSION=	34.1.1
+PORTVERSION=	35.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 PKGNAMEPREFIX=	${LUA_PKGNAMEPREFIX}
@@ -13,9 +13,9 @@ COMMENT=	Lua bindings for POSIX APIs
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${LUA_PKGNAMEPREFIX}stdlib-normalize>=0:devel/lua-stdlib-normalize
+RUN_DEPENDS=	${LUA_PKGNAMEPREFIX}stdlib-normalize>=0:devel/lua-stdlib-normalize@${LUA_FLAVOR}
 
-USES=		lua shebangfix
+USES=		lua:module shebangfix
 SHEBANG_FILES=	build-aux/luke
 
 USE_GITHUB=	yes

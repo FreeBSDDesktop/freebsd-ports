@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	furl
-PORTVERSION=	2.0.0
+PORTVERSION=	2.1.0
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,7 +12,7 @@ COMMENT=	Small Python library that makes parsing and manipulating URLs easy
 LICENSE=	PD
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}orderedmultidict>0:devel/py-orderedmultidict@${PY_FLAVOR}

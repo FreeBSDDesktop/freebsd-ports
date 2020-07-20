@@ -2,7 +2,7 @@
 
 PORTNAME=	wxPython
 PORTVERSION=	3.0.2.0
-PORTREVISION=	8
+PORTREVISION=	9
 DISTVERSIONPREFIX=	src-
 CATEGORIES=	x11-toolkits python
 MASTER_SITES=	SF/wxpython/wxPython/${PORTVERSION}
@@ -11,6 +11,9 @@ PKGNAMESUFFIX=	30
 
 MAINTAINER=	python@FreeBSD.org
 COMMENT=	GUI toolkit for the Python programming language
+
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-08-15
 
 DIST_SUBDIR=	python
 

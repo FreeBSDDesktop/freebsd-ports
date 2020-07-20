@@ -10,6 +10,8 @@ COMMENT=	Colour Management System (CMS)
 
 LICENSE=	BSD3CLAUSE
 
+BROKEN=		Does not build with Qt5-5.14
+
 RUN_DEPENDS=	${LOCALBASE}/share/color/icc/OpenICC/sRGB.icc:graphics/icc-profiles-openicc \
 		${LOCALBASE}/share/color/icc/basICColor/ISOcoated_v2_300_bas.ICC:graphics/icc-profiles-basiccolor \
 		xcalib:x11/xcalib
@@ -30,7 +32,8 @@ LIB_DEPENDS=	libraw.so:graphics/libraw \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	oyranos-cms
-USES=		cmake compiler:c++11-lib desktop-file-utils gettext iconv jpeg pkgconfig qt:5
+USES=		cmake compiler:c++11-lib desktop-file-utils gettext gl gnome \
+		iconv jpeg pkgconfig qt:5 xorg
 USE_GL=		gl
 USE_LDCONFIG=	yes
 USE_GNOME=	libxml2

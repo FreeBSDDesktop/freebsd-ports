@@ -72,14 +72,16 @@ USE_XORG=	x11 xcb xcomposite xdamage xext xfixes xrender xt
 HAS_CONFIGURE=	yes
 CONFIGURE_OUTSOURCE=	yes
 LDFLAGS+=		-Wl,--as-needed
+BINARY_ALIAS+=	python3=python${PYTHON3_DEFAULT}
 
 BUNDLE_LIBS=	yes
 
 BUILD_DEPENDS+=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT} \
-				rust-cbindgen>=0.8.7:devel/rust-cbindgen \
-				${RUST_DEFAULT}>=1.35:lang/${RUST_DEFAULT} \
+				rust-cbindgen>=0.14.1:devel/rust-cbindgen \
+				${RUST_DEFAULT}>=1.41:lang/${RUST_DEFAULT} \
 				${LOCALBASE}/bin/python${PYTHON3_DEFAULT}:lang/python${PYTHON3_DEFAULT:S/.//g} \
 				node:www/node
+LIB_DEPENDS+=	libdrm.so:graphics/libdrm
 MOZ_EXPORT+=	${CONFIGURE_ENV} \
 				LLVM_CONFIG=llvm-config${LLVM_DEFAULT} \
 				PERL="${PERL}" \
@@ -111,7 +113,7 @@ RUSTFLAGS+=	${CFLAGS:M-mcpu=*:S/-mcpu=/-C target-cpu=/}
 .endif
 
 # Standard depends
-_ALL_DEPENDS=	av1 event ffi graphite harfbuzz hunspell icu jpeg nspr nss png pixman sqlite vpx webp
+_ALL_DEPENDS=	av1 event ffi graphite harfbuzz icu jpeg nspr nss png pixman sqlite vpx webp
 
 .if exists(${FILESDIR}/patch-bug1559213)
 av1_LIB_DEPENDS=	libaom.so:multimedia/aom libdav1d.so:multimedia/dav1d
@@ -131,9 +133,6 @@ graphite_MOZ_OPTIONS=	--with-system-graphite2
 harfbuzz_LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
 harfbuzz_MOZ_OPTIONS=	--with-system-harfbuzz
 .endif
-
-hunspell_LIB_DEPENDS=	libhunspell-1.7.so:textproc/hunspell
-hunspell_MOZ_OPTIONS=	--enable-system-hunspell
 
 icu_LIB_DEPENDS=		libicui18n.so:devel/icu
 icu_MOZ_OPTIONS=		--with-system-icu --with-intl-api
@@ -187,8 +186,7 @@ BUILD_DEPENDS+=	${-${dep}_BUILD_DEPENDS}
 MOZ_OPTIONS+=	\
 		--enable-update-channel=${PKGNAMESUFFIX:Urelease:S/^-//} \
 		--disable-updater \
-		--with-system-zlib \
-		--with-system-bz2
+		--with-system-zlib
 
 # API keys from www/chromium 
 # http://www.chromium.org/developers/how-tos/api-keys
@@ -217,9 +215,7 @@ RUN_DEPENDS+=	libcanberra>0:audio/libcanberra
 .if ${PORT_OPTIONS:MDBUS}
 BUILD_DEPENDS+=	libnotify>0:devel/libnotify
 LIB_DEPENDS+=	libdbus-1.so:devel/dbus \
-				libdbus-glib-1.so:devel/dbus-glib \
-				libstartup-notification-1.so:x11/startup-notification
-MOZ_OPTIONS+=	--enable-startup-notification
+				libdbus-glib-1.so:devel/dbus-glib
 .else
 MOZ_OPTIONS+=	--disable-dbus
 .endif
@@ -227,14 +223,6 @@ MOZ_OPTIONS+=	--disable-dbus
 .if ${PORT_OPTIONS:MFFMPEG}
 # dom/media/platforms/ffmpeg/FFmpegRuntimeLinker.cpp
 RUN_DEPENDS+=	ffmpeg>=0.8,1:multimedia/ffmpeg
-.endif
-
-.if ${PORT_OPTIONS:MGCONF}
-# XXX USE_GNOME+=gconf2:build is not supported
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libgconf-2.so:devel/gconf2
-MOZ_OPTIONS+=	--enable-gconf
-.else
-MOZ_OPTIONS+=	--disable-gconf
 .endif
 
 .if ${PORT_OPTIONS:MLIBPROXY}
@@ -267,10 +255,8 @@ MOZ_OPTIONS+=	--disable-pulseaudio
 BUILD_DEPENDS+=	${LOCALBASE}/include/sndio.h:audio/sndio
 post-patch-SNDIO-on:
 	@${REINPLACE_CMD} -e 's|OpenBSD|${OPSYS}|g' \
-		${MOZSRC}/media/libcubeb/src/moz.build \
-		${MOZSRC}/toolkit/library/moz.build
-	@${REINPLACE_CMD} -e 's|OpenBSD|${OPSYS}|g' \
-			 ${MOZSRC}/media/libcubeb/gtest/moz.build
+		-e '/DISABLE_LIBSNDIO_DLOPEN/d' \
+		${MOZSRC}/media/libcubeb/src/moz.build
 .endif
 
 .if ${PORT_OPTIONS:MDEBUG}
@@ -324,9 +310,9 @@ CFLAGS+=	-B${LOCALBASE}/bin
 LDFLAGS+=	-B${LOCALBASE}/bin
 . endif
 .elif ${ARCH:Mpowerpc*}
+BUILD_DEPENDS+=	as:devel/binutils
 . if ${ARCH} == "powerpc64"
 MOZ_EXPORT+=	UNAME_m="${ARCH}"
-CFLAGS+=	-mminimal-toc
 . endif
 .elif ${ARCH} == "sparc64"
 # Work around miscompilation/mislinkage of the sCanonicalVTable hacks.
@@ -378,6 +364,14 @@ gecko-post-patch:
 		-e 's|share/mozilla/extensions|lib/xpi|g' \
 		${MOZSRC}/xpcom/io/nsAppFileLocationProvider.cpp \
 		${MOZSRC}/toolkit/xre/nsXREDirProvider.cpp
+# Disable vendor checksums like lang/rust
+	@${REINPLACE_CMD} 's,"files":{[^}]*},"files":{},' \
+		${MOZSRC}/third_party/rust/*/.cargo-checksum.json
+
+pre-configure-script:
+# Check that the running kernel has COMPAT_FREEBSD11 required by lang/rust post-ino64
+	@${SETENV} CC="${CC}" OPSYS="${OPSYS}" OSVERSION="${OSVERSION}" WRKDIR="${WRKDIR}" \
+		${SH} ${SCRIPTSDIR}/rust-compat11-canary.sh
 
 post-install-script: gecko-create-plist
 

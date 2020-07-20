@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	sassc
-PORTVERSION=	2.2.0
+PORTVERSION=	2.4.0
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 

@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	cloud-init
-PORTVERSION=	19.2
+PORTVERSION=	20.2
+PORTREVISION=	1
 CATEGORIES=	net python
-MASTER_SITES=	http://launchpad.net/${PORTNAME}/trunk/${PORTVERSION}/+download/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	zi@FreeBSD.org
+MAINTAINER=	andrey@bsdnir.info
 COMMENT=	Init scripts for use on cloud images
 
 LICENSE=	GPLv3
@@ -22,14 +22,16 @@ RUN_DEPENDS=	dmidecode>0:sysutils/dmidecode \
 		${PYTHON_PKGNAMEPREFIX}configobj>0:devel/py-configobj@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}serial>0:comms/py-serial@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyserial>0:comms/py-pyserial@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}oauthlib>0:security/py-oauthlib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jsonpatch>0:devel/py-jsonpatch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jsonschema>0:devel/py-jsonschema@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jsonpointer>0:devel/py-jsonpointer@${PY_FLAVOR}
 
-USES=		python shebangfix
+USES=		python:3.6+ shebangfix
+USE_GITHUB=	yes
+GH_ACCOUNT=	canonical
 
 SHEBANG_FILES=	tools/validate-yaml.py tools/read-dependencies \
 		tools/read-version

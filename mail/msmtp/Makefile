@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	msmtp
-PORTVERSION=	1.8.5
-CATEGORIES=	mail ipv6
+PORTVERSION=	1.8.11
+CATEGORIES=	mail
 MASTER_SITES=	https://marlam.de/msmtp/releases/
 
 MAINTAINER=	novel@FreeBSD.org
@@ -29,7 +29,7 @@ MSMTPD_DESC=	Include minimal SMTP server that pipes mails to msmtp
 MSMTPQ_DESC=	Install offline messaging scripts
 
 GSASL_CONFIGURE_WITH=	libgsasl
-GSASL_LIB_DEPENDS=	libgsasl.so:security/gsasl
+GSASL_LIB_DEPENDS=	libgsasl.so:security/libgsasl
 IDN_CONFIGURE_WITH=	libidn
 IDN_LIB_DEPENDS=	libidn2.so:dns/libidn2
 LIBSECRET_CONFIGURE_WITH=	libsecret

@@ -1,3 +1,3 @@
-TIMESTAMP = 1567537225
-SHA256 (KDE/applications/19.08.1/gwenview-19.08.1.tar.xz) = 1ed46507ea30c43e4672b51996ac413683a863978999be91a9df135f9369f3cb
-SIZE (KDE/applications/19.08.1/gwenview-19.08.1.tar.xz) = 5722756
+TIMESTAMP = 1594147019
+SHA256 (KDE/release-service/20.04.3/gwenview-20.04.3.tar.xz) = d176021d6784e33cb0aaa6fa2517e81f9eac237079d2a06d6b55b8f4b04e8bd9
+SIZE (KDE/release-service/20.04.3/gwenview-20.04.3.tar.xz) = 5629044

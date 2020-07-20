@@ -2,7 +2,8 @@
 
 PORTNAME=	ipfs
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.4.21
+DISTVERSION=	0.4.23
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/ipfs/go-ipfs/releases/download/v${DISTVERSION}/
 PKGNAMESUFFIX=	-go
@@ -14,13 +15,13 @@ COMMENT=	IPFS implementation in Go
 LICENSE=	MIT APACHE20
 LICENSE_COMB=	dual
 LICENSE_FILE_MIT=	${WRKSRC}/LICENSE-MIT
-LICENSE_FILE_APACHE=	${WRKSRC}/LICENSE-APACHE
+LICENSE_FILE_APACHE20=	${WRKSRC}/LICENSE-APACHE
 
-ONLY_FOR_ARCHS=	amd64 i386
+ONLY_FOR_ARCHS=	aarch64 amd64 i386
 
 USES=		go:modules
 
-GO_TARGET=	./cmd/ipfs
+GO_TARGET=	./cmd/ipfs:ipfs-go
 
 NO_WRKSUBDIR=	yes
 
@@ -52,8 +53,7 @@ post-patch:
 	@${REINPLACE_CMD} '/build !go1.13/d' ${WRKSRC}/vendor/golang.org/x/xerrors/format_go1_12.go
 	@${REINPLACE_CMD} '/build !go1.13/d' ${WRKSRC}/vendor/golang.org/x/xerrors/frame_go1_12.go
 
-do-install:
+post-install:
 	@${MKDIR} ${STAGEDIR}${IPFS_HOME}
-	${INSTALL_PROGRAM} ${GO_WRKDIR_BIN}/ipfs ${STAGEDIR}${PREFIX}/bin/${PORTNAME}${PKGNAMESUFFIX}
 
 .include <bsd.port.mk>

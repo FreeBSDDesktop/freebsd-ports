@@ -2,7 +2,7 @@
 
 PORTNAME=	xf86-input-evdev
 PORTVERSION=	2.10.6
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	x11@FreeBSD.org
@@ -15,8 +15,7 @@ BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 LIB_DEPENDS=	libevdev.so:devel/libevdev \
 		libmtdev.so:devel/libmtdev
 
-XORG_CAT=	driver
-USES=		pathfix
+USES=		pathfix xorg-cat:driver
 CONFIGURE_ENV=	UDEV_CFLAGS=" " UDEV_LIBS=" "
 
 .include <bsd.port.mk>

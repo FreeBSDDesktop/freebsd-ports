@@ -3,6 +3,7 @@
 PORTNAME=	gstreamer-plugins-sndio
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.10.31.1
+PORTREVISION=	1
 CATEGORIES=	audio
 
 MAINTAINER=	tobik@FreeBSD.org
@@ -14,10 +15,9 @@ LIB_DEPENDS=	libgstaudio-0.10.so:multimedia/gstreamer-plugins \
 		libgstbase-0.10.so:multimedia/gstreamer \
 		libsndio.so:audio/sndio
 
+USES=		gnome pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	t6
-
-USES=		pkgconfig
 USE_GNOME=	glib20
 
 PLIST_FILES=	lib/gstreamer-0.10/libgstsndio.so

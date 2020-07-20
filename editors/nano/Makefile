@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	nano
-PORTVERSION=	4.4
+PORTVERSION=	4.9.3
 CATEGORIES=	editors
-MASTER_SITES=	https://www.nano-editor.org/dist/v${PORTVERSION:R}/ GNU
+MASTER_SITES=	https://www.nano-editor.org/dist/v${PORTVERSION:R:R}/ GNU
 
 MAINTAINER=	danilo@FreeBSD.org
 COMMENT=	Nano's ANOther editor, an enhanced free Pico clone
@@ -20,7 +20,7 @@ GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS=	--docdir=${DOCSDIR} --enable-utf8
 CONFIGURE_ENV+=	NCURSESW_CFLAGS="-I${NCURSESINC}" \
-		NCURSESW_LIBS="-L${NCURSESLIB} -lncursesw"
+		NCURSESW_LIBS="-L${NCURSESLIB} -l${NCURSES_IMPL}"
 
 MAKE_ARGS+=	install_htmlmanDATA=install-htmlmanDATA
 
@@ -33,11 +33,6 @@ NLS_CONFIGURE_ENABLE=	nls
 INFO=		nano
 
 PORTSCOUT=	limitw:1,even
-
-.ifdef QEMU_EMULATING
-# XXX bug 224740/231346: configure hangs
-CONFIGURE_ENV+=	gl_cv_func_printf_enomem=no
-.endif
 
 post-patch:
 	${REINPLACE_CMD} -e 's/^groff.*/false/' ${WRKSRC}/configure

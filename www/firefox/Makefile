@@ -2,35 +2,35 @@
 # $FreeBSD$
 
 PORTNAME=	firefox
-DISTVERSION=	69.0
-PORTREVISION=	2
+DISTVERSION=	78.0.2
+PORTREVISION=	1
 PORTEPOCH=	1
-CATEGORIES=	www ipv6
+CATEGORIES=	www
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/source \
-		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}-candidates/build1/source
+		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}-candidates/build2/source
 DISTFILES=	${DISTNAME}.source${EXTRACT_SUFX}
 
 MAINTAINER=	gecko@FreeBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
 
-BUILD_DEPENDS=	nspr>=4.21:devel/nspr \
-		nss>=3.45:security/nss \
-		icu>=63.1,1:devel/icu \
+BUILD_DEPENDS=	nspr>=4.25:devel/nspr \
+		nss>=3.53.1:security/nss \
+		icu>=67.1,1:devel/icu \
 		libevent>=2.1.8:devel/libevent \
-		harfbuzz>=2.5.3:print/harfbuzz \
-		graphite2>=1.3.13:graphics/graphite2 \
+		harfbuzz>=2.6.6:print/harfbuzz \
+		graphite2>=1.3.14:graphics/graphite2 \
 		png>=1.6.35:graphics/png \
-		libvpx>=1.5.0:multimedia/libvpx \
-		sqlite3>=3.28.0:databases/sqlite3 \
-		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
+		libvpx>=1.8.2:multimedia/libvpx \
+		py${PYTHON3_DEFAULT:S/.//}-sqlite3>0:databases/py-sqlite3@py${PYTHON3_DEFAULT:S/.//} \
 		v4l_compat>0:multimedia/v4l_compat \
 		autoconf-2.13:devel/autoconf213 \
 		nasm:devel/nasm \
+		yasm:devel/yasm \
 		zip:archivers/zip
 
 USE_GECKO=	gecko
 CONFLICTS_INSTALL=	firefox-esr
-USE_MOZILLA=	-hunspell -vpx
+USE_MOZILLA=	-sqlite
 
 USES=		tar:xz
 

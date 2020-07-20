@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	amq-protocol
-PORTVERSION=	2.3.0
+PORTVERSION=	2.3.2
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 
@@ -12,10 +12,11 @@ COMMENT=	AMQP serialization library for Ruby
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USES=		gem
+USE_RUBY=	yes
+
 NO_ARCH=	yes
 REINPLACE_ARGS=	-i ''
-USE_RUBY=	yes
-USES=		gem
 
 post-patch:
 	@${REINPLACE_CMD} -e '1d' ${WRKSRC}/codegen/codegen.py

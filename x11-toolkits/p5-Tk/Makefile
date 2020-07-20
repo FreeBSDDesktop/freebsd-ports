@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	Tk
-PORTVERSION=	804.034
+PORTVERSION=	804.035
 CATEGORIES=	x11-toolkits tk perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -21,7 +21,7 @@ OPTIONS_DEFAULT=	XFT
 XFT_DESC=	Client-side fonts via libXft
 
 MAKE_JOBS_UNSAFE=	yes
-USES=		jpeg perl5 shebangfix
+USES=		jpeg perl5 shebangfix xorg
 SHEBANG_FILES=	pTk/Tcl-pTk \
 		pTk/mkVFunc
 USE_PERL5=	configure

@@ -3,7 +3,7 @@
 
 PORTNAME=	gobject
 PORTVERSION=	3.28.3
-PORTREVISION=	0
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	GNOME/sources/pygobject/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 PKGNAMEPREFIX?=	py
@@ -12,7 +12,7 @@ DISTNAME=	pygobject-${PORTVERSION}
 DIST_SUBDIR=	gnome
 
 MAINTAINER=	gnome@FreeBSD.org
-COMMENT=	Common files for the Python bindings for GObject
+COMMENT?=	Common files for the Python bindings for GObject
 
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING

@@ -3,7 +3,7 @@
 
 PORTNAME=	notify-osd
 PORTVERSION=	0.9.34
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils
 MASTER_SITES=	https://launchpad.net/notify-osd/precise/0.9.34/+download/ \
 		LOCAL/ehaupt
@@ -22,15 +22,14 @@ LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
 RUN_DEPENDS=	dbus-daemon:devel/dbus \
 		gsettings-desktop-schemas>=3.28.0:devel/gsettings-desktop-schemas
 
-USES=		gettext-runtime gmake libtool pkgconfig
+USES=		gettext-runtime gmake gnome libtool pkgconfig xorg
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk30 pango
 USE_XORG=	pixman x11
 
 GNU_CONFIGURE=	yes
+GLIB_SCHEMAS=	com.canonical.NotifyOSD.gschema.xml
 
 CONFLICTS=	xfce4-notification-daemon-[0-9]*
-
-LIBS+=		-L${LOCALBASE}/lib -lpixman-1 -lX11
 
 post-patch:
 	@${REINPLACE_CMD} '/SUBDIRS =/s/tests//' ${WRKSRC}/Makefile.in

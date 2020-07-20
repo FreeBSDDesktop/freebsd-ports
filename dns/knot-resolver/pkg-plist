@@ -1,7 +1,6 @@
+@sample %%ETCDIR%%/kresd.conf
 %%ETCDIR%%/icann-ca.pem
-%%ETCDIR%%/kresd.conf
 %%ETCDIR%%/root.hints
-%%ETCDIR%%/root.keys
 include/libkres/api.h
 include/libkres/array.h
 include/libkres/cdb_api.h
@@ -27,7 +26,8 @@ include/libkres/trie.h
 include/libkres/utils.h
 include/libkres/zonecut.h
 lib/knot-resolver/ahocorasick.so
-lib/knot-resolver/config.lua
+lib/knot-resolver/distro-preconfig.lua
+lib/knot-resolver/kluautil.lua
 lib/knot-resolver/kres-gen.lua
 lib/knot-resolver/kres.lua
 lib/knot-resolver/kres_modules/bogus_log.so
@@ -42,7 +42,6 @@ lib/knot-resolver/kres_modules/experimental_dot_auth.lua
 lib/knot-resolver/kres_modules/graphite.lua
 lib/knot-resolver/kres_modules/hints.so
 lib/knot-resolver/kres_modules/http.lua
-lib/knot-resolver/kres_modules/http/LICENSE
 lib/knot-resolver/kres_modules/http/bootstrap-theme.min.css
 lib/knot-resolver/kres_modules/http/bootstrap.min.css
 lib/knot-resolver/kres_modules/http/bootstrap.min.js
@@ -57,8 +56,7 @@ lib/knot-resolver/kres_modules/http/jquery.js
 lib/knot-resolver/kres_modules/http/kresd.css
 lib/knot-resolver/kres_modules/http/kresd.js
 lib/knot-resolver/kres_modules/http/main.tpl
-lib/knot-resolver/kres_modules/http/selectize.bootstrap3.min.css
-lib/knot-resolver/kres_modules/http/selectize.min.css
+lib/knot-resolver/kres_modules/http/selectize.bootstrap3.css
 lib/knot-resolver/kres_modules/http/selectize.min.js
 lib/knot-resolver/kres_modules/http/topojson.js
 lib/knot-resolver/kres_modules/http_doh.lua
@@ -71,6 +69,7 @@ lib/knot-resolver/kres_modules/prefill.lua
 lib/knot-resolver/kres_modules/priming.lua
 lib/knot-resolver/kres_modules/prometheus.lua
 lib/knot-resolver/kres_modules/rebinding.lua
+lib/knot-resolver/kres_modules/refuse_nord.so
 lib/knot-resolver/kres_modules/renumber.lua
 lib/knot-resolver/kres_modules/serve_stale.lua
 lib/knot-resolver/kres_modules/stats.so
@@ -78,19 +77,18 @@ lib/knot-resolver/kres_modules/ta_sentinel.lua
 lib/knot-resolver/kres_modules/ta_signal_query.lua
 lib/knot-resolver/kres_modules/ta_update.lua
 lib/knot-resolver/kres_modules/view.lua
+lib/knot-resolver/kres_modules/watchdog.lua
 lib/knot-resolver/kres_modules/workarounds.lua
+lib/knot-resolver/postconfig.lua
 lib/knot-resolver/sandbox.lua
 lib/knot-resolver/trust_anchors.lua
+lib/knot-resolver/upgrade-4-to-5.lua
 lib/knot-resolver/zonefile.lua
 lib/libkres.a
 libdata/pkgconfig/libkres.pc
-man8/kresd.8
+man/man8/kresd.8.gz
 sbin/kres-cache-gc
 sbin/kresc
 sbin/kresd
-%%PORTDOCS%%%%DOCSDIR%%/NEWS
-%%PORTDOCS%%%%DOCSDIR%%/examples/config.cluster
-%%PORTDOCS%%%%DOCSDIR%%/examples/config.docker
-%%PORTDOCS%%%%DOCSDIR%%/examples/config.isp
-%%PORTDOCS%%%%DOCSDIR%%/examples/config.personal
-%%PORTDOCS%%%%DOCSDIR%%/examples/config.splitview
+@dir(%%USERS%%,%%GROUPS%%,0755) %%ETCDIR%%
+@dir(%%USERS%%,%%GROUPS%%,0755) %%RUNDIR%%

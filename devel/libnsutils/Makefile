@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	libnsutils
-PORTVERSION=	0.0.5
+PORTVERSION=	0.1.0
 CATEGORIES=	devel
 MASTER_SITES=	http://download.netsurf-browser.org/libs/releases/
 EXTRACT_SUFX=	-src.tar.gz
 
-MAINTAINER=	neel@neelc.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	NetSurf generalised utility library
 
 LICENSE=	MIT

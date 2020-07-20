@@ -1,9 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	sendmail
-PORTVERSION=	8.16.0.41
-PORTREVISION=	0
-CATEGORIES=	mail ipv6
+PORTVERSION=	8.16.0.50
+CATEGORIES=	mail
 MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/snapshots/
 PKGNAMESUFFIX?=	-devel${PKGNAMESUFFIX2}
 DISTNAME=	${PORTNAME}.${PORTVERSION}
@@ -68,7 +67,7 @@ SMTPUTF8_DESC=		Enable unicode address support
 
 TLS_USES=	ssl
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
-SASLAUTHD_RUN_DEPENDS=	${LOCALBASE}/sbin/saslauthd:security/cyrus-sasl2-saslauthd
+SASLAUTHD_RUN_DEPENDS=	saslauthd:security/cyrus-sasl2-saslauthd
 LDAP_USE=	OPENLDAP=yes
 BDB_USES=	bdb
 GDBM_LIB_DEPENDS=	libgdbm.so:databases/gdbm
@@ -101,9 +100,6 @@ IGNORE=		option CYRUSLOOKUP requires option SOCKETMAP
 .else
 EXTRA_PATCHES+=	${FILESDIR}/cyruslookup.patch
 .endif
-.endif
-.if ${PORT_OPTIONS:MSMTPUTF8}
-EXTRA_PATCHES+=	${FILESDIR}/smtputf8.patch
 .endif
 .if ${PORT_OPTIONS:MTLS}
 TLS_SUFFIX?=	+tls
@@ -255,9 +251,6 @@ post-install:
 	${RM} ${STAGEDIR}${PREFIX}/man/cat*/*
 # final perm of sendmail is 2555 (see plist), needed for strip cmd
 	${CHMOD} 755 ${STAGEDIR}${PREFIX}/sbin/sendmail
-	${RM} ${STAGEDIR}/etc/mail/submit.cf
-	${RMDIR} ${STAGEDIR}/var/spool/clientmqueue
-
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/vacation
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/rmail
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/*

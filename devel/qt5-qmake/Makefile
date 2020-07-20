@@ -2,7 +2,6 @@
 
 PORTNAME=	qmake
 DISTVERSION=	${QT5_VERSION}
-PORTREVISION=	2
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
@@ -32,6 +31,8 @@ QMAKESPEC=	freebsd-${QMAKE_COMPILER}
 INSTALL_TARGET=	sub-qmake-qmake-aux-pro-install_subtargets install_mkspecs
 
 BUILD_WRKSRC=	${WRKSRC}/${PORTNAME}
+
+QT_BINARIES=	yes
 
 post-patch:
 # Clean up files created by patching

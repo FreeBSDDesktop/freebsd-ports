@@ -1,4 +1,4 @@
---- deps/openssl/config/archs/linux-elf/asm/openssl-cl.gypi.orig	2019-07-31 17:44:59 UTC
+--- deps/openssl/config/archs/linux-elf/asm/openssl-cl.gypi.orig	2020-06-02 14:43:34 UTC
 +++ deps/openssl/config/archs/linux-elf/asm/openssl-cl.gypi
 @@ -25,12 +25,11 @@
      ],

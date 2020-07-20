@@ -11,6 +11,10 @@ DISTNAME=	gpac-${DISTVERSION}
 MAINTAINER=	pvizeli@yahoo.de
 COMMENT=	Tool for merge mpg4 from Gpac
 
+BROKEN=		unfetchable
+DEPRECATED=	Broken for more than 6 months
+EXPIRATION_DATE=	2020-05-05
+
 LICENSE=	LGPL21
 
 LIB_DEPENDS=	libgpac.so:multimedia/gpac-libgpac

@@ -5,21 +5,20 @@
 # package site: https://build.opensuse.org/package/show/benchmark/ltp
 
 PORTNAME=	ltp
-PORTVERSION=	20190115
-DISTVERSIONSUFFIX=	-1.5
+PORTVERSION=	20200605
+DISTVERSIONSUFFIX=	.b54247721-368.1
 CATEGORIES=	devel
-MASTER_SITES=	https://download.opensuse.org/repositories/benchmark/%SUBDIR%/:DEFAULT,amd64,SOURCE
-MASTER_SITE_SUBDIR=	openSUSE_Leap_42.3/x86_64/:DEFAULT,amd64 \
-			openSUSE_Leap_42.3/src/:SOURCE
+MASTER_SITES=	LOCAL/trasz:DEFAULT,amd64,SOURCE
 
 MAINTAINER=	trasz@FreeBSD.org
-COMMENT=	Linux Test Project (openSUSE Leap 42.3)
+COMMENT=	Linux Test Project (SUSE Linux Enterprise 15)
 
 LICENSE=	GPLv2+
 
 ONLY_FOR_ARCHS=	amd64
 
 USES=		linux:c7
+USE_LINUX=	dosfstools libaio numactl-libs
 USE_LINUX_RPM=	yes
 
 .include <bsd.port.mk>

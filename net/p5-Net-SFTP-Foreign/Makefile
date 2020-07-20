@@ -8,12 +8,12 @@ MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	numisemis@yahoo.com
-COMMENT=	Net::SFTP::Foreign - Secure File Transfer Protocol client
+COMMENT=	Secure File Transfer Protocol client
 
 LICENSE=	ART10 GPLv1+
 LICENSE_COMB=	dual
 LICENSE_FILE_ART10=	${WRKSRC}/LICENSE
-LICENSE_FILE_GPLv1=	${WRKSRC}/LICENSE
+LICENSE_FILE_GPLv1+ =	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	p5-Sort-Key>=0:devel/p5-Sort-Key
 TEST_DEPENDS=	p5-File-Which>=0:sysutils/p5-File-Which

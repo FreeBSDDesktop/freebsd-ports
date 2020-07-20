@@ -2,9 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	csound
-DISTVERSION=	6.12.2-83
-DISTVERSIONSUFFIX=	-gdf2edd269
-PORTREVISION=	7
+DISTVERSION=	6.14.0
 CATEGORIES=	audio lang
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -14,7 +12,7 @@ LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	boost-libs>0:devel/boost-libs \
-		swig3.0:devel/swig30 \
+		swig:devel/swig \
 		gmm++>0:math/gmm++
 LIB_DEPENDS=	libsamplerate.so:audio/libsamplerate \
 		libsndfile.so:audio/libsndfile
@@ -32,7 +30,6 @@ CMAKE_ARGS=	-DBUILD_CSOUNDVST:BOOL=OFF \
 		-DOPSYS:STRING="${OPSYS}"
 CMAKE_OFF=	USE_ALSA BUILD_JAVA_INTERFACE BUILD_TESTS
 SSP_UNSAFE=	yes
-BINARY_ALIAS=	swig=swig3.0
 LDFLAGS+=	-lexecinfo
 
 SUB_FILES=	pkg-message
@@ -64,6 +61,7 @@ EXCITER_DESC=		Build the exciter opcode
 EXCITER_CMAKE_BOOL=	BUILD_EXCITER_OPCODES
 
 FLTK_DESC=		Build FLTK plugin and GUI
+FLTK_USES=		xorg
 FLTK_USE=		XORG=ice,sm,x11,xext
 FLTK_LIB_DEPENDS=	libfltk.so:x11-toolkits/fltk
 FLTK_CMAKE_ON=		-DBUILD_WINSOUND:BOOL=ON

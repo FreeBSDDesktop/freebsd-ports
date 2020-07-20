@@ -7,10 +7,10 @@ CATEGORIES=	editors
 MASTER_SITES=	LOCAL/peter
 
 MAINTAINER=	peter@FreeBSD.org
-COMMENT=	Hexpert - a simple but flexible binary file editor
+COMMENT=	Simple but flexible binary file editor
 
 USES=		ncurses uidfix
-MAKE_ENV=	NO_MAN=yes NO_OBJ=yes
+MAKE_ENV=	MK_MAN=no
 MAKE_ARGS=	LDADD="-lncurses"
 
 PLIST_FILES=	bin/hex

@@ -1,9 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	frr
-PORTVERSION=	7.1
+PORTVERSION=	7.3.1
 DISTVERSIONPREFIX=	frr-
-CATEGORIES=	net ipv6
+CATEGORIES=	net
 PKGNAMESUFFIX=	7
 
 MAINTAINER=	olivier@FreeBSD.org
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libjson-c.so:devel/json-c \
 		libyang.so:net/libyang
 
 USES=		autoreconf bison compiler:c++11-lang gmake pkgconfig libtool \
-		makeinfo python:2.7-3.6,build readline
+		makeinfo python:build readline
 
 BINARY_ALIAS=	python=${PYTHON_VERSION}
 
@@ -65,9 +65,10 @@ CONFIGURE_ARGS=	--enable-user=frr \
 		--localstatedir=/var/run/frr \
 		--disable-nhrpd \
 		--disable-pimd \
+		--disable-vrrpd \
 		--with-vtysh-pager=cat
 
-MANPAGES_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0:textproc/py-sphinx@${PY_FLAVOR}
+MANPAGES_BUILD_DEPENDS=	${PY_SPHINX}
 MANPAGES_CONFIGURE_OFF=	--disable-doc
 CONFIGROLLBACKS_LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 CONFIGROLLBACKS_CONFIGURE_ENABLE=	config-rollbacks

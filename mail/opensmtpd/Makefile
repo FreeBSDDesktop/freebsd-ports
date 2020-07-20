@@ -2,12 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	opensmtpd
-PORTVERSION=	5.9.2p1
+PORTVERSION=	6.7.1
+DISTVERSIONSUFFIX=	p1
 PORTEPOCH=	1
-PORTREVISION=	7
 CATEGORIES=	mail
-MASTER_SITES=	http://www.opensmtpd.org/archives/ \
-		http://distfiles.pirateparty.in/ashish/
+MASTER_SITES=	http://www.opensmtpd.org/archives/
 
 MAINTAINER=	fluffy@FreeBSD.org
 COMMENT=	Security- and simplicity-focused SMTP server from OpenBSD
@@ -15,21 +14,18 @@ COMMENT=	Security- and simplicity-focused SMTP server from OpenBSD
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_SSL=	openssl111
-BROKEN_SSL_REASON_openssl111=		Incompatible with Openssl 1.1.x yet
-
 LIB_DEPENDS=	libevent.so:devel/libevent
 
 OPTIONS_DEFINE=	CA_BUNDLE LIBASRDEVEL MAILERCONF PAM TABLE_DB
 
 OPTIONS_DEFAULT=	CA_BUNDLE PAM TABLE_DB
 
-CA_BUNDLE_DESC=	Install CA bundle for SSL
+CA_BUNDLE_DESC=		Use NSS CA bundle for SSL instead of /etc/ssl/cert.pem
 LIBASRDEVEL_DESC=	Use development version of libasr
 MAILERCONF_DESC=	Activate OpenSMTPD in mailer.conf(5)
 TABLE_DB_DESC=		Build table-db plugin (aliases)
 
-USES=		cpe groff libtool ssl
+USES=		bison cpe groff libtool localbase ssl
 GNU_CONFIGURE=	yes
 
 CPE_VENDOR=	openbsd
@@ -53,21 +49,19 @@ LIBASRDEVEL_LIB_DEPENDS=	libasr.so:dns/libasr-devel
 PAM_CONFIGURE_WITH=	auth-pam=smtpd
 TABLE_DB_CONFIGURE_WITH=	table-db
 
-CONFIGURE_ARGS+=	--with-libasr=${LOCALBASE} \
+CONFIGURE_ARGS+=	--sysconfdir=${PREFIX}/etc/mail/ \
 			--with-libevent=${LOCALBASE} \
-			--with-libssl=${OPENSSLBASE} \
-			--sysconfdir=${PREFIX}/etc/mail/
+			--with-path-mbox=/var/mail \
+			--with-user-smtpd=_smtpd \
+			--with-user-queue=_smtpq \
+			--with-group-queue=_smtpq
 
 .include <bsd.port.pre.mk>
 
 .if ${OPSYS} == FreeBSD && \
-    ((${OSVERSION} > 1200084 && ${SSL_DEFAULT} == "base") || \
-    (${SSL_DEFAULT} == "openssl111"))
-BROKEN=		Incompatible with Openssl 1.1.x yet
+    (${OSVERSION} < 1200084 && ${SSL_DEFAULT} == "base")
+BROKEN=		Openssl 1.0 API is EoL, upgrade to FreeBSD 12.x/13.x or add DEFAULT_VERSIONS+=ssl=[openssl|libressl*] to /etc/make.conf
 .endif
-
-post-patch:
-	${REINPLACE_CMD} -e '/chmod 2555/d' ${WRKSRC}/mk/smtpctl/Makefile.in
 
 post-install-TABLE_DB-on:
 	@${LN} -sf ${PREFIX}/sbin/smtpctl ${STAGEDIR}${PREFIX}/libexec/opensmtpd/makemap

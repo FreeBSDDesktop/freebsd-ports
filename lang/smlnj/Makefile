@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	smlnj
-PORTVERSION=	110.84
+PORTVERSION=	110.96
 CATEGORIES=	lang
 MASTER_SITES=	http://smlnj.cs.uchicago.edu/dist/working/${PORTVERSION}/ \
 		ftp://mirror.free.de/http/smlnj.cs.uchicago.edu/dist/working/${PORTVERSION}/
@@ -19,7 +19,6 @@ LICENSE_TEXT=	The text of the license can be obtained from the following URL:\
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 ONLY_FOR_ARCHS=	amd64 i386
-LLD_UNSAFE=	yes
 
 NO_WRKSUBDIR=	yes
 
@@ -27,35 +26,34 @@ SUB_FILES=	pkg-install
 SUB_LIST=	EXEBINDIR=${MLBINRELATIVE} EXENAMES="${MLEXE}"
 PKGDEINSTALL=	${PKGINSTALL}
 
-OPTIONS_DEFINE=		EVERYTHING RECOMPILE POSITION64
+OPTIONS_DEFINE=		EVERYTHING RECOMPILE
 RECOMPILE_IMPLIES=	EVERYTHING
-POSITION64_IMPLIES=	RECOMPILE
 EVERYTHING_DESC=	install everything from the SML/NJ distribution
 RECOMPILE_DESC=		recompile the SML compiler - implies EVERYTHING
-POSITION64_DESC=	use 64bit file positions - implies RECOMPILE
 
 .include <bsd.port.pre.mk>
 
-.if (${ARCH} == "amd64")
-CFLAGS+=	-m32
-AS?=		as
-ASFLAGS+=	--32
-.endif
-.if (${ARCH} == "i386" || ${ARCH} == "amd64")
+.if (${ARCH} == "i386")
 MLARCH=		x86
-DISTFILES+=	boot.x86-unix.tgz
+MLSIZE=		32
+PLIST_SUB+=	MLSIZE32=""
+.elif  (${ARCH} == "amd64")
+MLARCH=		amd64
+MLSIZE=		64
+PLIST_SUB+=	MLSIZE32="@comment "
 .endif
+PLIST_SUB+=	MLARCH=${MLARCH}
+# -fPIC is required for building runtime.so
+CFLAGS+=	-fPIC
+AS=		${CC} -x assembler -c
+ASFLAGS+=	-fPIC
+DISTFILES+=	boot.${MLARCH}-unix.tgz
 DISTFILES+=	MLRISC.tgz asdl.tgz ckit.tgz cml.tgz doc.tgz heap2asm.tgz \
 		ml-burg.tgz ml-lex.tgz ml-lpt.tgz ml-yacc.tgz nlffi.tgz \
 		old-basis.tgz smlnj-lib.tgz trace-debug-profile.tgz
 
-PLIST_SUB+=	MLARCH=${MLARCH}
-
-.if ${PORT_OPTIONS:MPOSITION64}
-CMB_COMMAND=	'(\#set o CMB.symval) "USE_64_BIT_POSITIONS" (SOME 1);'
-.else
+# Useful for tuning recompilation.
 CMB_COMMAND=
-.endif
 
 .if ${PORT_OPTIONS:MEVERYTHING}
 DISTFILES+=	cm.tgz compiler.tgz eXene.tgz \
@@ -80,8 +78,12 @@ MLSRCS+=	${MLROOT}/${srcdir}
 .endfor
 MLTARGETS=	heap2asm
 MLEXE=		asdlgen heap2exec ml-antlr ml-build ml-burg ml-lex \
-		ml-makedepend ml-nlffigen ml-ulex ml-yacc sml
+		ml-makedepend ml-ulex ml-yacc sml
+.if defined(MLSIZE) && ${MLSIZE} == 32
+MLEXE+=		ml-nlffigen
+.endif
 .if ${PORT_OPTIONS:MEVERYTHING}
+MLSTDSRCDIRS+=	eXene pgraph smlnj-c
 MLTARGETS+=	eXene mlrisc-tools nowhere pgraph-util src-smlnj
 MLEXE+=		nowhere
 PLIST=		${WRKDIR}/.PLIST
@@ -101,10 +103,6 @@ pre-fetch:
 .if ! ${PORT_OPTIONS:MRECOMPILE}
 	@${ECHO} 'Use port option RECOMPILE to recompile the compiler.'
 	@${ECHO} ' This implies EVERYTHING.'
-.endif
-.if ! ${PORT_OPTIONS:MPOSITION64}
-	@${ECHO} 'Use port option POSITION64 to use 64bit file positions.'
-	@${ECHO} ' This implies RECOMPILE.'
 .endif
 	@${ECHO}
 
@@ -178,7 +176,7 @@ do-build:
 	MLSOURCEPATCHES=`${MLSOURCEPATCHES_CMD}` \
 	CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' \
 	AS='${AS}' ASFLAGS='${ASFLAGS}' EXTRA_DEFS='${EXTRA_DEFS}' \
-	./config/install.sh
+	./config/install.sh -default ${MLSIZE}
 .if ${PORT_OPTIONS:MRECOMPILE}
 	-${RM} ${WRKSRC}/config/targets.customized
 	@${ECHO} '(* Recompiling the core system: *)'
@@ -186,10 +184,10 @@ do-build:
 	${ECHO_CMD} 'CM.autoload "$$smlnj/cmb.cm";' ; \
 	${ECHO_CMD} ${CMB_COMMAND} ; \
 	${ECHO_CMD} 'CMB.make ();' ) | \
-	../../bin/sml
+	../../bin/sml -${MLSIZE}
 	@${ECHO} '(* Building the recompiled heap: *)'
 	cd ${WRKSRC}/${RECOMPILEDIR} && \
-	./makeml
+	./makeml -${MLSIZE}
 	@${ECHO} '(* Removing old libs and heaps: *)'
 	cd ${WRKSRC}/${RECOMPILEDIR} && \
 	${RM} -r ../../lib && ${MKDIR} ../../lib && \
@@ -197,7 +195,7 @@ do-build:
 	\! -name 'sml.${MLARCH}-bsd' -delete -print
 	@${ECHO} '(* Installing the recompiled libs and heap: *)'
 	cd ${WRKSRC}/${RECOMPILEDIR} && \
-	./installml
+	./installml -${MLSIZE}
 	@${ECHO} '(* Building requested targets: *)'
 	cd ${WRKSRC} && unset PWD && \
 	FILESDIR="${FILESDIR}" PATCH="${PATCH}" \
@@ -205,7 +203,7 @@ do-build:
 	MLNORUNTIMECLEAN=yes RECOMPILEDIR="${RECOMPILEDIR}" \
 	CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' \
 	AS='${AS}' ASFLAGS='${ASFLAGS}' EXTRA_DEFS='${EXTRA_DEFS}' \
-	./config/install.sh
+	./config/install.sh -default ${MLSIZE}
 .endif
 
 .if ${PORT_OPTIONS:MEVERYTHING}
@@ -303,17 +301,17 @@ do-install:
 	INSTALLDIR="${STAGEDIR}${MLROOT}" \
 	CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' \
 	AS='${AS}' ASFLAGS='${ASFLAGS}' EXTRA_DEFS='${EXTRA_DEFS}' \
-	./config/install.sh
+	./config/install.sh -default ${MLSIZE}
 .else
 	@${ECHO} '(* Rebuilding the recompiled libs: *)'
 	cd ${WRKSRC}/${RECOMPILEDIR} && ( \
 	${ECHO_CMD} 'CM.autoload "$$smlnj/cmb.cm";' ; \
 	${ECHO_CMD} ${CMB_COMMAND} ; \
 	${ECHO_CMD} 'CMB.make ();' ) | \
-	../../bin/sml
+	../../bin/sml -${MLSIZE}
 	@${ECHO} '(* Rebuilding the recompiled heap: *)'
 	cd ${WRKSRC}/${RECOMPILEDIR} && \
-	./makeml
+	./makeml -${MLSIZE}
 	@${ECHO} '(* Installing into ${STAGEDIR}${MLROOT}: *)'
 	cd ${WRKSRC} && unset PWD && \
 	FILESDIR="${FILESDIR}" PATCH="${PATCH}" PATCH_ARGS="-d ${PATCH_WRKSRC} ${PATCH_ARGS}" \
@@ -321,7 +319,7 @@ do-install:
 	INSTALLDIR="${STAGEDIR}${MLROOT}" RECOMPILEDIR="${RECOMPILEDIR}" \
 	CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' \
 	AS='${AS}' ASFLAGS='${ASFLAGS}' EXTRA_DEFS='${EXTRA_DEFS}' \
-	./config/install.sh
+	./config/install.sh -default ${MLSIZE}
 .endif
 	@${ECHO} '(* Installing man pages. *)'
 .for mansect in 1 2 3 4 5 6 7 8 9

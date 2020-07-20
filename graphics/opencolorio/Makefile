@@ -51,6 +51,7 @@ LIB_DEPENDS=	liblcms2.so:graphics/lcms2 \
 CMAKE_ON+=	OCIO_BUILD_APPS USE_EXTERNAL_LCMS
 CMAKE_OFF+=	OCIO_BUILD_SHARED OCIO_BUILD_PYGLUE
 LDFLAGS+=	-lOpenColorIO
+USES+=		gl xorg
 USE_GL=		gl glu glut glew
 USE_XORG=	xi xmu
 PLIST=		${PKGDIR}/pkg-plist-tools
@@ -69,7 +70,11 @@ PLIST=		${PKGDIR}/pkg-plist-pyglue
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR}
 LIB_DEPENDS=	libtinyxml.so:textproc/tinyxml \
 		libyaml-cpp03.so:devel/yaml-cpp03
+.if ${PORT_OPTIONS:MDOCS}
 USES+=		python:2.7,build
+.else
+USES+=		python:build
+.endif
 USE_LDCONFIG=	yes
 CMAKE_ON+=	OCIO_BUILD_SHARED OCIO_BUILD_PYGLUE
 CMAKE_OFF+=	OCIO_BUILD_APPS

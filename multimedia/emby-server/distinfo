@@ -1,9 +1,9 @@
-TIMESTAMP = 1565295269
-SHA256 (emby-server/embyserver-netframework_4.2.1.0.zip) = 4d40289ac654cde199d2a8d8ca83927e6a7e3f5fa68e9aa33e8dfca8bbabe8c8
-SIZE (emby-server/embyserver-netframework_4.2.1.0.zip) = 30196647
-SHA256 (emby-server/ffmpeg-2019_04_09.tar.gz) = d2081fd92e92ee90561c91edbd28ccba4beb1d72bdd38cd94c338726020e2e62
-SIZE (emby-server/ffmpeg-2019_04_09.tar.gz) = 12414424
-SHA256 (emby-server/ffdetect_4.0.3_x64_freebsd12.tar.xz) = ca65f0018e8f5fa4418f4a39ec2f8c181733221b2f81ebb5dfaa73822155e967
-SIZE (emby-server/ffdetect_4.0.3_x64_freebsd12.tar.xz) = 83144
+TIMESTAMP = 1590830496
+SHA256 (emby-server/embyserver-netframework_4.4.3.0.zip) = 140c1b776a9f6c7af12ae41c402dffc18c5256712485da1165464342cb35163d
+SIZE (emby-server/embyserver-netframework_4.4.3.0.zip) = 33078725
+SHA256 (emby-server/ffdetect-2020_02_24-x64_freebsd12.tar.xz) = 629b582644846eeced39da6e24a06e7b7af44814613a7cef7503f3e05c026ff9
+SIZE (emby-server/ffdetect-2020_02_24-x64_freebsd12.tar.xz) = 87396
+SHA256 (emby-server/ffmpeg-2020_02_24.tar.gz) = 6d115633eeb1d48a80f07f53c2e8c43093bd56a4a3d7d8b3d6207c4f473a61e0
+SIZE (emby-server/ffmpeg-2020_02_24.tar.gz) = 13232479
 SHA256 (emby-server/license.docx) = a6d7ea65dcb06392479a85e1a10a7aeb872d803da6f784f6935fcd4ee63008c6
 SIZE (emby-server/license.docx) = 18373

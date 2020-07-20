@@ -1,9 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	mariadb-connector-c
-PORTVERSION=	3.0.10
-PORTREVISION=	1
-CATEGORIES=	databases ipv6
+PORTVERSION=	3.1.9
+CATEGORIES=	databases
 MASTER_SITES=	http://ftp.osuosl.org/pub/${SITESDIR}/ \
 		http://mirrors.supportex.net/${SITESDIR}/ \
 		http://mirror2.hs-esslingen.de/pub/Mirrors/${SITESDIR}/ \
@@ -34,8 +33,5 @@ DOCSDIR=	${PREFIX}/share/doc/mysql
 
 CMAKE_ARGS+=	-DCOMPILATION_COMMENT="FreeBSD Ports" \
 		-DWITH_EXTERNAL_ZLIB="YES"
-
-# See https://jira.mariadb.org/browse/CONC-328
-CFLAGS=	-I${LOCALBASE}/include
 
 .include <bsd.port.mk>

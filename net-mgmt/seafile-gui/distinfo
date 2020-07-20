@@ -1,5 +1,3 @@
-TIMESTAMP = 1560132861
-SHA256 (haiwen-seafile-client-v7.0.1_GH0.tar.gz) = ab6f366fbd306787000838f1aadf1c0fc463aea389718c8c67da2830db723e1f
-SIZE (haiwen-seafile-client-v7.0.1_GH0.tar.gz) = 2363581
-SHA256 (03c883561d40.patch) = b4ddec43a37e1eabfa9016670be6de91fd8245e051613cfb9189d2fa27082996
-SIZE (03c883561d40.patch) = 1553
+TIMESTAMP = 1587026675
+SHA256 (haiwen-seafile-client-v7.0.7_GH0.tar.gz) = 49a97a1e7c55ff29237ff5b700cde8035b56a56c9176d7d7fc426357f4abab78
+SIZE (haiwen-seafile-client-v7.0.7_GH0.tar.gz) = 2365877

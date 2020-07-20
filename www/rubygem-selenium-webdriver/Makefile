@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	selenium-webdriver
-PORTVERSION=	3.142.4
+PORTVERSION=	3.142.7
+PORTREVISION=	1
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
@@ -12,8 +13,8 @@ COMMENT=	Tool for writing automated tests of websites
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	rubygem-childprocess>=0.5<3.0:devel/rubygem-childprocess \
-		rubygem-rubyzip>=1.2.2<2:archivers/rubygem-rubyzip
+RUN_DEPENDS=	rubygem-childprocess3>=0.5<4.0:devel/rubygem-childprocess3 \
+		rubygem-rubyzip>=1.2.2:archivers/rubygem-rubyzip
 
 USES=		gem
 USE_RUBY=	yes

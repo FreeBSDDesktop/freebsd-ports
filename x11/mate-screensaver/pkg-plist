@@ -80,6 +80,7 @@ share/locale/hu/LC_MESSAGES/mate-screensaver.mo
 share/locale/hy/LC_MESSAGES/mate-screensaver.mo
 share/locale/ia/LC_MESSAGES/mate-screensaver.mo
 share/locale/id/LC_MESSAGES/mate-screensaver.mo
+share/locale/ie/LC_MESSAGES/mate-screensaver.mo
 share/locale/is/LC_MESSAGES/mate-screensaver.mo
 share/locale/it/LC_MESSAGES/mate-screensaver.mo
 share/locale/ja/LC_MESSAGES/mate-screensaver.mo
@@ -138,6 +139,5 @@ share/locale/zh_TW/LC_MESSAGES/mate-screensaver.mo
 share/locale/zu/LC_MESSAGES/mate-screensaver.mo
 share/mate-background-properties/cosmos.xml
 %%DATADIR%%/lock-dialog-default.ui
-%%DATADIR%%/mate-screensaver-preferences.ui
 share/pixmaps/gnome-logo-white.svg
 share/pixmaps/mate-logo-white.svg

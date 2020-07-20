@@ -16,7 +16,7 @@ _INCLUDE_BSD_DEFAULT_VERSIONS_MK=	yes
 LOCALBASE?=	/usr/local
 
 .for lang in APACHE BDB COROSYNC EMACS FIREBIRD FORTRAN FPC GCC GHOSTSCRIPT \
-	JULIA LAZARUS LINUX LLVM LUA MYSQL PERL5 PGSQL PHP PYTHON PYTHON2 \
+	JAVA JULIA LAZARUS LINUX LLVM LUA MYSQL PERL5 PGSQL PHP PYTHON PYTHON2 \
 	PYTHON3 RUBY RUST SAMBA SSL TCLTK VARNISH
 .if defined(${lang}_DEFAULT)
 ERROR+=	"The variable ${lang}_DEFAULT is set and it should only be defined through DEFAULT_VERSIONS+=${lang:tl}=${${lang}_DEFAULT} in /etc/make.conf"
@@ -43,7 +43,7 @@ FIREBIRD_DEFAULT?=	2.5
 FORTRAN_DEFAULT?=	gfortran
 # Possible values: 3.0.4
 FPC_DEFAULT?=		3.0.4
-# Possible values: 7, 8, 9 (powerpcspe was dropped with GCC 9)
+# Possible values: 8, 9 (powerpcspe was dropped with GCC 9)
 .if ${ARCH} == "powerpcspe"
 GCC_DEFAULT?=		8
 .else
@@ -51,21 +51,23 @@ GCC_DEFAULT?=		9
 .endif
 # Possible values: 7, 8, 9, agpl
 GHOSTSCRIPT_DEFAULT?=	agpl
+# Possible values: 7, 8, 11, 12, 13
+JAVA_DEFAULT?=		8
 # Possible values: 0.6, 0.7, 1.0, 1.1
 JULIA_DEFAULT?=		1.0
-# Possible values: 2.0.4
-LAZARUS_DEFAULT?=	2.0.4
-# Possible values: c6, c7
+# Possible values: 2.0.8
+LAZARUS_DEFAULT?=	2.0.8
+# Possible values: c7
 LINUX_DEFAULT?=		c7
-# Possible values: 60, 70, 80, -devel (to be used when non-base compiler is required)
+# Possible values: 60, 70, 80, 90, -devel (to be used when non-base compiler is required)
 # Please give notice to the Graphics Team (x11@FreeBSD.org) in advance before 
 # bumping the LLVM version.
-LLVM_DEFAULT?=		80
+LLVM_DEFAULT?=		90
 # Possible values: 5.1, 5.2, 5.3
 LUA_DEFAULT?=		5.2
-# Possible values: 5.5, 5.6, 5.7, 8.0, 5.5m, 10.0m, 10.1m, 10.2m, 10.3m, 5.5p, 5.6p, 5.7p, 5.6w
+# Possible values: 5.5, 5.6, 5.7, 8.0, 10.3m, 10.4m, 10.5m, 5.5p, 5.6p, 5.7p, 5.6w, 5.7w
 MYSQL_DEFAULT?=		5.7
-# Possible values: 5.26, 5.28, 5.30, devel
+# Possible values: 5.28, 5.30, 5.32, devel
 .if !exists(${LOCALBASE}/bin/perl) || (!defined(_PORTS_ENV_CHECK) && \
     defined(PACKAGE_BUILDING))
 PERL5_DEFAULT?=		5.30
@@ -82,21 +84,21 @@ PERL5_DEFAULT:=		${_PERL5_FROM_BIN:R}
 .endif
 # Possible values: 9.4, 9.5, 9.6, 10, 11, 12
 PGSQL_DEFAULT?=		11
-# Possible values: 7.1, 7.2, 7.3
+# Possible values: 7.2, 7.3, 7.4
 PHP_DEFAULT?=		7.2
-# Possible values: 2.7, 3.5, 3.6, 3.7
-PYTHON_DEFAULT?=	3.6
+# Possible values: 2.7, 3.5, 3.6, 3.7, 3.8
+PYTHON_DEFAULT?=	3.7
 # Possible values: 2.7
 PYTHON2_DEFAULT?=	2.7
-# Possible values: 3.5, 3.6, 3.7
-PYTHON3_DEFAULT?=	3.6
-# Possible values: 2.4, 2.5, 2.6
+# Possible values: 3.5, 3.6, 3.7, 3.8
+PYTHON3_DEFAULT?=	3.7
+# Possible values: 2.5, 2.6, 2.7
 RUBY_DEFAULT?=		2.6
 # Possible values: rust, rust-nightly
 RUST_DEFAULT?=		rust
-# Possible values: 4.8, 4.10
-SAMBA_DEFAULT?=		4.8
-# Possible values: base, openssl, openssl111, libressl, libressl-devel
+# Possible values: 4.10, 4.11
+SAMBA_DEFAULT?=		4.10
+# Possible values: base, openssl, libressl, libressl-devel
 .if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version
 #	but give an installed port preference over it.

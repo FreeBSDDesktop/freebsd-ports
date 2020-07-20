@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	haddock
-PORTVERSION=	2.22.0
+PORTVERSION=	2.23.1
 PORTREVISION=	1
 CATEGORIES=	devel haskell
 
@@ -13,7 +13,7 @@ LICENSE=	BSD3CLAUSE
 
 USES=		cabal
 
-USE_CABAL=	ghc-paths-0.1.0.9_4 haddock-api-${PORTVERSION} haddock-library-1.7.0
+USE_CABAL=	ghc-paths-0.1.0.12_1 haddock-api-2.23.1 haddock-library-1.8.0_1
 
 haddock_DATADIR_VARS=	haddock-api
 

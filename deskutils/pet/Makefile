@@ -3,6 +3,7 @@
 PORTNAME=	pet
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.3.6
+PORTREVISION=	2
 CATEGORIES=	deskutils
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -24,7 +25,7 @@ GH_TUPLE=	\
 		golang:net:1e491301e022:golang_net/vendor/golang.org/x/net \
 		golang:oauth2:1e0a3fa8ba9a:golang_oauth2/vendor/golang.org/x/oauth2 \
 		golang:protobuf:v1.1.0:golang_protobuf/vendor/github.com/golang/protobuf \
-		golang:sys:9527bec2660b:golang_sys/vendor/golang.org/x/sys \
+		golang:sys:33540a1f6037:golang_sys/vendor/golang.org/x/sys \
 		google:go-github:v15.0.0:google_go_github/vendor/github.com/google/go-github \
 		google:go-querystring:53e6ce116135:google_go_querystring/vendor/github.com/google/go-querystring \
 		inconshreveable:mousetrap:v1.0.0:inconshreveable_mousetrap/vendor/github.com/inconshreveable/mousetrap \
@@ -37,7 +38,6 @@ GH_TUPLE=	\
 		spf13:cobra:v0.0.3:spf13_cobra/vendor/github.com/spf13/cobra \
 		spf13:pflag:v1.0.1:spf13_pflag/vendor/github.com/spf13/pflag \
 		xanzy:go-gitlab:v0.10.5:xanzy_go_gitlab/vendor/github.com/xanzy/go-gitlab
-GO_PKGNAME=	github.com/${GH_ACCOUNT}/${PORTNAME}
 
 PLIST_FILES=	bin/${PORTNAME}
 

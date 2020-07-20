@@ -2,11 +2,12 @@
 
 PORTNAME=	go-appengine-sdk
 DISTVERSION=	1.9.70
+PORTREVISION=	1
 CATEGORIES=	www devel
 MASTER_SITES=	https://storage.googleapis.com/appengine-sdks/featured/
 DISTNAME=	${PORTNAME:S,-,_,g}_linux_amd64-${PORTVERSION}
 
-MAINTAINER=	dg@syrec.org
+MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	App Engine SDK for Go
 
 # The actual license for this port is "APACHE20 and BSD3CLAUSE and MIT and PSFL and (GPLv2+ or LGPL21+ or MPL11)".
@@ -15,10 +16,13 @@ LICENSE_COMB=	multi
 LICENSE_FILE_BSD3CLAUSE=	${WRKSRC}/LICENSE
 LICENSE_FILE_MIT=		${WRKSRC}/LICENSE
 
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
+
 ONLY_FOR_ARCHS=	amd64 i386
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>=${PYTHON_VER}:databases/py-sqlite3@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pillow>0:graphics/py-pillow@${PY_FLAVOR} \
+		${PY_PILLOW} \
 		${PYTHON_PKGNAMEPREFIX}pycrypto>=2.6:security/py-pycrypto@${PY_FLAVOR}
 
 USES=		gettext go python:2.7 shebangfix zip

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	drumgizmo
-PORTVERSION=	0.9.17
-PORTREVISION=	1
+PORTVERSION=	0.9.18.1
 CATEGORIES=	audio
 MASTER_SITES=	http://www.drumgizmo.org/releases/${PORTNAME}-${PORTVERSION}/
 
@@ -13,6 +12,8 @@ COMMENT=	Multichannel drum sampler
 LICENSE=	LGPL3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN=		pluginlv2.cc:687:2: error: cannot initialize a member subobject of type 'LV2_Handle'
+
 BUILD_DEPENDS=	lv2>=1.14.0:audio/lv2
 LIB_DEPENDS=	libsmf.so:audio/libsmf \
 		libzita-resampler.so:audio/zita-resampler \
@@ -21,7 +22,7 @@ LIB_DEPENDS=	libsmf.so:audio/libsmf \
 		libexpat.so:textproc/expat2
 
 GNU_CONFIGURE=	yes
-USES=		compiler:c++11-lang gettext-runtime gnome libtool pkgconfig
+USES=		compiler:c++11-lang gettext-runtime gnome libtool pkgconfig xorg
 USE_GNOME=	glib20
 USE_XORG=	x11 xext
 

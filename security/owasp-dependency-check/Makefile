@@ -6,12 +6,13 @@
 
 PORTNAME=	owasp-dependency-check
 PORTVERSION=	3.1.1
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	security java
 MASTER_SITES=	LOCAL/pi/:source2
 DISTFILES+=	owasp-dependency-check-${PORTVERSION}-maven-repository.tar.gz:source2
 
-MAINTAINER=	andreas.sommer87@googlemail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Detects publicly disclosed vulnerabilities in project dependencies
 
 LICENSE=	APACHE20
@@ -23,7 +24,6 @@ GH_ACCOUNT=	jeremylong
 GH_PROJECT=	DependencyCheck
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.7+
 
 NO_ARCH=	yes
 

@@ -2,12 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	busybox
-PORTVERSION=	1.30.1
-PORTREVISION=	1
+PORTVERSION=	1.31.1
 CATEGORIES=	sysutils misc shells
 MASTER_SITES=	https://busybox.net/downloads/
 
-MAINTAINER=	samm@os2.kiev.ua
+MAINTAINER=	samm@FreeBSD.org
 COMMENT=	Set of common utilities built as single binary
 
 LICENSE=	GPLv2
@@ -20,7 +19,6 @@ USE_PERL5=	build
 OPTIONS_DEFINE=	DOCS STATIC
 STATIC_LDFLAGS=	-static
 
-CONFLICTS_INSTALL=	busybox-unstable-*
 .include <bsd.port.options.mk>
 # fix ash crash on arm, see shell/ash.c
 .if ${ARCH} == "armv6"

@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	libX11
-PORTVERSION=	1.6.8
+PORTVERSION=	1.6.9
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	x11
 
@@ -11,9 +12,8 @@ COMMENT=	X11 library
 
 LICENSE=	MIT
 
-USES=		cpe perl5
-XORG_CAT=	lib
-USE_XORG=	xau xdmcp xtrans xorgproto xcb
+USES=		cpe perl5 xorg xorg-cat:lib
+USE_XORG=	xcb xtrans xorgproto
 USE_PERL5=	build
 CPE_VENDOR=	x
 

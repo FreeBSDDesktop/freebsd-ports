@@ -1,12 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	libosmo-abis
-PORTVERSION=	0.6.0
+PORTVERSION=	0.7.0
 CATEGORIES=	devel
-MASTER_SITES=	http://git.osmocom.org/libosmo-abis/snapshot/ \
-		http://chaosophia.net/downloads/osmocom/${PORTNAME}/
+MASTER_SITES=	http://git.osmocom.org/libosmo-abis/snapshot/
 
-MAINTAINER=	koue@chaosophia.net
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Shared code regarding the A-bis interface between BTS and BSC
 
 LICENSE=	AGPLv3

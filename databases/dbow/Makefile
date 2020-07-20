@@ -8,12 +8,11 @@ CATEGORIES=	databases devel
 MASTER_SITES=	SF
 
 MAINTAINER=	dtynan@kalopa.com
-COMMENT=	DBOW is a database object generator for C, Perl, PHP, etc
+COMMENT=	Database object generator for C, Perl, PHP, etc.
 
+USES=		mysql
 MAKE_ENV+=	MYSQL_INC=${LOCALBASE}/include/mysql \
 		MYSQL_LIB=${LOCALBASE}/lib/mysql
-
-USE_MYSQL=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|CFLAGS=|CFLAGS+=|g" \

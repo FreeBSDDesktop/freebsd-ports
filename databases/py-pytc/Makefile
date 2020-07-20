@@ -1,15 +1,16 @@
-# Created by: Li-Wen Hsu <lwhsu@FreeBSD.org>
 # $FreeBSD$
 
 PORTNAME=	pytc
-PORTVERSION=	0.8
-PORTREVISION=	7
+PORTVERSION=	0.9
 CATEGORIES=	databases python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	lwhsu@FreeBSD.org
 COMMENT=	Tokyo Cabinet Python bindings
+
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-08-15
 
 LIB_DEPENDS=	libtokyocabinet.so:databases/tokyocabinet
 

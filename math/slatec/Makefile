@@ -29,6 +29,7 @@ LDADD ?=	-lgfortran -lm
 SRCCONF=	/dev/null
 MAKE_ENV+=	LDADD="${LDADD}" SHLIB_MAJOR="${SHLIB_MAJOR}" \
 		SRCCONF="${SRCCONF}"
+FFLAGS+=	-std=legacy
 
 OPTIONS_DEFINE=	DOCS PROFILE
 
@@ -44,7 +45,7 @@ base system profiling libraries
 .endif
 PLIST_FILES+=	lib/libslatec_p.a
 .else
-MAKE_ENV+=	NO_PROFILE=
+MAKE_ENV+=	WITHOUT_PROFILE=yes
 .endif
 
 post-extract:

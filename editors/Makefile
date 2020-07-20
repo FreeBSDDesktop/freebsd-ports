@@ -10,6 +10,7 @@
     SUBDIR += aewan
     SUBDIR += apel
     SUBDIR += asedit
+    SUBDIR += atom
     SUBDIR += beav
     SUBDIR += biew
     SUBDIR += bitedit
@@ -35,6 +36,7 @@
     SUBDIR += ecrire
     SUBDIR += edith
     SUBDIR += editorconfig-core-c
+    SUBDIR += elementary-code
     SUBDIR += emacs
     SUBDIR += emacs-devel
     SUBDIR += encryptpad
@@ -188,18 +190,18 @@
     SUBDIR += mg
     SUBDIR += micro
     SUBDIR += mined
+    SUBDIR += mle
     SUBDIR += morla
     SUBDIR += mousepad
     SUBDIR += mp
     SUBDIR += nano
-    SUBDIR += nano-devel
     SUBDIR += ne
     SUBDIR += nedit
     SUBDIR += neovim
     SUBDIR += neovim-qt
     SUBDIR += nvi-devel
     SUBDIR += nvi-m17n
-    SUBDIR += omegaT
+    SUBDIR += o
     SUBDIR += openoffice-4
     SUBDIR += openoffice-devel
     SUBDIR += p5-Proc-InvokeEditor
@@ -215,9 +217,7 @@
     SUBDIR += puff
     SUBDIR += py-editorconfig
     SUBDIR += py-pynvim
-    SUBDIR += py-room
     SUBDIR += quilter
-    SUBDIR += rox-edit
     SUBDIR += rubygem-neovim
     SUBDIR += scite
     SUBDIR += se
@@ -246,17 +246,18 @@
     SUBDIR += vim
     SUBDIR += vim-console
     SUBDIR += vim-tiny
+    SUBDIR += vscode
     SUBDIR += web-mode
     SUBDIR += with-editor
     SUBDIR += wordgrinder
     SUBDIR += wxhexeditor
     SUBDIR += xcoral
+    SUBDIR += xed
     SUBDIR += xi-core
     SUBDIR += xi-term
     SUBDIR += xmlcopyeditor
     SUBDIR += xvile
     SUBDIR += yudit
     SUBDIR += zile
-    SUBDIR += zoinks
 
 .include <bsd.port.subdir.mk>

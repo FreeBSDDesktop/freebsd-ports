@@ -35,8 +35,8 @@ diff -ru eclipse.platform.ua/org.eclipse.help.base/src/org/eclipse/help/internal
  			prefs
  					.put("custom_browser_path", //$NON-NLS-1$
  							"\"C:\\Program Files\\Internet Explorer\\IEXPLORE.EXE\" %1"); //$NON-NLS-1$
--		} else if (os.indexOf("linux") != -1) { //$NON-NLS-1$
-+		} else if (os.indexOf("linux") != -1 || os.indexOf("freebsd") != -1) { //$NON-NLS-1$
+-		} else if (os.contains("linux")) { //$NON-NLS-1$
++		} else if (os.contains("linux") || os.contains("freebsd")) { //$NON-NLS-1$
  			prefs.put("custom_browser_path", //$NON-NLS-1$
  					"konqueror %1"); //$NON-NLS-1$
  		} else {

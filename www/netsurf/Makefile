@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	netsurf
-PORTVERSION=	3.9
+PORTVERSION=	3.10
 CATEGORIES=	www
 MASTER_SITES=	http://download.netsurf-browser.org/netsurf/releases/source/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
-MAINTAINER=	neel@neelc.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Lightweight web browser
 
 LICENSE=	GPLv2 MIT
@@ -20,7 +20,7 @@ BUILD_DEPENDS=	duk:lang/duktape \
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libpng.so:graphics/png \
 		libnsutils.so:devel/libnsutils \
-		libutf8proc.so:textproc/libutf8proc \
+		libutf8proc.so:textproc/utf8proc \
 		libnsgif.so:graphics/libnsgif \
 		libnsbmp.so:graphics/libnsbmp \
 		libdom.so:www/libdom \
@@ -33,7 +33,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 RUN_DEPENDS=	duk:lang/duktape \
 		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
-USES=		bison desktop-file-utils gettext-runtime gmake iconv jpeg \
+USES=		bison desktop-file-utils gettext-runtime gmake gnome iconv jpeg \
 		localbase pkgconfig shebangfix ssl
 ALL_TARGET=	#empty
 LDFLAGS+=	-L${OPENSSLLIB} -lssl -lcrypto ${ICONV_LIB}

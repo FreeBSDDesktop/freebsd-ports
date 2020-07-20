@@ -11,6 +11,7 @@ include/mate-desktop-2.0/libmate-desktop/mate-desktop-thumbnail.h
 include/mate-desktop-2.0/libmate-desktop/mate-desktop-utils.h
 include/mate-desktop-2.0/libmate-desktop/mate-desktop.h
 include/mate-desktop-2.0/libmate-desktop/mate-gsettings.h
+include/mate-desktop-2.0/libmate-desktop/mate-hsv.h
 include/mate-desktop-2.0/libmate-desktop/mate-languages.h
 include/mate-desktop-2.0/libmate-desktop/mate-rr-config.h
 include/mate-desktop-2.0/libmate-desktop/mate-rr-labeler.h
@@ -114,6 +115,7 @@ share/locale/hu/LC_MESSAGES/mate-desktop.mo
 share/locale/hy/LC_MESSAGES/mate-desktop.mo
 share/locale/ia/LC_MESSAGES/mate-desktop.mo
 share/locale/id/LC_MESSAGES/mate-desktop.mo
+share/locale/ie/LC_MESSAGES/mate-desktop.mo
 share/locale/ig/LC_MESSAGES/mate-desktop.mo
 share/locale/is/LC_MESSAGES/mate-desktop.mo
 share/locale/it/LC_MESSAGES/mate-desktop.mo

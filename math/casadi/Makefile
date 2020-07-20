@@ -1,9 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	casadi
-DISTVERSION=	3.4.5-49
-DISTVERSIONSUFFIX=	-g6b0de13ac
-PORTREVISION=	1
+DISTVERSION=	3.5.2
 CATEGORIES=	math
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -12,7 +10,7 @@ COMMENT=	Symbolic framework for numeric optimization
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		cmake pkgconfig
+USES=		cmake compiler:c++11-lang pkgconfig
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 
@@ -20,6 +18,10 @@ CFLAGS+=	-fPIC
 CXXFLAGS+=	-fPIC
 
 CMAKE_OFF=	WITH_DEEPBIND WITH_BUILD_BLASFEO
+
+# cmake-3.16: disable build of examples (they are not installed anyways),
+# and fail due to not setting up the linker environment properly:
+CMAKE_OFF+=	WITH_EXAMPLES
 
 OPTIONS_DEFINE=		BLASFEO BONMIN CLANG IPOPT LAPACK QPOASES
 OPTIONS_DEFAULT=	BLASFEO BONMIN IPOPT LAPACK QPOASES

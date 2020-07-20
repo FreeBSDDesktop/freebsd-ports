@@ -29,8 +29,8 @@ RUN_DEPENDS=	gnome-video-effects>=0:graphics/gnome-video-effects
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gmake gnome libtool localbase pathfix \
-		pkgconfig tar:xz
+USES=		gettext gl gmake gnome libtool localbase pathfix \
+		pkgconfig tar:xz xorg
 USE_GNOME=	cairo intlhack evolutiondataserver3 librsvg2 \
 		gnomedesktop3 libxml2:build introspection:build
 USE_GL=		egl
@@ -50,6 +50,7 @@ OPTIONS_DEFINE=	MANPAGES DOCS
 OPTIONS_DEFAULT=MANPAGES
 
 MANPAGES_CONFIGURE_ENABLE=	man
+MANPAGES_CONFIGURE_WITH=	xml-catalog=${LOCALBASE}/share/xml/catalog
 MANPAGES_BUILD_DEPENDS=	docbook-xml>=0:textproc/docbook-xml \
 			docbook-xsl>=0:textproc/docbook-xsl
 MANPAGES_USE=	GNOME=libxslt:build

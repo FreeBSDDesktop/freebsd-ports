@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	alex
-PORTVERSION=	3.2.4
-PORTREVISION=	2
+PORTVERSION=	3.2.5
+PORTREVISION=	1
 CATEGORIES=	devel haskell
 
 MAINTAINER=	haskell@FreeBSD.org
@@ -16,6 +16,10 @@ USES=		cabal
 OPTIONS_DEFINE=	EXAMPLES
 
 PORTEXAMPLES=	Makefile *.x *.y
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/data/* ${STAGEDIR}${DATADIR}
 
 post-install-EXAMPLES-on:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}

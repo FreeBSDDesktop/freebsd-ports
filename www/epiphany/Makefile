@@ -3,7 +3,7 @@
 
 PORTNAME=	epiphany
 PORTVERSION=	3.28.5
-PORTREVISION=	4
+PORTREVISION=	8
 CATEGORIES=	www gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -26,7 +26,6 @@ LIB_DEPENDS=	libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
 		libnss3.so:security/nss \
 		libjson-glib-1.0.so:devel/json-glib \
 		libicuuc.so:devel/icu \
-		libavahi-gobject.so:net/avahi-app \
 		libnotify.so:devel/libnotify \
 		libgmp.so:math/gmp \
 		libnettle.so:security/nettle \
@@ -41,7 +40,7 @@ PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c++11-lib cpe desktop-file-utils gettext gnome \
 		localbase:ldflags meson pkgconfig python:3.4+ shebangfix \
-		sqlite tar:xz
+		sqlite tar:xz xorg
 CPE_VENDOR=	gnome
 USE_GNOME=	cairo gnomedesktop3 intlhack libwnck3 libxml2 libxslt
 USE_XORG=	x11

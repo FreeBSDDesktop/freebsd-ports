@@ -2,7 +2,6 @@
 
 PORTNAME=	qscintilla2-qt5
 PORTVERSION=	${QSCI2_VERSION}
-PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITES_QSCI2}
 DISTNAME=	${QSCI2_DISTNAME}
@@ -10,7 +9,7 @@ DISTNAME=	${QSCI2_DISTNAME}
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Qt 5 port of the Scintilla C++ editor class
 
-USES=		compiler:c++11-lang qmake pyqt:5 qt:5
+USES=		compiler:c++11-lang gl qmake pyqt:5 qt:5
 USE_GL=		gl
 USE_PYQT=	#
 USE_QT=		buildtools_build core gui printsupport widgets
@@ -37,7 +36,7 @@ post-patch:
 post-install:
 	cd ${WRKSRC} &&\
 		${MKDIR} ${STAGEDIR}${DOCSDIR}/html ${STAGEDIR}${DOCSDIR}/Scintilla &&\
-		${INSTALL_DATA} NEWS README ${STAGEDIR}${DOCSDIR} &&\
+		${INSTALL_DATA} NEWS ${STAGEDIR}${DOCSDIR} &&\
 		${INSTALL_DATA} doc/html-Qt4Qt5/* ${STAGEDIR}${DOCSDIR}/html &&\
 		${INSTALL_DATA} doc/Scintilla/* ${STAGEDIR}${DOCSDIR}/Scintilla
 	cd ${WRKSRC}/example-Qt4Qt5 &&\

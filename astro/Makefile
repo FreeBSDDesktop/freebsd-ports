@@ -13,7 +13,6 @@
     SUBDIR += cfitsio
     SUBDIR += fowsr
     SUBDIR += foxtrotgps
-    SUBDIR += garmindev
     SUBDIR += geographiclib
     SUBDIR += gkrellmoon2
     SUBDIR += gnuastro
@@ -22,7 +21,6 @@
     SUBDIR += gpsbabel14
     SUBDIR += gpscorrelate
     SUBDIR += gpsd
-    SUBDIR += gpsdrive
     SUBDIR += gpsman
     SUBDIR += gpsprune
     SUBDIR += gpstk
@@ -78,16 +76,17 @@
     SUBDIR += p5-Starlink-AST
     SUBDIR += p5-Weather-Underground
     SUBDIR += phoon
-    SUBDIR += planets
     SUBDIR += pp3
     SUBDIR += ptiger
     SUBDIR += py-RO
-    SUBDIR += py-aipy
     SUBDIR += py-astLib
     SUBDIR += py-astropy
+    SUBDIR += py-astropy-helpers
+    SUBDIR += py-ephem
     SUBDIR += py-horoscopegenerator
     SUBDIR += py-metar
     SUBDIR += py-metpy
+    SUBDIR += py-pymeeus
     SUBDIR += py-pymetar
     SUBDIR += py-pysofa
     SUBDIR += py-pywapi
@@ -113,7 +112,6 @@
     SUBDIR += swe
     SUBDIR += tclgeomap
     SUBDIR += tkgeomap
-    SUBDIR += viking
     SUBDIR += wcslib
     SUBDIR += weather
     SUBDIR += wmglobe

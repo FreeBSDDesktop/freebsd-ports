@@ -11,7 +11,7 @@ COMMENT=	ODBC 3.x driver manager, for universal data source access
 
 LICENSE=		BSD3CLAUSE LGPL20
 LICENSE_COMB=		dual
-LICENSE_FILE_BSD=	${WRKSRC}/LICENSE.BSD
+LICENSE_FILE_BSD3CLAUSE=	${WRKSRC}/LICENSE.BSD
 LICENSE_FILE_LGPL20=	${WRKSRC}/LICENSE.LGPL
 
 USES=		autoreconf libtool pathfix pkgconfig
@@ -29,15 +29,11 @@ OPTIONS_DEFINE=	GTK2 DOCS EXAMPLES
 OPTIONS_SUB=	yes
 
 GTK2_USE=	GNOME=cairo,gdkpixbuf2,gtk20
-GTK2_USES=	gettext-runtime
+GTK2_USES=	gettext-runtime gnome
 GTK2_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 			libfreetype.so:print/freetype2
 
 GTK2_CONFIGURE_ENABLE=	gui
-
-post-patch:
-	@${REINPLACE_CMD} -e \
-		's|-ldl||g' ${WRKSRC}/admin/libiodbc.pc.in
 
 post-install:
 	@${MKDIR} ${STAGEDIR}/${ETCDIR}

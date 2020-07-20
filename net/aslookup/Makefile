@@ -11,6 +11,10 @@ DISTNAME=	${PORTNAME}-alpha${PORTVERSION}
 MAINTAINER=	jmohacsi@bsd.hu
 COMMENT=	Tool that searches the sequence of AS numbers
 
+BROKEN=		unfetchable
+DEPRECATED=	Broken for more than 6 months
+EXPIRATION_DATE=	2020-05-05
+
 OPTIONS_DEFINE=	DOCS
 
 post-patch:

@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	qcad
-PORTVERSION=	3.22.0.12
-PORTREVISION=	1
-DISTVERSIONPREFIX=	v
+PORTVERSION=	3.24.3.8
 #PORTREVISION=
+DISTVERSIONPREFIX=	v
 CATEGORIES=	cad
 DIST_SUBDIR=	${PORTNAME}
 
@@ -19,7 +18,7 @@ BUILD_DEPENDS=	bash:shells/bash	\
 
 MAKE_JOBS_UNSAFE=yes
 
-USES=		compiler:c++11-lang gmake qmake qt:5
+USES=		compiler:c++11-lang gl gmake qmake qt:5
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 USE_QT=		buildtools qmake_build \
@@ -51,8 +50,12 @@ OPTIONS_DEFINE=	EXAMPLES
 
 CFLAGS_i386= -fPIC
 CXXFLAGS_i386= -fPIC
+LDFLAGS_i386= -Wl,-z,notext
 
 pre-configure:
+	${MKDIR} ${WRKSRC}/src/3rdparty/qt-labs-qtscriptgenerator-${_QT_VERSION}
+	${CP} ${WRKSRC}/src/3rdparty/qt-labs-qtscriptgenerator-5.13.2/qt-labs-qtscriptgenerator-5.13.2.pro \
+           ${WRKSRC}/src/3rdparty/qt-labs-qtscriptgenerator-${_QT_VERSION}/qt-labs-qtscriptgenerator-${_QT_VERSION}.pro
 	${REINPLACE_CMD} -e "s|%%DATADIR%%|${DATADIR}|"	\
 		${WRKSRC}/src/core/RS.cpp
 	${REINPLACE_CMD} -e "s|%%DATADIR%%|${DATADIR}|"	\
