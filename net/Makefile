@@ -131,7 +131,6 @@
     SUBDIR += drive
     SUBDIR += dropbox-api-command
     SUBDIR += dropbox-uploader
-    SUBDIR += dshell
     SUBDIR += dtcp
     SUBDIR += dtcpclient
     SUBDIR += dual-dhclient
@@ -173,6 +172,7 @@
     SUBDIR += frr5
     SUBDIR += frr6
     SUBDIR += frr7
+    SUBDIR += frr7-pythontools
     SUBDIR += fspclient
     SUBDIR += fspd
     SUBDIR += fsplib
@@ -234,6 +234,7 @@
     SUBDIR += haproxy17
     SUBDIR += haproxy18
     SUBDIR += haproxy19
+    SUBDIR += haproxy20
     SUBDIR += haproxy21
     SUBDIR += hblock
     SUBDIR += hexinject
@@ -297,12 +298,12 @@
     SUBDIR += kamailio
     SUBDIR += kblog
     SUBDIR += kcalutils
-    SUBDIR += kdav
     SUBDIR += kdenetwork
     SUBDIR += kdenetwork-filesharing
     SUBDIR += kea
     SUBDIR += kf5-kcalendarcore
     SUBDIR += kf5-kcontacts
+    SUBDIR += kf5-kdav
     SUBDIR += kf5-kholidays
     SUBDIR += kf5-kxmlrpcclient
     SUBDIR += kf5-syndication
@@ -1104,6 +1105,7 @@
     SUBDIR += py-s3transfer
     SUBDIR += py-sbws
     SUBDIR += py-shodan
+    SUBDIR += py-siosocks
     SUBDIR += py-smart-open
     SUBDIR += py-smbpasswd
     SUBDIR += py-soap2py
@@ -1159,6 +1161,7 @@
     SUBDIR += rdapper
     SUBDIR += rdesktop
     SUBDIR += rdist6
+    SUBDIR += read_bbrlog
     SUBDIR += realtek-re-kmod
     SUBDIR += reaver
     SUBDIR += recvnet
@@ -1333,6 +1336,9 @@
     SUBDIR += rubygem-stackdriver-core
     SUBDIR += rubygem-stompserver
     SUBDIR += rubygem-t
+    SUBDIR += rubygem-train
+    SUBDIR += rubygem-train-core
+    SUBDIR += rubygem-train-winrm
     SUBDIR += rubygem-tweetstream
     SUBDIR += rubygem-twitter
     SUBDIR += rubygem-twitter-stream
@@ -1427,6 +1433,7 @@
     SUBDIR += tcpillust
     SUBDIR += tcping
     SUBDIR += tcpkali
+    SUBDIR += tcplog_dumper
     SUBDIR += tcpmssd
     SUBDIR += tcpproxy
     SUBDIR += tcpreen

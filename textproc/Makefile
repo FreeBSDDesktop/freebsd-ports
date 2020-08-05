@@ -11,6 +11,7 @@
     SUBDIR += R-cran-bibtex
     SUBDIR += R-cran-brew
     SUBDIR += R-cran-cellranger
+    SUBDIR += R-cran-commonmark
     SUBDIR += R-cran-formatR
     SUBDIR += R-cran-highr
     SUBDIR += R-cran-htmltools
@@ -1259,6 +1260,7 @@
     SUBDIR += py-genshi
     SUBDIR += py-gensim
     SUBDIR += py-gfm
+    SUBDIR += py-googletrans
     SUBDIR += py-grako
     SUBDIR += py-guess-language
     SUBDIR += py-hexdump
@@ -1366,6 +1368,7 @@
     SUBDIR += py-snowballstemmer
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
+    SUBDIR += py-sphinx-argparse
     SUBDIR += py-sphinx-autoapi
     SUBDIR += py-sphinx-autodoc-typehints
     SUBDIR += py-sphinx-intl
@@ -1561,6 +1564,7 @@
     SUBDIR += rubygem-kramdown
     SUBDIR += rubygem-kramdown-parser-gfm
     SUBDIR += rubygem-kramdown1
+    SUBDIR += rubygem-kramdown22
     SUBDIR += rubygem-kwalify
     SUBDIR += rubygem-libxml-ruby
     SUBDIR += rubygem-linguistics

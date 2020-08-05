@@ -432,10 +432,12 @@
     SUBDIR += netsurf
     SUBDIR += newsboat
     SUBDIR += nextcloud
+    SUBDIR += nextcloud-appointments
     SUBDIR += nextcloud-calendar
     SUBDIR += nextcloud-circles
     SUBDIR += nextcloud-contacts
     SUBDIR += nextcloud-deck
+    SUBDIR += nextcloud-forms
     SUBDIR += nextcloud-notes
     SUBDIR += nextcloud-tasks
     SUBDIR += nghttp2
@@ -808,6 +810,7 @@
     SUBDIR += p5-HTML-GenToc
     SUBDIR += p5-HTML-GenerateUtil
     SUBDIR += p5-HTML-GoogleMaps
+    SUBDIR += p5-HTML-Gumbo
     SUBDIR += p5-HTML-Highlight
     SUBDIR += p5-HTML-LinkExtractor
     SUBDIR += p5-HTML-LinkList
@@ -903,6 +906,7 @@
     SUBDIR += p5-HTTP-Entity-Parser
     SUBDIR += p5-HTTP-Exception
     SUBDIR += p5-HTTP-HeaderParser-XS
+    SUBDIR += p5-HTTP-Headers-ActionPack
     SUBDIR += p5-HTTP-Headers-Fast
     SUBDIR += p5-HTTP-Link-Parser
     SUBDIR += p5-HTTP-Lite
@@ -1257,6 +1261,7 @@
     SUBDIR += p5-WWW-Wikipedia
     SUBDIR += p5-WWW-Yandex-TIC
     SUBDIR += p5-WWW-iTunesConnect
+    SUBDIR += p5-Web-Machine
     SUBDIR += p5-Web-Query
     SUBDIR += p5-Web-Scraper
     SUBDIR += p5-Web-Scraper-Config
@@ -1448,6 +1453,7 @@
     SUBDIR += py-django-bakery
     SUBDIR += py-django-bitfield
     SUBDIR += py-django-bootstrap-form
+    SUBDIR += py-django-bootstrap-pagination
     SUBDIR += py-django-bootstrap3
     SUBDIR += py-django-bootstrap4
     SUBDIR += py-django-braces
@@ -1540,6 +1546,7 @@
     SUBDIR += py-django111
     SUBDIR += py-django22
     SUBDIR += py-django30
+    SUBDIR += py-django31
     SUBDIR += py-django_compressor
     SUBDIR += py-djangocms-admin-style
     SUBDIR += py-djangoql
@@ -1794,6 +1801,7 @@
     SUBDIR += rsstool
     SUBDIR += rt42
     SUBDIR += rt44
+    SUBDIR += rt50
     SUBDIR += rtv
     SUBDIR += rubygem-ace-rails-ap
     SUBDIR += rubygem-actioncable5
@@ -1832,6 +1840,7 @@
     SUBDIR += rubygem-cal-heatmap-rails
     SUBDIR += rubygem-cal-heatmap-rails-rails4
     SUBDIR += rubygem-carrierwave
+    SUBDIR += rubygem-cgi
     SUBDIR += rubygem-cgi_multipart_eof_fix
     SUBDIR += rubygem-chosen-rails
     SUBDIR += rubygem-chromedriver-helper
@@ -2272,6 +2281,8 @@
     SUBDIR += uwsgi
     SUBDIR += uwsgitop
     SUBDIR += validator
+    SUBDIR += varnish-ip2location
+    SUBDIR += varnish-ip2proxy
     SUBDIR += varnish-libvmod-awsrest
     SUBDIR += varnish-libvmod-digest
     SUBDIR += varnish-libvmod-dynamic

@@ -169,6 +169,7 @@
     SUBDIR += histring
     SUBDIR += hotkeys
     SUBDIR += hulgalugha
+    SUBDIR += hxtools
     SUBDIR += ignition-fuel-tools
     SUBDIR += iio-oscilloscope
     SUBDIR += imerge
@@ -443,6 +444,7 @@
     SUBDIR += rubygem-rabbit
     SUBDIR += rubygem-vpim
     SUBDIR += rump
+    SUBDIR += ruut
     SUBDIR += sdformat
     SUBDIR += seabios
     SUBDIR += sent
