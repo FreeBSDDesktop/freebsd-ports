@@ -234,6 +234,7 @@
     SUBDIR += ipsec-tools
     SUBDIR += ipv6toolkit
     SUBDIR += isakmpd
+    SUBDIR += isal-kmod
     SUBDIR += ismtp
     SUBDIR += isnprober
     SUBDIR += jbrofuzz
@@ -1100,6 +1101,7 @@
     SUBDIR += rubygem-omniauth-shibboleth
     SUBDIR += rubygem-openssl
     SUBDIR += rubygem-openssl-ccm
+    SUBDIR += rubygem-openssl-cmac
     SUBDIR += rubygem-openvas-omp
     SUBDIR += rubygem-origami
     SUBDIR += rubygem-pbkdf2-ruby

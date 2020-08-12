@@ -375,10 +375,11 @@
     SUBDIR += mod_fileiri
     SUBDIR += mod_gnutls
     SUBDIR += mod_h264_streaming
+    SUBDIR += mod_http2
     SUBDIR += mod_jk
     SUBDIR += mod_limitipconn2
     SUBDIR += mod_line_edit
-    SUBDIR += mod_log_sql2
+    SUBDIR += mod_log_sql
     SUBDIR += mod_maxminddb
     SUBDIR += mod_memcache
     SUBDIR += mod_memcache_block
@@ -389,6 +390,7 @@
     SUBDIR += mod_php72
     SUBDIR += mod_php73
     SUBDIR += mod_php74
+    SUBDIR += mod_proctitle
     SUBDIR += mod_proxy_xml
     SUBDIR += mod_python35
     SUBDIR += mod_qos
@@ -438,6 +440,7 @@
     SUBDIR += nextcloud-contacts
     SUBDIR += nextcloud-deck
     SUBDIR += nextcloud-forms
+    SUBDIR += nextcloud-groupfolders
     SUBDIR += nextcloud-notes
     SUBDIR += nextcloud-tasks
     SUBDIR += nghttp2

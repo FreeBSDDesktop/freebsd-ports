@@ -44,6 +44,7 @@
     SUBDIR += graywolf
     SUBDIR += gspiceui
     SUBDIR += gtkwave
+    SUBDIR += horizon-eda
     SUBDIR += ifcopenshell
     SUBDIR += impact
     SUBDIR += irsim
@@ -81,6 +82,7 @@
     SUBDIR += nvc
     SUBDIR += opencascade
     SUBDIR += openctm
+    SUBDIR += openfpgaloader
     SUBDIR += openscad
     SUBDIR += openscad-devel
     SUBDIR += opensta

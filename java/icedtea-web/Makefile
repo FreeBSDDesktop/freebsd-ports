@@ -2,11 +2,10 @@
 
 PORTNAME=	icedtea-web
 PORTVERSION=	1.8.4
+DISTVERSIONPREFIX=	icedtea-web-
 PORTREVISION=	3
 CATEGORIES=	java www
-MASTER_SITES=	https://github.com/AdoptOpenJDK/IcedTea-Web/archive/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
-WRKSRC=		${WRKDIR}/IcedTea-Web-icedtea-web-1.8.4
 
 MAINTAINER=	java@FreeBSD.org
 COMMENT=	Free Java plug-in and Java Web Start for OpenJDK
@@ -14,7 +13,7 @@ COMMENT=	Free Java plug-in and Java Web Start for OpenJDK
 LICENSE=	GPLv2
 
 BUILD_DEPENDS=	zip:archivers/zip \
-		rustc:lang/rust \
+		rustc:lang/${RUST_DEFAULT} \
 		bash:shells/bash \
 		gsed:textproc/gsed \
 		${HAMCREST_JAR}:java/hamcrest \
@@ -31,6 +30,9 @@ JAVA_VENDOR=	openjdk
 USE_PERL5=	build
 USE_XORG=	x11
 USES=		autoreconf desktop-file-utils gmake perl5 pkgconfig shebangfix xorg
+USE_GITHUB=	yes
+GH_ACCOUNT=	AdoptOpenJDK
+GH_PROJECT=	IcedTea-Web
 SHEBANG_FILES=	jrunscript.in shell-launcher/launchers.sh.in
 
 CONFIGURE_ARGS=		--with-hamcrest="${HAMCREST_JAR}"
@@ -38,7 +40,7 @@ CONFIGURE_ARGS+=	--with-jdk-home="${JAVA_HOME}"
 CONFIGURE_ARGS+=	--with-junit="${JUNIT_JAR}"
 CONFIGURE_ARGS+=	--with-rhino="${RHINO_JAR}"
 CONFIGURE_ARGS+=	--with-tagsoup="${TAGSOUP_JAR}"
-CONFIGURE_ARGS+=	--with-itw-libs="BUNDLED"
+CONFIGURE_ARGS+=	--with-itw-libs="DISTRIBUTION"
 CONFIGURE_ARGS+=	--enable-shell-launchers
 .for opt in asm chrome chromium ecj epiphany firefox jacoco midori opera
 CONFIGURE_ARGS+=	--without-${opt}
