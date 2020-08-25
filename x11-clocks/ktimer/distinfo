@@ -1,3 +1,3 @@
-TIMESTAMP = 1583439214
-SHA256 (KDE/applications/19.12.3/ktimer-19.12.3.tar.xz) = 921af876a176a4731a74b5e9e76d751853043ec4f4857301b39a5c680246557c
-SIZE (KDE/applications/19.12.3/ktimer-19.12.3.tar.xz) = 377424
+TIMESTAMP = 1596814297
+SHA256 (KDE/release-service/20.08.0/ktimer-20.08.0.tar.xz) = 4a3722945f26df087158a5af69cc81ba10054a778f04fecd32ff816732dff0dd
+SIZE (KDE/release-service/20.08.0/ktimer-20.08.0.tar.xz) = 385412

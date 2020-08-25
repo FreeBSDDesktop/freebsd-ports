@@ -136,6 +136,7 @@
 %%CACTIDIR%%/docs/SNMP-Options.html
 %%CACTIDIR%%/docs/Script-Data-Query-Walkthrough.html
 %%CACTIDIR%%/docs/Sites.html
+%%CACTIDIR%%/docs/Spikekill.html
 %%CACTIDIR%%/docs/Spine.html
 %%CACTIDIR%%/docs/Standards-Code-Formatting.html
 %%CACTIDIR%%/docs/Standards-Documentation.html
@@ -198,6 +199,7 @@
 %%CACTIDIR%%/docs/images/cacti-tree-view-page.png
 %%CACTIDIR%%/docs/images/cacti_add_device_site.JPG
 %%CACTIDIR%%/docs/images/cacti_add_sites.JPG
+%%CACTIDIR%%/docs/images/cacti_automation_flow3.JPG
 %%CACTIDIR%%/docs/images/cacti_default_tree.png
 %%CACTIDIR%%/docs/images/cacti_device_datasource.JPG
 %%CACTIDIR%%/docs/images/cacti_graph_managment.JPG
@@ -430,6 +432,7 @@
 %%CACTIDIR%%/docs/images/snmp_dqw_table1.png
 %%CACTIDIR%%/docs/images/snmp_dqw_table2.png
 %%CACTIDIR%%/docs/images/snmp_dqw_table3.png
+%%CACTIDIR%%/docs/images/spikekill.gif
 %%CACTIDIR%%/docs/images/system-utilities-boost1.png
 %%CACTIDIR%%/docs/images/system-utilities-boost2.png
 %%CACTIDIR%%/docs/images/system-utilities-main1.png
@@ -596,6 +599,7 @@
 %%CACTIDIR%%/include/content/iframe-example.html
 %%CACTIDIR%%/include/content/index.php
 %%CACTIDIR%%/include/content/php-example.html
+%%CACTIDIR%%/include/csrf.php
 %%CACTIDIR%%/include/fa/css/fontawesome.css
 %%CACTIDIR%%/include/fa/css/index.php
 %%CACTIDIR%%/include/fa/index.php
@@ -790,7 +794,6 @@
 %%CACTIDIR%%/include/js/jquery.dropdown.js
 %%CACTIDIR%%/include/js/jquery.hotkeys.js
 %%CACTIDIR%%/include/js/jquery.js
-%%CACTIDIR%%/include/js/jquery.metadata.js
 %%CACTIDIR%%/include/js/jquery.multiselect.filter.js
 %%CACTIDIR%%/include/js/jquery.multiselect.js
 %%CACTIDIR%%/include/js/jquery.sparkline.js
@@ -1121,6 +1124,8 @@
 %%CACTIDIR%%/include/top_general_header.php
 %%CACTIDIR%%/include/top_graph_header.php
 %%CACTIDIR%%/include/top_header.php
+%%CACTIDIR%%/include/vendor/cldr-to-gettext-plural-rules/.gitattributes
+%%CACTIDIR%%/include/vendor/cldr-to-gettext-plural-rules/.gitignore
 %%CACTIDIR%%/include/vendor/cldr-to-gettext-plural-rules/LICENSE
 %%CACTIDIR%%/include/vendor/cldr-to-gettext-plural-rules/README.md
 %%CACTIDIR%%/include/vendor/cldr-to-gettext-plural-rules/UNICODE-LICENSE.txt
@@ -1149,9 +1154,10 @@
 %%CACTIDIR%%/include/vendor/cldr-to-gettext-plural-rules/tests/Get/GetTest.php
 %%CACTIDIR%%/include/vendor/cldr-to-gettext-plural-rules/tests/Rules/RulesTest.php
 %%CACTIDIR%%/include/vendor/cldr-to-gettext-plural-rules/tests/bootstrap.php
-%%CACTIDIR%%/include/vendor/csrf/LICENSE
-%%CACTIDIR%%/include/vendor/csrf/NEWS
-%%CACTIDIR%%/include/vendor/csrf/README
+%%CACTIDIR%%/include/vendor/csrf/LICENSE.txt
+%%CACTIDIR%%/include/vendor/csrf/NEWS.md
+%%CACTIDIR%%/include/vendor/csrf/README.md
+%%CACTIDIR%%/include/vendor/csrf/csrf-conf.php
 %%CACTIDIR%%/include/vendor/csrf/csrf-magic.js
 %%CACTIDIR%%/include/vendor/csrf/csrf-magic.php
 %%CACTIDIR%%/include/vendor/csrf/index.php
@@ -1936,6 +1942,7 @@
 %%CACTIDIR%%/include/vendor/phpmailer/get_oauth_token.php
 %%CACTIDIR%%/include/vendor/phpmailer/index.php
 %%CACTIDIR%%/include/vendor/phpmailer/language/index.php
+%%CACTIDIR%%/include/vendor/phpmailer/language/phpmailer.lang-af.php
 %%CACTIDIR%%/include/vendor/phpmailer/language/phpmailer.lang-am.php
 %%CACTIDIR%%/include/vendor/phpmailer/language/phpmailer.lang-ar.php
 %%CACTIDIR%%/include/vendor/phpmailer/language/phpmailer.lang-az.php
@@ -1960,6 +1967,7 @@
 %%CACTIDIR%%/include/vendor/phpmailer/language/phpmailer.lang-hi.php
 %%CACTIDIR%%/include/vendor/phpmailer/language/phpmailer.lang-hr.php
 %%CACTIDIR%%/include/vendor/phpmailer/language/phpmailer.lang-hu.php
+%%CACTIDIR%%/include/vendor/phpmailer/language/phpmailer.lang-hy.php
 %%CACTIDIR%%/include/vendor/phpmailer/language/phpmailer.lang-id.php
 %%CACTIDIR%%/include/vendor/phpmailer/language/phpmailer.lang-it.php
 %%CACTIDIR%%/include/vendor/phpmailer/language/phpmailer.lang-ja.php
@@ -2090,6 +2098,7 @@
 %%CACTIDIR%%/install/upgrades/1_1_8.php
 %%CACTIDIR%%/install/upgrades/1_2_0.php
 %%CACTIDIR%%/install/upgrades/1_2_1.php
+%%CACTIDIR%%/install/upgrades/1_2_11.php
 %%CACTIDIR%%/install/upgrades/1_2_2.php
 %%CACTIDIR%%/install/upgrades/1_2_3.php
 %%CACTIDIR%%/install/upgrades/1_2_5.php
@@ -2239,6 +2248,7 @@
 %%CACTIDIR%%/rrdcleaner.php
 %%CACTIDIR%%/script_server.php
 %%CACTIDIR%%/scripts/3com_cable_modem.pl
+%%CACTIDIR%%/scripts/cacti_user_stats.php
 %%CACTIDIR%%/scripts/diskfree.pl
 %%CACTIDIR%%/scripts/diskfree.sh
 %%CACTIDIR%%/scripts/index.php

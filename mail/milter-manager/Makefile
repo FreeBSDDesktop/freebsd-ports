@@ -5,15 +5,13 @@ PORTNAME=	milter-manager
 PORTVERSION=	2.1.1
 PORTREVISION=	1
 CATEGORIES=	mail ruby
-MASTER_SITES=	OSDN/${PORTNAME}/67935
+MASTER_SITES=	OSDN/${PORTNAME}
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Super milter that can invoke several milters selectively
 
 LICENSE=	AGPLv3 GFDL GPLv3 LGPL3
 LICENSE_COMB=	multi
-
-BROKEN_RUBY24=	Build succeeds, but using binary results in segmentation fault
 
 BUILD_DEPENDS=	rubygem-glib2>0:devel/rubygem-glib2
 LIB_DEPENDS=	libev.so:devel/libev

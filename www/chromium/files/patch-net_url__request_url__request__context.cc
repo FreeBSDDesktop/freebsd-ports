@@ -1,4 +1,4 @@
---- net/url_request/url_request_context.cc.orig	2020-03-03 18:53:55 UTC
+--- net/url_request/url_request_context.cc.orig	2020-07-07 21:57:40 UTC
 +++ net/url_request/url_request_context.cc
 @@ -90,7 +90,7 @@ const HttpNetworkSession::Context* URLRequestContext::
    return &network_session->context();

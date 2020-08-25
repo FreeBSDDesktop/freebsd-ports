@@ -24,6 +24,7 @@ lib/libKF5Holidays.so.%%KDE_FRAMEWORKS_VERSION%%
 %%QT_QMLDIR%%/org/kde/kholidays/qmldir
 share/locale/ar/LC_MESSAGES/libkholidays5_qt.qm
 share/locale/ast/LC_MESSAGES/libkholidays5_qt.qm
+share/locale/az/LC_MESSAGES/libkholidays5_qt.qm
 share/locale/be/LC_MESSAGES/libkholidays5_qt.qm
 share/locale/bg/LC_MESSAGES/libkholidays5_qt.qm
 share/locale/br/LC_MESSAGES/libkholidays5_qt.qm
@@ -95,3 +96,4 @@ share/locale/uz@cyrillic/LC_MESSAGES/libkholidays5_qt.qm
 share/locale/wa/LC_MESSAGES/libkholidays5_qt.qm
 share/locale/zh_CN/LC_MESSAGES/libkholidays5_qt.qm
 share/locale/zh_TW/LC_MESSAGES/libkholidays5_qt.qm
+share/qlogging-categories5/kholidays.categories

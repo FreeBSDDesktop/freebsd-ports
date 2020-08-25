@@ -5,7 +5,6 @@
 
     SUBDIR += R-cran-mime
     SUBDIR += R-cran-xfun
-    SUBDIR += achievo
     SUBDIR += aclgen
     SUBDIR += actiona
     SUBDIR += adios2
@@ -17,7 +16,6 @@
     SUBDIR += artikulate
     SUBDIR += asbutton
     SUBDIR += asr-manpages
-    SUBDIR += auto-multiple-choice
     SUBDIR += bb
     SUBDIR += bbjd
     SUBDIR += bdelta
@@ -69,6 +67,7 @@
     SUBDIR += dahdi
     SUBDIR += dahdi-kmod
     SUBDIR += dahdi-kmod26
+    SUBDIR += darknet
     SUBDIR += dartsim
     SUBDIR += ddate
     SUBDIR += deco
@@ -76,7 +75,6 @@
     SUBDIR += delay
     SUBDIR += diction
     SUBDIR += digitemp
-    SUBDIR += display
     SUBDIR += dive
     SUBDIR += dnetc
     SUBDIR += dtach
@@ -90,11 +88,12 @@
     SUBDIR += elscreen
     SUBDIR += erlang-mimerl
     SUBDIR += erlang-mimetypes
-    SUBDIR += esniper
     SUBDIR += estic
     SUBDIR += excel-writer
     SUBDIR += exercism
     SUBDIR += explosions
+    SUBDIR += ezc3d
+    SUBDIR += far2l
     SUBDIR += felis
     SUBDIR += figlet
     SUBDIR += figlet-fonts
@@ -111,7 +110,6 @@
     SUBDIR += fortuneit
     SUBDIR += fpc-chm
     SUBDIR += free42
-    SUBDIR += free42-skins
     SUBDIR += freebsd-doc-all
     SUBDIR += freebsd-doc-bn
     SUBDIR += freebsd-doc-da
@@ -170,7 +168,9 @@
     SUBDIR += hicolor-icon-theme
     SUBDIR += histring
     SUBDIR += hotkeys
+    SUBDIR += hs-hascard
     SUBDIR += hulgalugha
+    SUBDIR += hxtools
     SUBDIR += ignition-fuel-tools
     SUBDIR += iio-oscilloscope
     SUBDIR += imerge
@@ -210,7 +210,6 @@
     SUBDIR += libeatmydata
     SUBDIR += libemos
     SUBDIR += libiio
-    SUBDIR += libisocodes
     SUBDIR += libkeduvocdocument
     SUBDIR += liblxi
     SUBDIR += libmetalink
@@ -225,7 +224,6 @@
     SUBDIR += locale-en_DK
     SUBDIR += localedata
     SUBDIR += logsurfer
-    SUBDIR += loop
     SUBDIR += lv
     SUBDIR += lxde-common
     SUBDIR += lxi-tools
@@ -250,7 +248,9 @@
     SUBDIR += mtx
     SUBDIR += mxnet
     SUBDIR += najitool
+    SUBDIR += ncnn
     SUBDIR += netron
+    SUBDIR += ngraph
     SUBDIR += nms
     SUBDIR += nn-insight
     SUBDIR += nnn
@@ -259,7 +259,6 @@
     SUBDIR += nut
     SUBDIR += ompl
     SUBDIR += ondir
-    SUBDIR += onnx
     SUBDIR += opencyc
     SUBDIR += openhab2
     SUBDIR += openhab2-addons
@@ -332,7 +331,6 @@
     SUBDIR += p5-Locale-SubCountry
     SUBDIR += p5-Locale-US
     SUBDIR += p5-Net-vCard
-    SUBDIR += p5-Norge
     SUBDIR += p5-OSSP-uuid
     SUBDIR += p5-Software-License
     SUBDIR += p5-Software-License-CCpack
@@ -341,7 +339,6 @@
     SUBDIR += p5-Tie-DxHash
     SUBDIR += p5-Zen-Koans
     SUBDIR += p5-asterisk-perl
-    SUBDIR += pantry
     SUBDIR += parley
     SUBDIR += pastebinit
     SUBDIR += patchutils
@@ -356,11 +353,9 @@
     SUBDIR += php72-calendar
     SUBDIR += php73-calendar
     SUBDIR += php74-calendar
-    SUBDIR += phraze
     SUBDIR += pinfo
     SUBDIR += pipe
     SUBDIR += pnpids
-    SUBDIR += podsleuth
     SUBDIR += posixtestsuite
     SUBDIR += proxyper
     SUBDIR += pspresent
@@ -385,13 +380,13 @@
     SUBDIR += py-kartograph
     SUBDIR += py-molequeue
     SUBDIR += py-mxnet
+    SUBDIR += py-onnx
     SUBDIR += py-onnx-tf
     SUBDIR += py-orange3-associate
     SUBDIR += py-orange3-datafusion
     SUBDIR += py-orange3-educational
     SUBDIR += py-orange3-network
     SUBDIR += py-orange3-timeseries
-    SUBDIR += py-osd
     SUBDIR += py-palettable
     SUBDIR += py-pexpect
     SUBDIR += py-powerline-status
@@ -407,17 +402,16 @@
     SUBDIR += py-scikit-fusion
     SUBDIR += py-serverfiles
     SUBDIR += py-soapy_power
-    SUBDIR += py-socli
     SUBDIR += py-spdx
     SUBDIR += py-spdx-lookup
     SUBDIR += py-spdx-tools
     SUBDIR += py-tflearn
     SUBDIR += py-tflite
+    SUBDIR += py-tflite-support
     SUBDIR += py-toil
     SUBDIR += py-tqdm
     SUBDIR += py-tvm
     SUBDIR += py-xgboost
-    SUBDIR += py-yolk
     SUBDIR += pyobd
     SUBDIR += qbrew
     SUBDIR += qlas
@@ -445,9 +439,11 @@
     SUBDIR += rubygem-mime-types-data
     SUBDIR += rubygem-mime-types1
     SUBDIR += rubygem-mimemagic
+    SUBDIR += rubygem-octicons
     SUBDIR += rubygem-rabbit
     SUBDIR += rubygem-vpim
     SUBDIR += rump
+    SUBDIR += ruut
     SUBDIR += sdformat
     SUBDIR += seabios
     SUBDIR += sent
@@ -465,7 +461,6 @@
     SUBDIR += soapysdr
     SUBDIR += soapysdr-rtlsdr
     SUBDIR += solarized
-    SUBDIR += spamcalc
     SUBDIR += sshbuddy
     SUBDIR += sssnips
     SUBDIR += susv2
@@ -501,7 +496,6 @@
     SUBDIR += upclient
     SUBDIR += urbit
     SUBDIR += urh
-    SUBDIR += us-zipcodes
     SUBDIR += usbids
     SUBDIR += usbrh-libusb
     SUBDIR += utftools
@@ -537,8 +531,6 @@
     SUBDIR += xosd
     SUBDIR += xtail
     SUBDIR += xtar
-    SUBDIR += xtypo
-    SUBDIR += yaunc
     SUBDIR += ytree
     SUBDIR += zoneinfo
 

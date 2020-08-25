@@ -2,13 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	Math-GSL
-PORTVERSION=	0.40
-PORTREVISION=	1
+PORTVERSION=	0.42
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	bokutin@bokut.in
 COMMENT=	Perl interface to GNU Scientific Library
 
 LICENSE=	ART10 GPLv1+
@@ -23,8 +22,6 @@ TEST_DEPENDS=	p5-Test-Class>=0.12:devel/p5-Test-Class \
 
 USES=		perl5
 USE_PERL5=	modbuild
-
-BROKEN=		Does not work with gsl-2.6
 
 post-install:
 	${FIND} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Math/GSL/ -name "*.so" -exec ${STRIP_CMD} {} +

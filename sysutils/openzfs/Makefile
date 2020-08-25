@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	openzfs
-PORTVERSION=	2020031600
+PORTVERSION=	2020082100
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
-MAINTAINER=	kmoore@FreeBSD.org
+MAINTAINER=	freqlabs@FreeBSD.org
 COMMENT=	OpenZFS userland for FreeBSD
 
 LICENSE=	CDDL
@@ -14,7 +14,7 @@ BROKEN_aarch64=	invokes x86 assembler
 
 RUN_DEPENDS=	openzfs-kmod>=0:sysutils/openzfs-kmod
 
-USES+=		autoreconf:build libtool gmake gettext-runtime:run python:3.3+,build shebangfix
+USES+=		autoreconf:build libtool gmake gettext-runtime python:3.3+,build shebangfix
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX} --with-config="user"
@@ -26,9 +26,9 @@ TESTS_DESC=	Install the ZFS Test Suite
 OPTIONS_SUB=	yes
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	zfsonfreebsd
-GH_PROJECT=	ZoF
-GH_TAGNAME=	152cc960a
+GH_ACCOUNT=	openzfs
+GH_PROJECT=	zfs
+GH_TAGNAME=	6fe3498ca
 
 .include <bsd.port.pre.mk>
 

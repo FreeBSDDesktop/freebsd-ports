@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	racket
-PORTVERSION=	7.5
+PORTVERSION=	7.7
 PORTREVISION=	1
 CATEGORIES=	lang scheme
 MASTER_SITES=	http://mirror.racket-lang.org/installers/${PORTVERSION}/ \
@@ -21,9 +21,6 @@ LICENSE=	APACHE20 MIT
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-IGNORE_powerpc64=	./lightning/lightning.h:81:2: GNU lightning does not support the current target
-BROKEN_i386=		segfaults during build
-
 LIB_DEPENDS=	libcairo.so:graphics/cairo \
 		libffi.so:devel/libffi \
 		libpng.so:graphics/png
@@ -34,7 +31,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-libffi \
 		--enable-places \
 		--enable-pthread \
-		--mandir=${PREFIX}/share/man
+		--mandir=${MANPREFIX}/man
 WRKSRC=		${WRKDIR}/racket-${PORTVERSION}/src
 PATCH_WRKSRC=	${WRKDIR}/racket-${PORTVERSION}
 USE_LDCONFIG=	yes
@@ -42,13 +39,12 @@ REINPLACE_ARGS=	-i ""
 MAKE_JOBS_UNSAFE=	yes
 CONFLICTS=	racket-minimal-[0-9]*
 
-OPTIONS_DEFINE=		DOCS FUTURES
-OPTIONS_DEFAULT=	FUTURES
+OPTIONS_DEFINE=		DOCS
 
-OPTIONS_DEFINE_amd64=	JIT
-OPTIONS_DEFINE_i386=	JIT
-OPTIONS_DEFAULT_amd64=	JIT
-OPTIONS_DEFAULT_i386=	JIT
+OPTIONS_DEFINE_amd64=	FUTURES JIT
+OPTIONS_DEFINE_i386=	FUTURES JIT
+OPTIONS_DEFAULT_amd64=	FUTURES JIT
+OPTIONS_DEFAULT_i386=	FUTURES JIT
 
 FUTURES_DESC=	Enable futures
 JIT_DESC=	Enable JIT compiler

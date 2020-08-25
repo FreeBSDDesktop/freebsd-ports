@@ -1,9 +1,9 @@
---- src/python/grpcio/grpc_core_dependencies.py.orig	2019-12-18 01:59:05 UTC
+--- src/python/grpcio/grpc_core_dependencies.py.orig	2020-08-05 07:00:06 UTC
 +++ src/python/grpcio/grpc_core_dependencies.py
-@@ -694,56 +694,6 @@ CORE_SOURCE_FILES = [
-     'third_party/boringssl/ssl/tls_method.cc',
-     'third_party/boringssl/ssl/tls_record.cc',
-     'third_party/boringssl/third_party/fiat/curve25519.c',
+@@ -793,56 +793,6 @@ CORE_SOURCE_FILES = [
+     'third_party/boringssl-with-bazel/src/ssl/tls13_server.cc',
+     'third_party/boringssl-with-bazel/src/ssl/tls_method.cc',
+     'third_party/boringssl-with-bazel/src/ssl/tls_record.cc',
 -    'third_party/cares/cares/ares__close_sockets.c',
 -    'third_party/cares/cares/ares__get_hostent.c',
 -    'third_party/cares/cares/ares__read_line.c',
@@ -54,6 +54,6 @@
 -    'third_party/cares/cares/inet_net_pton.c',
 -    'third_party/cares/cares/inet_ntop.c',
 -    'third_party/cares/cares/windows_port.c',
-     'third_party/upb/upb/decode.c',
-     'third_party/upb/upb/encode.c',
-     'third_party/upb/upb/msg.c',
+     'third_party/re2/re2/bitstate.cc',
+     'third_party/re2/re2/compile.cc',
+     'third_party/re2/re2/dfa.cc',

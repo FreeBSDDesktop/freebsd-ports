@@ -2,13 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=		openvpn
-DISTVERSION=		2.4.8
-# FIXME XXX check if 2.4.9 still needs ASYNC_PUSH_LIBS, see
-# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=244286#c6 and #c7
-PORTREVISION?=		2
+DISTVERSION=		2.4.9
+PORTREVISION?=		3
 CATEGORIES=		security net net-vpn
 MASTER_SITES=		https://swupdate.openvpn.org/community/releases/ \
-			https://build.openvpn.net/downloads/releases/
+			https://build.openvpn.net/downloads/releases/ \
+			LOCAL/mandree
 
 MAINTAINER=		mandree@FreeBSD.org
 COMMENT?=		Secure IP/Ethernet tunnel daemon
@@ -25,16 +24,19 @@ SHEBANG_FILES=		sample/sample-scripts/verify-cn \
 			sample/sample-scripts/auth-pam.pl \
 			sample/sample-scripts/ucn.pl
 CONFIGURE_ARGS+=	--enable-strict
+# set PLUGIN_LIBDIR so that unqualified plugin paths are found:
+CONFIGURE_ENV+=		PLUGINDIR="${PREFIX}/lib/openvpn/plugins"
+
 # avoid picking up CMAKE, we don't have cmocka in the tarballs.
 CONFIGURE_ENV+=		ac_cv_prog_CMAKE= CMAKE=
 
 # let OpenVPN's configure script pick up the requisite libraries,
 # but do not break the plugin build if an older version is installed
+# XXX FIXME: once there is an opportunity for testing with older
+# versions with incompatible plugins again, try USES+=localbase:ldflags,
+# suggested by Mateusz Piotrowski 0mp@ 2020-07-17
 CPPFLAGS+=		-I${WRKSRC}/include -I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib -Wl,--as-needed
-
-# set PLUGIN_LIBDIR so that unqualified plugin paths are found:
-CPPFLAGS+=		-DPLUGIN_LIBDIR=\\\"${PREFIX}/lib/openvpn/plugins\\\"
 
 OPTIONS_DEFINE=		PKCS11 EASYRSA DOCS EXAMPLES X509ALTUSERNAME \
 			TEST LZ4 LZO SMALL TUNNELBLICK ASYNC_PUSH
@@ -51,7 +53,6 @@ SMALL_DESC=		Build a smaller executable with fewer features
 
 ASYNC_PUSH_CONFIGURE_ENABLE=	async-push
 ASYNC_PUSH_LIB_DEPENDS=	libinotify.so:devel/libinotify
-ASYNC_PUSH_LIBS=	-linotify
 
 EASYRSA_RUN_DEPENDS=	easy-rsa>=0:security/easy-rsa
 

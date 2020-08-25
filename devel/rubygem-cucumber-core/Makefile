@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	cucumber-core
-PORTVERSION=	3.2.1
-PORTREVISION=	2
+PORTVERSION=	8.0.1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -13,17 +12,13 @@ COMMENT=	Core library for the Cucumber BDD app
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	rubygem-cucumber-tag_expressions1>=1.1.0<1.2:devel/rubygem-cucumber-tag_expressions1 \
-		rubygem-gherkin>=5.0<6:textproc/rubygem-gherkin
+RUN_DEPENDS=	rubygem-cucumber-gherkin>=15.0.2<16:textproc/rubygem-cucumber-gherkin \
+		rubygem-cucumber-messages>=13.0.1<14:devel/rubygem-cucumber-messages \
+		rubygem-cucumber-tag-expressions>=2.0.4<3:devel/rubygem-cucumber-tag-expressions
 
 USES=		gem
 USE_RUBY=	yes
 
 NO_ARCH=	yes
-
-post-patch:
-# Remove backports
-	@${REINPLACE_CMD} -e '/backports/d' ${WRKSRC}/cucumber-core.gemspec
-	@${REINPLACE_CMD} -e "/require 'backports/d" ${WRKSRC}/lib/cucumber/core/event.rb
 
 .include <bsd.port.mk>

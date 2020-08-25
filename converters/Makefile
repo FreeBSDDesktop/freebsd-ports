@@ -24,7 +24,6 @@
     SUBDIR += convmv
     SUBDIR += dosunix
     SUBDIR += drg2sbg
-    SUBDIR += dumpasn1
     SUBDIR += enca
     SUBDIR += erlang-base64url
     SUBDIR += fconv
@@ -49,7 +48,6 @@
     SUBDIR += linux-c7-fribidi
     SUBDIR += lua-iconv
     SUBDIR += lua-json
-    SUBDIR += lua51-iconv
     SUBDIR += mimelib
     SUBDIR += mmencode
     SUBDIR += mpack
@@ -179,6 +177,7 @@
     SUBDIR += wkhtmltopdf
     SUBDIR += xdeview
     SUBDIR += xml2c
+    SUBDIR += yj
     SUBDIR += ytnef
     SUBDIR += zbase32
 

@@ -10,7 +10,7 @@ COMMENT=	CAN bus reverse engineering and capture tool
 
 LICENSE=	MIT
 
-BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
+BUILD_DEPENDS=	${PY_SPHINX}
 
 USES=		compiler:c++11-lang gmake python:build qmake qt:5
 USE_QT=		buildtools_build core gui help printsupport serialbus \
@@ -21,6 +21,8 @@ GH_TUPLE=	collin80:SavvyCAN:${DISTVERSIONPREFIX}${PORTVERSION}
 NO_MTREE=	yes
 PLIST_FILES=	bin/savvycan \
 		man/man1/savvycan.1.gz
+
+PORTSCOUT=	skipv:continuous
 
 OPTIONS_DEFINE+=	DOCS EXAMPLES
 

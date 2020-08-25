@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	wxmaxima
-PORTVERSION=	20.03.1
+PORTVERSION=	20.04.0
 PORTREVISION=	1
 DISTVERSIONPREFIX=	Version-
 CATEGORIES=	math
 
-MAINTAINER=	salvadore@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	WxWidgets GUI for the computer algebra system maxima
 
 LICENSE=	GPLv2
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	maxima:math/maxima
 
-USES=		cmake desktop-file-utils shared-mime-info
+USES=		cmake compiler:c++11-lang desktop-file-utils shared-mime-info
 USE_WX=		3.0
 USE_GITHUB=	yes
 GH_ACCOUNT=	wxMaxima-Developers

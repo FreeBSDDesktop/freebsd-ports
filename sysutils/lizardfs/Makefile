@@ -4,11 +4,11 @@
 PORTNAME=	lizardfs
 PORTVERSION=	3.12.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	10
+PORTREVISION=	14
 CATEGORIES=	sysutils
 
 MAINTAINER=	jhixson@FreeBSD.org
-COMMENT=	Open Source Distribruted Filesystem
+COMMENT=	Open Source Distributed Filesystem
 
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING

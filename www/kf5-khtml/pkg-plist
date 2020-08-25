@@ -70,6 +70,7 @@ share/kservices5/kmultipart.desktop
 share/locale/af/LC_MESSAGES/khtml5.mo
 share/locale/ar/LC_MESSAGES/khtml5.mo
 share/locale/as/LC_MESSAGES/khtml5.mo
+share/locale/az/LC_MESSAGES/khtml5.mo
 share/locale/be/LC_MESSAGES/khtml5.mo
 share/locale/be@latin/LC_MESSAGES/khtml5.mo
 share/locale/bg/LC_MESSAGES/khtml5.mo
@@ -167,3 +168,4 @@ share/locale/zh_CN/LC_MESSAGES/khtml5.mo
 share/locale/zh_HK/LC_MESSAGES/khtml5.mo
 share/locale/zh_TW/LC_MESSAGES/khtml5.mo
 share/qlogging-categories5/khtml.categories
+share/qlogging-categories5/khtml.renamecategories

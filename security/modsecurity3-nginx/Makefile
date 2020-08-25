@@ -2,7 +2,7 @@
 
 PORTNAME=	modsecurity3-nginx
 DISTVERSION=	1.0.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	security www
 MASTER_SITES=	http://nginx.org/download/
 DISTFILES=	${_NGINX_DISTNAME}${EXTRACT_SUFX}
@@ -12,6 +12,8 @@ COMMENT=	Instruction detection and prevention engine / nginx Wrapper
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN_armv6=	./configure: error: ngx_http_modsecurity_module requires the ModSecurity library.
 
 LIB_DEPENDS=	libmodsecurity.so:security/modsecurity3
 
@@ -80,7 +82,7 @@ _NGINX_TMPDIR=		${_NGINX_VARDIR}/tmp/nginx
 _NGINX_VARDIR=	/var
 
 _NGINX_PORTNAME=	nginx
-_NGINX_PORTVERSION=	1.16.1
+_NGINX_PORTVERSION=	1.18.0
 _NGINX_DISTNAME=	${_NGINX_PORTNAME}-${_NGINX_PORTVERSION}
 
 do-install:

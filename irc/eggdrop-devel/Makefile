@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	eggdrop
-DISTVERSION=	1.9.0.a.20200301
+DISTVERSION=	1.9.0.a.20200814
 CATEGORIES=	irc
 PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	dbaio@FreeBSD.org
-COMMENT=	Eggdrop is the most popular Internet Relay Chat (IRC) bot
+COMMENT=	Popular Internet Relay Chat (IRC) bot
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -16,7 +16,7 @@ USES=		tcl ssl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	eggheads
-GH_TAGNAME=	4622c0c
+GH_TAGNAME=	ddcf4d0
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-tcllib=${LOCALBASE}/lib/libtcl${TCL_SHLIB_VER}.so \

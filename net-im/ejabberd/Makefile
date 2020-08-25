@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	ejabberd
-PORTVERSION=	20.01
+PORTVERSION=	20.07
+PORTREVISION=	1
 CATEGORIES=	net-im
 
 MAINTAINER=	ashish@FreeBSD.org
@@ -18,7 +19,8 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libpng.so:graphics/png \
 		libwebp.so:graphics/webp
 
-USES=		cpe gmake pkgconfig shebangfix ssl jpeg autoreconf:build
+USES=		compiler:c11 cpe gmake pkgconfig shebangfix ssl jpeg \
+		autoreconf:build
 
 USERS=		ejabberd
 GROUPS=		${USERS}
@@ -54,6 +56,7 @@ GH_TUPLE=	erlang-lager:lager:${LAGER_VER}:lager/deps/lager \
 
 OPTIONS_DEFINE=	ODBC PAM DOCS MYSQL PGSQL REDIS SIP SQLITE \
 		STUN TOOLS FULLXML
+OPTIONS_DEFAULT=STUN
 
 EJABBERD_LIBDIR=lib/erlang/lib
 MAKE_ENV=	PORTVERSION=${PORTVERSION}
@@ -95,34 +98,34 @@ SUB_LIST=	${SUBS} \
 SHEBANG_FILES=	${WRKSRC}/ejabberdctl.template
 
 BASE64URL_VER=	1.0
-CACHE_TAB_VER=	1.0.21
-EIMP_VER=	1.0.13
-EPAM_VER=	1.0.6
+CACHE_TAB_VER=	1.0.25
+EIMP_VER=	1.0.17
+EPAM_VER=	1.0.9
 EREDIS_VER=	1.0.8
-ESIP_VER=	1.0.31
-EZLIB_VER=	1.0.6
-FAST_TLS_VER=	1.1.3
-FAST_XML_VER=	1.1.38
-FAST_YAML_VER=	1.0.22
+ESIP_VER=	1.0.37
+EZLIB_VER=	1.0.8
+FAST_TLS_VER=	1.1.8
+FAST_XML_VER=	1.1.43
+FAST_YAML_VER=	1.0.27
 GOLDRUSH_VER=	0.1.9
 IDNA_VER=	6.0.0
-JIFFY_VER=	0.14.8
+JIFFY_VER=	1.0.5
 JOSE_VER=	1.9.0
 LAGER_VER=	3.6.10
 LUERL_VER=	0.3
-MQTREE_VER=	1.0.6
-P1_ACME_VER=	1.0.3
-P1_MYSQL_VER=	1.0.12
-P1_OAUTH2_VER=	0.6.5
-P1_PGSQL_VER=	1.1.8
-P1_UTILS_VER=	1.0.17
-PKIX_VER=	1.0.4
-SQLITE3_VER=	1.1.6
-STRINGPREP_VER=	1.0.17
-STUN_VER=	1.0.30
+MQTREE_VER=	1.0.10
+P1_ACME_VER=	1.0.8
+P1_MYSQL_VER=	1.0.16
+P1_OAUTH2_VER=	0.6.7
+P1_PGSQL_VER=	1.1.10
+P1_UTILS_VER=	1.0.20
+PKIX_VER=	1.0.6
+SQLITE3_VER=	1.1.8
+STRINGPREP_VER=	1.0.22
+STUN_VER=	1.0.37
 UNICODE_UTIL_COMPAT_VER=	0.4.1
-XMPP_VER=	1.4.4
-YCONF_VER=	1.0.2
+XMPP_VER=	1.4.9
+YCONF_VER=	1.0.7
 
 OPTIONS_SUB=		yes
 SIP_DESC=	SIP support
@@ -151,6 +154,8 @@ FULLXML_CONFIGURE_ENABLE=	full-xml
 SQLITE_USES=		sqlite
 DOCS_MAKE_ARGS_OFF=	NOPORTDOCS=yes
 
+.include <bsd.port.pre.mk>
+
 pre-everything::
 	@if ${PKG_BIN} query %n-%v net-im/ejabberd; then \
 		${ECHO_MSG} needs to be uninstalled, before this port build could proceed. ; \
@@ -164,6 +169,10 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,%%PORTVERSION%%,${PORTVERSION},' ${WRKSRC}/configure.ac
 	@${REINPLACE_CMD} -e '/vsn/s/git/"${JIFFY_VER}"/' ${WRKSRC}/deps/jiffy/src/jiffy.app.src
 	@${REINPLACE_CMD} -e '/vsn/s/0.0.1/${BASE64URL_VER}/' ${WRKSRC}/deps/base64url/src/base64url.app.src
+.if ${OSVERSION} < 1200000
+	# Disable LTO required by dependency, not available by default in < 12.x
+	@${REINPLACE_CMD} -e 's/$$FLTO_FLAG//' ${WRKSRC}/deps/jiffy/rebar.config
+.endif
 
 pre-configure:
 	cd ${WRKSRC} && ${SH} autogen.sh
@@ -192,4 +201,4 @@ post-install:
 	@${CHMOD} +x ${STAGEDIR}${PREFIX}/${EJABBERD_LIBDIR}/${PORTNAME}-${PORTVERSION}/lib/eimp-${EIMP_VER}/priv/bin/eimp
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/${EJABBERD_LIBDIR}/${PORTNAME}-${PORTVERSION}/lib/eimp-${EIMP_VER}/priv/bin/eimp
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

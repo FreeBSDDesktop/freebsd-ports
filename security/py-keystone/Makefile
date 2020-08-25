@@ -15,6 +15,8 @@ LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN=		fails to build
+DEPRECATED=	Broken for more than 6 months
+EXPIRATION_DATE=	2020-08-26
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pbr>=2.0.0:devel/py-pbr@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pbr>=2.0.0:devel/py-pbr@${PY_FLAVOR} \
@@ -68,6 +70,8 @@ SUB_LIST=	EXAMPLESDIR=${EXAMPLESDIR} PREFIX=${PREFIX}
 
 CONFLICTS_INSTALL=	py??-keystone-*
 
+PORTSCOUT=	limit:^[0-9][0-9]\.
+
 OPTIONS_DEFINE=		DOCS EXAMPLES
 OPTIONS_GROUP=		MISC
 OPTIONS_GROUP_MISC=	LDAP MEMCACHED MONGODB
@@ -80,7 +84,7 @@ MONGODB_DESC=		MongoDB support (used for messaging services)
 MYSQL_DESC=		MySQL/MariaDB support
 PGSQL_DESC=		PostgreSQL support
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=1.6.2:textproc/py-sphinx@${PY_FLAVOR} \
+DOCS_BUILD_DEPENDS=	${PY_SPHINX} \
 			${PYTHON_PKGNAMEPREFIX}openstackdocstheme>=1.18.1:textproc/py-openstackdocstheme@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}reno>=2.5.0:textproc/py-reno@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}ldap>=2.4.20:net/py-ldap@${PY_FLAVOR} \

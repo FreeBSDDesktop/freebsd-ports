@@ -5,7 +5,6 @@
 
     SUBDIR += 4va
     SUBDIR += Coin
-    SUBDIR += EZWGL
     SUBDIR += GraphicsMagick
     SUBDIR += Hermes
     SUBDIR += IPA
@@ -43,7 +42,9 @@
     SUBDIR += aalib
     SUBDIR += aaphoto
     SUBDIR += acidwarp
+    SUBDIR += acidwarp-sdl
     SUBDIR += agg
+    SUBDIR += akira
     SUBDIR += alembic
     SUBDIR += alpng
     SUBDIR += ampasACES-container
@@ -131,7 +132,6 @@
     SUBDIR += ditaa
     SUBDIR += djview4
     SUBDIR += djvulibre
-    SUBDIR += djvusmooth
     SUBDIR += dmtx-utils
     SUBDIR += drawpile
     SUBDIR += drm-current-kmod
@@ -149,6 +149,7 @@
     SUBDIR += egl-wayland
     SUBDIR += eglexternalplatform
     SUBDIR += electricsheep
+    SUBDIR += elementary-photos
     SUBDIR += embree
     SUBDIR += enblend
     SUBDIR += engauge-digitizer
@@ -172,6 +173,7 @@
     SUBDIR += exiftran
     SUBDIR += exiv2
     SUBDIR += exrtools
+    SUBDIR += f3d
     SUBDIR += facedetect
     SUBDIR += farbfeld
     SUBDIR += feh
@@ -322,6 +324,7 @@
     SUBDIR += gtkam
     SUBDIR += gts
     SUBDIR += guetzli
+    SUBDIR += guile-cairo
     SUBDIR += guilib
     SUBDIR += gwenview
     SUBDIR += hdr_tools
@@ -378,7 +381,9 @@
     SUBDIR += jslice
     SUBDIR += kamera
     SUBDIR += kamerka
+    SUBDIR += katarakt
     SUBDIR += kcolorchooser
+    SUBDIR += kcolorpicker
     SUBDIR += kdegraphics
     SUBDIR += kdegraphics-mobipocket
     SUBDIR += kdegraphics-svgpart
@@ -389,9 +394,9 @@
     SUBDIR += kf5-kquickcharts
     SUBDIR += kf5-prison
     SUBDIR += kgraphviewer
+    SUBDIR += kimageannotator
     SUBDIR += kimagemapeditor
     SUBDIR += kipi-plugins
-    SUBDIR += kix-kmod
     SUBDIR += klatexformula
     SUBDIR += kludge3d
     SUBDIR += kolourpaint
@@ -399,6 +404,7 @@
     SUBDIR += kphotoalbum
     SUBDIR += kqtquickcharts
     SUBDIR += krita
+    SUBDIR += ksnip
     SUBDIR += kudu
     SUBDIR += kxstitch
     SUBDIR += l2p
@@ -440,6 +446,7 @@
     SUBDIR += libgfx
     SUBDIR += libgltext
     SUBDIR += libgltf
+    SUBDIR += libglvnd
     SUBDIR += libgnomecanvas
     SUBDIR += libgnomecanvas-reference
     SUBDIR += libgnomecanvasmm26
@@ -525,17 +532,17 @@
     SUBDIR += mapserver
     SUBDIR += mapyrus
     SUBDIR += megapov
+    SUBDIR += meh
     SUBDIR += mesa-demos
+    SUBDIR += mesa-devel
     SUBDIR += mesa-dri
     SUBDIR += mesa-libs
     SUBDIR += metacam
     SUBDIR += metapixel
-    SUBDIR += mhgui
     SUBDIR += milton
     SUBDIR += minder
     SUBDIR += ming
     SUBDIR += mirtk
-    SUBDIR += mmrecover
     SUBDIR += movit
     SUBDIR += mozjpeg
     SUBDIR += mscgen
@@ -790,6 +797,7 @@
     SUBDIR += py-cairocffi
     SUBDIR += py-cairosvg
     SUBDIR += py-cartopy
+    SUBDIR += py-cogdumper
     SUBDIR += py-colour
     SUBDIR += py-descartes
     SUBDIR += py-django-easy-thumbnails
@@ -805,7 +813,6 @@
     SUBDIR += py-geopandas
     SUBDIR += py-gimp
     SUBDIR += py-gizeh
-    SUBDIR += py-glewpy
     SUBDIR += py-glfw
     SUBDIR += py-glooey
     SUBDIR += py-gphoto2
@@ -822,13 +829,13 @@
     SUBDIR += py-leather
     SUBDIR += py-mapclassify
     SUBDIR += py-mayavi
+    SUBDIR += py-mcomix
     SUBDIR += py-ming
     SUBDIR += py-mpl-scatter-density
     SUBDIR += py-nwdiag
     SUBDIR += py-open3d-python
     SUBDIR += py-opencolorio
     SUBDIR += py-opencv
-    SUBDIR += py-openexr
     SUBDIR += py-openimageio
     SUBDIR += py-photocollage
     SUBDIR += py-pillow
@@ -836,7 +843,6 @@
     SUBDIR += py-pivy
     SUBDIR += py-plotly
     SUBDIR += py-png
-    SUBDIR += py-poppler
     SUBDIR += py-pycha
     SUBDIR += py-pycollada
     SUBDIR += py-pydot
@@ -847,9 +853,10 @@
     SUBDIR += py-pygeoapi
     SUBDIR += py-pyglet
     SUBDIR += py-pyglet150
-    SUBDIR += py-pygooglechart
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyinsane2
+    SUBDIR += py-pymaging
+    SUBDIR += py-pymaging-png
     SUBDIR += py-pyocr
     SUBDIR += py-pypillowfight
     SUBDIR += py-pyproj
@@ -859,14 +866,14 @@
     SUBDIR += py-python-poppler-qt5
     SUBDIR += py-pyvips
     SUBDIR += py-pyx
+    SUBDIR += py-qrencode
     SUBDIR += py-qt5-svg
+    SUBDIR += py-rasterio
     SUBDIR += py-rawkit
-    SUBDIR += py-sane
     SUBDIR += py-scikit-image
     SUBDIR += py-seqdiag
     SUBDIR += py-sorl-thumbnail
     SUBDIR += py-spectra
-    SUBDIR += py-stltools
     SUBDIR += py-svg.path
     SUBDIR += py-svgwrite
     SUBDIR += py-termtosvg
@@ -878,8 +885,10 @@
     SUBDIR += py-webcolors
     SUBDIR += py-willow
     SUBDIR += py-yaswfp
+    SUBDIR += py-zbar-py
     SUBDIR += pymorph
     SUBDIR += qcomicbook
+    SUBDIR += qcustomplot-qt5
     SUBDIR += qgis
     SUBDIR += qgis-ltr
     SUBDIR += qiv
@@ -893,10 +902,12 @@
     SUBDIR += qt5-wayland
     SUBDIR += qtawesome
     SUBDIR += qtpbfimageplugin
+    SUBDIR += qtqr
     SUBDIR += quat
     SUBDIR += quat-gui
     SUBDIR += quesa
     SUBDIR += quesoglc
+    SUBDIR += qvge
     SUBDIR += radiance
     SUBDIR += radius-engine
     SUBDIR += rapid-photo-downloader
@@ -982,7 +993,6 @@
     SUBDIR += silgraphite
     SUBDIR += simage
     SUBDIR += simpleviewer
-    SUBDIR += sk1
     SUBDIR += sk1libs
     SUBDIR += skanlite
     SUBDIR += spectacle
@@ -995,6 +1005,7 @@
     SUBDIR += svg2png
     SUBDIR += svgalib
     SUBDIR += svgbob
+    SUBDIR += swappy
     SUBDIR += swfdec
     SUBDIR += swfmill
     SUBDIR += swftools
@@ -1010,6 +1021,7 @@
     SUBDIR += tiff
     SUBDIR += tiffgt
     SUBDIR += tifmerge
+    SUBDIR += tikzit
     SUBDIR += tilecache
     SUBDIR += tiled
     SUBDIR += timeless
@@ -1018,7 +1030,9 @@
     SUBDIR += tinyows
     SUBDIR += tkpng
     SUBDIR += togl
+    SUBDIR += tslib
     SUBDIR += ttygif
+    SUBDIR += ttyplot
     SUBDIR += tumble
     SUBDIR += tweeny
     SUBDIR += ufraw
@@ -1034,6 +1048,7 @@
     SUBDIR += vigra
     SUBDIR += vips
     SUBDIR += visprint
+    SUBDIR += viu
     SUBDIR += vkd3d
     SUBDIR += volpack
     SUBDIR += vp
@@ -1045,7 +1060,9 @@
     SUBDIR += waifu2x-ncnn-vulkan
     SUBDIR += wayland
     SUBDIR += wayland-protocols
+    SUBDIR += wayland-utils
     SUBDIR += waylandpp
+    SUBDIR += wdune
     SUBDIR += webp
     SUBDIR += webp-pixbuf-loader
     SUBDIR += wings

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	godot
-DISTVERSION=	3.2
+DISTVERSION=	3.2.2
 DISTVERSIONSUFFIX=	-stable
 CATEGORIES=	devel games
 
@@ -46,8 +46,9 @@ OPTIONS_GROUP_AUDIO=	ALSA PULSEAUDIO
 AUDIO_DESC=		Audio support
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_MAKE_ARGS=		alsa=True
-# master at 31/1
-EXAMPLES_GH_TUPLE=	godotengine:godot-demo-projects:a5b8cd11d992:DEMOS
+ALSA_MAKE_ARGS_OFF=	alsa=False
+# master at 2/4 tagged for 3.2
+EXAMPLES_GH_TUPLE=	godotengine:godot-demo-projects:57baf0a1b5d1:DEMOS
 EXAMPLES_PORTEXAMPLES=	*
 # mono support doesn't build at present
 MONO_BUILD_DEPENDS=	msbuild:devel/msbuild
@@ -58,6 +59,7 @@ MONO_USES=		gettext-runtime mono:nuget
 NUGET_DEPENDS=		DotNet.Glob=2.1.1
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
 PULSEAUDIO_MAKE_ARGS=	pulseaudio=True
+PULSEAUDIO_MAKE_ARGS_OFF=	pulseaudio=False
 TOOLS_DESC=		Include development tools (IDE)
 TOOLS_MAKE_ARGS=	target=release_debug tools=True
 TOOLS_MAKE_ARGS_OFF=	target=release tools=False

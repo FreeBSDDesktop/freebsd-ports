@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	glpi
-PORTVERSION=	9.4.2
+PORTVERSION=	9.4.5
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/glpi-project/glpi/releases/download/${PORTVERSION}/
@@ -11,6 +11,8 @@ MAINTAINER=	mathias@monnerville.com
 COMMENT=	Free IT and asset management software
 
 LICENSE=	GPLv2
+
+IGNORE_WITH_PHP=	74
 
 USES=		cpe gettext php tar:tgz
 CPE_VENDOR=	glpi-project

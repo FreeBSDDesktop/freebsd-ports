@@ -13,9 +13,7 @@
     SUBDIR += assimp
     SUBDIR += atomicparsley
     SUBDIR += audacious
-    SUBDIR += audacious-gtk3
     SUBDIR += audacious-plugins
-    SUBDIR += audacious-plugins-gtk3
     SUBDIR += avidemux
     SUBDIR += avidemux-cli
     SUBDIR += avidemux-plugins
@@ -34,7 +32,6 @@
     SUBDIR += celluloid
     SUBDIR += cheese
     SUBDIR += chilitags
-    SUBDIR += clipgrab
     SUBDIR += clive
     SUBDIR += clutter-gst
     SUBDIR += clutter-gst3
@@ -43,7 +40,6 @@
     SUBDIR += cx88
     SUBDIR += dav1d
     SUBDIR += deforaos-player
-    SUBDIR += din
     SUBDIR += dirac
     SUBDIR += dragon
     SUBDIR += dtv-scan-tables
@@ -57,6 +53,7 @@
     SUBDIR += dvdid
     SUBDIR += dvdrip
     SUBDIR += dvdstyler
+    SUBDIR += elementary-videos
     SUBDIR += emby-server
     SUBDIR += emovix
     SUBDIR += ffaudioconverter
@@ -75,6 +72,7 @@
     SUBDIR += gaupol
     SUBDIR += gavl
     SUBDIR += gdialog
+    SUBDIR += get_iplayer
     SUBDIR += gmerlin
     SUBDIR += gmimms
     SUBDIR += gmmlib
@@ -215,7 +213,6 @@
     SUBDIR += libquvi09
     SUBDIR += librav1e
     SUBDIR += librtmp
-    SUBDIR += libsmacker
     SUBDIR += libtheora
     SUBDIR += libtuner
     SUBDIR += libuvc
@@ -241,15 +238,14 @@
     SUBDIR += lives
     SUBDIR += livestreamer
     SUBDIR += lsdvd
-    SUBDIR += lxdvdrip
     SUBDIR += m2tstoavi
     SUBDIR += m2vrequantiser
+    SUBDIR += makemkv
     SUBDIR += mediainfo
     SUBDIR += mencoder
     SUBDIR += mimms
     SUBDIR += minitube
     SUBDIR += mjpegtools
-    SUBDIR += mjpg-streamer
     SUBDIR += mkclean
     SUBDIR += mkvalidator
     SUBDIR += mkvtoolnix
@@ -284,8 +280,15 @@
     SUBDIR += naludump
     SUBDIR += nordlicht
     SUBDIR += nostt
+    SUBDIR += obs-audio-spectralizer
+    SUBDIR += obs-ndi
     SUBDIR += obs-qtwebkit
+    SUBDIR += obs-scrab
+    SUBDIR += obs-streamfx
     SUBDIR += obs-studio
+    SUBDIR += obs-transition-matrix
+    SUBDIR += obs-v4l2sink
+    SUBDIR += obs-websocket
     SUBDIR += oggvideotools
     SUBDIR += ogmrip
     SUBDIR += ogmtools
@@ -313,6 +316,7 @@
     SUBDIR += php-pHash
     SUBDIR += pipewire
     SUBDIR += pitivi
+    SUBDIR += playerctl
     SUBDIR += plexmediaserver
     SUBDIR += plexmediaserver-plexpass
     SUBDIR += podcastdl
@@ -327,7 +331,6 @@
     SUBDIR += py-cec
     SUBDIR += py-enzyme
     SUBDIR += py-ffmpeg-python
-    SUBDIR += py-flvlib
     SUBDIR += py-gstreamer
     SUBDIR += py-gstreamer1
     SUBDIR += py-guessit
@@ -381,6 +384,7 @@
     SUBDIR += snappy
     SUBDIR += spigot
     SUBDIR += spook
+    SUBDIR += streamlink
     SUBDIR += subsync
     SUBDIR += subtitlecomposer
     SUBDIR += subtitleoffsetmodifier
@@ -412,7 +416,6 @@
     SUBDIR += vapoursynth-vmaf
     SUBDIR += vcdgear
     SUBDIR += vcdimager
-    SUBDIR += vcdpad
     SUBDIR += vdpauinfo
     SUBDIR += vdr
     SUBDIR += vdr-plugin-control
@@ -442,6 +445,7 @@
     SUBDIR += vmaf
     SUBDIR += vtkmpeg2encode
     SUBDIR += w_scan
+    SUBDIR += w_scan2
     SUBDIR += webcamd
     SUBDIR += webcamoid
     SUBDIR += webvfx-qt5

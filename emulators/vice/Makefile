@@ -34,6 +34,7 @@ USE_XORG=	xpm ice sm xext xv xt x11 xmu xxf86vm
 USE_XORG+=	xrender xinerama xi xrandr xcursor xcomposite xdamage xfixes
 HAS_CONFIGURE=	yes
 MAKE_ENV+=	MAKEINFOFLAGS="--no-split"
+CFLAGS+=	-fcommon
 CONFIGURE_ARGS+=	--enable-ipv6 \
 			--enable-external-ffmpeg \
 			--enable-x64 \
@@ -61,7 +62,7 @@ SDLUI2_DESC=	use SDL2 user interface
 SDLSOUND_DESC=	build with SDL2 sound system support
 
 GTK3UI_CONFIGURE_ENABLE=	native-gtk3ui
-GTK3UI_BUILD_DEPENDS=		${LOCALBASE}/bin/bash:shells/bash
+GTK3UI_BUILD_DEPENDS=		bash:shells/bash
 SDLUI2_USES=			sdl
 SDLUI2_USE=			SDL=sdl2
 SDLUI2_CONFIGURE_ENABLE=	sdlui2

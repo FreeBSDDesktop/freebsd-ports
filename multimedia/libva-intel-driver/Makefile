@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	libva-intel-driver
-DISTVERSION=	2.4.0
+DISTVERSION=	2.4.1
 CATEGORIES=	multimedia
 
 MAINTAINER=	jbeich@FreeBSD.org
-COMMENT=	VAAPI legacy driver for Intel GMA 4500 (Gen4) or newer
+COMMENT=	VAAPI legacy driver for Intel GMA 4500 (Gen4) to UHD 630 (Gen9.5)
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING

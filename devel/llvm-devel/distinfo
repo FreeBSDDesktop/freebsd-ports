@@ -1,3 +1,3 @@
-TIMESTAMP = 1585342199
-SHA256 (llvm-llvm-project-11.0.d20200327-a6dfd827e588aaa0ef221cd29f846dc88ce2877c_GH0.tar.gz) = 025beedfff8afc36904f0c25f7d6d1eccc4de5b7ee595ff752ff054acfa82e70
-SIZE (llvm-llvm-project-11.0.d20200327-a6dfd827e588aaa0ef221cd29f846dc88ce2877c_GH0.tar.gz) = 116462622
+TIMESTAMP = 1597184912
+SHA256 (llvm-llvm-project-12.0.d20200811-30c1633386e7cfb01c0a54b31ccf4c3a3873e71b_GH0.tar.gz) = 0cd17329d0981a86558beaafd2ae982af03fcebc71a659d8c134f39cb3988b3b
+SIZE (llvm-llvm-project-12.0.d20200811-30c1633386e7cfb01c0a54b31ccf4c3a3873e71b_GH0.tar.gz) = 123938327

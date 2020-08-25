@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	conky
-PORTVERSION=	1.11.5
+PORTVERSION=	1.11.6
 DISTVERSIONPREFIX=	v
-PORTREVISION=	2
 CATEGORIES=	sysutils
 
 MAINTAINER=	madpilot@FreeBSD.org
@@ -13,7 +12,8 @@ COMMENT?=	Advanced, highly configurable system monitor for X11
 LIB_DEPENDS=	libinotify.so:devel/libinotify
 BUILD_DEPENDS=	db2x_xsltproc:textproc/docbook2X \
 		docbook-xsl>=0:textproc/docbook-xsl \
-		xsltproc:textproc/libxslt
+		xsltproc:textproc/libxslt \
+		gsed:textproc/gsed
 
 USES=		cpe cmake:noninja compiler:c++11-lib gettext-runtime iconv \
 		localbase lua:52 pkgconfig tar:bzip2
@@ -23,7 +23,8 @@ CMAKE_ARGS=	-DBUILD_PORT_MONITORS:BOOL=false \
 		-DBUILD_HDDTEMP:BOOL=false \
 		-DBUILD_IOSTATS:BOOL=false \
 		-DBUILD_AUDACIOUS:BOOL=false \
-		-DBUILD_DOCS:BOOL=true
+		-DBUILD_DOCS:BOOL=true \
+		-DAPP_SED=${LOCALBASE}/bin/gsed
 CONFLICTS?=	conky-awesome-[0-9]*
 
 SLAVEDIRS=	sysutils/conky-awesome

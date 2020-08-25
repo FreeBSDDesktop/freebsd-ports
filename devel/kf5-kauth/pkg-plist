@@ -37,6 +37,7 @@ share/kf5/kauth/dbus_service.stub
 share/locale/af/LC_MESSAGES/kauth5_qt.qm
 share/locale/ar/LC_MESSAGES/kauth5_qt.qm
 share/locale/as/LC_MESSAGES/kauth5_qt.qm
+share/locale/az/LC_MESSAGES/kauth5_qt.qm
 share/locale/be/LC_MESSAGES/kauth5_qt.qm
 share/locale/be@latin/LC_MESSAGES/kauth5_qt.qm
 share/locale/bg/LC_MESSAGES/kauth5_qt.qm
@@ -134,3 +135,4 @@ share/locale/zh_CN/LC_MESSAGES/kauth5_qt.qm
 share/locale/zh_HK/LC_MESSAGES/kauth5_qt.qm
 share/locale/zh_TW/LC_MESSAGES/kauth5_qt.qm
 share/qlogging-categories5/kauth.categories
+share/qlogging-categories5/kauth.renamecategories

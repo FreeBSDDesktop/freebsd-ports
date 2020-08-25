@@ -1,3 +1,3 @@
-TIMESTAMP = 1583439142
-SHA256 (KDE/applications/19.12.3/akonadi-contacts-19.12.3.tar.xz) = b0baed9edb8c05b6d9b8db84239cd83a334d8f1d14d4aa8027dc1139a543eadf
-SIZE (KDE/applications/19.12.3/akonadi-contacts-19.12.3.tar.xz) = 393204
+TIMESTAMP = 1596814248
+SHA256 (KDE/release-service/20.08.0/akonadi-contacts-20.08.0.tar.xz) = 206f0704768a789201ead784e78d7138aba6b50b8f3880369df8799730fca8b4
+SIZE (KDE/release-service/20.08.0/akonadi-contacts-20.08.0.tar.xz) = 403448

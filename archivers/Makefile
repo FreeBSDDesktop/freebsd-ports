@@ -71,7 +71,7 @@
     SUBDIR += lizard
     SUBDIR += lrzip
     SUBDIR += lua-lzlib
-    SUBDIR += lua51-zlib
+    SUBDIR += lua-zlib
     SUBDIR += lzfse
     SUBDIR += lzip
     SUBDIR += lziprecover
@@ -168,14 +168,11 @@
     SUBDIR += ppunpack
     SUBDIR += pxz
     SUBDIR += py-acefile
-    SUBDIR += py-backports.lzma
     SUBDIR += py-borgbackup
     SUBDIR += py-brotli
     SUBDIR += py-brotlipy
-    SUBDIR += py-bup
     SUBDIR += py-bz2file
     SUBDIR += py-libarchive-c
-    SUBDIR += py-librtfcomp
     SUBDIR += py-lz4
     SUBDIR += py-lzma
     SUBDIR += py-lzstring
@@ -220,6 +217,7 @@
     SUBDIR += star
     SUBDIR += stuffit
     SUBDIR += szip
+    SUBDIR += tar-stream-chunker
     SUBDIR += tardy
     SUBDIR += thunar-archive-plugin
     SUBDIR += torrentzip

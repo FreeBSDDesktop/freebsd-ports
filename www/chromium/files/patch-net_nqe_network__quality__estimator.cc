@@ -1,6 +1,6 @@
---- net/nqe/network_quality_estimator.cc.orig	2019-09-09 21:55:22 UTC
+--- net/nqe/network_quality_estimator.cc.orig	2020-07-07 21:57:40 UTC
 +++ net/nqe/network_quality_estimator.cc
-@@ -101,7 +101,7 @@ nqe::internal::NetworkID DoGetCurrentNetworkID() {
+@@ -105,7 +105,7 @@ nqe::internal::NetworkID DoGetCurrentNetworkID(
        case NetworkChangeNotifier::ConnectionType::CONNECTION_ETHERNET:
          break;
        case NetworkChangeNotifier::ConnectionType::CONNECTION_WIFI:

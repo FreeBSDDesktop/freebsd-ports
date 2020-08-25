@@ -4,7 +4,7 @@
 PORTNAME?=	xmms2
 PORTVERSION=	0.8
 DISTVERSIONSUFFIX=	DrO_o
-PORTREVISION?=	33
+PORTREVISION?=	34
 CATEGORIES?=	audio
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}%20${DISTVERSIONSUFFIX}
 
@@ -34,7 +34,7 @@ OPTIONS_DEFINE=	AIRPLAY AO APE AVCODEC CDDA CURL ET FAAD FAM FLAC \
 		SNDFILE SPEEX TREMOR VISUAL VOCODER VORBIS WAVPACK XML
 OPTIONS_SINGLE=	MDNS
 OPTIONS_SINGLE_MDNS=	MDNS_APPLE MDNS_AVAHI
-OPTIONS_DEFAULT=	CURL FAAD FLAC MPG123 MDNS MDNS_APPLE VORBIS
+OPTIONS_DEFAULT=	CURL FAAD FLAC MPG123 MDNS MDNS_AVAHI VORBIS
 
 AIRPLAY_DESC=	Support output via Airport Express
 AVCODEC_DESC=	Avcodevc playback support
@@ -199,12 +199,6 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src-clients-vistest-wscript
 
 .endif # !XMMS2_SLAVE
 
-.include <bsd.port.pre.mk>
-
-.if defined(XMMS2_SLAVE) && ${XMMS2_SLAVE} == perl && ${PERL_LEVEL} >= 503100
-BUILD_DEPENDS+=  p5-Pod-Parser>=0:textproc/p5-Pod-Parser
-.endif
-
 # Force to nothing to avoid bsd.openssl.mk adding definitions
 # to it when AIRPLAY option is active, waf does not understand it anyway.
 MAKE_ARGS=
@@ -227,4 +221,4 @@ post-install:
 	${FIND} ${STAGEDIR}${PREFIX}/lib -name '*.so*' | ${XARGS} ${STRIP_CMD} 
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

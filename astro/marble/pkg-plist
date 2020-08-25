@@ -300,7 +300,9 @@ share/locale/cs/LC_MESSAGES/plasma_runner_marble.mo
 share/locale/cs/LC_MESSAGES/plasma_wallpaper_org.kde.plasma.worldmap.mo
 share/locale/da/LC_MESSAGES/marble.mo
 share/locale/da/LC_MESSAGES/marble_qt.qm
+share/locale/da/LC_MESSAGES/plasma_applet_org.kde.plasma.worldclock.mo
 share/locale/da/LC_MESSAGES/plasma_runner_marble.mo
+share/locale/da/LC_MESSAGES/plasma_wallpaper_org.kde.plasma.worldmap.mo
 share/locale/de/LC_MESSAGES/marble.mo
 share/locale/de/LC_MESSAGES/marble_qt.qm
 share/locale/de/LC_MESSAGES/plasma_applet_org.kde.plasma.worldclock.mo
@@ -379,8 +381,8 @@ share/locale/ko/LC_MESSAGES/plasma_runner_marble.mo
 share/locale/lt/LC_MESSAGES/marble.mo
 share/locale/lt/LC_MESSAGES/marble_qt.qm
 share/locale/lt/LC_MESSAGES/plasma_applet_org.kde.plasma.worldclock.mo
-share/locale/lt/LC_MESSAGES/plasma_wallpaper_org.kde.plasma.worldmap.mo
 share/locale/lt/LC_MESSAGES/plasma_runner_marble.mo
+share/locale/lt/LC_MESSAGES/plasma_wallpaper_org.kde.plasma.worldmap.mo
 share/locale/lv/LC_MESSAGES/marble.mo
 share/locale/lv/LC_MESSAGES/marble_qt.qm
 share/locale/lv/LC_MESSAGES/plasma_runner_marble.mo

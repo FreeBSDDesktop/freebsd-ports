@@ -1,3 +1,3 @@
-TIMESTAMP = 1583439216
-SHA256 (KDE/applications/19.12.3/konqueror-19.12.3.tar.xz) = 0f2b31a1dae1740839232bd646bf22d7cb57e34995584b9a96271ebcb0da7f0e
-SIZE (KDE/applications/19.12.3/konqueror-19.12.3.tar.xz) = 7369676
+TIMESTAMP = 1596814299
+SHA256 (KDE/release-service/20.08.0/konqueror-20.08.0.tar.xz) = 4db172cff4bd3fd06ee1905dcf87013059e02902808e77acfc4bf2734d6ff73f
+SIZE (KDE/release-service/20.08.0/konqueror-20.08.0.tar.xz) = 7172800

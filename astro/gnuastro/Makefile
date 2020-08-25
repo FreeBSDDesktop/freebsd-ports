@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	gnuastro
-PORTVERSION=	0.11
+PORTVERSION=	0.12
+PORTREVISION=	1
 CATEGORIES=	astro
 MASTER_SITES=	GNU
 
@@ -27,6 +28,10 @@ INFO=		${PORTNAME}
 PORTDOCS=	AUTHORS ChangeLog NEWS README THANKS
 
 OPTIONS_DEFINE=	DOCS
+
+post-patch:
+	@${REINPLACE_CMD} -e 's,cflags_add="-O3",:,' \
+		${WRKSRC}/configure
 
 post-install:
 	@${FIND} ${STAGEDIR}${PREFIX}/etc -name \*.conf \

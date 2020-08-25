@@ -6,18 +6,21 @@ PORTVERSION=	0.4.10.4
 PORTREVISION=	8
 CATEGORIES=	games
 
-MAINTAINER=	amdmi3@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Open source sandbox game inspired by Minecraft
 
 LICENSE=	LGPL21+ GPLv3+ # source mentions GPLv3+, LICENSE.txt LGPL21+
 LICENSE_COMB=	multi
 LICENSE_FILE_GPLv3+ =	${WRKSRC}/COPYING # don't remove space
 
+BROKEN_armv7=			fails to configure: Looking for include file endian.h - not found
+BROKEN_FreeBSD_12_powerpc64=	fails to compile: freeminer-0.4.10.4/src/util/lock.h:200:31: error: cannot convert 'const shared_map<Key, T, Compare, Allocator>*' to 'locker*
+
 LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 
 USE_GITHUB=	yes
 
-USES=		compiler:c++11-lib cmake
+USES=		compiler:c++11-lib cmake localbase:ldflags
 CMAKE_ARGS=	-DCUSTOM_MANDIR="${PREFIX}/man" \
 		-DCUSTOM_EXAMPLE_CONF_DIR="${PREFIX}/etc" \
 		-DRUN_IN_PLACE=0

@@ -6,7 +6,7 @@
 
 PORTNAME=	lsof
 DISTVERSION=	4.93.2
-PORTREVISION=	10
+PORTREVISION=	12
 PORTEPOCH=	8
 CATEGORIES=	sysutils
 
@@ -33,6 +33,7 @@ AIM_CFLAGS=	-DAIM
 BOOKE_DESC=	Set for BOOKE hardware
 BOOKE_CFLAGS=	-DBOOKE
 
+CFLAGS+=	-fcommon
 CFLAGS_powerpc=	-DAIM
 CFLAGS_powerpcspe=	-DBOOKE
 
@@ -56,7 +57,7 @@ IGNORE+=		requires kernel sources
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/lsof ${STAGEDIR}${PREFIX}/sbin
-	(cd ${WRKSRC} && ${SED} 's/\\$$/\\DUMMY/' Lsof.8 | mandoc -T man | ${SED} 's/DUMMY$$//' > ${WRKSRC}/lsof.8)
+	(cd ${WRKSRC} && /usr/bin/soelim Lsof.8 > ${WRKSRC}/lsof.8)
 	${INSTALL_MAN} ${WRKSRC}/lsof.8 ${STAGEDIR}${MAN8PREFIX}/man/man8/lsof.8
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/lsof
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/* ${STAGEDIR}${PREFIX}/share/lsof

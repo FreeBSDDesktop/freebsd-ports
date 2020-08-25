@@ -27,6 +27,10 @@ lib/mysql/libmysqlrouter.so
 lib/mysql/libmysqlrouter.so.1
 lib/mysql/libmysqlrouter_http.so
 lib/mysql/libmysqlrouter_http.so.1
+lib/mysql/libmysqlrouter_http_auth_backend.so
+lib/mysql/libmysqlrouter_http_auth_backend.so.1
+lib/mysql/libmysqlrouter_http_auth_realm.so
+lib/mysql/libmysqlrouter_http_auth_realm.so.1
 lib/mysql/mysqlrouter/http_auth_backend.so
 lib/mysql/mysqlrouter/http_auth_realm.so
 lib/mysql/mysqlrouter/http_server.so
@@ -37,6 +41,7 @@ lib/mysql/mysqlrouter/rest_api.so
 lib/mysql/mysqlrouter/rest_metadata_cache.so
 lib/mysql/mysqlrouter/rest_router.so
 lib/mysql/mysqlrouter/rest_routing.so
+lib/mysql/mysqlrouter/router_protobuf.so
 lib/mysql/mysqlrouter/routing.so
 lib/mysql/plugin/adt_null.so
 lib/mysql/plugin/auth.so
@@ -55,6 +60,7 @@ lib/mysql/plugin/component_pfs_example.so
 lib/mysql/plugin/component_pfs_example_component_population.so
 lib/mysql/plugin/component_test_audit_api_message.so
 lib/mysql/plugin/component_test_backup_lock_service.so
+lib/mysql/plugin/component_test_component_deinit.so
 lib/mysql/plugin/component_test_host_application_signal.so
 lib/mysql/plugin/component_test_mysql_current_thread_reader.so
 lib/mysql/plugin/component_test_mysql_runtime_error.so

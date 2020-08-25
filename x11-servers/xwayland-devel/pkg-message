@@ -1,13 +1,16 @@
 [
 { type: install
   message: <<EOM
-For hardware acceleration DRI3 needs to be enabled e.g.,
+Known issues:
+- When /dev/dri/card0 and /dev/dri/renderD128 have different major(3)
+  DRI3 may fail e.g., on i915kms in I915_GETPARAM with EACCESS.
+  Without DRI3 for glamor Xwayland falls back to swrast (llvmpipe).
+  If OpenGL applications appear slow check with glxinfo then try
+  enabling setuid bit e.g.,
 
-For sh/bash/ksh/zsh run and (optionally) add into ~/.profile:
-  export LIBGL_DRI3_ENABLE=1
-
-For csh/tcsh run and (optionally) add into ~/.login:
-  setenv LIBGL_DRI3_ENABLE 1
+    $ glxinfo | fgrep Device:
+        Device: llvmpipe (LLVM 8.0, 256 bits) (0xffffffff)
+    $ chmod u+s `which Xwayland`
 EOM
 }
 ]

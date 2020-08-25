@@ -14,14 +14,18 @@ COMMENT=	Fork of TimberWolf, a placement tool in VLSI design
 
 LICENSE=	GPLv2
 
+BROKEN_aarch64=	Fails to link: missing sbrk
+
 LIB_DEPENDS=	libgsl.so:math/gsl
 
-USES=		cmake pkgconfig xorg
+USES=		cmake compiler:c11 pkgconfig xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	rubund
 USE_XORG=	ice sm x11 xext
 USE_LDCONFIG=	yes
 
 USE_GCC=	any # lots of obviously incorrect C where clang fails, which gcc nevertheless magically finds a way to compile
+
+CFLAGS+=	-fcommon
 
 .include <bsd.port.mk>

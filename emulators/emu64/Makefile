@@ -3,6 +3,7 @@
 
 PORTNAME=	emu64
 PORTVERSION=	5.0.18
+PORTREVISION=	1
 CATEGORIES=	emulators
 
 MAINTAINER=	felix@palmen-it.de
@@ -15,10 +16,12 @@ LIB_DEPENDS=	libquazip5.so:archivers/quazip \
 		libpng.so:graphics/png \
 		libavcodec.so:multimedia/ffmpeg
 
-USES=		compiler:c++11-lang desktop-file-utils gl pkgconfig \
+USES=		compiler:c++11-lang desktop-file-utils dos2unix gl pkgconfig \
 		qmake:outsource qt:5 sdl
 USE_GL=		gl glu
 USE_QT=		core gui widgets buildtools_build linguisttools_build
+
+DOS2UNIX_FILES=	src/c64_class.cpp
 
 USE_SDL=	sdl2 image2
 USE_GITHUB=	yes

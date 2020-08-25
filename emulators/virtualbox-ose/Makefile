@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	virtualbox-ose
-PORTVERSION=	5.2.34
-PORTREVISION=	2
+PORTVERSION=	5.2.44
+PORTREVISION=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.oracle.com/virtualbox/${PORTVERSION}/
 DISTFILES=	VirtualBox-${PORTVERSION}${EXTRACT_SUFX} ${GUESTADDITIONS}
@@ -30,13 +30,8 @@ CPE_PRODUCT=	vm_virtualbox
 
 WRKSRC=		${WRKDIR}/VirtualBox-${PORTVERSION}
 ONLY_FOR_ARCHS=	i386 amd64
-USES=		cpe gnome iconv pkgconfig ssl tar:bzip2
+USES=		compiler:c++14-lang cpe gnome iconv pkgconfig ssl tar:bzip2
 USE_GNOME=	libidl libxml2
-# machine/atomic.h may use features that are only available in GCC9.  This is
-# a workaround, anyways- we should be expressing USES= compiler:c++14-lang, but
-# contemporary clang miscompiles virtualbox in some fashion and yields runtime
-# breakage.
-USE_GCC=	any
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-java --passive-mesa
@@ -146,12 +141,12 @@ USE_TEX=	dvipsk:build formats:build
 .endif
 
 .if ${PORT_OPTIONS:MPYTHON}
-USES+=		python:2.7
+USES+=		python
 USE_PYTHON=	distutils noegginfo noflavors
 PYDISTUTILS_PKGNAME=	vboxapi
 PYDISTUTILS_PKGVERSION=	1.0
 .else
-USES+=		python:2.7,build
+USES+=		python:build
 .endif
 
 .if ${PORT_OPTIONS:MQT5}
@@ -279,9 +274,13 @@ post-patch:
 	    ${WRKSRC}/LocalConfig.kmk
 	@${ECHO_CMD} 'VBOX_GCC_PEDANTIC_CXX = -Wshadow $$(VBOX_GCC_WARN) -Wno-long-long' >> \
 	    ${WRKSRC}/LocalConfig.kmk
+	@${REINPLACE_CMD} -E -e '/soap_socket_errno\(/s/(soap_socket_errno)(\([^)]+\))/\1/' \
+		${WRKSRC}/src/VBox/Main/webservice/vboxweb.cpp
 .endif
 	@${REINPLACE_CMD} -e 's| -finline-limit=8000||' \
-	    -e 's| -mpreferred-stack-boundary=2||' ${WRKSRC}/Config.kmk
+	    -e 's| -mpreferred-stack-boundary=2||' \
+	    -e 's|%%PYTHON_VERSION%%|${PYTHON_VERSION}|' \
+		${WRKSRC}/Config.kmk
 	@${REINPLACE_CMD} -e 's| -fpermissive||' ${WRKSRC}/Config.kmk \
 	    ${WRKSRC}/src/VBox/Main/webservice/Makefile.kmk
 	@${ECHO_CMD} 'TOOL_VBoxGccFreeBSD_LD = ${CXX}' >> ${WRKSRC}/LocalConfig.kmk
@@ -401,5 +400,9 @@ do-install:
 	${INSTALL_DATA} ${KMK_BUILDDIR}/obj/webservice/vboxweb.wsdl \
 	    ${STAGEDIR}${DATADIR}/sdk/bindings/webservice/
 .endif
+
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/virtualbox/*.so \
+		${STAGEDIR}${PREFIX}/lib/virtualbox/components/*.so
 
 .include <bsd.port.post.mk>

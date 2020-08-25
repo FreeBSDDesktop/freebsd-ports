@@ -3,7 +3,7 @@
 
 PORTNAME=	octave-forge-ltfat
 PORTVERSION=	2.3.1
-PORTREVISION=	7
+PORTREVISION=	8
 PORTEPOCH=	1
 CATEGORIES=	math
 
@@ -12,6 +12,8 @@ COMMENT=	Octave-forge package ${OCTAVE_PKGNAME}
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKDIR}/${OCTSRC}/COPYING
+
+BROKEN_FreeBSD_12_powerpc64=	fails to compile: modules/libltfat/src/dgt_multi.c:47:31: 'cexpl' undeclared (first use in this function); did you mean 'cexpf'?
 
 LIB_DEPENDS=	libfftw3.so:math/fftw3 \
 		libportaudio.so:audio/portaudio \

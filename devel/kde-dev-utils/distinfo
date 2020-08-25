@@ -1,3 +1,3 @@
-TIMESTAMP = 1583438957
-SHA256 (KDE/applications/19.12.3/kde-dev-utils-19.12.3.tar.xz) = 772ec425865082b8be3650cf0af10ad943f38096036227cab22405b32c4e1fae
-SIZE (KDE/applications/19.12.3/kde-dev-utils-19.12.3.tar.xz) = 64448
+TIMESTAMP = 1596814114
+SHA256 (KDE/release-service/20.08.0/kde-dev-utils-20.08.0.tar.xz) = 7998afa4ac1b293eb3ba8f48ea77cd0bc22d2c2eda84e291d8c9cf2a5e719547
+SIZE (KDE/release-service/20.08.0/kde-dev-utils-20.08.0.tar.xz) = 64876

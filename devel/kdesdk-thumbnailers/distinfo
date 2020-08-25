@@ -1,3 +1,3 @@
-TIMESTAMP = 1583438959
-SHA256 (KDE/applications/19.12.3/kdesdk-thumbnailers-19.12.3.tar.xz) = b304843045f93e91e0aeeeacf968018dc192ea71ed9977be3d9cfc4e149edcde
-SIZE (KDE/applications/19.12.3/kdesdk-thumbnailers-19.12.3.tar.xz) = 17364
+TIMESTAMP = 1596814115
+SHA256 (KDE/release-service/20.08.0/kdesdk-thumbnailers-20.08.0.tar.xz) = 8f2adb38ca24b82119eb52ef879f5fd6a5d48b9c012956a518cefefd86fbd6d3
+SIZE (KDE/release-service/20.08.0/kdesdk-thumbnailers-20.08.0.tar.xz) = 17524

@@ -2,14 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	xcffib
-PORTVERSION=	0.8.0
-PORTREVISION=	1
+PORTVERSION=	0.9.0
 CATEGORIES=	x11 python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	ericbsd@FreeBSD.org
-COMMENT=	Xcffib is a replacement for xpyb, also is a XCB python binding
+COMMENT=	Replacement for xpyb and XCB Python bindings
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE

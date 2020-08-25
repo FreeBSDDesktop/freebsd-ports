@@ -1,3 +1,3 @@
-TIMESTAMP = 1583439188
-SHA256 (KDE/applications/19.12.3/kgpg-19.12.3.tar.xz) = 53e5726a1ccf34a70090ac0bbf2effb6f1f9f9b3d0164a5beead982a24c97e38
-SIZE (KDE/applications/19.12.3/kgpg-19.12.3.tar.xz) = 2789548
+TIMESTAMP = 1596814278
+SHA256 (KDE/release-service/20.08.0/kgpg-20.08.0.tar.xz) = 102cc0d44b7621ebad1d5914bbb44a598689ebb95093e4a76713679996c2af0c
+SIZE (KDE/release-service/20.08.0/kgpg-20.08.0.tar.xz) = 2883732

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	metasploit
-PORTVERSION=	5.0.79
+PORTVERSION=	6.0.0
 CATEGORIES=	security
 
 MAINTAINER=	tanawts@gmail.com
@@ -13,10 +13,11 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	nmap:security/nmap \
 		${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR} \
-		rubygem-activerecord4>=4.2.6:databases/rubygem-activerecord4 \
-		rubygem-activesupport4>=4.2.6:devel/rubygem-activesupport4 \
-		rubygem-actionpack4>=4.2.6:www/rubygem-actionpack4 \
+		rubygem-activerecord52>=5.2.2:databases/rubygem-activerecord52 \
+		rubygem-activesupport52>=5.2.2:devel/rubygem-activesupport52 \
+		rubygem-actionpack52>=5.2.2:www/rubygem-actionpack52 \
 		rubygem-bcrypt>=0:security/rubygem-bcrypt \
+		rubygem-bson>=0:devel/rubygem-bson \
 		rubygem-bundler>=0:sysutils/rubygem-bundler \
 		rubygem-jsobfu>=0:www/rubygem-jsobfu \
 		rubygem-json>=0:devel/rubygem-json \
@@ -24,26 +25,26 @@ RUN_DEPENDS=	nmap:security/nmap \
 		rubygem-metasploit-aggregator>=0:security/rubygem-metasploit-aggregator \
 		rubygem-metasploit-concern>=0:security/rubygem-metasploit-concern \
 		rubygem-metasploit-credential>=0:security/rubygem-metasploit-credential \
-		rubygem-metasploit_data_models>=3.0.10_2:security/rubygem-metasploit_data_models \
+		rubygem-metasploit_data_models>=0:security/rubygem-metasploit_data_models \
 		rubygem-metasploit-model>=0:security/rubygem-metasploit-model \
-		rubygem-metasploit-payloads>=1.3.85:security/rubygem-metasploit-payloads \
-		rubygem-metasploit_payloads-mettle>=0.5.19:security/rubygem-metasploit_payloads-mettle \
+		rubygem-metasploit-payloads>=2.0.10:security/rubygem-metasploit-payloads \
+		rubygem-metasploit_payloads-mettle>=1.0.2:security/rubygem-metasploit_payloads-mettle \
 		rubygem-msgpack>=0:devel/rubygem-msgpack \
 		rubygem-network_interface>=0:net/rubygem-network_interface \
 		rubygem-rubyntlm>=0:net/rubygem-rubyntlm \
 		rubygem-nokogiri>=0:textproc/rubygem-nokogiri \
 		rubygem-packetfu>=0:net/rubygem-packetfu \
 		rubygem-pcaprub>=0:net/rubygem-pcaprub \
-		rubygem-pg0>=0:databases/rubygem-pg0 \
-		rubygem-railties4>=4.2.6:www/rubygem-railties4 \
+		rubygem-pg>=0:databases/rubygem-pg \
+		rubygem-railties52>=5.2.2:www/rubygem-railties52 \
 		rubygem-recog>=0:security/rubygem-recog \
 		rubygem-openssl-ccm>=0:security/rubygem-openssl-ccm \
 		rubygem-octokit>=0:net/rubygem-octokit \
 		rubygem-redcarpet>=0:textproc/rubygem-redcarpet \
 		rubygem-patch_finder>=0:devel/rubygem-patch_finder \
 		rubygem-thin>=0:www/rubygem-thin \
-		rubygem-sinatra1>=0:www/rubygem-sinatra1 \
-		rubygem-warden127>=0:devel/rubygem-warden127 \
+		rubygem-sinatra>=0:www/rubygem-sinatra \
+		rubygem-warden>=0:devel/rubygem-warden \
 		rubygem-em-http-request>=0:www/rubygem-em-http-request \
 		rubygem-tzinfo-data>=0:devel/rubygem-tzinfo-data \
 		rubygem-sshkey>=0:security/rubygem-sshkey \
@@ -54,6 +55,7 @@ RUN_DEPENDS=	nmap:security/nmap \
 		rubygem-ruby-macho>=0:devel/rubygem-ruby-macho \
 		rubygem-dnsruby>=0:dns/rubygem-dnsruby \
 		rubygem-mqtt>=0:net/rubygem-mqtt \
+		rubygem-net-ldap>=0:net/rubygem-net-ldap \
 		rubygem-net-ssh>=0:security/rubygem-net-ssh \
 		rubygem-ed25519>=0:security/rubygem-ed25519 \
 		rubygem-bcrypt_pbkdf>=0:security/rubygem-bcrypt_pbkdf \
@@ -87,21 +89,12 @@ RUN_DEPENDS=	nmap:security/nmap \
 		rubygem-faker>=0:devel/rubygem-faker \
 		rubygem-concurrent-ruby>=0:devel/rubygem-concurrent-ruby \
 		rubygem-hrr_rb_ssh>=0:security/rubygem-hrr_rb_ssh \
+		rubygem-irb>=0:devel/rubygem-irb \
 		rubygem-aws-sdk-s3>=0:devel/rubygem-aws-sdk-s3 \
 		rubygem-aws-sdk-ec2>=0:devel/rubygem-aws-sdk-ec2 \
 		rubygem-aws-sdk-iam>=0:devel/rubygem-aws-sdk-iam \
 		rubygem-faye-websocket>=0:www/rubygem-faye-websocket \
 		rubygem-eventmachine>=0:devel/rubygem-eventmachine
-
-SCRIPTS=	msfconsole msfd msfdb msfrpc msfrpcd msfvenom
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	rapid7
-GH_PROJECT=	metasploit-framework
-
-NO_ARCH=	yes
-NO_ARCH_IGNORE=	template_x64_bsd.bin template_x86_bsd.bin CVE-2013-2171.bin
-STRIP=
 
 USES=		python shebangfix
 USE_RUBY=	yes
@@ -120,6 +113,7 @@ SHEBANG_FILES=	data/exploits/CVE-2017-17562/build.sh \
 		external/source/metsvc/test.rb \
 		docker/bin/msfvenom \
 		docker/bin/msfconsole \
+		modules/auxiliary/admin/http/grafana_auth_bypass.py \
 		modules/auxiliary/admin/teradata/teradata_odbc_sql.py \
 		modules/auxiliary/dos/http/slowloris.py \
 		modules/auxiliary/dos/tcp/claymore_dos.py \
@@ -139,14 +133,19 @@ SHEBANG_FILES=	data/exploits/CVE-2017-17562/build.sh \
 		tools/hardware/killerbee_msfrelay.py \
 		tools/modules/aws-aggregator-userdata.sh
 
+USE_GITHUB=	yes
+GH_ACCOUNT=	rapid7
+GH_PROJECT=	metasploit-framework
+
+NO_ARCH=	yes
+NO_ARCH_IGNORE=	template_x64_bsd.bin template_x86_bsd.bin CVE-2013-2171.bin
+STRIP=
+
 post-patch:
 	${REINPLACE_CMD} 's,git ls-files,find . ! -type d | sed "s|^./||", ; \
 		/rb-readline/d' \
 		${WRKSRC}/metasploit-framework.gemspec
-	${REINPLACE_CMD} "/pg/s|, '~> 0.20'||; \
-		/concurrent-ruby/s|,'1.0.5'||; \
-		/faraday/s|, '<= 0.17.0'||; \
-		/bcrypt/s|, '3.1.12'||" ${WRKSRC}/metasploit-framework.gemspec
+	${REINPLACE_CMD} "/concurrent-ruby/s|,'1.0.5'||" ${WRKSRC}/metasploit-framework.gemspec
 
 do-build:
 	${RM} ${WRKSRC}/Gemfile.lock
@@ -157,7 +156,7 @@ do-build:
 do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 	cd ${WRKSRC} && ${PAX} -rw . ${STAGEDIR}${DATADIR}
-.for f in ${SCRIPTS}
+.for f in msfconsole msfd msfdb msfrpc msfrpcd msfvenom
 	${RLN} ${STAGEDIR}${DATADIR}/${f} ${STAGEDIR}${PREFIX}/bin/${f}
 .endfor
 

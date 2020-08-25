@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	yt
-DISTVERSION=	3.5.1
-PORTREVISION=	1
+DISTVERSION=	3.6.0
 CATEGORIES=	math astro python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sympy>=1.0:math/py-sympy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>=1.5.3:math/py-matplotlib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}ipython5>=1.0:devel/ipython5@${PY_FLAVOR}
 
-USES=		dos2unix localbase python
+USES=		dos2unix localbase python:3.5+
 USE_PYTHON=	distutils cython autoplist concurrent
 
 OPTIONS_DEFINE=	EMBREE

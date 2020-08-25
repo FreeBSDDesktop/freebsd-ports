@@ -1,6 +1,6 @@
---- chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc.orig	2020-03-03 18:53:52 UTC
+--- chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc.orig	2020-07-07 21:58:14 UTC
 +++ chrome/browser/ui/webui/chrome_web_ui_controller_factory.cc
-@@ -215,11 +215,11 @@
+@@ -228,11 +228,11 @@
  #include "chrome/browser/ui/webui/conflicts/conflicts_ui.h"
  #endif
  
@@ -14,7 +14,7 @@
  #include "chrome/browser/ui/webui/sandbox/sandbox_internals_ui.h"
  #endif
  
-@@ -328,7 +328,7 @@ bool IsAboutUI(const GURL& url) {
+@@ -376,7 +376,7 @@ bool IsAboutUI(const GURL& url) {
  #if !defined(OS_ANDROID)
            || url.host_piece() == chrome::kChromeUITermsHost
  #endif
@@ -23,7 +23,7 @@
            || url.host_piece() == chrome::kChromeUILinuxProxyConfigHost
  #endif
  #if defined(OS_CHROMEOS)
-@@ -658,7 +658,7 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* we
+@@ -725,7 +725,7 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* we
    if (url.host_piece() == chrome::kChromeUINaClHost)
      return &NewWebUI<NaClUI>;
  #endif
@@ -32,8 +32,8 @@
    if (url.host_piece() == chrome::kChromeUITabModalConfirmDialogHost)
      return &NewWebUI<ConstrainedWebDialogUI>;
  #endif
-@@ -706,17 +706,17 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* we
-     return &NewWebUI<CastUI>;
+@@ -773,17 +773,17 @@ WebUIFactoryFunction GetWebUIFactoryFunction(WebUI* we
+     return &NewWebUI<media_router::MediaRouterInternalsUI>;
    }
  #endif
 -#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_ANDROID)

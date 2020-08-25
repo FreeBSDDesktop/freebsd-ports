@@ -1,11 +1,11 @@
---- cmake/FindPyQt5.py.orig	2019-01-02 08:42:18 UTC
+--- cmake/FindPyQt5.py.orig	2020-08-20 07:52:34 UTC
 +++ cmake/FindPyQt5.py
-@@ -54,7 +54,7 @@ except ImportError:
-         'pyqt_version_str': PyQt5.QtCore.PYQT_VERSION_STR,
-         'pyqt_sip_flags': PyQt5.QtCore.PYQT_CONFIGURATION['sip_flags'],
-         'pyqt_mod_dir': os.path.join(cfg.default_mod_dir, "PyQt5"),
--        'pyqt_sip_dir': sip_dir,
-+        'pyqt_sip_dir': sip_dir.replace('PyQtsip', 'PyQt5'),
-         'pyqt_bin_dir': cfg.default_bin_dir,
+@@ -61,7 +61,7 @@ else:  # Code for SIP v5
+     import shutil
+     cfg = {
+         'pyqt_mod_dir': os.path.dirname(PyQt5.__file__),
+-        'pyqt_sip_dir': os.path.join(get_python_lib(plat_specific=1), "PyQt5", "bindings"),
++        'pyqt_sip_dir': "%%PYQT_SIPDIR%%",
+         'pyqt_bin_dir': os.path.dirname(shutil.which("pyuic5")),
      }
-     pyqtcfg = sipconfig.Configuration([cfg])
+ 

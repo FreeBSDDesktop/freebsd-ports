@@ -1,7 +1,7 @@
---- media/mojo/clients/mojo_video_encode_accelerator.cc.orig	2020-03-03 18:53:55 UTC
+--- media/mojo/clients/mojo_video_encode_accelerator.cc.orig	2020-05-13 18:39:45 UTC
 +++ media/mojo/clients/mojo_video_encode_accelerator.cc
-@@ -125,7 +125,7 @@ void MojoVideoEncodeAccelerator::Encode(scoped_refptr<
-             frame->layout().num_planes());
+@@ -132,7 +132,7 @@ void MojoVideoEncodeAccelerator::Encode(scoped_refptr<
+   DCHECK_EQ(num_planes, frame->layout().num_planes());
    DCHECK(vea_.is_bound());
  
 -#if defined(OS_LINUX)

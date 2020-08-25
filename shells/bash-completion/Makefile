@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	bash-completion
-PORTVERSION=	2.10
+PORTVERSION=	2.11
 PORTEPOCH=	2
 CATEGORIES=	shells
 
@@ -11,11 +11,19 @@ COMMENT=	Programmable completion library for Bash
 
 LICENSE=	GPLv2+
 
-BROKEN_armv6=	fails to build: gmake: install-recursive: Error 1
-BROKEN_armv7=	fails to build: gmake: install-recursive: Error 1
-
 TEST_DEPENDS=	runtest:misc/dejagnu \
 		${LOCALBASE}/lib/tcllib/cmdline/cmdline.tcl:devel/tcllib
+
+USES=		autoreconf gmake pathfix
+
+GNU_CONFIGURE=	yes
+NO_ARCH=	yes
+
+SUB_FILES=	pkg-message
+SUB_LIST=	RUNFILE=${DATADIR}/bash_completion.sh
+
+GH_ACCOUNT=	scop
+USE_GITHUB=	yes
 
 PORTSCOUT=	limit:^[0-9\.]*$$
 
@@ -28,16 +36,6 @@ BASH_SHARED_DESC=	Use shells/bash as backend
 BASH_STATIC_DESC=	Use shells/bash-static as backend
 CMAKE_MODULES_DESC=	Install bash-completion modules for cmake
 FREEBSD_DESC=		Install completion functions for FreeBSD programs
-
-NO_ARCH=	yes
-GNU_CONFIGURE=	yes
-USES=		autoreconf gmake pathfix
-
-SUB_FILES=	pkg-message
-SUB_LIST=	RUNFILE=${DATADIR}/bash_completion.sh
-
-GH_ACCOUNT=	scop
-USE_GITHUB=	yes
 
 BASH_SHARED_RUN_DEPENDS=bash:shells/bash
 BASH_STATIC_RUN_DEPENDS=bash:shells/bash-static

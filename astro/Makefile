@@ -81,6 +81,7 @@
     SUBDIR += py-RO
     SUBDIR += py-astLib
     SUBDIR += py-astropy
+    SUBDIR += py-astropy-helpers
     SUBDIR += py-ephem
     SUBDIR += py-horoscopegenerator
     SUBDIR += py-metar
@@ -90,7 +91,6 @@
     SUBDIR += py-pysofa
     SUBDIR += py-pywapi
     SUBDIR += py-spacetrack
-    SUBDIR += pyephem
     SUBDIR += pyweather
     SUBDIR += qmapshack
     SUBDIR += readosm

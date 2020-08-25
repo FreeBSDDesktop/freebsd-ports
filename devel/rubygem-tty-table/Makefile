@@ -3,6 +3,7 @@
 
 PORTNAME=	tty-table
 PORTVERSION=	0.11.0
+PORTREVISION=	2
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -14,8 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	rubygem-equatable>=0.6<1:devel/rubygem-equatable \
 		rubygem-necromancer>=0.5<1:devel/rubygem-necromancer \
-		rubygem-pastel>=0.7.2<0.8:devel/rubygem-pastel \
-		rubygem-strings>=0.1.5<0.2:devel/rubygem-strings \
+		rubygem-pastel>=0.7.2<1:devel/rubygem-pastel \
+		rubygem-strings>=0.1.5<1:devel/rubygem-strings \
 		rubygem-tty-screen>=0.7<1:devel/rubygem-tty-screen
 
 USES=		gem

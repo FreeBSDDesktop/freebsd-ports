@@ -32,6 +32,7 @@ BUILD_DEPENDS=	bison:devel/bison \
 		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libdbus-1.so:devel/dbus \
+		libdouble-conversion.so:devel/double-conversion \
 		libevent.so:devel/libevent \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
@@ -49,7 +50,7 @@ LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libwebp.so:graphics/webp
 
 DISTINFO_FILE=	${.CURDIR}/distinfo
-QT5_VERSION=	5.13.2
+QT5_VERSION=	5.15.0
 
 OPTIONS_SINGLE=		AUDIO
 OPTIONS_SINGLE_AUDIO=	ALSA PULSEAUDIO SNDIO
@@ -79,7 +80,7 @@ USE_GL=		gl
 USE_GNOME=	glib20 libxml2 libxslt
 USE_QT=		core declarative designer gui location network webchannel \
 		widgets buildtools_build qmake_build printsupport
-USE_XORG=	x11 xcb xcomposite xcursor xext xi xorgproto \
+USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xorgproto \
 		xrandr xrender xscrnsaver xtst
 
 USE_LDCONFIG=	${QT_LIBDIR}
@@ -123,7 +124,7 @@ PLIST_SUB+=	BE="@comment " LE=""
 
 post-extract:
 # Install FreeBSD's freebsd.pri file.
-	${CP} ${FILESDIR}/freebsd.pri ${WRKSRC}/src/core/config/freebsd.pri
+	${CP} ${FILESDIR}/freebsd.pri ${WRKSRC}/src/buildtools/config/freebsd.pri
 
 post-extract-SNDIO-on:
 	@cd ${WRKSRC}/src/3rdparty/chromium/media/audio && ${MKDIR} sndio openbsd

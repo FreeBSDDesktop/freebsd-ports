@@ -101,6 +101,7 @@
     SUBDIR += fontconfig
     SUBDIR += fontconfig-reference
     SUBDIR += fontmatrix
+    SUBDIR += fontpreview
     SUBDIR += fonts-indic
     SUBDIR += fonttosfnt
     SUBDIR += freefont-ttf
@@ -124,6 +125,7 @@
     SUBDIR += iosevka
     SUBDIR += isabella
     SUBDIR += jetbrains-mono
+    SUBDIR += jf-openhuninn
     SUBDIR += jmk-x11-fonts
     SUBDIR += junction
     SUBDIR += junicode
@@ -139,6 +141,7 @@
     SUBDIR += libXfont2
     SUBDIR += libXft
     SUBDIR += liberation-fonts-ttf
+    SUBDIR += libertinus
     SUBDIR += libfontenc
     SUBDIR += linden-hill
     SUBDIR += linux-c7-fontconfig
@@ -159,6 +162,7 @@
     SUBDIR += monoid
     SUBDIR += montecarlo_fonts
     SUBDIR += montserrat
+    SUBDIR += mourier
     SUBDIR += moveable-type-fonts
     SUBDIR += nerd-fonts
     SUBDIR += nexfontsel
@@ -213,6 +217,7 @@
     SUBDIR += sourcesanspro-ttf
     SUBDIR += sourceserifpro-ttf
     SUBDIR += spleen
+    SUBDIR += steps-mono
     SUBDIR += stix-fonts
     SUBDIR += sudo-font
     SUBDIR += suxus

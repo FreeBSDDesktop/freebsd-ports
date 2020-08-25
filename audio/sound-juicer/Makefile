@@ -2,13 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	sound-juicer
-PORTVERSION=	3.18.1
+PORTVERSION=	3.24.0
 CATEGORIES=	audio gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
 
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	Clean, mean, and lean CD ripper for GNOME
+
+LICENSE=	GPLv3
 
 BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libmusicbrainz5.so:audio/libmusicbrainz5 \
@@ -20,7 +22,8 @@ LIB_DEPENDS=	libmusicbrainz5.so:audio/libmusicbrainz5 \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		desktop-file-utils gettext gmake gnome pathfix pkgconfig tar:xz
+USES=		compiler:c11 desktop-file-utils gettext gmake gnome \
+		pathfix pkgconfig tar:xz
 USE_GNOME=	gnomeprefix intlhack
 USE_GSTREAMER1=	cdparanoia flac good vorbis
 GNU_CONFIGURE=	yes

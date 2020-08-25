@@ -1,6 +1,6 @@
---- chrome/common/chrome_features.cc.orig	2020-03-03 18:53:53 UTC
+--- chrome/common/chrome_features.cc.orig	2020-07-07 21:58:14 UTC
 +++ chrome/common/chrome_features.cc
-@@ -81,13 +81,13 @@ const base::Feature kAsyncDns {
+@@ -68,13 +68,13 @@ const base::Feature kAsyncDns {
  #endif
  };
  
@@ -14,14 +14,5 @@
 -#endif  // defined(OS_WIN) || defined(OS_LINUX)
 +#endif  // defined(OS_WIN) || defined(OS_LINUX) || defined(OS_BSD)
  
- // Enables or disables whether permission prompts are automatically blocked
- // after the user has explicitly dismissed them too many times.
-@@ -147,7 +147,7 @@ const base::Feature kThirdPartyModulesBlocking{
- const base::Feature kTLS13HardeningForLocalAnchors{
-     "TLS13HardeningForLocalAnchors", base::FEATURE_DISABLED_BY_DEFAULT};
- 
--#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_MACOSX)
-+#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_MACOSX) || defined(OS_BSD)
- // Enables the dual certificate verification trial feature.
- // https://crbug.com/649026
- const base::Feature kCertDualVerificationTrialFeature{
+ #if !defined(OS_ANDROID)
+ // Enables logging UKMs for background tab activity by TabActivityWatcher.

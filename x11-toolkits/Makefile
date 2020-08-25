@@ -9,6 +9,7 @@
     SUBDIR += blt
     SUBDIR += bwidget
     SUBDIR += c++-gtk-utils
+    SUBDIR += color-widgets-qt5
     SUBDIR += ctk
     SUBDIR += fltk
     SUBDIR += fox14
@@ -171,17 +172,14 @@
     SUBDIR += py-easygui
     SUBDIR += py-fltk
     SUBDIR += py-gtk2
+    SUBDIR += py-guietta
+    SUBDIR += py-qt5-chart
     SUBDIR += py-qt5-gui
     SUBDIR += py-qt5-quick
     SUBDIR += py-qt5-quickwidgets
     SUBDIR += py-qt5-widgets
     SUBDIR += py-tkinter
     SUBDIR += py-tktreectrl
-    SUBDIR += py-wax
-    SUBDIR += py-wxPython-common
-    SUBDIR += py-wxPython28
-    SUBDIR += py-wxPython28-common
-    SUBDIR += py-wxPython30
     SUBDIR += py-wxPython40
     SUBDIR += py-xlib
     SUBDIR += pypy-tkinter
@@ -192,8 +190,10 @@
     SUBDIR += qt5-gamepad
     SUBDIR += qt5-gtkplatform
     SUBDIR += qt5-gui
+    SUBDIR += qt5-quick3d
     SUBDIR += qt5-quickcontrols
     SUBDIR += qt5-quickcontrols2
+    SUBDIR += qt5-quicktimeline
     SUBDIR += qt5-uiplugin
     SUBDIR += qt5-virtualkeyboard
     SUBDIR += qt5-widgets
@@ -218,7 +218,6 @@
     SUBDIR += sdl_pango
     SUBDIR += shared-desktop-ontologies
     SUBDIR += skinlf
-    SUBDIR += slingshot
     SUBDIR += soqt
     SUBDIR += swt
     SUBDIR += tepl
@@ -252,7 +251,5 @@
     SUBDIR += xbae
     SUBDIR += xforms
     SUBDIR += xmhtml
-    SUBDIR += xview
-    SUBDIR += xview-clients
 
 .include <bsd.port.subdir.mk>

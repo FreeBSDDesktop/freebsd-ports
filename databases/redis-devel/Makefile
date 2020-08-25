@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	redis
-PORTVERSION=	6.0.0.20200316
+PORTVERSION=	6.0.6.20200720
 CATEGORIES=	databases
 PKGNAMESUFFIX=	-devel
 
@@ -10,10 +10,11 @@ MAINTAINER=	osa@FreeBSD.org
 COMMENT=	Persistent key-value database with built-in net interface
 
 LICENSE=	BSD3CLAUSE
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES+=		compiler:c11 gmake
 USE_GITHUB=	yes
-GH_TUPLE= 	antirez:${PORTNAME}:b3a9700
+GH_TUPLE= 	antirez:${PORTNAME}:7bf665f
 
 OPTIONS_DEFINE=	JEMALLOC TESTS TLS TRIB
 OPTIONS_RADIO=	EXTLUA
@@ -31,7 +32,7 @@ MAKE_ENV=	V=yo OPTIMIZATION=
 
 JEMALLOC_MAKE_ENV=	USE_JEMALLOC=yes
 
-LUA_USE=		lua=51
+LUA_USES=		lua:51
 LUA_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-Makefile.lua
 LUA_VARS=		_addflags=true
 
