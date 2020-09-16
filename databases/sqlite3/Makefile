@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	sqlite3
-DISTVERSION=	3.32.3
-PORTREVISION=	2
+DISTVERSION=	3.33.0
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://www.sqlite.org/2020/ http://www2.sqlite.org/2020/ http://www3.sqlite.org/2020/
@@ -132,11 +131,8 @@ RTREE_INT_DESC=		Store 32-bit sig int (no float) coordinates
 GEOPOLY_DESC=		Uses the GeoJSON notation (RFC-7946)
 GEOPOLY_IMPLIES=	RTREE
 
-OPTIONS_RADIO_RL=	READLINES READLINEP LIBEDIT
-RL_DESC=		Command line editing library (may be off)
-READLINES_DESC=		Use libreadline from system
-READLINEP_DESC=		Use GNU libreadline from ports
-LIBEDIT_DESC=		Use BSD libedit from ports
+OPTIONS_RADIO_RL=	READLINE LIBEDIT
+RL_DESC=		Command line editing library
 
 OPTIONS_DEFAULT=	FTS4 URI METADATA SECURE_DELETE UNLOCK_NOTIFY THREADS \
 			EXTENSION TS1 UNICODE61 RTREE DBSTAT STSHELL LIBEDIT \
@@ -205,11 +201,9 @@ UNICODE61_CPPFLAGS=	""
 UNICODE61_CPPFLAGS_OFF=	-DSQLITE_DISABLE_FTS3_UNICODE=1
 
 LIBEDIT_CONFIGURE_ENABLE=	editline
-LIBEDIT_USES=	libedit ncurses
-READLINES_CONFIGURE_ON=	--enable-readline
-READLINES_USES=	readline
-READLINEP_CONFIGURE_ON=	--enable-readline
-READLINEP_USES=	readline:port
+LIBEDIT_USES=	libedit
+READLINE_CONFIGURE_ENABLE=	readline
+READLINE_USES=	readline
 
 JSON1_CONFIGURE_ENABLE=	json1
 
@@ -253,8 +247,12 @@ post-build:
 	@${ECHO_MSG} "===> WARNING: on ${ARCH} don't pass atof1-* tests"
 .endif
 
+post-stage:
+	${SETENV} LD_LIBMAP_DISABLE=1 ldd -a "${STAGEDIR}${PREFIX}/bin/${PORTNAME}"
+
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/include/msvc.h
+	${SETENV} LD_LIBMAP_DISABLE=1 ldd -a "${STAGEDIR}${PREFIX}/bin/${PORTNAME}" "${STAGEDIR}${PREFIX}/lib/lib${PORTNAME}.so"
 
 # for compares with checksum from of the site
 sha1: checksum
@@ -263,5 +261,13 @@ sha1: checksum
 .else
 	@sha1 ${DISTDIR}/${ALLFILES}
 .endif
+
+# For compare with checksum from of the site. Now, this is a NIST SHA3-256 hash. sha256 not suitable for compare.
+# But the creation of a new target does not justify the emergence of dependence on the perl5.
+# sha3sum maybe installed with p5-Digest-SHA3 port.
+# EXTRACT_DEPENDS=p5-Digest-SHA3:security/p5-Digest-SHA3; USES=perl5; USE_PERL5=extract;
+# @${PERL} -MDigest::SHA3 -le 'print Digest::SHA3->new(sha_256_hex)->add(<>)->hexdigest' < ${DISTDIR}/${ALLFILES}
+sha3: checksum
+	@sha3sum -a 256 ${DISTDIR}/${ALLFILES}
 
 .include <bsd.port.mk>

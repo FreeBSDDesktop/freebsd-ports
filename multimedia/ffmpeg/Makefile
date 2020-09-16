@@ -3,7 +3,7 @@
 
 PORTNAME=	ffmpeg
 PORTVERSION=	4.3.1
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio net
 MASTER_SITES=	https://ffmpeg.org/releases/
@@ -629,6 +629,12 @@ DOC_FILES=	Changelog CREDITS INSTALL.md LICENSE.md MAINTAINERS \
 # under doc subdirectory
 DOC_DOCFILES=	APIchanges *.txt
 PORTDOCS=	*
+
+.include <bsd.port.options.mk>
+
+.if ${ARCH} == powerpc64 && ${PORT_OPTIONS:MLTO}
+USE_GCC=	yes
+.endif
 
 post-patch:
 # {C,LD}FLAGS safeness

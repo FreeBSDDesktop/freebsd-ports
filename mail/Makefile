@@ -138,6 +138,7 @@
     SUBDIR += geary
     SUBDIR += gensig
     SUBDIR += getmail
+    SUBDIR += getmail6
     SUBDIR += gmime2
     SUBDIR += gmime2-sharp
     SUBDIR += gmime24
@@ -205,7 +206,6 @@
     SUBDIR += mailgraph
     SUBDIR += mailhog
     SUBDIR += mailman
-    SUBDIR += mailpile
     SUBDIR += mailscanner
     SUBDIR += mailsync
     SUBDIR += mailutils
@@ -483,7 +483,6 @@
     SUBDIR += postfix-logwatch
     SUBDIR += postfix-policyd-sf
     SUBDIR += postfix-policyd-spf-perl
-    SUBDIR += postfix-policyd-spf-python
     SUBDIR += postfix-policyd-weight
     SUBDIR += postfix-postfwd
     SUBDIR += postfix-sasl
@@ -508,6 +507,7 @@
     SUBDIR += py-managesieve3
     SUBDIR += py-milter
     SUBDIR += py-notmuch
+    SUBDIR += py-notmuch2
     SUBDIR += py-postfix-mta-sts-resolver
     SUBDIR += py-premailer
     SUBDIR += py-pymailq

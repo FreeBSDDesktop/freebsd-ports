@@ -1,7 +1,7 @@
 # Created by: Michael Johnson <ahze@FreeBSD.org>
 # $FreeBSD$
 
-PORTREVISION=	0
+$ORTREVISION=	0
 
 COMMENT=	GLib bindings to poppler
 

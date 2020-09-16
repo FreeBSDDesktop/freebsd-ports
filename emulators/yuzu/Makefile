@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	yuzu
-PORTVERSION=	s20200810
+PORTVERSION=	s20200914
 PORTREVISION?=	0
 CATEGORIES=	emulators
 
@@ -37,17 +37,17 @@ LIB_DEPENDS=	liblz4.so:archivers/liblz4 \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	257b1d2c4
+GH_TAGNAME=	0bac7b6a9
 GH_TUPLE=	yuzu-emu:unicorn:1.0.1-153-g73f45735:unicorn/externals/unicorn \
 		DarkLordZach:mbedtls:a280e60:mbedtls/externals/mbedtls \
 		KhronosGroup:SPIRV-Headers:2c51218:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
 		KhronosGroup:Vulkan-Headers:v1.2.145:Vulkan_Headers/externals/Vulkan-Headers \
-		MerryMage:dynarmic:r3-234-g82417da7:dynarmic/externals/dynarmic \
+		MerryMage:dynarmic:r3-242-g0e1112b7:dynarmic/externals/dynarmic \
 		ReinUsesLisp:sirit:eefca56:sirit/externals/sirit \
 		arsenm:sanitizers-cmake:aab6948:sanitizers_cmake/externals/cubeb/cmake/sanitizers-cmake \
 		citra-emu:ext-soundtouch:060181e:soundtouch/externals/soundtouch \
-		herumi:xbyak:v5.911:xbyak/externals/xbyak \
-		kinetiknz:cubeb:cubeb-0.2-1194-g616d773:cubeb/externals/cubeb \
+		herumi:xbyak:v5.96:xbyak/externals/xbyak \
+		kinetiknz:cubeb:cubeb-0.2-1253-g49312d4:cubeb/externals/cubeb \
 		svn2github:inih:603729d:inih/externals/inih/inih
 
 USES=		cmake compiler:c++17-lang localbase:ldflags python:build sdl ssl
@@ -56,14 +56,13 @@ LDFLAGS+=	-Wl,--as-needed # Qt5Network
 TEST_TARGET=	test
 
 OPTIONS_DEFINE=	ALSA PULSEAUDIO JACK SNDIO VULKAN
-OPTIONS_DEFAULT=ALSA PULSEAUDIO JACK SNDIO VULKAN
+OPTIONS_DEFAULT=PULSEAUDIO JACK SNDIO VULKAN
 OPTIONS_MULTI=	GUI
 OPTIONS_MULTI_GUI=	QT5 SDL
 OPTIONS_SLAVE?=	SDL
 OPTIONS_EXCLUDE:=	${OPTIONS_MULTI_GUI}
 
 ALSA_BUILD_DEPENDS=	alsa-lib>0:audio/alsa-lib
-ALSA_RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins
 ALSA_CMAKE_BOOL=	USE_ALSA
 
 JACK_BUILD_DEPENDS=	jackit>0:audio/jack
@@ -108,6 +107,14 @@ BUILD_DEPENDS+=	clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
 CC=		clang${LLVM_DEFAULT}
 CXX=		clang++${LLVM_DEFAULT}
 CPP=		clang-cpp${LLVM_DEFAULT}
+.endif
+
+# XXX Drop after FreeBSD 11.3/12.1 EOL
+.if make(makesum) || (!exists(/usr/include/c++/v1/fenv.h) && exists(/usr/lib/libc++.so))
+MASTER_SITES+=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VER}/:libcxx
+DISTFILES+=	libcxx-${LLVM_VER}.src.tar.xz:libcxx
+CXXFLAGS+=	-nostdinc++ -isystem${WRKDIR}/libcxx-${LLVM_VER}.src/include
+LLVM_VER=	10.0.1
 .endif
 
 .include <bsd.port.post.mk>

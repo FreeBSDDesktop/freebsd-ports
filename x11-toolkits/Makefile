@@ -180,11 +180,6 @@
     SUBDIR += py-qt5-widgets
     SUBDIR += py-tkinter
     SUBDIR += py-tktreectrl
-    SUBDIR += py-wax
-    SUBDIR += py-wxPython-common
-    SUBDIR += py-wxPython28
-    SUBDIR += py-wxPython28-common
-    SUBDIR += py-wxPython30
     SUBDIR += py-wxPython40
     SUBDIR += py-xlib
     SUBDIR += pypy-tkinter
@@ -195,8 +190,10 @@
     SUBDIR += qt5-gamepad
     SUBDIR += qt5-gtkplatform
     SUBDIR += qt5-gui
+    SUBDIR += qt5-quick3d
     SUBDIR += qt5-quickcontrols
     SUBDIR += qt5-quickcontrols2
+    SUBDIR += qt5-quicktimeline
     SUBDIR += qt5-uiplugin
     SUBDIR += qt5-virtualkeyboard
     SUBDIR += qt5-widgets

@@ -301,6 +301,7 @@
     SUBDIR += p5-DBD-Google
     SUBDIR += p5-DBD-InterBase
     SUBDIR += p5-DBD-LDAP
+    SUBDIR += p5-DBD-MariaDB
     SUBDIR += p5-DBD-Mock
     SUBDIR += p5-DBD-Multi
     SUBDIR += p5-DBD-ODBC
@@ -462,6 +463,7 @@
     SUBDIR += p5-Redis-Fast
     SUBDIR += p5-Redis-JobQueue
     SUBDIR += p5-Redis-hiredis
+    SUBDIR += p5-Redis-RateLimit
     SUBDIR += p5-RedisDB
     SUBDIR += p5-RedisDB-Parser
     SUBDIR += p5-Relations
@@ -743,12 +745,9 @@
     SUBDIR += py-firebirdsql
     SUBDIR += py-flask-sqlalchemy
     SUBDIR += py-gdbm
-    SUBDIR += py-geoalchemy
     SUBDIR += py-geoalchemy2
     SUBDIR += py-hiredis
     SUBDIR += py-htsql
-    SUBDIR += py-htsql-mysql
-    SUBDIR += py-htsql-pgsql
     SUBDIR += py-influxdb
     SUBDIR += py-kyotocabinet
     SUBDIR += py-leveldb
@@ -760,9 +759,7 @@
     SUBDIR += py-motor
     SUBDIR += py-mycli
     SUBDIR += py-mysql-connector-python
-    SUBDIR += py-mysql2pgsql
     SUBDIR += py-mysqlclient
-    SUBDIR += py-oursql
     SUBDIR += py-partd
     SUBDIR += py-peewee
     SUBDIR += py-peewee_migrate
@@ -782,17 +779,15 @@
     SUBDIR += py-psycopg2
     SUBDIR += py-psycopg2cffi
     SUBDIR += py-pum
-    SUBDIR += py-pyPgSQL
     SUBDIR += py-pycql
-    SUBDIR += py-pyhs
     SUBDIR += py-pylibmc
     SUBDIR += py-pymemcache
     SUBDIR += py-pymssql
     SUBDIR += py-pymysql
     SUBDIR += py-pyodbc
     SUBDIR += py-pypuppetdb
-    SUBDIR += py-pytc
     SUBDIR += py-python-arango
+    SUBDIR += py-python-binary-memcached
     SUBDIR += py-python-memcached
     SUBDIR += py-python-rrdtool
     SUBDIR += py-python-sql
@@ -802,7 +797,6 @@
     SUBDIR += py-rb
     SUBDIR += py-redis
     SUBDIR += py-redis2
-    SUBDIR += py-riak
     SUBDIR += py-sispy
     SUBDIR += py-south
     SUBDIR += py-sqlalchemy-migrate
@@ -818,12 +812,10 @@
     SUBDIR += py-sqlparse020
     SUBDIR += py-sqlrelay
     SUBDIR += py-swift
-    SUBDIR += py-sybase
     SUBDIR += py-tableschema
     SUBDIR += py-tarantool
     SUBDIR += py-tiledb
     SUBDIR += py-txredisapi
-    SUBDIR += py-umemcache
     SUBDIR += py-unqlite
     SUBDIR += py-varstack
     SUBDIR += py-whisper
@@ -890,6 +882,7 @@
     SUBDIR += rubygem-awesome_nested_set
     SUBDIR += rubygem-bdb1
     SUBDIR += rubygem-bigrecord
+    SUBDIR += rubygem-brpoplpush-redis_script
     SUBDIR += rubygem-couchrest
     SUBDIR += rubygem-dalli
     SUBDIR += rubygem-data_objects
@@ -961,6 +954,8 @@
     SUBDIR += rubygem-redis-actionpack-rails52
     SUBDIR += rubygem-redis-actionpack-rails60
     SUBDIR += rubygem-redis-namespace
+    SUBDIR += rubygem-redis-namespace16
+    SUBDIR += rubygem-redis-namespace17
     SUBDIR += rubygem-seed-fu
     SUBDIR += rubygem-sqlite3
     SUBDIR += rubygem-sqlite3-ruby

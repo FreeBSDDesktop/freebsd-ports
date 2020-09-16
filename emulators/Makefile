@@ -26,6 +26,7 @@
     SUBDIR += dgen-sdl
     SUBDIR += dolphin-emu
     SUBDIR += dosbox
+    SUBDIR += dosbox-staging
     SUBDIR += dtcyber
     SUBDIR += dynagen
     SUBDIR += dynamips-community
@@ -117,7 +118,6 @@
     SUBDIR += qemu-user-static-devel
     SUBDIR += qemu-utils
     SUBDIR += qemu31
-    SUBDIR += qemu40
     SUBDIR += qemu41
     SUBDIR += qemu50
     SUBDIR += qmc2

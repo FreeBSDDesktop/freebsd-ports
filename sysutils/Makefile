@@ -40,6 +40,8 @@
     SUBDIR += android-file-transfer-qt5
     SUBDIR += angrysearch
     SUBDIR += ansible
+    SUBDIR += ansible-iocage
+    SUBDIR += ansible-kld
     SUBDIR += ansible-sysrc
     SUBDIR += ansible27
     SUBDIR += ansible28
@@ -248,6 +250,7 @@
     SUBDIR += dirvish
     SUBDIR += diskcheckd
     SUBDIR += diskimage-tools
+    SUBDIR += diskonaut
     SUBDIR += diskscrub
     SUBDIR += disktype
     SUBDIR += dmg2img
@@ -308,6 +311,7 @@
     SUBDIR += etcmerge
     SUBDIR += etcupdate
     SUBDIR += evhz
+    SUBDIR += evisum
     SUBDIR += evtviewer
     SUBDIR += exa
     SUBDIR += exfat-utils
@@ -499,6 +503,7 @@
     SUBDIR += intel-pcm
     SUBDIR += intel-pcm-devel
     SUBDIR += intel-undervolt
+    SUBDIR += inxi
     SUBDIR += ioc
     SUBDIR += iocage
     SUBDIR += iocage-devel
@@ -596,6 +601,7 @@
     SUBDIR += lmon
     SUBDIR += lnav
     SUBDIR += lockfile-progs
+    SUBDIR += loganalyzer
     SUBDIR += logrotate
     SUBDIR += logstalgia
     SUBDIR += logstash-forwarder
@@ -687,7 +693,6 @@
     SUBDIR += monit
     SUBDIR += monitord
     SUBDIR += monitorix
-    SUBDIR += mono-kmod
     SUBDIR += moosefs2-cgi
     SUBDIR += moosefs2-cgiserv
     SUBDIR += moosefs2-chunkserver
@@ -816,6 +821,9 @@
     SUBDIR += p5-Probe-Perl
     SUBDIR += p5-Proc-PidUtil
     SUBDIR += p5-Proc-ProcessTable-Colorizer
+    SUBDIR += p5-Proc-ProcessTable-InfoString
+    SUBDIR += p5-Proc-ProcessTable-Match
+    SUBDIR += p5-Proc-ProcessTable-ncps
     SUBDIR += p5-Proclet
     SUBDIR += p5-Quota
     SUBDIR += p5-Rex
@@ -955,7 +963,6 @@
     SUBDIR += pwol
     SUBDIR += pwsafe
     SUBDIR += pxattr
-    SUBDIR += py-analyzemft
     SUBDIR += py-ansible-lint
     SUBDIR += py-ansible-runner
     SUBDIR += py-azure-cli
@@ -965,7 +972,6 @@
     SUBDIR += py-azure-cli-telemetry
     SUBDIR += py-bitrot
     SUBDIR += py-borgmatic
-    SUBDIR += py-cdmi
     SUBDIR += py-cron-descriptor
     SUBDIR += py-croniter
     SUBDIR += py-diffoscope
@@ -975,12 +981,10 @@
     SUBDIR += py-docker
     SUBDIR += py-drmaa
     SUBDIR += py-execnet
-    SUBDIR += py-ezjailremote
     SUBDIR += py-filelike
     SUBDIR += py-filelock
     SUBDIR += py-focker
     SUBDIR += py-glances
-    SUBDIR += py-gmailfs-fuse
     SUBDIR += py-google-compute-engine
     SUBDIR += py-hared
     SUBDIR += py-hcloud
@@ -996,9 +1000,7 @@
     SUBDIR += py-packet-python
     SUBDIR += py-pkginfo
     SUBDIR += py-ploy
-    SUBDIR += py-ploy_ec2
     SUBDIR += py-ploy_ezjail
-    SUBDIR += py-ploy_fabric
     SUBDIR += py-plumbum
     SUBDIR += py-power
     SUBDIR += py-psutil
@@ -1018,10 +1020,8 @@
     SUBDIR += py-salt-2019
     SUBDIR += py-scandir
     SUBDIR += py-scarab
-    SUBDIR += py-scriptine
     SUBDIR += py-shutilwhich
     SUBDIR += py-stdiff
-    SUBDIR += py-superlance
     SUBDIR += py-supervisor
     SUBDIR += py-tarsnapper
     SUBDIR += py-tmuxp
@@ -1032,6 +1032,7 @@
     SUBDIR += py-upt-rubygems
     SUBDIR += py-uptime
     SUBDIR += py-zdaemon
+    SUBDIR += py-zfs-autobackup
     SUBDIR += pydf
     SUBDIR += qchroot
     SUBDIR += qdirstat
@@ -1280,6 +1281,7 @@
     SUBDIR += syslog-ng326
     SUBDIR += syslog-ng327
     SUBDIR += syslog-ng328
+    SUBDIR += syslog-ng329
     SUBDIR += syslogger
     SUBDIR += sysrc
     SUBDIR += system-tools-backends
@@ -1445,7 +1447,6 @@
     SUBDIR += wait_on
     SUBDIR += watchfolder
     SUBDIR += watchman
-    SUBDIR += watchman450
     SUBDIR += watchmen
     SUBDIR += webjob
     SUBDIR += webmin

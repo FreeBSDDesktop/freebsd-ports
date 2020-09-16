@@ -196,6 +196,7 @@
     SUBDIR += libdvdnav
     SUBDIR += libdvdread
     SUBDIR += libfame
+    SUBDIR += libgav1
     SUBDIR += libhdhomerun
     SUBDIR += libkate
     SUBDIR += libmatroska
@@ -331,7 +332,6 @@
     SUBDIR += py-cec
     SUBDIR += py-enzyme
     SUBDIR += py-ffmpeg-python
-    SUBDIR += py-flvlib
     SUBDIR += py-gstreamer
     SUBDIR += py-gstreamer1
     SUBDIR += py-guessit
@@ -445,7 +445,7 @@
     SUBDIR += vlc
     SUBDIR += vmaf
     SUBDIR += vtkmpeg2encode
-    SUBDIR += w_scan
+    SUBDIR += w_scan2
     SUBDIR += webcamd
     SUBDIR += webcamoid
     SUBDIR += webvfx-qt5

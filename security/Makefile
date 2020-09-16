@@ -118,7 +118,6 @@
     SUBDIR += cyrus-sasl2-srp
     SUBDIR += d0_blind_id
     SUBDIR += dcetest
-    SUBDIR += ddos_scan
     SUBDIR += dehydrated
     SUBDIR += denyhosts
     SUBDIR += destroy
@@ -169,7 +168,6 @@
     SUBDIR += fwbuilder
     SUBDIR += fwknop
     SUBDIR += fwlogwatch
-    SUBDIR += gag
     SUBDIR += gcr
     SUBDIR += gef
     SUBDIR += git-crypt
@@ -207,6 +205,7 @@
     SUBDIR += hardening-check
     SUBDIR += hashcat
     SUBDIR += hashcat-legacy
+    SUBDIR += heaan
     SUBDIR += heimdal
     SUBDIR += helib
     SUBDIR += highwayhash
@@ -227,6 +226,7 @@
     SUBDIR += ike
     SUBDIR += imds-filterd
     SUBDIR += integrit
+    SUBDIR += intel-ipsec-mb
     SUBDIR += ipfilter2dshield
     SUBDIR += ipfmeta
     SUBDIR += ipfw2dshield
@@ -295,6 +295,7 @@
     SUBDIR += libkpass
     SUBDIR += libksba
     SUBDIR += libmcrypt
+    SUBDIR += libnitrokey
     SUBDIR += libntlm
     SUBDIR += libotr
     SUBDIR += libotr3
@@ -365,6 +366,7 @@
     SUBDIR += ncrypt
     SUBDIR += netpgp
     SUBDIR += nettle
+    SUBDIR += nextcloud-end_to_end_encryption
     SUBDIR += nextcloud-passman
     SUBDIR += nextcloud-twofactor_totp
     SUBDIR += nextcloud-twofactor_u2f
@@ -372,6 +374,7 @@
     SUBDIR += ngrok
     SUBDIR += nikto
     SUBDIR += nist-kat
+    SUBDIR += nitrokey-app
     SUBDIR += nmap
     SUBDIR += nss
     SUBDIR += nss_compat_ossl
@@ -718,6 +721,7 @@
     SUBDIR += pam_mkhomedir
     SUBDIR += pam_ocra
     SUBDIR += pam_p11
+    SUBDIR += pam_pkcs11
     SUBDIR += pam_pwdfile
     SUBDIR += pam_require
     SUBDIR += pam_script
@@ -830,7 +834,6 @@
     SUBDIR += pwman3
     SUBDIR += pwned-check
     SUBDIR += pxytest
-    SUBDIR += py-PF
     SUBDIR += py-RestrictedPython
     SUBDIR += py-SecretStorage
     SUBDIR += py-YubiOTP
@@ -870,7 +873,6 @@
     SUBDIR += py-ckcc-protocol
     SUBDIR += py-coincurve
     SUBDIR += py-cpe
-    SUBDIR += py-cracklib
     SUBDIR += py-cryptography
     SUBDIR += py-cryptography-vectors
     SUBDIR += py-ctypescrypto
@@ -888,7 +890,6 @@
     SUBDIR += py-flask-httpauth
     SUBDIR += py-flask-kerberos
     SUBDIR += py-flask-saml
-    SUBDIR += py-fteproxy
     SUBDIR += py-gixy
     SUBDIR += py-gnupg
     SUBDIR += py-gnutls
@@ -905,10 +906,8 @@
     SUBDIR += py-josepy
     SUBDIR += py-keepkey
     SUBDIR += py-kerberos
-    SUBDIR += py-keyczar
     SUBDIR += py-keyring
     SUBDIR += py-keyrings.alt
-    SUBDIR += py-keystone
     SUBDIR += py-libnacl
     SUBDIR += py-m2crypto
     SUBDIR += py-maec
@@ -923,7 +922,6 @@
     SUBDIR += py-oauth2client
     SUBDIR += py-oauthlib
     SUBDIR += py-obfsproxy-tor
-    SUBDIR += py-onetime
     SUBDIR += py-openssl
     SUBDIR += py-ospd
     SUBDIR += py-paramiko
@@ -943,7 +941,6 @@
     SUBDIR += py-pycrypto
     SUBDIR += py-pycryptodome
     SUBDIR += py-pycryptodomex
-    SUBDIR += py-pydeep
     SUBDIR += py-pyelliptic
     SUBDIR += py-pylibacl
     SUBDIR += py-pymacaroons
@@ -982,12 +979,10 @@
     SUBDIR += py-securesystemslib
     SUBDIR += py-service_identity
     SUBDIR += py-signedjson
-    SUBDIR += py-slowaes
     SUBDIR += py-social-auth-core
     SUBDIR += py-spake2
     SUBDIR += py-ssh
     SUBDIR += py-ssh-audit
-    SUBDIR += py-sslstrip
     SUBDIR += py-stem
     SUBDIR += py-stix
     SUBDIR += py-stix2
@@ -998,9 +993,9 @@
     SUBDIR += py-trustme
     SUBDIR += py-tuf
     SUBDIR += py-txtorcon
+    SUBDIR += py-uhashring
     SUBDIR += py-vici
     SUBDIR += py-virustotal-api
-    SUBDIR += py-volatility
     SUBDIR += py-volatility3
     SUBDIR += py-vulndb
     SUBDIR += py-xkcdpass
@@ -1152,7 +1147,6 @@
     SUBDIR += sancp
     SUBDIR += sandsifter
     SUBDIR += sasp
-    SUBDIR += scamp
     SUBDIR += scanlogd
     SUBDIR += scanssh
     SUBDIR += scrypt

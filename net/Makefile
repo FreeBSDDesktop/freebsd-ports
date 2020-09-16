@@ -115,7 +115,6 @@
     SUBDIR += dgd-lpmud
     SUBDIR += dhcp6
     SUBDIR += dhcpcd
-    SUBDIR += dhcpcd-devel
     SUBDIR += dhcpcd-ui
     SUBDIR += dhcpd
     SUBDIR += dhcpd-pools
@@ -150,6 +149,8 @@
     SUBDIR += exabgp4
     SUBDIR += exaddos
     SUBDIR += fb
+    SUBDIR += fb303
+    SUBDIR += fbzmq
     SUBDIR += fiche
     SUBDIR += file2pcap
     SUBDIR += findmtu
@@ -169,8 +170,6 @@
     SUBDIR += freerdp
     SUBDIR += freeswitch
     SUBDIR += freevrrpd
-    SUBDIR += frr5
-    SUBDIR += frr6
     SUBDIR += frr7
     SUBDIR += frr7-pythontools
     SUBDIR += fspclient
@@ -238,7 +237,6 @@
     SUBDIR += haproxy21
     SUBDIR += hblock
     SUBDIR += hexinject
-    SUBDIR += hinfo
     SUBDIR += hlmaster
     SUBDIR += honeyd
     SUBDIR += hostapd
@@ -296,7 +294,6 @@
     SUBDIR += kafkacat
     SUBDIR += kalarmcal
     SUBDIR += kamailio
-    SUBDIR += kblog
     SUBDIR += kcalutils
     SUBDIR += kdenetwork
     SUBDIR += kdenetwork-filesharing
@@ -469,6 +466,7 @@
     SUBDIR += mtr
     SUBDIR += mtr-nox11
     SUBDIR += multicat
+    SUBDIR += mvfst
     SUBDIR += nakenchat
     SUBDIR += nanomsg
     SUBDIR += nast
@@ -517,7 +515,6 @@
     SUBDIR += ntimed
     SUBDIR += ntopng
     SUBDIR += ntp
-    SUBDIR += ntp-devel
     SUBDIR += ntpa
     SUBDIR += ntpsec
     SUBDIR += ntraceroute
@@ -866,6 +863,7 @@
     SUBDIR += p5-URI-SmartURI
     SUBDIR += p5-URI-Template
     SUBDIR += p5-URI-Template-Restrict
+    SUBDIR += p5-URI-cpan
     SUBDIR += p5-URI-db
     SUBDIR += p5-URI-ws
     SUBDIR += p5-VM-EC2
@@ -1004,7 +1002,6 @@
     SUBDIR += py-amqp
     SUBDIR += py-amqplib
     SUBDIR += py-avahi
-    SUBDIR += py-beanstalkc
     SUBDIR += py-cjdns
     SUBDIR += py-cloudflare-scrape
     SUBDIR += py-cloudflare-scrape-js2py
@@ -1018,7 +1015,6 @@
     SUBDIR += py-flask-xml-rpc
     SUBDIR += py-gntp
     SUBDIR += py-gspread
-    SUBDIR += py-gspreadsheet
     SUBDIR += py-h11
     SUBDIR += py-haproxy-log-analysis
     SUBDIR += py-haproxyctl
@@ -1037,7 +1033,6 @@
     SUBDIR += py-libcloud
     SUBDIR += py-libdnet
     SUBDIR += py-libfte
-    SUBDIR += py-libnet
     SUBDIR += py-magic-wormhole
     SUBDIR += py-matrix-synapse-ldap3
     SUBDIR += py-maxminddb
@@ -1048,7 +1043,6 @@
     SUBDIR += py-netaddr
     SUBDIR += py-netif
     SUBDIR += py-netifaces
-    SUBDIR += py-netlib
     SUBDIR += py-netsnmpagent
     SUBDIR += py-nnpy
     SUBDIR += py-ntplib
@@ -1064,7 +1058,6 @@
     SUBDIR += py-pygeoip
     SUBDIR += py-pyicap
     SUBDIR += py-pynamecheap
-    SUBDIR += py-pynmsg
     SUBDIR += py-pynsq
     SUBDIR += py-pypcap
     SUBDIR += py-pyroute2
@@ -1097,7 +1090,6 @@
     SUBDIR += py-rabbitpy
     SUBDIR += py-radix
     SUBDIR += py-raet
-    SUBDIR += py-rainbowstream
     SUBDIR += py-ripe.atlas.cousteau
     SUBDIR += py-ripe.atlas.sagan
     SUBDIR += py-ripe.atlas.tools
@@ -1117,6 +1109,7 @@
     SUBDIR += py-stomp.py
     SUBDIR += py-suds
     SUBDIR += py-suds-jurko
+    SUBDIR += py-tacacs_plus
     SUBDIR += py-terminado
     SUBDIR += py-tofu
     SUBDIR += py-transip
@@ -1129,7 +1122,6 @@
     SUBDIR += py-urlextract
     SUBDIR += py-urllib3
     SUBDIR += py-wmi-query
-    SUBDIR += py-wolframalpha
     SUBDIR += py-wsdd
     SUBDIR += py-wsproto
     SUBDIR += py-zeep
@@ -1257,6 +1249,7 @@
     SUBDIR += rubygem-fog-xenserver
     SUBDIR += rubygem-gitaly
     SUBDIR += rubygem-gitaly-proto
+    SUBDIR += rubygem-gitlab-fog-azure-rm
     SUBDIR += rubygem-gitlab_omniauth-ldap
     SUBDIR += rubygem-google-cloud-bigquery
     SUBDIR += rubygem-google-cloud-bigtable
@@ -1348,6 +1341,7 @@
     SUBDIR += rubygem-u2f0
     SUBDIR += rubygem-uri
     SUBDIR += rubygem-uri-redis
+    SUBDIR += rubygem-uri_template
     SUBDIR += rubygem-whois
     SUBDIR += rubygem-xmlrpc
     SUBDIR += rude
@@ -1517,6 +1511,7 @@
     SUBDIR += vtun
     SUBDIR += wackamole
     SUBDIR += wakeonlan
+    SUBDIR += wangle
     SUBDIR += waypipe
     SUBDIR += wayvnc
     SUBDIR += webalizer-geodb

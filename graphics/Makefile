@@ -64,7 +64,6 @@
     SUBDIR += aview
     SUBDIR += avir
     SUBDIR += azpainter
-    SUBDIR += backfract
     SUBDIR += barbecue
     SUBDIR += barcode
     SUBDIR += batik
@@ -132,7 +131,6 @@
     SUBDIR += ditaa
     SUBDIR += djview4
     SUBDIR += djvulibre
-    SUBDIR += djvusmooth
     SUBDIR += dmtx-utils
     SUBDIR += drawpile
     SUBDIR += drm-current-kmod
@@ -143,6 +141,7 @@
     SUBDIR += drm-legacy-kmod
     SUBDIR += drm_info
     SUBDIR += dspdfviewer
+    SUBDIR += dssim
     SUBDIR += duhdraw
     SUBDIR += dynamechs
     SUBDIR += ebsynth
@@ -224,6 +223,7 @@
     SUBDIR += gdk-pixbuf2
     SUBDIR += gdtclft
     SUBDIR += geeqie
+    SUBDIR += geeqie-devel
     SUBDIR += gegl
     SUBDIR += generic_image_decoder
     SUBDIR += geoapi
@@ -262,12 +262,12 @@
     SUBDIR += glosm
     SUBDIR += glpng
     SUBDIR += gltt
+    SUBDIR += glx-utils
     SUBDIR += gmic
     SUBDIR += gmic-qt
     SUBDIR += gmt
-    SUBDIR += gmt5
-    SUBDIR += gmt5-dcw
-    SUBDIR += gmt5-gshhg
+    SUBDIR += gmt-dcw
+    SUBDIR += gmt-gshhg
     SUBDIR += gnash
     SUBDIR += gnome-color-manager
     SUBDIR += gnome-video-effects
@@ -328,6 +328,7 @@
     SUBDIR += guile-cairo
     SUBDIR += guilib
     SUBDIR += gwenview
+    SUBDIR += h3
     SUBDIR += hdr_tools
     SUBDIR += heimer
     SUBDIR += hiptext
@@ -514,6 +515,7 @@
     SUBDIR += linux-c7-libdrm
     SUBDIR += linux-c7-libepoxy
     SUBDIR += linux-c7-libglvnd
+    SUBDIR += linux-c7-librsvg2
     SUBDIR += linux-c7-png
     SUBDIR += linux-c7-sdl_image
     SUBDIR += linux-c7-sdl_ttf
@@ -704,6 +706,7 @@
     SUBDIR += p5-ming
     SUBDIR += panoglview
     SUBDIR += panomatic
+    SUBDIR += partio
     SUBDIR += pastel
     SUBDIR += pcl-pointclouds
     SUBDIR += pdf2svg
@@ -788,6 +791,7 @@
     SUBDIR += proj
     SUBDIR += pstoedit
     SUBDIR += ptex
+    SUBDIR += py-openshadinglanguage
     SUBDIR += py-OWSLib
     SUBDIR += py-PyOpenGL
     SUBDIR += py-PyOpenGL-accelerate
@@ -814,7 +818,6 @@
     SUBDIR += py-geopandas
     SUBDIR += py-gimp
     SUBDIR += py-gizeh
-    SUBDIR += py-glewpy
     SUBDIR += py-glfw
     SUBDIR += py-glooey
     SUBDIR += py-gphoto2
@@ -822,6 +825,7 @@
     SUBDIR += py-graphviz
     SUBDIR += py-graphy
     SUBDIR += py-gvgen
+    SUBDIR += py-h3
     SUBDIR += py-hiplot
     SUBDIR += py-imageio
     SUBDIR += py-imageio-ffmpeg
@@ -838,26 +842,23 @@
     SUBDIR += py-open3d-python
     SUBDIR += py-opencolorio
     SUBDIR += py-opencv
-    SUBDIR += py-openexr
     SUBDIR += py-openimageio
     SUBDIR += py-photocollage
+    SUBDIR += py-piexif
     SUBDIR += py-pillow
     SUBDIR += py-pillow6
     SUBDIR += py-pivy
     SUBDIR += py-plotly
     SUBDIR += py-png
-    SUBDIR += py-poppler
     SUBDIR += py-pycha
     SUBDIR += py-pycollada
     SUBDIR += py-pydot
-    SUBDIR += py-pyembree
     SUBDIR += py-pyepsg
     SUBDIR += py-pygal
     SUBDIR += py-pyganim
     SUBDIR += py-pygeoapi
     SUBDIR += py-pyglet
     SUBDIR += py-pyglet150
-    SUBDIR += py-pygooglechart
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyinsane2
     SUBDIR += py-pymaging
@@ -875,12 +876,11 @@
     SUBDIR += py-qt5-svg
     SUBDIR += py-rasterio
     SUBDIR += py-rawkit
-    SUBDIR += py-sane
+    SUBDIR += py-s2
     SUBDIR += py-scikit-image
     SUBDIR += py-seqdiag
     SUBDIR += py-sorl-thumbnail
     SUBDIR += py-spectra
-    SUBDIR += py-stltools
     SUBDIR += py-svg.path
     SUBDIR += py-svgwrite
     SUBDIR += py-termtosvg
@@ -900,6 +900,7 @@
     SUBDIR += qgis-ltr
     SUBDIR += qiv
     SUBDIR += qr-code-generator
+    SUBDIR += qt-avif-image-plugin
     SUBDIR += qt5-3d
     SUBDIR += qt5-graphicaleffects
     SUBDIR += qt5-imageformats
@@ -968,6 +969,7 @@
     SUBDIR += rubygem-scruffy
     SUBDIR += rx
     SUBDIR += s10sh
+    SUBDIR += s2
     SUBDIR += s2tc
     SUBDIR += sage
     SUBDIR += sam2p
@@ -1000,7 +1002,6 @@
     SUBDIR += silgraphite
     SUBDIR += simage
     SUBDIR += simpleviewer
-    SUBDIR += sk1
     SUBDIR += sk1libs
     SUBDIR += skanlite
     SUBDIR += spectacle
@@ -1029,6 +1030,7 @@
     SUBDIR += tiff
     SUBDIR += tiffgt
     SUBDIR += tifmerge
+    SUBDIR += tikzit
     SUBDIR += tilecache
     SUBDIR += tiled
     SUBDIR += timeless
@@ -1060,6 +1062,7 @@
     SUBDIR += volpack
     SUBDIR += vp
     SUBDIR += vpaint
+    SUBDIR += vulkan-caps-viewer
     SUBDIR += vulkan-loader
     SUBDIR += vv
     SUBDIR += waffle

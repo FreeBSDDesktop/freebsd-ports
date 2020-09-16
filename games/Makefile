@@ -16,6 +16,7 @@
     SUBDIR += CaribbeanStud
     SUBDIR += HeroesOfMightAndMagic
     SUBDIR += KnightCap
+    SUBDIR += NBlood
     SUBDIR += OpenTomb
     SUBDIR += abbayedesmorts
     SUBDIR += abe
@@ -55,7 +56,6 @@
     SUBDIR += ascii-invaders
     SUBDIR += asciiquarium
     SUBDIR += assaultcube
-    SUBDIR += asteroid
     SUBDIR += asteroids3d
     SUBDIR += astromenace
     SUBDIR += asylum
@@ -94,6 +94,7 @@
     SUBDIR += blobby
     SUBDIR += blobwars
     SUBDIR += block
+    SUBDIR += blockattack
     SUBDIR += blockout
     SUBDIR += blockrage
     SUBDIR += blokish
@@ -152,6 +153,7 @@
     SUBDIR += connectagram
     SUBDIR += connectfive
     SUBDIR += construo
+    SUBDIR += coronapoker
     SUBDIR += corsix-th
     SUBDIR += cosmo
     SUBDIR += cosmosmash
@@ -225,7 +227,6 @@
     SUBDIR += el
     SUBDIR += el-data
     SUBDIR += emptyepsilon
-    SUBDIR += endgame-singularity
     SUBDIR += endgame-singularity-music
     SUBDIR += endless-sky
     SUBDIR += endless-sky-high-dpi
@@ -416,7 +417,6 @@
     SUBDIR += kanagram
     SUBDIR += kapman
     SUBDIR += kartofel
-    SUBDIR += katawa-shoujo
     SUBDIR += katomic
     SUBDIR += kblackbox
     SUBDIR += kblocks
@@ -540,8 +540,6 @@
     SUBDIR += lightyears
     SUBDIR += lincity
     SUBDIR += lincity-ng
-    SUBDIR += linux-darwinia-demo
-    SUBDIR += linux-defcon
     SUBDIR += linux-doom3
     SUBDIR += linux-doom3-demo
     SUBDIR += linux-dwarffortress
@@ -563,7 +561,6 @@
     SUBDIR += linux-unigine-heaven
     SUBDIR += linux-unigine-valley
     SUBDIR += linux-unrealgold
-    SUBDIR += linux-uplink-demo
     SUBDIR += linux-ut
     SUBDIR += linux-ut2003-demo
     SUBDIR += linux-virtual-jay-peak
@@ -776,7 +773,6 @@
     SUBDIR += py-pysol-cards
     SUBDIR += py-sgflib
     SUBDIR += py-sgfsummary
-    SUBDIR += pyfa
     SUBDIR += pysolfc
     SUBDIR += pyspacewar
     SUBDIR += q2p
@@ -828,7 +824,6 @@
     SUBDIR += regoth
     SUBDIR += reminiscence
     SUBDIR += renpy
-    SUBDIR += renpy6
     SUBDIR += rescue
     SUBDIR += residualvm
     SUBDIR += retroarch
@@ -895,7 +890,6 @@
     SUBDIR += solarconquest
     SUBDIR += solarus
     SUBDIR += solarus-quest-editor
-    SUBDIR += solarwolf
     SUBDIR += sopwith
     SUBDIR += spacejunk
     SUBDIR += spacezero
@@ -940,7 +934,6 @@
     SUBDIR += tetzle
     SUBDIR += textmaze
     SUBDIR += thegrind
-    SUBDIR += thudboard
     SUBDIR += tileworld
     SUBDIR += tkmoo
     SUBDIR += tomatoes
@@ -1053,7 +1046,6 @@
     SUBDIR += xdigger
     SUBDIR += xdino
     SUBDIR += xemeraldia
-    SUBDIR += xevil
     SUBDIR += xeyesplus
     SUBDIR += xfireworks
     SUBDIR += xfrisk
@@ -1084,7 +1076,6 @@
     SUBDIR += xmine
     SUBDIR += xminehunter
     SUBDIR += xmines
-    SUBDIR += xminesweep
     SUBDIR += xmlink
     SUBDIR += xmoto
     SUBDIR += xmris

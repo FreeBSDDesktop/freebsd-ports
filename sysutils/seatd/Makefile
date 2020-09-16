@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	seatd
-PORTVERSION=	s20200808
-DISTVERSIONSUFFIX=	-0-gf5bc8ab
+DISTVERSION=	0.3.0
 CATEGORIES=	sysutils
 MASTER_SITES=	https://git.sr.ht/~kennylevinsen/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
@@ -19,6 +18,7 @@ MESON_ARGS=	-Dbuiltin=enabled # SUID fallback
 PLIST_FILES=	bin/${PORTNAME} \
 		include/libseat.h \
 		lib/libseat.so \
+		lib/libseat.so.1 \
 		libdata/pkgconfig/libseat.pc
 
 OPTIONS_DEFINE=	MANPAGES
