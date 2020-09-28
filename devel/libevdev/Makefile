@@ -5,7 +5,7 @@ PORTVERSION=	1.9.1.20200928
 CATEGORIES=	devel
 #MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/
 
-MAINTAINER=	hselasky@FreeBSD.org
+MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Linux Event Device library
 
 LICENSE=	MIT # without linux/*.h
