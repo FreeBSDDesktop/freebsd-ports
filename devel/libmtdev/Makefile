@@ -6,7 +6,7 @@ CATEGORIES=	devel
 MASTER_SITES=	http://bitmath.org/code/${PORTNAME}/
 PKGNAMEPREFIX=	lib
 
-MAINTAINER=	hselasky@FreeBSD.org
+MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Multitouch Protocol Translation Library
 
 LICENSE=	MIT
