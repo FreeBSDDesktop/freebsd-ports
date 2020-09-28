@@ -6,7 +6,7 @@ CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	hselasky@FreeBSD.org
+MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Bindings to the Linux input handling subsystem
 
 LICENSE=	BSD3CLAUSE
