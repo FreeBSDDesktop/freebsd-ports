@@ -47,7 +47,6 @@
     SUBDIR += dnshistory
     SUBDIR += dnsjava
     SUBDIR += dnsmasq
-    SUBDIR += dnsmasq-devel
     SUBDIR += dnsmax-perl
     SUBDIR += dnsproxy
     SUBDIR += dnsrecon
@@ -208,12 +207,14 @@
     SUBDIR += rpsl2acl
     SUBDIR += rubygem-dnsruby
     SUBDIR += rubygem-gitlab-net-dns
+    SUBDIR += rubygem-google-cloud-dns
     SUBDIR += rubygem-idn-ruby
     SUBDIR += rubygem-net-dns
     SUBDIR += rubygem-public_suffix
     SUBDIR += rubygem-public_suffix_service
     SUBDIR += rubygem-simpleidn
     SUBDIR += rubygem-validates_hostname
+    SUBDIR += rubygem-zonefile
     SUBDIR += samba-nsupdate
     SUBDIR += scavenge
     SUBDIR += sheerdns

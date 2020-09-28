@@ -31,6 +31,8 @@
     SUBDIR += charmtimetracker
     SUBDIR += chart
     SUBDIR += clipit
+    SUBDIR += clipmenu
+    SUBDIR += clipnotify
     SUBDIR += conkyforecast
     SUBDIR += copyq
     SUBDIR += countdown
@@ -39,6 +41,7 @@
     SUBDIR += dfshow
     SUBDIR += docear
     SUBDIR += dosage
+    SUBDIR += dstask
     SUBDIR += easystroke
     SUBDIR += egroupware
     SUBDIR += fasd

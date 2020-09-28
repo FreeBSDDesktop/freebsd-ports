@@ -57,6 +57,7 @@
     SUBDIR += compat7x
     SUBDIR += compat8x
     SUBDIR += compat9x
+    SUBDIR += concourse
     SUBDIR += countrycodes
     SUBDIR += cpuid
     SUBDIR += crosti
@@ -206,15 +207,18 @@
     SUBDIR += lesspipe
     SUBDIR += lf
     SUBDIR += libad9361-iio
+    SUBDIR += libcomps
     SUBDIR += libeatmydata
     SUBDIR += libemos
     SUBDIR += libiio
     SUBDIR += libkeduvocdocument
     SUBDIR += liblxi
     SUBDIR += libmetalink
+    SUBDIR += libmodulemd
     SUBDIR += libpostal
     SUBDIR += libpredict
     SUBDIR += libpri
+    SUBDIR += librepo
     SUBDIR += libsolv
     SUBDIR += libsupertone
     SUBDIR += libsweep-lidar

@@ -1,6 +1,6 @@
---- got/got.c.orig	2020-09-14 13:58:27 UTC
+--- got/got.c.orig	2020-09-25 11:58:47 UTC
 +++ got/got.c
-@@ -213,7 +213,8 @@ main(int argc, char *argv[])
+@@ -215,7 +215,8 @@ main(int argc, char *argv[])
  
  	argc -= optind;
  	argv += optind;
@@ -10,25 +10,7 @@
  
  	if (Vflag) {
  		got_version_print_str();
-@@ -3884,7 +3885,7 @@ print_diff(void *arg, unsigned char status, unsigned c
- 		if (dirfd != -1) {
- 			fd = openat(dirfd, de_name, O_RDONLY | O_NOFOLLOW);
- 			if (fd == -1) {
--				if (errno != ELOOP) {
-+				if (errno != ELOOP && errno != EMLINK) {
- 					err = got_error_from_errno2("openat",
- 					    abspath);
- 					goto done;
-@@ -3897,7 +3898,7 @@ print_diff(void *arg, unsigned char status, unsigned c
- 		} else {
- 			fd = open(abspath, O_RDONLY | O_NOFOLLOW);
- 			if (fd == -1) {
--				if (errno != ELOOP) {
-+				if (errno != ELOOP && errno != EMLINK) {
- 					err = got_error_from_errno2("open",
- 					    abspath);
- 					goto done;
-@@ -9283,11 +9284,11 @@ cat_commit(struct got_object_id *id, struct got_reposi
+@@ -9421,11 +9422,11 @@ cat_commit(struct got_object_id *id, struct got_reposi
  	}
  	fprintf(outfile, "%s%s %lld +0000\n", GOT_COMMIT_LABEL_AUTHOR,
  	    got_object_commit_get_author(commit),
@@ -42,7 +24,7 @@
  
  	logmsg = got_object_commit_get_logmsg_raw(commit);
  	fprintf(outfile, "messagelen %zd\n", strlen(logmsg));
-@@ -9342,7 +9343,7 @@ cat_tag(struct got_object_id *id, struct got_repositor
+@@ -9480,7 +9481,7 @@ cat_tag(struct got_object_id *id, struct got_repositor
  
  	fprintf(outfile, "%s%s %lld +0000\n", GOT_TAG_LABEL_TAGGER,
  	    got_object_tag_get_tagger(tag),

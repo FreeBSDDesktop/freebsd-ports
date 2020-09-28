@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	mesa
-DISTVERSION=	20.2-branchpoint-1472
-DISTVERSIONSUFFIX=	-g9aa86eb61aa
+DISTVERSION=	20.2-branchpoint-1763
+DISTVERSIONSUFFIX=	-gbf80fb7c309
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -22,7 +22,7 @@ COMMENT=	Bleeding edge Mesa drivers (OpenGL, Vulkan)
 
 LICENSE=	MIT
 
-ONLY_FOR_ARCHS=	aarch64 amd64 i386 powerpc64
+ONLY_FOR_ARCHS=	aarch64 amd64 i386 powerpc64 powerpc64le
 ONLY_FOR_ARCHS_REASON=	Limited scope: no old drivers and no software rendering. \
 			See also https://mesamatrix.net/
 
