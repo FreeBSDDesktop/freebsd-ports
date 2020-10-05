@@ -87,6 +87,10 @@ PKGINSTALL=	${.CURDIR}/pkg-install
 PKGDEINSTALL=	${.CURDIR}/pkg-deinstall
 INSTALL_TARGET=	install-strip
 
+.if ${OSVERSION} <= 1200000
+EXTRA_PATCHES+= ${PATCHDIR}/extra-src_util_build__id.c
+.endif
+
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == powerpc64
