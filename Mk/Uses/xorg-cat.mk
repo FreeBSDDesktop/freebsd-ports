@@ -113,7 +113,7 @@ MASTER_SITES?=		XORG/individual/${_XORG_CAT}
 #
 ## All xorg ports needs xorg-macros.
 .  if ${PORTNAME} != xorg-macros
-_USE_XORG+=      xorg-macros
+USE_XORG+=      xorg-macros
 .  endif
 
 .  if ${_XORG_CAT} == app
@@ -178,7 +178,7 @@ libtool_ARGS?=	# empty
 .include "${USESDIR}/libtool.mk"
 .    endif
 LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
-_USE_XORG+=	fontutil
+USE_XORG+=	fontutil
 
 .  endif # ${_XORG_CAT} == <category>
 

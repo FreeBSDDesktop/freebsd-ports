@@ -20,7 +20,7 @@ IGNORE=	USES=motif takes no arguments
 .if defined(WANT_LESSTIF)
 LIB_DEPENDS+=		libXm.so:x11-toolkits/lesstif
 .else
-_USE_XORG+=	xpm
+USE_XORG+=	xpm
 LIB_DEPENDS+=		libXm.so.4:x11-toolkits/open-motif
 .endif
 
