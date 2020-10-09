@@ -1,12 +1,12 @@
 # $FreeBSD$
 
-PORTNAME=	bareos17
+PORTNAME=	bareos
 DISTVERSIONPREFIX=	Release/
-DISTVERSION=	17.2.7
-PORTREVISION?=	4
+DISTVERSION=	17.2.9
+PORTREVISION?=	0
 CATEGORIES?=	sysutils
 PKGNAMEPREFIX?=	#
-PKGNAMESUFFIX?=	-server
+PKGNAMESUFFIX?=	17-server
 
 MAINTAINER=	acm@FreeBSD.org
 COMMENT?=	Backup archiving recovery open sourced (server)
@@ -21,8 +21,6 @@ LIB_DEPENDS+=	liblzo2.so:archivers/lzo2 \
 
 USES+=		libtool:keepla pkgconfig readline:port shebangfix
 USE_GITHUB=	yes
-GH_ACCOUNT=	${PORTNAME:S/17//}
-GH_PROJECT=	${PORTNAME:S/17//}
 
 USERS=		bareos
 GROUPS=		${USERS}
@@ -37,8 +35,6 @@ SHEBANG_FILES=	${WRKSRC}/src/cats/make_catalog_backup.pl.in
 CPPFLAGS+=	-I${LOCALBASE}/readline -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-ETCDIR=		${PREFIX}/etc/${PORTNAME:S/17//}
-
 OPTIONS_DEFAULT=	OPENSSL
 OPTIONS_SINGLE=		CRYPTO
 OPTIONS_SINGLE_CRYPTO=	OPENSSL GNUTLS
@@ -48,7 +44,7 @@ MTX_DESC=		Install mtx for control of autochanger devices
 NDMP_DESC=		Enable build of NDMP support
 SCSICRYPTO_DESC=	Build LTO AME crypto plugin
 
-.if ${PKGNAMESUFFIX} == "-server"
+.if ${PKGNAMESUFFIX} == "17-server"
 OPTIONS_DEFINE=		MTX PYTHON NDMP NLS SCSICRYPTO
 OPTIONS_DEFAULT+=	PGSQL SCSICRYPTO
 OPTIONS_SINGLE_DATABASE=	SQLITE3 MYSQL PGSQL
@@ -69,7 +65,7 @@ OPENSSL_CONFIGURE_OFF=	--with-openssl="no"
 SCSICRYPTO_CONFIGURE_ON=	--enable-scsi-crypto=yes
 SCSICRYPTO_CONFIGURE_OFF=	--enable-scsi-crypto=no
 
-.if ${PKGNAMESUFFIX} == "-client" || ${PKGNAMESUFFIX} == "-server"  #Till end of the file
+.if ${PKGNAMESUFFIX} == "17-client" || ${PKGNAMESUFFIX} == "17-server"  #Till end of the file
 PYTHON_USES=		  python
 PYTHON_CONFIGURE_ON=	--with-python=yes
 PYTHON_CONFIGURE_OFF=	--with-python=no
@@ -110,7 +106,8 @@ CONFIGURE_ARGS+=--with-tcp-wrappers=/usr/lib \
 .if defined(WITH_CLIENT_ONLY)
 LMDB_CONFIGURE_ON=	--enable-lmdb=yes
 LMDB_CONFIGURE_OFF=	--enable-lmdb=no
-LMDB_CFLAGS=		-DMDB_DSYNC=O_SYNC
+LMDB_CFLAGS=		-DMDB_DSYNC=O_SYNC \
+			-DMDB_USE_POSIX_MUTEX=1
 
 CONFIGURE_ARGS+=--with-fd-user=root \
 		--with-fd-group=wheel
@@ -154,7 +151,7 @@ CONFFILES=		sd dir
 # Server default database
 
 MYSQL_CONFIGURE_ON=	--with-mysql=yes
-MYSQL_USE=	MYSQL=yes
+MYSQL_USES=	mysql
 SQLITE3_CONFIGURE_ON=	--with-sqlite3=yes
 SQLITE3_LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 PGSQL_CONFIGURE_ON=	--with-postgresql=yes
@@ -194,6 +191,7 @@ post-patch:
 #	Default bconsole.conf is in ${ETCDIR}
 	@${REINPLACE_CMD} -e 's|^MAN8 =|MAN8 ?=|g' -e 's|^MAN1 =|MAN1 ?=|g' ${WRKSRC}/manpages/Makefile.in
 	@${REINPLACE_CMD} -e 's|_NONSHARED||g' ${WRKSRC}/src/filed/Makefile.in
+	@${REINPLACE_CMD} -e 's|/usr/bin/python-config|${PYTHON_CMD}-config|g' ${WRKSRC}/configure
 .if defined(WITH_CLIENT_ONLY)
 	@${REINPLACE_CMD} -e 's|^\(fd_subdirs = .*\)scripts\(.*\)|\1\2|g' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|\(.*$${MKDIR} $${DESTDIR}$${scriptdir}\)|#\1|g' ${WRKSRC}/Makefile.in
@@ -235,5 +233,5 @@ post-install:
 .endif
 .else
 .include "${MASTERDIR}/Makefile.common"
-.endif # -client and -server are defined
+.endif # 17-client and 17-server are defined
 .include <bsd.port.mk>

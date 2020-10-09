@@ -25,14 +25,9 @@
     SUBDIR += qtfm
     SUBDIR += rodent
     SUBDIR += rox-filer
-    SUBDIR += rox-mime-editor
-    SUBDIR += rox-session
-    SUBDIR += sunflower
     SUBDIR += sushi
     SUBDIR += tdfsb
     SUBDIR += thunar
-    SUBDIR += thunar-vfs
-    SUBDIR += twander
     SUBDIR += wcmcommander
     SUBDIR += worker
     SUBDIR += xcruise

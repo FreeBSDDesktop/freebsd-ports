@@ -3,7 +3,7 @@
 
 PORTNAME=	luola
 PORTVERSION=	1.3.2
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	games
 MASTER_SITES=	http://mirror.amdmi3.ru/distfiles/${DIST_SUBDIR}/ # master site gone
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
@@ -18,7 +18,7 @@ LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
-USES=		gmake
+USES=		gmake sdl
 USE_SDL=	sdl image ttf
 CONFIGURE_ARGS=	--program-prefix=''
 LIBS+=		-lm

@@ -1,59 +1,57 @@
 # $FreeBSD$
 
-PORTNAME=		ghidra
+PORTNAME=	ghidra
 DISTVERSIONPREFIX=	Ghidra_
-DISTVERSION=	9.0.4
+DISTVERSION=	9.1
 DISTVERSIONSUFFIX=	_build
-CATEGORIES=		devel security
+CATEGORIES=	devel security java
 MASTER_SITES=	SF/yajsw/yajsw/yajsw-stable-12.12/:yajsw \
-	SF/catacombae/HFSExplorer/0.21/:hfsexplorer \
-	https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/android4me/:axml2printer \
-	https://github.com/pxb1988/dex2jar/releases/download/2.0/:dex2jar
-DISTFILES=		yajsw-stable-12.12.zip:yajsw \
-	hfsexplorer-0_21-bin.zip:hfsexplorer \
-	AXMLPrinter2.jar:axml2printer \
-	dex-tools-2.0.zip:dex2jar
+		SF/catacombae/HFSExplorer/0.21/:hfsexplorer \
+		https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/android4me/:axml2printer \
+		https://github.com/pxb1988/dex2jar/releases/download/2.0/:dex2jar
+DISTFILES=	yajsw-stable-12.12.zip:yajsw \
+		hfsexplorer-0_21-bin.zip:hfsexplorer \
+		AXMLPrinter2.jar:axml2printer \
+		dex-tools-2.0.zip:dex2jar
 DIST_SUBDIR=	${PORTNAME}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	sghctoma@gmail.com
 COMMENT=	Software reverse engineering (SRE) framework
 
-LICENSE=		APACHE20
+LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64
 
 EXTRACT_DEPENDS=	${UNZIP_CMD}:archivers/unzip
-BUILD_DEPENDS=	gradle>=5.0:devel/gradle \
-	bash:shells/bash \
-	flex:textproc/flex \
-	fop:textproc/fop \
-	${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:textproc/docbook-xsl
-RUN_DEPENDS=	bash:shells/bash
+BUILD_DEPENDS=		${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:textproc/docbook-xsl \
+			bash:shells/bash \
+			flex:textproc/flex \
+			fop:textproc/fop \
+			gradle5>=5.0:devel/gradle5
+RUN_DEPENDS=		bash:shells/bash
 
-USES=	bison shebangfix
-
-OPTIONS_RADIO=	JDK
-OPTIONS_RADIO_JDK=	JDK11 JDK12
-OPTIONS_DEFAULT=	JDK11
-
-JDK11_BUILD_DEPENDS=	${LOCALBASE}/openjdk11/bin/java:java/openjdk11
-JDK11_RUN_DEPENDS=		${LOCALBASE}/openjdk11/bin/java:java/openjdk11
-JDK12_BUILD_DEPENDS=	${LOCALBASE}/openjdk12/bin/java:java/openjdk12
-JDK12_RUN_DEPENDS=		${LOCALBASE}/openjdk12/bin/java:java/openjdk12
-
-SHEBANG_FILES=	Ghidra/RuntimeScripts/Linux/* \
-	Ghidra/RuntimeScripts/Linux/support/* \
-	Ghidra/RuntimeScripts/Linux/server/*
+USES=		bison shebangfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	NationalSecurityAgency
 
-GRADLE_HOME_BASE=	/tmp	# Gradle cache path must be absolute (see https://github.com/gradle/gradle/issues/1338)
-GRADLE_RUN=	${SETENV} ${MAKE_ENV} gradle \
-			--gradle-user-home ${GRADLE_HOME_BASE}/gradle-${PORTNAME} \
-			--no-daemon
+USE_JAVA=	yes
+JAVA_VERSION=	11+
+JAVA_BUILD=	yes
+JAVA_RUN=	yes
+
+SHEBANG_FILES=	Ghidra/RuntimeScripts/Common/server/jaas_external_program.example.sh \
+		Ghidra/RuntimeScripts/Linux/* \
+		Ghidra/RuntimeScripts/Linux/server/* \
+		Ghidra/RuntimeScripts/Linux/support/*
+
+
+# Gradle cache path must be absolute (see https://github.com/gradle/gradle/issues/1338)
+GRADLE_HOME_BASE=	/tmp
+GRADLE_RUN=		${SETENV} ${MAKE_ENV} gradle5 --gradle-user-home \
+			${GRADLE_HOME_BASE}/gradle-${PORTNAME} --no-daemon
 
 # to rebuild the deps archive:
 #   1. set DEV_UPDATE_MODE=yes
@@ -64,13 +62,9 @@ GRADLE_RUN=	${SETENV} ${MAKE_ENV} gradle \
 
 DEV_UPDATE_MODE=	no
 
-.if (${DEV_UPDATE_MODE} == "yes")
-post-build:
-	@cd ${GRADLE_HOME_BASE} && ${TAR} czf ${DISTDIR}/${DIST_SUBDIR}/${PORTNAME}-${DISTVERSION}-deps${EXTRACT_SUFX} gradle-${PORTNAME}
-	@${ECHO} "(!!!) Please upload the Gradle deps archive: ${DISTDIR}/${DIST_SUBDIR}/${PORTNAME}-${DISTVERSION}-deps${EXTRACT_SUFX}"
-.else
+.if (${DEV_UPDATE_MODE} == "no")
 MASTER_SITES+=	https://github.com/sghctoma/ghidra-deps/raw/master/:gradle
-DISTFILES+=		${PORTNAME}-${DISTVERSION}-deps${EXTRACT_SUFX}:gradle
+DISTFILES+=	${PORTNAME}-${DISTVERSION}-deps${EXTRACT_SUFX}:gradle
 EXTRACT_ONLY+=	${PORTNAME}-${DISTVERSION}-deps${EXTRACT_SUFX}
 GRADLE_RUN+=	--offline
 .endif
@@ -92,18 +86,19 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|/usr/share/sgml/docbook/xsl-stylesheets|${LOCALBASE}/share/xsl/docbook/|g" \
 		${WRKSRC}/Ghidra/Features/Decompiler/src/main/doc/*.xsl \
 		${WRKSRC}/Ghidra/Features/FunctionID/src/main/doc/*.xsl
-
-post-patch-JDK11-on:
-	@${ECHO_CMD} "org.gradle.java.home=${LOCALBASE}/openjdk11" > ${WRKSRC}/gradle.properties
-
-post-patch-JDK12-on:
-	@${ECHO_CMD} "org.gradle.java.home=${LOCALBASE}/openjdk12" > ${WRKSRC}/gradle.properties
+	@${REINPLACE_CMD} -e "s|JAVA_HOME_PLACEHOLDER|${JAVA_HOME}|" \
+		${WRKSRC}/Ghidra/RuntimeScripts/Linux/support/launch.sh
+	@${ECHO_CMD} "org.gradle.java.home=${JAVA_HOME}" > ${WRKSRC}/gradle.properties
 
 do-build:
-	cd ${WRKSRC} && ${GRADLE_RUN} yajswDevUnpack buildGhidra
+	@cd ${WRKSRC} && ${GRADLE_RUN} yajswDevUnpack buildGhidra
 
+.if (${DEV_UPDATE_MODE} == "yes")
 post-build:
-	@${RM} ${GRADLE_HOME_BASE}/gradle-${PORTNAME}
+	cd ${GRADLE_HOME_BASE} && ${TAR} czf ${DISTDIR}/${DIST_SUBDIR}/${PORTNAME}-${DISTVERSION}-deps${EXTRACT_SUFX} gradle-${PORTNAME}
+	@${ECHO} "(!!!) Please upload the Gradle deps archive: ${DISTDIR}/${DIST_SUBDIR}/${PORTNAME}-${DISTVERSION}-deps${EXTRACT_SUFX}"
+	@${RM} -r ${GRADLE_HOME_BASE}/gradle-${PORTNAME}
+.endif
 
 do-install:
 	@${UNZIP_CMD} -d ${STAGEDIR} ${WRKSRC}/build/dist/*.zip

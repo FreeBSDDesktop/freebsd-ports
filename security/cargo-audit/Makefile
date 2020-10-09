@@ -2,10 +2,10 @@
 
 PORTNAME=	cargo-audit
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.10.0
+DISTVERSION=	0.12.1
 CATEGORIES=	security
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Audit Cargo.lock for crates with security vulnerabilities
 
 LICENSE=	APACHE20 MIT
@@ -20,101 +20,217 @@ USES=		cargo ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	RustSec
 
-CARGO_CRATES=	abscissa_core-0.4.0 \
-		abscissa_derive-0.4.0 \
-		aho-corasick-0.7.6 \
-		arc-swap-0.4.3 \
-		autocfg-0.1.6 \
-		backtrace-0.3.38 \
-		backtrace-sys-0.1.31 \
-		bitflags-1.2.0 \
-		c2-chacha-0.2.2 \
+CARGO_CRATES=	abscissa_core-0.5.2 \
+		abscissa_derive-0.5.0 \
+		aho-corasick-0.7.10 \
+		ansi_term-0.11.0 \
+		arc-swap-0.4.6 \
+		arrayref-0.3.6 \
+		arrayvec-0.5.1 \
+		ascii-0.9.3 \
+		atty-0.2.14 \
+		autocfg-1.0.0 \
+		backtrace-0.3.46 \
+		backtrace-sys-0.1.37 \
+		base64-0.11.0 \
+		bitflags-1.2.1 \
+		blake2b_simd-0.5.10 \
+		bumpalo-3.2.1 \
+		byteorder-1.3.4 \
+		bytes-0.5.4 \
 		canonical-path-2.0.2 \
-		cargo-lock-3.0.0 \
-		cc-1.0.45 \
+		cargo-edit-0.6.0 \
+		cargo-lock-4.0.1 \
+		cargo_metadata-0.9.1 \
+		cc-1.0.52 \
 		cfg-if-0.1.10 \
-		chrono-0.4.9 \
+		chrono-0.4.11 \
+		clap-2.33.0 \
+		color-backtrace-0.3.0 \
+		combine-3.8.1 \
+		constant_time_eq-0.1.5 \
+		core-foundation-0.7.0 \
+		core-foundation-sys-0.7.0 \
+		crates-index-0.14.3 \
+		crossbeam-utils-0.7.2 \
 		cvss-1.0.0 \
-		darling-0.10.1 \
-		darling_core-0.10.1 \
-		darling_macro-0.10.1 \
-		failure-0.1.6 \
-		failure_derive-0.1.6 \
-		fixedbitset-0.1.9 \
+		darling-0.10.2 \
+		darling_core-0.10.2 \
+		darling_macro-0.10.2 \
+		dirs-2.0.2 \
+		dirs-sys-0.3.4 \
+		dtoa-0.4.5 \
+		either-1.5.3 \
+		encoding_rs-0.8.22 \
+		env_proxy-0.4.0 \
+		error-chain-0.12.2 \
+		failure-0.1.8 \
+		failure_derive-0.1.8 \
+		fixedbitset-0.2.0 \
 		fnv-1.0.6 \
-		generational-arena-0.2.3 \
-		getrandom-0.1.12 \
-		git2-0.10.1 \
+		foreign-types-0.3.2 \
+		foreign-types-shared-0.1.1 \
+		fuchsia-zircon-0.3.3 \
+		fuchsia-zircon-sys-0.3.3 \
+		futures-channel-0.3.4 \
+		futures-core-0.3.4 \
+		futures-io-0.3.4 \
+		futures-sink-0.3.4 \
+		futures-task-0.3.4 \
+		futures-util-0.3.4 \
+		generational-arena-0.2.7 \
+		getrandom-0.1.14 \
+		git2-0.13.5 \
+		glob-0.3.0 \
 		gumdrop-0.7.0 \
 		gumdrop_derive-0.7.0 \
-		home-0.5.1 \
+		h2-0.2.4 \
+		heck-0.3.1 \
+		hermit-abi-0.1.12 \
+		hex-0.4.2 \
+		home-0.5.3 \
+		http-0.2.1 \
+		http-body-0.3.1 \
+		httparse-1.3.4 \
+		hyper-0.13.5 \
+		hyper-tls-0.4.1 \
 		ident_case-1.0.1 \
 		idna-0.2.0 \
-		itoa-0.4.4 \
-		jobserver-0.1.17 \
+		indexmap-1.3.2 \
+		iovec-0.1.4 \
+		itoa-0.4.5 \
+		jobserver-0.1.21 \
+		js-sys-0.3.39 \
+		kernel32-sys-0.2.2 \
 		lazy_static-1.4.0 \
-		libc-0.2.62 \
-		libgit2-sys-0.9.1 \
-		libssh2-sys-0.2.12 \
+		libc-0.2.69 \
+		libgit2-sys-0.12.5+1.0.0 \
+		libssh2-sys-0.2.17 \
 		libz-sys-1.0.25 \
+		linked-hash-map-0.5.2 \
 		log-0.4.8 \
+		matchers-0.0.1 \
 		matches-0.1.8 \
-		memchr-2.2.1 \
-		num-integer-0.1.41 \
-		num-traits-0.2.8 \
-		num_cpus-1.10.1 \
+		maybe-uninit-2.0.0 \
+		memchr-2.3.3 \
+		mime-0.3.16 \
+		mime_guess-2.0.3 \
+		mio-0.6.22 \
+		miow-0.2.1 \
+		native-tls-0.2.4 \
+		net2-0.2.34 \
+		num-integer-0.1.42 \
+		num-traits-0.2.11 \
+		num_cpus-1.13.0 \
+		once_cell-1.3.1 \
+		openssl-0.10.29 \
 		openssl-probe-0.1.2 \
-		openssl-sys-0.9.51 \
-		ordermap-0.3.5 \
+		openssl-sys-0.9.55 \
+		owning_ref-0.4.1 \
 		percent-encoding-2.1.0 \
-		petgraph-0.4.13 \
-		pkg-config-0.3.16 \
+		petgraph-0.5.0 \
+		pin-project-0.4.10 \
+		pin-project-internal-0.4.10 \
+		pin-project-lite-0.1.4 \
+		pin-utils-0.1.0 \
+		pkg-config-0.3.17 \
 		platforms-0.2.1 \
-		ppv-lite86-0.2.5 \
-		proc-macro2-1.0.5 \
-		quote-1.0.2 \
-		rand-0.7.2 \
-		rand_chacha-0.2.1 \
+		ppv-lite86-0.2.6 \
+		proc-macro-error-1.0.2 \
+		proc-macro-error-attr-1.0.2 \
+		proc-macro2-1.0.12 \
+		quote-1.0.4 \
+		rand-0.7.3 \
+		rand_chacha-0.2.2 \
 		rand_core-0.5.1 \
 		rand_hc-0.2.0 \
 		redox_syscall-0.1.56 \
-		regex-1.3.1 \
-		regex-syntax-0.6.12 \
+		redox_users-0.3.4 \
+		regex-1.3.7 \
+		regex-automata-0.1.9 \
+		regex-syntax-0.6.17 \
 		remove_dir_all-0.5.2 \
+		reqwest-0.10.4 \
+		rust-argon2-0.7.0 \
 		rustc-demangle-0.1.16 \
-		rustsec-0.16.0 \
-		ryu-1.0.1 \
-		scopeguard-1.0.0 \
-		secrecy-0.4.1 \
+		rustsec-0.20.0 \
+		ryu-1.0.4 \
+		schannel-0.1.18 \
+		secrecy-0.6.0 \
+		security-framework-0.4.3 \
+		security-framework-sys-0.4.3 \
 		semver-0.9.0 \
 		semver-parser-0.7.0 \
-		serde-1.0.101 \
-		serde_derive-1.0.101 \
-		serde_json-1.0.41 \
-		signal-hook-0.1.10 \
-		signal-hook-registry-1.1.1 \
-		smallvec-0.6.10 \
-		strsim-0.9.2 \
-		syn-1.0.5 \
-		synstructure-0.12.1 \
+		semver-parser-0.9.0 \
+		serde-1.0.106 \
+		serde_derive-1.0.106 \
+		serde_json-1.0.52 \
+		serde_urlencoded-0.6.1 \
+		signal-hook-0.1.14 \
+		signal-hook-registry-1.2.0 \
+		slab-0.4.2 \
+		smallvec-0.6.13 \
+		smallvec-1.4.0 \
+		smol_str-0.1.16 \
+		stable_deref_trait-1.1.1 \
+		strsim-0.8.0 \
+		strsim-0.9.3 \
+		structopt-0.3.14 \
+		structopt-derive-0.4.7 \
+		subprocess-0.2.4 \
+		syn-1.0.18 \
+		syn-mid-0.5.0 \
+		synstructure-0.12.3 \
 		tempfile-3.1.0 \
-		termcolor-1.0.5 \
-		thread_local-0.3.6 \
-		time-0.1.42 \
-		toml-0.5.3 \
+		termcolor-1.1.0 \
+		textwrap-0.11.0 \
+		thiserror-1.0.16 \
+		thiserror-impl-1.0.16 \
+		thread_local-1.0.1 \
+		time-0.1.43 \
+		tokio-0.2.20 \
+		tokio-tls-0.3.0 \
+		tokio-util-0.3.1 \
+		toml-0.5.6 \
+		toml_edit-0.1.5 \
+		tower-service-0.3.0 \
+		tracing-0.1.13 \
+		tracing-attributes-0.1.7 \
+		tracing-core-0.1.10 \
+		tracing-log-0.1.1 \
+		tracing-subscriber-0.1.6 \
+		try-lock-0.2.2 \
+		unicase-2.6.0 \
 		unicode-bidi-0.3.4 \
-		unicode-normalization-0.1.8 \
+		unicode-normalization-0.1.12 \
+		unicode-segmentation-1.6.0 \
+		unicode-width-0.1.7 \
 		unicode-xid-0.2.0 \
-		url-2.1.0 \
-		vcpkg-0.2.7 \
+		unreachable-1.0.0 \
+		url-2.1.1 \
+		vcpkg-0.2.8 \
+		vec_map-0.8.2 \
+		version_check-0.9.1 \
+		void-1.0.2 \
 		wait-timeout-0.2.0 \
-		wasi-0.7.0 \
+		want-0.3.0 \
+		wasi-0.9.0+wasi-snapshot-preview1 \
+		wasm-bindgen-0.2.62 \
+		wasm-bindgen-backend-0.2.62 \
+		wasm-bindgen-futures-0.4.12 \
+		wasm-bindgen-macro-0.2.62 \
+		wasm-bindgen-macro-support-0.2.62 \
+		wasm-bindgen-shared-0.2.62 \
+		web-sys-0.3.39 \
+		winapi-0.2.8 \
 		winapi-0.3.8 \
+		winapi-build-0.1.1 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
-		winapi-util-0.1.2 \
+		winapi-util-0.1.5 \
 		winapi-x86_64-pc-windows-gnu-0.4.0 \
-		wincolor-1.0.2 \
-		zeroize-1.0.0-pre
+		winreg-0.6.2 \
+		ws2_32-sys-0.2.1 \
+		zeroize-1.1.0
 
 NO_TEST=	yes
 

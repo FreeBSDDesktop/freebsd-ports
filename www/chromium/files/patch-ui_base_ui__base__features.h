@@ -1,8 +1,8 @@
---- ui/base/ui_base_features.h.orig	2019-06-04 18:55:49 UTC
+--- ui/base/ui_base_features.h.orig	2020-07-07 21:58:19 UTC
 +++ ui/base/ui_base_features.h
-@@ -59,10 +59,10 @@ COMPONENT_EXPORT(UI_BASE_FEATURES)
- extern const base::Feature kEnableAutomaticUiAdjustmentsForTouch;
- #endif  // defined(OS_WIN) || defined(OS_CHROMEOS)
+@@ -60,10 +60,10 @@ COMPONENT_EXPORT(UI_BASE_FEATURES) extern const base::
+ COMPONENT_EXPORT(UI_BASE_FEATURES) bool IsUsingWMPointerForTouch();
+ #endif  // defined(OS_WIN)
  
 -#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
 +#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
@@ -11,5 +11,5 @@
 -#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
 +#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
  
- // Used to have ash (Chrome OS system UI) run in its own process.
- // TODO(jamescook): Make flag only available in Chrome OS.
+ // Used to enable forced colors mode for web content.
+ COMPONENT_EXPORT(UI_BASE_FEATURES) extern const base::Feature kForcedColors;

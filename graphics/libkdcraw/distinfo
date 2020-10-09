@@ -1,3 +1,3 @@
-TIMESTAMP = 1570544469
-SHA256 (KDE/applications/19.08.2/libkdcraw-19.08.2.tar.xz) = 735ab40633efec394c6265d83f86ad7caf278f63d1dd33cc6edf572da4925fcb
-SIZE (KDE/applications/19.08.2/libkdcraw-19.08.2.tar.xz) = 42012
+TIMESTAMP = 1598945432
+SHA256 (KDE/release-service/20.08.1/libkdcraw-20.08.1.tar.xz) = 3431810972d886635ba6249ac86a9442a9c3a3333eb0b27533fc459e757e9eb1
+SIZE (KDE/release-service/20.08.1/libkdcraw-20.08.1.tar.xz) = 41996

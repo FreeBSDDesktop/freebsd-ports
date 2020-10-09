@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	fs-uae
-PORTVERSION=	3.0.0
+PORTVERSION=	3.0.5
 CATEGORIES=	emulators
 MASTER_SITES=	http://fs-uae.net/stable/${PORTVERSION}/
 
@@ -25,18 +25,29 @@ USE_GL=		gl
 USE_GNOME=	glib20
 USE_XORG=	x11
 
-LLD_UNSAFE=	yes
 INSTALLS_ICONS=	yes
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-jit
 CFLAGS+=	-Wno-c++11-narrowing
+LDFLAGS_i386=	-Wl,-znotext
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	DOCS DEBUG
+OPTIONS_DEFINE_i386=	JIT
+OPTIONS_DEFINE_amd64=	JIT
+
+JIT_DESC=	Enable JIT compiler (experimental)
+JIT_CONFIGURE_ENABLE=	jit
+
+.include <bsd.port.pre.mk>
+
+# JIT is not supported on non-x86 make sure it's off
+.if ${ARCH} != amd64 && ${ARCH} != i386
+CONFIGURE_ARGS+=	--disable-jit
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|= bind|= ::bind|' \
 		${WRKSRC}/src/od-fs/bsdsocket_posix.cpp \
 		${WRKSRC}/src/support/socket.cpp
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

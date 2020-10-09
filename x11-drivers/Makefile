@@ -19,7 +19,6 @@
     SUBDIR += xf86-video-ark
     SUBDIR += xf86-video-ast
     SUBDIR += xf86-video-ati
-    SUBDIR += xf86-video-ati-legacy
     SUBDIR += xf86-video-chips
     SUBDIR += xf86-video-cirrus
     SUBDIR += xf86-video-dummy
@@ -33,11 +32,9 @@
     SUBDIR += xf86-video-neomagic
     SUBDIR += xf86-video-nv
     SUBDIR += xf86-video-openchrome
-    SUBDIR += xf86-video-qxl
     SUBDIR += xf86-video-r128
     SUBDIR += xf86-video-rendition
     SUBDIR += xf86-video-s3
-    SUBDIR += xf86-video-s3virge
     SUBDIR += xf86-video-savage
     SUBDIR += xf86-video-scfb
     SUBDIR += xf86-video-siliconmotion
@@ -45,7 +42,6 @@
     SUBDIR += xf86-video-sunffb
     SUBDIR += xf86-video-tdfx
     SUBDIR += xf86-video-trident
-    SUBDIR += xf86-video-tseng
     SUBDIR += xf86-video-vesa
     SUBDIR += xf86-video-vmware
     SUBDIR += xf86-video-voodoo

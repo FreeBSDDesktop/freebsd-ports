@@ -3,8 +3,7 @@
 #    $MCom: ports/x11-toolkits/gtksourceviewmm3/Makefile,v 1.1 2011/10/16 22:00:24 kwm Exp $
 
 PORTNAME=	gtksourceviewmm
-PORTVERSION=	3.2.0
-PORTREVISION=	8
+PORTVERSION=	3.18.0
 CATEGORIES=	x11-toolkits gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	3
@@ -12,9 +11,13 @@ PKGNAMESUFFIX=	3
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	C++ binding of GtkSourceView3
 
+LICENSE=	LGPL21
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c++11-lang gmake libtool:keepla pathfix pkgconfig tar:xz
+USES=		compiler:c++11-lang gmake gnome libtool:keepla pathfix \
+		pkgconfig tar:xz
 USE_CXXSTD=	c++11
 USE_LDCONFIG=	yes
 USE_GNOME=	gtksourceview3 gnomeprefix gtkmm30

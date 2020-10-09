@@ -26,6 +26,9 @@ CONFIGURE_ARGS+=--with-xf86vm \
 		--with-xf86dga \
 		--with-system-libode
 
+# Fix build with clang11
+CFLAGS+=	-fcommon
+
 EXTRACT_AFTER_ARGS=	--exclude "data1"
 
 MAKE_ENV=	WITH_DATADIR=yes WITH_LIBDIR=yes \
@@ -48,7 +51,7 @@ LIBDIR=		${PREFIX}/lib/${PORTNAME}
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MCLIENT}
-USES+=		jpeg openal:soft,alut pkgconfig
+USES+=		gl jpeg openal:soft,alut pkgconfig xorg
 LIB_DEPENDS+=	libcurl.so:ftp/curl \
 		libfreetype.so:print/freetype2 \
 		libpng.so:graphics/png \

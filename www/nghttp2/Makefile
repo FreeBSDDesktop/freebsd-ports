@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	nghttp2
-PORTVERSION=	1.39.2
-DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTVERSION=	1.41.0
 CATEGORIES=	www net
+MASTER_SITES=	https://github.com/nghttp2/nghttp2/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	HTTP/2.0 C Library
@@ -21,7 +20,7 @@ OPTIONS_DEFAULT=APP HPACK
 OPTIONS_SUB=	yes
 APP_DESC=	Build h2load, nghttp, nghttpd and nghttpx
 
-USES=		autoreconf compiler:c++14-lang gmake libtool localbase pathfix pkgconfig ssl
+USES=		autoreconf compiler:c++14-lang gmake libtool localbase pathfix pkgconfig ssl tar:xz
 
 CONFIGURE_ARGS=	--disable-python-bindings --with-jemalloc
 CONFIGURE_ENV=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
@@ -29,14 +28,11 @@ CONFIGURE_ENV=	OPENSSL_CFLAGS="-I${OPENSSLINC}" \
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_CXXSTD=	c++14
-USE_LDCONFIG=	yes
 USE_RC_SUBR=	nghttpx
 
 PORTDATA=	fetch-ocsp-response
 PORTDOCS=	*
 PORTEXAMPLES=	*
-
-USE_GITHUB=	yes
 
 APP_BUILD_DEPENDS=	c-ares>=1.7.5:dns/c-ares \
 			libev>=4.11:devel/libev
@@ -50,6 +46,7 @@ ASIO_BUILD_DEPENDS=	boost-libs>=1.54.0:devel/boost-libs
 ASIO_CONFIGURE_OFF=	--with-boost=no
 ASIO_CONFIGURE_ON=	--enable-asio-lib --with-boost-asio --with-boost-system --with-boost-thread
 ASIO_LIB_DEPENDS=	libboost_thread.so:devel/boost-libs
+ASIO_USE=		LDCONFIG=yes
 EXAMPLES_CONFIGURE_ENABLE=	examples
 EXAMPLES_BUILD_DEPENDS=	libevent>=2.0.8:devel/libevent
 EXAMPLES_LIB_DEPENDS=	libevent_openssl.so:devel/libevent

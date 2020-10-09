@@ -2,21 +2,22 @@
 # $FreeBSD$
 
 PORTNAME=	smplayer
-DISTVERSION=	19.5.0
+DISTVERSION=	20.6.0
 CATEGORIES=	multimedia audio kde
 MASTER_SITES=	SF/${PORTNAME}/SMPlayer/${PORTVERSION}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	vvd@unislabs.com
 COMMENT=	Complete front-end based on Qt for mplayer
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/Copying.txt
 
-USES=		cpe compiler:c++11-lang desktop-file-utils dos2unix gmake \
-		qmake qt:5 tar:bzip2
+USES=		cpe compiler:c++11-lang desktop-file-utils dos2unix gl \
+		gmake qmake qt:5 tar:bzip2 xorg
+USE_GL=		gl
 USE_QT=		buildtools_build linguisttools_build \
 		core dbus gui network script widgets xml
-USE_XORG=	x11
+USE_XORG=	x11 xext
 
 CPE_VENDOR=	ricardo_villalba
 DOS2UNIX_REGEX=	.*.[^p][^n][^g]$
@@ -57,7 +58,6 @@ SUB_FILES=	pkg-message
 post-patch:
 	@${REINPLACE_CMD} -e 's|&& $$(QMAKE) $$(QMAKE_OPTS)||; \
 		s|lrelease|${LRELEASE}|; \
-		s|/share/man|/man|g; \
 		s| make| ${MAKE_CMD}|g' \
 		${WRKSRC}/Makefile
 	@${REINPLACE_CMD} -e 's|-O2 -W -Wall -Werror|${CFLAGS}|' \

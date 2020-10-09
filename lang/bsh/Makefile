@@ -3,6 +3,7 @@
 
 PORTNAME=	bsh
 DISTVERSION=	2.0b6
+PORTREVISION=	1
 CATEGORIES=	lang java
 
 MAINTAINER=	pfg@FreeBSD.org
@@ -15,7 +16,7 @@ GH_ACCOUNT=	beanshell
 GH_PROJECT=	beanshell
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
+JAVA_BUILD=	8
 
 USE_ANT=	yes
 ALL_TARGET=	jarall
@@ -23,7 +24,7 @@ ALL_TARGET=	jarall
 SUB_FILES=	${PORTNAME}.sh
 SUB_LIST=	JARNAME=${PORTNAME}.jar
 
-PLIST_FILES=	%%JAVAJARDIR%%/${PORTNAME}.jar \
+PLIST_FILES=	${JAVAJARDIR}/${PORTNAME}.jar \
 		bin/${PORTNAME}
 
 do-install:

@@ -13,9 +13,7 @@ COMMENT=	GUI frontend to the libbonobo component of GNOME 2
 
 USES+=		tar:bzip2
 
-.if !defined(REFERENCE_PORT)
-
-USES+=		gettext gmake libtool:keepla localbase pathfix pkgconfig
+USES+=		gettext gmake gnome libtool:keepla localbase pathfix pkgconfig
 GNU_CONFIGURE=	yes
 USE_GNOME=	gnomeprefix intlhack \
 		libgnomecanvas libgnome referencehack
@@ -24,5 +22,3 @@ LDFLAGS+=	-lpthread
 INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
-
-.endif

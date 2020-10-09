@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	murmur
-PORTVERSION=	1.3.0
+PORTVERSION=	1.3.1
 PORTREVISION=	1
 CATEGORIES=	audio net
 
 MAINTAINER=	feld@FreeBSD.org
-COMMENT=	Murmur is the server component of Mumble
+COMMENT=	Server component of Mumble
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -73,8 +73,7 @@ pre-install:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/release/murmurd ${STAGEDIR}${PREFIX}/sbin
 	${INSTALL_DATA} ${WRKSRC}/scripts/murmur.ini ${STAGEDIR}${PREFIX}/etc/murmur.ini.sample
-	${MKDIR} ${STAGEDIR}${MAN1PREFIX}/man/man1
-	${CP} ${WRKSRC}/man/murmurd.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	${CP} ${WRKSRC}/man/murmurd.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

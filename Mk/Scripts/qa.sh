@@ -389,8 +389,6 @@ proxydeps_suggest_uses() {
 		${pkg} = "x11/libgnome" -o \
 		${pkg} = "graphics/libgnomecanvas" -o \
 		${pkg} = "x11/libgnomekbd" -o \
-		${pkg} = "print/libgnomeprint" -o \
-		${pkg} = "x11-toolkits/libgnomeprintui" -o \
 		${pkg} = "x11-toolkits/libgnomeui" -o \
 		${pkg} = "devel/libgsf" -o \
 		${pkg} = "www/libgtkhtml" -o \
@@ -443,7 +441,6 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "net/akonadi-calendar" ]; then warn "you need to use USE_KDE+=akonadicalendar"
 	elif [ ${pkg} = "net/akonadi-search" ]; then warn "you need to use USE_KDE+=akonadisearch"
 	elif [ ${pkg} = "net/kalarmcal" ]; then warn "you need to use USE_KDE+=alarmcalendar"
-	elif [ ${pkg} = "net/kblog" ]; then warn "you need to use USE_KDE+=blog"
 	elif [ ${pkg} = "net/calendarsupport" ]; then warn "you need to use USE_KDE+=calendarsupport"
 	elif [ ${pkg} = "net/kcalcore" ]; then warn "you need to use USE_KDE+=calendarcore"
 	elif [ ${pkg} = "net/kcalutils" ]; then warn "you need to use USE_KDE+=calendarutils"
@@ -458,7 +455,7 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "deskutils/kdepim-apps-libs" ]; then warn "you need to use USE_KDE+=kdepim-apps-libs"
 	elif [ ${pkg} = "net/kitinerary" ]; then warn "you need to use USE_KDE+=kitinerary"
 	elif [ ${pkg} = "net/kontactinterface" ]; then warn "you need to use USE_KDE+=kontactinterface"
-	elif [ ${pkg} = "net/kdav" ]; then warn "you need to use USE_KDE+=kpimdav"
+	elif [ ${pkg} = "net/kf5-kdav" ]; then warn "you need to use USE_KDE+=kdav"
 	elif [ ${pkg} = "security/kpkpass" ]; then warn "you need to use USE_KDE+=kpkpass"
 	elif [ ${pkg} = "net/ksmtp" ]; then warn "you need to use USE_KDE+=ksmtp"
 	elif [ ${pkg} = "net/kldap" ]; then warn "you need to use USE_KDE+=ldap"
@@ -1006,15 +1003,28 @@ pkgmessage()
 	return 0
 }
 
+reinplace()
+{
+	if [ -f ${REWARNFILE} ]; then
+		warn "Possible REINPLACE_CMD issues:"
+		cat ${REWARNFILE}
+	fi
+}
+
 checks="shebang symlinks paths stripped desktopfileutils sharedmimeinfo"
 checks="$checks suidfiles libtool libperl prefixvar baselibs terminfo"
 checks="$checks proxydeps sonames perlcore no_arch gemdeps gemfiledeps flavors"
-checks="$checks license depends_blacklist pkgmessage"
+checks="$checks license depends_blacklist pkgmessage reinplace"
 
 ret=0
 cd ${STAGEDIR} || exit 1
 for check in ${checks}; do
-	${check} || ret=1
+	eval check_test="\$IGNORE_QA_$check"
+	if [ -z "${check_test}" ]; then
+		${check} || ret=1
+	else
+		warn "Ignoring $check QA test"
+	fi
 done
 
 exit ${ret}

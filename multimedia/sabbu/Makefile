@@ -2,7 +2,7 @@
 
 PORTNAME=	sabbu
 PORTVERSION=	0.3.0
-PORTREVISION=	19
+PORTREVISION=	20
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/Sabbu%20${PORTVERSION}
 
@@ -13,7 +13,7 @@ LICENSE=	GPLv2
 
 LIB_DEPENDS=	libsndfile.so:audio/libsndfile
 
-USES=		tar:bzip2 gmake compiler:c++11-lang pkgconfig iconv
+USES=		tar:bzip2 compiler:c++11-lang gmake pkgconfig iconv sdl gnome
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-ffmpeg
 

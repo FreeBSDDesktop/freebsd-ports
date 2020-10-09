@@ -17,10 +17,11 @@ LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
 
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk20 intltool
-USES=		gmake libtool pkgconfig
+USES=		gmake gnome libtool pkgconfig
 
 CONFIGURE_ARGS=	--enable-static=no --x-includes=${LOCALBASE}/include \
 		--x-libraries=${LOCALBASE}/lib
+CFLAGS+=	-fcommon
 LDFLAGS+=	-L${LOCALBASE}/lib
 CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/WordNet
 LIBS+=		`pkg-config --libs gio-2.0`

@@ -2,16 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	Amelia
-DISTVERSION=	1.7.5
-PORTREVISION=	2
+DISTVERSION=	1.7.6
+PORTREVISION=	1
 CATEGORIES=	math
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
 MAINTAINER=	wen@FreeBSD.org
 COMMENT=	Program for Missing Data
 
-LICENSE=	GPLv2 GPLv3
-LICENSE_COMB=	dual
+LICENSE=	GPLv2+
 
 BUILD_DEPENDS=	R-cran-Rcpp>=0.11:devel/R-cran-Rcpp \
 		R-cran-RcppArmadillo>=0:math/R-cran-RcppArmadillo

@@ -35,10 +35,7 @@
     SUBDIR += jftpgw
     SUBDIR += lftp
     SUBDIR += libfilezilla
-    SUBDIR += linux-c6-curl
     SUBDIR += linux-c7-curl
-    SUBDIR += llnlxdir
-    SUBDIR += llnlxftp
     SUBDIR += mirror
     SUBDIR += multiget
     SUBDIR += ncftp3
@@ -59,8 +56,6 @@
     SUBDIR += pear-Net_FTP
     SUBDIR += pftpd
     SUBDIR += php-fastdfs
-    SUBDIR += php71-curl
-    SUBDIR += php71-ftp
     SUBDIR += php72-curl
     SUBDIR += php72-ftp
     SUBDIR += php73-curl

@@ -1,9 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	dMagnetic
-PORTVERSION=	0.17
+PORTVERSION=	0.25
 CATEGORIES=	games
-MASTER_SITES=	http://www.dettus.net/dMagnetic/
+MASTER_SITES=	https://www.dettus.net/dMagnetic/
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	dettus@dettus.net
@@ -11,6 +11,10 @@ COMMENT=	Magnetic Scrolls Interpreter
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+USES=		tar:bz2
+
+TEST_TARGET=	check
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin

@@ -22,7 +22,7 @@ LIBSECRET_LIB_DEPENDS=	libsecret-*.so:security/libsecret
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}
 
-USES=		compiler:c11 fuse iconv pkgconfig samba:lib tar:bzip2
+USES=		compiler:c11 fuse gnome iconv pkgconfig samba:lib tar:bzip2
 USE_GNOME=	glib20:build
 
 GNU_CONFIGURE=	yes
@@ -50,7 +50,7 @@ LDFLAGS+=	-lthr
 .else
 FUSEPKG=	fuse
 .endif
-FUSE_VERSION=	"`pkgconf --version ${FUSEPKG} |	\
+FUSE_VERSION=	"`pkgconf --modversion ${FUSEPKG} |	\
 		    ${SED} -E 's,^([0-9]+)\.([0-9]+)\..*,\1\2,'`"
 
 .include <bsd.port.post.mk>

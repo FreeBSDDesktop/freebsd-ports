@@ -4,7 +4,7 @@
 
 PORTNAME=	musicbox-tag-editor
 PORTVERSION=	0.2.3
-PORTREVISION=	17
+PORTREVISION=	18
 CATEGORIES=	audio
 MASTER_SITES=	SF/musicbox/musicbox/${PORTVERSION}
 DISTNAME=	musicbox-${PORTVERSION}
@@ -14,7 +14,7 @@ COMMENT=	Simple GTK+ audio tag editor
 
 LIB_DEPENDS=	libtag.so:audio/taglib
 
-USES=		pathfix pkgconfig shebangfix
+USES=		gnome pathfix pkgconfig shebangfix
 USE_GNOME=	gnomeprefix libglade2
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -22,6 +22,11 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 # avoid conflict with audio/musicbox
 CONFIGURE_ARGS=	--program-suffix=-tag-editor
 SHEBANG_FILES=	data/edit.pl
+
+CFLAGS+=		-fcommon
+
+DEPRECATED=	Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+EXPIRATION_DATE=2021-04-01
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/share/pixmaps|${PREFIX}/share/pixmaps|' \

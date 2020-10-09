@@ -3,11 +3,11 @@
 
 PORTNAME=	transcode
 PORTVERSION=	1.1.7
-PORTREVISION=	40
+PORTREVISION=	44
 CATEGORIES=	multimedia
 MASTER_SITES=	https://bitbucket.org/france/transcode-tcforge/downloads/
 
-MAINTAINER=	cyberbotx@cyberbotx.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Text-console utility for video stream processing
 
 LICENSE=	GPLv2
@@ -22,6 +22,11 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
+CFLAGS+=		-fcommon
+
+DEPRECATED=	Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+EXPIRATION_DATE=2021-04-01
+
 OPTIONS_DEFINE=		DOCS OPTIMIZED_CFLAGS X11 MPEG2 BKTR POSTPROC FREETYPE LAME \
 			XVID X264 OGG VORBIS THEORA DVDREAD DV QUICKTIME LZO A52 \
 			FAAC LIBXML2 MJPEGTOOLS SDL IMAGEMAGICK JPEG ICONV V4L
@@ -31,6 +36,7 @@ POSTPROC_DESC=		Libpostproc support
 DVDREAD_DESC=		Libdvdread support
 LZO_DESC=		LZO compression support
 
+X11_USES=			xorg
 X11_USE=			xorg=xv,xaw,xpm
 X11_CONFIGURE_WITH=		x
 
@@ -86,6 +92,7 @@ FAAC_LIB_DEPENDS=		libfaac.so:audio/faac
 FAAC_CONFIGURE_ENABLE=		faac
 FAAC_CONFIGURE_ON=		--with-faac-prefix=${LOCALBASE}
 
+LIBXML2_USES=			gnome
 LIBXML2_USE=			GNOME=libxml2
 LIBXML2_CONFIGURE_ENABLE=	libxml2
 

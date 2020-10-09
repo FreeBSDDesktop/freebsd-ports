@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	asonic
-PORTVERSION=	1.0.3
+PORTVERSION=	2.0.0
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	python@FreeBSD.org
 COMMENT=	Async Python client for the Sonic search backend
 
 LICENSE=	MPL20

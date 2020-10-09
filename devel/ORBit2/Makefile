@@ -9,15 +9,13 @@ CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	High-performance CORBA ORB with support for the C language
 
 USES=		tar:bzip2
 
-.if !defined(REFERENCE_PORT)
-
 GNU_CONFIGURE=	yes
-USES+=		gettext gmake libtool:keepla pathfix pkgconfig
+USES+=		gettext gmake gnome libtool:keepla pathfix pkgconfig
 USE_GNOME=	libidl referencehack
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
@@ -41,5 +39,3 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/orbit-2.0/idl-backends
 
 .include <bsd.port.mk>
-
-.endif

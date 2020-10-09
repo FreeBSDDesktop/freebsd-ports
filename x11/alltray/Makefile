@@ -13,10 +13,12 @@ COMMENT=	Dock any application with no native tray icon
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		libtool pkgconfig
+USES=		gnome libtool pkgconfig
 USE_GNOME=	gtk20
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+# Upstream seems dead. Don't expect a proper fix.
+CFLAGS+=	-fcommon
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip

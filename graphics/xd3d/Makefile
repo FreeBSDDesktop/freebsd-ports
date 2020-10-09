@@ -41,9 +41,9 @@ REINPLACE_ARGS=	-i ""
 FETCH_ARGS=
 FETCH_BEFORE_ARGS=	-R -o ${DISTDIR}/${DISTFILES}
 
-USES=		fortran
+USES=		fortran xorg
 USE_XORG=	x11 xpm
-FFLAGS+=	-O
+FFLAGS+=	-O -std=legacy
 MEMORY_XD3D?=	64
 
 .if defined(LANG) && ${LANG:Mfr*} != ""

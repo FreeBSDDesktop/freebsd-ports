@@ -296,13 +296,13 @@ lib/samba4/private/libutil-tdb-samba4.so
 lib/samba4/private/libwinbind-client-samba4.so
 %%GSSAPI_BUILTIN%%lib/samba4/private/libwind-samba4.so.0
 lib/samba4/private/libxattr-tdb-samba4.so
+%%AD_DC%%%%SAMBA4_MODULEDIR%%/bind9/dlz_bind9.so
+%%AD_DC%%%%SAMBA4_MODULEDIR%%/bind9/dlz_bind9_9.so
 %%AD_DC%%%%SAMBA4_MODULEDIR%%/bind9/dlz_bind9_10.so
 %%AD_DC%%%%SAMBA4_MODULEDIR%%/bind9/dlz_bind9_11.so
 %%AD_DC%%%%SAMBA4_MODULEDIR%%/bind9/dlz_bind9_12.so
-%%AD_DC%%%%SAMBA4_MODULEDIR%%/bind9/dlz_bind9_13.so
 %%AD_DC%%%%SAMBA4_MODULEDIR%%/bind9/dlz_bind9_14.so
-%%AD_DC%%%%SAMBA4_MODULEDIR%%/bind9/dlz_bind9_9.so
-%%AD_DC%%%%SAMBA4_MODULEDIR%%/bind9/dlz_bind9.so
+%%AD_DC%%%%SAMBA4_MODULEDIR%%/bind9/dlz_bind9_16.so
 %%AD_DC%%%%SAMBA4_MODULEDIR%%/gensec/krb5.so
 %%AD_DC%%%%SAMBA4_MODULEDIR%%/krb5/winbind_krb5_locator.so
 %%AD_DC%%%%SAMBA4_MODULEDIR%%/ldb/acl.so
@@ -974,6 +974,7 @@ man/man8/winbindd.8.gz
 %%PYTHON_SITELIBDIR%%/samba/tests/dns_forwarder_helpers/server.py
 %%PYTHON_SITELIBDIR%%/samba/tests/dns_forwarder.py
 %%PYTHON_SITELIBDIR%%/samba/tests/dns_invalid.py
+%%PYTHON_SITELIBDIR%%/samba/tests/dns_packet.py
 %%PYTHON_SITELIBDIR%%/samba/tests/dns_tkey.py
 %%PYTHON_SITELIBDIR%%/samba/tests/dns_wildcard.py
 %%PYTHON_SITELIBDIR%%/samba/tests/dns.py
@@ -1002,6 +1003,7 @@ man/man8/winbindd.8.gz
 %%PYTHON_SITELIBDIR%%/samba/tests/kcc/kcc_utils.py
 %%PYTHON_SITELIBDIR%%/samba/tests/kcc/ldif_import_export.py
 %%PYTHON_SITELIBDIR%%/samba/tests/krb5_credentials.py
+%%PYTHON_SITELIBDIR%%/samba/tests/ldap_raw.py
 %%PYTHON_SITELIBDIR%%/samba/tests/ldap_referrals.py
 %%PYTHON_SITELIBDIR%%/samba/tests/libsmb.py
 %%PYTHON_SITELIBDIR%%/samba/tests/loadparm.py
@@ -1068,12 +1070,14 @@ man/man8/winbindd.8.gz
 %%PYTHON_SITELIBDIR%%/samba/tests/samba_tool/user.py
 %%PYTHON_SITELIBDIR%%/samba/tests/samba_tool/visualize_drs.py
 %%PYTHON_SITELIBDIR%%/samba/tests/samba_tool/visualize.py
+%%PYTHON_SITELIBDIR%%/samba/tests/samba_upgradedns_lmdb.py
 %%PYTHON_SITELIBDIR%%/samba/tests/samba3sam.py
 %%PYTHON_SITELIBDIR%%/samba/tests/samdb_api.py
 %%PYTHON_SITELIBDIR%%/samba/tests/samdb.py
 %%PYTHON_SITELIBDIR%%/samba/tests/security.py
 %%PYTHON_SITELIBDIR%%/samba/tests/smb.py
 %%PYTHON_SITELIBDIR%%/samba/tests/smbd_base.py
+%%PYTHON_SITELIBDIR%%/samba/tests/smbd_fuzztest.py
 %%PYTHON_SITELIBDIR%%/samba/tests/source.py
 %%PYTHON_SITELIBDIR%%/samba/tests/strings.py
 %%PYTHON_SITELIBDIR%%/samba/tests/subunitrun.py

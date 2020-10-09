@@ -11,8 +11,6 @@ include/tiledb/exception.h
 include/tiledb/filter.h
 include/tiledb/filter_list.h
 include/tiledb/group.h
-include/tiledb/map.h
-include/tiledb/map_schema.h
 include/tiledb/object.h
 include/tiledb/object_iter.h
 include/tiledb/query.h
@@ -32,3 +30,4 @@ lib/cmake/TileDB/TileDBTargets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/TileDB/TileDBTargets.cmake
 lib/libtiledb.a
 lib/libtiledb.so
+libdata/pkgconfig/tiledb.pc

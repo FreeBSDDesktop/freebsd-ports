@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	bc
-PORTVERSION=	2.1.0
-CATEGORIES=	math
+PORTVERSION=	3.1.6
+CATEGORIES=	math lang
 PKGNAMEPREFIX=	gh-
 
 MAINTAINER=	se@FreeBSD.org
@@ -11,15 +11,24 @@ COMMENT=	GNU compatible bc/dc calculator
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+USES=		compiler
 USE_GITHUB=	yes
 GH_ACCOUNT=	gavinhoward
 
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	configure.sh
 CONFIGURE_ARGS=	-G
+
+.include <bsd.port.pre.mk>
+
+.if ${CHOSEN_COMPILER_TYPE} == gcc && ${COMPILER_VERSION} <= 42
 CFLAGS+=	--std=c99
+.endif
 
 CONFLICTS_INSTALL=	gnubc-[0-9]*
+
+pre-build:
+		${INSTALL_SCRIPT} ${WRKSRC}/gen/strgen.sh ${WRKSRC}/gen/strgen
 
 do-install:
 		${INSTALL_PROGRAM} ${WRKSRC}/bin/bc ${STAGEDIR}${PREFIX}/bin/
@@ -34,4 +43,4 @@ do-install:
 do-test:
 		${MAKE} -C ${WRKSRC} test
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

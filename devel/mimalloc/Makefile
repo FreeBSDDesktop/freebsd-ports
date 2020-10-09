@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	mimalloc
-PORTVERSION=	1.1.0
+PORTVERSION=	1.6.4
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
-#MASTER_SITES=
 
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	General-purpose allocator with excellent performance characteristics
@@ -16,11 +15,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USES=		cmake compiler:c11
 
 USE_GITHUB=	yes
+GH_ACCOUNT=	microsoft
 USE_LDCONFIG=	yes
 
-GH_ACCOUNT=	microsoft
-
 # shows broken links: 400: Invalid request
-PORTSCOUT=	ignore
+PORTSCOUT=	ignore:1
 
 .include <bsd.port.mk>

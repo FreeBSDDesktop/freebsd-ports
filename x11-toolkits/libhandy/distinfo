@@ -1,5 +1,3 @@
-TIMESTAMP = 1562631211
-SHA256 (gnome/Librem5-libhandy-2d777677352d037b6f5cc24d9c1c8d9a74ac0ded_GL0.tar.gz) = 0337a7879523c49eec53b75d4fd8e60d27baee5eec9e870f8b47df151c8fd038
-SIZE (gnome/Librem5-libhandy-2d777677352d037b6f5cc24d9c1c8d9a74ac0ded_GL0.tar.gz) = 355632
-SHA256 (gnome/e1c500dd02b1.patch) = 29038342d001fdcfde1031ac731f8b7f765504a947d9d4eecc03f08ff21d5038
-SIZE (gnome/e1c500dd02b1.patch) = 924
+TIMESTAMP = 1600342894
+SHA256 (gnome/libhandy-1.0.0.tar.xz) = a9398582f47b7d729205d6eac0c068fef35aaf249fdd57eea3724f8518d26699
+SIZE (gnome/libhandy-1.0.0.tar.xz) = 377516

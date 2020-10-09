@@ -2,8 +2,7 @@
 
 PORTNAME=	mongodb40-tools
 DISTVERSIONPREFIX=	r
-DISTVERSION=	4.0.8
-PORTREVISION=	1
+DISTVERSION=	4.0.19
 CATEGORIES=	databases
 
 MAINTAINER=	dev.ashevchuk@gmail.com
@@ -12,7 +11,7 @@ COMMENT=	Tools for MongoDB
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-ONLY_FOR_ARCHS=	amd64 i386
+ONLY_FOR_ARCHS=	aarch64 amd64 armv7 i386
 ONLY_FOR_ARCHS_REASON=	not yet ported to other architectures
 
 USES=		compiler:c++14-lang go localbase
@@ -23,7 +22,7 @@ GH_PROJECT=	mongo-tools
 GO_BUILDFLAGS=	-tags "${USE_MY_TAGS}"
 GO_PKGNAME=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
 
-CONFLICTS_INSTALL=	mongodb3[46] mongodb3[46]-tools
+CONFLICTS_INSTALL=	mongodb3[46] mongodb42 mongodb3[46]-tools mongodb42-tools
 
 OPTIONS_DEFINE=		DOCS
 OPTIONS_DEFAULT=	MONGODUMP MONGOEXPORT MONGOFILES MONGOIMPORT \

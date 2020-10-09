@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	mgba
-DISTVERSION=	0.7.0
-PORTREVISION=	2
+DISTVERSION=	0.8.1
 CATEGORIES=	emulators
 
 MAINTAINER=	greg@unrelenting.technology
@@ -17,7 +16,10 @@ LICENSE_FILE_MPL20=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
 		libpng.so:graphics/png
 
-USES=		cmake compiler:c++11-lang gl gnome localbase:ldflags pkgconfig sqlite:3
+USES=		cmake compiler:c++11-lang gl gnome localbase:ldflags pkgconfig \
+		sdl sqlite:3
+
+USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mgba-emu
@@ -31,6 +33,7 @@ CMAKE_ARGS=	-DCMAKE_INSTALL_DOCDIR:STRING="${DOCSDIR}" \
 		-DUSE_ZLIB:BOOL=ON \
 		-DUSE_LZMA:BOOL=ON \
 		-DUSE_SQLITE3:BOOL=ON \
+		-DUSE_DISCORD_RPC:BOOL=OFF \
 		-DBUILD_GL:BOOL=ON \
 		-DBUILD_GLES2:BOOL=OFF
 LDFLAGS+=	-Wl,--as-needed # glu
@@ -57,6 +60,7 @@ FFMPEG_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 
 LIBRETRO_CMAKE_BOOL=	BUILD_LIBRETRO
 LIBRETRO_CMAKE_ON=	-DLIBRETRO_LIBDIR:PATH="${PREFIX}/lib/libretro"
+LIBRETRO_CONFLICTS_INSTALL=	libretro-mgba
 
 MAGICK_CMAKE_BOOL=	USE_MAGICK
 MAGICK_LIB_DEPENDS=	libMagickWand-6.so:graphics/ImageMagick6 \

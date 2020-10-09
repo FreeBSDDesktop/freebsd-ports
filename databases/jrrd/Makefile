@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	jrrd
-PORTVERSION=	1.0.8
-PORTREVISION=	1
+PORTVERSION=	1.1.4
 CATEGORIES=	databases java
 MASTER_SITES=	SF/opennms/JRRD/stable-1.0
 
@@ -14,13 +13,13 @@ LIB_DEPENDS=	librrd.so:databases/rrdtool
 
 USES=		libtool
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
 JAVA_VENDOR=	openjdk
 JAVA_BUILD=	yes
 JAVA_RUN=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	JAVA_HOME=${JAVA_HOME}
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 PLIST_FILES=	%%JAVAJARDIR%%/jrrd.jar \
 		lib/libjrrd.so

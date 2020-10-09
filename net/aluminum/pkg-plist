@@ -6,6 +6,7 @@ include/aluminum/mempool.hpp
 include/aluminum/mpi_impl.hpp
 include/aluminum/profiling.hpp
 include/aluminum/progress.hpp
+include/aluminum/trace.hpp
 include/aluminum/tuning_params.hpp
 include/aluminum/utils.hpp
 lib/cmake/aluminum/AluminumConfig.cmake
@@ -14,4 +15,5 @@ lib/cmake/aluminum/AluminumTargets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/aluminum/AluminumTargets.cmake
 lib/cmake/aluminum/FindHWLOC.cmake
 lib/cmake/aluminum/FindNCCL.cmake
+lib/cmake/aluminum/TryLLVMOpenMP.cmake
 lib/libAl.so

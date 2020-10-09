@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	rejik
-PORTVERSION=	3.2.11
-PORTREVISION=	8
+PORTVERSION=	3.2.12
 CATEGORIES=	www
 MASTER_SITES=	http://www.rejik.ru/download/
 DISTNAME=	redirector-${PORTVERSION}_squid_3.4
@@ -17,7 +16,6 @@ RUN_DEPENDS=	${LOCALBASE}/sbin/squid:www/squid
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
 USES=		perl5 tar:tgz
-USE_GCC=	any
 MAKE_ARGS=	CC=${CC} INSTALL_PATH=${PREFIX}/rejik3
 
 USERS=		squid

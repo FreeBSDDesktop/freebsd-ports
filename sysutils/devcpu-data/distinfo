@@ -1,5 +1,5 @@
-TIMESTAMP = 1568924281
-SHA256 (amd64-microcode.20181214.tar.xz) = 6d6523da9c00fc770901bf399fabc8938ee9d9b7ce28f046d636c335171611ab
-SIZE (amd64-microcode.20181214.tar.xz) = 21232
-SHA256 (intel-Intel-Linux-Processor-Microcode-Data-Files-1.24-microcode-20190618_GH0.tar.gz) = 74ec7415988d40fa53686d994cf8cb27accdbd35c5373c4c3afc2e93372ebba5
-SIZE (intel-Intel-Linux-Processor-Microcode-Data-Files-1.24-microcode-20190618_GH0.tar.gz) = 2446418
+TIMESTAMP = 1592396989
+SHA256 (amd64-microcode.20191228.tar.xz) = 156eef8950f28436e045c1d5ac6e4738d99c07a6737d35bf966901f4b260abb3
+SIZE (amd64-microcode.20191228.tar.xz) = 28827
+SHA256 (intel-Intel-Linux-Processor-Microcode-Data-Files-1.34-microcode-20200616_GH0.tar.gz) = eb4f939421ac6cdea3c586c9d984ec518320f00c07eb2b3d6754309c83c93371
+SIZE (intel-Intel-Linux-Processor-Microcode-Data-Files-1.34-microcode-20200616_GH0.tar.gz) = 3036726

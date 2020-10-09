@@ -10,6 +10,10 @@ MASTER_SITES=	http://zephyr.1ts.org/export/2642/distribution/
 MAINTAINER=	kaduk-fbsd@mit.edu
 COMMENT=	Enterprise-scale distributed messaging system
 
+BROKEN=		unfetchable
+DEPRECATED=	Broken for more than 6 months
+EXPIRATION_DATE=	2020-05-05
+
 LICENSE=	MIT
 
 BROKEN_aarch64=	Fails to link: missing sbrk

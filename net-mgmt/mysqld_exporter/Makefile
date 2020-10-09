@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mysqld_exporter
-PORTVERSION=	0.11.0
+PORTVERSION=	0.12.1
 DISTVERSIONPREFIX=v
 CATEGORIES=	net-mgmt
 
@@ -11,7 +11,7 @@ COMMENT=	Prometheus exporter for MySQL server metrics
 
 LICENSE=	APACHE20
 
-USES=		go
+USES=		go:modules
 USE_GITHUB=	yes
 
 GH_ACCOUNT=	prometheus

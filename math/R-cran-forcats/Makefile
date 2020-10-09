@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	forcats
-DISTVERSION=	0.3.0
-PORTREVISION=	2
+DISTVERSION=	0.5.0
+PORTREVISION=	1
 CATEGORIES=	math
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
-MAINTAINER=	dbn@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Tools for Working with Categorical Variables (Factors)
 
 LICENSE=	GPLv3

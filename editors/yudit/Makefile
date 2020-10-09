@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	yudit
-PORTVERSION=	2.9.6
+PORTVERSION=	3.0.7
 CATEGORIES=	editors converters print
 MASTER_SITES=	http://yudit.org/download/ \
 		SUNSITE/apps/editors/X
@@ -10,10 +10,13 @@ MASTER_SITES=	http://yudit.org/download/ \
 MAINTAINER=	danilo@FreeBSD.org
 COMMENT=	Multi-lingual Unicode text editor with TTF support
 
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING.TXT
+
 CONFLICTS=	netatalk-[0-9]*
 
+USES=		gmake xorg
 USE_XORG=	x11
-USES=		gmake
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 

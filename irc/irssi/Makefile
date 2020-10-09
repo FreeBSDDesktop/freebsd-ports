@@ -2,6 +2,7 @@
 
 PORTNAME=	irssi
 PORTVERSION=	1.2.2
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES?=	irc
 MASTER_SITES=	https://github.com/irssi/irssi/releases/download/${PORTVERSION}/
@@ -12,14 +13,14 @@ COMMENT=	Modular IRC client with many features
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		autoreconf cpe gettext-runtime gmake gnome libtool ncurses \
-		pkgconfig tar:xz
+USES=		autoreconf cpe gettext-runtime gmake gnome libtool localbase \
+		ncurses pkgconfig tar:xz
 USE_GNOME=	glib20
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=	BOT CAPSICUM DEBUG DOCS OTR PERL PROXY SOCKS TRUECOLOR UTF8PROC
+OPTIONS_DEFINE=	BOT CAPSICUM DOCS OTR PERL PROXY SOCKS TRUECOLOR UTF8PROC
 OPTIONS_DEFAULT=	BOT CAPSICUM PERL PROXY SOCKS TRUECOLOR
 
 OPTIONS_SUB=	yes
@@ -27,8 +28,6 @@ BOT_DESC=	Bot support
 BOT_CONFIGURE_WITH=	bot
 CAPSICUM_DESC=	Capsicum support
 CAPSICUM_CONFIGURE_WITH=	capsicum
-DEBUG_DESC=	Build with debug symbols
-DEBUG_VARS=	WITH_DEBUG=yes
 OTR_DESC=	OTR (off-the-record) support
 OTR_CONFIGURE_ON=	--with-otr \
 			--with-libotr-inc-prefix=${PREFIX}/include
@@ -47,16 +46,13 @@ TRUECOLOR_DESC=	Truecolor (24bit) support
 TRUECOLOR_CONFIGURE_ENABLE=	true-color
 UTF8PROC_DESC=	utf8proc support
 UTF8PROC_LIB_DEPENDS=	libutf8proc.so:textproc/utf8proc
+UTF8PROC_CONFIGURE_ENABLE=	utf8proc
 
 .if defined(WITHOUT_SSL)
 CONFIGURE_ARGS+=	--disable-ssl
 .else
 USES+=		ssl
 .endif
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|/usr|${PREFIX}|' -e 's|/etc|${PREFIX}&|' \
-		${WRKSRC}/docs/irssi.1
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/irssi/modules

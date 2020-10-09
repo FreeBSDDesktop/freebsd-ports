@@ -11,11 +11,14 @@ MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Strategy board game for 2 to 4 players
 
 GNU_CONFIGURE=	yes
-USES=		gmake
+USES=		gmake sdl
 USE_SDL=	image mixer sdl
 
 PLIST_FILES=	bin/${PORTNAME} bin/${PORTNAME}-server
 PORTDATA=	*
+
+# Fix build with clang11
+CFLAGS+=	-fcommon
 
 DESKTOP_ENTRIES="Biloba" \
 		"A strategy board game for 2 to 4 players" \

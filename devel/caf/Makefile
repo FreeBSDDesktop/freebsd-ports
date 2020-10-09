@@ -2,11 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	caf
-PORTVERSION=	0.15.3
-PORTREVISION=	6
+PORTVERSION=	0.17.6
 CATEGORIES=	devel
 
-MAINTAINER=	leres@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	C++ actor framework
 
 LICENSE=	BSD3CLAUSE
@@ -22,17 +21,16 @@ GH_PROJECT=	${GH_ACCOUNT}
 OPTIONS_DEFINE=	DEBUG TEST STATIC
 OPTIONS_RADIO=	LOG_LEVEL
 OPTIONS_RADIO_LOG_LEVEL=	LOG_LEVEL_ERROR LOG_LEVEL_WARN LOG_LEVEL_INFO LOG_LEVEL_DEBUG LOG_LEVEL_TRACE
-OPTIONS_DEFAULT=	TEST
 OPTIONS_SUB=	yes
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
-TEST_DESC=	Build with unit tests
-STATIC_DESC=	Additionally build static version of library
-LOG_LEVEL_ERROR=	Use log level ERROR for console output
-LOG_LEVEL_WARN=	Use log level WARN for console output
-LOG_LEVEL_INFO=	Use log level INFO for console output
-LOG_LEVEL_DEBUG=	Use log level DEBUG for console output
-LOG_LEVEL_TRACE=	Use log level TRACE for console output
+LOG_LEVEL_DEBUG_DESC=	Use log level DEBUG for console output
+LOG_LEVEL_ERROR_DESC=	Use log level ERROR for console output
+LOG_LEVEL_INFO_DESC=	Use log level INFO for console output
+LOG_LEVEL_TRACE_DESC=	Use log level TRACE for console output
+LOG_LEVEL_WARN_DESC=	Use log level WARN for console output
+STATIC_DESC=		Additionally build static version of library
+TEST_DESC=		Build with unit tests
 
 TEST_TARGET=	test
 

@@ -17,11 +17,9 @@ USES+=		compiler:c++11-lang tar:bzip2
 
 PORTSCOUT=	ignore:1
 
-.if !defined(REFERENCE_PORT)
-
 LIB_DEPENDS=	libsigc-1.2.so:devel/libsigc++12
 
-USES+=		autoreconf gmake libtool:keepla pathfix pkgconfig
+USES+=		autoreconf gmake gnome libtool:keepla pathfix pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	gtk20
@@ -44,5 +42,3 @@ post-patch:
 .endfor
 
 .include <bsd.port.mk>
-
-.endif

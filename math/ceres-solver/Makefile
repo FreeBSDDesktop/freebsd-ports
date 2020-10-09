@@ -2,7 +2,7 @@
 
 PORTNAME=	ceres-solver
 DISTVERSION=	1.14.0
-PORTREVISION=	14
+PORTREVISION=	19
 CATEGORIES=	math
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -39,7 +39,7 @@ OPTIONS_GROUP_SPARSE=	CXSPARSE EIGENSPARSE SUITESPARSE
 CUSTOM_BLAS_DESC=	Handcoded BLAS routines instead of Eigen
 CUSTOM_BLAS_CMAKE_BOOL=	CUSTOM_BLAS
 
-DOCS_BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx
+DOCS_BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx18
 DOCS_USES=		python:build
 DOCS_CMAKE_BOOL=	BUILD_DOCUMENTATION
 
@@ -53,7 +53,7 @@ GFLAGS_CMAKE_BOOL=	GFLAGS
 OPENMP_USES=		compiler:openmp
 OPENMP_CMAKE_BOOL=	OPENMP
 .if !exists(/usr/include/omp.h)
-# XXX ports/199603 + ports/210337
+# XXX ports/199603: LLVM openmp in base doesn't support aarch64, armv6, armv7 yet
 OPENMP_VARS=		OPENMP=gcc-
 .endif
 

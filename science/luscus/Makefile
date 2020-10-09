@@ -21,11 +21,14 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 RUN_DEPENDS=	bash:shells/bash \
 		babel:science/openbabel
 
-USES=		cmake compiler:c++11-lang gettext-runtime pkgconfig shebangfix
+USES=		cmake compiler:c++11-lang gettext-runtime gl gnome pkgconfig \
+		shebangfix xorg
 SHEBANG_GLOB=	*.sh
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk20 pango pangox-compat
 USE_GL=		gl glu
 USE_XORG=	x11
+
+CFLAGS+=	-fcommon # variables n_geometries/move_molecule/window/pix/etc are defined in the header
 
 post-patch:
 	@${REINPLACE_CMD} 's|/etc/luscus|${DATADIR}|' ${WRKSRC}/gv_system.c

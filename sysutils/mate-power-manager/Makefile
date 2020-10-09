@@ -2,13 +2,16 @@
 # $FreeBSD$
 
 PORTNAME=	mate-power-manager
-PORTVERSION=	1.22.1
+PORTVERSION=	1.24.2
 CATEGORIES=	sysutils mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
 
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	Power management system for the MATE Desktop
+
+LICENSE=	GPLv2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool \
 		gnome-keyring>=3.0.0:security/gnome-keyring
@@ -27,8 +30,8 @@ RUN_DEPENDS=	pkexec:sysutils/polkit \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gmake libtool localbase \
-		pathfix pkgconfig tar:xz
+USES=		gettext gmake gnome libtool localbase mate \
+		pathfix pkgconfig tar:xz xorg
 USE_MATE=	panel
 USE_XORG=	x11 xext xorgproto xrandr xrender
 USE_GNOME=	cairo glib20 gtk30 intlhack

@@ -13,8 +13,6 @@ COMMENT=	Component and compound document system for GNOME2
 
 USES=		tar:bzip2
 
-.if !defined(REFERENCE_PORT)
-
 LICENSE=	GPLv2 LGPL21  # former for tools, latter for library
 LICENSE_COMB=	multi
 LICENSE_FILE_GPLv2=	${WRKSRC}/COPYING
@@ -22,7 +20,8 @@ LICENSE_FILE_LGPL21=	${WRKSRC}/COPYING.LIB
 
 LIB_DEPENDS=	libpopt.so:devel/popt
 
-USES+=		bison gettext gmake libtool:keepla localbase:ldflags pathfix pkgconfig perl5
+USES+=		bison gettext gmake gnome libtool:keepla localbase:ldflags \
+		pathfix perl5 pkgconfig
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME=	intlhack libxml2 orbit2 referencehack
@@ -37,5 +36,3 @@ post-patch:
 		${WRKSRC}/activation-server/Makefile.in
 
 .include <bsd.port.mk>
-
-.endif

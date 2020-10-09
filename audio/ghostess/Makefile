@@ -3,7 +3,7 @@
 
 PORTNAME=	ghostess
 PORTVERSION=	20120105
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio
 MASTER_SITES=	http://www.smbolton.com/linux/
 
@@ -23,9 +23,14 @@ LIB_DEPENDS=	libdssialsacompat.so:audio/libdssialsacompat \
 		libjack.so:audio/jack
 
 USE_GNOME=	gtk20
-USES=		tar:bzip2 gmake pkgconfig
+USES=		gmake gnome pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-jackmidi
+
+CFLAGS+=		-fcommon
+
+DEPRECATED=	Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+EXPIRATION_DATE=2021-04-01
 
 PLIST_FILES=	bin/ghostess bin/ghostess_universal_gui man/man1/ghostess.1.gz
 

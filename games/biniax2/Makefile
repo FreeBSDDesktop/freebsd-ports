@@ -16,9 +16,12 @@ LICENSE=	ZLIB
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USE_SDL=	sdl mixer image
-USES=		dos2unix
+USES=		dos2unix sdl
 DOS2UNIX_FILES=	biniax.c
 NO_WRKSUBDIR=	yes
+
+# Fix build with clang11
+CFLAGS+=	-fcommon
 
 PLIST_FILES=	bin/${PORTNAME}
 PORTDATA=	*

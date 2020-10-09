@@ -19,7 +19,7 @@ LIB_DEPENDS=	libLLVM-${LLVM_VERSION:C/([1-9])([0-9])/\1.\2/}.so:devel/llvm${LLVM
 		libmicrohttpd.so:www/libmicrohttpd \
 		libqrencode.so:graphics/libqrencode # audio/alsa-lib isn't really needed: https://github.com/grame-cncm/faustlive/issues/3
 
-USES=		compiler:c++11-lang gmake qt:5 ssl
+USES=		compiler:c++11-lang gl gmake qt:5 ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	grame-cncm
 GH_TAGNAME=	281fcb8
@@ -52,7 +52,8 @@ post-patch:
 	@${REINPLACE_CMD} -e ' \
 		s|########## LIBS AND FLAGS|CXXFLAGS+=$$$$system($$$$LLVM_CONFIG --cflags)| ; \
 		s|/use/local|${LOCALBASE}| ; \
-		s|-L/opt/local/lib$$|-L${LOCALBASE}/lib -lexecinfo|' \
+		s|-L/opt/local/lib$$|-L${LOCALBASE}/lib -lexecinfo| ; \
+		s|-L/usr/lib/||' \
 		${WRKSRC}/Build/FreeBSD/FaustLive.pro
 	@${REINPLACE_CMD} -e ' \
 		s|#!/bin/bash|#!/bin/sh|' \

@@ -9,12 +9,13 @@ MASTER_SITES=	https://git.tuxfamily.org/qet/qet.git/snapshot/
 DISTNAME=	qet-${DISTVERSION}
 
 MAINTAINER=	arrowd@FreeBSD.org
-COMMENT=	QElectroTech is application to design electric diagrams
+COMMENT=	Application to design electric diagrams
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		compiler:c++11-lib desktop-file-utils kde:5 qmake qt:5 shared-mime-info
+USES=		compiler:c++11-lib desktop-file-utils gl kde:5 qmake qt:5 \
+		shared-mime-info
 USE_GL=		gl
 USE_QT=		concurrent core gui network printsupport sql sql-sqlite3 \
 		svg widgets xml \

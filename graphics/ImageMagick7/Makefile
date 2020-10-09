@@ -1,11 +1,10 @@
 # $FreeBSD$
 
 PORTNAME=	ImageMagick
-DISTVERSION=	7.0.8-57
-PORTREVISION=	1
+DISTVERSION=	7.0.10-24
 CATEGORIES=	graphics perl5
-MASTER_SITES=	http://www.imagemagick.org/download/ \
-		http://www.imagemagick.org/download/legacy/ \
+MASTER_SITES=	https://www.imagemagick.org/download/ \
+		https://www.imagemagick.org/download/releases/ \
 		http://servingzone.com/mirrors/ImageMagick/ \
 		http://mirror.checkdomain.de/imagemagick/ \
 		http://imagemagick.spd.co.il/ \
@@ -171,6 +170,7 @@ WEBP_CONFIGURE_WITH=	webp
 WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
 
 X11_CONFIGURE_WITH=	x
+X11_USES=		xorg
 X11_USE=		xorg=ice,sm,x11,xext,xt
 X11_VARS=		CONFLICTS_INSTALL+="ImageMagick7-nox11-* \
 			CONFLICTS+=display-[0-9]*
@@ -325,8 +325,12 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|@\.@MAGICK_ABI_SUFFIX@|@|g' \
 		${WRKSRC}/PerlMagick/Makefile.PL.in \
 		${WRKSRC}/PerlMagick/quantum/Makefile.PL.in \
+		${WRKSRC}/Magick++/bin/Magick++-config.in \
 		${WRKSRC}/Magick++/lib/Magick++.pc.in \
+		${WRKSRC}/MagickCore/MagickCore-config.in \
 		${WRKSRC}/MagickCore/MagickCore.pc.in \
+		${WRKSRC}/MagickCore/ImageMagick.pc.in \
+		${WRKSRC}/MagickWand/MagickWand-config.in \
 		${WRKSRC}/MagickWand/MagickWand.pc.in
 
 pre-configure:

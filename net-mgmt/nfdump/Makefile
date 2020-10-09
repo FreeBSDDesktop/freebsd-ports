@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	nfdump
-PORTVERSION=	1.6.18
+PORTVERSION=	1.6.20
+PORTREVISION=	1
 DISTVERSIONPREFIX=v
 CATEGORIES=	net-mgmt
 
@@ -12,7 +13,7 @@ COMMENT=	Command-line tools to collect and process NetFlow data
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/BSD-license.txt
 
-USES=		autoreconf libtool pkgconfig
+USES=		autoreconf compiler:c11 libtool pkgconfig
 USE_CSTD=	gnu89
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
@@ -91,6 +92,7 @@ RUN_DEPENDS+=	rrdtool:databases/rrdtool
 #flow-tools support
 .if ${PORT_OPTIONS:MFT2NFDUMP}
 BUILD_DEPENDS+=		flow-cat:net-mgmt/flow-tools
+LIB_DEPENDS+=		libft.so:net-mgmt/flow-tools
 CONFIGURE_ARGS+=	--enable-ftconv --with-ftpath=${LOCALBASE}
 PLIST_FILES+=	bin/ft2nfdump man/man1/ft2nfdump.1.gz
 .endif
@@ -127,7 +129,7 @@ CONFIGURE_ARGS+=	--disable-influxdb
 .endif
 
 do-install:
-.for binary in nfanon nfcapd nfpcapd nfdump nfexpire nfreplay
+.for binary in nfanon nfcapd nfdump nfexpire nfreplay
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/.libs/${binary} ${STAGEDIR}${PREFIX}/bin
 .endfor
 	${INSTALL_LIB} ${WRKSRC}/bin/.libs/libnfdump-${PORTVERSION}.so ${STAGEDIR}${PREFIX}/lib

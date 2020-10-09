@@ -3,7 +3,7 @@
 
 PORTNAME=	sfml
 PORTVERSION=	1.6
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	SF
 PKGNAMESUFFIX=	1
@@ -19,7 +19,7 @@ LIB_DEPENDS=	libsndfile.so:audio/libsndfile \
 		libpng.so:graphics/png \
 		libfreetype.so:print/freetype2
 
-USES=		gmake jpeg gl openal:al pkgconfig dos2unix
+USES=		gmake jpeg gl openal:al pkgconfig dos2unix xorg
 DOS2UNIX_GLOB=	Makefile ResourcePtr.inl
 USE_XORG=	x11 xrandr
 USE_GL=		gl glu

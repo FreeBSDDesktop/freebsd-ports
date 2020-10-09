@@ -2,11 +2,16 @@
 
 PORTNAME=	iocage
 PORTVERSION=	1.2
-PORTREVISION=	3
+PORTREVISION=	6
 CATEGORIES=	sysutils python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	araujo@FreeBSD.org
+PATCH_SITES=	https://github.com/iocage/iocage/commit/
+PATCHFILES=	2883770ae46731a2a94cd41e6d01d32cec6f1f21.patch:-p1 \
+		753b2f35731423597d7f51f33427b6d619fcd0b5.patch:-p1 \
+		b47dc2c47ff125d644720b03f598a9caf4e08192.patch:-p1
+
+MAINTAINER=	grembo@FreeBSD.org
 COMMENT=	FreeBSD jail manager written in Python3
 
 LICENSE=	BSD2CLAUSE
@@ -33,12 +38,12 @@ USE_PYTHON=	autoplist distutils
 CONFLICTS=	py27-iocage-[0-9]*
 NO_ARCH=	yes
 
-PLIST_FILES=	${PYTHON_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/PKG-INFO \
-		${PYTHON_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/SOURCES.txt \
-		${PYTHON_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/dependency_links.txt \
-		${PYTHON_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/entry_points.txt \
-		${PYTHON_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/requires.txt \
-		${PYTHON_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/top_level.txt
+PLIST_FILES=	${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/PKG-INFO \
+		${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/SOURCES.txt \
+		${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/dependency_links.txt \
+		${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/entry_points.txt \
+		${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/requires.txt \
+		${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}_lib-${PORTVERSION}-py${PYTHON_VER}.egg-info/top_level.txt
 
 OPTIONS_DEFAULT=	GIT
 OPTIONS_RADIO=	GIT_PACKAGE

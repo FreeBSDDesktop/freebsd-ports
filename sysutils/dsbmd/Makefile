@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	dsbmd
-PORTVERSION=	1.8
+PORTVERSION=	1.11
 CATEGORIES=	sysutils
 MASTER_SITES=	http://freeshell.de/~mk/download/
 
@@ -16,24 +16,26 @@ USES=		tar:tgz
 
 USE_RC_SUBR=	dsbmd
 
+PLIST_FILES=	"@sample etc/dsbmd.conf.sample" \
+		libexec/dsbmd
+
 PORTDOCS=	readme.mdoc
-PLIST_FILES=	libexec/dsbmd "@sample etc/dsbmd.conf.sample"
 
 OPTIONS_DEFINE=		DOCS EXFAT EXT4 HFS LKL MTP NTFS PTP
 OPTIONS_DEFAULT=	EXT4 MTP NTFS PTP
 
-EXFAT_DESC=		exFAT filesystem support
-EXT4_DESC=		Ext4 filesystem support
-HFS_DESC=		HFS+ support
-LKL_DESC=		Btrfs and XFS support through Linux Kernel Library
-NTFS_DESC=		Mount NTFS filesystems with read and write support
-PTP_DESC=		Picture Transfer Protocol support
+EXFAT_DESC=	exFAT filesystem support
+EXT4_DESC=	Ext4 filesystem support
+HFS_DESC=	HFS+ support
+LKL_DESC=	Btrfs and XFS support through Linux Kernel Library
+NTFS_DESC=	Mount NTFS filesystems with read and write support
+PTP_DESC=	Picture Transfer Protocol support
 
 EXFAT_RUN_DEPENDS=	mount.exfat:sysutils/fusefs-exfat
 EXT4_RUN_DEPENDS=	fuse-ext2:sysutils/fusefs-ext2
 HFS_RUN_DEPENDS=	hfsfuse:sysutils/fusefs-hfsfuse
 LKL_RUN_DEPENDS=	lklfuse:sysutils/fusefs-lkl
-MTP_RUN_DEPENDS=	simple-mtpfs:sysutils/fusefs-simple-mtpfs
+MTP_RUN_DEPENDS=	jmtpfs:sysutils/fusefs-jmtpfs
 NTFS_RUN_DEPENDS=	ntfs-3g:sysutils/fusefs-ntfs
 PTP_RUN_DEPENDS=	gphotofs:graphics/fusefs-gphotofs
 

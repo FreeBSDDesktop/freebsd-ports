@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	genie
-PORTVERSION=	g2018111101
+PORTVERSION=	g2020082801
 CATEGORIES=	devel
 
 MAINTAINER=	swills@FreeBSD.org
@@ -11,9 +11,10 @@ USES=		gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	bkaradzic
 GH_PROJECT=	GENie
-GH_TAGNAME=	d054bb1
+GH_TAGNAME=	a503d6e
 
 MAKE_ARGS=	-C build/gmake.freebsd config=release CC=${CC} CXX=${CXX}
+MAKE_JOBS_UNSAFE=	yes
 PLIST_FILES=	bin/${PORTNAME}
 
 LICENSE=	BSD3CLAUSE

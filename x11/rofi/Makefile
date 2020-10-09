@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	rofi
-DISTVERSION=	1.5.4
+PORTVERSION=	1.6.0
 CATEGORIES=	x11
 MASTER_SITES=	https://github.com/davatorium/rofi/releases/download/${PORTVERSION}/
 
@@ -20,7 +20,7 @@ LIB_DEPENDS=	libstartup-notification-1.so:x11/startup-notification \
 		libxcb-xrm.so:x11/xcb-util-xrm \
 		libxkbcommon-x11.so:x11/libxkbcommon
 
-USES=		bison gmake gnome libtool pkgconfig shebangfix
+USES=		bison gmake gnome libtool pkgconfig shebangfix xorg
 USE_GNOME=	cairo gdkpixbuf2 librsvg2 pango
 USE_XORG=	xcb
 
@@ -29,6 +29,7 @@ CONFIGURE_ENV=	LEX="${LOCALBASE}/bin/flex"
 SHEBANG_FILES=	script/get_git_rev.sh \
 		script/rofi-sensible-terminal
 bash_CMD=	/bin/sh
+TEST_TARGET=	check
 
 post-patch:
 # Fix rofi-theme-selector which assumes we have GNU sed

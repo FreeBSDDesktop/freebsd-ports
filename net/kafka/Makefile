@@ -1,10 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	kafka
-PORTVERSION=	2.3.0
+PORTVERSION=	2.6.0
+PORTREVISION=	1
 CATEGORIES=	net java
 MASTER_SITES=	APACHE/${PORTNAME}/${PORTVERSION}
-DISTNAME=	${PORTNAME}_2.12-${PORTVERSION}
+DISTNAME=	${PORTNAME}_2.13-${PORTVERSION}
 
 MAINTAINER=	timp87@gmail.com
 COMMENT=	Distributed streaming platform
@@ -20,18 +21,23 @@ SHEBANG_FILES=	bin/*.sh
 
 OPTIONS_DEFINE=	DOCS
 
-USERS=		kafka
-GROUPS=		kafka
+KAFKA_USER?=	kafka
+KAFKA_GROUP?=	kafka
+KAFKA_DBDIR?=	/var/db/${PORTNAME}
+KAFKA_LOGDIR?=	/var/log/${PORTNAME}
+
+USERS=		${KAFKA_USER}
+GROUPS=		${KAFKA_GROUP}
 
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
-KAFKA_DATADIR=	/var/db/${PORTNAME}
-KAFKA_LOGDIR=	/var/log/${PORTNAME}
-KAFKA_BINS=	connect-distributed.sh connect-standalone.sh kafka-acls.sh \
+KAFKA_BINS=	connect-distributed.sh connect-mirror-maker.sh \
+		connect-standalone.sh kafka-acls.sh \
 		kafka-broker-api-versions.sh kafka-configs.sh \
 		kafka-console-consumer.sh kafka-console-producer.sh \
 		kafka-consumer-groups.sh kafka-consumer-perf-test.sh \
 		kafka-delegation-tokens.sh kafka-delete-records.sh \
-		kafka-dump-log.sh kafka-log-dirs.sh kafka-mirror-maker.sh \
+		kafka-dump-log.sh kafka-leader-election.sh \
+		kafka-log-dirs.sh kafka-mirror-maker.sh \
 		kafka-preferred-replica-election.sh kafka-producer-perf-test.sh \
 		kafka-reassign-partitions.sh kafka-replica-verification.sh \
 		kafka-run-class.sh kafka-server-start.sh kafka-server-stop.sh \
@@ -41,51 +47,49 @@ KAFKA_BINS=	connect-distributed.sh connect-standalone.sh kafka-acls.sh \
 KAFKA_CONFIGS=	connect-console-sink.properties \
 		connect-console-source.properties \
 		connect-distributed.properties connect-file-sink.properties \
-		connect-file-source.properties connect-log4j.properties \
+		connect-file-source.properties connect-mirror-maker.properties \
+		connect-log4j.properties \
 		connect-standalone.properties consumer.properties \
 		log4j.properties producer.properties server.properties \
 		tools-log4j.properties trogdor.conf
 
-SUB_FILES=	kafka
-SUB_LIST=	ETCDIR=${ETCDIR} \
-		GROUPS=${GROUPS} \
-		JAVA=${JAVA} \
-		KAFKA_LOGDIR=${KAFKA_LOGDIR} \
-		USERS=${USERS}
+USE_RC_SUBR=	kafka kafka_connect
+SUB_LIST=	JAVA=${JAVA} \
+		KAFKA_USER=${KAFKA_USER} \
+		KAFKA_GROUP=${KAFKA_GROUP} \
+		KAFKA_LOGDIR=${KAFKA_LOGDIR}
 
-PLIST_SUB=	ETCDIR=${ETCDIR} \
-		GROUPS=${GROUPS} \
-		KAFKA_DATADIR=${KAFKA_DATADIR} \
+PLIST_SUB=	PORTVERSION=${PORTVERSION} \
+		KAFKA_USER=${KAFKA_USER} \
+		KAFKA_GROUP=${KAFKA_GROUP} \
 		KAFKA_LOGDIR=${KAFKA_LOGDIR} \
-		PORTVERSION=${PORTVERSION} \
-		USERS=${USERS}
+		KAFKA_DBDIR=${KAFKA_DBDIR}
 
 NO_BUILD=	yes
 NO_ARCH=	yes
 USE_JAVA=	yes
-JAVA_VERSION=	1.8+
-USE_RC_SUBR=	kafka
+JAVA_VERSION=	8+
+JAVA_RUN=	yes
 
 post-patch:
 	@${REINPLACE_CMD} "s|JAVA=\"java\"|JAVA=\"${JAVA}\"|" ${WRKSRC}/bin/kafka-run-class.sh
 	@${REINPLACE_CMD} "/LOG_DIR=/s|\$$base_dir/logs|${KAFKA_LOGDIR}|" ${WRKSRC}/bin/kafka-run-class.sh
 	@${REINPLACE_CMD} "s|\$$base_dir.*/config|${ETCDIR}|" ${WRKSRC}/bin/*.sh
 	@${REINPLACE_CMD} "s|ps ax|ps axww|" ${WRKSRC}/bin/kafka-server-stop.sh
-	@${REINPLACE_CMD} "/log.dirs/s|=.*|=${KAFKA_DATADIR}|" ${WRKSRC}/config/server.properties
+	@${REINPLACE_CMD} "/log.dirs/s|=.*|=${KAFKA_DBDIR}|" ${WRKSRC}/config/server.properties
 
 do-install:
 	${MKDIR} ${STAGEDIR}${ETCDIR}
-	${MKDIR} ${STAGEDIR}${KAFKA_DATADIR}
+	${MKDIR} ${STAGEDIR}${KAFKA_DBDIR}
 	${MKDIR} ${STAGEDIR}${KAFKA_LOGDIR}
 	${MKDIR} ${STAGEDIR}${DATADIR}/bin
 .for f in ${KAFKA_BINS}
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/${f} ${STAGEDIR}${DATADIR}/bin/
 .endfor
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} libs ${STAGEDIR}${DATADIR} "-not ( \
+	@(cd ${WRKSRC} && ${COPYTREE_SHARE} libs ${STAGEDIR}${DATADIR} "-not ( \
 		-name kafka_*-javadoc\.jar -or -name kafka_*-scaladoc\.jar -or \
 		-name kafka_*-sources\.jar -or -name kafka_*-test\.jar -or \
-		-name *\.asc \
-		)" \
+		-name *\.asc )" \
 	)
 .for f in ${KAFKA_CONFIGS}
 	${INSTALL_DATA} ${WRKSRC}/config/${f} ${STAGEDIR}${ETCDIR}/${f}.sample
@@ -93,6 +97,6 @@ do-install:
 
 do-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${EXTRACT_CMD} -xf ${WRKSRC}/site-docs/${PORTNAME}_2.12-${PORTVERSION}-site-docs.tgz -C ${STAGEDIR}${DOCSDIR}
+	${EXTRACT_CMD} -xf ${WRKSRC}/site-docs/${PORTNAME}_2.13-${PORTVERSION}-site-docs.tgz -C ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

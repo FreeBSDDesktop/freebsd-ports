@@ -8,8 +8,8 @@ CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	jadawin@FreeBSD.org
-COMMENT=	The module is a backend for pass_persist feature of net-snmp
+MAINTAINER=	perl@FreeBSD.org
+COMMENT=	Backend module for pass_persist feature of Net-SNMP
 
 USES=		perl5
 USE_PERL5=	configure

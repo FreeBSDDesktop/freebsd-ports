@@ -8,7 +8,7 @@ CATEGORIES=	editors
 MAINTAINER=	vmagerya@gmail.com
 COMMENT=	Simple Unicode-aware console and X11-based word processor
 
-RUN_DEPENDS=	${LUA_MODLIBDIR}/lfs.so:devel/luafilesystem
+RUN_DEPENDS=	${LUA_REFMODLIBDIR}/lfs.so:devel/luafilesystem@${LUA_FLAVOR}
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	davidgiven
@@ -25,7 +25,7 @@ OPTIONS_DEFAULT=X11
 X11_DESC=	Support running in an X window in addition to console
 X11_PLIST_FILES=bin/xwordgrinder
 X11_USE=	xorg=x11,xft
-X11_USES=	pkgconfig
+X11_USES=	pkgconfig xorg
 X11_ALL_TARGET_OFF=unix
 
 post-patch:

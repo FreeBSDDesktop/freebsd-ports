@@ -3,7 +3,7 @@
 
 PORTNAME=	pam_mount
 PORTVERSION=	2.12
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	sysutils
 MASTER_SITES=	SF/${PORTNAME:S/_/-/}/${PORTNAME}/${PORTVERSION}/
 
@@ -15,7 +15,7 @@ LICENSE_COMB=	multi
 
 LIB_DEPENDS=	libHX.so:lang/libhx
 
-USES=		pkgconfig libtool perl5 ssl tar:xz
+USES=		gnome libtool perl5 pkgconfig ssl tar:xz
 USE_GNOME=	libxml2
 
 INSTALL_TARGET=	install-strip

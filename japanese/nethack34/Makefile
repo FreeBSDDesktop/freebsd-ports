@@ -8,7 +8,7 @@ CATEGORIES=	japanese games
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/.//g}-src
 
-PATCH_SITES=	OSDN/jnethack/58545
+PATCH_SITES=	OSDN/jnethack
 PATCHFILES=	jnethack-${PORTVERSION}-0.11.diff.gz
 PATCH_DIST_STRIP=	-p1
 
@@ -40,6 +40,7 @@ SHELL_DESC=	Shell support
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MX11}
+USES+=		xorg
 USE_XORG=	xaw xpm
 GRAPHICS=	X11_GRAPHICS
 .endif

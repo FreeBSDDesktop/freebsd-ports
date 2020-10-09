@@ -123,7 +123,8 @@ _USE_XORG+=      xorg-macros
 # Nothing at the moment.
 
 .  elif ${_XORG_CAT} == driver
-_USE_XORG+=	xi xorg-server xorgproto
+USE_XORG+=	xi xorg-server xorgproto
+CFLAGS+=	-Werror=uninitialized
 .    if ${_XORG_BUILDSYS} == meson
 # Put special stuff for meson here
 .    else
@@ -150,6 +151,7 @@ PLIST_FILES+=	"@comment ${FONTSDIR}/fonts.dir" \
 .    endif
 
 .  elif ${_XORG_CAT} == lib
+CFLAGS+=	-Werror=uninitialized
 .include "${USESDIR}/pathfix.mk"
 .    if ${_XORG_BUILDSYS} == meson
 # put meson stuff here
@@ -165,20 +167,26 @@ CONFIGURE_ARGS+=--enable-malloc0returnsnull
 
 .  elif ${_XORG_CAT} == xserver
 DISTNAME?=	xorg-server-${PORTVERSION}
+CFLAGS+=	-Werror=uninitialized
 .include "${USESDIR}/pathfix.mk"
 .    if ${_XORG_BUILDSYS} == meson
 # put meson stuff here
 .    else
 CONFIGURE_ARGS+=	--with-xkb-path=${LOCALBASE}/share/X11/xkb \
 			--with-fontrootdir=${LOCALBASE}/share/fonts
+libtool_ARGS?=	# empty
+.include "${USESDIR}/libtool.mk"
 .    endif
 LIB_PC_DEPENDS+=	${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri
 _USE_XORG+=	fontutil
 
 .  endif # ${_XORG_CAT} == <category>
 
-# We only need USES=xorg if we want USE_XORG modules
-.  if defined(_USE_XORG) && !empty(_USE_XORG)
+# We only need to include xorg.mk if we want USE_XORG modules
+# USES+=xorg does not provide any functionality, it just silences an error
+# message about USES=xorg not being set
+.  if defined(USE_XORG) && !empty(USE_XORG)
+USES+=		xorg
 .include "${USESDIR}/xorg.mk"
 .  endif
 

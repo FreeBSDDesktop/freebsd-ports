@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	cdialog
-DISTVERSION=	1.3.20180621
+DISTVERSION=	1.3.20200327
 PORTEPOCH=	2
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.invisible-island.net/${PORTNAME:S|^c||}/
@@ -19,7 +19,7 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-widec \
 		--includedir=${PREFIX}/include/${PORTNAME} \
 		--with-libtool \
-		--with-ncursesw \
+		--with-${NCURSES_IMPL} \
 		--with-package=${PORTNAME}
 MAKEFILE=	makefile
 
@@ -33,10 +33,11 @@ OPTIONS_DEFINE=	EXAMPLES
 CONFIGURE_ARGS+=	--with-curses-dir=${NCURSESBASE}
 .endif
 
-post-patch:
+pre-patch-EXAMPLES-on:
 	@${FIND} ${WRKSRC}/samples/ -type f -exec ${REINPLACE_CMD} -i "" "s|dialog|cdialog|g" {} \;
-	@${REINPLACE_CMD} -e 's|$$(INSTALL_DATA) $$(LIB)|$$(INSTALL_DATA) -s $$(LIB)|'\
-		${WRKSRC}/${MAKEFILE}.in
+
+pre-install:
+	@${STRIP_CMD} ${WRKSRC}/.libs/libcdialog.so.15.0.0
 
 post-install-EXAMPLES-on:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}

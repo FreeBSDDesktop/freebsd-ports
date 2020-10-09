@@ -3,7 +3,7 @@
 
 PORTNAME=	wzdftpd
 PORTVERSION=	0.8.3
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	ftp
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-sources/${PORTNAME}-${PORTVERSION:R}
 
@@ -19,12 +19,16 @@ CONFIGURE_ARGS=	--sysconfdir=${ETCDIR} --without-pam --disable-bonjour
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
+CFLAGS+=		-fcommon
+
+DEPRECATED=	Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+EXPIRATION_DATE=2021-04-01
+
 USE_RC_SUBR=	wzdftpd
 
-OPTIONS_DEFINE=	ICONV IPV6 MYSQL PERL PGSQL SQLITE TCL DOCS
-OPTIONS_RADIO=	TLS ZEROCONF
+OPTIONS_DEFINE=	AVAHI ICONV IPV6 MYSQL PERL PGSQL SQLITE TCL DOCS
+OPTIONS_RADIO=	TLS
 OPTIONS_RADIO_TLS=	GNUTLS OPENSSL
-OPTIONS_RADIO_ZEROCONF=	AVAHI HOWL
 OPTIONS_DEFAULT=	AVAHI GNUTLS
 OPTIONS_SUB=	yes
 
@@ -48,7 +52,7 @@ PERL_CONFIGURE_ENABLE=	perl
 PERL_USES=		perl5
 
 MYSQL_CONFIGURE_ENABLE=	mysql
-MYSQL_USE=		MYSQL=yes
+MYSQL_USES=		mysql
 
 PGSQL_CONFIGURE_ON=	--with-pgsql=${LOCALBASE}
 PGSQL_CONFIGURE_OFF=	--disable-pgsql
@@ -60,19 +64,6 @@ SQLITE_USES=			sqlite:3
 AVAHI_CONFIGURE_ON=	--with-zeroconf --enable-avahi
 AVAHI_LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 			libavahi-core.so:net/avahi-app
-
-HOWL_DESC=		Zeroconf support via Howl
-HOWL_CONFIGURE_ON=	--with-zeroconf --enable-howl
-HOWL_CPPFLAGS=		-I${LOCALBASE}/include/howl
-HOWL_LIB_DEPENDS=	libhowl.so:net/howl
-
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MAVAHI} || ${PORT_OPTIONS:MHOWL}
-PLIST_SUB+=	ZEROCONF=""
-.else
-PLIST_SUB+=	ZEROCONF="@comment "
-.endif
 
 post-patch:
 	@${TOUCH} ${WRKSRC}/config.rpath

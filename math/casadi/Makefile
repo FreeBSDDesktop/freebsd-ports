@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	casadi
-DISTVERSION=	3.5.1
+DISTVERSION=	3.5.5
 CATEGORIES=	math
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -18,6 +18,10 @@ CFLAGS+=	-fPIC
 CXXFLAGS+=	-fPIC
 
 CMAKE_OFF=	WITH_DEEPBIND WITH_BUILD_BLASFEO
+
+# cmake-3.16: disable build of examples (they are not installed anyways),
+# and fail due to not setting up the linker environment properly:
+CMAKE_OFF+=	WITH_EXAMPLES
 
 OPTIONS_DEFINE=		BLASFEO BONMIN CLANG IPOPT LAPACK QPOASES
 OPTIONS_DEFAULT=	BLASFEO BONMIN IPOPT LAPACK QPOASES

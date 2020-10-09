@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	pot
-PORTVERSION=	0.10.0
+PORTVERSION=	0.11.4
+PORTREVISION=	0
 CATEGORIES=	sysutils
 
 MAINTAINER=	pizzamig@FreeBSD.org
@@ -15,19 +16,21 @@ RUN_DEPENDS=	potnet:sysutils/potnet \
 	ncat:security/nmap \
 	${LOCALBASE}/share/freebsd/MANIFESTS/amd64-amd64-11.2-RELEASE:misc/freebsd-release-manifests
 
-USE_RC_SUBR=	pot
+USE_RC_SUBR=	pot pot_early
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	pizzamig
 NO_ARCH=	yes
 NO_BUILD=	yes
 
-OPTIONS_DEFINE=	ZSH
+OPTIONS_DEFINE=	DOCS ZSH
 
 ZSH_DESC=	Zsh Autocompletion support
 
 OPTIONS_DEFAULT=	ZSH
 OPTIONS_SUB=	yes
+
+PORTDOCS=	*
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/pot \
@@ -40,12 +43,25 @@ do-install:
 		${STAGEDIR}${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/etc/pot/pot.conf.sample \
 		${STAGEDIR}${ETCDIR}
-	${INSTALL_DATA} ${WRKSRC}/etc/pot/flavours/dns.sh \
+	${INSTALL_SCRIPT} ${WRKSRC}/etc/pot/flavours/dns.sh \
 		${STAGEDIR}${ETCDIR}/flavours
-	${INSTALL_DATA} ${WRKSRC}/etc/pot/flavours/slim.sh \
+	${INSTALL_DATA} ${WRKSRC}/etc/pot/flavours/dns \
+		${STAGEDIR}${ETCDIR}/flavours
+	${INSTALL_SCRIPT} ${WRKSRC}/etc/pot/flavours/fbsd-update.sh \
+		${STAGEDIR}${ETCDIR}/flavours
+	${INSTALL_SCRIPT} ${WRKSRC}/etc/pot/flavours/slim.sh \
 		${STAGEDIR}${ETCDIR}/flavours
 
 do-install-ZSH-on:
 	( cd ${WRKSRC}/share/zsh && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/zsh)
+
+post-install-DOCS-on:
+	${MKDIR} ${STAGEDIR}${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/share/doc/pot/Installation.md \
+		${STAGEDIR}${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/share/doc/pot/QuickStart.md \
+		${STAGEDIR}${DOCSDIR}/
+	${INSTALL_DATA} ${WRKSRC}/share/doc/pot/Images.md \
+		${STAGEDIR}${DOCSDIR}/
 
 .include <bsd.port.mk>

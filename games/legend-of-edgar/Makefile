@@ -2,13 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	edgar
-DISTVERSION=	1.32
+DISTVERSION=	1.33
 CATEGORIES=	games
 MASTER_SITES=	https://github.com/riksweeney/edgar/releases/download/${DISTVERSION}/
 PKGNAMEPREFIX=	legend-of-
 DISTFILES=	edgar-${DISTVERSION}-1${EXTRACT_SUFX}
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	2D platform game with a persistent world
 
 LICENSE=	GPLv2

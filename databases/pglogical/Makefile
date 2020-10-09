@@ -3,7 +3,7 @@
 
 PORTNAME=	pglogical
 DISTVERSIONPREFIX=	REL
-DISTVERSION=	2_2_2
+DISTVERSION=	2_3_2
 CATEGORIES=	databases
 
 MAINTAINER=	matthew@FreeBSD.org
@@ -11,7 +11,7 @@ COMMENT=	Logical replication system as a PostgreSQL extension
 
 LICENSE=	PostgreSQL
 
-USES=		gettext-runtime gmake pgsql:9.4+
+USES=		compiler:c11 gettext-runtime gmake pgsql:9.4+
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	2ndQuadrant
@@ -28,16 +28,6 @@ OPTIONS_DEFINE=	DOCS
 DOCS_PORTDOCS=	*
 
 .include <bsd.port.pre.mk>
-
-.if ${PGSQL_VER:M9.4}
-PLIST_SUB+=	PGSQL94=""
-.else
-PLIST_SUB+=	PGSQL94="@comment "
-.endif
-
-.if ${PGSQL_VER} >= 11
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-pglogical__apply__spi.c
-.endif
 
 # FFI
 #TEST_DEPENDS=	pg_regress:databases/postgresql${PGSQL_VER_NODOT}-pg_regress

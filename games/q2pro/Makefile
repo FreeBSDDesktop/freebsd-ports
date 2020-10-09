@@ -39,6 +39,7 @@ UI_DESC=	Build user interface (for client menus)
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MCLIENT}
+USES+=		sdl
 USE_SDL+=	sdl
 ALL_TARGET+=	client
 PLIST_SUB+=	CLIENT=""
@@ -62,7 +63,7 @@ PLIST_SUB+=	GAME="@comment "
 
 .if ${PORT_OPTIONS:MGL}
 LIB_DEPENDS+=	libpng.so:graphics/png
-USES+=		jpeg
+USES+=		gl jpeg
 USE_GL=		gl
 ALL_TARGET+=	ref_newgl
 PLIST_SUB+=	GL=""
@@ -94,6 +95,11 @@ post-patch:
 			${WRKSRC}/ref_shared/r_images.c
 	@${REINPLACE_CMD} -E 's|[[:digit:]]+|${SVN_REV}|' \
 		${WRKSRC}/include/version.h
+# Fix the build with -fno-common (for Clang 11 and GCC 10)
+	@${REINPLACE_CMD} -e '/^unsigned[[:blank:]]*d_8to24table/,+1d' \
+		${WRKSRC}/ref_soft/sw_main.c
+	@${REINPLACE_CMD} -e '/\*cl_paused/,+1d' \
+		${WRKSRC}/source/cl_null.c
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${LIBDIR}/baseq2

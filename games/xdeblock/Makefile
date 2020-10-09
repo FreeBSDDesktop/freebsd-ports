@@ -13,7 +13,7 @@ COMMENT=	Block action game
 
 WRKSRC=		${WRKDIR}/xdeblo_v1.0
 
-USES=		imake:noman
+USES=		imake:noman xorg
 USE_XORG=	xpm
 
 CFLAGS+=	-Wno-return-type
@@ -24,9 +24,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/main.c
 
 do-install:
-	(cd ${WRKSRC} && ${INSTALL_PROGRAM} xdeblo ${STAGEDIR}${PREFIX}/bin)
+	${INSTALL_PROGRAM} ${WRKSRC}/xdeblo ${STAGEDIR}${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/X11/xdeblock/mapf
-	(cd ${WRKSRC}/mapf && ${INSTALL_DATA} *.txt \
-		${STAGEDIR}${PREFIX}/lib/X11/xdeblock/mapf)
+	${INSTALL_DATA} ${WRKSRC}/mapf/*.txt ${STAGEDIR}${PREFIX}/lib/X11/xdeblock/mapf
 
 .include <bsd.port.mk>

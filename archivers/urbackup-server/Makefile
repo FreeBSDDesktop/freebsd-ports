@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	urbackup-server
-DISTVERSION=	2.4.11
+DISTVERSION=	2.4.12
 CATEGORIES=	archivers
 MASTER_SITES=	https://hndl.urbackup.org/Server/${DISTVERSION}/
 
-MAINTAINER=	freebsd@coombscloud.com
+MAINTAINER=	ports@freebsd.org
 COMMENT=	Server component of the UrBackup backup system
 
 LICENSE=	AGPLv3
@@ -31,18 +31,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 SUB_FILES=	pkg-message urbackupsrv.conf.sample-daemon
 
 post-patch:
-	@(cd ${WRKSRC} && ${REINPLACE_CMD} -E -e 's|[[:<:]]byte[[:>:]]|CryptoPP::byte|g' \
-		cryptoplugin/AESDecryption.cpp \
-		cryptoplugin/AESEncryption.cpp \
-		cryptoplugin/AESGCMDecryption.cpp \
-		cryptoplugin/AESGCMEncryption.cpp \
-		cryptoplugin/CryptoFactory.cpp \
-		cryptoplugin/ECDHKeyExchange.cpp \
-		cryptoplugin/ZlibCompression.cpp \
-		cryptoplugin/ZlibDecompression.cpp \
-		md5.h \
-	)
-
 	@(cd ${WRKSRC} && ${REINPLACE_CMD} -e 's|/etc/urbackup|${PREFIX}/etc/urbackup|g' \
 		mount_helper/main.cpp \
 		urbackupserver/server.cpp \
@@ -59,6 +47,6 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/urbackupsrv.conf-newsyslog \
 		${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d/urbackupsrv.conf
 
-	${INSTALL_MAN} ${WRKSRC}/docs/urbackupsrv.1 ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/docs/urbackupsrv.1 ${STAGEDIR}${PREFIX}/man/man1
 
 .include <bsd.port.mk>

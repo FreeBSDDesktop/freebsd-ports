@@ -15,11 +15,9 @@ USES+=		tar:xz
 
 PORTSCOUT=	ignore:1
 
-.if !defined(REFERENCE_PORT)
-
 RUN_DEPENDS+=	${LOCALBASE}/libexec/gnome-pty-helper:x11-toolkits/gnome-pty-helper
 
-USES+=		cpe gettext gmake libtool pathfix pkgconfig
+USES+=		cpe gettext gmake gnome libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 USE_GNOME?=	gnomeprefix gtk20 intltool introspection:build referencehack
@@ -37,5 +35,3 @@ CONFIGURE_ARGS?=--disable-python \
 CPE_VENDOR=	nalin_dahyabhai
 
 .include <bsd.port.mk>
-
-.endif

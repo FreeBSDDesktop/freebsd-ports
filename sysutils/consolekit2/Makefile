@@ -9,7 +9,7 @@ MASTER_SITES=	https://github.com/ConsoleKit2/ConsoleKit2/releases/download/${POR
 PKGNAMESUFFIX=	2
 DISTNAME=	ConsoleKit2-${PORTVERSION}
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	Framework for defining and tracking users
 
 LICENSE=	GPLv2
@@ -19,7 +19,8 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libpolkit-gobject-1.so:sysutils/polkit
 
 WRKSRC=		${WRKDIR}/ConsoleKit2-${PORTVERSION}
-USES=		gettext gmake libtool localbase pathfix pkgconfig tar:bzip2
+USES=		gettext gmake gnome libtool localbase pathfix pkgconfig \
+		tar:bzip2 xorg
 USE_CSTD=	gnu99
 USE_XORG=	x11
 USE_GNOME=	glib20 libxslt introspection:build

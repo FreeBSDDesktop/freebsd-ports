@@ -124,6 +124,14 @@ for _line in ${dp_RAWDEPENDS} ; do
 	fi
 
 	case "${origin}" in
+	*@*/*) ;; # Ignore @ in the path which would not be a flavor
+	*@*)
+		export FLAVOR="${origin##*@}"
+		origin=${origin%@*}
+		;;
+	esac
+
+	case "${origin}" in
 	/*) ;;
 	*)
 		for overlay in ${dp_OVERLAYS} ${PORTSDIR}; do
@@ -133,13 +141,6 @@ for _line in ${dp_RAWDEPENDS} ; do
 			fi
 		done
 		origin="${orig}"
-		;;
-	esac
-	case "${origin}" in
-	*@*/*) ;; # Ignore @ in the path which would not be a flavor
-	*@*)
-		export FLAVOR="${origin##*@}"
-		origin=${origin%@*}
 		;;
 	esac
 
@@ -205,7 +206,7 @@ if [ $err -eq 1 ]; then
 fi
 
 if [ -n "${dp_STRICT_DEPENDS}" -a ${anynotfound} -eq 1 ]; then \
-	echo "===>   dp_STRICT_DEPENDS set - Not installing missing dependencies."
+	echo "===>   STRICT_DEPENDS set - Not installing missing dependencies."
 	echo "       This means a dependency is wrong since it was not satisfied in the ${dp_DEPTYPE} phase."
 	exit 1
 fi

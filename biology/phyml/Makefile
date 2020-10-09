@@ -3,7 +3,7 @@
 
 PORTNAME=	phyml
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.3.20190909
+DISTVERSION=	3.3.20200621
 PORTEPOCH=	1
 CATEGORIES=	biology
 
@@ -19,11 +19,11 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	stephaneguindon
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-beagle
+CONFIGURE_ARGS=	--disable-beagle --disable-native
 
+PLIST_FILES=	bin/phyml${BIN_SUFFIX}
 PORTDOCS=	*
 PORTEXAMPLES=	*
-PLIST_FILES=	bin/phyml${BIN_SUFFIX}
 
 OPTIONS_DEFINE=		DOCS EXAMPLES
 OPTIONS_RADIO=		MPI
@@ -37,7 +37,7 @@ OPENMPI_MAKE_ARGS=	CC="${LOCALBASE}/mpi/openmpi/bin/mpicc"
 
 .include <bsd.port.options.mk>
 
-.if ${PORT_OPTIONS:MMPICH2} || ${PORT_OPTIONS:MOPENMPI}
+.if ${PORT_OPTIONS:MMPICH} || ${PORT_OPTIONS:MOPENMPI}
 CONFIGURE_ARGS+=	--enable-mpi
 BIN_SUFFIX=		-mpi
 .else

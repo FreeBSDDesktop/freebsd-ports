@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	fff
-DISTVERSION=	2.1
+DISTVERSION=	2.2
 CATEGORIES=	deskutils
 
 MAINTAINER=	0mp@FreeBSD.org
@@ -19,6 +19,6 @@ GH_ACCOUNT=	dylanaraps
 
 NO_ARCH=	yes
 NO_BUILD=	yes
-PLIST_FILES=	bin/fff share/man/man1/fff.1
+PLIST_FILES=	bin/fff share/man/man1/fff.1.gz
 
 .include <bsd.port.mk>

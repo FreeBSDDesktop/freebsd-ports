@@ -1,3 +1,3 @@
-TIMESTAMP = 1571923723
-SHA256 (rubygem/aws-sdk-codedeploy-1.27.0.gem) = 01e261091bbfefce7ce9f5af57bc20bc69c98a5074b1e8f4a4de0b295e89a51a
-SIZE (rubygem/aws-sdk-codedeploy-1.27.0.gem) = 66048
+TIMESTAMP = 1601554560
+SHA256 (rubygem/aws-sdk-codedeploy-1.37.0.gem) = 44bcf79cb304b0375f5f30aaf581055b38a00db55848cdf76f61f39556c51538
+SIZE (rubygem/aws-sdk-codedeploy-1.37.0.gem) = 78336

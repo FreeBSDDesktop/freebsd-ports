@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mate-backgrounds
-PORTVERSION=	1.22.0
+PORTVERSION=	1.24.2
 CATEGORIES=	x11-themes graphics mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
@@ -10,9 +10,12 @@ DIST_SUBDIR=	mate
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	Collection of backgrounds for MATE
 
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 PORTSCOUT=	limitw:1,even
 
-USES=		gettext gmake pathfix tar:xz
+USES=		gettext gmake gnome pathfix tar:xz
 USE_GNOME=	glib20 intlhack
 GNU_CONFIGURE=	yes
 

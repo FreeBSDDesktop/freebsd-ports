@@ -2,11 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	datamodeler
-PORTVERSION=	19.1.0.081.0911
-DISTVERSIONSUFFIX=-1
+PORTVERSION=	19.4.0.350.1424
 CATEGORIES=	databases java
 MASTER_SITES=	#http://www.oracle.com/technetwork/developer-tools/datamodeler/downloads/index.html
-DISTNAME=	${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}.noarch
+DISTNAME=	${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}-noarch
 EXTRACT_SUFX=	.rpm
 DIST_SUBDIR=	oracle
 
@@ -31,6 +30,9 @@ NO_BUILD=	yes
 
 RESTRICTED=	Packaging prohibited by Oracle license
 NO_CDROM=	Packaging prohibited by Oracle license
+
+DEPRECATED=	depends on expiring java/openjfx8-devel
+EXPIRATION_DATE=	2020-11-30
 
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 WRKSRC=		${WRKDIR}/opt/${PORTNAME}

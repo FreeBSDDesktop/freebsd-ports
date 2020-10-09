@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	qca
-PORTVERSION=	2.2.1
-PORTREVISION=	4
+DISTVERSION=	2.3.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	KDE/stable/qca/${PORTVERSION}
 PKGNAMESUFFIX=	-qt5
@@ -52,4 +52,10 @@ TEST_CMAKE_BOOL=	BUILD_TESTS
 TEST_TEST_TARGET=	test
 TEST_USE=		QT=network,testlib
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1200085 && ${SSL_DEFAULT} == base
+IGNORE=			Does not support OpenSSL < 1.1
+.endif
+
+.include <bsd.port.post.mk>

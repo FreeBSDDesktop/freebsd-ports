@@ -1,10 +1,13 @@
 # $FreeBSD$
 
 PORTNAME=	wev
-PORTVERSION=	s20190811
-DISTVERSIONSUFFIX=	-0-g47d1739
+PORTVERSION=	1.0.0
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	https://git.sr.ht/~sircmpwn/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
+
+PATCH_SITES=	https://git.sr.ht/~sircmpwn/${PORTNAME}/commit/
+PATCHFILES+=	0be512fb7058.patch:-p1
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Wayland event viewer
@@ -19,9 +22,8 @@ LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
 
 USES=		compiler:c11 gmake pkgconfig
-MAKE_ENV=	MANDIR='$$(PREFIX)/man'
 PLIST_FILES=	bin/${PORTNAME} \
-		man/man1/${PORTNAME}.1.gz
+		share/man/man1/${PORTNAME}.1.gz
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/ -lrt//' ${WRKSRC}/Makefile

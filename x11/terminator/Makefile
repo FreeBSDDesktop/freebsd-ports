@@ -2,34 +2,38 @@
 # $FreeBSD$
 
 PORTNAME=	terminator
-PORTVERSION=	1.91
-PORTREVISION=	1
+PORTVERSION=	1.92
+PORTREVISION=	3
 CATEGORIES=	x11 python
-MASTER_SITES=	http://launchpad.net/terminator/gtk3/${PORTVERSION}/+download/
+MASTER_SITES=	https://github.com/gnome-terminator/terminator/releases/download/v${PORTVERSION}/
 
-MAINTAINER=	tom@hur.st
+MAINTAINER=	ume@FreeBSD.org
 COMMENT=	Multiple GNOME terminals in one window
 
 LICENSE=	GPLv2
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}notify>=0:devel/py-notify@${PY_FLAVOR} \
-		${PYTHON_SITELIBDIR}/keybinder/_keybinder.so:x11/keybinder \
-		${PYTHON_PKGNAMEPREFIX}vte>=0:x11-toolkits/py-vte@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR}
+RUN_DEPENDS=	${LOCALBASE}/lib/libkeybinder-3.0.so:x11/keybinder-gtk3 \
+		${LOCALBASE}/lib/libnotify.so:devel/libnotify \
+		${PYTHON_PKGNAMEPREFIX}configobj>0:devel/py-configobj@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR} \
+		gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
-USES=		gnome python:2.7 shebangfix
-USE_GNOME=	pygobject3 intltool vte3
-USE_PYTHON=	distutils
+USES=		gnome python:3.5+ shebangfix
+USE_GNOME=	intltool pygobject3 vte3
+USE_PYTHON=	autoplist distutils
 
 PYDISTUTILS_PKGNAME=	Terminator
 
 INSTALLS_ICONS=	yes
 
 SHEBANG_FILES=	terminator.wrapper
+bash_CMD=	${SH}
 
 OPTIONS_DEFINE=		NLS
 OPTIONS_SUB=		yes
 NLS_USES=		gettext
+
+NO_ARCH=	yes
 
 .include <bsd.port.pre.mk>
 

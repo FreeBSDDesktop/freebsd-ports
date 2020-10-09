@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	zsh
-DISTVERSION=	5.7.1
-PORTREVISION=	1
+DISTVERSION=	5.8
 CATEGORIES=	shells
 MASTER_SITES=	https://www.zsh.org/pub/ \
 		SF \
@@ -34,6 +33,11 @@ CONFIGURE_ARGS=	--with-tcsetpgrp \
 		--enable-multibyte \
 		--enable-zsh-secure-free \
 		--sysconfdir=${PREFIX}/etc
+
+# fix PREFIX != LOCALBASE
+CONFIGURE_ARGS+=--disable-site-fndir \
+		--enable-additional-fpath=${DATADIR}/site-functions
+
 CONFIGURE_ENV+=	zsh_cv_sys_path_dev_fd=no \
 		ac_cv_header_sys_capability_h=no
 
@@ -84,6 +88,10 @@ SUB_FILES=	pkg-message
 CONFIGURE_ENV+=	ac_cv_lib_iconv_libiconv=no
 .endif
 
+.if ${ncurses_ARGS} == port
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-Src_Modules_curses__keys.awk
+.endif
+
 post-patch:
 # FreeBSD's clock_gettime(2) is in libc, not librt; see PR 167857
 	@${REINPLACE_CMD} -e '/LIBS/s|-lrt||' ${WRKSRC}/configure
@@ -104,6 +112,7 @@ post-build:
 		${WRKSRC}/Doc/zshall.1)
 
 post-install:
+	${MKDIR} ${STAGEDIR}${DATADIR}/site-functions
 	${LN} -f ${STAGEDIR}${PREFIX}/bin/zsh ${STAGEDIR}${PREFIX}/bin/rzsh
 # Precompile completions and functions
 	(${STAGEDIR}${PREFIX}/bin/zsh -fc ' \

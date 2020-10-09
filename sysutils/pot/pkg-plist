@@ -1,5 +1,7 @@
 bin/pot
 %%ETCDIR%%/flavours/dns.sh
+%%ETCDIR%%/flavours/dns
+%%ETCDIR%%/flavours/fbsd-update.sh
 %%ETCDIR%%/flavours/slim.sh
 @sample %%ETCDIR%%/pot.conf.sample
 %%ETCDIR%%/pot.default.conf
@@ -26,6 +28,7 @@ bin/pot
 %%DATADIR%%/init.sh
 %%DATADIR%%/list.sh
 %%DATADIR%%/mount-in.sh
+%%DATADIR%%/network.sh
 %%DATADIR%%/prepare.sh
 %%DATADIR%%/prune.sh
 %%DATADIR%%/ps.sh
@@ -35,6 +38,7 @@ bin/pot
 %%DATADIR%%/set-attribute.sh
 %%DATADIR%%/set-cmd.sh
 %%DATADIR%%/set-env.sh
+%%DATADIR%%/set-hook.sh
 %%DATADIR%%/set-hosts.sh
 %%DATADIR%%/set-rss.sh
 %%DATADIR%%/show.sh

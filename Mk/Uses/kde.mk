@@ -54,16 +54,16 @@ _KDE_RELNAME=		KDE${_KDE_VERSION}
 
 # === VERSIONS OF THE DIFFERENT COMPONENTS =====================================
 # Current KDE desktop.
-KDE_PLASMA_VERSION?=		5.17.2
+KDE_PLASMA_VERSION?=		5.19.5
 KDE_PLASMA_BRANCH?=		stable
 
 # Current KDE frameworks.
-KDE_FRAMEWORKS_VERSION?=	5.63.0
+KDE_FRAMEWORKS_VERSION?=	5.74.0
 KDE_FRAMEWORKS_BRANCH?= 	stable
 
 # Current KDE applications.
-KDE_APPLICATIONS_VERSION?=	19.08.2
-KDE_APPLICATIONS_SHLIB_VER?=	5.12.2
+KDE_APPLICATIONS_VERSION?=	20.08.1
+KDE_APPLICATIONS_SHLIB_VER?=	5.15.1
 KDE_APPLICATIONS_BRANCH?=	stable
 # Upstream moves old software to Attic/. Specify the newest applications release there.
 # Only the major version is used for the comparison.
@@ -106,8 +106,10 @@ PORTVERSION?=		${KDE_APPLICATIONS_VERSION}
 # Decide where the file lies on KDE's servers: Check whether the file lies in Attic
 .        if ${KDE_APPLICATIONS_VERSION:R:R} <= ${_KDE_APPLICATIONS_ATTIC_VERSION:R:R}
 MASTER_SITES?=		KDE/Attic/applications/${KDE_APPLICATIONS_VERSION}/src
-.        else
+.        elseif ${KDE_APPLICATIONS_VERSION:R} < 19.12
 MASTER_SITES?=		KDE/${KDE_APPLICATIONS_BRANCH}/applications/${KDE_APPLICATIONS_VERSION}/src
+.        else
+MASTER_SITES?=		KDE/${KDE_APPLICATIONS_BRANCH}/release-service/${KDE_APPLICATIONS_VERSION}/src
 # Let bsd.port.mk create the plist-entries for the documentation.
 # KDE Applications ports install their documentation to
 # ${PREFIX}/share/doc.
@@ -117,7 +119,7 @@ PORTDOCS?=		HTML/*
 PLIST_SUB+=		KDE_APPLICATIONS_SHLIB_VER=${KDE_APPLICATIONS_SHLIB_VER} \
 			KDE_APPLICATIONS_VERSION_SHORT="${KDE_APPLICATIONS_VERSION:R:R}"
 .        endif
-DIST_SUBDIR?=		KDE/applications/${KDE_APPLICATIONS_VERSION}
+DIST_SUBDIR?=		KDE/release-service/${KDE_APPLICATIONS_VERSION}
 .      elif ${_KDE_CATEGORY:Mkde-plasma}
 PORTVERSION?=		${KDE_PLASMA_VERSION}
 PKGNAMEPREFIX?=		plasma5-
@@ -128,7 +130,7 @@ PORTVERSION?=		${KDE_FRAMEWORKS_VERSION}
 PKGNAMEPREFIX?=		kf5-
 # This is a slight duplication of _USE_FRAMEWORKS_PORTING -- it maybe would be
 # better to rely on ${_USE_FRAMEWORKS_PORTING:S/^/k/g}
-_PORTINGAIDS=		kjs kjsembed kdelibs4support kdesignerplugin kdewebkit khtml kmediaplayer kross
+_PORTINGAIDS=		kjs kjsembed kdelibs4support kdesignerplugin kdewebkit khtml kmediaplayer kross kxmlrpcclient
 .        if ${_PORTINGAIDS:M*${PORTNAME}*}
 MASTER_SITES?=		KDE/${KDE_FRAMEWORKS_BRANCH}/frameworks/${KDE_FRAMEWORKS_VERSION:R}/portingAids
 .        else
@@ -180,7 +182,7 @@ _USE_KDE_BOTH=		akonadi attica libkcddb libkcompactdisc libkdcraw libkdegames \
 # that our list of frameworks matches the structure offered upstream.
 _USE_FRAMEWORKS_TIER1=	apidox archive attica5 breeze-icons codecs config \
 			coreaddons dbusaddons dnssd holidays i18n idletime itemmodels \
-			itemviews kirigami2 oxygen-icons5 plotting prison \
+			itemviews kirigami2 kquickcharts oxygen-icons5 plotting prison \
 			qqc2-desktop-style solid sonnet syntaxhighlighting \
 			threadweaver wayland widgetsaddons windowsystem
 # NOT LISTED TIER1: modemmanagerqt networkmanagerqt (not applicable)
@@ -191,8 +193,8 @@ _USE_FRAMEWORKS_TIER2=	auth completion crash doctools \
 
 _USE_FRAMEWORKS_TIER3=	activities activities-stats baloo5 bookmarks configwidgets \
 			designerplugin emoticons globalaccel guiaddons \
-			iconthemes init kcmutils kdeclarative \
-			kded kdesu kdewebkit kio newstuff notifyconfig parts \
+			iconthemes init kcmutils kdav kdeclarative \
+			kded kdesu kdewebkit kio kwayland-server newstuff notifyconfig parts \
 			people plasma-framework purpose runner service texteditor \
 			textwidgets wallet xmlgui xmlrpcclient
 
@@ -227,11 +229,11 @@ _USE_PLASMA_ALL=	activitymanagerd breeze breeze-gtk \
 # List of components of the KDE PIM distribution (part of applications).
 _USE_KDEPIM5_ALL=	akonadicontacts akonadiimportwizard akonadimime akonadinotes \
 			akonadicalendar akonadisearch alarmcalendar \
-			blog calendarcore calendarsupport calendarutils \
+			calendarcore calendarsupport calendarutils \
 			contacts eventviews gapi grantleetheme \
 			gravatar identitymanagement imap \
 			incidenceeditor kdepim-addons kdepim-apps-libs \
-			kdepim-runtime5 kitinerary kontactinterface kpimdav kpkpass \
+			kdepim-runtime5 kitinerary kontactinterface kpkpass \
 			ksmtp ldap libkdepim libkleo libksieve mailcommon \
 			mailimporter mailtransport mbox messagelib \
 			mime pimcommon pimtextedit tnef \
@@ -361,7 +363,7 @@ kde-kdeclarative_PORT=		devel/kf5-kdeclarative
 kde-kdeclarative_LIB=		libKF5Declarative.so
 
 kde-kded_PORT=			x11/kf5-kded
-kde-kded_LIB=			libkdeinit5_kded5.so
+kde-kded_PATH=			${KDE_PREFIX}/bin/kded5
 
 kde-kdelibs4support_PORT=	x11/kf5-kdelibs4support
 kde-kdelibs4support_LIB=	libKF5KDELibs4Support.so
@@ -385,8 +387,17 @@ kde-kio_LIB=			libKF5KIOCore.so
 kde-kirigami2_PORT=		x11-toolkits/kf5-kirigami2
 kde-kirigami2_PATH=		${QT_QMLDIR}/org/kde/kirigami.2/libkirigamiplugin.so
 
+kde-kquickcharts_PORT=		graphics/kf5-kquickcharts
+kde-kquickcharts_PATH=		${QT_QMLDIR}/org/kde/quickcharts/controls/libchartscontrolsplugin.so
+
 kde-kross_PORT=			lang/kf5-kross
 kde-kross_LIB=			libKF5KrossCore.so
+
+kde-kwayland-protocols_PORT=	x11/plasma-kwayland-protocols
+kde-kwayland-protocols_LIB=	${KDE_PREFIX}/lib/cmake/PlasmaWaylandProtocols/PlasmaWaylandProtocolsConfig.cmake
+
+kde-kwayland-server_PORT=	x11/plasma5-kwayland-server
+kde-kwayland-server_LIB=	libKWaylandServer.so
 
 kde-mediaplayer_PORT=		multimedia/kf5-kmediaplayer
 kde-mediaplayer_LIB=		libKF5MediaPlayer.so.5
@@ -488,7 +499,7 @@ kde-breeze_PORT=		x11-themes/plasma5-breeze
 kde-breeze_PATH=		${KDE_PREFIX}/share/QtCurve/Breeze.qtcurve
 
 kde-breeze-gtk_PORT=		x11-themes/plasma5-breeze-gtk
-kde-breeze-gtk_PATH=		${KDE_PREFIX}/lib/kconf_update_bin/gtkbreeze5.5
+kde-breeze-gtk_PATH=		${KDE_PREFIX}/share/themes/Breeze/gtk-2.0/gtkrc
 
 kde-decoration_PORT=		x11-wm/plasma5-kdecoration
 kde-decoration_LIB=		libkdecorations2.so
@@ -509,7 +520,7 @@ kde-kde-cli-tools_PORT=		sysutils/plasma5-kde-cli-tools
 kde-kde-cli-tools_PATH=		${KDE_PREFIX}/bin/kcmshell5
 
 kde-kde-gtk-config_PORT=	x11-themes/plasma5-kde-gtk-config
-kde-kde-gtk-config_PATH=	${QT_PLUGINDIR}/kcm_kdegtkconfig.so
+kde-kde-gtk-config_PATH=	${KDE_PREFIX}/lib/kconf_update_bin/gtk_theme
 
 kde-kdeplasma-addons_PORT=	x11-toolkits/plasma5-kdeplasma-addons
 kde-kdeplasma-addons_PATH=	${QT_PLUGINDIR}/kcm_krunner_dictionary.so
@@ -518,7 +529,7 @@ kde-kgamma5_PORT=		x11/plasma5-kgamma5
 kde-kgamma5_PATH=		${QT_PLUGINDIR}/kcm_kgamma.so
 
 kde-kmenuedit_PORT=		sysutils/plasma5-kmenuedit
-kde-kmenuedit_LIB=		libkdeinit5_kmenuedit.so
+kde-kmenuedit_PATH=		${KDE_PREFIX}/bin/kmenuedit
 
 kde-kscreen_PORT=		x11/plasma5-kscreen
 kde-kscreen_PATH=		${KDE_PREFIX}/bin/kscreen-console
@@ -612,9 +623,6 @@ kde-akonadisearch_LIB=		libKF5AkonadiSearchCore.so
 kde-alarmcalendar_PORT=		net/kalarmcal
 kde-alarmcalendar_LIB=		libKF5AlarmCalendar.so
 
-kde-blog_PORT=			net/kblog
-kde-blog_LIB=			libKF5Blog.so
-
 kde-calendarsupport_PORT=	net/calendarsupport
 kde-calendarsupport_LIB=	libKF5CalendarSupport.so
 
@@ -648,11 +656,14 @@ kde-imap_LIB=			libKF5IMAP.so
 kde-incidenceeditor_PORT=	net/incidenceeditor
 kde-incidenceeditor_LIB=	libKF5IncidenceEditor.so
 
+kde-kdav_PORT=			net/kf5-kdav
+kde-kdav_LIB=			libKF5DAV.so
+
 kde-kdepim-addons_PORT=	deskutils/kdepim-addons
 kde-kdepim-addons_PATH=	${KDE_PREFIX}/lib/contacteditor/editorpageplugins/cryptopageplugin.so
 
 kde-kdepim-apps-libs_PORT=	deskutils/kdepim-apps-libs
-kde-kdepim-apps-libs_LIB=	libKF5SendLater.so
+kde-kdepim-apps-libs_LIB=	libKF5KaddressbookGrantlee.so
 
 kde-kdepim-runtime5_PORT=	deskutils/kdepim-runtime
 kde-kdepim-runtime5_PATH=	${KDE_PREFIX}/bin/gidmigrator
@@ -662,9 +673,6 @@ kde-kitinerary_LIB=		libKPimItinerary.so
 
 kde-kontactinterface_PORT=	net/kontactinterface
 kde-kontactinterface_LIB=	libKF5KontactInterface.so
-
-kde-kpimdav_PORT=		net/kdav
-kde-kpimdav_LIB=		libKPimKDAV.so
 
 kde-kpkpass_PORT=		security/kpkpass
 kde-kpkpass_LIB=		libKPimPkPass.so

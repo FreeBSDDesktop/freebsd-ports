@@ -7,10 +7,13 @@ MASTER_SITES=	https://github.com/t6/openjfx/releases/download/release/ \
 		http://hg.openjdk.java.net/openjfx/8u/rt/archive/${DISTVERSION}${EXTRACT_SUFX}?dummy=/
 PKGNAMESUFFIX=	-scenebuilder
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	JavaFX Scene Builder
 
 LICENSE=	BSD3CLAUSE
+
+DEPRECATED=	depends on expiring java/openjfx8-devel
+EXPIRATION_DATE=	2020-11-30
 
 BUILD_DEPENDS=	openjfx8-devel>0:java/openjfx8-devel
 RUN_DEPENDS=	openjfx8-devel>0:java/openjfx8-devel

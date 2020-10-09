@@ -1,14 +1,16 @@
 # $FreeBSD$
 
 PORTNAME=	simgear
-PORTVERSION=	2019.1.1
+PORTVERSION=	2020.1.3
 CATEGORIES=	devel games
 MASTER_SITES=	SF/flightgear/release-${PORTVERSION:R}
 
 MAINTAINER=	martymac@FreeBSD.org
 COMMENT=	Toolkit for 3D games and simulations
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2+ LGPL20+
+LICENSE_COMB=	multi
+LICENSE_FILE_LGPL20+ =	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libplibsl.a:x11-toolkits/plib
 RUN_DEPENDS=	${LOCALBASE}/lib/libplibsl.a:x11-toolkits/plib
@@ -27,7 +29,8 @@ USE_LDCONFIG=	yes
 LDFLAGS_gcc=	-losgDB
 LDFLAGS+=	${LDFLAGS_${CHOSEN_COMPILER_TYPE}}
 
-CMAKE_ARGS+=	-DSYSTEM_EXPAT:BOOL=ON
+CMAKE_ARGS+=	-DSYSTEM_EXPAT:BOOL=ON \
+		-DENABLE_TESTS:BOOL=OFF
 
 post-patch:
 # Avoid conflict with C++20 <version> by adding .txt suffix

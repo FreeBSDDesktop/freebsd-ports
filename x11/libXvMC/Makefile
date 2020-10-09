@@ -12,7 +12,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cpe xorg xorg-cat:lib
-USE_XORG=	x11 xext xorgproto xv 
+USE_XORG=	x11 xext xorgproto xv
 CPE_VENDOR=	x
 CPE_PRODUCT=	libxvmc
 

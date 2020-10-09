@@ -10,6 +10,74 @@ in the release notes and/or placed into UPDATING.
 
 All ports committers are allowed to commit to this file.
 
+20201001:
+AUTHOR: manu@FreeBSD.org
+
+ The @sample keyword was rewritten in lua.
+ It behave exactly like the previous one but it is sandboxed and
+ is rootdir compliant (see pkg -r option).
+
+20201001:
+AUTHOR: bapt@FreeBSD.org
+
+  packages scripts and keywords can both be written in lua (version 5.3), see
+  pkg-lua-script(5) for the API.
+
+  Note that all scripts written in lua will:
+
+  - run inside a capsicum sandbox,
+  - be rootdir compatible (see pkg -r option)
+  - be cross installation compatible example: installing packages in an arm64
+    rootdir on and amd64 host.
+
+20200531:
+AUTHOR: kde@FreeBSD.org
+
+  pyqt.mk gained support for test-only dependencies. If a component, say
+  py-qt5-gui is only required for testing, you can add
+
+    USE_PYQT=<other_deps> gui_test
+
+20200514:
+AUTHOR: mat@FreeBSD.org
+
+  Add PATCH_CONTINUE_ON_FAIL to allow patching to go through all the patches
+  even if one fail.
+
+  This helps when upgrading ports with a large number of patches, like
+  www/chromium where having to fix one patch, re-do the patching, fix the
+  fallout, 800 times, is really painful.
+
+20200414:
+AUTHOR: bapt@FreeBSD.org
+
+  package scripts can now be done in lua, the following are supported:
+
+  - pkg-pre-install.lua
+  - pkg-post-install.lua
+  - pkg-pre-deinstall.lua
+  - pkg-post-deinstall.lua
+
+  see pkg-lua-script(5) for more details.
+
+20200414:
+AUTHOR: mat@FreeBSD.org
+
+  USES=lua gained flavors.
+
+  Ports using USES=lua:module or lua:flavors will be flavored.  A range of
+  supported lua versions can be set using XX-YY (or XX-, or -YY, or simply ZZ)
+  for ports not supporting all lua versions.
+
+  USES=lua sets LUA_FLAVOR that needs to be used on all dependencies of
+  flavored lua ports, in a similar way as PHP or Python flavors.
+  
+20200115:
+AUTHOR: bapt@FreeBSD.org
+
+  ${PREFIX}/share/man is now a valid location for manpages ${PREFIX}/man being
+  considered as deprecated.
+
 20191009:
 AUTHOR: bapt@FreeBSD.org
 

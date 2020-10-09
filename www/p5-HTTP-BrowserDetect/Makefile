@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	HTTP-BrowserDetect
-PORTVERSION=	3.24
+PORTVERSION=	3.31
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -27,13 +27,8 @@ NO_ARCH=	yes
 
 .include <bsd.port.pre.mk>
 
-.if ${PERL_LEVEL} < 502705
-TEST_DEPENDS+=	p5-Scalar-List-Utils>=1.49:lang/p5-Scalar-List-Utils
-.endif
-
 .if ${PERL_LEVEL} < 503102
 TEST_DEPENDS+=	p5-JSON-PP>=4.04:converters/p5-JSON-PP
 .endif
 
 .include <bsd.port.post.mk>
-

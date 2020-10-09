@@ -14,7 +14,6 @@ LICENSE=	PSFL
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_mips64=		fails to compile: KeccakP-1600-opt64.c: error: Not yet implemented
-BROKEN_powerpc64=	fails to compile: KeccakP-1600-opt64.c: error: Not yet implemented
 
 # Actually Python 2.7,3.4+
 USES=		python
@@ -24,6 +23,6 @@ post-install:
 	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/_pysha3.so
 
 do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
+	@cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.mk>

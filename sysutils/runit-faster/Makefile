@@ -2,14 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	runit
-DISTVERSION=	2.1.3.5
+DISTVERSION=	2.1.3.7
 CATEGORIES=	sysutils
-MASTER_SITES=	https://github.com/t6/freebsd-runit/releases/download/v${DISTVERSION}/ \
-		LOCAL/tobik
+MASTER_SITES=	https://github.com/t6/freebsd-runit/releases/download/v${DISTVERSION}/
 PKGNAMESUFFIX=	-faster
 DISTNAME=	freebsd-runit-${DISTVERSION}
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Runit based init replacement for ${OPSYS}
 
 LICENSE=	BSD3CLAUSE CC0-1.0
@@ -28,6 +27,7 @@ TEST_TARGET=	check
 
 CONFLICTS_INSTALL=	runit
 
+SUB_LIST=	RUNITDIR=${RUNITDIR}
 PLIST_SUB=	RUNITDIR=${RUNITDIR}
 PORTDOCS=	*
 

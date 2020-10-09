@@ -7,7 +7,7 @@
 
 PORTNAME=	dspam
 PORTVERSION=	3.10.2
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	mail
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -80,6 +80,9 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+
+# Dead upstream. Don't expect a proper fix for clang11.
+CFLAGS+=	-fcommon
 
 SHEBANG_FILES=	src/tools/dspam_logrotate \
 		src/tools/dspam_notify.in \
@@ -470,6 +473,8 @@ post-patch:
 	@${REINPLACE_CMD} -e "s^%%PERL%%^${PERL}^" \
 		${WRKSRC}/src/tools/dspam_train.in \
 		${WRKSRC}/src/tools/dspam_notify.in
+	@${TEST} ${MYSQL_FLAVOUR} == mariadb && ${REINPLACE_CMD} -e \
+		's,&& defined(CR_ERROR_FIRST),,' ${WRKSRC}/configure || :
 
 pre-configure:
 .if ${PORT_OPTIONS:MVIRT_USERS} && !( ${PORT_OPTIONS:MMYSQL} || \

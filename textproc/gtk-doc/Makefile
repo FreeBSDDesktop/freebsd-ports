@@ -3,31 +3,32 @@
 
 PORTNAME=	gtk-doc
 PORTVERSION=	1.29
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	GNOME
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	Code documentation system, originally for GTK+
 
-BUILD_DEPENDS=	jade:textproc/jade \
-		itstool:textproc/itstool \
-		highlight:textproc/highlight \
-		docbook-xml>0:textproc/docbook-xml \
-		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl \
-		rarian-sk-config:textproc/rarian
-RUN_DEPENDS=	jade:textproc/jade \
-		docbook-xml>0:textproc/docbook-xml \
-		highlight:textproc/highlight \
-		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl \
-		rarian-sk-config:textproc/rarian
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-DOCBOOK_VERSION=	4.1.2
+BUILD_DEPENDS=	itstool:textproc/itstool \
+		highlight:textproc/highlight \
+		docbook-xml>0:textproc/docbook-xml \
+		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl
+RUN_DEPENDS=	docbook-xml>0:textproc/docbook-xml \
+		highlight:textproc/highlight \
+		${LOCALBASE}/share/xsl/docbook/xhtml/chunk.xsl:textproc/docbook-xsl
 
 USES=		gettext-tools gmake gnome pathfix perl5 pkgconfig \
 		python:3.4+ tar:xz
 USE_GNOME=	gnomeprefix libxslt
+
+DOCBOOK_VERSION=	4.1.2
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-xml-catalog=${LOCALBASE}/share/xml/catalog.ports
+CONFIGURE_ARGS=	--with-highlight=highlight \
+		--with-xml-catalog=${LOCALBASE}/share/xml/catalog.ports
 
 post-install:
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \

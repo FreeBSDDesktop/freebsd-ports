@@ -1,14 +1,17 @@
 # $FreeBSD$
 
 PORTNAME=	calligra
-DISTVERSION=	3.1.0
-PORTREVISION=	28
+DISTVERSION=	3.2.1
+PORTREVISION=	6
 CATEGORIES=	editors kde
 MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}
 DIST_SUBDIR=	KDE/${PORTNAME}
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE office suite
+
+LICENSE=	GPLv2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libImath.so:graphics/ilmbase \
 		libKPropertyCore3.so:x11-toolkits/kproperty \
@@ -25,7 +28,6 @@ LIB_DEPENDS=	libImath.so:graphics/ilmbase \
 		libpng.so:graphics/png \
 		libpoppler-qt5.so:graphics/poppler-qt5 \
 		libpoppler.so:graphics/poppler \
-		libqca-qt5.so:devel/qca \
 		librevenge-0.0.so:textproc/librevenge \
 		libtiff.so:graphics/tiff \
 		libvisio-0.1.so:textproc/libvisio01 \
@@ -37,8 +39,8 @@ BUILD_DEPENDS=	pstoedit:graphics/pstoedit
 RUN_DEPENDS=	pstoedit:graphics/pstoedit
 
 USES=		cmake cpe compiler:c++11-lib desktop-file-utils eigen:3 \
-		gettext iconv:translit jpeg kde:5 localbase:ldflags perl5 pkgconfig \
-		qt:5 shared-mime-info sqlite tar:xz
+		gettext iconv:translit jpeg kde:5 localbase:ldflags perl5 \
+		pkgconfig qca qt:5 shared-mime-info sqlite tar:xz xorg
 USE_KDE=	akonadicontacts activities archive auth bookmarks codecs completion \
 		config configwidgets contacts coreaddons crash dbusaddons doctools ecm \
 		emoticons guiaddons holidays i18n iconthemes init itemmodels itemviews \
@@ -47,7 +49,7 @@ USE_KDE=	akonadicontacts activities archive auth bookmarks codecs completion \
 		texteditor textwidgets threadweaver unitconversion wallet \
 		widgetsaddons windowsystem xmlgui \
 		calendarcore okular
-USE_QT=		buildtools_build core dbus declarative gui network opengl \
+USE_QT=		buildtools_build concurrent core dbus declarative gui network opengl \
 		phonon4 printsupport qmake_build \
 		script sql svg testlib webkit widgets x11extras xml
 USE_XORG=	ice sm x11 xext
@@ -67,6 +69,6 @@ CMAKE_ON=	RELEASE_BUILD
 # Performance increase according to README.PACKAGERS
 CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS="-DKDE_NO_DEBUG_OUTPUT"
 
-PLIST_SUB+=	SHLIB_VER=16.0.0
+PLIST_SUB+=	SHLIB_VER=17.0.0
 
 .include <bsd.port.mk>

@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	impressive
-PORTVERSION=	0.12.1
+DISTVERSION=	0.13.0-beta2
 CATEGORIES=	graphics python
-MASTER_SITES=	SF/${PORTNAME}/Impressive/${PORTVERSION}/
-DISTNAME=	Impressive-${PORTVERSION}
+MASTER_SITES=	SF/${PORTNAME}/Impressive/${DISTVERSION}/
+DISTNAME=	Impressive-${DISTVERSION}
 
 MAINTAINER=	kai@FreeBSD.org
 COMMENT=	Stylish way of giving presentations
@@ -15,9 +15,9 @@ LICENSE_FILE=	${WRKSRC}/license.txt
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}PyOpenGL>=0:graphics/py-PyOpenGL@${PY_FLAVOR} \
 		${PYGAME} \
-		${PYTHON_PKGNAMEPREFIX}pillow>0:graphics/py-pillow@${PY_FLAVOR}
+		${PY_PILLOW}
 
-USES=		python:2.7 sdl shebangfix
+USES=		python:3.5+ sdl shebangfix
 USE_SDL=	sdl
 
 SHEBANG_FILES=	impressive.py

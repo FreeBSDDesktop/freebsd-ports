@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	qbittorrent
-DISTVERSION=	4.1.9.1
+DISTVERSION=	4.2.5
 CATEGORIES=	net-p2p
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -12,6 +12,8 @@ COMMENT=	Bittorrent client using Qt5 and libtorrent-rasterbar
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN_FreeBSD_12_powerpc64=	fails to build: ./base/tristatebool.h:44:5: 'constexpr' constructor does not have empty body
+
 LIB_DEPENDS=	libtorrent-rasterbar.so:net-p2p/libtorrent-rasterbar \
 		libboost_system.so:devel/boost-libs
 
@@ -20,11 +22,11 @@ FLAVOR?=	${FLAVORS:[1]}
 nox_PKGNAMESUFFIX=	-nox
 nox_PLIST=		${MASTERDIR}/pkg-plist-nox
 
-USES=			compiler:c++11-lib pkgconfig qmake:no_env qt:5 tar:xz
+USES=			compiler:c++14-lang pkgconfig qmake:no_env qt:5 ssl tar:xz
 GNU_CONFIGURE=		yes
 USE_QT=			core network xml buildtools_build linguisttools_build qmake_build
-CONFIGURE_ARGS=		CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}"
 DESTDIRNAME=		INSTALL_ROOT
+CONFIGURE_ENV+=		openssl_CFLAGS="-I${OPENSSLINC}" openssl_LIBS="-L${OPENSSLLIB} -lssl"
 
 .if ${FLAVOR} == default
 USES+=			desktop-file-utils gl
@@ -35,12 +37,13 @@ USE_GL=			gl
 .if ${FLAVOR} == nox
 SUFFIX=			-nox
 COMMENT+=		(web UI version)
-CONFIGURE_ARGS+=	--disable-gui
+CONFIGURE_ARGS=		--disable-gui
 USERS=			qbittorrent
 GROUPS=			qbittorrent
 USE_RC_SUBR=		qbittorrent
 SUB_LIST=		USER=${USERS} GROUP=${GROUPS}
 PLIST_SUB=		USER=${USERS} GROUP=${GROUPS}
+OPTIONS_EXCLUDE=	DBUS
 .endif
 
 OPTIONS_DEFINE=		DBUS DEBUG

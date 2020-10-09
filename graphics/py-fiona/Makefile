@@ -1,13 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	Fiona
-DISTVERSION=	1.7.13
-PORTREVISION=	1
+DISTVERSION=	1.8.17
 CATEGORIES=	graphics python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	lbartoletti@tuxfamily.org
+MAINTAINER=	lbartoletti@FreeBSD.org
 COMMENT=	OGR's neat and nimble API for Python programmers
 
 LICENSE=	BSD3CLAUSE
@@ -22,5 +21,8 @@ LIB_DEPENDS+=	libgdal.so:graphics/gdal
 
 USES=		compiler:c++11-lang python
 USE_PYTHON=	autoplist distutils cython
+
+post-install:
+	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR}/${PORTNAME:tl} -name *.so -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>

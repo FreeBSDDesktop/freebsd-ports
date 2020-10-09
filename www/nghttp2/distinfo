@@ -1,3 +1,3 @@
-TIMESTAMP = 1565801653
-SHA256 (nghttp2-nghttp2-v1.39.2_GH0.tar.gz) = 485daaa0ada7da8b4d1c2c789e7ffbe7d037763f672efa0809699d4000db265b
-SIZE (nghttp2-nghttp2-v1.39.2_GH0.tar.gz) = 1749765
+TIMESTAMP = 1598616285
+SHA256 (nghttp2-1.41.0.tar.xz) = abc25b8dc601f5b3fefe084ce50fcbdc63e3385621bee0cbfa7b57f9ec3e67c2
+SIZE (nghttp2-1.41.0.tar.xz) = 1640712

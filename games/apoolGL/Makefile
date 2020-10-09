@@ -13,10 +13,12 @@ COMMENT=	Another billiards simulator
 
 LICENSE=	GPLv2+
 
+USES=		dos2unix gl sdl
 USE_SDL=	sdl
 USE_GL=		gl
-USES=		dos2unix
 DOS2UNIX_FILES=	ApoolGL.txt
+# Seems dead upstream. Don't expect a proper fix.
+CFLAGS+=	-fcommon
 
 PORTDOCS=	ApoolGL.txt CHANGELOG OpenGL-Features
 

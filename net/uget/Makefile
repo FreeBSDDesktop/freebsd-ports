@@ -3,20 +3,20 @@
 
 PORTNAME=	uget
 PORTVERSION=	2.2.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net
 MASTER_SITES=	SF/urlget/${PORTNAME}%20%28stable%29/${PORTVERSION}
 
 MAINTAINER=	ndowens@yahoo.com
 COMMENT=	Lightweight and full-featured graphical download manager
 
-LICENSE=	LGPL21
+LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libcurl.so:ftp/curl
 RUN_DEPENDS=	aria2c:www/aria2
 
-USES=	compiler:c11 gettext-tools gmake pkgconfig
+USES=		compiler:c11 gettext-tools gmake gnome pkgconfig
 GNU_CONFIGURE=	yes
 USE_GNOME=	glib20 gtk30 intltool cairo
 INSTALLS_ICONS=	yes

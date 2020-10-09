@@ -6,6 +6,9 @@ PORTVERSION=	4.1.3
 CATEGORIES=	games
 MASTER_SITES=	http://rephial.org/downloads/${PORTVERSION:R}/
 
+PATCH_SITES=	https://github.com/angband/angband/commit/
+PATCHFILES=	8702eba5c070a157dfc8e9d7c2106f679b7845c2.patch:-p1
+
 MAINTAINER=	andrew@merenbach.com
 COMMENT=	Rogue-like game with color, X11 support
 
@@ -23,8 +26,10 @@ OPTIONS_DEFINE=	SDL X11 DOCS
 OPTIONS_DEFAULT=X11
 
 DOCS_BUILD_DEPENDS=	rst2html:textproc/py-docutils
+SDL_USES=		sdl
 SDL_USE=		SDL=image,mixer,ttf,sdl
 SDL_CONFIGURE_ENABLE=	sdl
+X11_USES=		xorg
 X11_USE=		XORG=ice,sm,x11
 X11_RUN_DEPENDS=	xorg-fonts-miscbitmaps>=0:x11-fonts/xorg-fonts-miscbitmaps
 X11_CONFIGURE_ENABLE=	x11

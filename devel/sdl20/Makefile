@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	sdl2
-PORTVERSION=	2.0.10
-PORTREVISION=	1
+PORTVERSION=	2.0.12
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	https://www.libsdl.org/release/
 DISTNAME=	SDL2-${PORTVERSION}
@@ -15,6 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING.txt
 
 GNU_CONFIGURE=	yes
 USES=		gmake iconv libtool localbase:ldflags pathfix pkgconfig
+USE_CSTD=	c99
 USE_LDCONFIG=	yes
 
 CONFIGURE_ARGS+=	--disable-arts \
@@ -127,6 +128,12 @@ UDEV_BUILD_DEPENDS=		${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 
 .include <bsd.port.options.mk>
 
+# Similar to x11/pixman
+.if ${ARCH} == "armv6" || ${ARCH} == "armv7"
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
+CFLAGS+=	-B${LOCALBASE}/bin -no-integrated-as
+.endif
+
 .if ${PORT_OPTIONS:MALSA}
 .if !${PORT_OPTIONS:MSDL_AUDIO}
 IGNORE=	option ALSA requires SDL_AUDIO
@@ -192,8 +199,7 @@ CONFIGURE_ARGS+=	--disable-sndio --disable-sndio-shared
 IGNORE=	option VIDEO_KMSDRM requires SDL_VIDEO
 .endif
 CONFIGURE_ARGS+=	--enable-video-kmsdrm --enable-kmsdrm-shared
-BUILD_DEPENDS+=		${LOCALBASE}/libdata/pkgconfig/libdrm.pc:graphics/libdrm \
-			${LOCALBASE}/libdata/pkgconfig/gbm.pc:graphics/mesa-libs
+USE_GL+=		gbm
 .else
 CONFIGURE_ARGS+=	--disable-video-kmsdrm --disable-video-kmsdrm
 .endif
@@ -222,6 +228,7 @@ CONFIGURE_ARGS+=	--enable-video-x11 \
 			--enable-video-x11-scrnsaver \
 			--enable-video-x11-xshape \
 			--enable-video-x11-vm
+USES+=		xorg
 USE_XORG+=	xinerama xcursor xi xrandr xscrnsaver xxf86vm xext
 .else
 CONFIGURE_ARGS+=	--disable-video-x11 \

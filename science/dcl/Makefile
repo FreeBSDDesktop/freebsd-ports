@@ -13,7 +13,7 @@ MAINTAINER=	murashin@gfd-dennou.org
 COMMENT=	Scientific graphic library for geoscience
 
 MAKE_JOBS_UNSAFE=	yes
-USES=		desthack pkgconfig fortran
+USES=		desthack fortran gnome pkgconfig xorg
 USE_XORG=	x11 xext
 USE_GNOME=	gtk20 gdkpixbuf2
 GNU_CONFIGURE=	yes
@@ -25,6 +25,12 @@ PORTEXAMPLES=	*
 RESTRICTED=	No commercial use
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
+
+.include <bsd.port.options.mk>
+
+.if ${FORTRAN_DEFAULT} == gfortran && ${GCC_DEFAULT} >= 10
+FFLAGS+=	-fallow-invalid-boz
+.endif
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}

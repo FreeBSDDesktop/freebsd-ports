@@ -1,3 +1,4 @@
+@postunexec echo "If you are removing dovecot permanently, you should 'rm -rf /var/db/dovecot' to clear out any remaining data."
 %%DATADIR%%/stopwords/stopwords_da.txt
 %%DATADIR%%/stopwords/stopwords_de.txt
 %%DATADIR%%/stopwords/stopwords_en.txt
@@ -49,7 +50,6 @@
 %%LDAP%%lib/dovecot/libdovecot-ldap.so.0
 %%LDAP%%lib/dovecot/libdovecot-ldap.so.0.0.0
 %%LIBWRAP%%libexec/dovecot/tcpwrap
-libexec/dovecot/health-check.sh
 %%LUA%%%%LUA_LIBDIR%%/dovecot/%%LUA_LIBDIR%%01_mail_lua_plugin.a
 %%LUA%%%%LUA_LIBDIR%%/dovecot/%%LUA_LIBDIR%%01_mail_lua_plugin.so
 %%LUA%%%%LUA_LIBDIR%%/dovecot/%%LUA_LIBDIR%%22_push_notification_lua_plugin.a
@@ -66,6 +66,7 @@ libexec/dovecot/health-check.sh
 %%SOLR%%lib/dovecot/lib21_fts_solr_plugin.so
 bin/doveadm
 bin/doveconf
+bin/dovecot-sysreport
 bin/dsync
 include/dovecot/access-lookup.h
 include/dovecot/acl-api-private.h
@@ -91,8 +92,8 @@ include/dovecot/auth-master-connection.h
 include/dovecot/auth-master.h
 include/dovecot/auth-penalty.h
 include/dovecot/auth-policy.h
-include/dovecot/auth-postfix-connection.h
 include/dovecot/auth-request-handler.h
+include/dovecot/auth-request-handler-private.h
 include/dovecot/auth-request-stats.h
 include/dovecot/auth-request-var-expand.h
 include/dovecot/auth-request.h
@@ -106,7 +107,6 @@ include/dovecot/backtrace-string.h
 include/dovecot/base32.h
 include/dovecot/base64.h
 include/dovecot/bits.h
-include/dovecot/bloomfilter.h
 include/dovecot/bsearch-insert-pos.h
 include/dovecot/buffer.h
 include/dovecot/byteorder.h
@@ -469,8 +469,10 @@ include/dovecot/mdbox-settings.h
 include/dovecot/mdbox-storage-rebuild.h
 include/dovecot/mdbox-storage.h
 include/dovecot/mdbox-sync.h
+include/dovecot/mech-digest-md5-private.h
 include/dovecot/mech-otp-skey-common.h
 include/dovecot/mech-plain-common.h
+include/dovecot/mech-scram.h
 include/dovecot/mech.h
 include/dovecot/memarea.h
 include/dovecot/mempool.h
@@ -495,7 +497,6 @@ include/dovecot/mmap-util.h
 include/dovecot/module-context.h
 include/dovecot/module-dir.h
 include/dovecot/mountpoint.h
-include/dovecot/murmurhash3.h
 include/dovecot/mycrypt.h
 include/dovecot/net.h
 include/dovecot/nfs-workarounds.h
@@ -515,6 +516,7 @@ include/dovecot/ostream-null.h
 include/dovecot/ostream-private.h
 include/dovecot/ostream-rawlog.h
 include/dovecot/ostream-unix.h
+include/dovecot/ostream-wrapper.h
 include/dovecot/ostream-zlib.h
 include/dovecot/ostream.h
 include/dovecot/passdb-blocking.h
@@ -789,6 +791,7 @@ libexec/dovecot/dns-client
 libexec/dovecot/doveadm-server
 libexec/dovecot/dovecot-lda
 libexec/dovecot/gdbhelper
+libexec/dovecot/health-check.sh
 libexec/dovecot/imap
 libexec/dovecot/imap-hibernate
 libexec/dovecot/imap-login
@@ -858,9 +861,9 @@ man/man1/doveadm-who.1.gz
 man/man1/doveadm.1.gz
 man/man1/doveconf.1.gz
 man/man1/dovecot-lda.1.gz
+man/man1/dovecot-sysreport.1.gz
 man/man1/dovecot.1.gz
 man/man1/dsync.1.gz
 man/man7/doveadm-search-query.7.gz
 sbin/dovecot
 share/aclocal/dovecot.m4
-@postunexec echo "If you are removing dovecot permanently, you should 'rm -rf /var/db/dovecot' to clear out any remaining data."

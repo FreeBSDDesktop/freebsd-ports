@@ -3,11 +3,12 @@
 
 PORTNAME=	gimmix
 PORTVERSION=	0.5.7.2
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	BERLIOS
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT=	Gimmix is a graphical MPD client written in C using GTK+2
+COMMENT=	Graphical MPD client written in C using GTK2
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -16,10 +17,15 @@ LIB_DEPENDS=	libmpd.so:audio/libmpd \
 		libtag.so:audio/taglib \
 		libnxml.so:textproc/libnxml
 
-USES=		tar:bzip2 desktop-file-utils gmake pkgconfig
+USES=		desktop-file-utils gmake gnome pkgconfig tar:bzip2
 USE_GNOME=	gtk20 intltool libglade2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	DATADIRNAME=share
+
+CFLAGS+=		-fcommon
+
+DEPRECATED=	Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+EXPIRATION_DATE=2021-04-01
 
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes

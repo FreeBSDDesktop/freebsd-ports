@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	logstash
-PORTVERSION=	6.8.3
-PORTREVISION=	0
+PORTVERSION=	6.8.12
 CATEGORIES=	sysutils java
 MASTER_SITES=	http://artifacts.elastic.co/downloads/logstash/
 PKGNAMESUFFIX=	6
@@ -15,9 +14,10 @@ LICENSE=	APACHE20
 
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
-CONFLICTS=	logstash-[0-9]* logstash5-[0-9]*
-
 USES=		cpe shebangfix
+
+CONFLICTS=	logstash-[0-9]* logstash5* logstash7*
+
 SHEBANG_FILES=	bin/*
 CPE_VENDOR=	elasticsearch
 USE_JAVA=	yes
@@ -67,6 +67,13 @@ post-install:
 .for x in ${LOGSTASH_CONF_FILES}
 	${ECHO} "@sample ${ETCDIR}/${x}.sample" >> ${TMPPLIST}
 .endfor
+	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/build_info
+	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/cache
+	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/doc
+	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/extensions
+	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/gems/manticore-0.6.4-java/spec/ssl
+	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/bundle/jruby/2.5.0/gems/redis-3.3.5/test/db
+	${RM} -rf ${STAGEDIR}${PREFIX}/logstash/vendor/jruby/lib/ruby/gems/shared/cache
 	${FIND} -s ${STAGEDIR}${PREFIX}/logstash -not -type d | ${SORT} | \
 		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir(logstash,logstash,) logstash/data" >> ${TMPPLIST}

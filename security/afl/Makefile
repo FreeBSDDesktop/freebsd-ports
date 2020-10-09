@@ -8,7 +8,7 @@ PORTREVISION=	4
 CATEGORIES=	security
 MASTER_SITES=	http://lcamtuf.coredump.cx/afl/releases/
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Fast instrumented fuzzer
 
 LICENSE=	APACHE20
@@ -42,7 +42,7 @@ LLVM_VARS=		CC=clang${LLVM_DEFAULT} \
 
 .include <bsd.port.options.mk>
 
-.if ${LLVM_DEFAULT:S,-devel,990,} >= 90
+.if ${LLVM_DEFAULT:C/[1-5]./&0/:S,-devel,990,} >= 90
 LLVM_DEFAULT=	80
 .endif
 

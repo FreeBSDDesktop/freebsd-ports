@@ -7,6 +7,7 @@
     SUBDIR += CGdic-fpw
     SUBDIR += FreeWnn-lib
     SUBDIR += FreeWnn-server
+    SUBDIR += R-cran-zipangu
     SUBDIR += Wnn6-lib
     SUBDIR += Wnn7-lib
     SUBDIR += a2ps
@@ -24,6 +25,7 @@
     SUBDIR += bugzilla50
     SUBDIR += canna-lib
     SUBDIR += canna-server
+    SUBDIR += cannadic
     SUBDIR += cdrom2
     SUBDIR += celrw
     SUBDIR += chasen-base
@@ -32,6 +34,7 @@
     SUBDIR += cp5022x-el
     SUBDIR += csrd
     SUBDIR += ctags
+    SUBDIR += dams
     SUBDIR += dbskkd-cdb
     SUBDIR += ddskk
     SUBDIR += devil-fpw
@@ -65,6 +68,7 @@
     SUBDIR += font-elisa8
     SUBDIR += font-genjyuugothic
     SUBDIR += font-genshingothic
+    SUBDIR += font-hackgen
     SUBDIR += font-ipa
     SUBDIR += font-ipa-uigothic
     SUBDIR += font-ipaex
@@ -106,7 +110,6 @@
     SUBDIR += gawk
     SUBDIR += gd
     SUBDIR += gedy
-    SUBDIR += gimp-help
     SUBDIR += groff
     SUBDIR += gskk
     SUBDIR += gsuica
@@ -125,11 +128,8 @@
     SUBDIR += jed
     SUBDIR += jishyo
     SUBDIR += jls
-    SUBDIR += jstrings
     SUBDIR += jvim3
     SUBDIR += kakasi
-    SUBDIR += kana-no-quiz
-    SUBDIR += kanjipad
     SUBDIR += kasumi
     SUBDIR += kbanner
     SUBDIR += kcc
@@ -152,7 +152,6 @@
     SUBDIR += lsd-fpw
     SUBDIR += lynx
     SUBDIR += lynx-current
-    SUBDIR += mailman
     SUBDIR += man
     SUBDIR += man-doc
     SUBDIR += mecab
@@ -160,12 +159,10 @@
     SUBDIR += mecab-ipadic-eucjp
     SUBDIR += mecab-ipadic-sjis
     SUBDIR += mecab-ipadic-utf8
-    SUBDIR += mg
     SUBDIR += mh
     SUBDIR += migemo
     SUBDIR += migemo.el
     SUBDIR += mime_pls
-    SUBDIR += ming
     SUBDIR += mozc-el
     SUBDIR += mozc-server
     SUBDIR += mozc-tool
@@ -199,6 +196,7 @@
     SUBDIR += p5-Lingua-JA-Moji
     SUBDIR += p5-Lingua-JA-Numbers
     SUBDIR += p5-Lingua-JA-Regular-Unicode
+    SUBDIR += p5-Lingua-JA-Romanize-Japanese
     SUBDIR += p5-Lingua-JA-Summarize-Extract
     SUBDIR += p5-MeCab
     SUBDIR += p5-Number-Phone-JP
@@ -214,9 +212,8 @@
     SUBDIR += plain2
     SUBDIR += plan
     SUBDIR += prn
-    SUBDIR += py-mecab
+    SUBDIR += py-jaconv
     SUBDIR += py-tegaki
-    SUBDIR += py-tegaki-gtk
     SUBDIR += py-zinnia
     SUBDIR += qkc
     SUBDIR += quit
@@ -256,9 +253,7 @@
     SUBDIR += spoqahansans-ttf
     SUBDIR += srd-fpw-package
     SUBDIR += suicavalue
-    SUBDIR += t2ps
     SUBDIR += tdiary
-    SUBDIR += tegaki-recognize
     SUBDIR += tegaki-zinnia-japanese
     SUBDIR += tex-ptex
     SUBDIR += tgif
@@ -281,7 +276,6 @@
     SUBDIR += wordnet-fpw
     SUBDIR += wordpress
     SUBDIR += wwasw-fpw
-    SUBDIR += xdtp
     SUBDIR += xpdf
     SUBDIR += xshodou
     SUBDIR += xtr

@@ -16,6 +16,7 @@ COMMENT=	Scheme interpreter
 LICENSE=	LGPL21
 
 BROKEN_aarch64=	ld: error: undefined symbol: sbrk
+BROKEN_powerpc64=	fails to build: "/wrkdirs/usr/ports/lang/scm/work/slib/lineio.scm": read-char: Wrong type in arg1 #f
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
@@ -39,6 +40,7 @@ INFO=		scm
 OPTIONS_DEFINE=		X11
 OPTIONS_SUB=		yes
 
+X11_USES=		xorg
 X11_USE=		xorg=ice,sm,x11,xext
 
 SCM_DATA=	COPYING COPYING.LESSER Iedline.scm Idiffer.scm \

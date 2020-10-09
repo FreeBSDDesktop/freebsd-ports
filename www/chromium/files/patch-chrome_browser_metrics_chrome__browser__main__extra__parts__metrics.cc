@@ -1,6 +1,6 @@
---- chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc.orig	2019-03-11 22:00:53 UTC
+--- chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc.orig	2020-07-07 21:58:13 UTC
 +++ chrome/browser/metrics/chrome_browser_main_extra_parts_metrics.cc
-@@ -44,7 +44,9 @@
+@@ -51,7 +51,9 @@
  
  #if defined(OS_LINUX) && !defined(OS_CHROMEOS)
  #include <gnu/libc-version.h>
@@ -10,7 +10,7 @@
  #include "base/linux_util.h"
  #include "base/strings/string_split.h"
  #include "base/strings/string_util.h"
-@@ -52,7 +54,7 @@
+@@ -59,7 +61,7 @@
  #if defined(USE_X11)
  #include "ui/base/x/x11_util.h"
  #endif
@@ -18,4 +18,4 @@
 +#endif  // defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
  
  #if defined(USE_OZONE) || defined(USE_X11)
- #include "ui/events/devices/input_device_event_observer.h"
+ #include "ui/events/devices/device_data_manager.h"

@@ -3,7 +3,7 @@
 
 PORTNAME=	opennx
 PORTVERSION=	0.16.0.729
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	net
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/CI-source
 
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	${LOCALBASE}/bin/zip:archivers/zip
 LIB_DEPENDS=	libcups.so:print/cups \
 		libcurl.so:ftp/curl
 
-USES=		gmake gnome samba:lib
+USES=		gmake gnome samba:lib xorg
 USE_XORG=	ice sm x11 xau xmu
 USE_WX=		2.8+
 

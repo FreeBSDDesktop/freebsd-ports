@@ -2,9 +2,9 @@
 
 PORTNAME=	traverso
 DISTVERSION=	0.49.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
-MASTER_SITES=	https://traverso-daw.org/
+MASTER_SITES=	https://traverso-daw.org/download/12/
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Digital audio workstation (DAW) with an innovative user interface

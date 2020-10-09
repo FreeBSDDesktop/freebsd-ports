@@ -2,7 +2,6 @@ bin/icingacli
 etc/bash_completion.d/icingacli
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/apache/icingaweb2.conf
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/nginx/icingaweb2.conf
-%%WWWDIR%%/.travis.yml
 %%WWWDIR%%/AUTHORS
 %%WWWDIR%%/CHANGELOG.md
 %%WWWDIR%%/CONTRIBUTING.md
@@ -121,7 +120,6 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/application/views/helpers/FormDateTime.php
 %%WWWDIR%%/application/views/helpers/FormNumber.php
 %%WWWDIR%%/application/views/helpers/FormTime.php
-%%WWWDIR%%/application/views/helpers/FormTriStateCheckbox.php
 %%WWWDIR%%/application/views/helpers/ProtectId.php
 %%WWWDIR%%/application/views/helpers/Util.php
 %%WWWDIR%%/application/views/scripts/about/index.phtml
@@ -196,8 +194,6 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/doc/accessibility/svg.html
 %%WWWDIR%%/doc/accessibility/text-cue-for-required-form-control-labels.html
 %%WWWDIR%%/doc/phpdoc.xml
-%%WWWDIR%%/doc/res/gitlab-job-artifacts.png
-%%WWWDIR%%/doc/res/gitlab-rpm-package-pipeline-jobs.png
 %%WWWDIR%%/doc/res/GraphExample#1.png
 %%WWWDIR%%/doc/res/GraphExample#2.png
 %%WWWDIR%%/doc/res/GraphExample#3.png
@@ -208,6 +204,8 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/doc/res/GraphExample#7.png
 %%WWWDIR%%/doc/res/GraphExample#8.png
 %%WWWDIR%%/doc/res/GraphExample#9.png
+%%WWWDIR%%/doc/res/gitlab-job-artifacts.png
+%%WWWDIR%%/doc/res/gitlab-rpm-package-pipeline-jobs.png
 %%WWWDIR%%/etc/bash_completion.d/icingacli
 %%WWWDIR%%/etc/schema/mysql-upgrades/2.0.0beta3-2.0.0rc1.sql
 %%WWWDIR%%/etc/schema/mysql-upgrades/2.5.0.sql
@@ -470,7 +468,6 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/Web/Form/Element/Number.php
 %%WWWDIR%%/library/Icinga/Web/Form/Element/Textarea.php
 %%WWWDIR%%/library/Icinga/Web/Form/Element/Time.php
-%%WWWDIR%%/library/Icinga/Web/Form/Element/TriStateCheckbox.php
 %%WWWDIR%%/library/Icinga/Web/Form/ErrorLabeller.php
 %%WWWDIR%%/library/Icinga/Web/Form/FormElement.php
 %%WWWDIR%%/library/Icinga/Web/Form/InvalidCSRFTokenException.php
@@ -480,7 +477,6 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/Web/Form/Validator/InternalUrlValidator.php
 %%WWWDIR%%/library/Icinga/Web/Form/Validator/ReadablePathValidator.php
 %%WWWDIR%%/library/Icinga/Web/Form/Validator/TimeFormatValidator.php
-%%WWWDIR%%/library/Icinga/Web/Form/Validator/TriStateValidator.php
 %%WWWDIR%%/library/Icinga/Web/Form/Validator/UrlValidator.php
 %%WWWDIR%%/library/Icinga/Web/Form/Validator/WritablePathValidator.php
 %%WWWDIR%%/library/Icinga/Web/Helper/CookieHelper.php
@@ -522,7 +518,6 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/Web/View/helpers/generic.php
 %%WWWDIR%%/library/Icinga/Web/View/helpers/string.php
 %%WWWDIR%%/library/Icinga/Web/View/helpers/url.php
-%%WWWDIR%%/library/Icinga/Web/ViewStream.php
 %%WWWDIR%%/library/Icinga/Web/Widget.php
 %%WWWDIR%%/library/Icinga/Web/Widget/AbstractWidget.php
 %%WWWDIR%%/library/Icinga/Web/Widget/Announcements.php
@@ -1873,6 +1868,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/modules/monitoring/application/views/scripts/list/servicegroups.phtml
 %%WWWDIR%%/modules/monitoring/application/views/scripts/list/services.phtml
 %%WWWDIR%%/modules/monitoring/application/views/scripts/object/detail-history.phtml
+%%WWWDIR%%/modules/monitoring/application/views/scripts/object/detail-tabhook.phtml
 %%WWWDIR%%/modules/monitoring/application/views/scripts/partials/command/object-command-form.phtml
 %%WWWDIR%%/modules/monitoring/application/views/scripts/partials/command/objects-command-form.phtml
 %%WWWDIR%%/modules/monitoring/application/views/scripts/partials/comment/comment-description.phtml
@@ -1949,6 +1945,8 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Backend/Ido/Query/DowntimeendhistoryQuery.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Backend/Ido/Query/DowntimeeventQuery.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Backend/Ido/Query/DowntimestarthistoryQuery.php
+%%WWWDIR%%/modules/monitoring/library/Monitoring/Backend/Ido/Query/EmptyhostgroupQuery.php
+%%WWWDIR%%/modules/monitoring/library/Monitoring/Backend/Ido/Query/EmptyservicegroupQuery.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Backend/Ido/Query/EventgridQuery.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Backend/Ido/Query/EventgridhostsQuery.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Backend/Ido/Query/EventgridservicesQuery.php
@@ -2010,6 +2008,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Command/Instance/ToggleInstanceFeatureCommand.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Command/Object/AcknowledgeProblemCommand.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Command/Object/AddCommentCommand.php
+%%WWWDIR%%/modules/monitoring/library/Monitoring/Command/Object/CommandAuthor.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Command/Object/DeleteCommentCommand.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Command/Object/DeleteDowntimeCommand.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Command/Object/ObjectCommand.php
@@ -2077,9 +2076,11 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Exception/UnsupportedBackendException.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Hook/DataviewExtensionHook.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Hook/DetailviewExtensionHook.php
+%%WWWDIR%%/modules/monitoring/library/Monitoring/Hook/EventDetailsExtensionHook.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Hook/HostActionsHook.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Hook/IdoQueryExtensionHook.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Hook/ObjectActionsHook.php
+%%WWWDIR%%/modules/monitoring/library/Monitoring/Hook/ObjectDetailsTabHook.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Hook/PluginOutputHook.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Hook/ServiceActionsHook.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Hook/TimelineProviderHook.php
@@ -2105,7 +2106,6 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/modules/monitoring/library/Monitoring/TransportStep.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Web/Controller/MonitoredObjectController.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Web/Helper/PluginOutputHookRenderer.php
-%%WWWDIR%%/modules/monitoring/library/Monitoring/Web/Helper/PluginOutputPurifier.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Web/Hook/HostActionsHook.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Web/Hook/ServiceActionsHook.php
 %%WWWDIR%%/modules/monitoring/library/Monitoring/Web/Hook/TimelineProviderHook.php
@@ -2176,6 +2176,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/modules/setup/library/Setup/Requirement/PhpConfigRequirement.php
 %%WWWDIR%%/modules/setup/library/Setup/Requirement/PhpModuleRequirement.php
 %%WWWDIR%%/modules/setup/library/Setup/Requirement/PhpVersionRequirement.php
+%%WWWDIR%%/modules/setup/library/Setup/Requirement/WebModuleRequirement.php
 %%WWWDIR%%/modules/setup/library/Setup/RequirementSet.php
 %%WWWDIR%%/modules/setup/library/Setup/RequirementsRenderer.php
 %%WWWDIR%%/modules/setup/library/Setup/Setup.php
@@ -2229,6 +2230,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/public/css/icinga/main.less
 %%WWWDIR%%/public/css/icinga/menu.less
 %%WWWDIR%%/public/css/icinga/mixins.less
+%%WWWDIR%%/public/css/icinga/modal.less
 %%WWWDIR%%/public/css/icinga/nav.less
 %%WWWDIR%%/public/css/icinga/print.less
 %%WWWDIR%%/public/css/icinga/responsive.less
@@ -2251,6 +2253,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/public/font/ifont.woff
 %%WWWDIR%%/public/font/ifont.woff2
 %%WWWDIR%%/public/img/favicon.png
+%%WWWDIR%%/public/img/icinga-loader.gif
 %%WWWDIR%%/public/img/icinga-logo-big-dark.png
 %%WWWDIR%%/public/img/icinga-logo-big-dark.svg
 %%WWWDIR%%/public/img/icinga-logo-big.png
@@ -2371,10 +2374,10 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/public/js/icinga/behavior/filtereditor.js
 %%WWWDIR%%/public/js/icinga/behavior/flyover.js
 %%WWWDIR%%/public/js/icinga/behavior/form.js
+%%WWWDIR%%/public/js/icinga/behavior/modal.js
 %%WWWDIR%%/public/js/icinga/behavior/navigation.js
 %%WWWDIR%%/public/js/icinga/behavior/selectable.js
 %%WWWDIR%%/public/js/icinga/behavior/sparkline.js
-%%WWWDIR%%/public/js/icinga/behavior/tristate.js
 %%WWWDIR%%/public/js/icinga/eventlistener.js
 %%WWWDIR%%/public/js/icinga/events.js
 %%WWWDIR%%/public/js/icinga/history.js

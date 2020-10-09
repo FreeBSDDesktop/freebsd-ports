@@ -3,7 +3,7 @@
 
 PORTNAME=	uim-el
 PORTVERSION=	1.8.8
-PORTREVISION=	2
+PORTREVISION=	5
 CATEGORIES=	textproc
 MASTER_SITES=	https://github.com/uim/uim/releases/download/${PORTVERSION}/
 PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
@@ -12,9 +12,13 @@ DISTNAME=	uim-${PORTVERSION}
 MAINTAINER=	nobutaka@FreeBSD.org
 COMMENT?=	Emacs lisp for uim input method library
 
+LICENSE=	BSD3CLAUSE GPLv2+ GPLv3+ LGPL21+ PD
+LICENSE_COMB=	multi
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 RUN_DEPENDS=	uim-el-agent:textproc/uim
 
-USES=		emacs gettext-tools gmake iconv perl5 tar:bzip2
+USES=		emacs gettext-tools gmake gnome iconv perl5 tar:bzip2
 USE_GNOME=	intltool
 USE_PERL5=	build
 

@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	tbb
-PORTVERSION=	2019.8
+PORTVERSION=	2020.3
+DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
 MAINTAINER=	martymac@FreeBSD.org
@@ -10,14 +11,14 @@ COMMENT=	Library that provides thread building blocks
 
 LICENSE=	APACHE20
 
-ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64
+ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc powerpc64 powerpc64le powerpcspe
 ONLY_FOR_ARCHS_REASON=	has not been ported to this platform
 
 USES=	compiler gmake tar:tgz
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	01org
-GH_TAGNAME=	${PORTVERSION:S/./_U/}
+GH_ACCOUNT=	oneapi-src
+GH_PROJECT=	oneTBB
 
 SUB_FILES=	tbb.pc
 SUB_LIST=	prefix="${PREFIX}" \

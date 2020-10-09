@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	xterm
-PORTVERSION=	349
+PORTVERSION=	360
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	ftp://ftp.invisible-island.net/xterm/:src1 \
 		https://invisible-mirror.net/archives/xterm/:src1 \
@@ -16,7 +17,7 @@ COMMENT=	Terminal emulator for the X Window System
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cpe ncurses tar:tgz xorg
+USES=		cpe localbase ncurses tar:tgz xorg
 USE_XORG=	xft xmu xt x11 xext xpm ice
 
 GNU_CONFIGURE=	yes
@@ -26,9 +27,6 @@ CPE_VENDOR=	invisible-island
 CONFIGURE_ARGS+=	--with-utempter --enable-narrowproto
 
 CONFLICTS=	x11iraf-[0-9]*
-
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
 
 ICONVERSION=	1
 
@@ -91,6 +89,10 @@ post-extract:
 	@${CP} ${WRKDIR}/bsd-xterm-icons-1/*.png \
 		${WRKDIR}/bsd-xterm-icons-1/*.xpm \
 			${WRKSRC}/icons/
+
+post-patch:
+	@${REINPLACE_CMD} -e "s|/usr\(/share/pixmaps\)|${LOCALBASE}\1|" \
+		${WRKSRC}/misc.c
 
 post-install:
 .for f in koi8rxterm resize uxterm xterm

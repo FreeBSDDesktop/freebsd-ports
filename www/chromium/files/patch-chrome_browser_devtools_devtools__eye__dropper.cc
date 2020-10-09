@@ -1,4 +1,4 @@
---- chrome/browser/devtools/devtools_eye_dropper.cc.orig	2019-04-30 22:22:33 UTC
+--- chrome/browser/devtools/devtools_eye_dropper.cc.orig	2020-02-03 21:53:29 UTC
 +++ chrome/browser/devtools/devtools_eye_dropper.cc
 @@ -164,7 +164,7 @@ void DevToolsEyeDropper::UpdateCursor() {
  // magnified projection only with centered hotspot.

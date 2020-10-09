@@ -3,20 +3,20 @@
 
 PORTNAME=	alure
 PORTVERSION=	1.2
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	audio
 MASTER_SITES=	http://kcat.strangesoft.net/alure-releases/
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	multimedia@FreeBSD.org
 COMMENT=	Utility library to help manage common tasks with OpenAL
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cmake openal:soft pkgconfig
+USES=		cmake compiler:c++11-lang openal:soft pkgconfig
 USE_LDCONFIG=	yes
-LLD_UNSAFE=	yes	# lld disallows preemption of protected visibility syms
 CMAKE_OFF=	BUILD_DOCS BUILD_STATIC
+LDFLAGS_i386=	-Wl,-znotext
 
 PORTDOCS=	*
 PORTEXAMPLES=	*

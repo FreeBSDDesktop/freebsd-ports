@@ -10,7 +10,12 @@
     SUBDIR += bitcoin-daemon
     SUBDIR += bitcoin-utils
     SUBDIR += bitflu
-    SUBDIR += couchpotato
+    SUBDIR += bitmark
+    SUBDIR += bitmark-cli
+    SUBDIR += bitmark-daemon
+    SUBDIR += bitmark-recorder
+    SUBDIR += btpd
+    SUBDIR += c-lightning
     SUBDIR += cpuminer
     SUBDIR += createtorrent
     SUBDIR += ctcs
@@ -35,7 +40,6 @@
     SUBDIR += libbt
     SUBDIR += liberator
     SUBDIR += libktorrent
-    SUBDIR += libpdtp
     SUBDIR += libswift
     SUBDIR += libtorrent
     SUBDIR += libtorrent-rasterbar
@@ -56,6 +60,7 @@
     SUBDIR += namecoin-utils
     SUBDIR += ncdc
     SUBDIR += opendchub
+    SUBDIR += openethereum
     SUBDIR += p5-Net-BitTorrent
     SUBDIR += p5-Net-BitTorrent-File
     SUBDIR += p5-Net-BitTorrent-PeerPacket
@@ -63,7 +68,6 @@
     SUBDIR += p5-WWW-BitTorrent
     SUBDIR += phex
     SUBDIR += py-libtorrent-rasterbar
-    SUBDIR += py-py2play
     SUBDIR += py-transmissionrpc
     SUBDIR += py-tremc
     SUBDIR += py-vertex
@@ -76,7 +80,6 @@
     SUBDIR += shx
     SUBDIR += sonarr
     SUBDIR += sonarr-devel
-    SUBDIR += squall
     SUBDIR += torrent-file-editor
     SUBDIR += torrentcheck
     SUBDIR += torrentsniff
@@ -86,7 +89,8 @@
     SUBDIR += transmission-gtk
     SUBDIR += transmission-qt
     SUBDIR += transmission-remote-gui
-    SUBDIR += tribler
+    SUBDIR += transmission-utils
+    SUBDIR += udpt
     SUBDIR += uhub
     SUBDIR += vuze
     SUBDIR += xmrig

@@ -262,6 +262,7 @@ include/asterisk/security_events.h
 include/asterisk/security_events_defs.h
 include/asterisk/select.h
 include/asterisk/sem.h
+include/asterisk/serializer.h
 include/asterisk/sha1.h
 include/asterisk/silk.h
 include/asterisk/sip_api.h
@@ -310,6 +311,7 @@ include/asterisk/udptl.h
 include/asterisk/ulaw.h
 include/asterisk/unaligned.h
 include/asterisk/uri.h
+include/asterisk/utf8.h
 include/asterisk/utils.h
 include/asterisk/uuid.h
 include/asterisk/vector.h
@@ -317,6 +319,8 @@ include/asterisk/version.h
 include/asterisk/xml.h
 include/asterisk/xmldoc.h
 include/asterisk/xmpp.h
+%%PJSIP%%lib/libasteriskpj.so
+%%PJSIP%%lib/libasteriskpj.so.2
 lib/libasteriskssl.so
 lib/libasteriskssl.so.1
 man/man8/astdb2bdb.8.gz
@@ -338,9 +342,9 @@ sbin/safe_asterisk
 %%DATADIR%%/agi-bin/eagi-sphinx-test
 %%DATADIR%%/agi-bin/eagi-test
 %%DATADIR%%/agi-bin/jukebox.agi
-%%DATADIR%%/documentation/appdocsxml.dtd
-%%DATADIR%%/documentation/appdocsxml.xslt
-%%DATADIR%%/documentation/core-en_US.xml
+%%XMLDOC%%%%DATADIR%%/documentation/appdocsxml.dtd
+%%XMLDOC%%%%DATADIR%%/documentation/appdocsxml.xslt
+%%XMLDOC%%%%DATADIR%%/documentation/core-en_US.xml
 %%DATADIR%%/phoneprov/000000000000-directory.xml
 %%DATADIR%%/phoneprov/000000000000-phone.cfg
 %%DATADIR%%/phoneprov/000000000000.cfg
@@ -362,11 +366,11 @@ sbin/safe_asterisk
 %%DATADIR%%/scripts/ast_coredumper
 %%DATADIR%%/scripts/ast_logescalator
 %%DATADIR%%/scripts/ast_loggrabber
-%%DATADIR%%/static-http/appdocsxml.xslt
+%%XMLDOC%%%%DATADIR%%/static-http/appdocsxml.xslt
 %%DATADIR%%/static-http/ajamdemo.html
 %%DATADIR%%/static-http/astman.css
 %%DATADIR%%/static-http/astman.js
-%%DATADIR%%/static-http/core-en_US.xml
+%%XMLDOC%%%%DATADIR%%/static-http/core-en_US.xml
 %%DATADIR%%/static-http/prototype.js
 %%DATADIR%%/static-http/mantest.html
 %%DOCSDIR%%/images/asterisk-intro.jpg
@@ -379,6 +383,7 @@ sbin/safe_asterisk
 @dir %%DATADIR%%/moh
 @dir %%DATADIR%%/sounds
 @dir %%DATADIR%%/third-party
+%%PJSIP%%@dir %%DATADIR%%/third-party/pjproject
 @owner %%ASTERISK_USER%%
 @group %%ASTERISK_GROUP%%
 @dir %%VARDIR%%/log/asterisk/cdr-csv

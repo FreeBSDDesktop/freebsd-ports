@@ -9,6 +9,7 @@ LLVM_COMMANDS=	\
 		llvm-ar \
 		llvm-as \
 		llvm-bcanalyzer \
+		llvm-bitcode-strip \
 		llvm-cat \
 		llvm-cfi-verify \
 		llvm-config \
@@ -23,11 +24,15 @@ LLVM_COMMANDS=	\
 		llvm-elfabi \
 		llvm-exegesis \
 		llvm-extract \
+		llvm-gsymutil \
 		llvm-ifs \
+		llvm-install-name-tool \
 		llvm-jitlink \
+		llvm-libtool-darwin \
 		llvm-link \
 		llvm-lipo \
 		llvm-mc \
+		llvm-ml \
 		llvm-modextract \
 		llvm-mt \
 		llvm-nm \
@@ -52,8 +57,8 @@ LLVM_COMMANDS=	\
 		llvm-undname \
 		llvm-xray \
 		opt \
-		pp-trace \
-		sancov
+		sancov \
+		split-file
 
 CLANG_COMMANDS=	\
 		c-index-test \
@@ -63,28 +68,34 @@ CLANG_COMMANDS=	\
 		clang-cpp \
 		clang-extdef-mapping \
 		clang-format \
-		clang-import-test \
-		clang-move \
 		clang-offload-bundler \
 		clang-offload-wrapper \
 		clang-scan-deps \
-		clangd \
 		diagtool \
 		hmaptool \
 		scan-build \
 		scan-view
 
 EXTRAS_COMMANDS= \
+		clangd \
 		clang-apply-replacements \
 		clang-change-namespace \
 		clang-doc \
 		clang-include-fixer \
+		clang-move \
 		clang-query \
 		clang-rename \
 		clang-reorder-fields \
 		clang-tidy \
 		find-all-symbols \
-		modularize
+		modularize \
+		pp-trace
+
+FLANG_COMMANDS=	\
+		f18 \
+		f18-parse-demo \
+		flang \
+		tco
 
 LIT_COMMANDS=	\
 		FileCheck \
@@ -104,3 +115,11 @@ LLDB_COMMANDS=	\
 		lldb-instr \
 		lldb-server \
 		lldb-vscode
+
+MLIR_COMMANDS=	\
+		mlir-cpu-runner \
+		mlir-linalg-ods-gen \
+		mlir-opt \
+		mlir-reduce \
+		mlir-tblgen \
+		mlir-translate

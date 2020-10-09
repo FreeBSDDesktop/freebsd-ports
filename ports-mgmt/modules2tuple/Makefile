@@ -2,7 +2,7 @@
 
 PORTNAME=	modules2tuple
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.10.0
+DISTVERSION=	2.2.1
 CATEGORIES=	ports-mgmt
 
 MAINTAINER=	dmgk@FreeBSD.org
@@ -15,12 +15,10 @@ USES=		go:modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dmgk
+GH_TUPLE=	sergi:go-diff:v1.1.0:sergi_go_diff/vendor/github.com/sergi/go-diff
 
 GO_BUILDFLAGS=	-ldflags="-s -w -X main.version=${PORTVERSION}"
 
 PLIST_FILES=	bin/${PORTNAME}
-
-do-test:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${GO_ENV} ${GO_CMD} test ${GO_BUILDFLAGS} ./...
 
 .include <bsd.port.mk>

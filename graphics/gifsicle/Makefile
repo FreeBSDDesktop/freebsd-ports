@@ -6,7 +6,7 @@ PORTVERSION=	1.92
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.lcdf.org/gifsicle/
 
-MAINTAINER=	tagattie@yandex.com
+MAINTAINER=	tagattie@FreeBSD.org
 COMMENT=	Manipulates GIF images and animations
 
 LICENSE=	GPLv2
@@ -24,6 +24,7 @@ PLIST_FILES=	bin/gifdiff bin/gifsicle \
 OPTIONS_DEFINE=		DOCS X11
 OPTIONS_DEFAULT=
 
+X11_USES=		xorg
 X11_USE=		xorg=x11
 X11_CONFIGURE_ENABLE=	gifview
 X11_CONFIGURE_WITH=	x

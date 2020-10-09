@@ -3,7 +3,7 @@
 
 PORTNAME=	spiralsynthmodular
 PORTVERSION=	0.2.2a
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	audio
 MASTER_SITES=	SF/spiralmodular/spiralmodular/${PORTVERSION}%20%28Latest%20Version%29
 DISTNAME=	spiralmodular-${PORTVERSION}
@@ -16,6 +16,7 @@ BUILD_DEPENDS=	${LOCALBASE}/include/ladspa.h:audio/ladspa \
 LIB_DEPENDS=	libfltk.so:x11-toolkits/fltk \
 		libsndfile.so:audio/libsndfile
 
+USES=		xorg
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	FLTK_CONFIG="${FLTK_CONFIG}"

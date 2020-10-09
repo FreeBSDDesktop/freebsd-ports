@@ -1,6 +1,6 @@
---- components/autofill/content/renderer/password_form_conversion_utils.cc.orig	2019-06-04 18:55:21 UTC
+--- components/autofill/content/renderer/password_form_conversion_utils.cc.orig	2020-07-07 21:58:14 UTC
 +++ components/autofill/content/renderer/password_form_conversion_utils.cc
-@@ -36,7 +36,11 @@
+@@ -20,7 +20,11 @@
  #include "third_party/blink/public/web/web_form_control_element.h"
  #include "third_party/blink/public/web/web_input_element.h"
  #include "third_party/blink/public/web/web_local_frame.h"
@@ -11,4 +11,4 @@
 +#endif
  #include "url/gurl.h"
  
- using blink::WebFormControlElement;
+ using blink::WebElement;

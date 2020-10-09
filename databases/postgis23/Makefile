@@ -1,14 +1,13 @@
-# Created by: Loïc BARTOLETTI <lbartoletti@tuxfamily.org>
+# Created by: Loïc BARTOLETTI <lbartoletti@FreeBSD.org>
 # $FreeBSD$
 
 PORTNAME=	postgis
-PORTVERSION=	2.3.10
-PORTREVISION=	1
+PORTVERSION=	2.3.11
 CATEGORIES=	databases geography
 MASTER_SITES=	https://download.osgeo.org/postgis/source/
 PKGNAMESUFFIX=	23
 
-MAINTAINER=	lbartoletti@tuxfamily.org
+MAINTAINER=	lbartoletti@FreeBSD.org
 COMMENT=	Geographic objects support for PostgreSQL databases
 
 LICENSE=	GPLv2
@@ -20,7 +19,7 @@ LIB_DEPENDS=	libproj.so:graphics/proj \
 		libgdal.so:graphics/gdal
 
 USES=		alias gettext gmake gnome iconv:wchar_t libtool:keepla \
-		localbase perl5 pkgconfig pgsql:9.2-10 shebangfix
+		localbase perl5 pkgconfig pgsql:9.5-10 shebangfix
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 USE_PERL5=	build

@@ -1,5 +1,5 @@
 bin/ircd
-bin/mkpasswd
+bin/ircd-hybrid-mkpasswd
 %%ETCDIR%%/reference.conf
 lib/ircd-hybrid/modules/autoload/m_accept.la
 lib/ircd-hybrid/modules/autoload/m_accept.so
@@ -51,6 +51,8 @@ lib/ircd-hybrid/modules/autoload/m_lusers.la
 lib/ircd-hybrid/modules/autoload/m_lusers.so
 lib/ircd-hybrid/modules/autoload/m_map.la
 lib/ircd-hybrid/modules/autoload/m_map.so
+@comment lib/ircd-hybrid/modules/autoload/m_metadata.la
+@comment lib/ircd-hybrid/modules/autoload/m_metadata.so
 lib/ircd-hybrid/modules/autoload/m_module.la
 lib/ircd-hybrid/modules/autoload/m_module.so
 lib/ircd-hybrid/modules/autoload/m_motd.la
@@ -171,6 +173,7 @@ man/man8/ircd.8.gz
 %%DATADIR%%-%%PORTVERSION%%/ircd-hybrid/help/die
 %%DATADIR%%-%%PORTVERSION%%/ircd-hybrid/help/dline
 %%DATADIR%%-%%PORTVERSION%%/ircd-hybrid/help/etrace
+%%DATADIR%%-%%PORTVERSION%%/ircd-hybrid/help/extban
 %%DATADIR%%-%%PORTVERSION%%/ircd-hybrid/help/hash
 %%DATADIR%%-%%PORTVERSION%%/ircd-hybrid/help/help
 %%DATADIR%%-%%PORTVERSION%%/ircd-hybrid/help/index
@@ -222,4 +225,7 @@ man/man8/ircd.8.gz
 %%DATADIR%%-%%PORTVERSION%%/ircd-hybrid/help/whois
 %%DATADIR%%-%%PORTVERSION%%/ircd-hybrid/help/whowas
 %%DATADIR%%-%%PORTVERSION%%/ircd-hybrid/help/xline
-@dir /var/lib
+@dir(ircd,ircd) /var/ircd-hybrid/lib
+@dir(ircd,ircd) /var/ircd-hybrid/log
+@dir(ircd,ircd) /var/ircd-hybrid/run
+@dir(ircd,ircd) /var/ircd-hybrid

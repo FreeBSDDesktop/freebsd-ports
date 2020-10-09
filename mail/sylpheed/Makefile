@@ -3,9 +3,9 @@
 
 PORTNAME=	sylpheed
 PORTVERSION=	3.7.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	mail
-MASTER_SITES=	http://sylpheed.sraoss.jp/sylpheed/v${PORTVERSION:C/\.[^\.]*$//}/  \
+MASTER_SITES=	http://sylpheed.sraoss.jp/sylpheed/v${PORTVERSION:C/\.[^\.]*$//}/ \
 		LOCAL/ehaupt
 
 MAINTAINER=	ehaupt@FreeBSD.org
@@ -18,8 +18,8 @@ RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:misc/mime-support
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
-USES=		gettext iconv gmake pkgconfig tar:bzip2 desktop-file-utils \
-		libtool
+USES=		desktop-file-utils gettext gmake gnome iconv libtool pkgconfig \
+		tar:bzip2
 USE_GNOME=	gtk20 cairo gdkpixbuf2
 USE_LDCONFIG=	yes
 
@@ -95,16 +95,16 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|^\(DEFS.*\.\.\)$$|\1 -I../libsylph|' \
 		${WRKSRC}/src/Makefile.in
 
-.if empty(PORT_OPTIONS:MDOCS)
+post-patch-DOCS-off:
 	@${REINPLACE_CMD} -e '/^SUBDIRS = /s/manual faq//' \
 		${WRKSRC}/Makefile.in
-.else
+
+post-patch-DOCS-on:
 .for i in ${MAKEFILES}
 	@${REINPLACE_CMD} -e 's|^faqdir = @faqdir@$$|faqdir = ${DOCSDIR}/faq|g; \
 		s|^manualdir = @manualdir@$$|manualdir = ${DOCSDIR}/manual|g' \
 		${WRKSRC}/${i}
 .endfor
-.endif
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

@@ -1,8 +1,8 @@
---- chrome/common/chrome_features.cc.orig	2019-07-24 18:58:13 UTC
+--- chrome/common/chrome_features.cc.orig	2020-07-07 21:58:14 UTC
 +++ chrome/common/chrome_features.cc
-@@ -98,13 +98,13 @@ const base::Feature kAutoFetchOnNetErrorPage{"AutoFetc
-                                              base::FEATURE_DISABLED_BY_DEFAULT};
- #endif  // defined(OS_ANDROID)
+@@ -68,13 +68,13 @@ const base::Feature kAsyncDns {
+ #endif
+ };
  
 -#if defined(OS_WIN) || defined(OS_LINUX)
 +#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_BSD)
@@ -14,14 +14,5 @@
 -#endif  // defined(OS_WIN) || defined(OS_LINUX)
 +#endif  // defined(OS_WIN) || defined(OS_LINUX) || defined(OS_BSD)
  
- // Enables or disables whether permission prompts are automatically blocked
- // after the user has explicitly dismissed them too many times.
-@@ -150,7 +150,7 @@ const base::Feature kThirdPartyModulesBlocking{
-     "ThirdPartyModulesBlocking", base::FEATURE_DISABLED_BY_DEFAULT};
- #endif
- 
--#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_MACOSX)
-+#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_MACOSX) || defined(OS_BSD)
- // Enables the dual certificate verification trial feature.
- // https://crbug.com/649026
- const base::Feature kCertDualVerificationTrialFeature{
+ #if !defined(OS_ANDROID)
+ // Enables logging UKMs for background tab activity by TabActivityWatcher.

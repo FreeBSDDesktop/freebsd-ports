@@ -1,11 +1,12 @@
---- content/browser/BUILD.gn.orig	2019-07-24 18:58:23 UTC
+--- content/browser/BUILD.gn.orig	2020-07-07 21:58:15 UTC
 +++ content/browser/BUILD.gn
-@@ -2058,7 +2058,7 @@ jumbo_source_set("browser") {
-       "//chromeos/resources",
-       "//components/chromeos_camera:mojo_mjpeg_decode_accelerator",
+@@ -2044,6 +2044,9 @@ jumbo_source_set("browser") {
+       "//third_party/blink/public/mojom:memory_usage_monitor_linux_mojo_bindings",
      ]
--  } else {
-+  } else if (!is_bsd) {
-     sources += [
-       "memory/memory_monitor_linux.cc",
-       "memory/memory_monitor_linux.h",
+   }
++  if (is_bsd) {
++    deps -= [ "//services/service_manager/zygote" ]
++  }
+ 
+   if (is_desktop_linux) {
+     sources += [ "speech/tts_linux.cc" ]

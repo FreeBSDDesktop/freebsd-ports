@@ -3,7 +3,7 @@
 
 PORTNAME=	xnee
 PORTVERSION=	3.19
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	GNU
 
@@ -12,9 +12,15 @@ COMMENT=	X11 events recorder and player
 
 LICENSE=	GPLv3
 
+# Fix build with -fno-common (llvm 11)
+CFLAGS+=	-fcommon
+
+DEPRECATED=	Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+EXPIRATION_DATE=2021-04-01
+
 GNU_CONFIGURE=	yes
+USES=		gmake pathfix xorg
 USE_XORG=	xtst
-USES=		gmake pathfix
 
 CONFIGURE_ARGS=	--enable-cli --disable-doc --disable-xinput2
 
@@ -25,7 +31,7 @@ OPTIONS_SUB=	yes
 
 GNEE_DESC=	GUI frontend
 GNEE_CONFIGURE_ENABLE=	gui
-GNEE_USES=	pkgconfig
+GNEE_USES=	gnome pkgconfig
 GNEE_USE=	GNOME=gtk20
 
 GNEE_DESKTOP_ENTRIES=	"Gnee" "" "${PORTNAME}.png" \

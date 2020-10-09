@@ -2,7 +2,6 @@
 
 PORTNAME=	plasma-workspace
 DISTVERSION=	${KDE_PLASMA_VERSION}
-PORTREVISION=	2
 CATEGORIES=	x11 kde kde-plasma
 
 MAINTAINER=	kde@FreeBSD.org
@@ -19,7 +18,9 @@ RUN_DEPENDS=	ck-launch-session:sysutils/consolekit2\
 		xset:x11/xset \
 		xmessage:x11/xmessage \
 		${LOCALBASE}/libdata/pkgconfig/xkeyboard-config.pc:x11/xkeyboard-config \
-		iso-codes>=0:misc/iso-codes
+		iso-codes>=0:misc/iso-codes \
+		${LOCALBASE}/bin/genv:sysutils/coreutils
+
 
 USES=		cmake compiler:c++11-lib cpe gettext kde:5 pkgconfig \
 		qt:5 tar:xz xorg
@@ -34,7 +35,7 @@ USE_KDE=	activities activities-stats activitymanagerd attica auth baloo bookmark
 		plasma-integration prison runner service solid sonnet \
 		texteditor textwidgets unitconversion wallet wayland \
 		widgetsaddons windowsystem xmlgui xmlrpcclient \
-		breeze_run breeze-icons_run oxygen-icons5_run \
+		breeze_run breeze-icons_run kquickcharts_run oxygen-icons5_run \
 		kded_run milou_run
 USE_QT=		concurrent core declarative dbus graphicaleffects gui network phonon4 \
 		printsupport qdbus quickcontrols_run script sql \

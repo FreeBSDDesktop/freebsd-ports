@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	qtcreator
-DISTVERSION=	4.10.1
+DISTVERSION=	4.13.2
 CATEGORIES=	devel
 MASTER_SITES=	QT/official_releases/qtcreator/${DISTVERSION:R}/${DISTVERSION}
 DISTNAME=	qt-creator-opensource-src-${DISTVERSION}
@@ -11,12 +11,18 @@ DIST_SUBDIR=	KDE/Qt/qtcreator
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	C++ and QML IDE for Qt development
 
+LICENSE=	QtGPL
+LICENSE_GROUPS_QtGPL=	GPL
+LICENSE_NAME=	GPLv3 with Qt Company GPL Exception 1.0
+LICENSE_FILE=	${WRKSRC}/LICENSE.GPL3-EXCEPT
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
 # depend on the split out qbs
 LIB_DEPENDS=	libqbscore.so:devel/qbs
 BUILD_DEPENDS=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT}
 RUN_DEPENDS=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT}
 
-USES=		compiler:c++14-lang gl python:2.7 qmake qt:5 shebangfix tar:xz
+USES=		compiler:c++14-lang gl python qmake qt:5 shebangfix tar:xz
 USE_LDCONFIG=	${LOCALBASE}/lib/${PORTNAME}
 USE_GL=		gl
 USE_QT=		buildtools concurrent core declarative designer gui help \
@@ -26,6 +32,7 @@ USE_QT=		buildtools concurrent core declarative designer gui help \
 
 CXXFLAGS_powerpc=	-maltivec
 CXXFLAGS_powerpc64=	-maltivec
+CXXFLAGS_powerpc64le=	-maltivec
 
 # be paranoid and do not extract qbs (devel/qbs) copy from source tree
 EXTRACT_AFTER_ARGS+=	--exclude '${DISTNAME}/src/shared/qbs'
@@ -38,8 +45,6 @@ QMAKE_ARGS+=	QTC_PREFIX=${PREFIX} LLVM_INSTALL_DIR=${PREFIX}/llvm${LLVM_DEFAULT}
 
 DESKTOP_ENTRIES="Qt Creator" "" "QtProject-qtcreator" \
 		"${PREFIX}/bin/${PORTNAME}" "Development;Qt;" true
-
-BROKEN_aarch64=		fails to build: invokes x86 asm
 
 PORTDOCS=		*
 
@@ -75,7 +80,6 @@ SHEBANG_FILES=		tests/system/tools/objectsToTable.py \
 			scripts/packagePlugins.py \
 			scripts/ninjawrapper.py \
 			scripts/checkInstalledFiles.py \
-			scripts/generateClangTidyChecks.py \
 			scripts/createDistPackage.py \
 			scripts/createDevPackage.py \
 			scripts/deployqt.py \
@@ -86,8 +90,12 @@ SHEBANG_FILES=		tests/system/tools/objectsToTable.py \
 
 .include <bsd.port.pre.mk>
 
-.if ${LLVM_DEFAULT:S,-devel,990,} >= 90
+.if ${LLVM_DEFAULT:C/[1-5]./&0/:S,-devel,990,} >= 90
 LLVM_DEFAULT=	80
+.endif
+
+.if ${LLVM_DEFAULT} == 10
+EXTRA_PATCHES=	${PATCHDIR}/llvm10_patch-src_shared_clang_clang__installation.pri
 .endif
 
 post-patch:

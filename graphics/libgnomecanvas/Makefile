@@ -14,9 +14,7 @@ COMMENT=	Graphics library for GNOME
 
 USES+=		tar:bzip2
 
-.if !defined(REFERENCE_PORT)
-
-USES+=		gettext gmake libtool:keepla pathfix pkgconfig
+USES+=		gettext gmake gnome libtool:keepla pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_GNOME=	intltool libglade2 libartlgpl2 referencehack
 GNU_CONFIGURE=	yes
@@ -28,5 +26,3 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>
-
-.endif

@@ -3,7 +3,7 @@
 
 PORTNAME=	g2
 PORTVERSION=	0.40
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	graphics
 MASTER_SITES=	SUNSITE/libs/graphics
 
@@ -12,6 +12,7 @@ COMMENT=	Easy to use, portable, and powerful 2D graphics library
 
 LIB_DEPENDS=	libgd.so:graphics/gd
 
+USES=		xorg
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
 CFLAGS+=	-I${LOCALBASE}/include

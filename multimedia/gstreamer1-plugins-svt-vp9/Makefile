@@ -2,7 +2,7 @@
 
 PORTNAME=	svt-vp9
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.0
+DISTVERSION=	0.2.2
 CATEGORIES=	multimedia
 PKGNAMEPREFIX=	gstreamer1-plugins-
 
@@ -14,7 +14,7 @@ LICENSE_FILE=	${_LICENSE_STORE}/LGPL21
 
 LIB_DEPENDS=	libSvtVp9Enc.so:multimedia/svt-vp9
 
-USES=		meson pkgconfig
+USES=		gnome meson pkgconfig
 USE_GITHUB=	yes
 USE_GNOME=	glib20
 USE_GSTREAMER1=	yes

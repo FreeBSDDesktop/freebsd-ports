@@ -4,7 +4,7 @@
 PORTNAME=		aseprite
 DISTVERSIONPREFIX=	v
 DISTVERSION=		1.2.9
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=		graphics
 
 MAINTAINER=		yuri@FreeBSD.org
@@ -34,7 +34,8 @@ LIB_DEPENDS=		liballeg.so:devel/allegro \
 			libtinyxml.so:textproc/tinyxml \
 			libzstd.so:archivers/zstd
 
-USES=			cmake compiler:c++11-lib iconv:wchar_t jpeg localbase:ldflags pkgconfig ssl
+USES=			cmake compiler:c++11-lib gnome iconv:wchar_t jpeg \
+			localbase:ldflags pkgconfig ssl xorg
 USE_GITHUB=		yes
 GH_TUPLE=		aseprite:libarchive:c51dbfc:libarchive/third_party/libarchive
 GH_TUPLE+=		aseprite:clip:964a64a:clip/src/clip

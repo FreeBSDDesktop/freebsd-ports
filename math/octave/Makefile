@@ -3,7 +3,7 @@
 
 PORTNAME=	octave
 PORTVERSION=	${OCTAVE_VERSION}
-PORTREVISION=	6
+PORTREVISION=	5
 CATEGORIES=	math
 MASTER_SITES=	GNU
 
@@ -28,7 +28,7 @@ LIB_DEPENDS=	libGraphicsMagick.so:graphics/GraphicsMagick \
 		libftgl.so:graphics/ftgl \
 		libhdf5.so:science/hdf5 \
 		libpcre.so:devel/pcre \
-		libqhull.so.5:math/qhull5 \
+		libqhull.so.7:math/qhull \
 		libqrupdate.so:math/qrupdate \
 		libumfpack.so:math/suitesparse \
 		libglpk.so:math/glpk \
@@ -43,11 +43,10 @@ LIB_DEPENDS=	libGraphicsMagick.so:graphics/GraphicsMagick \
 
 USES=		charsetfix fortran gmake libtool perl5 pkgconfig readline \
 		tar:xz compiler:c++14-lang \
-		desktop-file-utils gl iconv
+		desktop-file-utils gl iconv xorg
 USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}/${PORTVERSION}
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
-JAVA_VERSION=	1.7+
 USE_QT=		core gui help network opengl \
 		qmake_build buildtools_build linguist_build \
 		printsupport sql widgets \

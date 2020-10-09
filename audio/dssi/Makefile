@@ -3,7 +3,7 @@
 
 PORTNAME=	dssi
 PORTVERSION=	1.1.1
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	audio
 MASTER_SITES=	SF
 
@@ -21,7 +21,7 @@ LIB_DEPENDS=	libdssialsacompat.so:audio/libdssialsacompat \
 		libjack.so:audio/jack
 RUN_DEPENDS=	${LOCALBASE}/include/ladspa.h:audio/ladspa
 
-USES=		gmake pathfix pkgconfig localbase libtool
+USES=		gmake pathfix pkgconfig localbase libtool xorg
 GNU_CONFIGURE=	yes
 USE_XORG=	x11
 

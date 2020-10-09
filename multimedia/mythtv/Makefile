@@ -4,7 +4,7 @@
 PORTNAME=	mythtv
 DISTVERSIONPREFIX=	v
 DISTVERSION=	30.0
-PORTREVISION?=	4
+PORTREVISION?=	6
 PORTEPOCH=	1
 CATEGORIES=	multimedia
 
@@ -12,12 +12,13 @@ PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	aab7d3f065a7.patch:-p2
 
 MAINTAINER?=	ports@FreeBSD.org
-COMMENT?=	MythTV is a homebrew PVR project
+COMMENT?=	Homebrew PVR project
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 ONLY_FOR_ARCHS=	amd64 i386
+BROKEN=		fails to package
 .if ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
 BROKEN_i386=	ld: error: can't create dynamic relocation R_386_32 against local symbol in readonly segment
 .endif
@@ -38,7 +39,8 @@ LIB_DEPENDS=	liblzo2.so:archivers/lzo2 \
 BUILD_DEPENDS=	yasm:devel/yasm \
 		${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 
-USES=		gmake gl iconv libtool pkgconfig pathfix qmake:no_env qt:5 ssl
+USES=		gmake gl iconv libtool pkgconfig pathfix qmake:no_env qt:5 ssl \
+		xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	MythTV
 USE_GL=		gl
@@ -82,7 +84,7 @@ OPTIONS_EXCLUDE+=	BINDINGS LIRC MYSQL
 .else
 CONFLICTS_INSTALL=	mythtv-frontend
 
-BUILD_DEPENDS+=	v4l_compat>=1.0.20100321:multimedia/v4l_compat
+BUILD_DEPENDS+=	v4l_compat>=1.18.0:multimedia/v4l_compat
 RUN_DEPENDS+=	tv_check:textproc/p5-xmltv \
 		wget:ftp/wget
 USES+=		perl5 python:2.7 shebangfix

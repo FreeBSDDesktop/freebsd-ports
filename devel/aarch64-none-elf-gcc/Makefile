@@ -1,14 +1,14 @@
 # $FreeBSD$
 
 PORTNAME=	gcc
-PORTVERSION=	6.4.0
-PORTREVISION=	7
+PORTVERSION?=	8.4.0
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	GCC
 PKGNAMEPREFIX?=	aarch64-none-elf-
 
-MAINTAINER=	ports@FreeBSD.org
-COMMENT=	GNU Compiler Collection for bare metal arm cross-development
+MAINTAINER=	manu@FreeBSD.org
+COMMENT?=	GNU Compiler Collection for bare metal aarch64 cross-development
 
 LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
@@ -19,8 +19,9 @@ BROKEN_mips64=		configure: error: cannot compute suffix of object files: cannot 
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \
 		libmpc.so:math/mpc
-BUILD_DEPENDS=	${GCC_TARGET}-as:devel/${PKGNAMEPREFIX}binutils
-RUN_DEPENDS=	${GCC_TARGET}-as:devel/${PKGNAMEPREFIX}binutils
+BUILD_DEPENDS=	${GCC_TARGET}-as:devel/binutils@${PKGNAMEPREFIX:C/-$//:C/-/_/g} \
+		objdump:devel/binutils@native
+RUN_DEPENDS=	${GCC_TARGET}-as:devel/binutils@${PKGNAMEPREFIX:C/-$//:C/-/_/g}
 
 USES=	gmake iconv libtool tar:xz makeinfo compiler:c++11-lang
 
@@ -69,12 +70,6 @@ CONFIGURE_TARGET=	${ARCH}-unknown-${OPSYS:tl}${OSREL}
 MAKE_ARGS+=	CXXFLAGS=-fbracket-depth=512
 .endif
 
-.if ${ARCH} == "aarch64"
-PLIST_SUB+=	PLUGINS="@comment plugin does not build"
-.else
-PLIST_SUB+=	PLUGINS=""
-.endif
-
 post-install:
 .for f in cpp gcov gcov-dump gcov-tool
 	@if [ -f ${STAGEDIR}${PREFIX}/bin/$f ] ; then \
@@ -95,5 +90,6 @@ post-install:
 .endfor
 	@${RM} ${STAGEDIR}${PREFIX}/share/info/*
 	@${RM} ${STAGEDIR}${PREFIX}/man/man7/*
+	${RM} -r ${STAGEDIR}/usr/lib/gcc/${GCC_TARGET}/${PORTVERSION}/include-fixed
 
 .include <bsd.port.post.mk>

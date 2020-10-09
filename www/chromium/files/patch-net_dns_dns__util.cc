@@ -1,6 +1,6 @@
---- net/dns/dns_util.cc.orig	2019-03-11 22:01:01 UTC
+--- net/dns/dns_util.cc.orig	2020-05-13 18:39:46 UTC
 +++ net/dns/dns_util.cc
-@@ -36,6 +36,8 @@ const uint16_t kFlagNamePointer = 0xc000;
+@@ -39,6 +39,8 @@ const uint16_t kFlagNamePointer = 0xc000;
  
  }  // namespace
  

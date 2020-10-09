@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	aws-c-event-stream
-PORTVERSION=	0.1.2
+PORTVERSION=	0.1.6
 DISTVERSIONPREFIX=	v
 PORTEPOCH=	1
 CATEGORIES=	devel
@@ -12,7 +12,7 @@ COMMENT=	C99 implementation of the vnd.amazon.eventstream content-type
 
 LICENSE=	APACHE20
 
-LIB_DEPENDS=	libaws-c-common.so:devel/aws-c-commons \
+LIB_DEPENDS=	libaws-c-common.so:devel/aws-c-common \
 		libaws-checksums.so:devel/aws-checksums
 
 USES=		cmake compiler:c11

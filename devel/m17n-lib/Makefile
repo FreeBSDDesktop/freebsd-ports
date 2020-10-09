@@ -3,7 +3,7 @@
 
 PORTNAME=	m17n-lib
 PORTVERSION=	1.8.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel textproc
 MASTER_SITES=	SAVANNAH/m17n
 
@@ -23,7 +23,8 @@ RUN_DEPENDS=	m17n-db>=1.8.0:devel/m17n-db
 
 MAKE_JOBS_UNSAFE=	yes
 
-USES=		autoreconf bison gettext-tools libtool pathfix pkgconfig
+USES=		autoreconf bison:alias gettext-tools gnome libtool pathfix pkgconfig \
+		xorg
 USE_XORG=	ice sm x11 xaw xft xmu xrender xt
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes

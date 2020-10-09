@@ -3,4 +3,6 @@
 
 WANT_PGSQL_VER=	9.5
 
-.include "${.CURDIR}/../postgresql12-plperl/Makefile"
+INSTALL_DIRS=	src/pl/plperl contrib/hstore_plperl
+
+.include "${.CURDIR}/../postgresql13-plperl/Makefile"

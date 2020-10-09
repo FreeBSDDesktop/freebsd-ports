@@ -2,7 +2,6 @@
 
 PORTNAME=	calendarsupport
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
-PORTREVISION=	1
 CATEGORIES=	net kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
@@ -17,8 +16,9 @@ USE_KDE=	auth codecs completion config configwidgets coreaddons ecm \
 		guiaddons i18n iconthemes itemmodels jobwidgets kio service \
 		widgetsaddons
 # pim components
-USE_KDE+=	akonadi akonadicalendar calendarcore calendarutils holidays \
-		identitymanagement kdepim-apps-libs mime pimcommon pimtextedit
+USE_KDE+=	akonadi akonadicalendar akonadinotes calendarcore calendarutils \
+		holidays identitymanagement kdepim-apps-libs mime pimcommon \
+		pimtextedit
 USE_QT=		concurrent core dbus gui network printsupport testlib uitools \
 		widgets xml \
 		buildtools_build qmake_build

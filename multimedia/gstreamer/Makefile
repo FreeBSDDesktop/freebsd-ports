@@ -14,10 +14,14 @@ COMMENT=	Development framework for creating media applications
 LICENSE=	LGPL20
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+DEPRECATED=	Use newer version of gstreamer
+EXPIRATION_DATE=	2020-10-30
+
 PORTSCOUT=	limit:0\.10\..*
 
 CFLAGS:=	${CFLAGS} -O2 -Wno-format
-USES=		bison gmake libtool:keepla pathfix perl5 pkgconfig tar:bzip2
+USES=		bison gmake gnome libtool:keepla pathfix perl5 pkgconfig \
+		tar:bzip2
 USE_PERL5=	build
 USE_GNOME=	glib20 introspection libxml2
 GNU_CONFIGURE=	yes

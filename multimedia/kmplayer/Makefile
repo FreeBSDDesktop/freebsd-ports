@@ -30,13 +30,13 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 RUN_DEPENDS=	mplayer:multimedia/mplayer
 
 USES=		cmake compiler:c++11-lang desktop-file-utils gettext-runtime \
-		kde:5 pkgconfig qt:5
+		gnome kde:5 pkgconfig qt:5 xorg
 USE_GNOME=	cairo gdkpixbuf2 gtk20
 USE_QT=		concurrent core dbus gui network phonon4 printsupport \
 		svg widgets x11extras xml \
 		buildtools_build qmake_build
 USE_KDE=	auth bookmarks codecs completion config configwidgets \
-		coreaddons crash ecm guiaddons i18n iconthemes itemviews \
+		coreaddons crash ecm guiaddons i18n iconthemes init itemviews \
 		jobwidgets mediaplayer notifications parts service \
 		textwidgets unitconversion widgetsaddons windowsystem \
 		xmlgui kdelibs4support kio solid sonnet

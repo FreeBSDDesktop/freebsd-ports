@@ -24,6 +24,7 @@ man/de/man1/kbibtex.1.gz
 man/it/man1/kbibtex.1.gz
 man/man1/kbibtex.1.gz
 man/nl/man1/kbibtex.1.gz
+man/sv/man1/kbibtex.1.gz
 man/uk/man1/kbibtex.1.gz
 share/applications/org.kde.kbibtex.desktop
 share/doc/HTML/de/kbibtex/index.cache.bz2
@@ -85,6 +86,8 @@ share/doc/HTML/it/kbibtex/index.cache.bz2
 share/doc/HTML/it/kbibtex/index.docbook
 share/doc/HTML/nl/kbibtex/index.cache.bz2
 share/doc/HTML/nl/kbibtex/index.docbook
+share/doc/HTML/sv/kbibtex/index.cache.bz2
+share/doc/HTML/sv/kbibtex/index.docbook
 share/doc/HTML/uk/kbibtex/add-macro-source.png
 share/doc/HTML/uk/kbibtex/add-macro.png
 share/doc/HTML/uk/kbibtex/config-color.png
@@ -152,11 +155,9 @@ share/locale/gl/LC_MESSAGES/kbibtex.mo
 share/locale/hu/LC_MESSAGES/kbibtex.mo
 share/locale/ia/LC_MESSAGES/kbibtex.mo
 share/locale/it/LC_MESSAGES/kbibtex.mo
-share/locale/ja/LC_MESSAGES/kbibtex.mo
 share/locale/ko/LC_MESSAGES/kbibtex.mo
 share/locale/lt/LC_MESSAGES/kbibtex.mo
 share/locale/nb/LC_MESSAGES/kbibtex.mo
-share/locale/nds/LC_MESSAGES/kbibtex.mo
 share/locale/nl/LC_MESSAGES/kbibtex.mo
 share/locale/pl/LC_MESSAGES/kbibtex.mo
 share/locale/pt/LC_MESSAGES/kbibtex.mo
@@ -167,6 +168,5 @@ share/locale/sv/LC_MESSAGES/kbibtex.mo
 share/locale/tr/LC_MESSAGES/kbibtex.mo
 share/locale/uk/LC_MESSAGES/kbibtex.mo
 share/locale/zh_CN/LC_MESSAGES/kbibtex.mo
-share/locale/zh_TW/LC_MESSAGES/kbibtex.mo
 share/metainfo/org.kde.kbibtex.appdata.xml
 share/mime/packages/bibliography.xml

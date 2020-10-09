@@ -2,19 +2,19 @@
 # $FreeBSD$
 
 PORTNAME=	saga
-PORTVERSION=	7.3.0
-PORTREVISION=	2
+PORTVERSION=	7.7.1
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	SF/saga-gis/SAGA%20-%20${PORTVERSION:C/\.[[:digit:]]\.[[:digit:]]*$//}/SAGA%20-%20${PORTVERSION}
 
-MAINTAINER=	rhurlin@gwdg.de
+MAINTAINER=	rhurlin@FreeBSD.org
 COMMENT=	System for Automated Geoscientific Analyses
 
 LICENSE=	GPLv2 LGPL21
 LICENSE_COMB=	multi
 
-BUILD_DEPENDS=	clang${LLVM_VER}:devel/llvm${LLVM_VER} \
-		swig3.0:devel/swig30
+BUILD_DEPENDS=	clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT} \
+		swig:devel/swig
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libfftw3.so:math/fftw3 \
 		libgdal.so:graphics/gdal \
@@ -24,20 +24,21 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libodbc.so:databases/unixODBC \
 		libopencv_core.so:graphics/opencv-core \
 		libopencv_ml.so:graphics/opencv \
+		libpdal_base.so:math/pdal \
 		libproj.so:graphics/proj \
 		libsvm.so:science/libsvm \
 		libtbb.so:devel/tbb \
 		libtiff.so:graphics/tiff
-RUN_DEPENDS:=	swig3.0:devel/swig30
+RUN_DEPENDS:=	swig:devel/swig
 
-USES=		autoreconf compiler:c++11-lib desktop-file-utils dos2unix \
+USES=		autoreconf compiler:c++11-lib dos2unix gnome \
 		iconv:wchar_t libtool localbase pkgconfig python
 USE_LDCONFIG=	yes
 USE_WX=		3.0+
 
 CONFIGURE_ARGS=	CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" \
 		--enable-python --with-system-svm
-CONFIGURE_ENV=	SWIG="${LOCALBASE}/bin/swig3.0"
+CONFIGURE_ENV=	SWIG="${LOCALBASE}/bin/swig"
 GNU_CONFIGURE=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
@@ -56,11 +57,7 @@ OPENMP_DESC=	Enable Multiprocessing (only amd64 and i386)
 VIGRA_DESC=	Enable 'Vision with Generic Algorithms' Library
 
 OPENMP_CONFIGURE_ENABLE=	openmp
-OPENMP_LDFLAGS=		-L${LOCALBASE}/lib -lm
-# Use OpenMP from lang/llvm${LLVM_VER}
-OPENMP_LDFLAGS+=	-L${LOCALBASE}/llvm${LLVM_VER}/lib -lomp
-PGSQL_CONFIGURE_OFF=	--with-postgresql=no
-PGSQL_CONFIGURE_ON=	--with-postgresql=${LOCALBASE}/bin/pg_config
+PGSQL_CONFIGURE_WITH=	postgresql
 PGSQL_USES=		pgsql
 VIGRA_BUILD_DEPENDS=	${LOCALBASE}/lib/libvigraimpex.so:graphics/vigra
 VIGRA_RUN_DEPENDS=	${LOCALBASE}/lib/libvigraimpex.so:graphics/vigra
@@ -70,10 +67,9 @@ INSTALL_TARGET=	install-strip
 .include <bsd.port.pre.mk>
 
 # make describe needs them here
-LLVM_VER=	80
-CPP=		clang-cpp${LLVM_VER}
-CC=		clang${LLVM_VER}
-CXX=		clang++${LLVM_VER}
+CPP=		clang-cpp${LLVM_DEFAULT}
+CC=		clang${LLVM_DEFAULT}
+CXX=		clang++${LLVM_DEFAULT}
 
 SUB_FILES=	pkg-message
 
@@ -89,12 +85,11 @@ post-extract:
 		${WRKSRC}/src/tools/io/io_grid_image/Makefile.am \
 		${WRKSRC}/src/tools/io/io_shapes/Makefile.am \
 		${WRKSRC}/src/tools/io/io_virtual/Makefile.am \
+		${WRKSRC}/src/tools/io/io_webservices/Makefile.am \
 		${WRKSRC}/src/tools/pointcloud/pointcloud_tools/Makefile.am \
 		${WRKSRC}/src/tools/pointcloud/pointcloud_viewer/Makefile.am \
 		${WRKSRC}/src/tools/statistics/statistics_kriging/Makefile.am \
 		${WRKSRC}/src/tools/tin/tin_viewer/Makefile.am
-	@${REINPLACE_CMD} -e 's|/usr/include/opencv|${LOCALBASE}/include/opencv ${LOCALBASE}/include|g' \
-		${WRKSRC}/src/tools/imagery/imagery_opencv/Makefile.am
 
 post-patch:
 .if ${ARCH} == "powerpc"
@@ -106,13 +101,9 @@ post-patch:
 
 post-patch-OPENMP-on:
 	@${REINPLACE_CMD} -e 's|-lgomp|-lomp|' \
-		${WRKSRC}/configure.ac \
-		${WRKSRC}/configure \
 		${WRKSRC}/src/accessories/templates/template4saga-tools/my_tool_library/Makefile
 
 post-configure:
-	@${REINPLACE_CMD} -e 's|cd $$(pkgdatadir);|cd ${STAGEDIR}${DATADIR};|g' \
-		${WRKSRC}/src/saga_core/saga_gui/Makefile
 	@${REINPLACE_CMD} -e 's|^LDFLAGS = .*|& -lopencv_core|' \
 		${WRKSRC}/src/tools/imagery/imagery_opencv/Makefile
 
@@ -124,7 +115,6 @@ post-install:
 # toolchains dir was moved in r2805 (and followups r2810,r2811,r2820)
 	(cd ${WRKSRC}/src/accessories && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR})
 	${RM} -R ${STAGEDIR}${DATADIR}/CMakeLists.txt
-	${RM} -R ${STAGEDIR}${DATADIR}/accessories/toolchains
 	${RM} -R ${STAGEDIR}${DATADIR}/templates/template4saga-tools/my_tool_library/Makefile.bak
 	${INSTALL_DATA} ${WRKSRC}/src/saga_core/saga_gui/res/saga.desktop \
 		${STAGEDIR}${PREFIX}/share/applications/

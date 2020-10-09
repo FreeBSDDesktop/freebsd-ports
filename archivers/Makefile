@@ -52,6 +52,7 @@
     SUBDIR += lha
     SUBDIR += lha-ac
     SUBDIR += lhasa
+    SUBDIR += lib1541img
     SUBDIR += libarc
     SUBDIR += libarchive
     SUBDIR += libcabinet
@@ -70,7 +71,7 @@
     SUBDIR += lizard
     SUBDIR += lrzip
     SUBDIR += lua-lzlib
-    SUBDIR += lua51-zlib
+    SUBDIR += lua-zlib
     SUBDIR += lzfse
     SUBDIR += lzip
     SUBDIR += lziprecover
@@ -85,6 +86,7 @@
     SUBDIR += minizip
     SUBDIR += mscompress
     SUBDIR += mtf
+    SUBDIR += nfpm
     SUBDIR += nomarch
     SUBDIR += nwreckdum
     SUBDIR += ocaml-bz2
@@ -147,10 +149,6 @@
     SUBDIR += php-lz4
     SUBDIR += php-snappy
     SUBDIR += php-zstd
-    SUBDIR += php71-bz2
-    SUBDIR += php71-phar
-    SUBDIR += php71-zip
-    SUBDIR += php71-zlib
     SUBDIR += php72-bz2
     SUBDIR += php72-phar
     SUBDIR += php72-zip
@@ -171,15 +169,11 @@
     SUBDIR += ppunpack
     SUBDIR += pxz
     SUBDIR += py-acefile
-    SUBDIR += py-backports.lzma
     SUBDIR += py-borgbackup
     SUBDIR += py-brotli
     SUBDIR += py-brotlipy
-    SUBDIR += py-bup
     SUBDIR += py-bz2file
-    SUBDIR += py-czipfile
     SUBDIR += py-libarchive-c
-    SUBDIR += py-librtfcomp
     SUBDIR += py-lz4
     SUBDIR += py-lzma
     SUBDIR += py-lzstring
@@ -198,7 +192,6 @@
     SUBDIR += qpress
     SUBDIR += quazip
     SUBDIR += rar
-    SUBDIR += rox-archive
     SUBDIR += rpm2cpio
     SUBDIR += rpm4
     SUBDIR += rubygem-archive-tar-minitar
@@ -210,8 +203,9 @@
     SUBDIR += rubygem-minitar-cli
     SUBDIR += rubygem-ruby-xz
     SUBDIR += rubygem-rubyzip
-    SUBDIR += rubygem-rubyzip12
+    SUBDIR += rubygem-rubyzip13
     SUBDIR += rubygem-rubyzip2
+    SUBDIR += rubygem-rubyzip20
     SUBDIR += rubygem-snappy
     SUBDIR += rvm
     SUBDIR += rzip
@@ -220,11 +214,11 @@
     SUBDIR += snappy
     SUBDIR += snappy-java
     SUBDIR += snzip
-    SUBDIR += squeeze
     SUBDIR += squsq
     SUBDIR += star
     SUBDIR += stuffit
     SUBDIR += szip
+    SUBDIR += tar-stream-chunker
     SUBDIR += tardy
     SUBDIR += thunar-archive-plugin
     SUBDIR += torrentzip
@@ -234,6 +228,7 @@
     SUBDIR += unalz
     SUBDIR += unarchiver
     SUBDIR += unarj
+    SUBDIR += unarr
     SUBDIR += undms
     SUBDIR += unfoo
     SUBDIR += unlzx
@@ -247,12 +242,14 @@
     SUBDIR += upx
     SUBDIR += urbackup-client
     SUBDIR += urbackup-server
+    SUBDIR += v1541commander
     SUBDIR += xar
     SUBDIR += xarchive
     SUBDIR += xarchiver
     SUBDIR += xdms
     SUBDIR += xmill
     SUBDIR += xpk
+    SUBDIR += zchunk
     SUBDIR += zip
     SUBDIR += zip-ada
     SUBDIR += zipmix

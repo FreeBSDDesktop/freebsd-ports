@@ -2,7 +2,6 @@
 
 PORTNAME=	pixeltool
 DISTVERSION=	${QT5_VERSION}
-PORTREVISION=	1
 CATEGORIES=	graphics
 PKGNAMEPREFIX=	qt5-
 
@@ -20,5 +19,7 @@ DESKTOP_ENTRIES="Qt 5 PixelTool" "" \
 
 BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
+
+QT_BINARIES=	yes
 
 .include <bsd.port.mk>

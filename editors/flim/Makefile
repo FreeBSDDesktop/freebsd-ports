@@ -19,9 +19,9 @@ RUN_DEPENDS=	apel${EMACS_PKGNAMESUFFIX}>0:editors/apel@${EMACS_FLAVOR}
 USES=		cpe emacs iconv makeinfo
 USE_GITHUB=	yes
 GH_ACCOUNT=	wanderlust
-GH_TAGNAME=	e4bd54f
+GH_TAGNAME=	f303f2f
 
-SNAPDATE=	20190526
+SNAPDATE=	20200303
 CPE_VENDOR=	gnu
 NO_ARCH=	yes
 

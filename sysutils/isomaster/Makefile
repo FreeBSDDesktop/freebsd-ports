@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	isomaster
-PORTVERSION=	1.3.14
+PORTVERSION=	1.3.15
 CATEGORIES=	sysutils
 MASTER_SITES=	http://littlesvr.ca/isomaster/releases/
 
@@ -16,7 +16,7 @@ LIB_DEPENDS=	libiniparser.so:devel/iniparser \
 		libfreetype.so:print/freetype2
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
-USES=		desktop-file-utils gettext gmake pkgconfig tar:bzip2
+USES=		desktop-file-utils gettext gmake gnome pkgconfig tar:bzip2
 USE_GNOME=	cairo gdkpixbuf2 gtk20
 MAKE_ENV=	DEFAULT_VIEWER="xdg-open" USE_SYSTEM_INIPARSER=1
 

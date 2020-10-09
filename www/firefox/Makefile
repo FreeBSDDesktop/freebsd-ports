@@ -2,35 +2,35 @@
 # $FreeBSD$
 
 PORTNAME=	firefox
-DISTVERSION=	70.0.1
+DISTVERSION=	81.0.1
 PORTREVISION=	1
-PORTEPOCH=	1
+PORTEPOCH=	2
 CATEGORIES=	www
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/source \
-		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}-candidates/build1/source
+		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}-candidates/build2/source
 DISTFILES=	${DISTNAME}.source${EXTRACT_SUFX}
 
 MAINTAINER=	gecko@FreeBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
 
-BUILD_DEPENDS=	nspr>=4.21:devel/nspr \
-		nss>=3.46.1:security/nss \
-		icu>=64.1,1:devel/icu \
+BUILD_DEPENDS=	nspr>=4.26:devel/nspr \
+		nss>=3.56:security/nss \
+		icu>=67.1,1:devel/icu \
 		libevent>=2.1.8:devel/libevent \
-		harfbuzz>=2.6.1:print/harfbuzz \
-		graphite2>=1.3.13:graphics/graphite2 \
+		harfbuzz>=2.6.8:print/harfbuzz \
+		graphite2>=1.3.14:graphics/graphite2 \
 		png>=1.6.35:graphics/png \
-		libvpx>=1.5.0:multimedia/libvpx \
-		sqlite3>=3.29.0:databases/sqlite3 \
+		libvpx>=1.8.2:multimedia/libvpx \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
 		v4l_compat>0:multimedia/v4l_compat \
 		autoconf-2.13:devel/autoconf213 \
 		nasm:devel/nasm \
+		yasm:devel/yasm \
 		zip:archivers/zip
 
 USE_GECKO=	gecko
 CONFLICTS_INSTALL=	firefox-esr
-USE_MOZILLA=	-hunspell -vpx
+USE_MOZILLA=	-sqlite
 
 USES=		tar:xz
 

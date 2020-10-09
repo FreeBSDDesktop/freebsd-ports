@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	goland
-PORTVERSION=	2019.2.3
+PORTVERSION=	2020.1.4
 CATEGORIES=	devel java
 MASTER_SITES=	https://download-cf.jetbrains.com/go/
 PKGNAMEPREFIX=	jetbrains-
@@ -15,7 +15,8 @@ LICENSE_NAME=	Subscription license agreement for business and organizations
 LICENSE_TEXT=	See: https://www.jetbrains.com/store/license.html
 LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
-RUN_DEPENDS=	intellij-fsnotifier>0:java/intellij-fsnotifier
+RUN_DEPENDS=	intellij-fsnotifier>0:java/intellij-fsnotifier \
+		lsof:sysutils/lsof
 
 USES=		python:run shebangfix
 
@@ -30,6 +31,13 @@ NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/GoLand-${PORTVERSION}
 
 SUB_FILES=	goland goland.desktop pkg-message
+
+OPTIONS_DEFINE_amd64=	DELVE
+OPTIONS_DEFAULT_amd64=	DELVE
+
+DELVE_DESC=	Debugger for the Go programming language
+
+DELVE_RUN_DEPENDS=	delve>0:devel/delve
 
 do-install:
 # Linux/Windows/OS X only so remove them
@@ -52,5 +60,8 @@ do-install:
 # Fix slow render
 	${ECHO} "-Dsun.java2d.xrender=false" >> ${STAGEDIR}${DATADIR}/bin/goland.vmoptions
 	${ECHO} "-Dsun.java2d.xrender=false" >> ${STAGEDIR}${DATADIR}/bin/goland64.vmoptions
+
+do-install-DELVE-on:
+	@${LN} -sf ${PREFIX}/bin/dlv ${STAGEDIR}${DATADIR}/plugins/go/lib/dlv/linux/dlv
 
 .include <bsd.port.mk>

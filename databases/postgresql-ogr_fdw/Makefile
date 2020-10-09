@@ -2,11 +2,11 @@
 
 PORTNAME=	ogr_fdw
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.0.8
+DISTVERSION=	1.0.12
 CATEGORIES=	databases
 PKGNAMEPREFIX=	postgresql${PGSQL_VER:S/.//}-
 
-MAINTAINER=	lbartoletti@tuxfamily.org
+MAINTAINER=	lbartoletti@FreeBSD.org
 COMMENT=	PostgreSQL foreign data wrapper for OGR
 
 LICENSE=	MIT

@@ -1,15 +1,15 @@
---- chrome/browser/ui/tab_helpers.cc.orig	2019-07-24 18:58:12 UTC
+--- chrome/browser/ui/tab_helpers.cc.orig	2020-07-07 21:58:14 UTC
 +++ chrome/browser/ui/tab_helpers.cc
-@@ -119,7 +119,7 @@
- #include "components/zoom/zoom_controller.h"
- #endif  // defined(OS_ANDROID)
+@@ -143,7 +143,7 @@
+ #include "chrome/browser/ui/app_list/search/cros_action_history/cros_action_recorder_tab_tracker.h"
+ #endif
  
 -#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
 +#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
  #include "chrome/browser/ui/blocked_content/framebust_block_tab_helper.h"
  #include "chrome/browser/ui/hats/hats_helper.h"
  #endif
-@@ -307,11 +307,11 @@ void TabHelpers::AttachTabHelpers(WebContents* web_con
+@@ -392,11 +392,11 @@ void TabHelpers::AttachTabHelpers(WebContents* web_con
  #endif
  
  #if defined(OS_WIN) || defined(OS_MACOSX) || \
@@ -21,5 +21,5 @@
 -#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
 +#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
    if (base::FeatureList::IsEnabled(
-           features::kHappinessTrackingSurveysForDesktop)) {
-     HatsHelper::CreateForWebContents(web_contents);
+           features::kHappinessTrackingSurveysForDesktop) ||
+       base::FeatureList::IsEnabled(

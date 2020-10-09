@@ -5,7 +5,7 @@ PORTNAME=	v_sim
 PORTVERSION=	3.7.2
 PORTREVISION=	12
 CATEGORIES=	science
-MASTER_SITES=	http://inac.cea.fr/L_Sim/V_Sim/download/
+MASTER_SITES=	http://inac.cea.fr/sp2m/L_Sim/V_Sim/download/
 
 MAINTAINER=	thierry@FreeBSD.org
 COMMENT=	Visualization of atomic structures
@@ -20,7 +20,7 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig	\
 		libftgl.so:graphics/ftgl
 
 USES=		compiler:c11 fortran gl gmake gnome libtool localbase:ldflags \
-		pkgconfig tar:bzip2
+		pkgconfig tar:bzip2 xorg
 USE_XORG=	x11
 USE_GNOME=	gtk20 intltool cairo
 USE_GL=		gl glu
@@ -39,6 +39,7 @@ OPTIONS_DEFINE=	DOCS NLS EXAMPLES
 USES+=		gettext
 PLIST_SUB+=	NLS=""
 .else
+USES+=		gettext-tools
 PLIST_SUB+=	NLS="@comment "
 .endif
 
@@ -61,26 +62,26 @@ PLIST_SUB+=	BABEL="@comment "
 .endif
 
 pre-configure:
-	${REINPLACE_CMD} -e 's|$$datadir/doc/$$PACKAGE/examples|${EXAMPLESDIR}|'	\
+	@${REINPLACE_CMD} -e 's|$$datadir/doc/$$PACKAGE/examples|${EXAMPLESDIR}|'	\
 		-e 's| CFLAGS="-O2"|#CFLAGS="-O2"|;s|Werror ansi pedantic-errors||'	\
 		-e 's| FCFLAGS="-O2"|FCFLAGS=${FFLAGS}|;s|$${docdir}/examples|${EXAMPLESDIR}|'	\
 		${WRKSRC}/${CONFIGURE_SCRIPT}
-.if ! ${PORT_OPTIONS:MNLS}
-	${REINPLACE_CMD} -e 's|	po ||'	\
+
+pre-configure-NLS-off:
+	@${REINPLACE_CMD} -e '/^	po /d'	\
 		${WRKSRC}/Makefile.in
-.endif
-.if ! ${PORT_OPTIONS:MDOCS}
-	${REINPLACE_CMD} -e 's|Documentation||'	\
+
+pre-configure-DOCS-off:
+	@${REINPLACE_CMD} -e '/^	Documentation/d'	\
 		${WRKSRC}/Makefile.in
-.endif
-.if ! ${PORT_OPTIONS:MEXAMPLES}
-	${REINPLACE_CMD} -e 's|pixmaps \\|pixmaps|;s|examples$$||'	\
+
+pre-configure-EXAMPLES-off:
+	@${REINPLACE_CMD} -e '/^	examples/d'	\
 		${WRKSRC}/Makefile.in
-	${FIND} ${WRKSRC}/lib/plug-ins -name Makefile.in | ${XARGS} \
-	${REINPLACE_CMD} -e	\
-	's|install-v_simexamplesDATA install-v_simpixmapsDATA|install-v_simpixmapsDATA|'
-	${REINPLACE_CMD} -e 's|: install-v_simexamplesDATA|:|'	\
+	@${FIND} ${WRKSRC}/lib/plug-ins -name Makefile.in | ${XARGS} \
+		${REINPLACE_CMD} -e	\
+		's|install-v_simexamplesDATA install-v_simpixmapsDATA|install-v_simpixmapsDATA|'
+	@${REINPLACE_CMD} -e 's|: install-v_simexamplesDATA|:|'	\
 		${WRKSRC}/lib/python/Makefile.in
-.endif
 
 .include <bsd.port.mk>

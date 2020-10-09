@@ -3,6 +3,7 @@
 
 PORTNAME=	geeqie
 PORTVERSION=	1.5.1
+PORTREVISION=	10
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.geeqie.org/
 
@@ -14,6 +15,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpng.so:graphics/png
 RUN_DEPENDS=	bash:shells/bash
+
+CONFLICTS=	geeqie-devel-[0-9]*
 
 USES=		autoreconf compiler:c++11-lang gettext gmake gnome jpeg \
 		localbase pkgconfig desktop-file-utils tar:xz lua:53 shebangfix
@@ -70,5 +73,9 @@ FFMPEGTHUMBNAILER_CONFIGURE_ENABLE=	ffmpegthumbnailer
 FFMPEGTHUMBNAILER_LIB_DEPENDS=	libffmpegthumbnailer.so:multimedia/ffmpegthumbnailer
 
 NLS_CONFIGURE_ENABLE=	nls
+
+pre-build:
+	# fixes threaded build
+	@cd ${WRKSRC}/src && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} gq-marshal.c
 
 .include <bsd.port.mk>

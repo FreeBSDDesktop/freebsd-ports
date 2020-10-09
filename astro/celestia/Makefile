@@ -15,7 +15,7 @@ LICENSE=	GPLv2
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
-USES=		compiler:c++11-lang gettext gl gmake jpeg libtool lua pkgconfig
+USES=		compiler:c++11-lang gettext gl gmake jpeg libtool lua:52 pkgconfig
 USE_GL=		gl
 GNU_CONFIGURE=	yes
 EXTRA_PATCHES=	${FILESDIR}/celestia-1.6.1-lua-5.2.patch:-p1 \
@@ -79,6 +79,8 @@ post-patch:
 	@${REINPLACE_CMD} -E '/fav(->|\.)fov/s|NULL|0.0|' \
 		${WRKSRC}/src/celestia/celestiacore.cpp \
 		${WRKSRC}/src/celestia/favorites.cpp
+	@${REINPLACE_CMD} -e '280s,NULL,false,' \
+		${WRKSRC}/src/celengine/parseobject.cpp
 # Fix Lua discovery pkg-config(1) calls
 	@${REINPLACE_CMD} -E 's|lua5\.?|lua-5.|' ${WRKSRC}/configure
 # Remove controversial compiler options (respect our C[XX]FLAGS)

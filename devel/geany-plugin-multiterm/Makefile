@@ -13,6 +13,8 @@ LIB_DEPENDS=	libgeany.so:devel/geany@gtk2
 
 FLAVORS=	# intentionally left empty
 
+USES=		gl xorg
+USE_GL=	gl
 USE_GNOME=	vte
 USE_XORG=	x11 xext
 

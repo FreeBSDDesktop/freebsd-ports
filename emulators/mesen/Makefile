@@ -2,7 +2,7 @@
 
 PORTNAME=	mesen
 DISTVERSION=	0.9.8-4
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONSUFFIX=	-g4c701ad6
 CATEGORIES=	emulators
 
@@ -20,7 +20,7 @@ BUILD_DEPENDS=	zip:archivers/zip \
 LIB_DEPENDS=	libevdev.so:devel/libevdev \
 		libgdiplus.so:x11-toolkits/libgdiplus
 
-USES=		compiler:c++14-lang gmake pkgconfig
+USES=		compiler:c++14-lang gmake pkgconfig sdl
 USE_GITHUB=	yes
 GH_ACCOUNT=	SourMesen
 GH_PROJECT=	Mesen

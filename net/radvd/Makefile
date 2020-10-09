@@ -3,6 +3,7 @@
 
 PORTNAME=	radvd
 PORTVERSION=	2.18
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.litech.org/radvd/dist/
 
@@ -14,11 +15,9 @@ LICENSE_NAME=	RADVD License
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-LIB_DEPENDS=	libdaemon.so:devel/libdaemon
-
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--program-transform-name=
 USES=		gmake pkgconfig
+CONFIGURE_ARGS=	--program-transform-name=
 USE_RC_SUBR=	radvd
 
 PORTDOCS=	CHANGES COPYRIGHT INTRO.html README TODO

@@ -21,5 +21,6 @@ USE_KDE=	breeze ecm
 USE_QT=		core buildtools_build qmake_build
 
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

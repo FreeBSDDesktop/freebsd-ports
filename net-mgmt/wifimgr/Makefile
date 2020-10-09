@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wifimgr
-PORTVERSION=	1.12
+PORTVERSION=	1.13
 CATEGORIES=	net-mgmt sysutils
 MASTER_SITES=	http://opal.com/freebsd/ports/net-mgmt/wifimgr/ \
 		LOCAL/ehaupt
@@ -13,7 +13,7 @@ COMMENT=	WiFi Networks Manager
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		desktop-file-utils pkgconfig tar:bzip2
+USES=		desktop-file-utils gnome pkgconfig tar:bzip2 xorg
 USE_XORG=	x11
 USE_GNOME=	gtk20
 INSTALLS_ICONS=	yes
@@ -27,5 +27,7 @@ NLS_MAKE_ENV_OFF=	WITHOUT_NLS=yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/-o root -g wheel//' ${WRKSRC}/src/Makefile
+	@${REINPLACE_CMD} -e '/conf_/s,^struct conflist,extern &,' \
+		${WRKSRC}/src/wifimgr.h
 
 .include <bsd.port.mk>

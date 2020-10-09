@@ -3,7 +3,7 @@
 
 PORTNAME=	dtcyber
 PORTVERSION=	2.0b1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	emulators
 MASTER_SITES=	http://members.iinet.net.au/~tom-hunter/ \
 		LOCAL/trasz
@@ -12,13 +12,18 @@ DISTNAME=	dtcyber20b1
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Desktop CYBER Emulator
 
-USES=		dos2unix zip
+USES=		dos2unix zip xorg
 USE_XORG=	x11
 NO_WRKSUBDIR=	yes
 INSTALL_TARGET=
 MAKEFILE=	Makefile.x11
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+
+CFLAGS+=		-fcommon
+
+DEPRECATED=	Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+EXPIRATION_DATE=2021-04-01
 
 SUB_FILES=	pkg-message
 PLIST_FILES=	bin/dtcyber %%EXAMPLESDIR%%/cyber.ini %%EXAMPLESDIR%%/cos.tap

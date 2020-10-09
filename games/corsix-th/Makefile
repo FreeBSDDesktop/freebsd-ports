@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	corsixth
-PORTVERSION=	0.63
+PORTVERSION=	0.64
 DISTVERSIONPREFIX=	v
-PORTREVISION=	2
 CATEGORIES=	games
 
 MAINTAINER=	madpilot@FreeBSD.org
@@ -13,11 +12,11 @@ COMMENT=	Open source clone of Theme Hospital
 LICENSE=	MIT
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2
-RUN_DEPENDS=	${LUA_MODLIBDIR}/lfs.so:devel/luafilesystem \
-		${LUA_MODLIBDIR}/lpeg.so:devel/lua-lpeg
+RUN_DEPENDS=	${LUA_REFMODLIBDIR}/lfs.so:devel/luafilesystem@${LUA_FLAVOR} \
+		${LUA_REFMODLIBDIR}/lpeg.so:devel/lua-lpeg@${LUA_FLAVOR}
 
-USES=		cmake:insource compiler:c++11-lib desktop-file-utils dos2unix iconv \
-		lua pkgconfig
+USES=		cmake:insource compiler:c++11-lib desktop-file-utils dos2unix \
+		iconv lua pkgconfig sdl
 USE_SDL=	mixer2
 DOS2UNIX_FILES=	CMake/FindFFmpeg.cmake \
 		CorsixTH/CMakeLists.txt \
@@ -25,6 +24,7 @@ DOS2UNIX_FILES=	CMake/FindFFmpeg.cmake \
 CMAKE_ARGS=	-DWITH_LUAJIT=OFF
 CFLAGS+=	-I${ICONV_PREFIX}/include
 DATADIR=	${PREFIX}/share/corsix-th
+
 DESKTOP_ENTRIES=	"CorsixTH" \
 			"${COMMENT}" \
 			"${PREFIX}/share/pixmaps/corsix-th.png" \

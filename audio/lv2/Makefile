@@ -2,9 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	lv2
-PORTVERSION=	1.16.0
+PORTVERSION=	1.18.0
+PORTREVISION=	1
 CATEGORIES=	audio
-MASTER_SITES=	http://lv2plug.in/spec/
+MASTER_SITES=	https://lv2plug.in/spec/
 
 MAINTAINER=	beerml@sigma6audio.de
 COMMENT=	Open standard for audio plugins (successor to LADSPA)

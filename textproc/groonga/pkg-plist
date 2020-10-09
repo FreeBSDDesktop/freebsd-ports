@@ -26,6 +26,7 @@ bin/groonga-benchmark
 include/groonga/groonga.h
 include/groonga/groonga.hpp
 include/groonga/groonga/accessor.h
+include/groonga/groonga/aggregator.h
 include/groonga/groonga/array.h
 include/groonga/groonga/arrow.h
 include/groonga/groonga/arrow.hpp
@@ -58,12 +59,17 @@ include/groonga/groonga/output_columns.h
 include/groonga/groonga/pat.h
 include/groonga/groonga/plugin.h
 include/groonga/groonga/portability.h
+include/groonga/groonga/posting.h
+include/groonga/groonga/proc.h
 include/groonga/groonga/raw_string.h
 include/groonga/groonga/request_canceler.h
 include/groonga/groonga/request_timer.h
+include/groonga/groonga/result_set.h
 include/groonga/groonga/scorer.h
+include/groonga/groonga/selector.h
 include/groonga/groonga/string.h
 include/groonga/groonga/table.h
+include/groonga/groonga/table_module.h
 include/groonga/groonga/thread.h
 include/groonga/groonga/time.h
 include/groonga/groonga/token.h
@@ -94,8 +100,8 @@ lib/groonga/plugins/functions/time.so
 lib/groonga/plugins/functions/vector.so
 lib/groonga/plugins/query_expanders/tsv.a
 lib/groonga/plugins/query_expanders/tsv.so
-lib/groonga/plugins/sharding/dynamic_columns.rb
-lib/groonga/plugins/sharding/keys_parsable.rb
+%%RUBY%%lib/groonga/plugins/sharding/dynamic_columns.rb
+%%RUBY%%lib/groonga/plugins/sharding/keys_parsable.rb
 %%RUBY%%lib/groonga/plugins/ruby/eval.rb
 %%RUBY%%lib/groonga/plugins/sharding.rb
 %%RUBY%%lib/groonga/plugins/sharding/logical_count.rb
@@ -260,6 +266,20 @@ sbin/groonga-httpd-restart
 %%DATADIR%%/munin/plugins/groonga_query_performance_
 %%DATADIR%%/munin/plugins/groonga_status_
 %%DATADIR%%/munin/plugins/groonga_throughput_
+%%RUBY%%%%DATADIR%%/tools/check-index-merge-source-dump.rb
+%%RUBY%%%%DATADIR%%/tools/check-small-index-limit.rb
+%%RUBY%%%%DATADIR%%/tools/copy-related-files.rb
+%%RUBY%%%%DATADIR%%/tools/extract-index-source-from-dump.rb
+%%RUBY%%%%DATADIR%%/tools/generate-long-posting-list-data.rb
+%%RUBY%%%%DATADIR%%/tools/generate-many-segment-data.rb
+%%RUBY%%%%DATADIR%%/tools/groonga-benchmark-indexing.rb
+%%RUBY%%%%DATADIR%%/tools/groonga-memory-leak-checker.rb
+%%RUBY%%%%DATADIR%%/tools/groonga-memory-usage-analyzer.rb
+%%RUBY%%%%DATADIR%%/tools/groonga-object-list-checker.rb
+%%RUBY%%%%DATADIR%%/tools/index-column-diff-all.sh
+%%RUBY%%%%DATADIR%%/tools/object-inspect-all.sh
+%%RUBY%%%%DATADIR%%/tools/prepare-sphinx-html.rb
+%%RUBY%%%%DATADIR%%/tools/ucd-symbol-list.rb
 @dir /var/log/groonga/httpd
 @dir /var/log/groonga
 @dir /var/run/groonga

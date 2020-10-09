@@ -10,7 +10,7 @@ MASTER_SITES=	GNOME/sources/GConf/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DISTNAME=	GConf-${PORTVERSION}
 DIST_SUBDIR=	gnome2
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	Configuration database system for GNOME
 
 LICENSE=	LGPL20
@@ -18,12 +18,11 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tar:xz
 
-.if !defined(REFERENCE_PORT)
-
 LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
 		libpolkit-gobject-1.so:sysutils/polkit
 
-USES+=		gettext gmake libtool pathfix pkgconfig python:run shebangfix
+USES+=		gettext gmake gnome libtool pathfix pkgconfig python:run \
+		shebangfix
 USE_GNOME=	orbit2 gtk20 libxml2 \
 		referencehack intlhack dconf introspection:build
 USE_LDCONFIG=	yes
@@ -48,5 +47,3 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/gconf/gconf.xml.system
 
 .include <bsd.port.mk>
-
-.endif

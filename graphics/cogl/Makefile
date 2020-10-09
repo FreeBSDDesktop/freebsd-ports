@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	cogl
-PORTVERSION=	1.22.2
+PORTVERSION=	1.22.8
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 
@@ -14,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS=	clutter-1.6.[0-9]*
 
-USES=		gettext gmake gnome libtool localbase pathfix pkgconfig tar:xz
+USES=		gettext gl gmake gnome libtool localbase pathfix pkgconfig \
+		tar:xz xorg
 GNU_CONFIGURE=	yes
 USE_GNOME=	cairo gdkpixbuf2 pango introspection:build
 USE_GL=		egl
@@ -24,6 +25,6 @@ CONFIGURE_ARGS=	--with-x \
 		 --enable-xlib-egl-platform=yes
 INSTALL_TARGET=	install-strip
 
-PLIST_SUB=	LIBVER=20 LIBVERSION=20.4.2
+PLIST_SUB=	LIBVER=20 LIBVERSION=20.4.3
 
 .include <bsd.port.mk>

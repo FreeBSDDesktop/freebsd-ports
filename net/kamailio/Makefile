@@ -2,25 +2,24 @@
 # $FreeBSD$
 
 PORTNAME=	kamailio
-PORTVERSION=	5.3.0
+PORTVERSION=	5.4.1
 CATEGORIES=	net
 MASTER_SITES=	http://www.kamailio.org/pub/kamailio/${PORTVERSION}/src/
 DISTNAME=	${PORTNAME}-${PORTVERSION}_src
 
-MAINTAINER=	pi@FreeBSD.org
+MAINTAINER=	dmitry.wagin@ya.ru
 COMMENT=	Very fast and configurable open source SIP proxy
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-BROKEN_powerpc64=	Does not build: /bin/sh: clang: not found
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libxml2.so:textproc/libxml2 \
 		libcurl.so:ftp/curl
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
-USES=		gmake ncurses pkgconfig python:3.5+ readline shebangfix
+USES=		compiler:c11 gmake ncurses pkgconfig python:3.5+ readline \
+		shebangfix
 
 USE_LDCONFIG=	yes
 SHEBANG_FILES=	utils/kamctl/dbtextdb/dbtextdb.py \
@@ -83,6 +82,7 @@ LUAJIT_VARS=		EXTRA_MODULES+=app_lua
 PYTHON3_DESC=		Execute embedded Python3 scripts
 PYTHON3_IMPLIES=	KEMIX
 PYTHON3_MAKE_ARGS=	PYTHON3=${PYTHON_CMD}
+PYTHON3_USES=		gettext-runtime
 PYTHON3_VARS=		EXTRA_MODULES+=app_python3
 
 DIALPLAN_DESC=		String translations based on rules
@@ -126,7 +126,7 @@ CFG_ARGS+=	include_modules="${EXTRA_MODULES}"
 .endif
 
 post-patch:
-	${REINPLACE_CMD} '551s|$$(run_prefix)/$$(run_dir)|${KAMAILIO_RUNDIR}|' \
+	${REINPLACE_CMD} '565s|run_target = $$(run_prefix)/$$(run_dir)|run_target = ${KAMAILIO_RUNDIR}|' \
 		${WRKSRC}/src/Makefile.defs
 
 post-patch-DOCS-off:
@@ -137,7 +137,6 @@ pre-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${CFG_ARGS} cfg
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${KAMAILIO_RUNDIR}
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install
 	@(cd ${STAGEDIR}${ETCDIR}; for i in `${FIND} . -type f`; do ${MV} $$i $$i.sample; done)
 
@@ -147,6 +146,5 @@ post-install:
 	@${FIND} ${STAGEDIR}${PREFIX} -type f -name '*.so.1' -exec ${STRIP_CMD} {} +
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/kamailio
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/kamcmd
-	@${ECHO_CMD} "@dir(${KAMAILIO_USER},${KAMAILIO_GROUP},750) ${KAMAILIO_RUNDIR}" >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>

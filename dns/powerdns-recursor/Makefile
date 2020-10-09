@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	recursor
-DISTVERSION=	4.2.0
+DISTVERSION=	4.3.4
+PORTREVISION=	0
 CATEGORIES=	dns
 MASTER_SITES=	http://downloads.powerdns.com/releases/
 PKGNAMEPREFIX=	powerdns-
@@ -12,10 +13,12 @@ MAINTAINER=	tremere@cainites.net
 COMMENT=	Advanced DNS recursor
 
 LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BROKEN_armv6=	fails to compile: use of overloaded operator << is ambiguous
 BROKEN_armv7=	fails to compile: use of overloaded operator << is ambiguous
-BROKEN_sparc64=	fails to compile: json11.cpp: undefined reference to std::__throw_out_of_range_fmt
+BROKEN_i386=	crashes on startup (SIGSEGV)
+BROKEN_FreeBSD_12_powerpc64=	fails to compile: Assembler messages: unaligned opcodes detected in executable segment
 
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/shared_ptr.hpp:devel/boost-libs
 LIB_DEPENDS=	libboost_context.so:devel/boost-libs \
@@ -34,27 +37,35 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/pdns \
 
 SUB_FILES=	pkg-message
 
-OPTIONS_DEFINE=		LUAJIT SETUID
-OPTIONS_DEFAULT=	SETUID
+USERS=		pdns_recursor
+GROUPS=		pdns
 
-LUAJIT_DESC=	Use LuaJIT instead of Lua
-SETUID_DESC=	Run as pdns_recursor user
+OPTIONS_DEFAULT=	LUA
+OPTIONS_SINGLE=		EXTLUA
+OPTIONS_SINGLE_EXTLUA=	LUA LUAJIT LUAJITOR
+
+LUAJITOR_DESC=	Use lang/luajit-openresty
+LUAJIT_DESC=	Use lang/luajit
+LUA_DESC=	Use lang/lua
+
+LUAJITOR_LIB_DEPENDS=	libluajit-5.1.so.2:lang/luajit-openresty
+LUAJITOR_CONFIGURE_ON=	--with-lua=luajit
 
 LUAJIT_LIB_DEPENDS=	libluajit-5.1.so.2:lang/luajit
-LUAJIT_USES_OFF=	lua
 LUAJIT_CONFIGURE_ON=	--with-lua=luajit
 
-SETUID_EXTRA_PATCHES=	${PATCHDIR}/extrapatch-setuid
-SETUID_VARS=		GROUPS=pdns \
-			USERS=pdns_recursor
+LUA_USES=	lua
 
 .include <bsd.port.pre.mk>
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1200085 && ${SSL_DEFAULT} != openssl111
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1200085 && ${SSL_DEFAULT} != openssl
 CONFIGURE_ARGS+=	--enable-libdecaf \
 			--enable-libsodium
 LIB_DEPENDS+=		libdecaf.so:security/libdecaf \
 			libsodium.so:security/libsodium
 .endif
+
+post-install:
+	@${MKDIR} ${STAGEDIR}/var/run/pdns-recursor
 
 .include <bsd.port.post.mk>

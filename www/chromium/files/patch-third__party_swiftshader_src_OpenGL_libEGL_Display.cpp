@@ -1,6 +1,6 @@
---- third_party/swiftshader/src/OpenGL/libEGL/Display.cpp.orig	2019-06-04 18:58:01 UTC
+--- third_party/swiftshader/src/OpenGL/libEGL/Display.cpp.orig	2020-05-13 18:41:54 UTC
 +++ third_party/swiftshader/src/OpenGL/libEGL/Display.cpp
-@@ -688,7 +688,7 @@ bool Display::isValidWindow(EGLNativeWindowType window
+@@ -691,7 +691,7 @@ bool Display::isValidWindow(EGLNativeWindowType window
  			return status != 0;
  		}
  		return false;
@@ -9,7 +9,7 @@
  		return false;  // Non X11 linux is headless only
  	#elif defined(__APPLE__)
  		return sw::OSX::IsValidWindow(window);
-@@ -866,7 +866,7 @@ sw::Format Display::getDisplayFormat() const
+@@ -869,7 +869,7 @@ sw::Format Display::getDisplayFormat() const
  		{
  			return sw::FORMAT_X8R8G8B8;
  		}

@@ -4,7 +4,6 @@
 PORTNAME=		open-vm-tools
 PORTVERSION=		${RELEASE_VER}
 DISTVERSIONPREFIX=	stable-
-PORTREVISION=		1
 PORTEPOCH=		2
 CATEGORIES=		emulators
 
@@ -19,17 +18,21 @@ ONLY_FOR_ARCHS=		amd64 i386
 LIB_DEPENDS=		libmspack.so:archivers/libmspack \
 			libdnet.so:net/libdnet
 
-RELEASE_VER=		11.0.1
-BUILD_VER=		14773994
+RELEASE_VER=		11.1.5
+BUILD_VER=		16724464
 
-OPTIONS_DEFINE=		LIBNOTIFY OPENSSL X11
-OPTIONS_DEFAULT=	LIBNOTIFY OPENSSL X11
+OPTIONS_DEFINE=		DOCS LIBNOTIFY OPENSSL X11
+OPTIONS_DEFAULT=	DOCS LIBNOTIFY OPENSSL X11
 
 OPTIONS_SUB=
+
+DOCS_BUILD_DEPENDS=	doxygen:devel/doxygen
+DOCS_CONFIGURE_ENABLE=	docs
 
 LIBNOTIFY_DESC=		Desktop notification support
 
 X11_CONFIGURE_WITH=	x gtk2 gtkmm
+X11_USES=		gnome xorg
 X11_USE=		xorg=ice,sm,x11,xext,xi,xinerama,xorgproto,xrandr,xrender,xtst \
 			gnome=gdkpixbuf2,gtk20,gtkmm24
 X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \

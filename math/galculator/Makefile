@@ -2,6 +2,7 @@
 
 PORTNAME=	galculator
 PORTVERSION=	2.1.4
+PORTREVISION=	1
 DISTVERSIONPREFIX=v
 CATEGORIES=	math
 
@@ -13,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_GITHUB=	yes
 
-USES=		autoreconf gettext gmake libtool localbase pkgconfig
+USES=		autoreconf gettext gmake gnome libtool localbase pkgconfig
 USE_GNOME=	cairo intltool
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes

@@ -12,13 +12,13 @@
     SUBDIR += ap-utils
     SUBDIR += argus3
     SUBDIR += argus3-clients
-    SUBDIR += arpalert
     SUBDIR += arpscan
     SUBDIR += arpwatch
     SUBDIR += arts++
+    SUBDIR += bandwhich
     SUBDIR += bandwidthd
-    SUBDIR += bgpq
     SUBDIR += bgpq3
+    SUBDIR += bgpq4
     SUBDIR += bgpuma
     SUBDIR += blackbox_exporter
     SUBDIR += bpft
@@ -55,7 +55,6 @@
     SUBDIR += coovachilli
     SUBDIR += cowpatty
     SUBDIR += cricket
-    SUBDIR += crmsh
     SUBDIR += darkstat
     SUBDIR += devmon
     SUBDIR += devmon-templates
@@ -70,7 +69,6 @@
     SUBDIR += ettercap
     SUBDIR += fastnetmon
     SUBDIR += fetchconfig
-    SUBDIR += flow-extract
     SUBDIR += flow-tools
     SUBDIR += flowd
     SUBDIR += flowviewer
@@ -120,7 +118,6 @@
     SUBDIR += klg
     SUBDIR += lg
     SUBDIR += librenms
-    SUBDIR += librenms-agent
     SUBDIR += libsmi
     SUBDIR += lldpd
     SUBDIR += mbrowse
@@ -132,6 +129,7 @@
     SUBDIR += mrtg
     SUBDIR += mrtg-ping-probe
     SUBDIR += mtrace
+    SUBDIR += mysql-snmp
     SUBDIR += mysqld_exporter
     SUBDIR += nagcon
     SUBDIR += nagios
@@ -143,7 +141,6 @@
     SUBDIR += nagios-check_email_delivery
     SUBDIR += nagios-check_hdd_health
     SUBDIR += nagios-check_hp_bladechassis
-    SUBDIR += nagios-check_memcached_paranoid
     SUBDIR += nagios-check_mysql_slave
     SUBDIR += nagios-check_netsnmp
     SUBDIR += nagios-check_ports
@@ -173,6 +170,7 @@
     SUBDIR += net-snmp
     SUBDIR += netbox
     SUBDIR += netdata
+    SUBDIR += netdata-go
     SUBDIR += netdisco
     SUBDIR += netdisco-mibs
     SUBDIR += netdot
@@ -189,7 +187,6 @@
     SUBDIR += netspoc
     SUBDIR += netustad
     SUBDIR += networkmgr
-    SUBDIR += netwox
     SUBDIR += netxms
     SUBDIR += nfdump
     SUBDIR += nfsen
@@ -204,14 +201,12 @@
     SUBDIR += nsca27-client
     SUBDIR += nsd_exporter
     SUBDIR += nstat
-    SUBDIR += nstreams
     SUBDIR += nvidia_gpu_prometheus_exporter
     SUBDIR += observium
     SUBDIR += ocsinventory-agent
     SUBDIR += ocsinventory-ocsreports
     SUBDIR += ocsinventory-server
     SUBDIR += omping
-    SUBDIR += onionlauncher
     SUBDIR += openbmp
     SUBDIR += openlldp
     SUBDIR += openvmps
@@ -224,8 +219,6 @@
     SUBDIR += p5-Cisco-Reconfig
     SUBDIR += p5-Data-Validate-IP
     SUBDIR += p5-FusionInventory-Agent
-    SUBDIR += p5-GRNOC-Config
-    SUBDIR += p5-GRNOC-TL1
     SUBDIR += p5-MRTG-Parse
     SUBDIR += p5-Mon
     SUBDIR += p5-Monitoring-Livestatus
@@ -280,10 +273,8 @@
     SUBDIR += pandorafms_agent
     SUBDIR += pandorafms_console
     SUBDIR += pandorafms_server
-    SUBDIR += pdagent-integrations
     SUBDIR += percona-monitoring-plugins
     SUBDIR += pftabled
-    SUBDIR += php71-snmp
     SUBDIR += php72-snmp
     SUBDIR += php73-snmp
     SUBDIR += php74-snmp
@@ -300,6 +291,8 @@
     SUBDIR += prometheus2
     SUBDIR += pushgateway
     SUBDIR += py-adal
+    SUBDIR += py-aggregate6
+    SUBDIR += py-arouteserver
     SUBDIR += py-ciscoconfparse
     SUBDIR += py-dnsdiag
     SUBDIR += py-ipcalc
@@ -311,12 +304,10 @@
     SUBDIR += py-napalm-logs
     SUBDIR += py-ncclient
     SUBDIR += py-nxapi-plumbing
-    SUBDIR += py-pdagent
     SUBDIR += py-prometheus-client
     SUBDIR += py-pyIOSXR
     SUBDIR += py-pyang
     SUBDIR += py-pyeapi
-    SUBDIR += py-pynsca
     SUBDIR += py-pynxos
     SUBDIR += py-pysmi
     SUBDIR += py-pysnmp
@@ -324,7 +315,6 @@
     SUBDIR += py-pyzabbix
     SUBDIR += py-snmp_passpersist
     SUBDIR += py-snmpclitools
-    SUBDIR += py-yapsnmp
     SUBDIR += rackmonkey
     SUBDIR += rancid3
     SUBDIR += rate
@@ -351,7 +341,6 @@
     SUBDIR += rubygem-snmp
     SUBDIR += rubygem-visage-app
     SUBDIR += sblim-wbemcli
-    SUBDIR += scli
     SUBDIR += sdig
     SUBDIR += seafile-client
     SUBDIR += seafile-gui
@@ -362,7 +351,6 @@
     SUBDIR += sipcalc
     SUBDIR += sjitter
     SUBDIR += smokeping
-    SUBDIR += snmp++
     SUBDIR += snmp4nagios
     SUBDIR += snmptt
     SUBDIR += softflowd
@@ -376,14 +364,14 @@
     SUBDIR += tcptrack
     SUBDIR += telegraf
     SUBDIR += thanos
-    SUBDIR += tornova
     SUBDIR += torrus
     SUBDIR += triton-guesttools
     SUBDIR += unbound_exporter
     SUBDIR += unifi-devel
     SUBDIR += unifi-lts
+    SUBDIR += unifi-poller
     SUBDIR += unifi5
-    SUBDIR += victorops-nagios
+    SUBDIR += unifi6
     SUBDIR += virt-viewer
     SUBDIR += wdiag
     SUBDIR += whatmask
@@ -392,11 +380,6 @@
     SUBDIR += xymon-client
     SUBDIR += xymon-server
     SUBDIR += yaf
-    SUBDIR += zabbix22-agent
-    SUBDIR += zabbix22-frontend
-    SUBDIR += zabbix22-java
-    SUBDIR += zabbix22-proxy
-    SUBDIR += zabbix22-server
     SUBDIR += zabbix3-agent
     SUBDIR += zabbix3-frontend
     SUBDIR += zabbix3-java
@@ -407,15 +390,15 @@
     SUBDIR += zabbix4-java
     SUBDIR += zabbix4-proxy
     SUBDIR += zabbix4-server
-    SUBDIR += zabbix42-agent
-    SUBDIR += zabbix42-frontend
-    SUBDIR += zabbix42-java
-    SUBDIR += zabbix42-proxy
-    SUBDIR += zabbix42-server
     SUBDIR += zabbix44-agent
     SUBDIR += zabbix44-frontend
     SUBDIR += zabbix44-java
     SUBDIR += zabbix44-proxy
     SUBDIR += zabbix44-server
+    SUBDIR += zabbix5-agent
+    SUBDIR += zabbix5-frontend
+    SUBDIR += zabbix5-java
+    SUBDIR += zabbix5-proxy
+    SUBDIR += zabbix5-server
 
 .include <bsd.port.subdir.mk>

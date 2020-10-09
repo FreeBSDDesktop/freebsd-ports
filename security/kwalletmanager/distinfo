@@ -1,3 +1,3 @@
-TIMESTAMP = 1570544732
-SHA256 (KDE/applications/19.08.2/kwalletmanager-19.08.2.tar.xz) = 5c0cd648d6bf4515cd71b4575ab8051004dcf505c2bfe502fb42b7ba01cb51b2
-SIZE (KDE/applications/19.08.2/kwalletmanager-19.08.2.tar.xz) = 786768
+TIMESTAMP = 1598945539
+SHA256 (KDE/release-service/20.08.1/kwalletmanager-20.08.1.tar.xz) = b5a134db6b6bceb802c6c45915636bcd95fea5b6846cfd022917405f48cc92c5
+SIZE (KDE/release-service/20.08.1/kwalletmanager-20.08.1.tar.xz) = 773540

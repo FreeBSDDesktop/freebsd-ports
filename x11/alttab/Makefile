@@ -3,7 +3,7 @@
 
 PORTNAME=	alttab
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.0
+DISTVERSION=	1.5.0
 CATEGORIES=	x11
 
 MAINTAINER=	dmgk@FreeBSD.org
@@ -15,12 +15,12 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	${LOCALBASE}/include/uthash.h:devel/uthash
 LIB_DEPENDS=	libpng.so:graphics/png
 
-USES=		localbase pkgconfig
+USES=		localbase pkgconfig xorg
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	sagb
+USE_XORG=	x11 xft xpm xrandr xrender
 GNU_CONFIGURE=	yes
-USE_XORG=	x11 xft xrandr xrender
 
 PLIST_FILES=	bin/alttab \
 		man/man1/alttab.1.gz

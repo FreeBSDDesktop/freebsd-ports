@@ -2,8 +2,10 @@
 
 PORTNAME=	openjdk8
 PORTVERSION=	${DISTVERSION_${JDK_ARCH}}
+PORTREVISION=	1
 CATEGORIES=	java devel
-MASTER_SITES=	LOCAL/jkim
+MASTER_SITES=	LOCAL/jkim \
+		LOCAL/pkubaj
 PKGNAMEPREFIX=	bootstrap-
 DISTNAME=	${JDK_PORT}-${JDK_ARCH}-${PORTVERSION}
 
@@ -19,7 +21,7 @@ DISTVERSION_aarch64=	r453315
 DISTVERSION_amd64=	r450802
 DISTVERSION_arm=	r450802
 DISTVERSION_i386=	r450802
-DISTVERSION_ppc64=	r455236
+DISTVERSION_ppc64=	r455236 # see below for ELFv2
 
 JDK_ARCH=	${ARCH:C/armv.*/arm/:S/powerpc/ppc/}
 JDK_PORT=	openjdk8
@@ -35,7 +37,11 @@ INSTALLDIR=	${STAGEDIR}${PREFIX}/${JDK_ROOT}
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == aarch64 || ${ARCH:Marmv*}
-RUN_DEPENDS+=	${LOCALBASE}/lib/libffi.so.6:devel/libffi
+RUN_DEPENDS+=	${LOCALBASE}/lib/compat/libffi.so.6:devel/libffi321
+.endif
+
+.if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
+DISTVERSION_ppc64=	r522831
 .endif
 
 do-install:

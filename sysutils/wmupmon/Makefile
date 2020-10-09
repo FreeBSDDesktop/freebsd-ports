@@ -8,11 +8,11 @@ CATEGORIES=	sysutils windowmaker
 # URL link over http://freecode.com/projects/wmupmon
 MASTER_SITES=	http://j-z-s.com/projects/downloads/
 
-MAINTAINER=	rhurlin@gwdg.de
+MAINTAINER=	rhurlin@FreeBSD.org
 COMMENT=	Uptime showing dockapp with a similar look to wmcpuload
 
 GNU_CONFIGURE=	yes
-USES=		autoreconf tar:bzip2
+USES=		autoreconf tar:bzip2 xorg
 USE_XORG=	xpm
 CONFIGURE_ARGS=	--program-prefix=""
 

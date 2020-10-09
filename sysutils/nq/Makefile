@@ -5,7 +5,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	0.3.1
 CATEGORIES=	sysutils
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Unix command line queue utility
 
 LICENSE=	CC0-1.0
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		perl5
 USE_GITHUB=	yes
-GH_ACCOUNT=	chneukirchen
+GH_ACCOUNT=	leahneukirchen
 USE_PERL5=	test
 
 MAKE_ARGS=	CFLAGS="${CFLAGS}" PREFIX="${PREFIX}" MANDIR="${PREFIX}/man"

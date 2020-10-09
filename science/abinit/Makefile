@@ -3,9 +3,9 @@
 
 PORTNAME=	abinit
 DISTVERSION=	8.10.3
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	science
-MASTER_SITES=	https://www.abinit.org/sites/default/files/packages/
+MASTER_SITES=	LOCAL/yuri/ # https://www.abinit.org/sites/default/files/packages/ has the updated 8.10.3 tarball that doesn't compile
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Full-featured atomic-scale first-principles simulation software
@@ -14,6 +14,7 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 ONLY_FOR_ARCHS=	amd64 i386
+BROKEN=		fails to build
 BROKEN_i386=	Type mismatch in argument 'block_displ', see https://github.com/abinit/abinit/issues/19
 
 LIB_DEPENDS=	liblapack.so:math/lapack \
@@ -32,7 +33,6 @@ OPTIONS_DEFAULT=		OPENMP MPI
 
 OPENMP_CONFIGURE_ENABLE=	openmp
 OPENMP_LDFLAGS=			-lomp
-OPENMP_LIB_DEPENDS=		libomp.so:devel/openmp
 
 MPI_CONFIGURE_ENABLE=		mpi
 MPI_VARS=			FFLAGS+=-I${LOCALBASE}/include FCFLAGS+=-I${LOCALBASE}/include

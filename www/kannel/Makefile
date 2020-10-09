@@ -24,13 +24,14 @@ PORTSCOUT=	skipv:1.5.0
 USERS=		kannel
 GROUPS=		kannel
 
-USES=		gmake iconv ssl tar:bzip2
+USES=		gmake gnome iconv ssl tar:bzip2
 USE_GCC=	yes
 USE_GNOME=	libxml2
 USE_RC_SUBR=	${PORTNAME}_bearerbox ${PORTNAME}_smsbox ${PORTNAME}_wapbox
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-pcre=yes --enable-docs=no --with-malloc=native \
 		--enable-start-stop-daemon=no
+CFLAGS+=	-fcommon
 
 OPTIONS_DEFINE=	MYSQL PGSQL SQLITE3
 OPTIONS_DEFAULT=	MYSQL

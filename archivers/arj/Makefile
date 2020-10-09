@@ -8,7 +8,7 @@ CATEGORIES=	archivers
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/2.78_3.10%20build%2022:source \
 		DEBIAN_POOL:patch
 DISTFILES=	${PORTNAME}-${PORTVERSION}.tar.gz:source \
-		${PORTNAME}_${PORTVERSION}-21.debian.tar.xz:patch
+		${PORTNAME}_${PORTVERSION}-23.debian.tar.xz:patch
 
 MAINTAINER=	garga@FreeBSD.org
 COMMENT=	Open source implementation of the ARJ archiver
@@ -25,13 +25,14 @@ IGNORE_PATCHES=	002_no_remove_static_const.patch  \
 		hurd_no_fcntl_getlk.patch \
 		reproducible_help_archive.patch
 
+USES=		alias autoreconf gmake
+
 EXTRA_PATCHES=	${WRKDIR}/debian/patches/*.patch
 PATCH_STRIP=	-p1
 
 PORTSCOUT=	skipv:3.10g
 
 GNU_CONFIGURE=	yes
-USES=		alias autoreconf gmake
 AUTORECONF_WRKSRC=	${WRKSRC}/gnu
 CONFIGURE_WRKSRC=	${WRKSRC}/gnu
 MAKEFILE=	GNUmakefile

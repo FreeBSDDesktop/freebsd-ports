@@ -3,7 +3,7 @@
 
 PORTNAME=	libbluray
 DISTVERSION=	1.1.1
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	ftp://ftp.videolan.org/pub/videolan/${PORTNAME}/${PORTVERSION}/ \
@@ -43,9 +43,10 @@ JAVA_CATEGORIES=		java
 JAVA_CONFIGURE_ENABLE=		bdjava-jar
 JAVA_CONFIGURE_ENV=		JDK_HOME="${JAVA_HOME}"
 JAVA_USE=			JAVA=yes
-JAVA_VARS=			JAVA_VERSION=1.6+ JAVA_BUILD=yes JAVA_RUN=yes
+JAVA_VARS=			JAVA_BUILD=yes JAVA_RUN=yes
 
 post-patch:
 	@${RLN} ${WRKSRC}/jni/linux ${WRKSRC}/jni/freebsd
+	@${REINPLACE_CMD} -e 's|/usr/share|${LOCALBASE}/share|' ${WRKSRC}/src/libbluray/bdj/bdj.c
 
 .include <bsd.port.mk>

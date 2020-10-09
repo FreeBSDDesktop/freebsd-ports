@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	sarg
-PORTVERSION=	2.3.11
+PORTVERSION=	2.4.0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -25,6 +26,7 @@ CONFIGURE_ARGS=	--sysconfdir="${ETCDIR}" \
 		--enable-imagedir="${ETCDIR}/images"
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
+CFLAGS+=	-fcommon
 
 NLS_USES=		gettext
 NLS_USES_OFF=		gettext-tools

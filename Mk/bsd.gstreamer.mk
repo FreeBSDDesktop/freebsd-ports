@@ -104,7 +104,6 @@ _GSTREAMER_PLUGINS= \
 		sidplay \
 		soundtouch \
 		soup \
-		spc \
 		speex \
 		taglib \
 		theora \
@@ -133,8 +132,8 @@ _GSTREAMER_PLUGINS+= \
 		mm \
 		mp3 \
 		nas \
-		python \
 		schroedinger \
+		spc \
 		sdl \
 		vdpau \
 		vp8 \
@@ -168,6 +167,7 @@ _GSTREAMER_PLUGINS+= \
 		openjpeg \
 		openmpt \
 		png \
+		qt \
 		rsvg \
 		rtmp \
 		smoothstreaming \
@@ -407,6 +407,9 @@ openmpt_IMPL=		bad
 png_DEPENDS=	graphics/gstreamer-plugins-png
 png_IMPL=	good
 
+qt_DEPENDS=	graphics/gstreamer-plugins-qt
+qt_IMPL=	good
+
 rsvg_DEPENDS=	graphics/gstreamer-plugins-rsvg
 rsvg_IMPL=	bad
 
@@ -517,17 +520,6 @@ vpx_IMPL=	good
 
 vulkan_DEPENDS=	graphics/gstreamer-plugins-vulkan
 vulkan_IMPL=	bad
-
-# XXX: This is a quick solution for ports with USE_GSTREAMER=python
-#      but without USE_PYTHON.
-PYTHON_PKGNAMEPREFIX?=	py*-
-
-python_DEPENDS=	multimedia/py-gstreamer
-python_NAME=	gstreamer
-python_GST_PREFIX=      ${PYTHON_PKGNAMEPREFIX}
-python_GST_SUFX=        # empty
-python_GST_VERSION=     0.10.4
-python_IMPL=		#
 
 resindvd_DEPENDS=	multimedia/gstreamer-plugins-resindvd
 resindvd_IMPL=		bad

@@ -1,15 +1,17 @@
 # $FreeBSD$
 
 PORTNAME=	softether
-DISTVERSION=	5.01.9671
-PORTREVISION=	1
+DISTVERSION=	5.01.9674
+PORTREVISION=	3
+PORTEPOCH=	1
 CATEGORIES=	security net-vpn
 PKGNAMESUFFIX=	5
 DIST_SUBDIR=	${PORTNAME}
 
 # Some patches are managed in my GitHub fork
-PATCH_SITES=	https://github.com/metalefty/${GH_ACCOUNT}/commit/
-PATCHFILES=	dc2f94f1.patch:-p1 b2e3b1f5.patch:-p1 572a3531.patch:-p1 9929817.patch:-p1
+PATCH_SITES=	https://github.com/metalefty/${GH_PROJECT}/commit/
+PATCHFILES=	6d077a2.patch:-p1 9da3bd8.patch:-p1 7128bbc.patch:-p1 \
+		c757899.patch:-p1
 
 MAINTAINER=	meta@FreeBSD.org
 COMMENT=	SoftEther VPN 5 (Developer Edition)
@@ -19,24 +21,20 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES+=		cmake:noninja compiler:c11 iconv:wchar_t \
 		localbase:ldflags ncurses readline ssl
-USE_RC_SUBR=	softether_bridge softether_client softether_server
+USE_RC_SUBR=	softether_bridge softether_client \
+		softether_server softether_trafficserver
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 
 GH_ACCOUNT=	SoftEtherVPN
 GH_PROJECT=	SoftEtherVPN
 
-OPTIONS_DEFINE=	DOCS UNLOCK
+CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+		-DSE_DBDIR="${SE_DBDIR}" \
+		-DSE_LOGDIR="${SE_LOGDIR}" \
+		-DSE_PIDDIR="${SE_PIDDIR}"
 
-# Use of some functions in Japan and China is restricted.
-# This option Unlocks regional lockout following functions:
-#  - RADIUS / NT Domain user authentication function
-#  - RSA certificate user authentication function
-#  - Deep-inspect packet logging function
-#  - Source IP address control list function
-#  - syslog transfer function
-UNLOCK_DESC=	Unlock regional lockout (JP and CN)
-UNLOCK_PATCHFILES=	d1456861.patch:-p1
+OPTIONS_DEFINE=	DOCS
 
 PORTDOCS=	DISCLAIMER.md WARNING.TXT
 CONFLICTS_INSTALL=	softether-4.[0-9]* softether-devel-4.[0-9]*
@@ -53,23 +51,10 @@ SUB_FILES=	pkg-message
 # devel/cpu_features not available on these archs, see devel/cpu_features/Makefile
 .if (${ARCH} == aarch64 || ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == mips || ${ARCH} == mips64)
 # skip cpu_features when devel/cpu_features is not available
-CFLAGS+=	-DSKIP_CPU_FEATURES
+CMAKE_BOOL_ON+=	SKIP_CPU_FEATURES
 .else
 BUILD_DEPENDS+=	${LOCALBASE}/include/cpu_features_macros.h:devel/cpu_features
 .endif
-
-pre-configure:
-	# not a GNU configure
-	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ./configure
-
-post-patch:
-	# SoftEther scatters logs, config files and PID files in PREFIX/libexec
-	# directory. To write them in the right place, replace it.
-	${REINPLACE_CMD} \
-		-e "s|%%SE_DBDIR%%|${SE_DBDIR}|g" \
-		-e "s|%%SE_LOGDIR%%|${SE_LOGDIR}|g" \
-		-e "s|%%SE_PIDDIR%%|${SE_PIDDIR}|g" \
-		${WRKSRC}/src/Mayaqua/FileIO.c
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${SE_LOGDIR} ${STAGEDIR}${SE_DBDIR} ${STAGEDIR}${SE_PIDDIR}

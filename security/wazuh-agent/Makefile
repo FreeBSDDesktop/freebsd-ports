@@ -2,9 +2,10 @@
 
 PORTNAME=	wazuh
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.10.2
+DISTVERSION=	3.13.1
+PORTREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	https://packages.wazuh.com/deps/3.10/
+MASTER_SITES=	https://packages.wazuh.com/deps/3.13/
 PKGNAMESUFFIX=	-agent
 DISTFILES=	cJSON.tar.gz src_cpython.tar.gz curl.tar.gz libdb.tar.gz libffi.tar.gz \
 		libyaml.tar.gz openssl.tar.gz procps.tar.gz sqlite.tar.gz  zlib.tar.gz \
@@ -18,6 +19,8 @@ COMMENT=	Security tool to monitor and check logs and intrusions
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_i386=	Fails to build external OpenSSL dependency
+
 USES=		gmake perl5 readline shebangfix uidfix
 
 USE_GITHUB=	yes
@@ -29,6 +32,8 @@ SHEBANG_FILES=	${WRKSRC}/contrib/util.sh \
 		${WRKSRC}/src/init/ossec-client.sh \
 		${WRKSRC}/wodles/oscap/oscap.py \
 		${WRKSRC}/active-response/*.sh
+
+USE_RC_SUBR=	${PORTNAME}-agent
 
 USERS=		ossec ossecm ossecr
 GROUPS=		ossec
@@ -53,11 +58,6 @@ post-extract:
 			exit 1; \
 		fi; \
 	done
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/bin/perl|${PERL}|g' \
-		${WRKSRC}/src/external/openssl/Makefile \
-		${WRKSRC}/src/external/openssl/configdata.pm
 
 do-build:
 	@cd ${WRKSRC}/src && ${GMAKE} TARGET=agent

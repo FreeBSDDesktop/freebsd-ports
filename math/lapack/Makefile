@@ -13,7 +13,7 @@ DISTFILES+=		manpages-${PORTVERSION}.tgz
 DIST_SUBDIR=	lapack
 
 MAINTAINER?=	fortran@FreeBSD.org
-COMMENT?=	A library of Fortran 77 subroutines for linear algebra
+COMMENT?=	Library of Fortran 77 subroutines for linear algebra
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -27,6 +27,7 @@ SHARED_DESC=	Build shared libraries and PIC archives
 STATIC_DESC=	Build (non-PIC) archives
 
 MAKE_ENV=	BLASLIB="${BLASLIB}"
+FFLAGS+=	-std=legacy
 PLIST_SUB=	SVERSION="${SVERSION}"
 
 WRKSRC=			${WRKDIR}/lapack-${PORTVERSION}

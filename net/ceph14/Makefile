@@ -3,7 +3,8 @@
 
 PORTNAME=	ceph
 DISTVERSIONPREFIX=	v
-DISTVERSION=	14.2.4
+DISTVERSION=	14.2.11
+PORTREVISION=	1
 CATEGORIES=	net
 PKGNAMESUFFIX=	14
 
@@ -19,9 +20,9 @@ ONLY_FOR_ARCHS=	amd64
 BUILD_DEPENDS=	\
 	bash:shells/bash \
 	git:devel/git \
-	yasm:devel/yasm \
-	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR} \
 	gperf:devel/gperf \
+	yasm:devel/yasm \
+	${PY_SPHINX} \
 	${LOCALBASE}/lib/libatomic_ops.a:devel/libatomic_ops \
 	${LOCALBASE}/bin/ld:devel/binutils
 LIB_DEPENDS=	\
@@ -38,22 +39,36 @@ LIB_DEPENDS=	\
 	liblz4.so:archivers/liblz4 \
 	libplds4.so:devel/nspr \
 	libtcmalloc.so:devel/google-perftools \
-	librabbitmq.so:net/rabbitmq-c
+	librabbitmq.so:net/rabbitmq-c \
+	libfmt.so:devel/libfmt
 RUN_DEPENDS=	\
 	bash:shells/bash \
-	${LOCALBASE}/bin/getopt:misc/getopt \
-	xml:textproc/xmlstarlet \
-	jq:textproc/jq \
 	flock:sysutils/flock \
+	jq:textproc/jq \
+	smartctl:sysutils/smartmontools \
+	xml:textproc/xmlstarlet \
+	${LOCALBASE}/bin/getopt:misc/getopt \
+	${PYTHON_PKGNAMEPREFIX}grpcio>=0:devel/py-grpcio@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}prettytable>=0:devel/py-prettytable@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}six>=0:devel/py-six@${PY_FLAVOR} \
 	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
-	${PYTHON_PKGNAMEPREFIX}prettytable>=0:devel/py-prettytable@${PY_FLAVOR}
+	${PYTHON_PKGNAMEPREFIX}protobuf>=0:devel/py-protobuf@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}bcrypt>=0:security/py-bcrypt@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}openssl>=0:security/py-openssl@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}pyjwt>=0:www/py-pyjwt@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}werkzeug>=0:www/py-werkzeug@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}cherrypy>=0:www/py-cherrypy@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}pecan>=0:www/py-pecan@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}requests>=0:www/py-requests@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}routes>=0:www/py-routes@${PY_FLAVOR}
 
-USES=		cmake:noninja fuse gettext-runtime gmake pkgconfig python:3.6 \
-		shebangfix ssl
-USE_PYTHON=	cython
+USES=		cmake:noninja dos2unix fuse gettext-runtime gmake ncurses \
+		pkgconfig python:3.7+ shebangfix ssl
+USE_PYTHON=	cython py3kplist
 USE_OPENLDAP=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	ceph:DEFAULT
+DOS2UNIX_FILES=	src/pybind/mgr/diskprediction_cloud/common/__init__.py
 
 CONFLICTS_INSTALL=	ceph
 PORTSCOUT=	limit:^v14\.
@@ -72,14 +87,14 @@ GH_TUPLE+=	ceph:rapidjson:f54b0e4:rapidjson/src/rapidjson
 GH_TUPLE+=	ceph:rocksdb:4c736f1:rocksdb/src/rocksdb
 GH_TUPLE+=	ceph:xxHash:1f40c65:xxHash/src/xxHash
 GH_TUPLE+=	facebook:zstd:f4340f4:zstd/src/zstd
+# GH_TUPLE+=	ceph:seastar:0cf6aa6:seastar/src/seastar
 
 CMAKE_BUILD_TYPE=	Release
-CMAKE_ON=	WITH_SYSTEM_BOOST WITH_FUSE
-CMAKE_OFF=	WITH_BOOST_CONTEXT WITH_LTTNG WITH_BABELTRACE WITH_KRBD WITH_XFS WITH_KVS \
-		WITH_SPDK WITH_RDMA WITH_LIBCEPHFS WITH_CEPHFS WITH_RADOSGW_BEAST_FRONTEND \
-		WITH_MGR_DASHBOARD_FRONTEND
-CMAKE_ARGS=	\
-		-D WITH_PYTHON2=OFF -D WITH_PYTHON3=ON -DMGR_PYTHON_VERSION=3.6 \
+CMAKE_ON=	WITH_SYSTEM_BOOST WITH_BOOST_CONTEXT WITH_FUSE WITH_PYTHON3
+CMAKE_OFF=	WITH_LTTNG WITH_BABELTRACE WITH_KRBD WITH_XFS \
+		WITH_SPDK WITH_RDMA WITH_MGR_DASHBOARD_FRONTEND WITH_PYTHON2 \
+		WITH_RADOSGW_KAFKA_ENDPOINT
+CMAKE_ARGS=	-D MGR_PYTHON_VERSION=${PYTHON_VER} \
 		-D CEPH_MAN_DIR:STRING=man
 
 SHEBANG_FILES=	src/rbdmap src/ceph-post-file.in src/rbd-replay-many \
@@ -92,24 +107,23 @@ USE_LDCONFIG=	yes
 USERS=		ceph
 GROUPS=		ceph
 
-.include <bsd.port.options.mk>
-
-# 11.2 and 12.0 RELEASE has clang60 and will give versioning errors
-.if (${OSVERSION} < 1102507) || (${OSVERSION} >= 1200000 && ${OSVERSION} < 1200099)
-BUILD_DEPENDS+=	${LOCALBASE}/bin/clang80:devel/llvm80
-CC=		clang80
-CXX=		clang++80
-ASM=		clang80
-.endif
-
-.include <bsd.port.pre.mk>
+# PLIST_SUB=CMAKE_BUILD_TYPE_regex="\bdebug\b"
 
 pre-configure:
 	[ -e ${WRKSRC}/build ] || ${LN} -s ${CONFIGURE_WRKSRC} ${WRKSRC}/build
 	${CP} files/file-git_version ${WRKSRC}/src/.git_version
+	# Use the module finders that come with Cmake for Boost and Python
+	${RM} ${WRKSRC}/cmake/modules/FindBoost.cmake || true
 
 post-install:
+	# To install a ceph.conf sample
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/ceph
+	${INSTALL_DATA} ${WRKSRC}/src/sample.ceph.conf ${STAGEDIR}${PREFIX}/etc/ceph/ceph.conf.sample
+	# Get logging and rotation working
+	${MKDIR} ${STAGEDIR}/var/log/ceph
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
+	${INSTALL_DATA} files/file-newsyslog_ceph-log.conf ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
+	# Create directories used bij daemons
 	${MKDIR} ${STAGEDIR}/var/lib/ceph/bootstrap-mds
 	${MKDIR} ${STAGEDIR}/var/lib/ceph/bootstrap-osd
 	${MKDIR} ${STAGEDIR}/var/lib/ceph/bootstrap-rgw
@@ -120,6 +134,7 @@ post-install:
 	${MKDIR} ${STAGEDIR}/var/lib/ceph/mgr
 	${MKDIR} ${STAGEDIR}/var/lib/ceph/tmp
 	${MKDIR} ${STAGEDIR}/var/lib/ceph/radosgw
+	# For PID files and command sockets and log files
 	${MKDIR} ${STAGEDIR}/var/log/ceph
 	${MKDIR} ${STAGEDIR}/var/run/ceph
 	# Use the Ceph init.d script as the interface to regular
@@ -140,15 +155,8 @@ post-install:
 	${RM} ${STAGEDIR}${PREFIX}/bin/ceph_tpbench
 	${RM} ${STAGEDIR}${PREFIX}/bin/ceph_xattr_bench
 	${RM} ${STAGEDIR}${PREFIX}/sbin/ceph-disk-udev
-	# ceph-volume does not support ZFS
-	${RM} -rf ${STAGEDIR}${PYTHON_SITELIBDIR}/ceph_volume-*
-	${RM} -rf ${STAGEDIR}${PYTHON_SITELIBDIR}/ceph_volume/
-	${RM} ${STAGEDIR}${PREFIX}/sbin/ceph-volume
-	${RM} ${STAGEDIR}${PREFIX}/man/man8/ceph-volume*
 	${RM} ${STAGEDIR}${PREFIX}/sbin/ceph-volume-systemd
 	${RM} -rf ${STAGEDIR}${PREFIX}/libexec/systemd
-
 	${RMDIR} ${STAGEDIR}${PREFIX}/etc/init.d
-	${INSTALL_DATA} ${WRKSRC}/src/sample.ceph.conf ${STAGEDIR}${PREFIX}/etc/ceph/ceph.conf.sample
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

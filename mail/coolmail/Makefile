@@ -7,13 +7,13 @@ PORTREVISION=	3
 CATEGORIES=	mail
 MASTER_SITES=	SUNSITE/system/mail/biffs
 
-MAINTAINER=	udo.schweigert@siemens.com
+MAINTAINER=	udo@schweigert-muc.de
 COMMENT=	Xbiff like mail tool with animated 3D graphics
 
 PLIST_FILES=	bin/coolmail \
 		man/man1/coolmail.1.gz
 
-USES=		tar:tgz
+USES=		tar:tgz xorg
 USE_XORG=	x11 xext xmu xi
 PATCH_STRIP=	-p1
 

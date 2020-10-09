@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	libinput
-PORTVERSION=	1.12.6
-PORTREVISION=	1
+PORTVERSION=	1.16.1
 CATEGORIES=	x11
 MASTER_SITES=	http://freedesktop.org/software/${PORTNAME}/
 
@@ -25,9 +24,11 @@ USE_LDCONFIG=	yes
 MESON_ARGS+=	-Ddocumentation=false -Dtests=false
 
 python_OLD_CMD=	"/usr/bin/env python3"
-SHEBANG_FILES=	tools/libinput-measure-fuzz.py \
+SHEBANG_FILES=	tools/libinput-analyze-per-slot-delta.py \
+		tools/libinput-measure-fuzz.py \
 		tools/libinput-measure-touch-size.py \
 		tools/libinput-measure-touchpad-pressure.py \
+		tools/libinput-measure-touchpad-size.py \
 		tools/libinput-measure-touchpad-tap.py \
 		tools/libinput-replay
 

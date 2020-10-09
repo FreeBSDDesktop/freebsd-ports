@@ -18,8 +18,8 @@ include/racket/schvers.h
 include/racket/sconfig.h
 include/racket/stypes.h
 include/racket/uconfig.h
-lib/libracket3m-7.3.so
-lib/libracket3m.so
+lib/libracket3m.a
+lib/librktio.a
 lib/racket/buildinfo
 lib/racket/gracket
 lib/racket/launchers.rktd
@@ -30,9 +30,11 @@ lib/racket/starter-sh
 lib/racket/system.rktd
 man/man1/racket.1.gz
 man/man1/raco.1.gz
-%%DATADIR%%/COPYING-libscheme.txt
-%%DATADIR%%/COPYING.txt
-%%DATADIR%%/COPYING_LESSER.txt
+%%DATADIR%%/LICENSE-APACHE.txt
+%%DATADIR%%/LICENSE-GPL.txt
+%%DATADIR%%/LICENSE-LGPL.txt
+%%DATADIR%%/LICENSE-MIT.txt
+%%DATADIR%%/LICENSE-libscheme.txt
 %%DATADIR%%/collects/acks/acks.rkt
 %%DATADIR%%/collects/acks/compiled/acks_rkt.dep
 %%DATADIR%%/collects/acks/compiled/acks_rkt.zo
@@ -72,10 +74,31 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/compiler/find-exe.rkt
 %%DATADIR%%/collects/compiler/module-suffix.rkt
 %%DATADIR%%/collects/compiler/option.rkt
+%%DATADIR%%/collects/compiler/private/cm-dep.rkt
+%%DATADIR%%/collects/compiler/private/cm-file.rkt
+%%DATADIR%%/collects/compiler/private/cm-hash.rkt
+%%DATADIR%%/collects/compiler/private/cm-log.rkt
 %%DATADIR%%/collects/compiler/private/cm-minimal.rkt
+%%DATADIR%%/collects/compiler/private/cm-path.rkt
+%%DATADIR%%/collects/compiler/private/cm-security.rkt
+%%DATADIR%%/collects/compiler/private/cm-util.rkt
 %%DATADIR%%/collects/compiler/private/collects-path.rkt
+%%DATADIR%%/collects/compiler/private/compiled/cm-dep_rkt.dep
+%%DATADIR%%/collects/compiler/private/compiled/cm-dep_rkt.zo
+%%DATADIR%%/collects/compiler/private/compiled/cm-file_rkt.dep
+%%DATADIR%%/collects/compiler/private/compiled/cm-file_rkt.zo
+%%DATADIR%%/collects/compiler/private/compiled/cm-hash_rkt.dep
+%%DATADIR%%/collects/compiler/private/compiled/cm-hash_rkt.zo
+%%DATADIR%%/collects/compiler/private/compiled/cm-log_rkt.dep
+%%DATADIR%%/collects/compiler/private/compiled/cm-log_rkt.zo
 %%DATADIR%%/collects/compiler/private/compiled/cm-minimal_rkt.dep
 %%DATADIR%%/collects/compiler/private/compiled/cm-minimal_rkt.zo
+%%DATADIR%%/collects/compiler/private/compiled/cm-path_rkt.dep
+%%DATADIR%%/collects/compiler/private/compiled/cm-path_rkt.zo
+%%DATADIR%%/collects/compiler/private/compiled/cm-security_rkt.dep
+%%DATADIR%%/collects/compiler/private/compiled/cm-security_rkt.zo
+%%DATADIR%%/collects/compiler/private/compiled/cm-util_rkt.dep
+%%DATADIR%%/collects/compiler/private/compiled/cm-util_rkt.zo
 %%DATADIR%%/collects/compiler/private/compiled/collects-path_rkt.dep
 %%DATADIR%%/collects/compiler/private/compiled/collects-path_rkt.zo
 %%DATADIR%%/collects/compiler/private/compiled/configdir_rkt.dep
@@ -227,6 +250,8 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/ffi/unsafe/compiled/schedule_rkt.zo
 %%DATADIR%%/collects/ffi/unsafe/compiled/try-atomic_rkt.dep
 %%DATADIR%%/collects/ffi/unsafe/compiled/try-atomic_rkt.zo
+%%DATADIR%%/collects/ffi/unsafe/compiled/vm_rkt.dep
+%%DATADIR%%/collects/ffi/unsafe/compiled/vm_rkt.zo
 %%DATADIR%%/collects/ffi/unsafe/custodian.rkt
 %%DATADIR%%/collects/ffi/unsafe/cvector.rkt
 %%DATADIR%%/collects/ffi/unsafe/define.rkt
@@ -244,6 +269,7 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/ffi/unsafe/private/win32.rkt
 %%DATADIR%%/collects/ffi/unsafe/schedule.rkt
 %%DATADIR%%/collects/ffi/unsafe/try-atomic.rkt
+%%DATADIR%%/collects/ffi/unsafe/vm.rkt
 %%DATADIR%%/collects/ffi/vector.rkt
 %%DATADIR%%/collects/ffi/winapi.rkt
 %%DATADIR%%/collects/file/cache.rkt
@@ -655,6 +681,8 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/compiled/kernel_rkt.zo
 %%DATADIR%%/collects/racket/compiled/keyword-transform_rkt.dep
 %%DATADIR%%/collects/racket/compiled/keyword-transform_rkt.zo
+%%DATADIR%%/collects/racket/compiled/keyword_rkt.dep
+%%DATADIR%%/collects/racket/compiled/keyword_rkt.zo
 %%DATADIR%%/collects/racket/compiled/language-info_rkt.dep
 %%DATADIR%%/collects/racket/compiled/language-info_rkt.zo
 %%DATADIR%%/collects/racket/compiled/lazy-require_rkt.dep
@@ -737,6 +765,8 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/compiled/stxparam_rkt.zo
 %%DATADIR%%/collects/racket/compiled/surrogate_rkt.dep
 %%DATADIR%%/collects/racket/compiled/surrogate_rkt.zo
+%%DATADIR%%/collects/racket/compiled/symbol_rkt.dep
+%%DATADIR%%/collects/racket/compiled/symbol_rkt.zo
 %%DATADIR%%/collects/racket/compiled/syntax_rkt.dep
 %%DATADIR%%/collects/racket/compiled/syntax_rkt.zo
 %%DATADIR%%/collects/racket/compiled/system_rkt.dep
@@ -865,6 +895,8 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/contract/private/compiled/parametric_rkt.zo
 %%DATADIR%%/collects/racket/contract/private/compiled/prop_rkt.dep
 %%DATADIR%%/collects/racket/contract/private/compiled/prop_rkt.zo
+%%DATADIR%%/collects/racket/contract/private/compiled/property_rkt.dep
+%%DATADIR%%/collects/racket/contract/private/compiled/property_rkt.zo
 %%DATADIR%%/collects/racket/contract/private/compiled/provide_rkt.dep
 %%DATADIR%%/collects/racket/contract/private/compiled/provide_rkt.zo
 %%DATADIR%%/collects/racket/contract/private/compiled/rand_rkt.dep
@@ -906,6 +938,7 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/contract/private/out.rkt
 %%DATADIR%%/collects/racket/contract/private/parametric.rkt
 %%DATADIR%%/collects/racket/contract/private/prop.rkt
+%%DATADIR%%/collects/racket/contract/private/property.rkt
 %%DATADIR%%/collects/racket/contract/private/provide.rkt
 %%DATADIR%%/collects/racket/contract/private/rand.rkt
 %%DATADIR%%/collects/racket/contract/private/struct-dc.rkt
@@ -947,6 +980,7 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/kernel/compiled/init_rkt.zo
 %%DATADIR%%/collects/racket/kernel/init.rkt
 %%DATADIR%%/collects/racket/keyword-transform.rkt
+%%DATADIR%%/collects/racket/keyword.rkt
 %%DATADIR%%/collects/racket/lang/compiled/reader_rkt.dep
 %%DATADIR%%/collects/racket/lang/compiled/reader_rkt.zo
 %%DATADIR%%/collects/racket/lang/reader.rkt
@@ -1035,7 +1069,6 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/pretty.rkt
 %%DATADIR%%/collects/racket/private/arity.rkt
 %%DATADIR%%/collects/racket/private/base.rkt
-%%DATADIR%%/collects/racket/private/c.rkt
 %%DATADIR%%/collects/racket/private/case.rkt
 %%DATADIR%%/collects/racket/private/cert.rkt
 %%DATADIR%%/collects/racket/private/check.rkt
@@ -1050,8 +1083,6 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/private/compiled/arity_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/base_rkt.dep
 %%DATADIR%%/collects/racket/private/compiled/base_rkt.zo
-%%DATADIR%%/collects/racket/private/compiled/c_rkt.dep
-%%DATADIR%%/collects/racket/private/compiled/c_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/case_rkt.dep
 %%DATADIR%%/collects/racket/private/compiled/case_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/cert_rkt.dep
@@ -1092,6 +1123,8 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/private/compiled/ellipses_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/executable-path_rkt.dep
 %%DATADIR%%/collects/racket/private/compiled/executable-path_rkt.zo
+%%DATADIR%%/collects/racket/private/compiled/fixnum_rkt.dep
+%%DATADIR%%/collects/racket/private/compiled/fixnum_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/for_rkt.dep
 %%DATADIR%%/collects/racket/private/compiled/for_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/gen-temp_rkt.dep
@@ -1108,6 +1141,8 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/private/compiled/immediate-default_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/increader_rkt.dep
 %%DATADIR%%/collects/racket/private/compiled/increader_rkt.zo
+%%DATADIR%%/collects/racket/private/compiled/intdef-util_rkt.dep
+%%DATADIR%%/collects/racket/private/compiled/intdef-util_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/kernstruct_rkt.dep
 %%DATADIR%%/collects/racket/private/compiled/kernstruct_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/kw-file_rkt.dep
@@ -1196,6 +1231,8 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/private/compiled/set-types_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/set_rkt.dep
 %%DATADIR%%/collects/racket/private/compiled/set_rkt.zo
+%%DATADIR%%/collects/racket/private/compiled/share-search_rkt.dep
+%%DATADIR%%/collects/racket/private/compiled/share-search_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/shared-body_rkt.dep
 %%DATADIR%%/collects/racket/private/compiled/shared-body_rkt.zo
 %%DATADIR%%/collects/racket/private/compiled/small-scheme_rkt.dep
@@ -1270,6 +1307,7 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/private/dict.rkt
 %%DATADIR%%/collects/racket/private/ellipses.rkt
 %%DATADIR%%/collects/racket/private/executable-path.rkt
+%%DATADIR%%/collects/racket/private/fixnum.rkt
 %%DATADIR%%/collects/racket/private/for.rkt
 %%DATADIR%%/collects/racket/private/gen-temp.rkt
 %%DATADIR%%/collects/racket/private/generic-interfaces.rkt
@@ -1278,6 +1316,7 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/private/hash.rkt
 %%DATADIR%%/collects/racket/private/immediate-default.rkt
 %%DATADIR%%/collects/racket/private/increader.rkt
+%%DATADIR%%/collects/racket/private/intdef-util.rkt
 %%DATADIR%%/collects/racket/private/kernstruct.rkt
 %%DATADIR%%/collects/racket/private/kw-file.rkt
 %%DATADIR%%/collects/racket/private/kw-prop-key.rkt
@@ -1322,6 +1361,7 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/private/serialize.rkt
 %%DATADIR%%/collects/racket/private/set-types.rkt
 %%DATADIR%%/collects/racket/private/set.rkt
+%%DATADIR%%/collects/racket/private/share-search.rkt
 %%DATADIR%%/collects/racket/private/shared-body.rkt
 %%DATADIR%%/collects/racket/private/small-scheme.rkt
 %%DATADIR%%/collects/racket/private/so-search.rkt
@@ -1385,6 +1425,7 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/racket/stxparam-exptime.rkt
 %%DATADIR%%/collects/racket/stxparam.rkt
 %%DATADIR%%/collects/racket/surrogate.rkt
+%%DATADIR%%/collects/racket/symbol.rkt
 %%DATADIR%%/collects/racket/syntax.rkt
 %%DATADIR%%/collects/racket/system.rkt
 %%DATADIR%%/collects/racket/tcp.rkt
@@ -1742,6 +1783,8 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/syntax/parse/private/compiled/runtime_rkt.zo
 %%DATADIR%%/collects/syntax/parse/private/compiled/sc_rkt.dep
 %%DATADIR%%/collects/syntax/parse/private/compiled/sc_rkt.zo
+%%DATADIR%%/collects/syntax/parse/private/compiled/tree-util_rkt.dep
+%%DATADIR%%/collects/syntax/parse/private/compiled/tree-util_rkt.zo
 %%DATADIR%%/collects/syntax/parse/private/compiled/txlift_rkt.dep
 %%DATADIR%%/collects/syntax/parse/private/compiled/txlift_rkt.zo
 %%DATADIR%%/collects/syntax/parse/private/datum-to-expr.rkt
@@ -1764,6 +1807,7 @@ man/man1/raco.1.gz
 %%DATADIR%%/collects/syntax/parse/private/runtime-report.rkt
 %%DATADIR%%/collects/syntax/parse/private/runtime.rkt
 %%DATADIR%%/collects/syntax/parse/private/sc.rkt
+%%DATADIR%%/collects/syntax/parse/private/tree-util.rkt
 %%DATADIR%%/collects/syntax/parse/private/txlift.rkt
 %%DATADIR%%/collects/syntax/parse/todo.txt
 %%DATADIR%%/collects/syntax/path-spec.rkt
@@ -1867,5 +1911,5 @@ man/man1/raco.1.gz
 %%DATADIR%%/links.rktd
 %%DATADIR%%/pkgs/.LOCKpkgs.rktd
 %%DATADIR%%/pkgs/pkgs.rktd
-%%DATADIR%%/pkgs/racket-lib/LICENSE.txt
+%%DATADIR%%/pkgs/racket-lib/LICENSE
 %%DATADIR%%/pkgs/racket-lib/info.rkt

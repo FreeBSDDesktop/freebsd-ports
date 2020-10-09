@@ -3,6 +3,7 @@
 
 PORTNAME=	source-highlight
 DISTVERSION=	3.1.9
+PORTREVISION=	1
 CATEGORIES=	textproc
 MASTER_SITES=	GNU/src-highlite
 
@@ -22,8 +23,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-bash-completion
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-
-INFO=		source-highlight source-highlight-lib
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 

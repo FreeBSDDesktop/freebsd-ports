@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tor
-DISTVERSION=	0.4.2.3
-DISTVERSIONSUFFIX=	-alpha
+DISTVERSION=	0.4.4.4-rc
 CATEGORIES=	security net
 MASTER_SITES=	TOR
 PKGNAMESUFFIX=	-devel
@@ -41,7 +40,7 @@ PLIST_SUB=	USER="${USERS}" GROUP="${GROUPS}"
 GROUPS=		_tor
 USERS=		_tor
 
-CONFLICTS_INSTALL=	tor-[0-9]*
+CONFLICTS_INSTALL=	tor
 
 STATIC_TOR_USES=	ssl:build
 STATIC_TOR_USES_OFF=	ssl
@@ -92,6 +91,8 @@ BUILD_DEPENDS+=		${LOCALBASE}/lib/libtcmalloc.a:devel/google-perftools
 LIB_DEPENDS+=		libtcmalloc.so:devel/google-perftools
 .endif
 .endif
+
+PORTSCOUT=		limit:^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+-[a-z].*$$
 
 post-patch:
 	@${REINPLACE_CMD} -E -e "s@(-z) (relro|now)@-Wl,\1,\2@g" \
