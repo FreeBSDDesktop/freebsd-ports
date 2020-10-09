@@ -12,7 +12,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 DIST_SUBDIR=	${PORTNAME}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	salvadore@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Fast, small graphical Web browser built upon fltk
 
 LICENSE=	GPLv3+
@@ -30,6 +30,9 @@ CONFIGURE_ARGS=	--disable-efence \
 		--disable-insure \
 		--libdir=${PREFIX}/libexec
 LDFLAGS+=	-lthr
+
+# Fix build with clang11
+CFLAGS+=	-fcommon
 
 PORTDOCS=	*
 

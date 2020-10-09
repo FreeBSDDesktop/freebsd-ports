@@ -3,7 +3,8 @@
 
 PORTNAME=	neovim
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.4.3
+DISTVERSION=	0.4.4
+PORTREVISION=	1
 CATEGORIES=	editors
 
 MAINTAINER=	adamw@FreeBSD.org
@@ -40,7 +41,6 @@ OPTIONS_DEFAULT=LUAJIT
 OPTIONS_EXCLUDE_aarch64=LUAJIT
 OPTIONS_EXCLUDE_mips64=	LUAJIT
 OPTIONS_EXCLUDE_powerpc=LUAJIT
-OPTIONS_EXCLUDE_powerpc64=	LUAJIT
 OPTIONS_EXCLUDE_riscv=	LUAJIT
 OPTIONS_EXCLUDE_sparc64=LUAJIT
 OPTIONS_SUB=	yes
@@ -56,6 +56,13 @@ NLS_CMAKE_BOOL=	ENABLE_LIBINTL
 NLS_USES=	gettext
 PYNVIM_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pynvim>=0.3.0:editors/py-pynvim@${PY_FLAVOR}
 PYNVIM_USES=		python:run
+
+.include <bsd.port.options.mk>
+
+.if ${ARCH:Mpowerpc64*}
+LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
+USES+=		compiler:gcc-c++11-lib
+.endif
 
 post-patch:
 	${REINPLACE_CMD} -e \

@@ -47,7 +47,7 @@ TEST_DEPENDS=	\
 		${PYTHON_PKGNAMEPREFIX}pytest-verbose-parametrize>=1.7.0:devel/py-pytest-verbose-parametrize@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=1.29.0:devel/py-pytest-xdist@${PY_FLAVOR}
 
-USES=		python:-3.7
+USES=		python:3.6+
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
@@ -58,7 +58,7 @@ DOCKER_DESC=	For testing on Docker Platform(Remote)
 EC2_DESC=	For testing on Amazon EC2 Platform
 GCE_DESC=	For testing on Google Compute Engine Platform
 DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}alabaster>0:textproc/py-alabaster@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}
+			${PY_SPHINX}
 AZURE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-cli>0:sysutils/py-azure-cli@${PY_FLAVOR}
 DOCKER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}docker>=2.0.0:sysutils/py-docker@${PY_FLAVOR}
 EC2_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}boto>0:devel/py-boto@${PY_FLAVOR} \
@@ -73,13 +73,7 @@ GCE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libcloud>0:net/py-libcloud@${PY_FLAVOR}
 # The click module demands a UTF-8 locale when used with python-3.x
 TEST_ENV=	LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 3200
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pathlib2>=0:devel/py-pathlib2@${PY_FLAVOR}
-.endif
-
 do-test:
 	@(cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest)
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

@@ -2,10 +2,10 @@
 
 PORTNAME=	teleport
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.2.9
+DISTVERSION=	4.3.7
 CATEGORIES=	security
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	swills@FreeBSD.org
 COMMENT=	Gravitational Teleport SSH
 
 LICENSE=	APACHE20
@@ -17,37 +17,34 @@ BUILD_DEPENDS=	zip:archivers/zip
 
 USES=		compiler gmake go
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	gravitational
-GH_TAG_COMMIT=	b3f4ecb
+USE_GITHUB=		yes
+GH_ACCOUNT=		gravitational
+GH_TUPLE=		gravitational:webassets:eac734b:webassets/webassets
+GH_COMMIT_SHORT=	fabee242d
+GH_TAG_COMMIT=		${DISTVERSIONPREFIX}${DISTVERSION}-0-g${GH_COMMIT_SHORT}
 
 USE_RC_SUBR=	teleport
-
-SUB_FILES=	pkg-message
-
-PLIST_FILES=	bin/teleport \
-		bin/tctl \
-		bin/tsh \
-		"@sample etc/teleport.yaml.sample"
 
 # Extra assets are stored in the binary and must not be inadvertently removed
 STRIP=
 NOPRECIOUSMAKEVARS=	YES
 
-GO_TELEPORT_SRC_DIR=	src/github.com/gravitational/teleport
-PRE_GOPATH_DIR=	${PORTNAME}-${DISTVERSION}${DISTVERSIONSUFFIX}
+SUB_FILES=	pkg-message
 
-post-extract:
-	@${MKDIR} ${WRKDIR}/${GO_TELEPORT_SRC_DIR}
-	@${CP} -rpH ${WRKDIR}/${PRE_GOPATH_DIR}/vendor/* ${WRKDIR}/src/
-	@${CP} -rpH ${WRKDIR}/${PRE_GOPATH_DIR}/* ${WRKDIR}/${GO_TELEPORT_SRC_DIR}/
+PLIST_FILES=	bin/tctl \
+		bin/teleport \
+		bin/tsh \
+		"@sample etc/teleport.yaml.sample"
+
+GO_TELEPORT_SRC_DIR=	src/github.com/gravitational/teleport
+PRE_GOPATH_DIR=		${PORTNAME}-${DISTVERSION}${DISTVERSIONSUFFIX}
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|^GITREF=.*|GITREF=${GH_TAG_COMMIT}|' \
-		${WRKDIR}/${GO_TELEPORT_SRC_DIR}/version.mk
-	@${FIND} ${WRKDIR} -type f -exec ${SED} -i '' \
-		-e 's|\/var\/lib|/var/db|g' \
-		-e 's|\/usr\/bin\/hostname|/bin/hostname|g' {} +
+	@${MKDIR} ${WRKDIR}/${GO_TELEPORT_SRC_DIR}
+	@${REINPLACE_CMD} -e 's|%%GH_TAG_COMMIT%%|${GH_TAG_COMMIT}|' \
+		${WRKSRC}/version.mk
+	@${CP} -rpH ${WRKDIR}/${PRE_GOPATH_DIR}/vendor/* ${WRKDIR}/src/
+	@${CP} -rpH ${WRKDIR}/${PRE_GOPATH_DIR}/* ${WRKDIR}/${GO_TELEPORT_SRC_DIR}/
 
 do-build:
 	@cd ${WRKDIR}/${GO_TELEPORT_SRC_DIR} && \

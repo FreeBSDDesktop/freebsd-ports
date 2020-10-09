@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	raindrops
-PORTVERSION=	0.19.0
+PORTVERSION=	0.19.1
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
@@ -13,8 +13,8 @@ LICENSE=	LGPL21+ LGPL3
 LICENSE_COMB=	dual
 LICENSE_FILE_LGPL3=	${WRKSRC}/COPYING
 
-USE_RUBY=	yes
 USES=		gem shebangfix
+USE_RUBY=	yes
 
 SHEBANG_FILES=	examples/linux-listener-stats.rb
 

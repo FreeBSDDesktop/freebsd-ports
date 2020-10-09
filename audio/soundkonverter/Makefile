@@ -4,7 +4,7 @@
 PORTNAME=	soundkonverter
 PORTVERSION=	3.0.1
 DISTVERSIONPREFIX=	v
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	audio kde
 
 MAINTAINER=	ports@FreeBSD.org
@@ -16,13 +16,13 @@ LIB_DEPENDS=	libtag.so:audio/taglib \
 		libcdda_paranoia.so:audio/cdparanoia \
 		libphonon4qt5.so:multimedia/phonon
 
-GH_ACCOUNT=	HessiJames
+GH_ACCOUNT=	dfaust
 USES=		cmake compiler:c++11-lang kde:5 qt:5
 USE_GITHUB=	yes
 USE_QT=		dbus concurrent core buildtools_build gui network printsupport \
 		qmake_build widgets xml
 USE_KDE=	auth codecs config configwidgets completion coreaddons crash \
-		bookmarks guiaddons i18n iconthemes itemviews jobwidgets \
+		bookmarks guiaddons i18n iconthemes init itemviews jobwidgets \
 		kdelibs4support kio libkcddb notifications parts textwidgets \
 		service solid sonnet unitconversion windowsystem widgetsaddons \
 		xmlgui

@@ -1,6 +1,6 @@
---- components/network_session_configurator/browser/network_session_configurator.cc.orig	2020-03-16 18:40:30 UTC
+--- components/network_session_configurator/browser/network_session_configurator.cc.orig	2020-07-07 21:58:15 UTC
 +++ components/network_session_configurator/browser/network_session_configurator.cc
-@@ -718,7 +718,7 @@ net::URLRequestContextBuilder::HttpCacheParams::Type C
+@@ -703,7 +703,7 @@ net::URLRequestContextBuilder::HttpCacheParams::Type C
    }
  #endif  // #if !defined(OS_ANDROID)
  

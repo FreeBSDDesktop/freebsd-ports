@@ -3,10 +3,11 @@
 
 PORTNAME=	ocserv
 PORTVERSION=	1.0.1
+PORTREVISION=	1
 CATEGORIES=	net net-vpn security
 MASTER_SITES=	ftp://ftp.infradead.org/pub/ocserv/
 
-MAINTAINER=	cpm@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Server implementing the AnyConnect SSL VPN protocol
 
 LICENSE=	GPLv2+

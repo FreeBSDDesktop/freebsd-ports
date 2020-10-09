@@ -1,3 +1,3 @@
-TIMESTAMP = 1587103681
-SHA256 (KDE/applications/20.04.0/kdiamond-20.04.0.tar.xz) = 2d04c2f39d20328f9aec665c19bc3f34b99e504bcfcac3f08b3543a2e585d031
-SIZE (KDE/applications/20.04.0/kdiamond-20.04.0.tar.xz) = 4694052
+TIMESTAMP = 1598945398
+SHA256 (KDE/release-service/20.08.1/kdiamond-20.08.1.tar.xz) = 1629dc6f70873b42081bd75dbf858da56d380c32925ddd49bd2110d458cb4b23
+SIZE (KDE/release-service/20.08.1/kdiamond-20.08.1.tar.xz) = 4697996

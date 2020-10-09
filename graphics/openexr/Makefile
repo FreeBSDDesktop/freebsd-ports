@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	openexr
-PORTVERSION=	2.5.0
+PORTVERSION=	2.5.3
 CATEGORIES=	graphics devel
 MASTER_SITES=	LOCAL/mandree/:test
 DISTFILES=	${PORTNAME}-2.2.0-comp_dwa-test-images.tar.xz:test
@@ -13,7 +13,7 @@ COMMENT=	High dynamic-range (HDR) image file format
 LICENSE=	BSD3CLAUSE
 
 # exact version required to avoid hard-to-debug issues
-LIB_DEPENDS=	libImath-2_5.so.24:graphics/ilmbase
+LIB_DEPENDS=	libImath-2_5.so.25:graphics/ilmbase
 
 USES=		cmake compiler:c++14-lang libtool pathfix pkgconfig
 
@@ -39,17 +39,15 @@ _DOC_FILES1=	CHANGES.md CONTRIBUTING.md GOVERNANCE.md LICENSE.md SECURITY.md \
 		CODE_OF_CONDUCT.md CONTRIBUTORS.md README.md
 _DOC_FILES2=	*.odt *.pdf
 
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == powerpc
-USE_GCC=	yes
-.endif
-
 MAJORVER=	2_5
-VER=		24
+_VER=		25
+_MINVER=	0
+_PLVER=		2
 
 PLIST_SUB+=	MAJORVER=${MAJORVER} \
-		VER=${VER}
+		VER=${_VER} \
+		MINVER=${_MINVER} \
+		PLVER=${_PLVER}
 
 # too many reports about compilation failures, so
 # sanity check we are using the same C++ standard library
@@ -64,8 +62,8 @@ pre-configure:
 
 post-install:
 	${STRIP_CMD} \
-		${STAGEDIR}${PREFIX}/lib/libIlmImf-${MAJORVER}.so.${VER} \
-		${STAGEDIR}${PREFIX}/lib/libIlmImfUtil-${MAJORVER}.so.${VER}
+		${STAGEDIR}${PREFIX}/lib/libIlmImf-${MAJORVER}.so.${_VER} \
+		${STAGEDIR}${PREFIX}/lib/libIlmImfUtil-${MAJORVER}.so.${_VER}
 
 post-install-DOCS-off:
 	${RM} ${STAGEDIR}${DOCSDIR:H}/OpenEXR/*.pdf
@@ -89,4 +87,4 @@ post-install-EXAMPLES-on:
 do-test:
 	cd ${BUILD_WRKSRC} && ctest -j ${MAKE_JOBS_NUMBER}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

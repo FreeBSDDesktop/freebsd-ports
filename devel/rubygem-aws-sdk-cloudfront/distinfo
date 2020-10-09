@@ -1,3 +1,3 @@
-TIMESTAMP = 1588930395
-SHA256 (rubygem/aws-sdk-cloudfront-1.27.0.gem) = d51e1a16f33176a4d464a2a96e4921c4a7bce92b417ab0171be0511546359349
-SIZE (rubygem/aws-sdk-cloudfront-1.27.0.gem) = 94208
+TIMESTAMP = 1601554536
+SHA256 (rubygem/aws-sdk-cloudfront-1.43.0.gem) = f52c673ca642fcfeb32478e2cf9fb726780b6a4c0cc2664420f60fff9887c540
+SIZE (rubygem/aws-sdk-cloudfront-1.43.0.gem) = 121856

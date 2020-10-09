@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pluma
-PORTVERSION=	1.22.2
+PORTVERSION=	1.24.1
 CATEGORIES=	editors mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	itstool:textproc/itstool \
 		${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes
-LIB_DEPENDS=	libenchant.so:textproc/enchant \
+LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
 		libpeas-gtk-1.0.so:devel/libpeas
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes
 
@@ -36,7 +36,8 @@ SHEBANG_FILES=	${WRKSRC}/plugins/externaltools/data/search-recursive.tool.in \
 GLIB_SCHEMAS=	org.mate.pluma.gschema.xml \
 		org.mate.pluma.plugins.filebrowser.gschema.xml \
 		org.mate.pluma.plugins.spell.gschema.xml \
-                org.mate.pluma.plugins.time.gschema.xml
+		org.mate.pluma.plugins.time.gschema.xml \
+		org.mate.pluma.plugins.pythonconsole.gschema.xml
 
 OPTIONS_DEFINE=	DOCS
 

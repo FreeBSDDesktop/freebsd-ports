@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ebsnvme-id
-DISTVERSION=	1.0
+DISTVERSION=	1.0.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	cperciva@FreeBSD.org
@@ -12,6 +12,8 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 USE_GITHUB=	YES
 GH_ACCOUNT=	cperciva
+
+USES=		uidfix
 
 PLIST_FILES=	etc/rc.d/dev_aws_disk		\
 		etc/devd/dev-aws-disk.conf	\

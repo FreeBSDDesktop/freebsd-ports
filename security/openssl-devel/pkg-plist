@@ -29,8 +29,8 @@ include/openssl/conf_api.h
 include/openssl/conferr.h
 include/openssl/configuration.h
 include/openssl/core.h
+include/openssl/core_dispatch.h
 include/openssl/core_names.h
-include/openssl/core_numbers.h
 include/openssl/crmf.h
 include/openssl/crmferr.h
 include/openssl/crypto.h
@@ -38,6 +38,8 @@ include/openssl/cryptoerr.h
 include/openssl/ct.h
 include/openssl/cterr.h
 include/openssl/des.h
+include/openssl/deserializer.h
+include/openssl/deserializererr.h
 include/openssl/dh.h
 include/openssl/dherr.h
 include/openssl/dsa.h
@@ -56,6 +58,7 @@ include/openssl/ess.h
 include/openssl/esserr.h
 include/openssl/evp.h
 include/openssl/evperr.h
+include/openssl/fipskey.h
 include/openssl/fips_names.h
 include/openssl/hmac.h
 include/openssl/http.h
@@ -75,8 +78,8 @@ include/openssl/objects.h
 include/openssl/objectserr.h
 include/openssl/ocsp.h
 include/openssl/ocsperr.h
-include/openssl/%%OPENSSLDIR%%conf.h
-include/openssl/%%OPENSSLDIR%%v.h
+include/openssl/opensslconf.h
+include/openssl/opensslv.h
 include/openssl/ossl_typ.h
 include/openssl/param_build.h
 include/openssl/params.h
@@ -128,16 +131,16 @@ include/openssl/x509err.h
 include/openssl/x509v3.h
 include/openssl/x509v3err.h
 lib/libcrypto.a
-%%SHARED%%lib/engines-12/capi.so
-%%SHARED%%lib/engines-12/devcrypto.so
-%%SHARED%%lib/engines-12/padlock.so
+%%SHARED%%lib/engines-%%SHLIBVER%%/capi.so
+%%SHARED%%lib/engines-%%SHLIBVER%%/devcrypto.so
+%%SHARED%%lib/engines-%%SHLIBVER%%/padlock.so
 %%SHARED%%lib/libcrypto.so
 %%SHARED%%lib/libcrypto.so.%%SHLIBVER%%
 lib/libssl.a
 %%SHARED%%lib/libssl.so
 %%SHARED%%lib/libssl.so.%%SHLIBVER%%
-%%SHARED%%lib/ossl-modules/fips.so
-%%SHARED%%lib/ossl-modules/legacy.so
+%%FIPS%%%%SHARED%%lib/ossl-modules/fips.so
+%%LEGACY%%%%SHARED%%lib/ossl-modules/legacy.so
 libdata/pkgconfig/libcrypto.pc
 libdata/pkgconfig/libssl.pc
 libdata/pkgconfig/openssl.pc
@@ -146,6 +149,7 @@ man/man1/openssl-asn1parse.1.gz
 man/man1/openssl-ca.1.gz
 man/man1/openssl-ciphers.1.gz
 man/man1/openssl-cmds.1.gz
+man/man1/openssl-cmp.1.gz
 man/man1/openssl-cms.1.gz
 man/man1/openssl-crl.1.gz
 man/man1/openssl-crl2pkcs7.1.gz
@@ -199,6 +203,7 @@ man/man1/openssl.1.gz
 man/man1/tsget.1.gz
 %%MAN3%%man/man3/ADMISSIONS.3.gz
 %%MAN3%%man/man3/ASN1_INTEGER_get_int64.3.gz
+%%MAN3%%man/man3/ASN1_INTEGER_new.3.gz
 %%MAN3%%man/man3/ASN1_ITEM_lookup.3.gz
 %%MAN3%%man/man3/ASN1_OBJECT_new.3.gz
 %%MAN3%%man/man3/ASN1_STRING_TABLE_add.3.gz
@@ -263,6 +268,7 @@ man/man1/tsget.1.gz
 %%MAN3%%man/man3/BN_swap.3.gz
 %%MAN3%%man/man3/BN_zero.3.gz
 %%MAN3%%man/man3/BUF_MEM_new.3.gz
+%%MAN3%%man/man3/CMS_EnvelopedData_create.3.gz
 %%MAN3%%man/man3/CMS_add0_cert.3.gz
 %%MAN3%%man/man3/CMS_add1_recipient_cert.3.gz
 %%MAN3%%man/man3/CMS_add1_signer.3.gz
@@ -354,12 +360,13 @@ man/man1/tsget.1.gz
 %%MAN3%%man/man3/EVP_PKEY_CTX_new.3.gz
 %%MAN3%%man/man3/EVP_PKEY_CTX_set1_pbe_pass.3.gz
 %%MAN3%%man/man3/EVP_PKEY_CTX_set_hkdf_md.3.gz
+%%MAN3%%man/man3/EVP_PKEY_CTX_set_params.3.gz
 %%MAN3%%man/man3/EVP_PKEY_CTX_set_rsa_pss_keygen_md.3.gz
 %%MAN3%%man/man3/EVP_PKEY_CTX_set_scrypt_N.3.gz
 %%MAN3%%man/man3/EVP_PKEY_CTX_set_tls1_prf_md.3.gz
 %%MAN3%%man/man3/EVP_PKEY_asn1_get_count.3.gz
 %%MAN3%%man/man3/EVP_PKEY_check.3.gz
-%%MAN3%%man/man3/EVP_PKEY_cmp.3.gz
+%%MAN3%%man/man3/EVP_PKEY_copy_parameters.3.gz
 %%MAN3%%man/man3/EVP_PKEY_decrypt.3.gz
 %%MAN3%%man/man3/EVP_PKEY_derive.3.gz
 %%MAN3%%man/man3/EVP_PKEY_encrypt.3.gz
@@ -379,6 +386,7 @@ man/man1/tsget.1.gz
 %%MAN3%%man/man3/EVP_PKEY_supports_digest_nid.3.gz
 %%MAN3%%man/man3/EVP_PKEY_verify.3.gz
 %%MAN3%%man/man3/EVP_PKEY_verify_recover.3.gz
+%%MAN3%%man/man3/EVP_RAND.3.gz
 %%MAN3%%man/man3/EVP_SIGNATURE_free.3.gz
 %%MAN3%%man/man3/EVP_SealInit.3.gz
 %%MAN3%%man/man3/EVP_SignInit.3.gz
@@ -410,7 +418,6 @@ man/man1/tsget.1.gz
 %%MAN3%%man/man3/EVP_sm4_cbc.3.gz
 %%MAN3%%man/man3/EVP_whirlpool.3.gz
 %%MAN3%%man/man3/HMAC.3.gz
-%%MAN3%%man/man3/ISSUER_SIGN_TOOL_new.3.gz
 %%MAN3%%man/man3/MD5.3.gz
 %%MAN3%%man/man3/MDC2_Init.3.gz
 %%MAN3%%man/man3/NCONF_new_with_libctx.3.gz
@@ -444,14 +451,18 @@ man/man1/tsget.1.gz
 %%MAN3%%man/man3/OSSL_CMP_MSG_http_perform.3.gz
 %%MAN3%%man/man3/OSSL_CMP_SRV_CTX_new.3.gz
 %%MAN3%%man/man3/OSSL_CMP_STATUSINFO_new.3.gz
-%%MAN3%%man/man3/OSSL_CMP_exec_IR_ses.3.gz
+%%MAN3%%man/man3/OSSL_CMP_exec_certreq.3.gz
 %%MAN3%%man/man3/OSSL_CMP_log_open.3.gz
 %%MAN3%%man/man3/OSSL_CMP_validate_msg.3.gz
 %%MAN3%%man/man3/OSSL_CRMF_MSG_get0_tmpl.3.gz
+%%MAN3%%man/man3/OSSL_CRMF_MSG_set0_validity.3.gz
 %%MAN3%%man/man3/OSSL_CRMF_MSG_set1_regCtrl_regToken.3.gz
 %%MAN3%%man/man3/OSSL_CRMF_MSG_set1_regInfo_certReq.3.gz
-%%MAN3%%man/man3/OSSL_CRMF_MSG_set_validity.3.gz
 %%MAN3%%man/man3/OSSL_CRMF_pbmp_new.3.gz
+%%MAN3%%man/man3/OSSL_DESERIALIZER.3.gz
+%%MAN3%%man/man3/OSSL_DESERIALIZER_CTX.3.gz
+%%MAN3%%man/man3/OSSL_DESERIALIZER_CTX_new_by_EVP_PKEY.3.gz
+%%MAN3%%man/man3/OSSL_DESERIALIZER_from_bio.3.gz
 %%MAN3%%man/man3/OSSL_HTTP_transfer.3.gz
 %%MAN3%%man/man3/OSSL_PARAM.3.gz
 %%MAN3%%man/man3/OSSL_PARAM_BLD.3.gz
@@ -467,6 +478,7 @@ man/man1/tsget.1.gz
 %%MAN3%%man/man3/OSSL_STORE_INFO.3.gz
 %%MAN3%%man/man3/OSSL_STORE_LOADER.3.gz
 %%MAN3%%man/man3/OSSL_STORE_SEARCH.3.gz
+%%MAN3%%man/man3/OSSL_STORE_attach.3.gz
 %%MAN3%%man/man3/OSSL_STORE_expect.3.gz
 %%MAN3%%man/man3/OSSL_STORE_open.3.gz
 %%MAN3%%man/man3/OSSL_trace_enabled.3.gz
@@ -474,6 +486,7 @@ man/man1/tsget.1.gz
 %%MAN3%%man/man3/OSSL_trace_set_channel.3.gz
 %%MAN3%%man/man3/OpenSSL_add_all_algorithms.3.gz
 %%MAN3%%man/man3/OpenSSL_version.3.gz
+%%MAN3%%man/man3/PEM_X509_INFO_read_bio_with_libctx.3.gz
 %%MAN3%%man/man3/PEM_bytes_read_bio.3.gz
 %%MAN3%%man/man3/PEM_read.3.gz
 %%MAN3%%man/man3/PEM_read_CMS.3.gz
@@ -497,7 +510,7 @@ man/man1/tsget.1.gz
 %%MAN3%%man/man3/PKCS7_verify.3.gz
 %%MAN3%%man/man3/PKCS8_pkey_add1_attr.3.gz
 %%MAN3%%man/man3/RAND_DRBG_generate.3.gz
-%%MAN3%%man/man3/RAND_DRBG_get0_master.3.gz
+%%MAN3%%man/man3/RAND_DRBG_get0_public.3.gz
 %%MAN3%%man/man3/RAND_DRBG_new.3.gz
 %%MAN3%%man/man3/RAND_DRBG_reseed.3.gz
 %%MAN3%%man/man3/RAND_DRBG_set_callbacks.3.gz
@@ -718,8 +731,8 @@ man/man1/tsget.1.gz
 %%MAN3%%man/man3/X509_load_http.3.gz
 %%MAN3%%man/man3/X509_new.3.gz
 %%MAN3%%man/man3/X509_sign.3.gz
+%%MAN3%%man/man3/X509_verify.3.gz
 %%MAN3%%man/man3/X509_verify_cert.3.gz
-%%MAN3%%man/man3/X509v3_cache_extensions.3.gz
 %%MAN3%%man/man3/X509v3_get_ext_by_NID.3.gz
 %%MAN3%%man/man3/d2i_DHparams.3.gz
 %%MAN3%%man/man3/d2i_PKCS8PrivateKey_bio.3.gz
@@ -744,6 +757,9 @@ man/man5/x509v3_config.5.gz
 %%MAN3%%man/man7/EVP_KDF-TLS1_PRF.7.gz
 %%MAN3%%man/man7/EVP_KDF-X942.7.gz
 %%MAN3%%man/man7/EVP_KDF-X963.7.gz
+%%MAN3%%man/man7/EVP_KEYEXCH-DH.7.gz
+%%MAN3%%man/man7/EVP_KEYEXCH-ECDH.7.gz
+%%MAN3%%man/man7/EVP_KEYEXCH-X25519.7.gz
 %%MAN3%%man/man7/EVP_MAC-BLAKE2.7.gz
 %%MAN3%%man/man7/EVP_MAC-CMAC.7.gz
 %%MAN3%%man/man7/EVP_MAC-GMAC.7.gz
@@ -765,12 +781,22 @@ man/man5/x509v3_config.5.gz
 %%MAN3%%man/man7/EVP_MD-SM3.7.gz
 %%MAN3%%man/man7/EVP_MD-WHIRLPOOL.7.gz
 %%MAN3%%man/man7/EVP_MD-common.7.gz
+%%MAN3%%man/man7/EVP_PKEY-DH.7.gz
 %%MAN3%%man/man7/EVP_PKEY-DSA.7.gz
 %%MAN3%%man/man7/EVP_PKEY-EC.7.gz
+%%MAN3%%man/man7/EVP_PKEY-FFC.7.gz
 %%MAN3%%man/man7/EVP_PKEY-RSA.7.gz
 %%MAN3%%man/man7/EVP_PKEY-X25519.7.gz
-%%MAN3%%man/man7/Ed25519.7.gz
+%%MAN3%%man/man7/EVP_RAND-CTR-DRBG.7.gz
+%%MAN3%%man/man7/EVP_RAND-HASH-DRBG.7.gz
+%%MAN3%%man/man7/EVP_RAND-HMAC-DRBG.7.gz
+%%MAN3%%man/man7/EVP_RAND-TEST-RAND.7.gz
+%%MAN3%%man/man7/EVP_SIGNATURE-DSA.7.gz
+%%MAN3%%man/man7/EVP_SIGNATURE-ECDSA.7.gz
+%%MAN3%%man/man7/EVP_SIGNATURE-ED25519.7.gz
+%%MAN3%%man/man7/EVP_SIGNATURE-RSA.7.gz
 %%MAN3%%man/man7/OSSL_PROVIDER-FIPS.7.gz
+%%MAN3%%man/man7/OSSL_PROVIDER-base.7.gz
 %%MAN3%%man/man7/OSSL_PROVIDER-default.7.gz
 %%MAN3%%man/man7/OSSL_PROVIDER-legacy.7.gz
 %%MAN3%%man/man7/OSSL_PROVIDER-null.7.gz
@@ -785,6 +811,8 @@ man/man5/x509v3_config.5.gz
 %%MAN3%%man/man7/des_modes.7.gz
 %%MAN3%%man/man7/evp.7.gz
 %%MAN3%%man/man7/openssl-core.h.7.gz
+%%MAN3%%man/man7/openssl-core_dispatch.h.7.gz
+%%MAN3%%man/man7/openssl-core_names.h.7.gz
 %%MAN3%%man/man7/openssl-env.7.gz
 %%MAN3%%man/man7/openssl_user_macros.7.gz
 %%MAN3%%man/man7/ossl_store-file.7.gz
@@ -798,6 +826,7 @@ man/man5/x509v3_config.5.gz
 %%MAN3%%man/man7/provider-keyexch.7.gz
 %%MAN3%%man/man7/provider-keymgmt.7.gz
 %%MAN3%%man/man7/provider-mac.7.gz
+%%MAN3%%man/man7/provider-rand.7.gz
 %%MAN3%%man/man7/provider-serializer.7.gz
 %%MAN3%%man/man7/provider-signature.7.gz
 %%MAN3%%man/man7/provider.7.gz
@@ -805,7 +834,8 @@ man/man5/x509v3_config.5.gz
 %%MAN3%%man/man7/ssl.7.gz
 %%MAN3%%man/man7/x509.7.gz
 %%OPENSSLDIR%%/misc/CA.pl
-%%OPENSSLDIR%%/misc/tsget.pl
+@comment %%OPENSSLDIR%%/misc/tsget.pl
+%%OPENSSLDIR%%/misc/tsget
 @sample %%OPENSSLDIR%%/openssl.cnf.dist %%OPENSSLDIR%%/openssl.cnf
 @sample %%OPENSSLDIR%%/ct_log_list.cnf.dist %%OPENSSLDIR%%/ct_log_list.cnf
 @dir %%OPENSSLDIR%%/private

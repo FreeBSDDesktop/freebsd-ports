@@ -23,7 +23,6 @@
     SUBDIR += c
     SUBDIR += cbmbasic
     SUBDIR += ccl
-    SUBDIR += cdent
     SUBDIR += ceylon
     SUBDIR += cfortran
     SUBDIR += chaiscript
@@ -91,6 +90,7 @@
     SUBDIR += gawk
     SUBDIR += gcc
     SUBDIR += gcc-ecj45
+    SUBDIR += gcc10
     SUBDIR += gcc10-devel
     SUBDIR += gcc11-devel
     SUBDIR += gcc48
@@ -106,7 +106,6 @@
     SUBDIR += gnat_util
     SUBDIR += gnatcross-binutils-aarch64
     SUBDIR += gnatcross-sysroot-aarch64
-    SUBDIR += gnatdroid-armv7
     SUBDIR += gnatdroid-binutils
     SUBDIR += gnatdroid-binutils-x86
     SUBDIR += gnatdroid-sysroot
@@ -123,8 +122,10 @@
     SUBDIR += guile
     SUBDIR += guile1
     SUBDIR += guile2
+    SUBDIR += halide
     SUBDIR += harbour
     SUBDIR += haskell-mode.el
+    SUBDIR += hermes
     SUBDIR += hla
     SUBDIR += hs-brainfuck
     SUBDIR += hs-unlambda
@@ -140,10 +141,7 @@
     SUBDIR += jimtcl
     SUBDIR += jruby
     SUBDIR += julia
-    SUBDIR += julia06
-    SUBDIR += julia07
     SUBDIR += julia10
-    SUBDIR += julia11
     SUBDIR += jython
     SUBDIR += kawa
     SUBDIR += kf5-kross
@@ -246,9 +244,9 @@
     SUBDIR += pbasic
     SUBDIR += pcc
     SUBDIR += perl5-devel
-    SUBDIR += perl5.26
     SUBDIR += perl5.28
     SUBDIR += perl5.30
+    SUBDIR += perl5.32
     SUBDIR += petite-chez
     SUBDIR += pfe
     SUBDIR += pharo
@@ -268,7 +266,6 @@
     SUBDIR += purescript
     SUBDIR += py-hy
     SUBDIR += py-lupa
-    SUBDIR += py-mx-base
     SUBDIR += py-qt5-qml
     SUBDIR += py-textX
     SUBDIR += pypy
@@ -283,7 +280,6 @@
     SUBDIR += python2
     SUBDIR += python27
     SUBDIR += python3
-    SUBDIR += python35
     SUBDIR += python36
     SUBDIR += python37
     SUBDIR += python38
@@ -315,8 +311,10 @@
     SUBDIR += scala-docs
     SUBDIR += scheme48
     SUBDIR += scm
+    SUBDIR += sdcc
     SUBDIR += see
     SUBDIR += seed7
+    SUBDIR += silq
     SUBDIR += siod
     SUBDIR += sisc
     SUBDIR += sketchy
@@ -333,6 +331,7 @@
     SUBDIR += spidermonkey24
     SUBDIR += spidermonkey52
     SUBDIR += spidermonkey60
+    SUBDIR += spidermonkey78
     SUBDIR += spl
     SUBDIR += squeak
     SUBDIR += squirrel
@@ -345,7 +344,6 @@
     SUBDIR += tcl86
     SUBDIR += tcl87
     SUBDIR += tclX
-    SUBDIR += tinypy
     SUBDIR += tolua
     SUBDIR += tolua++
     SUBDIR += tuareg-mode.el

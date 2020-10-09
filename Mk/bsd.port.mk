@@ -1047,7 +1047,7 @@ _FLAVOR:=	${FLAVOR}
 .if !defined(PORTS_FEATURES) && empty(${PORTS_FEATURES:MFLAVORS})
 PORTS_FEATURES+=	FLAVORS
 .endif
-MINIMAL_PKG_VERSION=	1.13.0
+MINIMAL_PKG_VERSION=	1.15.9
 
 _PORTS_DIRECTORIES+=	${PKG_DBDIR} ${PREFIX} ${WRKDIR} ${EXTRACT_WRKDIR} \
 						${STAGEDIR}${PREFIX} ${WRKDIR}/pkg ${BINARY_LINKDIR}
@@ -2018,10 +2018,12 @@ CONFIGURE_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
 MAKE_ENV+=		LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
 .endif
 
-# Macro for doing in-place file editing using regexps
+# Macro for doing in-place file editing using regexps.  REINPLACE_ARGS may only
+# be used to set or override the -i argument.  Any other use is considered
+# invalid.
 REINPLACE_ARGS?=	-i.bak
 .if defined(DEVELOPER)
-REINPLACE_CMD?=	${SETENV} WRKSRC=${WRKSRC} REWARNFILE=${REWARNFILE} ${PORTSDIR}/Tools/scripts/sed_checked.sh
+REINPLACE_CMD?=	${SETENV} WRKSRC=${WRKSRC} REWARNFILE=${REWARNFILE} ${SCRIPTSDIR}/sed_checked.sh
 .else
 REINPLACE_CMD?=	${SED} ${REINPLACE_ARGS}
 .endif
@@ -3160,6 +3162,7 @@ do-extract: ${EXTRACT_WRKDIR}
 	@for file in ${EXTRACT_ONLY}; do \
 		if ! (cd ${EXTRACT_WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$file ${EXTRACT_AFTER_ARGS});\
 		then \
+			${ECHO_MSG} "===>  Failed to extract \"${_DISTDIR}/$$file\"."; \
 			exit 1; \
 		fi; \
 	done
@@ -3188,6 +3191,7 @@ do-patch:
 			dp_PATCH_ARGS=${PATCH_ARGS:Q} \
 			dp_PATCH_DEBUG_TMP="${PATCH_DEBUG_TMP}" \
 			dp_PATCH_DIST_ARGS="${PATCH_DIST_ARGS}" \
+			dp_PATCH_CONTINUE_ON_FAIL=${PATCH_CONTINUE_ON_FAIL:Dyes} \
 			dp_PATCH_SILENT="${PATCH_SILENT}" \
 			dp_PATCH_WRKSRC=${PATCH_WRKSRC} \
 			dp_PKGNAME="${PKGNAME}" \
@@ -4501,6 +4505,7 @@ generate-plist: ${WRKDIR}
 .for f in ${PLIST}
 	@if [ -f "${f}" ]; then \
 		${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${f} >> ${TMPPLIST}; \
+		for i in owner group mode; do ${ECHO_CMD} "@$$i"; done >> ${TMPPLIST}; \
 	fi
 .endfor
 .endif
@@ -4573,7 +4578,7 @@ install-rc-script:
 		_prefix=${PREFIX}; \
 		[ "${PREFIX}" = "/usr" ] && _prefix="" ; \
 		${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${STAGEDIR}$${_prefix}/etc/rc.d/$${i%.sh}; \
-		${ECHO_CMD} "$${_prefix}/etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
+		${ECHO_CMD} "@(root,wheel,0755) $${_prefix}/etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
 	done
 .endif
 .endif
@@ -5131,7 +5136,12 @@ install-desktop-entries:
 .if !target(create-binary-alias)
 create-binary-alias: ${BINARY_LINKDIR}
 .for target src in ${BINARY_ALIAS:C/=/ /}
-	@${RLN} `which ${src}` ${BINARY_LINKDIR}/${target}
+	@if srcpath=`which -- ${src}`; then \
+		${RLN} $${srcpath} ${BINARY_LINKDIR}/${target}; \
+	else \
+		${ECHO_MSG} "===>  Missing \"${src}\" to create a binary alias at \"${BINARY_LINKDIR}/${target}\""; \
+		${FALSE}; \
+	fi
 .endfor
 .endif
 .endif

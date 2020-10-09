@@ -28,6 +28,7 @@ share/locale/af/LC_MESSAGES/ki18n5.mo
 share/locale/ar/LC_MESSAGES/ki18n5.mo
 share/locale/as/LC_MESSAGES/ki18n5.mo
 share/locale/ast/LC_MESSAGES/ki18n5.mo
+share/locale/az/LC_MESSAGES/ki18n5.mo
 share/locale/be/LC_MESSAGES/ki18n5.mo
 share/locale/be@latin/LC_MESSAGES/ki18n5.mo
 share/locale/bg/LC_MESSAGES/ki18n5.mo
@@ -151,3 +152,4 @@ share/locale/zh_CN/LC_MESSAGES/ki18n5.mo
 share/locale/zh_HK/LC_MESSAGES/ki18n5.mo
 share/locale/zh_TW/LC_MESSAGES/ki18n5.mo
 share/qlogging-categories5/ki18n.categories
+share/qlogging-categories5/ki18n.renamecategories

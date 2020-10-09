@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	xfun
-PORTVERSION=	0.13
-PORTREVISION=	1
+PORTVERSION=	0.18
 CATEGORIES=	misc
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
@@ -11,6 +10,6 @@ COMMENT=	Miscellaneous Functions by Yihui Xie
 
 LICENSE=	MIT
 
-USES=		cran:auto-plist
+USES=		cran:auto-plist,compiles
 
 .include <bsd.port.mk>

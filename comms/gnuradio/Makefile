@@ -3,6 +3,7 @@
 PORTNAME=	gnuradio
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.8.1.0
+PORTREVISION=	3
 CATEGORIES=	comms astro hamradio
 
 MAINTAINER=	hamradio@FreeBSD.org
@@ -12,7 +13,7 @@ LICENSE=	GPLv3
 
 BUILD_DEPENDS=	volk>0:devel/volk \
 		doxygen>0:devel/doxygen \
-		${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR} \
+		${PY_SPHINX} \
 		${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR} \
 		${PYNUMPY} \
 		${PYTHON_SITELIBDIR}/mako/__init__.py:textproc/py-mako@${PY_FLAVOR} \
@@ -28,7 +29,7 @@ BUILD_DEPENDS=	volk>0:devel/volk \
 		guile:lang/guile \
 		minixmlto:textproc/minixmlto \
 		sdl-config:devel/sdl12 \
-		swig3.0:devel/swig30 \
+		swig:devel/swig \
 		mpir>0:math/mpir \
 		xdg-open:devel/xdg-utils
 LIB_DEPENDS=	libcodec2.so:audio/codec2 \
@@ -67,13 +68,12 @@ CMAKE_ARGS+=	-DCMAKE_INSTALL_RPATH:STRING="${LOCALBASE}/lib/gcc${_GCC_VER}" \
 		-DLOCALBASE:STRING="${LOCALBASE}" \
 		-DGR_PKG_DOC_DIR:STRING="${DOCSDIR}" \
 		-DPYTHON_EXECUTABLE:STRING="${PYTHON_CMD}" \
-		-DSWIG_EXECUTABLE:STRING="${LOCALBASE}/bin/swig3.0"\
+		-DSWIG_EXECUTABLE:STRING="${LOCALBASE}/bin/swig"\
 		-DXMLTO_EXECUTABLE:STRING=minixmlto \
 		-DENABLE_INTERNAL_VOLK:STRING="OFF"
 # for detailed debugging uncomment the next line
 #CMAKE_ARGS+=	--debug-output --trace
 USE_CXXSTD=	c++11
-USE_GNOME=	pygtk2
 USE_PYQT=	core gui opengl
 USE_WX=		3.0
 USE_QT=		buildtools core gui xml qmake widgets
@@ -96,7 +96,7 @@ INSTALLS_ICONS=		yes
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
 DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen \
-			sphinx-apidoc:textproc/py-sphinx@${PY_FLAVOR} \
+			${PY_SPHINX} \
 			dot:graphics/graphviz \
 			xmlto:textproc/xmlto \
 			freefont-ttf>0:x11-fonts/freefont-ttf

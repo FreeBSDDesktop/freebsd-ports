@@ -2,6 +2,7 @@
 
 PORTNAME=	gui
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits graphics
 PKGNAMEPREFIX=	qt5-
 
@@ -10,7 +11,8 @@ COMMENT=	Qt graphical user interface module
 
 BUILD_DEPENDS=	at-spi2-core>=0:accessibility/at-spi2-core \
 		${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
-		${LOCALBASE}/include/vulkan/vulkan.h:devel/vulkan-headers
+		${LOCALBASE}/include/vulkan/vulkan.h:devel/vulkan-headers \
+		${LOCALBASE}/include/xf86drm.h:graphics/libdrm
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libevdev.so:devel/libevdev \
 		libfontconfig.so:x11-fonts/fontconfig \

@@ -1,15 +1,15 @@
---- chrome/common/webui_url_constants.h.orig	2020-03-16 18:40:30 UTC
+--- chrome/common/webui_url_constants.h.orig	2020-07-07 21:58:14 UTC
 +++ chrome/common/webui_url_constants.h
-@@ -275,7 +275,7 @@ bool IsSystemWebUIHost(base::StringPiece host);
- extern const char kChromeUICastHost[];
- #endif
+@@ -282,7 +282,7 @@ bool IsSystemWebUIHost(base::StringPiece host);
+ 
+ #endif  // defined(OS_CHROMEOS)
  
 -#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
 +#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
  extern const char kChromeUIDiscardsHost[];
  extern const char kChromeUIDiscardsURL[];
  extern const char kChromeUIHatsHost[];
-@@ -287,17 +287,17 @@ extern const char kChromeUIHatsURL[];
+@@ -295,17 +295,17 @@ extern const char kChromeUIProfilePickerHost[];
  extern const char kChromeUILinuxProxyConfigHost[];
  #endif
  

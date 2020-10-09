@@ -3,7 +3,7 @@
 
 PORTNAME=	masterNugget
 PORTVERSION=	0.5.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	security
 MASTER_SITES=	SF/razorbacktm/Nuggets
 PKGNAMEPREFIX=	razorback-
@@ -18,11 +18,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	librazorback_api.so:security/razorback-api \
 		libjson-c.so:devel/json-c
 
-USES=		autoreconf libtool pkgconfig
+USES=		autoreconf dos2unix libtool pkgconfig
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	masterNugget masterNugget_safed
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+DOS2UNIX_FILES=	${WRKSRC}/src/rzb_nugget.c
 
 USERS?=		razorback
 GROUPS?=	razorback

@@ -3,7 +3,7 @@
 
 PORTNAME=	glest
 PORTVERSION=	3.2.2
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}%20source/${PORTVERSION}
 DISTNAME=	${PORTNAME}_source_${PORTVERSION}
@@ -55,7 +55,7 @@ post-patch:
 		-e 's|-llua5.1|-llua-5.1|g' \
 		${WRKSRC}/mk/linux/configure.ac \
 		${WRKSRC}/mk/linux/mk/autoconf/*
-	@${FIND} -E ${WRKDIR} -type f -name '*.bak' -o -name '*.orig' | \
+	@${FIND} ${WRKDIR} -type f -name '*.bak' -o -name '*.orig' | \
 		${XARGS} ${RM}
 
 pre-configure:

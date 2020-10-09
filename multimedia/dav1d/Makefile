@@ -1,12 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	dav1d
-DISTVERSION=	0.6.0
-PORTREVISION=	1
+DISTVERSION=	0.7.1
 CATEGORIES=	multimedia
-
-PATCH_SITES=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/commit/
-PATCHFILES+=	e04227c5f672.patch:-p1 # https://code.videolan.org/videolan/dav1d/-/merge_requests/934
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Small and fast AV1 decoder
@@ -23,7 +19,8 @@ USE_GITLAB=	yes
 USE_LDCONFIG=	yes
 GL_SITE=	https://code.videolan.org
 GL_ACCOUNT=	videolan
-GL_COMMIT=	efd9e5518e0ed5114f8b4579debd7ee6dbede21f
+GL_COMMIT=	e9df70c4348a3f9ba7269feacd17cfb57bf23852
+LDFLAGS_i386=	-Wl,-z,notext
 
 OPTIONS_DEFINE=	SDL TEST
 OPTIONS_SUB=	yes
@@ -35,7 +32,7 @@ SDL_LIB_DEPENDS=	libplacebo.so:graphics/libplacebo \
 			libvulkan.so:graphics/vulkan-loader
 SDL_MESON_TRUE=	enable_examples
 
-TEST_GL_TUPLE=	videolan:dav1d-test-data:0b9501d258b50dcf2b86f97214f14f079a1528d0:testdata/tests/dav1d-test-data
+TEST_GL_TUPLE=	videolan:dav1d-test-data:4e3d3de97b643c3bbb027005d5ecc005fa3e5d98:testdata/tests/dav1d-test-data
 TEST_MESON_TRUE=enable_tests testdata_tests
 
 .if make(makesum) # for optional distfiles

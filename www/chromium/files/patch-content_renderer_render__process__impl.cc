@@ -1,6 +1,6 @@
---- content/renderer/render_process_impl.cc.orig	2020-03-16 18:40:32 UTC
+--- content/renderer/render_process_impl.cc.orig	2020-07-07 21:57:37 UTC
 +++ content/renderer/render_process_impl.cc
-@@ -43,7 +43,7 @@
+@@ -44,7 +44,7 @@
  #if defined(OS_WIN)
  #include "base/win/win_util.h"
  #endif

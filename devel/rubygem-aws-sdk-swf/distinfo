@@ -1,3 +1,3 @@
-TIMESTAMP = 1588930759
-SHA256 (rubygem/aws-sdk-swf-1.19.0.gem) = dd7b32220c08da043eafe563e4a0901b4308ef00bae3a6ecea6299b4cfd77fa0
-SIZE (rubygem/aws-sdk-swf-1.19.0.gem) = 73728
+TIMESTAMP = 1601554908
+SHA256 (rubygem/aws-sdk-swf-1.25.0.gem) = 2eec46cd2b6dc4ddead7f8ca6642c37d8ef65a2b442d6e14cad2cdc4fa57ef89
+SIZE (rubygem/aws-sdk-swf-1.25.0.gem) = 74240

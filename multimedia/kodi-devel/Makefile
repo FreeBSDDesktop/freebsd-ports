@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	kodi
-DISTVERSION=	19.0.a20200414
-PORTREVISION=	2
+DISTVERSION=	19.0.a20200727
+PORTREVISION=	3
 CATEGORIES=	multimedia
 PKGNAMESUFFIX=	-devel
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Award winning media center application
 
 LICENSE=	GPLv2+
@@ -15,7 +15,7 @@ ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386
 
 BUILD_DEPENDS=	flatbuffers>=0:devel/flatbuffers \
 		rapidjson>=0:devel/rapidjson \
-		swig3.0:devel/swig30
+		swig:devel/swig
 LIB_DEPENDS=	libass.so:multimedia/libass \
 		libavcodec.so:multimedia/ffmpeg \
 		libavfilter.so:multimedia/ffmpeg \
@@ -24,6 +24,7 @@ LIB_DEPENDS=	libass.so:multimedia/libass \
 		libcdio.so:sysutils/libcdio \
 		libcrossguid.so:devel/libcrossguid \
 		libcurl.so:ftp/curl \
+		libdav1d.so:multimedia/dav1d \
 		libdrm.so:graphics/libdrm \
 		libdvdnav.so:multimedia/libdvdnav \
 		libdvdread.so:multimedia/libdvdread \
@@ -40,6 +41,7 @@ LIB_DEPENDS=	libass.so:multimedia/libass \
 		libpcrecpp.so:devel/pcre \
 		libpng.so:graphics/png \
 		libpostproc.so:multimedia/ffmpeg \
+		libspdlog.so:devel/spdlog \
 		libswresample.so:multimedia/ffmpeg \
 		libswscale.so:multimedia/ffmpeg \
 		libtag.so:audio/taglib \
@@ -48,27 +50,25 @@ LIB_DEPENDS=	libass.so:multimedia/libass \
 		libuuid.so:misc/e2fsprogs-libuuid
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
-# Building libcpluff.a requires autoreconf and gmake.  Using ninja
-# leads to dependency problems where libcpluff.a is not yet finished
-# building when it's required.
-USES=		autoreconf:build cmake:noninja compiler:c++11-lang gettext gl \
-		gmake gnome iconv:wchar_t jpeg libtool pkgconfig python:3.5+ \
-		sqlite ssl
+USES=		cmake compiler:c++14-lang gettext gl gnome iconv:wchar_t jpeg \
+		pkgconfig python:3.5+ sqlite ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	xbmc
 GH_PROJECT=	xbmc
-GH_TAGNAME=	75b31098a8800da653b373cd99a025b483029cfc
+GH_TAGNAME=	19.0a1-Matrix
 USE_GL=		egl gl glu
 USE_GNOME=	libxml2 libxslt
 USE_JAVA=	yes
 JAVA_BUILD=	yes
 USE_LDCONFIG=	yes
 
-CMAKE_ARGS=	-DDVDNAV_LIBRARY="${LOCALBASE}/lib/libdvdnav.so" \
+CMAKE_ARGS=	-DAPP_BUILD_DATE="${DISTVERSION:E:S/^a//}" \
+		-DDVDNAV_LIBRARY="${LOCALBASE}/lib/libdvdnav.so" \
 		-DDVDREAD_LIBRARY="${LOCALBASE}/lib/libdvdread.so" \
+		-DGIT_VERSION="${GH_TAGNAME:C/^(.{12}).*/\1/}" \
 		-DLIBDVD_INCLUDE_DIRS="${LOCALBASE}/include"
 CMAKE_OFF=	ENABLE_ALSA ENABLE_DVDCSS ENABLE_INTERNAL_CROSSGUID \
-		ENABLE_INTERNAL_FFMPEG
+		ENABLE_INTERNAL_FFMPEG ENABLE_TESTING
 CONFIGURE_ENV=	CPU_FEATURES=" Features=0xdeadbeef<${_CPU_FEATURES:ts,}>" \
 		OPENSSL_CFLAGS="-I${OPENSSLINC}" \
 		OPENSSL_LIBS="-L${OPENSSLLIB}"
@@ -112,6 +112,7 @@ GBM_BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto
 GBM_LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim \
 			libinput.so:x11/libinput \
 			libxkbcommon.so:x11/libxkbcommon
+GBM_USE=		GL=gbm
 GBM_VARS=		_KODI_PLATFORMS+=GBM
 _KODI_GBM_ARGS=		-DCORE_PLATFORM_NAME:STRING="gbm" \
 			-DGBM_RENDER_SYSTEM:STRING="gl"

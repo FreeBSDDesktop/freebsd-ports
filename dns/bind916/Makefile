@@ -8,7 +8,7 @@ PORTVERSION=	${ISCVERSION:S/-P/P/:S/b/.b/:S/a/.a/:S/rc/.rc/}
 PORTREVISION=	0
 .else
 # dns/bind916 here
-PORTREVISION=	0
+PORTREVISION=	1
 .endif
 CATEGORIES=	dns net
 MASTER_SITES=	ISC/bind9/${ISCVERSION}
@@ -41,7 +41,7 @@ RUN_DEPENDS=	bind-tools>0:dns/bind-tools
 
 USES=		compiler:c11 cpe libedit pkgconfig ssl tar:xz
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.16.2
+ISCVERSION=	9.16.7
 
 CPE_VENDOR=	isc
 CPE_VERSION=	${ISCVERSION:C/-.*//}
@@ -75,10 +75,10 @@ CONFLICTS=	bind911 bind912 bind913 bind914 bind9-devel
 MAKE_JOBS_UNSAFE=	yes
 
 OPTIONS_DEFAULT=	DLZ_FILESYSTEM GSSAPI_NONE IDN JSON LMDB PYTHON \
-			SIGCHASE TCP_FASTOPEN
+			TCP_FASTOPEN MANPAGES DNSTAP
 OPTIONS_DEFINE=		DNSTAP DOCS FIXED_RRSET GEOIP IDN JSON LARGE_FILE LMDB \
-			OVERRIDECACHE PORTREVISION PYTHON QUERYTRACE SIGCHASE \
-			START_LATE TCP_FASTOPEN TUNING_LARGE
+			OVERRIDECACHE PORTREVISION PYTHON QUERYTRACE \
+			START_LATE TCP_FASTOPEN MANPAGES
 
 OPTIONS_RADIO=		CRYPTO
 OPTIONS_RADIO_CRYPTO=	NATIVE_PKCS11
@@ -93,7 +93,7 @@ OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
 .if defined(BIND_TOOLS_SLAVE)
 OPTIONS_EXCLUDE=	${OPTIONS_GROUP_DLZ} DNSTAP DOCS GEOIP LMDB \
 			OVERRIDECACHE PORTREVISION QUERYTRACE START_LATE \
-			TCP_FASTOPEN TUNING_LARGE
+			TCP_FASTOPEN
 .else
 OPTIONS_EXCLUDE=	PYTHON
 .endif	# BIND_TOOLS_SLAVE
@@ -121,10 +121,8 @@ NATIVE_PKCS11_DESC=	Use PKCS\#11 native API (**READ HELP**)
 PORTREVISION_DESC=	Show PORTREVISION in the version string
 PYTHON_DESC=		Build with Python utilities
 QUERYTRACE_DESC=	Enable the very verbose query tracelogging
-SIGCHASE_DESC=		dig/host/nslookup will do DNSSEC validation
 START_LATE_DESC=	Start BIND late in the boot process (see help)
 TCP_FASTOPEN_DESC=	RFC 7413 support
-TUNING_LARGE_DESC=	Tune named for large systems (**READ HELP**)
 
 DLZ_BDB_CONFIGURE_ON=	--with-dlz-bdb=yes
 DLZ_BDB_USES=		bdb
@@ -153,15 +151,15 @@ GEOIP_CONFIGURE_WITH=	maxminddb
 GEOIP_LIB_DEPENDS=	libmaxminddb.so:net/libmaxminddb
 
 GSSAPI_BASE_CONFIGURE_ON=	--with-gssapi=${GSSAPIBASEDIR} \
-				KRB5CONFIG="${KRB5CONFIG}"
+				${GSSAPI_CONFIGURE_ARGS}
 GSSAPI_BASE_USES=		gssapi
 
 GSSAPI_HEIMDAL_CONFIGURE_ON=	--with-gssapi=${GSSAPIBASEDIR} \
-				KRB5CONFIG="${KRB5CONFIG}"
+				${GSSAPI_CONFIGURE_ARGS}
 GSSAPI_HEIMDAL_USES=		gssapi:heimdal
 
 GSSAPI_MIT_CONFIGURE_ON=	--with-gssapi=${GSSAPIBASEDIR} \
-				KRB5CONFIG="${KRB5CONFIG}"
+				${GSSAPI_CONFIGURE_ARGS}
 GSSAPI_MIT_USES=		gssapi:mit
 
 GSSAPI_NONE_CONFIGURE_ON=	--without-gssapi
@@ -181,6 +179,8 @@ LARGE_FILE_CONFIGURE_ENABLE=	largefile
 LMDB_CONFIGURE_WITH=	lmdb=${LOCALBASE}
 LMDB_LIB_DEPENDS=	liblmdb.so:databases/lmdb
 
+MANPAGES_BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx
+
 OVERRIDECACHE_EXTRA_PATCHES=	${FILESDIR}/extrapatch-bind-min-override-ttl
 
 NATIVE_PKCS11_CONFIGURE_ENABLE=	native-pkcs11
@@ -192,17 +192,12 @@ PYTHON_USES=		python
 
 QUERYTRACE_CONFIGURE_ENABLE=	querytrace
 
-SIGCHASE_CONFIGURE_ON=	STD_CDEFINES="-DDIG_SIGCHASE=1"
-
 START_LATE_SUB_LIST=		NAMED_BEFORE="LOGIN" \
 				NAMED_REQUIRE="SERVERS cleanvar"
 START_LATE_SUB_LIST_OFF=	NAMED_BEFORE="SERVERS" \
 				NAMED_REQUIRE="NETWORKING ldconfig syslogd"
 
 TCP_FASTOPEN_CONFIGURE_ENABLE=	tcp-fastopen
-
-TUNING_LARGE_CONFIGURE_ON=	--with-tuning=large
-TUNING_LARGE_CONFIGURE_OFF=	--with-tuning=default
 
 .include <bsd.port.options.mk>
 
@@ -225,12 +220,12 @@ SUB_LIST+=	ENGINES=${LOCALBASE}/lib/engines
 .endif
 
 post-patch:
-.for FILE in check/named-checkconf.8 named/named.8 nsupdate/nsupdate.1 \
-	rndc/rndc.8
+.for FILE in named-checkconf.8 named.8 nsupdate.1 \
+	rndc.8
 	@${REINPLACE_CMD} -e 's#/etc/named.conf#${ETCDIR}/named.conf#g' \
 		-e 's#/etc/rndc.conf#${ETCDIR}/rndc.conf#g' \
 		-e "s#/var\/run\/named\/named.pid#/var/run/named/pid#" \
-		${WRKSRC}/bin/${FILE}
+		${WRKSRC}/doc/man/${FILE}in
 .endfor
 
 .if !defined(BIND_TOOLS_SLAVE)
@@ -257,12 +252,13 @@ post-install:
 		${STAGEDIR}${ETCDIR}/rndc.conf.sample
 
 post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/*.html ${STAGEDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/doc/arm/Bv9ARM.pdf ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/CHANGES* ${WRKSRC}/HISTORY.md \
 		${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
 .else
+
+post-install-MANPAGES-on:
+	@(cd ${WRKSRC}/doc/man && ${SETENV} ${MAKE_ENV} ${FAKEROOT} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${INSTALL_TARGET})
 
 # Can't use USE_PYTHON=autoplist
 post-install-PYTHON-on:

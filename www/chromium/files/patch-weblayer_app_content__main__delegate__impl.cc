@@ -1,6 +1,6 @@
---- weblayer/app/content_main_delegate_impl.cc.orig	2020-03-17 10:35:42 UTC
+--- weblayer/app/content_main_delegate_impl.cc.orig	2020-07-07 21:58:19 UTC
 +++ weblayer/app/content_main_delegate_impl.cc
-@@ -146,7 +146,7 @@ bool ContentMainDelegateImpl::BasicStartupComplete(int
+@@ -173,7 +173,7 @@ bool ContentMainDelegateImpl::ShouldCreateFeatureList(
  }
  
  void ContentMainDelegateImpl::PreSandboxStartup() {

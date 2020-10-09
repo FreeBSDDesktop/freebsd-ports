@@ -1,6 +1,6 @@
---- chrome/browser/prefs/browser_prefs.cc.orig	2020-03-16 18:40:29 UTC
+--- chrome/browser/prefs/browser_prefs.cc.orig	2020-07-07 21:58:13 UTC
 +++ chrome/browser/prefs/browser_prefs.cc
-@@ -360,7 +360,7 @@
+@@ -380,7 +380,7 @@
  #endif
  
  #if defined(OS_WIN) || defined(OS_MACOSX) || \
@@ -9,7 +9,7 @@
  #include "chrome/browser/browser_switcher/browser_switcher_prefs.h"
  #endif
  
-@@ -1022,7 +1022,7 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySync
+@@ -1075,7 +1075,7 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySync
  #endif
  
  #if defined(OS_WIN) || defined(OS_MACOSX) || \

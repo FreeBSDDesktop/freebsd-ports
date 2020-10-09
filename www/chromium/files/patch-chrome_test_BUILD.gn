@@ -1,8 +1,8 @@
---- chrome/test/BUILD.gn.orig	2020-03-16 18:40:30 UTC
+--- chrome/test/BUILD.gn.orig	2020-07-07 21:58:14 UTC
 +++ chrome/test/BUILD.gn
-@@ -6042,7 +6042,7 @@ test("chrome_app_unittests") {
+@@ -6191,7 +6191,7 @@ test("chrome_app_unittests") {
+     "//components/heap_profiling/in_process",
      "//components/safe_browsing:buildflags",
-     "//components/tracing",
    ]
 -  if (!is_fuchsia) {
 +  if (!is_fuchsia && !is_bsd) {

@@ -8,8 +8,7 @@
 ######################################################################
 
 PORTNAME=	dovecot
-PORTVERSION=	2.3.10
-PORTREVISION=	3
+PORTVERSION=	2.3.11.3
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.3/
 
@@ -18,6 +17,8 @@ COMMENT=	Secure, fast and powerful IMAP and POP3 server
 
 LICENSE=	LGPL21 MIT
 LICENSE_COMB=	dual
+
+LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 USES=		cpe iconv libtool pkgconfig ssl
 USE_RC_SUBR=	dovecot
@@ -136,15 +137,14 @@ LDFLAGS+=	-L${LOCALBASE}/lib -L${OPENSSLLIB}
 post-patch:
 	@${REINPLACE_CMD} -e 's,/etc/dovecot,${PREFIX}/etc/dovecot,g; \
 		s,sysconfdir=/etc,sysconfdir=${PREFIX}/etc,g' \
-		${WRKSRC}/doc/example-config/*.conf ${WRKSRC}/doc/example-config/conf.d/*
+		${WRKSRC}/doc/example-config/*.conf ${WRKSRC}/doc/example-config/conf.d/* \
+		${WRKSRC}/doc/example-config/*.conf.ext
 	@${REINPLACE_CMD} -e '/^LIBS =/s/$$/ @LTLIBICONV@/' \
 		${WRKSRC}/src/lib-mail/Makefile.in
 # Install the sample config files into ETCDIR/example-config/
 	@${REINPLACE_CMD} -e '/^exampledir =/s|\$$(docdir)|${ETCDIR}|' \
 		${WRKSRC}/doc/example-config/Makefile.in \
 		${WRKSRC}/doc/example-config/conf.d/Makefile.in
-	@${REINPLACE_CMD} -e 's|/usr/bin|${LOCALBASE}/bin|' \
-		${WRKSRC}/src/plugins/fts/decode2text.sh
 
 post-patch-LUA-on:
 	@${REINPLACE_CMD} -e '/^libdovecot_lua_la_DEPENDENCIES =/ s|LUA_LIBS|true|' \

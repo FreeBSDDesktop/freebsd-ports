@@ -2,10 +2,10 @@
 
 PORTNAME=	sequeler
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.7.9
+DISTVERSION=	0.8.0
 CATEGORIES=	databases
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Friendly SQL client
 
 LICENSE=	GPLv3+

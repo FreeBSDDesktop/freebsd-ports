@@ -2,6 +2,7 @@
 
 PORTNAME=	cassandra
 DISTVERSION=	3.11.6
+PORTREVISION=	1
 CATEGORIES=	databases java
 MASTER_SITES=	APACHE/cassandra/${PORTVERSION}:apache \
 		LOCAL/yuri:repo
@@ -70,7 +71,7 @@ OPTIONS_SUB=		yes
 SIGAR_DESC=		Use SIGAR to collect system information
 SIGAR_RUN_DEPENDS=	java-sigar>=1.6.4:java/sigar
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR} \
+DOCS_BUILD_DEPENDS=	${PY_SPHINX} \
 			${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR}
 
 PORTDOCS=		*
@@ -79,20 +80,20 @@ do-build:
 	@${DO_NADA} # Do nothing: Prevent USE_ANT from running a default build target.
 
 do-build-DOCS-on:
-	@cd ${WRKSRC} && ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} -Dpycmd=${PYTHON_CMD} freebsd-stage-doc
+	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS} -Xmx512m" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} -Dpycmd=${PYTHON_CMD} freebsd-stage-doc
 
 do-build-DOCS-off:
-	@cd ${WRKSRC} && ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} freebsd-stage
+	@cd ${WRKSRC} && ANT_OPTS="${ANT_OPTS} -Xmx512m" ${ANT} -Dmaven.repo.local=${REPO_DIR} -Dlocalm2=${REPO_DIR} freebsd-stage
 
 post-build:
 .for f in ${SCRIPT_FILES}
 	@${REINPLACE_CMD} -e 's|/usr/share/cassandra|${DATADIR}/bin|' ${DIST_DIR}/bin/${f}
 .endfor
-	@${REINPLACE_CMD} -e 's|\`dirname "\$$\0"\`/..|${DATADIR}|' ${DIST_DIR}/bin/cassandra.in.sh
-	@${REINPLACE_CMD} -e 's|\$$\CASSANDRA_HOME/lib/sigar-bin|${JAVAJARDIR}|' ${DIST_DIR}/bin/cassandra.in.sh
-	@${REINPLACE_CMD} -e 's|\$$\CASSANDRA_HOME/lib/sigar-bin|${JAVAJARDIR}|' ${DIST_DIR}/conf/cassandra-env.sh
-	@${REINPLACE_CMD} -e 's|\$$\CASSANDRA_HOME/conf|${ETCDIR}|' ${DIST_DIR}/bin/cassandra.in.sh
-	@${REINPLACE_CMD} -e 's|\$$\CASSANDRA_HOME/conf|${ETCDIR}|' ${DIST_DIR}/conf/cassandra-env.sh
+	@${REINPLACE_CMD} -e 's|`dirname "$$0"`/..|${DATADIR}|' ${DIST_DIR}/bin/cassandra.in.sh
+	@${REINPLACE_CMD} -e 's|$$CASSANDRA_HOME/lib/sigar-bin|${JAVAJARDIR}|' ${DIST_DIR}/bin/cassandra.in.sh
+	@${REINPLACE_CMD} -e 's|$$CASSANDRA_HOME/lib/sigar-bin|${JAVAJARDIR}|' ${DIST_DIR}/conf/cassandra-env.sh
+	@${REINPLACE_CMD} -e 's|$$CASSANDRA_HOME/conf|${ETCDIR}|' ${DIST_DIR}/bin/cassandra.in.sh
+	@${REINPLACE_CMD} -e 's|$$CASSANDRA_HOME/conf|${ETCDIR}|' ${DIST_DIR}/conf/cassandra-env.sh
 .for f in ${CONFIG_FILES}
 	@${MV} ${DIST_DIR}/conf/${f} ${DIST_DIR}/conf/${f}.sample
 .endfor

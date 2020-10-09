@@ -2,7 +2,7 @@
 
 PORTNAME=	dynomite
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.21-rc2
+DISTVERSION=	0.6.21
 CATEGORIES=	misc
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -17,6 +17,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	Netflix
 
 LDFLAGS+=	-lexecinfo
+CFLAGS+=	-fcommon
 
 PLIST_FILES=	bin/dynomite-hash-tool \
 		man/man8/dynomite.8.gz \

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	qemu
-PORTVERSION=	4.1.1
-PORTREVISION=	2
+PORTVERSION=	4.2.1
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 DIST_SUBDIR=	qemu/${PORTVERSION}
@@ -30,17 +29,23 @@ USE_GNOME=	cairo glib20 libxml2
 
 USE_PERL5=	build
 
-PORTSCOUT=	limit:^4\.1\.
+PORTSCOUT=	limit:^4\.2\.
 
 HAS_CONFIGURE=	yes
 MAKE_ENV+=	BSD_MAKE="${MAKE}" V=1
 
 OPTIONS_DEFINE=	SAMBA X11 GTK3 OPENGL GNUTLS SASL JPEG PNG CURL \
 		VDE CDROM_DMA PCAP USBREDIR X86_TARGETS \
-		STATIC_LINK DOCS NCURSES
+		STATIC_LINK DOCS ISCSI CAPSTONE
+OPTIONS_SINGLE=	NCURSES
+OPTIONS_SINGLE_NCURSES=	NCURSES_DEFAULT NCURSES_BASE NCURSES_PORT
 CDROM_DMA_DESC=		IDE CDROM DMA
 GNUTLS_DESC=		gnutls dependency (vnc encryption)
+ISCSI_DESC=		libiscsi dependency (iSCSI client for emulated drives)
 JPEG_DESC=		jpeg dependency (vnc lossy compression)
+NCURSES_DEFAULT_DESC=	Depend on ncurses (ports if installed, otherwise base)
+NCURSES_BASE_DESC=	Depend on ncurses in base
+NCURSES_PORT_DESC=	Depend on devel/ncurses in ports
 PCAP_DESC=		pcap dependency (networking with bpf)
 PNG_DESC=		png dependency (vnc compression)
 SAMBA_DESC=		samba dependency (for -smb)
@@ -49,8 +54,12 @@ STATIC_LINK_DESC=	Statically link the executables
 USBREDIR_DESC=		usb device network redirection (experimental!)
 VDE_DESC=		vde dependency (for vde networking)
 X86_TARGETS_DESC=	Build only x86 system targets
-OPTIONS_DEFAULT=X11 GTK3 OPENGL GNUTLS SASL JPEG PNG CDROM_DMA CURL PCAP NCURSES VDE
+CAPSTONE_DESC=		Disassembly framework support
+OPTIONS_DEFAULT=X11 GTK3 OPENGL GNUTLS SASL JPEG PNG CDROM_DMA CURL PCAP NCURSES_DEFAULT VDE
 OPTIONS_SUB=	yes
+CAPSTONE_CONFIGURE_ON=	--enable-capstone=system --extra-cflags=-I${LOCALBASE}/include/capstone
+CAPSTONE_CONFIGURE_OFF=	--disable-capstone
+CAPSTONE_LIB_DEPENDS=	libcapstone.so:devel/capstone4
 CURL_CONFIGURE_OFF=	--disable-curl
 CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
 DOCS_BUILD_DEPENDS=	texi2html:textproc/texi2html
@@ -62,9 +71,13 @@ GTK3_CONFIGURE_OFF=	--disable-gtk --disable-vte
 GTK3_LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon
 GTK3_USE=	GNOME=gdkpixbuf2,gtk30,vte3 XORG=x11,xext
 GTK3_USES=	gettext gl
+ISCSI_LIB_DEPENDS=	libiscsi.so:net/libiscsi
+ISCSI_CONFIGURE_OFF=	--disable-libiscsi
 JPEG_CONFIGURE_OFF=	--disable-vnc-jpeg
 JPEG_USES=		jpeg
-NCURSES_USES=		ncurses:base
+NCURSES_DEFAULT_USES=	ncurses
+NCURSES_BASE_USES=	ncurses:base
+NCURSES_PORT_USES=	ncurses:port
 OPENGL_CONFIGURE_OFF=	--disable-opengl
 OPENGL_USE=	GL=gl
 OPENGL_USES=	gl

@@ -2,13 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	ninja
-PORTVERSION=	1.10.0
+PORTVERSION=	1.10.1
 DISTVERSIONPREFIX=	v
 PORTEPOCH=	2
 CATEGORIES=	devel
 
 MAINTAINER=	kde@FreeBSD.org
-COMMENT=	Ninja is a small build system closest in spirit to Make
+COMMENT=	Small build system closest in spirit to Make
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/COPYING

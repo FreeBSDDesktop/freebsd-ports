@@ -1,19 +1,19 @@
 # $FreeBSD$
 
 PORTNAME=	honeytrap
-DISTVERSION=	g20200226
+DISTVERSION=	g20200625
 CATEGORIES=	security
 
-MAINTAINER=	remco.verhoef@dutchsec.com
-COMMENT=	HoneyTrap Freebsd port
+MAINTAINER=	ezri.mudde@dutchsec.com
+COMMENT=	Framework for running, monitoring and managing honeypots
 
 LICENSE=	ART20
 
 USES=		go:modules
+GO_BUILDFLAGS=	-ldflags '-X github.com/honeytrap/honeytrap/cmd.Version=2020-07-22T08:34:55 -X github.com/honeytrap/honeytrap/cmd.ReleaseTag=DEVELOPMENT.2020-07-22T08-34-55Z -X github.com/honeytrap/honeytrap/cmd.CommitID=33bbb2db3a3140b0ce4fbda14747bc954e0bcadd -X github.com/honeytrap/honeytrap/cmd.ShortCommitID=33bbb2db3a31 -extldflags "static"'
 USE_GITHUB=	yes
-GH_TAGNAME=	77a150d1
-GH_TUPLE=	\
-		AndreasBriese:bbloom:28f7e881ca57:andreasbriese_bbloom/vendor/github.com/AndreasBriese/bbloom \
+GH_TAGNAME=	33bbb2d
+GH_TUPLE=	AndreasBriese:bbloom:28f7e881ca57:andreasbriese_bbloom/vendor/github.com/AndreasBriese/bbloom \
 		BurntSushi:toml:v0.3.0:burntsushi_toml/vendor/github.com/BurntSushi/toml \
 		Logicalis:asn1:c9c836c1a3cd:logicalis_asn1/vendor/github.com/Logicalis/asn1 \
 		Shopify:sarama:v1.16.0:shopify_sarama/vendor/github.com/Shopify/sarama \
@@ -32,17 +32,16 @@ GH_TUPLE=	\
 		fuyufjh:splunk-hec-go:v0.3.3:fuyufjh_splunk_hec_go/vendor/github.com/fuyufjh/splunk-hec-go \
 		glycerine:rbuf:54320fe9f6f3:glycerine_rbuf/vendor/github.com/glycerine/rbuf \
 		go-asn1-ber:asn1-ber:379148ca0225:go_asn1_ber_asn1_ber/vendor/github.com/go-asn1-ber/asn1-ber \
-		golang:crypto:c2843e01d9a2:golang_crypto/vendor/golang.org/x/crypto \
-		golang:net:6afb5195e5aa:golang_net/vendor/golang.org/x/net \
+		golang:crypto:69ecbb4d6d5d:golang_crypto/vendor/golang.org/x/crypto \
+		golang:net:eb5bcb51f2a3:golang_net/vendor/golang.org/x/net \
 		golang:protobuf:v1.3.1:golang_protobuf/vendor/github.com/golang/protobuf \
 		golang:snappy:553a64147049:golang_snappy/vendor/github.com/golang/snappy \
-		golang:sys:d0b11bdaac8a:golang_sys/vendor/golang.org/x/sys \
+		golang:sys:d101bd2416d5:golang_sys/vendor/golang.org/x/sys \
 		golang:time:555d28b269f0:golang_time/vendor/golang.org/x/time \
 		google:btree:v1.0.0:google_btree/vendor/github.com/google/btree \
 		google:gopacket:v1.1.14:google_gopacket/vendor/github.com/google/gopacket \
 		gorilla:websocket:v1.2.0:gorilla_websocket/vendor/github.com/gorilla/websocket \
 		honeytrap:honeytrap-web:02944754979e:honeytrap_honeytrap_web/vendor/github.com/honeytrap/honeytrap-web \
-		honeytrap:netstack:9ea5e4d2258f:honeytrap_netstack/vendor/github.com/google/netstack \
 		honeytrap:protocol:219b95413db0:honeytrap_protocol/vendor/github.com/honeytrap/protocol \
 		klauspost:compress:v1.9.8:klauspost_compress/vendor/github.com/klauspost/compress \
 		lxc:go-lxc:2f350e4a2980:lxc_go_lxc/vendor/gopkg.in/lxc/go-lxc.v2 \
@@ -66,29 +65,29 @@ GH_TUPLE=	\
 		songgao:water:75f112d19d5a:songgao_water/vendor/github.com/songgao/water \
 		streadway:amqp:8e4aba63da9f:streadway_amqp/vendor/github.com/streadway/amqp \
 		urfave:cli:v1.20.0:urfave_cli/vendor/gopkg.in/urfave/cli.v1 \
-		vishvananda:netlink:adb577d4a45e:vishvananda_netlink/vendor/github.com/vishvananda/netlink \
-		vishvananda:netns:be1fbeda1936:vishvananda_netns/vendor/github.com/vishvananda/netns \
-		yuin:gopher-lua:8bfc7677f583:yuin_gopher_lua/vendor/github.com/yuin/gopher-lua
+		vishvananda:netlink:v1.1.0:vishvananda_netlink/vendor/github.com/vishvananda/netlink \
+		vishvananda:netns:0a2b9b5464df:vishvananda_netns/vendor/github.com/vishvananda/netns \
+		yuin:gopher-lua:8bfc7677f583:yuin_gopher_lua/vendor/github.com/yuin/gopher-lua \
+		google:gvisor:3eb302470365:google_gvisor/vendor/gvisor.dev/gvisor
 
-USERS=		honeytrap
-GROUPS=		honeytrap
+HONEYTRAP_USER?=	honeytrap
+HONEYTRAP_GROUP?=	honeytrap
+HONEYTRAP_DBDIR?=	/var/db/${PORTNAME}
+
+USERS=		${HONEYTRAP_USER}
+GROUPS=		${HONEYTRAP_GROUP}
 USE_RC_SUBR=	honeytrap
-PLIST_FILES=	bin/honeytrap \
-		etc/honeytrap.toml \
-		"@dir(honeytrap,honeytrap,4744) /var/log/honeytrap" \
-		"@dir(honeytrap,honeytrap,4744) libdata/honeytrap"
+PLIST_FILES=	"@sample(honeytrap,honeytrap,0600) ${ETCDIR}/honeytrap.toml.sample" \
+		bin/honeytrap
 
-post-patch:
-	@${REINPLACE_CMD} -i '' '/go1.13/d' ${WRKDIR}/netstack-9ea5e4d2258f/tcpip/time_unsafe.go
+SUB_LIST=	GROUP=${HONEYTRAP_GROUP} \
+		HONEYTRAP_DBDIR=${HONEYTRAP_DBDIR} \
+		USER=${HONEYTRAP_USER}
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKDIR}/bin/honeytrap ${STAGEDIR}${PREFIX}/bin/honeytrap
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/rc.d
-	${INSTALL_DATA} ${FILESDIR}/etc/honeytrap.toml ${STAGEDIR}${PREFIX}/etc
-
-post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/libdata/honeytrap
-	${MKDIR} ${STAGEDIR}/var/log/honeytrap
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/rc.d ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/honeytrap.toml ${STAGEDIR}${ETCDIR}/honeytrap.toml.sample
 
 .include <bsd.port.mk>

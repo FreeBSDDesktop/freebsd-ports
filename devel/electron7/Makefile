@@ -3,6 +3,7 @@
 PORTNAME=	electron
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER:S/-beta./.b/}
+PORTREVISION=	1
 CATEGORIES=	devel java
 MASTER_SITES=	https://github.com/tagattie/FreeBSD-Electron/releases/download/v7.1.5/:chromium \
 		https://commondatastorage.googleapis.com/chromium-browser-official/:chromium_official \
@@ -22,15 +23,15 @@ COMMENT=	Build cross-platform desktop apps with JavaScript, HTML, and CSS
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/electron/LICENSE
 
-FETCH_DEPENDS=	yarn-node12>0:www/yarn-node12
-EXTRACT_DEPENDS=	yarn-node12>0:www/yarn-node12
+FETCH_DEPENDS=	yarn-node${NODE_VER_MAJOR}>0:www/yarn-node${NODE_VER_MAJOR}
+EXTRACT_DEPENDS=	yarn-node${NODE_VER_MAJOR}>0:www/yarn-node${NODE_VER_MAJOR}
 PATCH_DEPENDS=	git:devel/git
 BUILD_DEPENDS=	${LOCALBASE}/bin/ar:devel/binutils \
 		gperf:devel/gperf \
 		yasm:devel/yasm \
 		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
-		node12>0:www/node12 \
-		npm-node12>0:www/npm-node12
+		node${NODE_VER_MAJOR}>0:www/node${NODE_VER_MAJOR} \
+		npm-node${NODE_VER_MAJOR}>0:www/npm-node${NODE_VER_MAJOR}
 LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-atk \
 		libatspi.so:accessibility/at-spi2-core \
 		libsnappy.so:archivers/snappy \
@@ -54,7 +55,7 @@ LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-atk \
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 TEST_DEPENDS=	git:devel/git \
 		${PYTHON_PKGNAMEPREFIX}python-dbusmock>0:devel/py-python-dbusmock@${PY_FLAVOR} \
-		npm-node12>0:www/npm-node12
+		npm-node${NODE_VER_MAJOR}>0:www/npm-node${NODE_VER_MAJOR}
 
 USES=		bison dos2unix gettext-tools gl gnome jpeg localbase:ldflags \
 		ninja pkgconfig python:2.7,build,test tar:xz xorg
@@ -63,9 +64,6 @@ USE_GITHUB=	yes
 GH_TAGNAME=	${DISTVERSIONPREFIX}${ELECTRON_VER}
 GH_TUPLE=	nodejs:node:v${NODE_VER}:node \
 		nodejs:nan:${NAN_VER}:nan
-		# boto:boto:f7574aa6cc2c819430c1f05e9a1a1a666ef8169b:boto \
-		# yaml:pyyaml:3.12:pyyaml \
-		# kennethreitz:requests:e4d59bedfd3c7f4f254f4f5d036587bcd8152458:requests
 
 # Official chromium version containing "gn" which is known to work
 CHROMIUM_OFFICIAL_VER=	78.0.3904.108
@@ -77,6 +75,7 @@ CHROMIUM_NODE_MODULES_HASH=	ab7f28fee456b5af5fbd3fcb5bcc7c61420788c9
 CHROMIUM_TEST_FONTS_HASH=	a22de844e32a3f720d219e3911c3da3478039f89
 # See ${WRKSRC}/electron/DEPS for NODE_VER
 NODE_VER=	12.8.1
+NODE_VER_MAJOR=	${NODE_VER:C/\..*$//}
 # See ${WRKSRC}/electron/DEPS for NAN_VER
 NAN_VER=	2ee313aaca52e2b478965ac50eb5082520380d1b
 
@@ -163,7 +162,7 @@ PULSEAUDIO_VARS_OFF=	GN_ARGS+=use_pulseaudio=false
 POST_BUILD_TARGETS=	licenses version
 POST_BUILD_DIST_TARGETS=	electron_dist_zip electron_chromedriver_zip electron_mksnapshot_zip
 
-YARN_TIMESTAMP=	1588233431
+YARN_TIMESTAMP=	1591165014
 
 PLIST_SUB=	ELECTRON_VER=${ELECTRON_VER} \
 		ELECTRON_VER_MAJOR=${ELECTRON_VER_MAJOR}
@@ -216,14 +215,6 @@ post-extract:
 	${ECHO_CMD} 'yarn-offline-mirror "../../../yarn-offline-cache"' >> ${WRKSRC}/electron/.yarnrc
 	cd ${WRKSRC}/electron && \
 		${SETENV} HOME=${WRKDIR} XDG_CACHE_HOME=${WRKDIR}/.cache yarn --frozen-lockfile --offline
-	# ${RMDIR} ${WRKSRC}/electron/vendor/${GH_PROJECT_boto}
-	# ${MV} ${WRKDIR}/${PORTNAME}-${ELECTRON_VER}/${GH_PROJECT_boto}-${GH_TAGNAME_boto} \
-	# 	${WRKSRC}/electron/vendor/${GH_PROJECT_boto}
-	# ${MV} ${WRKDIR}/${PORTNAME}-${ELECTRON_VER}/${GH_PROJECT_pyyaml}-${GH_TAGNAME_pyyaml} \
-	# 	${WRKSRC}/electron/vendor/${GH_PROJECT_pyyaml}
-	# ${RMDIR} ${WRKSRC}/electron/vendor/${GH_PROJECT_requests}
-	# ${MV} ${WRKDIR}/${PORTNAME}-${ELECTRON_VER}/${GH_PROJECT_requests}-${GH_TAGNAME_requests} \
-	# 	${WRKSRC}/electron/vendor/${GH_PROJECT_requests}
 	${MV} ${WRKDIR}/${PORTNAME}-${ELECTRON_VER}/node_modules ${WRKSRC}/third_party/node
 	${MV} ${WRKDIR}/${PORTNAME}-${ELECTRON_VER}/test_fonts ${WRKSRC}/third_party/test_fonts
 
@@ -233,10 +224,6 @@ pre-patch:
 	# ${FIND} ${WRKSRC} -type f -name '*~' -print -delete
 
 pre-configure:
-	# cd ${WRKSRC}/electron/vendor/${GH_PROJECT_boto} && \
-	# 	${PYTHON_CMD} setup.py build
-	# cd ${WRKSRC}/electron/vendor/${GH_PROJECT_requests} && \
-	# 	${PYTHON_CMD} setup.py build
 	# We used to remove bundled libraries to be sure that chromium uses
 	# system libraries and not shipped ones.
 	# cd ${WRKSRC} && ${PYTHON_CMD} \
@@ -259,9 +246,6 @@ do-configure:
 	# Setup java dependency
 	${MKDIR} ${WRKDIR}/bin
 	${LN} -sf ${LOCALBASE}/openjdk8/bin/java ${WRKDIR}/bin/java
-
-# do-build:
-# 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ninja -C out/${BUILDTYPE} ${ALL_TARGET}
 
 post-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \

@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	talk
-PORTVERSION=	8.0.8
-CATEGORIES=	net-im
+PORTVERSION=	10.0.0
+CATEGORIES=	net-im www
 MASTER_SITES=	https://github.com/${PKGNAMEPREFIX:S/-//}/${DISTNAME:C/-.*//}/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	nextcloud-
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
@@ -17,7 +17,7 @@ COMMENT=	Online meeting app for Nextcloud
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	nextcloud${PHP_PKGNAMESUFFIX}>=18:www/nextcloud@${PHP_FLAVOR}
+RUN_DEPENDS=	nextcloud${PHP_PKGNAMESUFFIX}>=20:www/nextcloud@${PHP_FLAVOR}
 
 USES=		php:flavors
 NO_BUILD=	yes
@@ -29,7 +29,7 @@ NEXTCLOUD_GROUPNAME?=	${WWWGRP}
 PLIST_SUB=	NEXTCLOUD_USERNAME=${NEXTCLOUD_USERNAME} \
 		NEXTCLOUD_GROUPNAME=${NEXTCLOUD_GROUPNAME}
 
-WWWDIR=		${PREFIX}/www/nextcloud/apps-pkg/${PORTNAME}
+WWWDIR=		${PREFIX}/www/nextcloud/apps-pkg/spreed
 
 do-install:
 	${MKDIR} ${STAGEDIR}${WWWDIR}

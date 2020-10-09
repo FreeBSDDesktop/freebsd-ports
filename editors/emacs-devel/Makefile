@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	emacs
-DISTVERSION=	28.0.50.20200501
+DISTVERSION=	28.0.50.20201006
 PORTEPOCH=	2
 CATEGORIES=	editors
 PKGNAMESUFFIX=	-devel
@@ -28,7 +28,7 @@ USES=		autoreconf:build cpe gmake localbase:ldflags ncurses pkgconfig
 CPE_VENDOR=	gnu
 USE_GITHUB=	yes
 GH_ACCOUNT=	emacs-mirror
-GH_TAGNAME=	c59e878
+GH_TAGNAME=	278c9d6
 
 .if ${FLAVOR:U} != nox
 USES+=		desktop-file-utils gnome xorg
@@ -38,7 +38,9 @@ USE_XORG=	ice sm x11 xcb xext xfixes xinerama xmu xrandr xrender xt
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--disable-build-details \
-			--localstatedir=/var
+			--localstatedir=/var \
+			--without-libsystemd \
+			--without-selinux
 .if ${FLAVOR:U} == nox
 CONFIGURE_ARGS+=	--with-sound=no \
 			--with-x-toolkit=no \
@@ -142,7 +144,6 @@ GIF_LIB_DEPENDS=		libgif.so:graphics/giflib
 GIF_CONFIGURE_WITH=		gif
 GNUTLS_LIB_DEPENDS=		libgnutls.so:security/gnutls
 GNUTLS_CONFIGURE_WITH=		gnutls
-GSETTINGS_IMPLIES=		DBUS
 GSETTINGS_USE=			GNOME=glib20
 GSETTINGS_CONFIGURE_WITH=	gsettings
 GTK2_LIB_DEPENDS=		libfontconfig.so:x11-fonts/fontconfig \
@@ -196,7 +197,8 @@ XFT_LIB_DEPENDS=		libfontconfig.so:x11-fonts/fontconfig \
 XFT_USE=			XORG=xft,xrender
 XFT_CONFIGURE_WITH=		xft
 XIM_CONFIGURE_WITH=		xim
-XML_USES=			gnome # portlint complains, but use for nox
+# keep XML_USES=gnome, because nox flavor does not have USES=gnome
+XML_USES=			gnome
 XML_USE=			GNOME=libxml2
 XML_CONFIGURE_WITH=		xml2
 XPM_USE=			XORG=xpm

@@ -1,4 +1,4 @@
---- test/smoke/src/main.ts.orig	2020-04-16 15:59:11 UTC
+--- test/smoke/src/main.ts.orig	2020-06-09 17:02:22 UTC
 +++ test/smoke/src/main.ts
 @@ -95,7 +95,7 @@ if (!opts.web) {
  		switch (process.platform) {

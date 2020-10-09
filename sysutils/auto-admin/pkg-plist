@@ -43,6 +43,7 @@ sbin/auto-enable-service
 sbin/auto-fastest-mirror
 sbin/auto-fetch-install-media
 sbin/auto-file-secure
+sbin/auto-firewall-setup
 sbin/auto-freebsd-wip-checkout
 sbin/auto-fusefs-install
 sbin/auto-gpu-setup
@@ -71,6 +72,7 @@ sbin/auto-media-format
 sbin/auto-mount-any
 sbin/auto-network-restart
 sbin/auto-nfs-add-share
+sbin/auto-nfs-client-setup
 sbin/auto-nfs-restart
 sbin/auto-nfs-server-setup
 sbin/auto-octet-to-hex
@@ -103,6 +105,7 @@ sbin/auto-restore-user
 sbin/auto-root-check
 sbin/auto-secure-directory
 sbin/auto-service-enabled
+sbin/auto-set-conf-var
 sbin/auto-set-hostname
 sbin/auto-set-lid-switch-mode
 sbin/auto-set-memory-limits
@@ -111,6 +114,7 @@ sbin/auto-set-umask
 sbin/auto-sound-driver-setup
 sbin/auto-ssh-authorize
 sbin/auto-ssh-reverse-authorize
+sbin/auto-su+j-toggle
 sbin/auto-transfer-pw
 sbin/auto-unlock-local-pw
 sbin/auto-unlock-user
@@ -121,5 +125,6 @@ sbin/auto-useradd
 sbin/auto-using-pkgsrc
 sbin/auto-wheel-check
 sbin/auto-wifi-failover
+sbin/auto-write-cache-toggle
 sbin/auto-xdm-toggle
 %%DATADIR%%/ipfw-rules.sh

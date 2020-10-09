@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	logstash
-PORTVERSION=	7.6.2
+PORTVERSION=	7.9.2
 CATEGORIES=	sysutils java
 MASTER_SITES=	http://artifacts.elastic.co/downloads/logstash/
 PKGNAMESUFFIX=	7
@@ -21,7 +21,7 @@ CONFLICTS=	logstash5-[0-9]* logstash6-[0-9]*
 SHEBANG_FILES=	bin/*
 CPE_VENDOR=	elasticsearch
 USE_JAVA=	yes
-JAVA_VERSION=	1.8+
+JAVA_VERSION=	8+
 JAVA_RUN=	yes
 NO_BUILD=	yes
 
@@ -67,6 +67,12 @@ post-install:
 .for x in ${LOGSTASH_CONF_FILES}
 	${ECHO} "@sample ${ETCDIR}/${x}.sample" >> ${TMPPLIST}
 .endfor
+	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/build_info" >> ${TMPPLIST}
+	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/cache" >> ${TMPPLIST}
+	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/doc" >> ${TMPPLIST}
+	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/extensions" >> ${TMPPLIST}
+	${ECHO} "@dir logstash/vendor/bundle/jruby/2.5.0/gems/manticore-0.6.4-java/spec/ssl" >> ${TMPPLIST}
+	${ECHO} "@dir logstash/vendor/jruby/lib/ruby/gems/shared/cache" >> ${TMPPLIST}
 	${FIND} -s ${STAGEDIR}${PREFIX}/logstash -not -type d | ${SORT} | \
 		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
 	${ECHO} "@dir(logstash,logstash,) logstash/data" >> ${TMPPLIST}

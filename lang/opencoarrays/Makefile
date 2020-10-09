@@ -2,17 +2,18 @@
 # $FreeBSD$
 
 PORTNAME=	opencoarrays
-DISTVERSION=	2.7.1
-PORTREVISION=	3
+DISTVERSION=	2.9.0
 CATEGORIES=	lang parallel
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	miguel@gocobachi.dev
 COMMENT=	Transport layer for coarray Fortran compilers
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_aarch64=		fails to build: Can't open module file 'ieee_arithmetic.mod' for reading at (1): No such file or directory
+BROKEN_FreeBSD_12_powerpc64=	fails to build: CMake Warning at CMakeLists.txt:280 (message): Could not find all MPI components!
+BROKEN_FreeBSD_13_powerpc64=	fails to build: Can't open module file 'ieee_arithmetic.mod' for reading at (1): No such file or directory
 
 BUILD_DEPENDS=	bash:shells/bash
 RUN_DEPENDS=	bash:shells/bash

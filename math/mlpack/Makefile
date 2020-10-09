@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	mlpack
-DISTVERSION=	3.3.1
+DISTVERSION=	3.4.1
 CATEGORIES=	math # machine-learning
 MASTER_SITES=	https://mlpack.org/files/
 
@@ -9,6 +9,8 @@ MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Fast, flexible machine learning library
 
 LICENSE=	BSD3CLAUSE
+
+BROKEN_i386=	undefined symbol: __atomic_load
 
 BUILD_DEPENDS=	ensmallen>0:math/ensmallen \
 		${LOCALBASE}/include/stb/stb_image.h:devel/stb

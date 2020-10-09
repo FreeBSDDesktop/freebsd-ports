@@ -2,7 +2,7 @@
 
 PORTNAME=	llvm
 DISTVERSION=	9.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel lang
 MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION}/
 PKGNAMESUFFIX=	${LLVM_SUFFIX}
@@ -65,7 +65,7 @@ CXXFLAGS+=	-DNDEBUG
 OPTIONS_DEFINE=	BE_AMDGPU CLANG DOCS ELFV2 EXTRAS LIT LLD LLD_LINK LLDB PYCLANG
 OPTIONS_DEFINE_amd64=	COMPILER_RT GOLD OPENMP
 OPTIONS_DEFINE_i386=	COMPILER_RT OPENMP
-OPTIONS_DEFINE_powerpc64=	OPENMP
+OPTIONS_DEFINE_powerpc64=	GOLD OPENMP
 OPTIONS_DEFAULT=	BE_AMDGPU BE_STANDARD CLANG EXTRAS LIT LLD LLD_LINK LLDB PYCLANG
 OPTIONS_DEFAULT_amd64=	COMPILER_RT GOLD OPENMP
 OPTIONS_DEFAULT_i386=	COMPILER_RT OPENMP
@@ -93,7 +93,7 @@ COMPILER_RT_DESC=	Sanitizer libraries
 COMPILER_RT_DISTFILES=	compiler-rt-${DISTVERSION}.src${EXTRACT_SUFX}
 COMPILER_RT_PLIST_FILES=${_COMPILER_RT_LIBS:S|^|${_CRTLIBDIR}/|} \
 			${_COMPILER_RT_BLACKLISTS:S|^|${_CRTBLDIR}/|}
-DOCS_BUILD_DEPENDS=	sphinx-build-${PYTHON_VER}:textproc/py-sphinx@${PY_FLAVOR} \
+DOCS_BUILD_DEPENDS=	${PY_SPHINX} \
 			${PYTHON_PKGNAMEPREFIX}recommonmark>=0.0.20180530:textproc/py-recommonmark@${PY_FLAVOR}
 DOCS_CONFLICTS_BUILD=	commonmark-cmark-*
 DOCS_PORTDOCS=		llvm
@@ -104,7 +104,7 @@ DOCS_CMAKE_ON=		-DLLVM_ENABLE_SPHINX=ON \
 DOCS_PLIST_FILES=	${MAN1SRCS:S|^|man/man1/|:S|.1$|${LLVM_SUFFIX}.1.gz|}
 ELFV2_DESC=		[PowerPC64] Use OpenPOWER ELF ABI v2 by default
 ELFV2_EXTRA_PATCHES=	${PATCHDIR}/ppc64-elfv2
-ELFV2_IMPLIES=		CLANG
+ELFV2_IMPLIES=		CLANG GOLD
 EXTRAS_DESC=		Extra clang tools
 EXTRAS_EXTRA_PATCHES=	${PATCHDIR}/extras
 EXTRAS_IMPLIES=		CLANG
@@ -119,7 +119,7 @@ LLD_DISTFILES=		lld-${DISTVERSION}.src${EXTRACT_SUFX}
 LLD_EXTRA_PATCHES=	${PATCHDIR}/lld
 LLD_LINK_DESC=		Link ld.lld as ld to clang uses it
 LLD_LINK_IMPLIES=	LLD
-LLDB_BUILD_DEPENDS=	swig3.0:devel/swig30 \
+LLDB_BUILD_DEPENDS=	swig:devel/swig \
 			${PY_ENUM34}
 LLDB_DESC=		Install lldb, the LLVM debugger
 LLDB_DISTFILES=		lldb-${DISTVERSION}.src${EXTRACT_SUFX}
@@ -453,6 +453,10 @@ post-patch-CLANG-on:
 	    ${PATCH_WRKSRC}/tools/clang/tools/clang-format/clang-format.py \
 	    ${PATCH_WRKSRC}/tools/clang/tools/clang-format/clang-format-sublime.py \
 	    ${PATCH_WRKSRC}/tools/clang/tools/clang-format/git-clang-format
+
+post-patch-LLD-on:
+		${REINPLACE_CMD} -e "s|'indexsidebar.html'|['indexsidebar.html']|" \
+			${PATCH_WRKSRC}/tools/lld/docs/conf.py
 
 post-build-COMPILER_RT-on:
 	${MKDIR} ${WRKDIR}/compiler-rt-build

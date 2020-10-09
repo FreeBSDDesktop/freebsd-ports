@@ -2,7 +2,7 @@
 
 PORTNAME=	squid
 PORTVERSION=	3.5.28
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www
 MASTER_SITES=	http://www.squid-cache.org/Versions/v3/${PORTVERSION:R}/ \
 		http://www2.us.squid-cache.org/Versions/v3/${PORTVERSION:R}/ \
@@ -185,6 +185,8 @@ TP_PF_DESC=		Transparent proxying with PF
 VIA_DB_DESC=		Forward/Via database
 WCCPV2_DESC=		Web Cache Coordination Protocol v2
 WCCP_DESC=		Web Cache Coordination Protocol
+
+CFLAGS+=		-Wno-error=deprecated-declarations
 
 change_files=	ChangeLog \
 		contrib/nextstep/makepkg \

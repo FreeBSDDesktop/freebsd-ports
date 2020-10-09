@@ -1,3 +1,3 @@
-TIMESTAMP = 1587581288
-SHA256 (KDE/applications/20.04.0/khelpcenter-20.04.0.tar.xz) = 7ab684e6d176124002989b02a868f1dcc42fbc836066207053af41a6651a96c4
-SIZE (KDE/applications/20.04.0/khelpcenter-20.04.0.tar.xz) = 3842828
+TIMESTAMP = 1598945548
+SHA256 (KDE/release-service/20.08.1/khelpcenter-20.08.1.tar.xz) = 217b433c1a5da966ad5dab1e89e2e719632f1e035ab92cce094c5f0848bb6e39
+SIZE (KDE/release-service/20.08.1/khelpcenter-20.08.1.tar.xz) = 4250712

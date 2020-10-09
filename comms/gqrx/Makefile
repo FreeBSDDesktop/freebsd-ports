@@ -4,7 +4,7 @@
 PORTNAME=	gqrx
 PORTVERSION=	2.12.1
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	comms hamradio
 
@@ -28,7 +28,7 @@ LIB_DEPENDS=	libgnuradio-runtime.so:comms/gnuradio \
 		libgmpxx.so:math/gmp \
 		libgmp.so:math/gmp
 
-USES=		gl pkgconfig qmake qt:5
+USES=		compiler:c++11-lang gl pkgconfig qmake qt:5
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	csete

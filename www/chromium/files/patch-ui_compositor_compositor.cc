@@ -1,7 +1,7 @@
---- ui/compositor/compositor.cc.orig	2020-03-16 18:40:43 UTC
+--- ui/compositor/compositor.cc.orig	2020-07-07 21:58:19 UTC
 +++ ui/compositor/compositor.cc
-@@ -669,7 +669,7 @@ void Compositor::OnFrameTokenChanged(uint32_t frame_to
-   NOTREACHED();
+@@ -740,7 +740,7 @@ void Compositor::CancelThroughtputTracker(TrackerId tr
+   throughput_tracker_map_.erase(tracker_id);
  }
  
 -#if defined(OS_LINUX) && !defined(OS_CHROMEOS)

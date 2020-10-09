@@ -1,5 +1,5 @@
-TIMESTAMP = 1588320903
-SHA256 (puppetserver-6.11.0.tar.gz) = 6de84d71744d5ba15b8ee2bed6a8eb7fb3cd52477c61d624c1fd10f87f735a8f
-SIZE (puppetserver-6.11.0.tar.gz) = 60230325
+TIMESTAMP = 1598484564
+SHA256 (puppetserver-6.13.0.tar.gz) = 6586db5424260a050e7cbfdd9dd01d939906068cab758d6fe7e54819f032b914
+SIZE (puppetserver-6.13.0.tar.gz) = 61890579
 SHA256 (ffi.rb) = f991c5eb6b6e4c88541af592207aa7ea14ba48f482978b3b479c4b17390e8e93
 SIZE (ffi.rb) = 5893

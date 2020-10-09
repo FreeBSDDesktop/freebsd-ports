@@ -2,7 +2,7 @@
 
 PORTNAME=	plumed
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.6.0
+DISTVERSION=	2.6.1
 CATEGORIES=	science graphics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -10,6 +10,8 @@ COMMENT=	PLUgin for MolEcular Dynamics
 
 LICENSE=	LGPL3
 LICENSE_FILE=	${WRKSRC}/COPYING.LESSER
+
+BROKEN_i386=	undefined reference to `__atomic_load'
 
 BUILD_DEPENDS=	bash:shells/bash \
 		xxd:editors/vim-console

@@ -2,12 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	freerdp
-DISTVERSION=	2.0.0-rc4
-PORTREVISION=	8
+DISTVERSION=	2.2.0
+PORTREVISION=	1
 CATEGORIES=	net comms
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES=	649f49f.patch:-p1 effa8b8.patch:-p1 0c83efa.patch:-p1
+MASTER_SITES=   https://pub.freerdp.com/releases/ \
+		https://github.com/FreeRDP/FreeRDP/releases/download/${DISTVERSION}/
 
 MAINTAINER=	kevans@FreeBSD.org
 COMMENT=	Free implementation of Remote Desktop Protocol
@@ -18,16 +17,21 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BROKEN_SSL=	libressl-devel
 BROKEN_SSL_REASON_libressl-devel=	fails to compile: no member named 'alert_dispatch' in 'struct ssl3_state_st'
 
-LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim
+LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib	\
+		libepoll-shim.so:devel/libepoll-shim	\
+		libudev.so:devel/libudev-devd		\
+		libuuid.so:misc/e2fsprogs-libuuid
 
 USES=		alias cmake compiler:c++11-lib cpe gettext gnome localbase pathfix pkgconfig ssl
 USE_LDCONFIG=	yes
 
 CPE_VENDOR=	freerdp_project
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	FreeRDP
-GH_PROJECT=	${GH_ACCOUNT}
+PATCHVERSION=	${PORTVERSION}
+MAJORVERSION=	${PORTVERSION:R:R}
+
+PLIST_SUB+=	PATCHVERSION="${PATCHVERSION}"
+PLIST_SUB+=	MAJORVERSION="${MAJORVERSION}"
 
 CMAKE_ARGS+=	-DWITH_CHANNELS:BOOL=ON \
 		-DWITH_DIRECTFB:BOOL=OFF \
@@ -46,6 +50,7 @@ CMAKE_ARGS+=	-DWITH_CHANNELS:BOOL=ON \
 		-DWITH_THIRD_PARTY:BOOL=OFF \
 		-DWITH_VALGRIND_MEMCHECK:BOOL=OFF -DWITH_X264:BOOL=OFF \
 		-DWITH_ZLIB:BOOL=ON \
+		-DCHANNEL_URBDRC_CLIENT:BOOL=ON \
 		${CMAKE_ARGS_${ARCH}}
 
 CMAKE_ARGS_aarch64=	-DWITH_NEON=ON
@@ -157,5 +162,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|gsm/gsm.h|gsm.h|' \
 		${WRKSRC}/cmake/FindGSM.cmake \
 		${WRKSRC}/libfreerdp/codec/dsp.c
+
+pre-configure:
+	${CP} ${FILESDIR}/mntent.h ${WRKSRC}/rdtk/include
+	${CP} ${FILESDIR}/mntent_compat.c ${WRKSRC}/channels/rdpdr/client
 
 .include <bsd.port.mk>

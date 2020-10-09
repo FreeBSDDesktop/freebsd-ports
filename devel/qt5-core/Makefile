@@ -9,8 +9,10 @@ PKGNAMEPREFIX=	qt5-
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Qt core non-graphical module
 
-LIB_DEPENDS=	libicui18n.so:devel/icu \
-		libpcre2-posix.so:devel/pcre2
+LIB_DEPENDS=	libdouble-conversion.so:devel/double-conversion \
+		libicui18n.so:devel/icu \
+		libpcre2-posix.so:devel/pcre2 \
+		libzstd.so:archivers/zstd
 
 USES=		compiler:c++11-lang gnome qmake:no_env qt-dist:5,base
 USE_GNOME=	glib20
@@ -24,8 +26,9 @@ CONFIGURE_ARGS=	-no-accessibility -no-gif -no-libpng -no-libjpeg \
 		-no-iconv -no-dbus -no-opengl \
 		-no-egl -no-evdev \
 		-no-fontconfig -no-freetype -no-gtk -no-harfbuzz \
-		-no-libudev -no-xcb -no-xkb -no-xcb-xlib \
+		-no-libudev -no-xcb -no-xcb-xlib \
 		-no-xkbcommon -no-libinput
+
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 BUILD_WRKSRC=	${WRKSRC}/src/corelib

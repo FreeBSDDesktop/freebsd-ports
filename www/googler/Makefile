@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	googler
-PORTVERSION=	3.9
+PORTVERSION=	4.2
 DISTVERSIONPREFIX=	v
-PORTREVISION=	0
 CATEGORIES=	www
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -15,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	xclip:x11/xclip
 
-USES=		python:3.3+ shebangfix
+USES=		python:3.5+ shebangfix
 USE_GITHUB=	yes
 
 GH_ACCOUNT=	jarun
@@ -34,5 +33,8 @@ post-patch:
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}/${PREFIX}/bin/${PORTNAME}
 	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}/${MANPREFIX}/man/man1/
+
+do-test:
+	@cd ${WRKSRC} && ${PYTHON_CMD} -m pytest tests
 
 .include <bsd.port.mk>

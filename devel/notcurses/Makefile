@@ -2,29 +2,37 @@
 
 PORTNAME=	notcurses
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.4-58
-DISTVERSIONSUFFIX=	-g006f430
+DISTVERSION=	${ABIVERSION}.7.0
 CATEGORIES=	devel
 
-MAINTAINER=	yuri@FreeBSD.org
+MAINTAINER=	nickblack@linux.com
 COMMENT=	TUI library for modern terminal emulators
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libavformat.so:multimedia/ffmpeg \
-		libqrcodegen.so:graphics/qr-code-generator
+		libqrcodegen.so:graphics/qr-code-generator \
+		libunistring.so:devel/libunistring
 
-USES=		cmake compiler:c++17-lang localbase ncurses:port pkgconfig python:run shebangfix
-SHEBANG_FILES=	src/pydemo/notcurses-pydemo
+USES=		cmake:noninja compiler:c++17-lang localbase ncurses:port pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	dankamongmen
 USE_LDCONFIG=	yes
 
-CMAKE_OFF=	USE_PANDOC USE_TESTS USE_PYTHON
+ABIVERSION=	1
 
-OPTIONS_DEFINE=	DOCS
+PLIST_SUB=	REL_VER=${DISTVERSION} ABI_VER=${ABIVERSION}
 
-PORTDOCS=	*
+TEST_TARGET=	test
+
+OPTIONS_DEFINE=		DOCS
+OPTIONS_SUB=		yes
+
+DOCS_CMAKE_BOOL=	USE_PANDOC USE_DOCTEST
+DOCS_BUILD_DEPENDS=	${LOCALBASE}/include/doctest/doctest.h:devel/doctest \
+			pandoc:textproc/hs-pandoc
+
+PORTDOCS=	*.md
 
 .include <bsd.port.mk>

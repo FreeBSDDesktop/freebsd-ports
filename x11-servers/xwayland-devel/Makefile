@@ -2,16 +2,14 @@
 
 PORTNAME=	xwayland
 DISTVERSIONPREFIX=	xorg-server-
-DISTVERSION=	1.20.0-641
-DISTVERSIONSUFFIX=	-g${GL_COMMIT:C/(.{12}).*/\1/}
-PORTREVISION=	1
+DISTVERSION=	1.20.0-742
+DISTVERSIONSUFFIX=	-g1626e9fa7
 CATEGORIES=	x11-servers
 PKGNAMESUFFIX=	-devel
 
-PATCH_SITES=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/commit/
-PATCHFILES+=	71749de24509.patch:-p1 # https://gitlab.freedesktop.org/xorg/xserver/merge_requests/393
-PATCHFILES+=	1e897704c822.patch:-p1 # https://gitlab.freedesktop.org/xorg/xserver/merge_requests/393
-PATCHFILES+=	83cda3ce3195.patch:-p1 # https://gitlab.freedesktop.org/xorg/xserver/merge_requests/393
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	9e0086f99b39.patch:-p1 # https://gitlab.freedesktop.org/xorg/xserver/-/merge_requests/432
+PATCHFILES+=	5ac296eb6c4e.patch:-p1 # https://gitlab.freedesktop.org/xorg/xserver/-/merge_requests/432
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	X11 server as Wayland client (development snapshot)
@@ -31,13 +29,11 @@ RUN_DEPENDS=	xkbcomp:x11/xkbcomp \
 CONFLICTS_INSTALL=	${PORTNAME}
 
 USES=		compiler:c11 gl meson pkgconfig xorg
-USE_GITLAB=	yes
+USE_GITHUB=	yes
 USE_GL=		gbm gl
 USE_XORG=	pixman xau xdmcp xfont2 xkbfile xshmfence xtrans
-GL_SITE=	https://gitlab.freedesktop.org
-GL_ACCOUNT=	xorg
-GL_PROJECT=	xserver
-GL_COMMIT=	785e59060c00129e47da6c0877604a56d7e0e32f
+GH_ACCOUNT=	freedesktop
+GH_PROJECT=	xorg-xserver
 MESON_ARGS=	-Dxwayland=true \
 		-Dxorg=false \
 		-Dxnest=false \
@@ -45,7 +41,8 @@ MESON_ARGS=	-Dxwayland=true \
 		-Dudev=false \
 		-Dudev_kms=false \
 		-Ddefault_font_path="${DEFAULT_FONTPATH_LIST:ts,}"
-PLIST_FILES=	bin/Xwayland
+PLIST_FILES=	bin/Xwayland \
+		libdata/pkgconfig/xwayland.pc
 
 # Keep in sync with xorg-server
 FONTPATH_ROOT?=	${LOCALBASE}/share/fonts
@@ -69,5 +66,7 @@ do-install:
 # Wayland compositors only use the binary
 	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/hw/xwayland/Xwayland \
 		${STAGEDIR}${PREFIX}/bin
+	${INSTALL_DATA} ${BUILD_WRKSRC}/hw/xwayland/xwayland.pc \
+		${STAGEDIR}${PREFIX}/libdata/pkgconfig
 
 .include <bsd.port.mk>

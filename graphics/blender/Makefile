@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	blender
-DISTVERSION=	2.82
-PORTREVISION=	4
+DISTVERSION=	2.90.0
+PORTREVISION=	1
 CATEGORIES=	graphics multimedia
 MASTER_SITES=	http://download.blender.org/source/ \
 		http://mirror.cs.umn.edu/blender.org/source/ \
@@ -15,6 +15,9 @@ COMMENT=	3D modeling/rendering/animation package
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/doc/license/GPL3-license.txt
 
+NOT_FOR_ARCHS=	i386
+NOT_FOR_ARCHS_REASON=	uses 64bit atomic functions
+
 BUILD_DEPENDS=	${PYNUMPY}
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libfreetype.so:print/freetype2 \
@@ -24,7 +27,7 @@ RUN_DEPENDS=	${PYNUMPY}
 # libraries are used, if either of the most common options in blender
 # are set. We will pull boost in just to be on the safe side.
 
-USES=		cmake compiler:c++14-lang gl jpeg python:3.7 shebangfix \
+USES=		cmake compiler:c++14-lang gl jpeg python:3.8 shebangfix \
 		tar:xz xorg
 USE_XORG=	x11 xext xfixes xmu xrender
 USE_GL=		gl glu glew
@@ -47,9 +50,7 @@ CXXFLAGS_i386=	-march=i586
 LDFLAGS+=	-fuse-ld=lld
 .endif
 
-# version without trailing update letters
-VERDIR=		${DISTVERSION:C/[abcdef]//g}
-PLIST_SUB+=	VER=${VERDIR}
+PLIST_SUB+=	VER=${DISTVERSION:R}
 LLVM_VER=	90
 OPTIONS_SUB=	yes
 
@@ -76,6 +77,7 @@ COLLADA_USES=			gnome
 COMPOSITOR_CMAKE_BOOL=		WITH_COMPOSITOR
 CYCLES_IMPLIES=			OPENIMAGEIO
 CYCLES_CMAKE_BOOL=		WITH_CYCLES
+CYCLES_LIB_DEPENDS=		libpugixml.so:textproc/pugixml
 CYCLESEMBR_IMPLIES=		CYCLES
 CYCLESEMBR_CMAKE_BOOL=		WITH_CYCLES_EMBREE
 CYCLESEMBR_LIB_DEPENDS=		libembree3.so:graphics/embree
@@ -84,7 +86,8 @@ CYCLESEMBR_ONLY_FOR_ARCHS_REASON=	embree only supports amd64
 CYCLESOSL_IMPLIES=		CYCLES
 CYCLESOSL_CMAKE_BOOL=		WITH_CYCLES_OSL WITH_LLVM
 CYCLESOSL_CMAKE_ON=		-DLLVM_STATIC:BOOL=OFF \
-				-DLLVM_CONFIG:STRING="${LOCALBASE}/bin/llvm-config${LLVM_VER}"
+				-DLLVM_CONFIG:STRING="${LOCALBASE}/bin/llvm-config${LLVM_VER}" \
+				-DOSL_ROOT_DIR:STRING="${LOCALBASE}/share/openshadinglanguage/"
 CYCLESOSL_BUILD_DEPENDS=	llvm-config${LLVM_VER}:devel/llvm${LLVM_VER}
 CYCLESOSL_LIB_DEPENDS=		liboslcomp.so:graphics/openshadinglanguage
 CYCLESOSL_RUN_DEPENDS=		llvm-config${LLVM_VER}:devel/llvm${LLVM_VER}
@@ -180,7 +183,7 @@ post-install-DRACO-on:
 	${MKDIR} ${STAGEDIR}/${PYTHON_SITELIBDIR}/
 	${INSTALL_LIB} ${INSTALL_WRKSRC}/lib/libextern_draco.so ${STAGEDIR}/${PYTHON_SITELIBDIR}/
 	${STRIP_CMD} ${STAGEDIR}/${PYTHON_SITELIBDIR}/libextern_draco.so
-	@${RM} -R ${STAGEDIR}/${PREFIX}/share/blender/${VERDIR}/python
+	@${RM} -R ${STAGEDIR}/${PREFIX}/share/blender/${DISTVERSION:R}/python
 
 post-install-MENU-on:
 	@-update-desktop-database -q

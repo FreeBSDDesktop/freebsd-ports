@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ddtrace
-PORTVERSION=	0.35.1
+PORTVERSION=	0.41.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 

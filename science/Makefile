@@ -22,6 +22,7 @@
     SUBDIR += R-cran-snow
     SUBDIR += R-cran-som
     SUBDIR += R-cran-udunits2
+    SUBDIR += abinit
     SUBDIR += afni
     SUBDIR += agrum
     SUBDIR += aircraft-datcom
@@ -30,11 +31,11 @@
     SUBDIR += atompaw
     SUBDIR += avogadro2
     SUBDIR += avogadrolibs
+    SUBDIR += axom
     SUBDIR += bagel
     SUBDIR += bddsolve
     SUBDIR += berkeleygw
     SUBDIR += bodr
-    SUBDIR += brian
     SUBDIR += buddy
     SUBDIR += cdcl
     SUBDIR += cdf
@@ -52,7 +53,9 @@
     SUBDIR += clipper
     SUBDIR += code_saturne
     SUBDIR += colt
+    SUBDIR += conduit
     SUBDIR += coordgenlibs
+    SUBDIR += cp2k
     SUBDIR += cp2k-data
     SUBDIR += crf++
     SUBDIR += dalton
@@ -70,12 +73,13 @@
     SUBDIR += elmerfem
     SUBDIR += epte
     SUBDIR += erd
+    SUBDIR += ergo
     SUBDIR += erkale
     SUBDIR += erkale-pseudopotentials
     SUBDIR += fastcap
     SUBDIR += fasthenry
+    SUBDIR += fastjet
     SUBDIR += fisicalab
-    SUBDIR += fleur
     SUBDIR += fsom
     SUBDIR += fvcom
     SUBDIR += fvcom-mpi
@@ -100,6 +104,7 @@
     SUBDIR += hdf5
     SUBDIR += hdf5-18
     SUBDIR += healpix
+    SUBDIR += hepmc3
     SUBDIR += highfive
     SUBDIR += hypre
     SUBDIR += iboview
@@ -134,7 +139,6 @@
     SUBDIR += libvdwxc
     SUBDIR += libxc
     SUBDIR += liggghts
-    SUBDIR += lm
     SUBDIR += luscus
     SUBDIR += madness
     SUBDIR += maeparser
@@ -206,7 +210,6 @@
     SUBDIR += packmol
     SUBDIR += pagmo2
     SUBDIR += paje
-    SUBDIR += paraview
     SUBDIR += pcmsolver
     SUBDIR += plumed
     SUBDIR += pnetcdf
@@ -218,7 +221,6 @@
     SUBDIR += py-MDAnalysisTests
     SUBDIR += py-OpenFermion
     SUBDIR += py-PyFR
-    SUBDIR += py-PyQuante
     SUBDIR += py-SimpleSpectral
     SUBDIR += py-abipy
     SUBDIR += py-asdf
@@ -234,6 +236,7 @@
     SUBDIR += py-geolinks
     SUBDIR += py-geomet
     SUBDIR += py-geometer
+    SUBDIR += py-geometric
     SUBDIR += py-gpaw
     SUBDIR += py-gsd
     SUBDIR += py-h5json
@@ -241,11 +244,12 @@
     SUBDIR += py-kim-query
     SUBDIR += py-kinematics
     SUBDIR += py-kliff
+    SUBDIR += py-liac-arff
     SUBDIR += py-lifelines
     SUBDIR += py-mdp
-    SUBDIR += py-mlpy
     SUBDIR += py-mmtf-python
     SUBDIR += py-molmod
+    SUBDIR += py-moltemplate
     SUBDIR += py-netCDF4
     SUBDIR += py-obspy
     SUBDIR += py-oddt
@@ -260,6 +264,7 @@
     SUBDIR += py-pydicom
     SUBDIR += py-pygeodesy
     SUBDIR += py-pygeometa
+    SUBDIR += py-pygmo2
     SUBDIR += py-pymatgen
     SUBDIR += py-pymol
     SUBDIR += py-pyosf
@@ -282,7 +287,6 @@
     SUBDIR += py-spglib
     SUBDIR += py-tensorflow
     SUBDIR += py-veusz
-    SUBDIR += py-ws2300
     SUBDIR += pybrain
     SUBDIR += pynn
     SUBDIR += qbox
@@ -335,6 +339,7 @@
     SUBDIR += xcrysden
     SUBDIR += xdrawchem
     SUBDIR += xfce4-equake-plugin
+    SUBDIR += xtb
     SUBDIR += yoda
 
 .include <bsd.port.subdir.mk>

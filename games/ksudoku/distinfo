@@ -1,3 +1,3 @@
-TIMESTAMP = 1587103697
-SHA256 (KDE/applications/20.04.0/ksudoku-20.04.0.tar.xz) = 13a1500225fa29dd65cff191c294381ff1480aea515d1962ecb7e06ed0704e50
-SIZE (KDE/applications/20.04.0/ksudoku-20.04.0.tar.xz) = 1656364
+TIMESTAMP = 1598945417
+SHA256 (KDE/release-service/20.08.1/ksudoku-20.08.1.tar.xz) = e53b694b340f812cd3bdf5126a32a1e71efe0785897c5d15f9e28c68fd794840
+SIZE (KDE/release-service/20.08.1/ksudoku-20.08.1.tar.xz) = 1667716

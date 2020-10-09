@@ -409,6 +409,8 @@ man/man1/x509.1.gz
 %%MAN3%%man/man3/BIO_get_fp.3.gz
 %%MAN3%%man/man3/BIO_get_info_callback.3.gz
 %%MAN3%%man/man3/BIO_get_init.3.gz
+%%KTLS%%%%MAN3%%man/man3/BIO_get_ktls_recv.3.gz
+%%KTLS%%%%MAN3%%man/man3/BIO_get_ktls_send.3.gz
 %%MAN3%%man/man3/BIO_get_md.3.gz
 %%MAN3%%man/man3/BIO_get_md_ctx.3.gz
 %%MAN3%%man/man3/BIO_get_mem_data.3.gz
@@ -1077,6 +1079,7 @@ man/man1/x509.1.gz
 %%MAN3%%man/man3/EC_KEY_clear_flags.3.gz
 %%MAN3%%man/man3/EC_KEY_copy.3.gz
 %%MAN3%%man/man3/EC_KEY_dup.3.gz
+%%MAN3%%man/man3/EC_KEY_decoded_from_explicit_params.3.gz
 %%MAN3%%man/man3/EC_KEY_free.3.gz
 %%MAN3%%man/man3/EC_KEY_generate_key.3.gz
 %%MAN3%%man/man3/EC_KEY_get0_engine.3.gz
@@ -3000,6 +3003,7 @@ man/man1/x509.1.gz
 %%MAN3%%man/man3/SSL_rstate_string_long.3.gz
 %%MAN3%%man/man3/SSL_select_current_cert.3.gz
 %%MAN3%%man/man3/SSL_select_next_proto.3.gz
+%%KTLS%%%%MAN3%%man/man3/SSL_sendfile.3.gz
 %%MAN3%%man/man3/SSL_session_reused.3.gz
 %%MAN3%%man/man3/SSL_set0_CA_list.3.gz
 %%MAN3%%man/man3/SSL_set0_chain.3.gz
@@ -3231,6 +3235,7 @@ man/man1/x509.1.gz
 %%MAN3%%man/man3/X509V3_add1_i2d.3.gz
 %%MAN3%%man/man3/X509V3_get_d2i.3.gz
 %%MAN3%%man/man3/X509_ALGOR_cmp.3.gz
+%%MAN3%%man/man3/X509_ALGOR_copy.3.gz
 %%MAN3%%man/man3/X509_ALGOR_dup.3.gz
 %%MAN3%%man/man3/X509_ALGOR_free.3.gz
 %%MAN3%%man/man3/X509_ALGOR_get0.3.gz
@@ -3389,6 +3394,8 @@ man/man1/x509.1.gz
 %%MAN3%%man/man3/X509_REQ_get_subject_name.3.gz
 %%MAN3%%man/man3/X509_REQ_get_version.3.gz
 %%MAN3%%man/man3/X509_REQ_new.3.gz
+%%MAN3%%man/man3/X509_REQ_set0_signature.3.gz
+%%MAN3%%man/man3/X509_REQ_set1_signature_algo.3.gz
 %%MAN3%%man/man3/X509_REQ_set_pubkey.3.gz
 %%MAN3%%man/man3/X509_REQ_set_subject_name.3.gz
 %%MAN3%%man/man3/X509_REQ_set_version.3.gz

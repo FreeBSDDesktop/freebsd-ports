@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	httpx
-PORTVERSION=	0.12.1
+PORTVERSION=	0.15.5
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,18 +14,22 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}certifi>=0:security/py-certifi@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}chardet>=3.0<4:textproc/py-chardet@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}h11>=0.8<0.10:net/py-h11@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}h2>=3.0<4:www/py-h2@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}hstspreload>=0:www/py-hstspreload@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}idna>=2.0<3:dns/py-idna@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}httpcore>=0.11.0<0.12:www/py-httpcore@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}idna>=0:dns/py-idna@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}rfc3986>=1.3<2:www/py-rfc3986@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}sniffio>=1.0<2:devel/py-sniffio@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}urllib3>=1.0,1<2,1:net/py-urllib3@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}sniffio>=0:devel/py-sniffio@${PY_FLAVOR}
 
 USES=		python:3.7+
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
+
+OPTIONS_DEFINE=	BROTLI HTTP2
+OPTIONS_DEFAULT=HTTP2
+BROTLI_DESC=	Brotli support
+HTTP2_DESC=	HTTP/2 support
+
+BROTLI_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}brotlipy>=0.7.0<0.8:archivers/py-brotlipy@${PY_FLAVOR}
+HTTP2_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}h2>=3.0<4:www/py-h2@${PY_FLAVOR}
 
 .include <bsd.port.mk>

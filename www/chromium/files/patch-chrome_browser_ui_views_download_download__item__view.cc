@@ -1,6 +1,6 @@
---- chrome/browser/ui/views/download/download_item_view.cc.orig	2020-03-17 09:40:34 UTC
+--- chrome/browser/ui/views/download/download_item_view.cc.orig	2020-07-07 21:58:14 UTC
 +++ chrome/browser/ui/views/download/download_item_view.cc
-@@ -234,7 +234,7 @@ DownloadItemView::DownloadItemView(DownloadUIModel::Do
+@@ -235,7 +235,7 @@ DownloadItemView::DownloadItemView(DownloadUIModel::Do
    open_button_ = AddChildView(std::move(open_button));
  
    int file_name_style = views::style::STYLE_PRIMARY;
@@ -9,7 +9,7 @@
    if (base::FeatureList::IsEnabled(safe_browsing::kUseNewDownloadWarnings))
      file_name_style = STYLE_EMPHASIZED;
  #endif
-@@ -1633,7 +1633,7 @@ void DownloadItemView::StyleFilenameInLabel(views::Sty
+@@ -1636,7 +1636,7 @@ void DownloadItemView::StyleFilenameInLabel(views::Sty
    if (!base::FeatureList::IsEnabled(safe_browsing::kUseNewDownloadWarnings))
      return;
  

@@ -1,3 +1,3 @@
-TIMESTAMP = 1587103658
-SHA256 (KDE/applications/20.04.0/keditbookmarks-20.04.0.tar.xz) = 1db87a3a2409118f5111999ef451601886ae8d7e8b8eeb95af7123bddb01b008
-SIZE (KDE/applications/20.04.0/keditbookmarks-20.04.0.tar.xz) = 187848
+TIMESTAMP = 1598945371
+SHA256 (KDE/release-service/20.08.1/keditbookmarks-20.08.1.tar.xz) = 8bfedffae0332dbfb611d25f3178ab7babe374155cce7c44e1aaa841934c3123
+SIZE (KDE/release-service/20.08.1/keditbookmarks-20.08.1.tar.xz) = 190616

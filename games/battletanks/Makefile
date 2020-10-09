@@ -37,6 +37,10 @@ OPTIONS_DEFINE=	DOCS
 post-patch:
 	@${REINPLACE_CMD} -e 's/lua5\.1/lua-${LUA_VER}/' \
 		${WRKSRC}/engine/SConscript
+# Prevent the clash with /usr/include/semaphore.h
+	@${MV} ${WRKSRC}/sdlx/semaphore.h ${WRKSRC}/sdlx/sdlx_semaphore.h
+	@${REINPLACE_CMD} -e 's/semaphore\.h"/sdlx_&/' \
+		${WRKSRC}/sdlx/semaphore.cpp ${WRKSRC}/sdlx/thread.h
 
 pre-build:
 # Regenerate `sl08.h' after we patch `sl08.py' (patching the header itself

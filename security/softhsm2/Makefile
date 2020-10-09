@@ -3,6 +3,7 @@
 
 PORTNAME=	softhsm
 PORTVERSION=	2.6.1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://dist.opendnssec.org/source/ \
 		http://dist.opendnssec.org/source/testing/
@@ -16,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		libtool ssl pkgconfig
+USES=		compiler:c++11-lang libtool ssl pkgconfig
 
 SUB_FILES=	pkg-message
 

@@ -26,11 +26,12 @@
     SUBDIR += dgen-sdl
     SUBDIR += dolphin-emu
     SUBDIR += dosbox
+    SUBDIR += dosbox-staging
     SUBDIR += dtcyber
-    SUBDIR += dynagen
     SUBDIR += dynamips-community
     SUBDIR += e-uae
     SUBDIR += edumips64
+    SUBDIR += elliott-803
     SUBDIR += emu64
     SUBDIR += emulationstation
     SUBDIR += fceux
@@ -61,8 +62,10 @@
     SUBDIR += klh10
     SUBDIR += lib765
     SUBDIR += libdsk
+    SUBDIR += libretro-ppsspp
     SUBDIR += libspectrum
     SUBDIR += linux-c7
+    SUBDIR += linux-power10-functional-sim
     SUBDIR += linux-power9-functional-sim
     SUBDIR += linux_base-c7
     SUBDIR += lisaem
@@ -110,12 +113,13 @@
     SUBDIR += qemu-cheri
     SUBDIR += qemu-devel
     SUBDIR += qemu-powernv
-    SUBDIR += qemu-sbruno
     SUBDIR += qemu-user-static
     SUBDIR += qemu-user-static-devel
     SUBDIR += qemu-utils
     SUBDIR += qemu31
-    SUBDIR += qemu40
+    SUBDIR += qemu41
+    SUBDIR += qemu42
+    SUBDIR += qemu50
     SUBDIR += qmc2
     SUBDIR += quasi88
     SUBDIR += riscv-fesvr
@@ -124,6 +128,8 @@
     SUBDIR += rtc
     SUBDIR += rubygem-fission
     SUBDIR += simh
+    SUBDIR += simh-hp2100
+    SUBDIR += simh-hp3000
     SUBDIR += simh-hpdoc
     SUBDIR += skyeye
     SUBDIR += snes9x-gtk
@@ -163,7 +169,6 @@
     SUBDIR += wine-mono
     SUBDIR += wine-mono-devel
     SUBDIR += winetricks
-    SUBDIR += wxmupen64plus
     SUBDIR += x16-emulator
     SUBDIR += x16-rom
     SUBDIR += x48

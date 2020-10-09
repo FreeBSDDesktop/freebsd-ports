@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	steam-utils
-DISTVERSION=	20200404
+DISTVERSION=	20200913
 CATEGORIES=	games linux
 PKGNAMEPREFIX=	linux-
 
@@ -14,10 +14,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 IGNORE_FreeBSD_11=not tested at all
 ONLY_FOR_ARCHS=	amd64
 
-RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
+RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss \
+		liberation-fonts-ttf>=0:x11-fonts/liberation-fonts-ttf
 
 USES=		linux
-USE_LINUX=	devtools:build dbuslibs gtk2 dri nss openal-soft
+USE_LINUX=	devtools:build dbuslibs gtk2 dri nss alsa-plugins-oss
 USE_RUBY=	yes
 
 RUBY_NO_BUILD_DEPENDS=	yes
@@ -29,9 +30,14 @@ GH_PROJECT=	linuxulator-steam-utils
 ALL_TARGET=	build
 MAKE_ARGS+=	PREFIX=${STAGEDIR}${PREFIX}
 
+.include <bsd.port.options.mk>
+
 post-install:
 .for executable in steam steam-install
 	${LN} -s ../steam-utils/bin/${executable} ${STAGEDIR}${PREFIX}/bin/${executable}
 .endfor
+.if ${OSVERSION} >= 1300082
+	${REINPLACE_CMD} -e '/fmodfix.so/d' ${TMPPLIST}
+.endif
 
 .include <bsd.port.mk>

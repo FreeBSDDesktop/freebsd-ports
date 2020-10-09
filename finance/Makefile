@@ -24,7 +24,6 @@
     SUBDIR += aqbanking
     SUBDIR += beancount
     SUBDIR += beanie
-    SUBDIR += bitcoinnodestats
     SUBDIR += cointop
     SUBDIR += electrum
     SUBDIR += expense
@@ -35,6 +34,9 @@
     SUBDIR += gnucash-docs
     SUBDIR += grisbi
     SUBDIR += homebank
+    SUBDIR += hs-hledger
+    SUBDIR += hs-hledger-ui
+    SUBDIR += hs-hledger-web
     SUBDIR += jgnash
     SUBDIR += kmymoney
     SUBDIR += kraft

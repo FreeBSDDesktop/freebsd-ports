@@ -15,7 +15,6 @@
     SUBDIR += asprint
     SUBDIR += auctex
     SUBDIR += bibcursed
-    SUBDIR += biblio-py
     SUBDIR += bibview
     SUBDIR += brlaser
     SUBDIR += c2ps
@@ -60,7 +59,6 @@
     SUBDIR += fpdf
     SUBDIR += freetype
     SUBDIR += freetype2
-    SUBDIR += frescobaldi
     SUBDIR += ft2demos
     SUBDIR += ghostscript7-base
     SUBDIR += ghostscript7-commfont
@@ -149,6 +147,7 @@
     SUBDIR += pdf-tools
     SUBDIR += pdf4tcl
     SUBDIR += pdfbox
+    SUBDIR += pdfchain
     SUBDIR += pdflib
     SUBDIR += pdflib-perl
     SUBDIR += pdfstitch
@@ -178,20 +177,19 @@
     SUBDIR += py-fonttools
     SUBDIR += py-fonttools3
     SUBDIR += py-fpdf
+    SUBDIR += py-frescobaldi
     SUBDIR += py-pdf
     SUBDIR += py-pdf2
     SUBDIR += py-pollyreports
     SUBDIR += py-preppy
     SUBDIR += py-psautohint
     SUBDIR += py-pycups
-    SUBDIR += py-pyscript
+    SUBDIR += py-pycups1
     SUBDIR += py-python-ly
     SUBDIR += py-qt5-printsupport
     SUBDIR += py-relatorio
     SUBDIR += py-reportlab
     SUBDIR += py-rtf
-    SUBDIR += py-stapler
-    SUBDIR += py-trml2pdf
     SUBDIR += py-ttfautohint-py
     SUBDIR += py-ufolib2
     SUBDIR += py-weasyprint
@@ -222,6 +220,7 @@
     SUBDIR += scribus-devel
     SUBDIR += sgf2tex
     SUBDIR += shrinkpdf
+    SUBDIR += simple-fb2-reader
     SUBDIR += splix
     SUBDIR += system-config-printer
     SUBDIR += t1utils
@@ -256,7 +255,6 @@
     SUBDIR += xfce4-print
     SUBDIR += xmbibtex
     SUBDIR += xpdfopen
-    SUBDIR += xpp
     SUBDIR += xreader
     SUBDIR += xtexsh
     SUBDIR += yatex

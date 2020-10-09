@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	plan9port
-PORTVERSION=	20200330
+PORTVERSION=	20200816
 CATEGORIES=	devel plan9
 DIST_SUBDIR=	plan9port
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Plan 9 from User Space
 
 LICENSE=	LUCENT
@@ -18,13 +18,14 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 BROKEN_armv6=	fails to compile: thread.c:130:5: no member named 'arm_r0' in 'mcontext_t'
 BROKEN_armv7=	fails to compile: thread.c:130:5: no member named 'arm_r0' in 'mcontext_t'
 
+BUILD_DEPENDS=	as:devel/binutils
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
-USES=		localbase:ldflags perl5 shebangfix xorg
+USES=		compiler:c11 localbase:ldflags perl5 shebangfix xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	9fans
-GH_TAGNAME=	4650064aa757c217fa72f8819a2cf67c689bcdef
+GH_TAGNAME=	1f098efb7370a0b28306d10681e21883fb1c1507
 USE_PERL5=	build
 USE_XORG=	x11 xext xt
 

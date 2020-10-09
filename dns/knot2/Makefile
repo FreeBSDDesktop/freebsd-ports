@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	knot
-DISTVERSION=	2.9.3
-PORTREVISION=	1
+DISTVERSION=	2.9.6
 CATEGORIES=	dns
 MASTER_SITES=	https://secure.nic.cz/files/knot-dns/ \
 		https://dns.company/downloads/knot-dns/
@@ -17,7 +16,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS=	knot-1.* knot1-[0-6].*
 
-BUILD_DEPENDS=	autoconf>=2.65:devel/autoconf
+BUILD_DEPENDS=	autoconf>=2.65:devel/autoconf \
+		gsed:textproc/gsed
 
 LIB_DEPENDS=	libgnutls.so:security/gnutls \
 		liblmdb.so:databases/lmdb
@@ -25,6 +25,7 @@ LIB_DEPENDS=	libgnutls.so:security/gnutls \
 USES=		alias libtool localbase pkgconfig tar:xz
 
 HAS_CONFIGURE=	yes
+BINARY_ALIAS=	sed=${LOCALBASE}/bin/gsed
 CONFIGURE_ARGS=	--enable-recvmmsg=no \
 		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig \
 		--mandir=${MANPREFIX}/man
@@ -78,7 +79,6 @@ DNSTAP_LIB_DEPENDS=		libprotobuf-c.so:devel/protobuf-c \
 # in higher line count.  Ideally this bug should be fixed upstream.
 DNSTAP_CPPFLAGS=		-I${LOCALBASE}/include
 
-DOCS_USES+=			python
 DOCS_CONFIGURE_OFF=		--disable-documentation
 
 FASTPARSER_DESC=		Fast zone parser (demanding compilation)

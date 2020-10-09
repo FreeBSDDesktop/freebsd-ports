@@ -48,6 +48,7 @@ include/gnuastro/fits.h
 include/gnuastro/git.h
 include/gnuastro/interpolate.h
 include/gnuastro/jpeg.h
+include/gnuastro/kdtree.h
 include/gnuastro/label.h
 include/gnuastro/list.h
 include/gnuastro/match.h
@@ -64,11 +65,12 @@ include/gnuastro/tiff.h
 include/gnuastro/tile.h
 include/gnuastro/txt.h
 include/gnuastro/type.h
+include/gnuastro/units.h
 include/gnuastro/wcs.h
 lib/libgnuastro.a
 lib/libgnuastro.so
-lib/libgnuastro.so.9
-lib/libgnuastro.so.9.0.0
+lib/libgnuastro.so.11
+lib/libgnuastro.so.11.0.0
 libdata/pkgconfig/gnuastro.pc
 man/man1/astarithmetic.1.gz
 man/man1/astbuildprog.1.gz

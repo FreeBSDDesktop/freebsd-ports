@@ -2,14 +2,14 @@
 # $FreeBSD$
 
 PORTNAME=	PadWalker
-PORTVERSION=	2.3
+PORTVERSION=	2.5
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:ROBIN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	perl@FreeBSD.org
-COMMENT=	PadWalker - play with Perl lexical variables
+COMMENT=	Play with Perl lexical variables
 
 LICENSE=	ART10 GPLv1+
 LICENSE_COMB=	dual

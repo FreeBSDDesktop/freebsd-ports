@@ -2,6 +2,7 @@
 
 PORTNAME=	gcc
 PORTVERSION=	6.5.0
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
 PKGNAMEPREFIX=	${TARGETARCH}-
@@ -16,7 +17,8 @@ LICENSE_COMB=	multi
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \
 		libmpc.so:math/mpc
-BUILD_DEPENDS=	${BU_PREFIX}-as:devel/binutils@${TARGETARCH}
+BUILD_DEPENDS=	${BU_PREFIX}-as:devel/binutils@${TARGETARCH} \
+		objdump:devel/binutils
 RUN_DEPENDS=	${BU_PREFIX}-as:devel/binutils@${TARGETARCH}
 
 FLAVORS=	aarch64 amd64 i386 mips mips64 powerpc64 sparc64
@@ -75,15 +77,6 @@ CONFIGURE_TARGET=	${ARCH}-unknown-${OPSYS:tl}${OSREL}
 . if ${COMPILER_TYPE} == clang
 MAKE_ARGS+=CXXFLAGS=-fbracket-depth=512
 . endif
-.endif
-
-# Disable LTO on aarch64 since we force aarch64-binutils to
-# use STATIC
-.if ${TARGETARCH} == "aarch64"
-CONFIGURE_ARGS+= --disable-lto
-PLIST_SUB+=	LTO="@comment "
-.else
-PLIST_SUB+=	LTO=""
 .endif
 
 .if ${ARCH} == "aarch64"

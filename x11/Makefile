@@ -71,6 +71,7 @@
     SUBDIR += fpc-x11
     SUBDIR += fstobdf
     SUBDIR += gdm
+    SUBDIR += glcapsviewer
     SUBDIR += gmrun
     SUBDIR += gnome-clipboard-daemon
     SUBDIR += gnome-desktop
@@ -81,7 +82,6 @@
     SUBDIR += gnome-shell-extensions
     SUBDIR += gnome-terminal
     SUBDIR += gnome3
-    SUBDIR += gnome3-lite
     SUBDIR += gnustep-app
     SUBDIR += grabc
     SUBDIR += grim
@@ -95,9 +95,8 @@
     SUBDIR += gtkterm2
     SUBDIR += guake
     SUBDIR += gxkb
+    SUBDIR += havoc
     SUBDIR += hhpc
-    SUBDIR += hs-X11
-    SUBDIR += hs-X11-xft
     SUBDIR += hs-xmobar
     SUBDIR += hsetroot
     SUBDIR += i3blocks
@@ -109,6 +108,7 @@
     SUBDIR += imwheel
     SUBDIR += innerspace
     SUBDIR += j4-dmenu-desktop
+    SUBDIR += jgmenu
     SUBDIR += kanshi
     SUBDIR += kb2mb2
     SUBDIR += kde-baseapps
@@ -116,6 +116,7 @@
     SUBDIR += keybinder
     SUBDIR += keybinder-gtk3
     SUBDIR += keyboardcast
+    SUBDIR += keynav
     SUBDIR += kf5-frameworkintegration
     SUBDIR += kf5-frameworks
     SUBDIR += kf5-kactivities
@@ -129,6 +130,7 @@
     SUBDIR += kf5-kwindowsystem
     SUBDIR += kf5-plasma-framework
     SUBDIR += konsole
+    SUBDIR += lavalauncher
     SUBDIR += lemonbar
     SUBDIR += libICE
     SUBDIR += libSM
@@ -161,9 +163,7 @@
     SUBDIR += libfm-extra
     SUBDIR += libfm-qt
     SUBDIR += libgnome
-    SUBDIR += libgnome-reference
     SUBDIR += libgnomekbd
-    SUBDIR += libgnomemm26
     SUBDIR += libinput
     SUBDIR += libmatekbd
     SUBDIR += libsx
@@ -183,6 +183,9 @@
     SUBDIR += lilyterm
     SUBDIR += linux-c7-libxkbcommon
     SUBDIR += linux-c7-pixman
+    SUBDIR += linux-c7-xcb-util
+    SUBDIR += linux-c7-xcb-util-image
+    SUBDIR += linux-c7-xcb-util-keysyms
     SUBDIR += linux-c7-xorg-libs
     SUBDIR += linux-nvidia-libs
     SUBDIR += linux-nvidia-libs-304
@@ -223,6 +226,7 @@
     SUBDIR += mrxvt-devel
     SUBDIR += multi-aterm
     SUBDIR += mxico
+    SUBDIR += nezd
     SUBDIR += numlockx
     SUBDIR += nvidia-driver
     SUBDIR += nvidia-driver-304
@@ -230,6 +234,7 @@
     SUBDIR += nvidia-driver-390
     SUBDIR += nvidia-settings
     SUBDIR += nvidia-xconfig
+    SUBDIR += nwg-launchers
     SUBDIR += nxcomp
     SUBDIR += p5-Clipboard
     SUBDIR += p5-X11-GUITest
@@ -242,18 +247,22 @@
     SUBDIR += p5-XTerm-Conf
     SUBDIR += pcdm
     SUBDIR += perwindowlayoutd
+    SUBDIR += phosh
     SUBDIR += pipeglade
     SUBDIR += pixman
     SUBDIR += plank
+    SUBDIR += plasma-wayland-protocols
     SUBDIR += plasma5-kactivitymanagerd
     SUBDIR += plasma5-kgamma5
     SUBDIR += plasma5-kscreen
     SUBDIR += plasma5-kwayland-integration
+    SUBDIR += plasma5-kwayland-server
     SUBDIR += plasma5-libkscreen
     SUBDIR += plasma5-plasma
     SUBDIR += plasma5-plasma-desktop
     SUBDIR += plasma5-plasma-integration
     SUBDIR += plasma5-plasma-workspace
+    SUBDIR += pmenu
     SUBDIR += polybar
     SUBDIR += printscreen
     SUBDIR += py-caffeine-ng
@@ -280,6 +289,7 @@
     SUBDIR += sakura
     SUBDIR += sbxkb
     SUBDIR += screen-message
+    SUBDIR += screenkey
     SUBDIR += scripts
     SUBDIR += sddm
     SUBDIR += sessreg
@@ -321,6 +331,7 @@
     SUBDIR += urxvt-perls
     SUBDIR += vdesk
     SUBDIR += viewres
+    SUBDIR += virglrenderer
     SUBDIR += virtboard
     SUBDIR += virtualgl
     SUBDIR += wallutils
@@ -328,6 +339,7 @@
     SUBDIR += wbar
     SUBDIR += wcm
     SUBDIR += wdisplays
+    SUBDIR += wdm
     SUBDIR += wev
     SUBDIR += wf-shell
     SUBDIR += wl-clipboard
@@ -377,6 +389,7 @@
     SUBDIR += xcb-util-wm
     SUBDIR += xcb-util-xrm
     SUBDIR += xcbautolock
+    SUBDIR += xclickroot
     SUBDIR += xclip
     SUBDIR += xclipboard
     SUBDIR += xcm
@@ -384,7 +397,6 @@
     SUBDIR += xcmsdb
     SUBDIR += xcoloredit
     SUBDIR += xcolors
-    SUBDIR += xcolorsel
     SUBDIR += xconsole
     SUBDIR += xcursorgen
     SUBDIR += xcut
@@ -443,6 +455,7 @@
     SUBDIR += xman
     SUBDIR += xmangekyou
     SUBDIR += xmascot
+    SUBDIR += xmenu
     SUBDIR += xmessage
     SUBDIR += xmh
     SUBDIR += xmodmap
@@ -452,6 +465,7 @@
     SUBDIR += xmsg
     SUBDIR += xmx
     SUBDIR += xnee
+    SUBDIR += xob
     SUBDIR += xorg
     SUBDIR += xorg-apps
     SUBDIR += xorg-cf-files

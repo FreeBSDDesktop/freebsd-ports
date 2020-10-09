@@ -1,13 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	colmap
-DISTVERSION=	3.5
-PORTREVISION=	11
+DISTVERSION=	3.6
 CATEGORIES=	graphics
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	b5ccc54e68e3.patch:-p1
-PATCHFILES+=	c9e31ee9cde4.patch:-p1 # https://github.com/colmap/colmap/pull/853
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Structure from motion and multi-view stereo
@@ -47,7 +42,7 @@ CGAL_BUILD_DEPENDS=	cgal>0:math/cgal
 CGAL_CMAKE_BOOL=	CGAL_ENABLED
 
 DOCS_BUILD_DEPENDS=	gmake:devel/gmake \
-			sphinx-build:textproc/py-sphinx
+			sphinx-build:textproc/py-sphinx18
 DOCS_PORTDOCS=		*
 
 OPENMP_USES=		compiler:openmp

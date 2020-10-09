@@ -1,15 +1,15 @@
---- chrome/common/webui_url_constants.cc.orig	2020-03-16 18:40:30 UTC
+--- chrome/common/webui_url_constants.cc.orig	2020-07-07 21:58:14 UTC
 +++ chrome/common/webui_url_constants.cc
-@@ -321,7 +321,7 @@ bool IsSystemWebUIHost(base::StringPiece host) {
- const char kChromeUICastHost[] = "cast";
- #endif
+@@ -318,7 +318,7 @@ bool IsSystemWebUIHost(base::StringPiece host) {
+ }
+ #endif  // defined(OS_CHROMEOS)
  
 -#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX)
 +#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD)
  const char kChromeUIDiscardsHost[] = "discards";
  const char kChromeUIDiscardsURL[] = "chrome://discards/";
  const char kChromeUIHatsHost[] = "hats";
-@@ -332,17 +332,17 @@ const char kChromeUIHatsURL[] = "chrome://hats/";
+@@ -330,17 +330,17 @@ const char kChromeUIProfilePickerHost[] = "profile-pic
  const char kChromeUILinuxProxyConfigHost[] = "linux-proxy-config";
  #endif
  
@@ -30,7 +30,7 @@
  const char kChromeUITabModalConfirmDialogHost[] = "tab-modal-confirm-dialog";
  #endif
  
-@@ -608,13 +608,13 @@ const char* const kChromeHostURLs[] = {
+@@ -500,13 +500,13 @@ const char* const kChromeHostURLs[] = {
      kChromeUIInternetDetailDialogHost,
      kChromeUIAssistantOptInHost,
  #endif

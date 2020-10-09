@@ -1,28 +1,24 @@
 # $FreeBSD$
 
 PORTNAME=	cascadia-code
-DISTVERSION=	1911.21
+DISTVERSION=	2009.22
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://github.com/microsoft/cascadia-code/releases/download/v${DISTVERSION}/
-DISTFILES=	Cascadia.ttf \
-		CascadiaMono.ttf \
-		CascadiaMonoPL.ttf \
-		CascadiaPL.ttf
-DIST_SUBDIR=	${DISTNAME}
-EXTRACT_ONLY=
+DISTNAME=	CascadiaCode-${DISTVERSION}
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Monospaced font with programming ligatures
 
 LICENSE=	OFL11
 
-USES=		fonts
+USES=		fonts zip
+
 NO_ARCH=	yes
 NO_BUILD=	yes
-PLIST_FILES=	${DISTFILES:S,^,${FONTSDIR}/,}
+NO_WRKSUBDIR=	yes
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${FONTSDIR}
-	cd ${DISTDIR}/${DIST_SUBDIR} && ${INSTALL_DATA} ${DISTFILES} ${STAGEDIR}${FONTSDIR}
+	${INSTALL_DATA} ${WRKSRC}/ttf/static/*.ttf ${STAGEDIR}${FONTSDIR}
 
 .include <bsd.port.mk>

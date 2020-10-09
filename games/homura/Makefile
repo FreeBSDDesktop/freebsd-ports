@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	homura
-PORTVERSION=	3.7
+PORTVERSION=	5.1
+PORTREVISION=	1
 CATEGORIES=	games
 
 MAINTAINER=	Alexander88207@protonmail.com
@@ -23,16 +24,14 @@ RUN_DEPENDS=	zenity:x11/zenity \
 		vulkaninfo:devel/vulkan-tools \
 		glxinfo:graphics/mesa-demos
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	the-homura-project
+USE_GITLAB=	yes
+GL_ACCOUNT=	Alexander88207
+GL_PROJECT=	Homura
+GL_COMMIT=	d6270c8cc207e65073b743949274cacb84caf014
 
 NO_BUILD=	yes
 
-PLIST_FILES=	bin/Homura \
-		share/homura/Data/Apps.hma \
-		share/homura/Data/Setups.hma \
-		share/homura/Data/Misc.hma \
-		share/homura/Data/Checks.hma
+PLIST_FILES=	bin/Homura
 
 .include <bsd.port.pre.mk>
 
@@ -43,11 +42,6 @@ RUN_DEPENDS+=	wine:emulators/i386-wine-devel
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/homura/Data
 	${INSTALL_SCRIPT} ${WRKSRC}/Homura ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/Data/Apps.hma ${STAGEDIR}${PREFIX}/share/homura/Data
-	${INSTALL_SCRIPT} ${WRKSRC}/Data/Setups.hma ${STAGEDIR}${PREFIX}/share/homura/Data
-	${INSTALL_SCRIPT} ${WRKSRC}/Data/Misc.hma ${STAGEDIR}${PREFIX}/share/homura/Data
-	${INSTALL_SCRIPT} ${WRKSRC}/Data/Checks.hma ${STAGEDIR}${PREFIX}/share/homura/Data
 
 .include <bsd.port.post.mk>

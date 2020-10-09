@@ -3,12 +3,12 @@
 
 PORTNAME=	pdftk
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.1.1
+DISTVERSION=	3.1.3
 CATEGORIES=	print java
 MASTER_SITES=	https://repo.maven.apache.org/maven2/:bcprov
 DISTFILES=	${_BCPROV_JAR}:bcprov
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Simple tool for doing everyday things with PDF documents
 
 LICENSE=	GPLv2
@@ -20,7 +20,7 @@ RUN_DEPENDS=	${JAVAJARDIR}/commons-lang3.jar:java/apache-commons-lang3
 USE_ANT=	yes
 USE_GITLAB=	yes
 GL_ACCOUNT=	pdftk-java
-GL_COMMIT=	535a84da37c507378d7674f7f61aa8c29e200509
+GL_COMMIT=	c8349c928ba2f235253c5806c0b3a393ce3e124f
 USE_JAVA=	yes
 ALL_TARGET=	jar
 NO_ARCH=	yes

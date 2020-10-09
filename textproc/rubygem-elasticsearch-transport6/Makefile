@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	elasticsearch-transport
-PORTVERSION=	6.8.1
+PORTVERSION=	6.8.2
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	6
@@ -13,7 +13,7 @@ COMMENT=	Ruby client for Elasticsearch
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	rubygem-faraday>=0.14<1:www/rubygem-faraday \
+RUN_DEPENDS=	rubygem-faraday>=1<2:www/rubygem-faraday \
 		rubygem-multi_json>=0:devel/rubygem-multi_json
 
 USES=		gem

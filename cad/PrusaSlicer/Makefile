@@ -3,10 +3,8 @@
 PORTNAME=		PrusaSlicer
 DISTVERSIONPREFIX=	version_
 DISTVERSION=		2.2.0
-PORTREVISION=	1
+PORTREVISION=		6
 CATEGORIES=		cad
-MASTER_SITES=https://github.com/CGAL/cgal/archive/releases/:cgal
-DISTFILES=CGAL-5.0.2.tar.gz:cgal
 
 MAINTAINER=	teodorsigaev@gmail.com
 COMMENT=	Slicing application for 3D printers
@@ -18,7 +16,6 @@ LIB_DEPENDS=	libtbb.so:devel/tbb \
 		libboost_log.so:devel/boost-libs \
 		libHalf.so:graphics/ilmbase \
 		libnlopt.so:math/nlopt \
-		libwx_gtk3u_core-3.1.so:x11-toolkits/wxgtk31 \
 		libcurl.so:ftp/curl \
 		libexpat.so:textproc/expat2 \
 		libopenvdb.so:misc/openvdb \
@@ -43,15 +40,17 @@ CMAKE_ARGS+=	-DwxWidgets_CONFIG_EXECUTABLE=${LOCALBASE}/bin/wxgtk3u-3.1-config \
 CMAKE_INSTALL_PREFIX=	${PREFIX}/${PORTNAME}
 
 USE_GITHUB=	yes
-USE_GL=		gl glu glew
 GH_ACCOUNT=	prusa3d
+GH_TUPLE=	CGAL:cgal:releases/CGAL-5.0.2:cgal
+USE_WX=		3.1
+USE_GL=		gl glu glew
 
 post-patch:
 	${REINPLACE_CMD} -e 's,%%WRKSRC%%,${WRKSRC},' \
 		${WRKSRC}/CMakeLists.txt
 
 pre-configure:
-	cd ${WRKDIR}/cgal-releases-CGAL-5.0.2 && \
+	cd ${WRKSRC_cgal} && \
 	${CMAKE_BIN} -E remove CGALConfig-installation-dirs.cmake && \
 	${MKDIR} build && cd build && \
 	${CMAKE_BIN} -DCMAKE_INSTALL_PREFIX=${WRKSRC}/CGAL \

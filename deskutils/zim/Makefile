@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	zim
-DISTVERSION=	0.72.1
+DISTVERSION=	0.73.2
+PORTREVISION=	1
 CATEGORIES=	deskutils python
 MASTER_SITES=	https://www.zim-wiki.org/downloads/
 
@@ -40,15 +41,14 @@ GNUR_RUN_DEPENDS=	R:math/R
 GRAPHVIZ_RUN_DEPENDS=	fdp:graphics/graphviz
 LATEX_USE=		tex=latex:run
 MERCURIAL_DESC=		Version control for notebooks using hg
-MERCURIAL_RUN_DEPENDS=	hg:devel/mercurial
+MERCURIAL_RUN_DEPENDS=	${PY_MERCURIAL}
 SCROT_DESC=		Screenshot taking and inserting support
 SCROT_RUN_DEPENDS=	scrot:graphics/scrot
 
 post-patch:
 	@${REINPLACE_CMD} -e \
 		'/.command.install /s|distutils|setuptools| ; \
-		 s|share/man|man| ; \
-		 /.skip_xdg_cmd = /s|0|1|' \
+		 s|share/man|man|' \
 		${WRKSRC}/setup.py
 
 .include <bsd.port.mk>

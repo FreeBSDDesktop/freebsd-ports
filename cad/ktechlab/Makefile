@@ -2,8 +2,7 @@
 
 PORTNAME=	ktechlab
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.40.1-77
-DISTVERSIONSUFFIX=	-gd782f78d
+DISTVERSION=	0.50.0
 CATEGORIES=	cad
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -19,7 +18,7 @@ USE_GITHUB=	yes
 USE_QT=		concurrent core dbus gui network printsupport widgets xml \
 		qmake_build buildtools_build
 USE_KDE=	auth bookmarks codecs completion config configwidgets coreaddons \
-		crash guiaddons i18n iconthemes itemviews jobwidgets js \
+		crash guiaddons i18n iconthemes init itemviews jobwidgets js \
 		kdelibs4support khtml kio notifications parts service solid \
 		sonnet texteditor textwidgets unitconversion widgetsaddons windowsystem xmlgui
 USE_GNOME=	glib20

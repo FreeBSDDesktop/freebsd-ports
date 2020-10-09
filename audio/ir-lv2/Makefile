@@ -3,7 +3,7 @@
 
 PORTNAME=	ir
 DISTVERSION=	1.3.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 PKGNAMESUFFIX=	-lv2
 
@@ -12,6 +12,8 @@ COMMENT=	LV2 impulse response plugin for reverb and cabinet simulation
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+BROKEN=		ir_gui.cc:1681:14: error: cannot initialize a member subobject of type 'LV2UI_Handle'
 
 BUILD_DEPENDS=	lv2>0:audio/lv2 \
 		${LOCALBASE}/include/fftw3.h:math/fftw3

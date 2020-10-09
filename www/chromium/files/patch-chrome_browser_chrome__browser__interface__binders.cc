@@ -1,7 +1,7 @@
---- chrome/browser/chrome_browser_interface_binders.cc.orig	2020-03-17 09:35:03 UTC
+--- chrome/browser/chrome_browser_interface_binders.cc.orig	2020-07-07 21:58:13 UTC
 +++ chrome/browser/chrome_browser_interface_binders.cc
-@@ -97,7 +97,7 @@
- #include "chrome/browser/ui/webui/new_tab_page/new_tab_page_ui.h"
+@@ -113,7 +113,7 @@
+ #include "media/mojo/mojom/speech_recognition_service.mojom.h"
  #endif
  
 -#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || \
@@ -9,8 +9,8 @@
      defined(OS_CHROMEOS)
  #include "chrome/browser/ui/webui/discards/discards.mojom.h"
  #include "chrome/browser/ui/webui/discards/discards_ui.h"
-@@ -471,7 +471,7 @@ void PopulateChromeWebUIFrameBinders(
-       map);
+@@ -551,7 +551,7 @@ void PopulateChromeWebUIFrameBinders(
+       media_app_ui::mojom::PageHandlerFactory, chromeos::MediaAppUI>(map);
  #endif
  
 -#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || \

@@ -61,6 +61,7 @@ include/liveMedia/AC3AudioRTPSource.hh
 include/liveMedia/AC3AudioStreamFramer.hh
 include/liveMedia/ADTSAudioFileServerMediaSubsession.hh
 include/liveMedia/ADTSAudioFileSource.hh
+include/liveMedia/ADTSAudioStreamDiscreteFramer.hh
 include/liveMedia/AMRAudioFileServerMediaSubsession.hh
 include/liveMedia/AMRAudioFileSink.hh
 include/liveMedia/AMRAudioFileSource.hh
@@ -190,6 +191,7 @@ include/liveMedia/RTSPClient.hh
 include/liveMedia/RTSPCommon.hh
 include/liveMedia/RTSPRegisterSender.hh
 include/liveMedia/RTSPServer.hh
+include/liveMedia/RawVideoFrameParameters.hh
 include/liveMedia/RawVideoRTPSink.hh
 include/liveMedia/RawVideoRTPSource.hh
 include/liveMedia/SIPClient.hh

@@ -2,13 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	plproxy
-DISTVERSIONPREFIX=	plproxy_
-DISTVERSION=	2_9
+PORTVERSION=	2.10.0
 CATEGORIES=	databases
+MASTER_SITES=	https://plproxy.github.io/downloads/files/${PORTVERSION}/
 PKGNAMEPREFIX=	postgresql-
 
 MAINTAINER=	sunpoet@FreeBSD.org
-COMMENT=	PL/Proxy - Function-based sharding for PostgreSQL
+COMMENT=	Function-based sharding for PostgreSQL
 
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
@@ -16,8 +16,6 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 USES=		bison gmake pgsql
 
 LLD_UNSAFE=	yes
-
-USE_GITHUB=	yes
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/postgresql/plproxy.so

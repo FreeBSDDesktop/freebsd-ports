@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	pianod2
-PORTVERSION=	309
+PORTVERSION=	329
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://deviousfish.com/Downloads/pianod2/Devel/
 
@@ -14,6 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BROKEN_i386=	fails to build
 
+BUILD_DEPENDS=	gsed:textproc/gsed
 LIB_DEPENDS=	libao.so:audio/libao \
 	libavcodec.so:multimedia/ffmpeg \
 	libgcrypt.so:security/libgcrypt \
@@ -29,7 +31,7 @@ RUN_DEPENDS=	mksh>0:shells/mksh
 USES=	autoreconf compiler:c11 gettext gmake gnome pkgconfig shebangfix
 
 USE_GNOME=	glib20
-USE_GSTREAMER=	ffmpeg
+USE_GSTREAMER1=	ffmpeg
 
 USE_RC_SUBR=	pianod
 
@@ -38,6 +40,7 @@ GNU_CONFIGURE=	yes
 SHEBANG_FILES=	contrib/piano contrib/runmix
 ksh_CMD=	${LOCALBASE}/bin/mksh
 
+BINARY_ALIAS=	sed=${LOCALBASE}/bin/gsed
 CONFIGURE_ARGS=	--with-compression \
 	--with-accesscontrol \
 	--with-engine=gstreamer \

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	makemkv
-PORTVERSION=	1.15.0
+PORTVERSION=	1.15.2
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.makemkv.com/download/:makemkv \
 		http://www.makemkv.com/download/old/:makemkv \
@@ -39,8 +39,8 @@ LICENSE_NAME_MAKEMKV=	The MakeMKV EULA
 LICENSE_NAME_FDK=	The FDK AAC License
 LICENSE_FILE_MAKEMKV=	${WRKDIR}/makemkv-bin-${PORTVERSION}/src/eula_en_linux.txt
 LICENSE_FILE_FDK=	${WRKDIR}/fdk-aac-${FDKAACVERSION}/NOTICE
-LICENSE_PERMS_MAKEMKV=	no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell \
-			no-auto-accept
+LICENSE_PERMS_MAKEMKV=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell \
+			auto-accept
 LICENSE_PERMS_FDK=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell \
 			auto-accept
 LICENSE_DISTFILES_FDK=	fdk-aac-${FDKAACVERSION}.tar.gz
@@ -57,19 +57,22 @@ LICENSE_DISTFILES_MAKEMKV=	makemkv-bin-${PORTVERSION}.tar.gz \
 				makemkv-oss-${PORTVERSION}.tar.gz
 
 ONLY_FOR_ARCHS=	amd64 i386
-USE_LDCONFIG=	yes
 USES=	gmake linux pkgconfig perl5
 USE_LINUX=	base expat expat:build openssl openssl:build
 USE_PERL5=	build
 USE_GCC=	yes
+USE_LDCONFIG=	yes
 BUILD_DEPENDS=	nasm>0:devel/nasm \
 		${LOCALBASE}/include/expat.h:textproc/expat2 \
 		patchelf>0:sysutils/patchelf \
 		gawk>0:lang/gawk \
 		gsed>0:textproc/gsed
 
-RESTRICTED=	yes
+NO_CDROM=	Do not sell
 RESTRICTED_FILES=	makemkv-bin-${PORTVERSION}.tar.gz
+LEGAL_TEXT=	${NO_CDROM}. Do not redistribute modified binaries, but\
+		explicit permission to distribute a patched makemkvcon given\
+		by copyright owner
 
 WRKSRC=		${WRKDIR}/makemkv-oss-${PORTVERSION}
 
@@ -85,13 +88,14 @@ MPFRVERSION=	3.1.2
 MPCVERSION=	1.0.3
 GCCVERSION=	5.5.0
 FDKAACVERSION=	2.0.1
-FFMPEGVERSION=	4.2.2
+FFMPEGVERSION=	4.3.1
 OPENSSLVERSION=	1.0.2
 OPENSSLPATCHLEVEL=	k
 OPENSSLFULLVER=	${OPENSSLVERSION}${OPENSSLPATCHLEVEL}
 
 LINUXARCH=	${ARCH:S/amd64/x86_64/}
-LINUXTRIPLET=	${LINUXARCH}-unknown-linux-gnu
+LINUX32CPUTYPE=	${${OSVERSION} >= 1300000:?i686:i486}
+LINUXTRIPLET=	${LINUXARCH:S/i386/${LINUX32CPUTYPE}/}-unknown-linux-gnu
 LINUXLIBDIR=	${LINUXBASE}/${"${LINUXARCH:Mx86_64}" != "":?lib64:lib}
 GNUCROSSDIR=	${WRKDIR}/gnuroot/${LINUXTRIPLET}
 GNUCROSSLIBDIR=	${GNUCROSSDIR}/${"${LINUXARCH:Mx86_64}" != "":?lib64:lib}
@@ -104,14 +108,6 @@ CFLAGS+=	-DFORCE_OPENSSL_NO_EC -I${WRKDIR}/gnuroot/include \
 SSP_CFLAGS=
 LDFLAGS+=	-L${WRKDIR}/gnuroot/lib -Wl,-rpath-link=${WRKDIR}/gnuroot/lib
 HAS_CONFIGURE=	yes
-CONFIGURE_ARGS=	--prefix=${PREFIX} --disable-gui --host=${LINUXTRIPLET} \
-		--libdir=${PREFIX}/lib/makemkv
-CONFIGURE_ENV=	CC=${LINUXTRIPLET}-gcc CXX=${LINUXTRIPLET}-g++ \
-		CFLAGS="${CFLAGS:N-Wl,-rpath=*}" \
-		CXXFLAGS="${CXXFLAGS:N-Wl,-rpath=*}" \
-		LDFLAGS="${LDFLAGS:N-Wl,-rpath=*}" \
-		PATH=${WRKDIR}/gnuroot/bin:${PATH} \
-		PKG_CONFIG_PATH=${WRKDIR}/gnuroot/lib/pkgconfig
 MAKE_ENV=	PATH=${WRKDIR}/gnuroot/bin:${PATH}
 STRIP_CMD=	${WRKDIR}/gnuroot/bin/${LINUXTRIPLET}-strip
 
@@ -146,6 +142,7 @@ post-patch:
 			${WRKSRC}/Makefile.in
 		@${REINPLACE_CMD} -e 's:/bin/bash:/bin/sh:' \
 			-e 's:x86_64:amd64:' \
+			-e 's:i686:i386:' \
 			-e 's:-t \([^ ]*\) \([^ ]*\):\2 \1:' \
 			${WRKDIR}/makemkv-bin-${PORTVERSION}/Makefile
 		@${REINPLACE_CMD} -e 's:3\.79:4.*:' \
@@ -166,7 +163,7 @@ pre-configure:
 		CC=${CC} CXX=${CXX} ../binutils-${BINUTILSVERSION}/configure \
 			--target=${LINUXTRIPLET} \
 			--prefix=${WRKDIR}/gnuroot \
-			--disable-multilib --disable-nls; \
+			--disable-multilib --disable-nls --without-isl; \
 		${MAKE_CMD} ${_MAKE_JOBS} && \
 		${MAKE_CMD} install
 		# GCC compiler
@@ -175,7 +172,8 @@ pre-configure:
 		CC=${CC} CXX=${CXX} ../gcc-${GCCVERSION}/configure \
 			--target=${LINUXTRIPLET} \
 			--prefix=${WRKDIR}/gnuroot \
-			--enable-languages=c,c++ --disable-multilib; \
+			--enable-languages=c,c++ --disable-multilib \
+			--without-isl; \
 		${MAKE_CMD} ${_MAKE_JOBS} all-gcc && \
 		${MAKE_CMD} install-gcc
 		# Glibc headers / startup code
@@ -209,7 +207,7 @@ pre-configure:
 		${MAKE_CMD} ${_MAKE_JOBS}; \
 		${MAKE_CMD} install
 		# GCC libstdc++
-		${ECHO_CMD} '#/bin/sh\ntrue' \
+		${ECHO_CMD} '#!/bin/sh\ntrue' \
 			>${WRKDIR}/gnuroot/bin/ldconfig
 		${CHMOD} +x ${WRKDIR}/gnuroot/bin/ldconfig
 		cd ${WRKDIR}/gcc-build; \
@@ -243,6 +241,17 @@ pre-configure:
 		cd ${WRKDIR}/openssl-${OPENSSLFULLVER}; \
 		./Configure --openssldir= --prefix=/usr ${OPENSSLTARGET}
 
+do-configure:
+		cd ${WRKSRC}; \
+		CC=${LINUXTRIPLET}-gcc CXX=${LINUXTRIPLET}-g++ \
+		CFLAGS="-std=c++11 ${CFLAGS:N-Wl,-rpath=*}" \
+		CXXFLAGS="-std=c++11 ${CXXFLAGS:N-Wl,-rpath=*}" \
+		LDFLAGS="${LDFLAGS:N-Wl,-rpath=*}" \
+		PATH=${WRKDIR}/gnuroot/bin:${PATH} \
+		PKG_CONFIG_PATH=${WRKDIR}/gnuroot/lib/pkgconfig \
+		./configure --prefix=${PREFIX} --host=${LINUXTRIPLET} \
+			--libdir=${PREFIX}/lib/makemkv --disable-gui
+
 pre-install:
 		${MKDIR} ${STAGEDIR}${PREFIX}/lib/makemkv
 
@@ -259,6 +268,7 @@ post-install:
 			${STAGEDIR}${PREFIX}/bin/makemkvcon
 		${REINPLACE_CMD} -e 's:/sys/bus/scsi:/etc/makemkv/:' \
 			${STAGEDIR}${PREFIX}/bin/makemkvcon
+		${BRANDELF} -t Linux ${STAGEDIR}${PREFIX}/bin/makemkvcon
 		${INSTALL_SCRIPT} ${WRKDIR}/update-makemkv-drives \
 			${STAGEDIR}${PREFIX}/sbin
 

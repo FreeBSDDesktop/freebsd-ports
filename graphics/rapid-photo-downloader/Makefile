@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	rapid-photo-downloader
-DISTVERSION=	0.9.23
+DISTVERSION=	0.9.24
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	https://launchpad.net/rapid/pyqt/${PORTVERSION}/+download/
 

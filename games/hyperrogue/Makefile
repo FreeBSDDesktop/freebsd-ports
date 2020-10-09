@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	hyperrogue
-PORTVERSION=	11.3f
+PORTVERSION=	11.3o
+DISTVERSIONPREFIX=	v
 CATEGORIES=	games
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -17,7 +18,6 @@ LIB_DEPENDS=	libpng.so:graphics/png
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	zenorogue
-GH_TAGNAME=	${PORTVERSION:C/\.//}
 
 USES=		autoreconf compiler:c++11-lang gl localbase sdl xorg
 GNU_CONFIGURE=	yes
@@ -29,6 +29,8 @@ CFLAGS:=	${CFLAGS:C/-O[0-9]//} -DFHS
 CXXFLAGS:=	${CXXFLAGS:C/-O[0-9]//} -DFHS
 
 PORTDOCS=	README.md
+PORTDATA=	*
+PLIST_FILES=	bin/hyperrogue share/pixmaps/hyperrogue.ico
 
 DESKTOP_ENTRIES="HyperRogue" \
 		"" \

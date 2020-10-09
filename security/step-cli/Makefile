@@ -2,7 +2,7 @@
 
 PORTNAME=	step-cli
 DISTVERSIONPREFIX=v
-DISTVERSION=	0.14.3
+DISTVERSION=	0.15.2
 CATEGORIES=	security
 
 MAINTAINER=	mw@wipp.bayern
@@ -13,37 +13,26 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:modules shebangfix
 
-SHEBANG_FILES=	autocomplete/bash_autocomplete
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	smallstep
 GH_PROJECT=	cli
-
-GO_TARGET=	./cmd/step
-GO_BUILDFLAGS=	-ldflags "-w -X main.Version=${PORTVERSION}"
-
-PLIST_FILES=	bin/step \
-		etc/bash_completion.d/step-completion.bash \
-		share/zsh/site-functions/_step
-
 GH_TUPLE=	\
 		AndreasBriese:bbloom:e2d15f34fcf9:andreasbriese_bbloom/vendor/github.com/AndreasBriese/bbloom \
 		BurntSushi:toml:v0.3.1:burntsushi_toml/vendor/github.com/BurntSushi/toml \
 		DataDog:zstd:v1.4.1:datadog_zstd/vendor/github.com/DataDog/zstd \
 		Masterminds:goutils:v1.1.0:masterminds_goutils/vendor/github.com/Masterminds/goutils \
-		Masterminds:semver:v3.0.1:masterminds_semver/vendor/github.com/Masterminds/semver/v3 \
-		Masterminds:sprig:v3.0.0:masterminds_sprig/vendor/github.com/Masterminds/sprig/v3 \
+		Masterminds:semver:v3.1.0:masterminds_semver_v3/vendor/github.com/Masterminds/semver/v3 \
+		Masterminds:sprig:v3.1.0:masterminds_sprig_v3/vendor/github.com/Masterminds/sprig/v3 \
 		Microsoft:go-winio:v0.4.14:microsoft_go_winio/vendor/github.com/Microsoft/go-winio \
 		OpenPeeDeeP:depguard:v1.0.1:openpeedeep_depguard/vendor/github.com/OpenPeeDeeP/depguard \
 		ThomasRooney:gexpect:5482f0350944:thomasrooney_gexpect/vendor/github.com/ThomasRooney/gexpect \
 		asaskevich:govalidator:f9ffefc3facf:asaskevich_govalidator/vendor/github.com/asaskevich/govalidator \
 		beorn7:perks:v1.0.1:beorn7_perks/vendor/github.com/beorn7/perks \
 		bgentry:speakeasy:v0.1.0:bgentry_speakeasy/vendor/github.com/bgentry/speakeasy \
-		bombsimon:wsl:v2.0.0:bombsimon_wsl/vendor/github.com/bombsimon/wsl/v2 \
+		bombsimon:wsl:v2.0.0:bombsimon_wsl_v2/vendor/github.com/bombsimon/wsl/v2 \
 		boombuler:barcode:v1.0.0:boombuler_barcode/vendor/github.com/boombuler/barcode \
-		census-instrumentation:opencensus-go:v0.22.2:census_instrumentation_opencensus_go/vendor/go.opencensus.io \
 		cespare:xxhash:v1.1.0:cespare_xxhash/vendor/github.com/cespare/xxhash \
-		cespare:xxhash:v2.1.1:cespare_xxhash_1/vendor/github.com/cespare/xxhash/v2 \
+		cespare:xxhash:v2.1.1:cespare_xxhash_v2/vendor/github.com/cespare/xxhash/v2 \
 		cheggaaa:pb:v1.0.28:cheggaaa_pb/vendor/gopkg.in/cheggaaa/pb.v1 \
 		chzyer:readline:2972be24d48e:chzyer_readline/vendor/github.com/chzyer/readline \
 		coreos:bbolt:v1.3.3:coreos_bbolt/vendor/github.com/coreos/bbolt \
@@ -52,25 +41,25 @@ GH_TUPLE=	\
 		coreos:go-systemd:95778dfbb74e:coreos_go_systemd/vendor/github.com/coreos/go-systemd \
 		coreos:pkg:399ea9e2e55f:coreos_pkg/vendor/github.com/coreos/pkg \
 		corpix:uarand:v0.1.1:corpix_uarand/vendor/github.com/corpix/uarand \
-		cpuguy83:go-md2man:v2.0.0:cpuguy83_go_md2man/vendor/github.com/cpuguy83/go-md2man/v2 \
+		cpuguy83:go-md2man:v2.0.0:cpuguy83_go_md2man_v2/vendor/github.com/cpuguy83/go-md2man/v2 \
 		creack:pty:v1.1.7:creack_pty/vendor/github.com/creack/pty \
 		davecgh:go-spew:v1.1.1:davecgh_go_spew/vendor/github.com/davecgh/go-spew \
-		dgraph-io:badger:09dd2e1a4195:dgraph_io_badger/vendor/github.com/dgraph-io/badger/v2 \
-		dgraph-io:badger:v1.5.3:dgraph_io_badger_1/vendor/github.com/dgraph-io/badger \
+		dgraph-io:badger:09dd2e1a4195:dgraph_io_badger_v2/vendor/github.com/dgraph-io/badger/v2 \
+		dgraph-io:badger:v1.5.3:dgraph_io_badger/vendor/github.com/dgraph-io/badger \
 		dgraph-io:ristretto:8f368f2f2ab3:dgraph_io_ristretto/vendor/github.com/dgraph-io/ristretto \
 		dgrijalva:jwt-go:v3.2.0:dgrijalva_jwt_go/vendor/github.com/dgrijalva/jwt-go \
 		dgryski:go-farm:6a90982ecee2:dgryski_go_farm/vendor/github.com/dgryski/go-farm \
 		dominikh:go-tools:v0.0.1-2019.2.3:dominikh_go_tools/vendor/honnef.co/go/tools \
 		dustin:go-humanize:v1.0.0:dustin_go_humanize/vendor/github.com/dustin/go-humanize \
 		etcd-io:bbolt:v1.3.2:etcd_io_bbolt/vendor/go.etcd.io/bbolt \
-		etcd-io:etcd:v3.3.18:etcd_io_etcd/vendor/go.etcd.io/etcd \
+		etcd-io:etcd:v3.3.18:etcd_io_etcd \
 		fatih:color:v1.8.0:fatih_color/vendor/github.com/fatih/color \
 		fsnotify:fsnotify:v1.4.7:fsnotify_fsnotify/vendor/github.com/fsnotify/fsnotify \
 		go-chi:chi:v4.0.2:go_chi_chi/vendor/github.com/go-chi/chi \
 		go-critic:go-critic:v0.4.0:go_critic_go_critic/vendor/github.com/go-critic/go-critic \
 		go-ini:ini:v1.51.1:go_ini_ini/vendor/gopkg.in/ini.v1 \
 		go-lintpack:lintpack:v0.5.2:go_lintpack_lintpack/vendor/github.com/go-lintpack/lintpack \
-		go-sql-driver:mysql:v1.4.1:go_sql_driver_mysql/vendor/github.com/go-sql-driver/mysql \
+		go-sql-driver:mysql:v1.5.0:go_sql_driver_mysql/vendor/github.com/go-sql-driver/mysql \
 		go-toolsmith:astcast:v1.0.0:go_toolsmith_astcast/vendor/github.com/go-toolsmith/astcast \
 		go-toolsmith:astcopy:v1.0.0:go_toolsmith_astcopy/vendor/github.com/go-toolsmith/astcopy \
 		go-toolsmith:astequal:v1.0.0:go_toolsmith_astequal/vendor/github.com/go-toolsmith/astequal \
@@ -82,14 +71,12 @@ GH_TUPLE=	\
 		gobwas:glob:v0.2.3:gobwas_glob/vendor/github.com/gobwas/glob \
 		gofrs:flock:5135e617513b:gofrs_flock/vendor/github.com/gofrs/flock \
 		gogo:protobuf:v1.3.1:gogo_protobuf/vendor/github.com/gogo/protobuf \
-		golang:appengine:v1.6.5:golang_appengine/vendor/google.golang.org/appengine \
-		golang:crypto:0ec3e9974c59:golang_crypto/vendor/golang.org/x/crypto \
+		golang:crypto:123391ffb6de:golang_crypto/vendor/golang.org/x/crypto \
 		golang:glog:23def4e6c14b:golang_glog/vendor/github.com/golang/glog \
 		golang:groupcache:215e87163ea7:golang_groupcache/vendor/github.com/golang/groupcache \
 		golang:lint:fdd1cda4f05f:golang_lint/vendor/golang.org/x/lint \
 		golang:mock:v1.3.1:golang_mock/vendor/github.com/golang/mock \
-		golang:net:c0dbc17a3553:golang_net/vendor/golang.org/x/net \
-		golang:oauth2:858c2ad4c8b6:golang_oauth2/vendor/golang.org/x/oauth2 \
+		golang:net:16171245cfb2:golang_net/vendor/golang.org/x/net \
 		golang:protobuf:v1.3.2:golang_protobuf/vendor/github.com/golang/protobuf \
 		golang:snappy:v0.0.1:golang_snappy/vendor/github.com/golang/snappy \
 		golang:sys:b016eb3dc98e:golang_sys/vendor/golang.org/x/sys \
@@ -113,13 +100,9 @@ GH_TUPLE=	\
 		golangci:unconvert:28b1c447d1f4:golangci_unconvert/vendor/github.com/golangci/unconvert \
 		google:btree:v1.0.0:google_btree/vendor/github.com/google/btree \
 		google:certificate-transparency-go:v1.1.0:google_certificate_transparency_go/vendor/github.com/google/certificate-transparency-go \
-		google:go-cmp:v0.3.1:google_go_cmp/vendor/github.com/google/go-cmp \
 		google:go-genproto:f3c370f40bfb:google_go_genproto/vendor/google.golang.org/genproto \
 		google:monologue:35abc9683a6c:google_monologue/vendor/github.com/google/monologue \
 		google:uuid:v1.1.1:google_uuid/vendor/github.com/google/uuid \
-		googleapis:gax-go:v2.0.5:googleapis_gax_go/vendor/github.com/googleapis/gax-go \
-		googleapis:google-api-go-client:v0.15.0:googleapis_google_api_go_client/vendor/google.golang.org/api \
-		googleapis:google-cloud-go:v0.51.0:googleapis_google_cloud_go/vendor/cloud.google.com/go \
 		gorilla:websocket:v1.4.1:gorilla_websocket/vendor/github.com/gorilla/websocket \
 		gostaticanalysis:analysisutil:v0.0.3:gostaticanalysis_analysisutil/vendor/github.com/gostaticanalysis/analysisutil \
 		grpc-ecosystem:go-grpc-middleware:v1.1.0:grpc_ecosystem_go_grpc_middleware/vendor/github.com/grpc-ecosystem/go-grpc-middleware \
@@ -127,9 +110,9 @@ GH_TUPLE=	\
 		grpc-ecosystem:grpc-gateway:v1.12.1:grpc_ecosystem_grpc_gateway/vendor/github.com/grpc-ecosystem/grpc-gateway \
 		grpc:grpc-go:v1.26.0:grpc_grpc_go/vendor/google.golang.org/grpc \
 		hashicorp:hcl:v1.0.0:hashicorp_hcl/vendor/github.com/hashicorp/hcl \
-		huandu:xstrings:v1.2.0:huandu_xstrings/vendor/github.com/huandu/xstrings \
+		huandu:xstrings:v1.3.1:huandu_xstrings/vendor/github.com/huandu/xstrings \
 		icrowley:fake:4178557ae428:icrowley_fake/vendor/github.com/icrowley/fake \
-		imdario:mergo:v0.3.7:imdario_mergo/vendor/github.com/imdario/mergo \
+		imdario:mergo:v0.3.8:imdario_mergo/vendor/github.com/imdario/mergo \
 		inconshreveable:mousetrap:v1.0.0:inconshreveable_mousetrap/vendor/github.com/inconshreveable/mousetrap \
 		jonboulle:clockwork:v0.1.0:jonboulle_clockwork/vendor/github.com/jonboulle/clockwork \
 		json-iterator:go:v1.1.9:json_iterator_go/vendor/github.com/json-iterator/go \
@@ -160,7 +143,7 @@ GH_TUPLE=	\
 		newrelic:go-agent:v2.15.0:newrelic_go_agent/vendor/github.com/newrelic/go-agent \
 		olekukonko:tablewriter:v0.0.4:olekukonko_tablewriter/vendor/github.com/olekukonko/tablewriter \
 		pelletier:go-toml:v1.6.0:pelletier_go_toml/vendor/github.com/pelletier/go-toml \
-		pkg:errors:v0.8.1:pkg_errors/vendor/github.com/pkg/errors \
+		pkg:errors:v0.9.1:pkg_errors/vendor/github.com/pkg/errors \
 		pmezard:go-difflib:v1.0.0:pmezard_go_difflib/vendor/github.com/pmezard/go-difflib \
 		pquerna:otp:v1.0.0:pquerna_otp/vendor/github.com/pquerna/otp \
 		prometheus:client_golang:v1.3.0:prometheus_client_golang/vendor/github.com/prometheus/client_golang \
@@ -168,16 +151,17 @@ GH_TUPLE=	\
 		prometheus:common:v0.7.0:prometheus_common/vendor/github.com/prometheus/common \
 		prometheus:procfs:v0.0.8:prometheus_procfs/vendor/github.com/prometheus/procfs \
 		rs:xid:v1.2.1:rs_xid/vendor/github.com/rs/xid \
-		russross:blackfriday:v2.0.1:russross_blackfriday/vendor/github.com/russross/blackfriday/v2 \
+		russross:blackfriday:v2.0.1:russross_blackfriday_v2/vendor/github.com/russross/blackfriday/v2 \
 		samfoo:ansi:b6bd2ded7189:samfoo_ansi/vendor/github.com/samfoo/ansi \
 		securego:gosec:9cb83e10afad:securego_gosec/vendor/github.com/securego/gosec \
 		shurcooL:sanitized_anchor_name:v1.0.0:shurcool_sanitized_anchor_name/vendor/github.com/shurcooL/sanitized_anchor_name \
 		sirupsen:logrus:v1.4.2:sirupsen_logrus/vendor/github.com/sirupsen/logrus \
-		smallstep:assert:b99dc1097b15:smallstep_assert/vendor/github.com/smallstep/assert \
-		smallstep:certificates:v0.14.4:smallstep_certificates/vendor/github.com/smallstep/certificates \
+		smallstep:assert:82e2b9b3b262:smallstep_assert/vendor/github.com/smallstep/assert \
+		smallstep:certificates:v0.15.1:smallstep_certificates/vendor/github.com/smallstep/certificates \
 		smallstep:certinfo:v1.3.0:smallstep_certinfo/vendor/github.com/smallstep/certinfo \
+		smallstep:crypto:v0.2.0:smallstep_crypto/vendor/go.step.sm/crypto \
 		smallstep:nosql:v0.3.0:smallstep_nosql/vendor/github.com/smallstep/nosql \
-		smallstep:truststore:v0.9.3:smallstep_truststore/vendor/github.com/smallstep/truststore \
+		smallstep:truststore:v0.9.6:smallstep_truststore/vendor/github.com/smallstep/truststore \
 		smallstep:zcrypto:fbc32cf76bce:smallstep_zcrypto/vendor/github.com/smallstep/zcrypto \
 		smallstep:zlint:d84eaafe274f:smallstep_zlint/vendor/github.com/smallstep/zlint \
 		soheilhy:cmux:v0.1.4:soheilhy_cmux/vendor/github.com/soheilhy/cmux \
@@ -188,9 +172,10 @@ GH_TUPLE=	\
 		spf13:jwalterweatherman:v1.1.0:spf13_jwalterweatherman/vendor/github.com/spf13/jwalterweatherman \
 		spf13:pflag:v1.0.5:spf13_pflag/vendor/github.com/spf13/pflag \
 		spf13:viper:v1.6.1:spf13_viper/vendor/github.com/spf13/viper \
+		sqs:pbtypes:v1.0.0:sqs_pbtypes/vendor/sourcegraph.com/sqs/pbtypes \
 		square:go-jose:v2.4.0:square_go_jose/vendor/gopkg.in/square/go-jose.v2 \
 		stretchr:objx:v0.2.0:stretchr_objx/vendor/github.com/stretchr/objx \
-		stretchr:testify:v1.4.0:stretchr_testify/vendor/github.com/stretchr/testify \
+		stretchr:testify:v1.5.1:stretchr_testify/vendor/github.com/stretchr/testify \
 		subosito:gotenv:v1.2.0:subosito_gotenv/vendor/github.com/subosito/gotenv \
 		timakin:bodyclose:f7f2e9bca95e:timakin_bodyclose/vendor/github.com/timakin/bodyclose \
 		tmc:grpc-websocket-proxy:0ad062ec5ee5:tmc_grpc_websocket_proxy/vendor/github.com/tmc/grpc-websocket-proxy \
@@ -206,10 +191,20 @@ GH_TUPLE=	\
 		weppos:publicsuffix-go:v0.4.0:weppos_publicsuffix_go/vendor/github.com/weppos/publicsuffix-go \
 		xiang90:probing:43a291ad63a2:xiang90_probing/vendor/github.com/xiang90/probing
 
-GL_TUPLE=	https://gitlab.howett.net:go:plist:3b63eb3a43b59c776909681ed1fcb412b47d3c9a:go_plist/vendor/howett.net/plist
+GL_TUPLE=	https://gitlab.howett.net:go:plist:591f970eefbbeb04d7b37f334a0c4c3256e32876:go_plist/vendor/howett.net/plist
 
-		# Mirrors for the following packages are not currently known, please look them up and handle these tuples manually:
-		#	::v1.0.0:group_name/vendor/sourcegraph.com/sqs/pbtypes
+SHEBANG_FILES=	autocomplete/bash_autocomplete
+
+GO_TARGET=	./cmd/step
+GO_BUILDFLAGS=	-ldflags "-w -X main.Version=${PORTVERSION}"
+
+PLIST_FILES=	bin/step \
+		etc/bash_completion.d/step-completion.bash \
+		share/zsh/site-functions/_step
+
+post-extract:
+	@${MKDIR} ${WRKSRC}/vendor/go.etcd.io
+	@${RLN} ${WRKSRC_coreos_etcd} ${WRKSRC}/vendor/go.etcd.io/etcd
 
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d

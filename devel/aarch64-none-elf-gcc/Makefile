@@ -2,13 +2,13 @@
 
 PORTNAME=	gcc
 PORTVERSION?=	8.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	GCC
 PKGNAMEPREFIX?=	aarch64-none-elf-
 
 MAINTAINER=	manu@FreeBSD.org
-COMMENT=	GNU Compiler Collection for bare metal arm cross-development
+COMMENT?=	GNU Compiler Collection for bare metal aarch64 cross-development
 
 LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
@@ -90,5 +90,6 @@ post-install:
 .endfor
 	@${RM} ${STAGEDIR}${PREFIX}/share/info/*
 	@${RM} ${STAGEDIR}${PREFIX}/man/man7/*
+	${RM} -r ${STAGEDIR}/usr/lib/gcc/${GCC_TARGET}/${PORTVERSION}/include-fixed
 
 .include <bsd.port.post.mk>

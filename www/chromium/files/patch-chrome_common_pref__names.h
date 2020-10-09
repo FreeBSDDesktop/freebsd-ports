@@ -1,6 +1,6 @@
---- chrome/common/pref_names.h.orig	2020-03-16 18:40:30 UTC
+--- chrome/common/pref_names.h.orig	2020-07-07 21:58:14 UTC
 +++ chrome/common/pref_names.h
-@@ -334,7 +334,7 @@ extern const char kHistoryMenuPromoShown[];
+@@ -345,7 +345,7 @@ extern const char kHistoryMenuPromoShown[];
  extern const char kForceGoogleSafeSearch[];
  extern const char kForceYouTubeRestrict[];
  extern const char kAllowedDomainsForApps[];
@@ -9,7 +9,7 @@
  extern const char kUsesSystemTheme[];
  #endif
  extern const char kCurrentThemePackFilename[];
-@@ -365,7 +365,7 @@ extern const char kDefaultBrowserSettingEnabled[];
+@@ -376,7 +376,7 @@ extern const char kDefaultBrowserSettingEnabled[];
  #if defined(OS_MACOSX)
  extern const char kShowUpdatePromotionInfoBar[];
  #endif
@@ -18,16 +18,16 @@
  extern const char kUseCustomChromeFrame[];
  #endif
  #if BUILDFLAG(ENABLE_PLUGINS)
-@@ -532,7 +532,7 @@ extern const char kAppWindowPlacement[];
- extern const char kDownloadDefaultDirectory[];
- extern const char kDownloadExtensionsToOpen[];
+@@ -550,7 +550,7 @@ extern const char kDownloadExtensionsToOpen[];
+ extern const char kDownloadExtensionsToOpenByPolicy[];
+ extern const char kDownloadAllowedURLsForOpenByPolicy[];
  extern const char kDownloadDirUpgraded[];
 -#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_MACOSX)
 +#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_MACOSX) || defined(OS_BSD)
  extern const char kOpenPdfDownloadInSystemReader[];
  #endif
  #if defined(OS_ANDROID)
-@@ -744,9 +744,9 @@ extern const char kAllowCrossOriginAuthPrompt[];
+@@ -764,9 +764,9 @@ extern const char kAllowCrossOriginAuthPrompt[];
  extern const char kGloballyScopeHTTPAuthCacheEnabled[];
  extern const char kAmbientAuthenticationInPrivateModesEnabled[];
  
@@ -39,3 +39,12 @@
  
  #if defined(OS_POSIX)
  extern const char kNtlmV2Enabled[];
+@@ -999,7 +999,7 @@ extern const char kAutoplayWhitelist[];
+ extern const char kBlockAutoplayEnabled[];
+ #endif
+ 
+-#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
++#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
+ extern const char kAllowNativeNotifications[];
+ #endif
+ 

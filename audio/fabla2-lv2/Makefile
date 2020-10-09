@@ -2,7 +2,7 @@
 
 PORTNAME=	fabla2
 DISTVERSION=	g20180331
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 PKGNAMESUFFIX=	-lv2
 
@@ -11,6 +11,8 @@ COMMENT=	Sampler with multiple layers, banks, pads, integrated FX and routing
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN=		ui.cxx:442:2: error: cannot initialize a member subobject of type 'LV2UI_Handle'
 
 BUILD_DEPENDS=	lv2>0:audio/lv2
 LIB_DEPENDS=	libsamplerate.so:audio/libsamplerate \

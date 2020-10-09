@@ -1,6 +1,6 @@
---- chrome/browser/flag_descriptions.cc.orig	2020-04-03 04:11:29 UTC
+--- chrome/browser/flag_descriptions.cc.orig	2020-08-18 18:40:05 UTC
 +++ chrome/browser/flag_descriptions.cc
-@@ -3646,7 +3646,7 @@ const char kZeroStateFilesDescription[] =
+@@ -3929,7 +3929,7 @@ const char kZeroCopyVideoCaptureDescription[] =
  
  #endif  // defined(OS_CHROMEOS)
  
@@ -9,7 +9,7 @@
  
  #if BUILDFLAG(USE_TCMALLOC)
  const char kDynamicTcmallocName[] = "Dynamic Tcmalloc Tuning";
-@@ -3655,7 +3655,7 @@ const char kDynamicTcmallocDescription[] =
+@@ -3938,7 +3938,7 @@ const char kDynamicTcmallocDescription[] =
      "utilization.";
  #endif  // BUILDFLAG(USE_TCMALLOC)
  
@@ -18,7 +18,7 @@
  
  // All views-based platforms --------------------------------------------------
  
-@@ -3680,13 +3680,13 @@ const char kReopenTabInProductHelpDescription[] =
+@@ -3968,13 +3968,13 @@ const char kReopenTabInProductHelpDescription[] =
  
  // Random platform combinations -----------------------------------------------
  
@@ -34,7 +34,7 @@
  
  #if BUILDFLAG(ENABLE_CLICK_TO_CALL)
  
-@@ -3703,7 +3703,7 @@ const char kClickToCallDetectionV2Description[] =
+@@ -3986,7 +3986,7 @@ const char kClickToCallUIDescription[] =
  
  #endif  // BUILDFLAG(ENABLE_CLICK_TO_CALL)
  
@@ -42,10 +42,10 @@
 +#if defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD) || \
      defined(OS_CHROMEOS)
  
- const char kRemoteCopyReceiverName[] =
-@@ -3712,16 +3712,16 @@ const char kRemoteCopyReceiverDescription[] =
-     "Enables the remote copy feature to handle messages by writing content to "
-     "the clipboard and showing a notification to the user.";
+ const char kEnableMediaFeedsName[] = "Enables Media Feeds";
+@@ -4018,16 +4018,16 @@ const char kRemoteCopyProgressNotificationDescription[
+     "Enables progress notifications to be shown for the remote copy feature "
+     "when receiving a message.";
  
 -#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) ||
 +#endif  // defined(OS_WIN) || defined(OS_MACOSX) || defined(OS_LINUX) || defined(OS_BSD) ||

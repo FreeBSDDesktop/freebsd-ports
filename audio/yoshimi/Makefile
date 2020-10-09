@@ -1,10 +1,10 @@
 # $FreeBSD$
 
 PORTNAME=	yoshimi
-DISTVERSION=	1.7.1
+DISTVERSION=	1.7.2
 CATEGORIES=	audio
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Sophisticated software synthesizer
 
 LICENSE=	GPLv2+

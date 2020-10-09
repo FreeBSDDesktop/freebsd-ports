@@ -1,6 +1,6 @@
---- chrome/common/chrome_switches.cc.orig	2020-03-16 18:40:30 UTC
+--- chrome/common/chrome_switches.cc.orig	2020-07-07 21:58:14 UTC
 +++ chrome/common/chrome_switches.cc
-@@ -846,7 +846,7 @@ const char kAllowNaClFileHandleAPI[]        = "allow-n
+@@ -833,7 +833,7 @@ const char kAllowNaClFileHandleAPI[]        = "allow-n
  const char kAllowNaClSocketAPI[]            = "allow-nacl-socket-api";
  #endif
  

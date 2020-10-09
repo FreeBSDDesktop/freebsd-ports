@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	radicale2
-PORTVERSION=	2.1.11
+PORTVERSION=	2.1.12
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,6 +14,9 @@ COMMENT=	Python based CalDAV/CardDAV server
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+DEPRECATED=	Please migrate to Radicale 3.x which you can find at www/radicale
+EXPIRATION_DATE=2020-10-31
+
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}bcrypt>=0:security/py-bcrypt@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}passlib>=0:security/py-passlib@${PY_FLAVOR} \
@@ -24,8 +27,6 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flake8>=0:devel/py-flake8@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-cov>=0:devel/py-pytest-cov@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-runner>=0:devel/py-pytest-runner@${PY_FLAVOR}
 
-CONFLICTS=	radicale-1.[0-9]*
-
 USES=		python:3.3+ shebangfix
 USE_PYTHON=	autoplist distutils
 USERS=		radicale
@@ -33,6 +34,8 @@ GROUPS=		radicale
 USE_RC_SUBR=	radicale
 NO_ARCH=	yes
 SHEBANG_FILES=	radicale.fcgi radicale.wsgi
+
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}radicale
 
 SUB_LIST=	USERS="${USERS}" GROUPS="${GROUPS}" PYTHON_CMD="${PYTHON_CMD}"
 

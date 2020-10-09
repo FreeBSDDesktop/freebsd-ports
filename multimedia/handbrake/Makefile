@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	handbrake
-DISTVERSION=	1.3.1
+DISTVERSION=	1.3.3
+PORTREVISION=	1
 CATEGORIES=	multimedia
 DIST_SUBDIR=	${PORTNAME}
 
@@ -12,7 +13,7 @@ COMMENT=	Versatile DVD ripper and video transcoder
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-ONLY_FOR_ARCHS=	amd64 i386 powerpc64
+ONLY_FOR_ARCHS=	amd64 i386 powerpc powerpc64 powerpc64le
 
 BUILD_DEPENDS=	bash:shells/bash \
 		nasm:devel/nasm \
@@ -41,13 +42,14 @@ USES=		autoreconf:build compiler:c11 gmake iconv \
 		libtool:build localbase:ldflags pkgconfig python:3.6+,build
 
 CONTRIB_FILES=	fdk-aac-2.0.1.tar.gz \
-		ffmpeg-4.2.2.tar.bz2 \
+		ffmpeg-4.2.3.tar.bz2 \
 		libbluray-1.1.2.tar.bz2 \
 		libdvdnav-6.0.1.tar.bz2 \
 		libdvdread-6.0.2.tar.bz2 \
 		dav1d-0.5.1.tar.bz2 \
 		x265_3.2.1.tar.gz
-MASTER_SITES+=	https://download.handbrake.fr/contrib/:contrib
+
+MASTER_SITES+=	https://github.com/HandBrake/HandBrake-contribs/releases/download/contribs/:contrib
 
 DISTFILES+=	${CONTRIB_FILES:S/$/:contrib/}
 
@@ -81,7 +83,9 @@ LDFLAGS+=	-L${BUILD_WRKSRC}/contrib/lib
 
 OPTIONS_DEFINE=		FDK_AAC MFX X11
 OPTIONS_DEFAULT=	MFX X11
+OPTIONS_EXCLUDE_powerpc=	MFX
 OPTIONS_EXCLUDE_powerpc64=	MFX
+OPTIONS_EXCLUDE_powerpc64le=	MFX
 
 OPTIONS_SUB=	yes
 
@@ -124,8 +128,6 @@ post-extract: .SILENT
 # for powerpc64.
 # picked from multimedia/ffmpeg/files/patch-libswscale_ppc_swscale__altivec.c
 	${CP} ${FILESDIR}/P02-freebsd-ppc-libswscale.patch ${WRKSRC}/contrib/ffmpeg
-# fix pkgconfig directory name for meson build
-	${CP} ${FILESDIR}/A01-src-meson-build.patch ${WRKSRC}/contrib/libdav1d
 
 post-install-X11-on:
 	${LN} -sf ghb ${STAGEDIR}${PREFIX}/bin/HandBrake

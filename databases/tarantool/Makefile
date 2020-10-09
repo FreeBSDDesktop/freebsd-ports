@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tarantool
-PORTVERSION=	2.3.1
-PORTREVISION=	2
+PORTVERSION=	2.4.2
 CATEGORIES=	databases
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -15,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 NOT_FOR_ARCHS=		armv6 powerpc64 sparc64
 NOT_FOR_ARCHS_REASON=	fails to build: Unsupported architecture
 
+BUILD_DEPENDS=	gsed:textproc/gsed
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libicui18n.so:devel/icu \
 		libmsgpuck.so:devel/msgpuck \
@@ -24,6 +24,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 USES=		cmake:noninja compiler:c++11-lang gettext-runtime gmake iconv perl5 readline ssl
 USE_PERL5=	build
 
+BINARY_ALIAS=	sed=${LOCALBASE}/bin/gsed
 CMAKE_ARGS=	-DCMAKE_INSTALL_FULL_SYSCONFDIR=${ETCDIR} \
 		-DCMAKE_INSTALL_LOCALSTATEDIR=/var \
 		-DCMAKE_INSTALL_MANDIR=${PREFIX}/man
@@ -41,12 +42,12 @@ PLIST_SUB=	TT_DATADIR=${TT_DATADIR} \
 SUB_FILES=	pkg-message
 
 GH_TUPLE=	luafun:luafun:e248e00:luafun_luafun/third_party/luafun \
-		tarantool:decNumber:ec9e5be:tarantool_decNumber/third_party/decNumber \
-		tarantool:luajit:c9588f5:tarantool_luajit/third_party/luajit \
-		tarantool:luarocks:05312b5:tarantool_luarocks/third_party/luarocks \
+		tarantool:decNumber:5ddfde1:tarantool_decNumber/third_party/decNumber \
+		tarantool:luajit:377198b:tarantool_luajit/third_party/luajit \
+		tarantool:luarocks:954c2f5:tarantool_luarocks/third_party/luarocks \
 		tarantool:serpent:879580f:tarantool_serpent/third_party/serpent \
-		tarantool:small:50cb787:tarantool_small/src/lib/small \
-		tarantool:test-run:b23eeb7:tarantool_test_run/test-run
+		tarantool:small:fcac155:tarantool_small/src/lib/small \
+		tarantool:test-run:d920322:tarantool_test_run/test-run
 USE_GITHUB=	yes
 
 USERS=		tarantool

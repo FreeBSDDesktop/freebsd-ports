@@ -2,10 +2,16 @@
 # $FreeBSD$
 
 PORTNAME=	salt
-PORTVERSION=	2019.2.4
+PORTVERSION=	3001.1
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+# Unbreak the sysctl state.
+# https://github.com/saltstack/salt/issues/57826
+# https://github.com/saltstack/salt/pull/57839
+PATCH_SITES=	https://github.com/saltstack/salt/commit/
+PATCHFILES+=	1fa77bc846856d3a9a9d80e7643fb2f46febf827.patch:-p1
 
 MAINTAINER=	christer.edwards@gmail.com
 COMMENT=	Distributed remote execution and configuration management system
@@ -17,6 +23,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}MarkupSafe>0:textproc/py-MarkupSafe@${PY_FLAVOR} \
 		${PY_ENUM34} \
 		${PY_FUTURES} \
+		${PYTHON_PKGNAMEPREFIX}distro>1.4.0:sysutils/py-distro@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}libcloud>=0.14.0:net/py-libcloud@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}msgpack>=0.3:devel/py-msgpack@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}progressbar>0:misc/py-progressbar@${PY_FLAVOR} \
@@ -32,6 +39,8 @@ CPE_VENDOR=	saltstack
 CPE_PRODUCT=	salt
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
+
+CONFLICTS=	py[0-9]*-salt-2019*
 
 # we must pass these options before the target name, and python.mk has no
 # early-arguments variable, so we have to manipulate the target
@@ -71,15 +80,13 @@ AWS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}boto3>0:www/py-boto3@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}boto>=2.32.1:devel/py-boto@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}botocore>0:devel/py-botocore@${PY_FLAVOR}
 
-RAET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libnacl>=1.0.0:security/py-libnacl@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}ioflo>=1.1.7:devel/py-ioflo@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}raet>=0.6.0:net/py-raet@${PY_FLAVOR}
+RAET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libnacl>=1.0.0:security/py-libnacl@${PY_FLAVOR}
 
-TCP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycrypto>=2.6.1:security/py-pycrypto@${PY_FLAVOR}
+TCP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycryptodomex>=3.9.7:security/py-pycryptodomex@${PY_FLAVOR}
 
 ZEROMQ_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyzmq>=2.2.0:net/py-pyzmq@${PY_FLAVOR}
 ZEROMQ_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyzmq>=2.2.0:net/py-pyzmq@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}pycrypto>=2.6.1:security/py-pycrypto@${PY_FLAVOR}
+			${PYTHON_PKGNAMEPREFIX}pycryptodomex>=3.9.7:security/py-pycryptodomex@${PY_FLAVOR}
 
 post-patch:
 .for file in conf/minion conf/master doc/man/salt-key.1 \
@@ -91,7 +98,6 @@ post-patch:
 		-e 's|/srv/pillar|${ETCDIR}/pillar|' ${WRKSRC}/${file}
 .endfor
 	@${REINPLACE_CMD} -e 's|yumpkg5|pkgng|' ${WRKSRC}/conf/minion
-	@${REINPLACE_CMD} -e 's|msgpack-python|msgpack|' ${WRKSRC}/requirements/base.txt
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}

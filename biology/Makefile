@@ -10,6 +10,7 @@
     SUBDIR += bamtools
     SUBDIR += bcftools
     SUBDIR += bedtools
+    SUBDIR += bioawk
     SUBDIR += biococoa
     SUBDIR += bolt-lmm
     SUBDIR += bowtie
@@ -50,7 +51,6 @@
     SUBDIR += graphlan
     SUBDIR += grappa
     SUBDIR += groopm
-    SUBDIR += haplohseq
     SUBDIR += hhsuite
     SUBDIR += hisat2
     SUBDIR += hmmer
@@ -106,13 +106,13 @@
     SUBDIR += p5-transdecoder
     SUBDIR += paml
     SUBDIR += pbbam
-    SUBDIR += pbcopper
     SUBDIR += pbseqan
     SUBDIR += pear-merger
     SUBDIR += phrap
     SUBDIR += phred
     SUBDIR += phylip
     SUBDIR += phyml
+    SUBDIR += picard-tools
     SUBDIR += plink
     SUBDIR += primer3
     SUBDIR += prodigal
@@ -125,16 +125,20 @@
     SUBDIR += py-bx-python
     SUBDIR += py-cutadapt
     SUBDIR += py-dnaio
+    SUBDIR += py-ete3
     SUBDIR += py-fastTSNE
     SUBDIR += py-gffutils
     SUBDIR += py-gtfparse
+    SUBDIR += py-hits
     SUBDIR += py-loompy
     SUBDIR += py-macs2
     SUBDIR += py-multiqc
     SUBDIR += py-orange3-bioinformatics
     SUBDIR += py-orange3-single-cell
+    SUBDIR += py-pandas-charm
     SUBDIR += py-pyfaidx
     SUBDIR += py-pysam
+    SUBDIR += py-scikit-bio
     SUBDIR += py-xenaPython
     SUBDIR += pyfasta
     SUBDIR += python-nexus
@@ -142,7 +146,11 @@
     SUBDIR += recombine
     SUBDIR += ruby-bio
     SUBDIR += rubygem-bio
+    SUBDIR += rubygem-bio-executables
+    SUBDIR += rubygem-bio-old-biofetch-emulator
+    SUBDIR += rubygem-bio-shell
     SUBDIR += samtools
+    SUBDIR += scrm
     SUBDIR += seaview
     SUBDIR += seqan
     SUBDIR += seqan-apps
@@ -155,18 +163,20 @@
     SUBDIR += stacks
     SUBDIR += star
     SUBDIR += stringtie
+    SUBDIR += subread
     SUBDIR += tRNAscan-SE
     SUBDIR += tabixpp
-    SUBDIR += tophat
     SUBDIR += treekin
     SUBDIR += treepuzzle
     SUBDIR += trimadap
     SUBDIR += trimmomatic
+    SUBDIR += ugene
     SUBDIR += vcflib
     SUBDIR += vcftools
     SUBDIR += velvet
     SUBDIR += viennarna
     SUBDIR += vsearch
+    SUBDIR += vt
     SUBDIR += wise
 
 .include <bsd.port.subdir.mk>

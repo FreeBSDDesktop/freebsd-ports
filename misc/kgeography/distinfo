@@ -1,3 +1,3 @@
-TIMESTAMP = 1587103742
-SHA256 (KDE/applications/20.04.0/kgeography-20.04.0.tar.xz) = 587a97e54e58c2e66360728c6cee5deae17c2cd25763607d6d1860c282fd60af
-SIZE (KDE/applications/20.04.0/kgeography-20.04.0.tar.xz) = 10868672
+TIMESTAMP = 1598945468
+SHA256 (KDE/release-service/20.08.1/kgeography-20.08.1.tar.xz) = f7ce4c6a00f18558aa04f4af0b71e45efc10c67f0b3454c5f0b2527a43133d30
+SIZE (KDE/release-service/20.08.1/kgeography-20.08.1.tar.xz) = 10764740

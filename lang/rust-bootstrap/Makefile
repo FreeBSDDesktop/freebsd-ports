@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	rust
-PORTVERSION=	1.43.1
+PORTVERSION=	1.46.0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:rust \
 		LOCAL/tobik:armbase \
@@ -43,7 +43,7 @@ powerpc64_elfv2_PKGNAMEPREFIX=	powerpc64-elfv2-
 
 USES=		perl5 python:3.3+,build tar:xz
 .if ${FLAVOR} == powerpc64_elfv1
-USE_GCC=	yes
+USE_GCC=	9
 .endif
 # for openssl-src crate
 USE_PERL5=	build
@@ -106,10 +106,6 @@ post-patch:
 # Disable vendor checksums
 	@${REINPLACE_CMD} 's,"files":{[^}]*},"files":{},' \
 		${_CARGO_VENDOR_DIR}/*/.cargo-checksum.json
-.if ${FLAVOR:Mpowerpc64_*}
-	@${REINPLACE_CMD} -e 's,powerpc64-unknown-freebsd,${_RUST_TARGET}${_RUST_FBSD_VER:S/-/ /:[1]},' \
-		${WRKSRC}/src/librustc_target/spec/powerpc64_unknown_freebsd.rs
-.endif
 .if ${FLAVOR} == powerpc64_elfv1
 	@${REINPLACE_CMD} -e 's,"c++","stdc++",g' \
 		${WRKSRC}/src/librustc_llvm/build.rs
@@ -150,6 +146,8 @@ do-configure:
 .else
 	@${ECHO_CMD} 'ccache=false' >> ${WRKSRC}/config.toml
 .endif
+# https://github.com/rust-lang/rust/pull/72696#issuecomment-641517185
+	@${ECHO_CMD} 'ldflags="-lz"' >> ${WRKSRC}/config.toml
 # we need to make sure to always build llvm with X86 support to get a
 # host compiler that can build the host->target compiler
 	@${ECHO_CMD} 'targets="${_RUST_LLVM_TARGET};X86"' >> ${WRKSRC}/config.toml
@@ -204,11 +202,11 @@ do-build:
 		cargo src/librustc src/libstd
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/rust-bootstrap
-	${INSTALL_DATA} ${WRKSRC}/build/dist/*-${_RUST_TARGET}*${EXTRACT_SUFX} \
-		${STAGEDIR}${PREFIX}/rust-bootstrap
+	@${MKDIR} ${STAGEDIR}${PREFIX}/rust-bootstrap/${FLAVOR}
+	${INSTALL_DATA} ${WRKSRC}/build/dist/*-unknown-${OPSYS:tl}${EXTRACT_SUFX} \
+		${STAGEDIR}${PREFIX}/rust-bootstrap/${FLAVOR}
 .if ${FLAVOR:Mpowerpc64_*}
-	@cd ${STAGEDIR}${PREFIX}/rust-bootstrap && for f in *${EXTRACT_SUFX}; do \
+	@cd ${STAGEDIR}${PREFIX}/rust-bootstrap/${FLAVOR} && for f in *${EXTRACT_SUFX}; do \
 		${MV} $$f $${f%%${EXTRACT_SUFX}}-${FLAVOR:S/_/ /:[2]}${EXTRACT_SUFX}; \
 	done
 .endif
