@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	ebusd
-PORTVERSION=	3.3
+PORTVERSION=	3.4
 DISTVERSIONPREFIX=	v
 CATEGORIES=	comms
 
-MAINTAINER=	samm@freebsd.org
+MAINTAINER=	samm@FreeBSD.org
 COMMENT=	Daemon for communication with eBUS heating systems
 
 LICENSE=	GPLv3

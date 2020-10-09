@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	binaryen
-DISTVERSION=	1.38.32
-PORTREVISION=	1
+DISTVERSIONPREFIX=	version_
+DISTVERSION=	93
 CATEGORIES=	devel
 
 MAINTAINER=	greg@unrelenting.technology
@@ -11,11 +11,13 @@ COMMENT=	Compiler infrastructure and toolchain library for WebAssembly
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake python:2.7,build compiler:c++11-lang
+USES=		cmake python:3.6+,build compiler:c++11-lang
 USE_GITHUB=	yes
 GH_ACCOUNT=	WebAssembly
 USE_LDCONFIG=	yes
 
-BINARY_ALIAS=	python=${PYTHON_CMD}
+CMAKE_ARGS=	-DBINARYEN_VERSION_INFO=${DISTVERSION}
+
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 
 .include <bsd.port.mk>

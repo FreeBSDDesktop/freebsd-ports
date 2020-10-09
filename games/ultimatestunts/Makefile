@@ -25,12 +25,12 @@ USE_SDL=	sdl image
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-openal
 MAKE_JOBS_UNSAFE=	yes
-LLD_UNSAFE=	yes
 
 CXXFLAGS+=	${CXXFLAGS_${CHOSEN_COMPILER_TYPE}}
 CXXFLAGS_clang=	-Wno-c++11-narrowing
 CPPFLAGS+=	$$(pkgconf --cflags-only-I sdl)
 LDFLAGS+=	$$(pkgconf --libs-only-L sdl)
+LDFLAGS_i386=	-Wl,-z,notext
 
 PORTDOCS=	*
 OPTIONS_DEFINE=	DOCS NLS

@@ -1,3 +1,12 @@
+%%DATADIR%%/emacs-mode/agda-input.el
+%%DATADIR%%/emacs-mode/agda2-abbrevs.el
+%%DATADIR%%/emacs-mode/agda2-highlight.el
+%%DATADIR%%/emacs-mode/agda2-mode-pkg.el
+%%DATADIR%%/emacs-mode/agda2-mode.el
+%%DATADIR%%/emacs-mode/agda2-queue.el
+%%DATADIR%%/emacs-mode/agda2.el
+%%DATADIR%%/emacs-mode/annotation.el
+%%DATADIR%%/emacs-mode/eri.el
 %%DATADIR%%/lib/prim/Agda/Builtin/Bool.agda
 %%DATADIR%%/lib/prim/Agda/Builtin/Bool.agdai
 %%DATADIR%%/lib/prim/Agda/Builtin/Char.agda
@@ -8,6 +17,8 @@
 %%DATADIR%%/lib/prim/Agda/Builtin/Coinduction.agdai
 %%DATADIR%%/lib/prim/Agda/Builtin/Cubical/Glue.agda
 %%DATADIR%%/lib/prim/Agda/Builtin/Cubical/Glue.agdai
+%%DATADIR%%/lib/prim/Agda/Builtin/Cubical/HCompU.agda
+%%DATADIR%%/lib/prim/Agda/Builtin/Cubical/HCompU.agdai
 %%DATADIR%%/lib/prim/Agda/Builtin/Cubical/Id.agda
 %%DATADIR%%/lib/prim/Agda/Builtin/Cubical/Id.agdai
 %%DATADIR%%/lib/prim/Agda/Builtin/Cubical/Path.agda
@@ -22,6 +33,8 @@
 %%DATADIR%%/lib/prim/Agda/Builtin/Equality/Rewrite.agdai
 %%DATADIR%%/lib/prim/Agda/Builtin/Float.agda
 %%DATADIR%%/lib/prim/Agda/Builtin/Float.agdai
+%%DATADIR%%/lib/prim/Agda/Builtin/Float/Properties.agda
+%%DATADIR%%/lib/prim/Agda/Builtin/Float/Properties.agdai
 %%DATADIR%%/lib/prim/Agda/Builtin/FromNat.agda
 %%DATADIR%%/lib/prim/Agda/Builtin/FromNat.agdai
 %%DATADIR%%/lib/prim/Agda/Builtin/FromNeg.agda
@@ -38,6 +51,8 @@
 %%DATADIR%%/lib/prim/Agda/Builtin/Nat.agdai
 %%DATADIR%%/lib/prim/Agda/Builtin/Reflection.agda
 %%DATADIR%%/lib/prim/Agda/Builtin/Reflection.agdai
+%%DATADIR%%/lib/prim/Agda/Builtin/Reflection/Properties.agda
+%%DATADIR%%/lib/prim/Agda/Builtin/Reflection/Properties.agdai
 %%DATADIR%%/lib/prim/Agda/Builtin/Sigma.agda
 %%DATADIR%%/lib/prim/Agda/Builtin/Sigma.agdai
 %%DATADIR%%/lib/prim/Agda/Builtin/Size.agda

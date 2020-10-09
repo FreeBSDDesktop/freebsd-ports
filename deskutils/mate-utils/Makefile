@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mate-utils
-PORTVERSION=	1.22.1
+PORTVERSION=	1.24.0
 CATEGORIES=	deskutils mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
@@ -10,14 +10,14 @@ DIST_SUBDIR=	mate
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	MATE support utilities
 
-LICENSE=	GPLv2 GFDL LGPL21
+LICENSE=	GPLv2+ GFDL LGPL20+
 LICENSE_COMB=	multi
-LICENSE_FILE_GPLv2=	${WRKSRC}/COPYING
+LICENSE_FILE_GPLv2+ =	${WRKSRC}/COPYING
 LICENSE_FILE_GFDL=	${WRKSRC}/COPYING.docs
-LICENSE_FILE_LGPL21=	${WRKSRC}/COPYING.libs
+LICENSE_FILE_LGPL20+ =	${WRKSRC}/COPYING.libs
 
-BUILD_DEPENDS=	itstool:textproc/itstool \
-		inkscape:graphics/inkscape
+BUILD_DEPENDS=	itstool:textproc/itstool
+
 LIB_DEPENDS=	libgtop-2.0.so:devel/libgtop \
 		libcanberra-gtk.so:audio/libcanberra \
 		libcanberra-gtk3.so:audio/libcanberra-gtk3
@@ -33,6 +33,8 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
+
+CONFIGURE_ARGS=	--disable-disk-image-mounter
 
 GLIB_SCHEMAS=	org.mate.dictionary.gschema.xml \
 		org.mate.disk-usage-analyzer.gschema.xml \

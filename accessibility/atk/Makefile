@@ -2,13 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	atk
-PORTVERSION=	2.28.1
+PORTVERSION=	2.36.0
 PORTREVISION?=	0
 CATEGORIES=	accessibility devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	GNOME accessibility toolkit (ATK)
 
 LICENSE=	LGPL20+

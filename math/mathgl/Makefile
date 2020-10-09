@@ -2,7 +2,7 @@
 
 PORTNAME=	mathgl
 DISTVERSION=	2.4.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}%20${PORTVERSION}/
 
@@ -20,8 +20,7 @@ LIB_DEPENDS=	libgif.so:graphics/giflib \
 		libpng.so:graphics/png \
 		libsz.so:science/szip
 
-USES=		cmake compiler:c++11-lang gettext-runtime gl jpeg python:2.7 \
-		xorg
+USES=		cmake compiler:c++11-lang gettext-runtime gl jpeg xorg
 USE_GL=		gl glu glut
 USE_XORG=	xi xmu
 USE_LDCONFIG=	yes
@@ -48,9 +47,11 @@ FLTK_DESC=		Enable fltk widget
 PLIST_SUB=		SHLIB_VER=7.5.0
 
 PYTHON_CMAKE_BOOL=	enable-python
-PYTHON_BUILD_DEPENDS=	swig3.0:devel/swig30 \
+PYTHON_BUILD_DEPENDS=	swig:devel/swig \
 			${PYNUMPY}
 PYTHON_RUN_DEPENDS=	${PYNUMPY}
+PYTHON_BROKEN=		Python option needs to be fixed: lgpl needs to be enabled for it
+
 MPI_CMAKE_BOOL=		enable-mpi
 MPI_LIB_DEPENDS=	libmpi.so:net/openmpi
 

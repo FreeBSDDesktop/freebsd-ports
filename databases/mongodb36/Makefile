@@ -2,7 +2,7 @@
 
 PORTNAME=	mongodb
 DISTVERSIONPREFIX=	r
-DISTVERSION=	3.6.14
+DISTVERSION=	3.6.20
 CATEGORIES=	databases net
 MASTER_SITES=	https://fastdl.mongodb.org/src/ \
 		http://fastdl.mongodb.org/src/ \
@@ -13,9 +13,12 @@ DISTNAME=	mongodb-src-${DISTVERSIONPREFIX}${DISTVERSION}
 MAINTAINER=	dev@dudu.ro
 COMMENT=	Distributed document-oriented "NoSQL" database
 
-# mongodb is AGPLv3, C++ driver is APACHE20
-LICENSE=	AGPLv3 APACHE20
+# mongodb is SSPLv1, C++ driver is APACHE20
+LICENSE=	SSPLv1 APACHE20
 LICENSE_COMB=	multi
+LICENSE_NAME_SSPLv1=	Server Side Public License Version 1
+LICENSE_FILE_SSPLv1=	${WRKSRC}/LICENSE-Community.txt
+LICENSE_PERMS_SSPLv1=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	"Only supported on amd64 and aarch64 (i386 deprecated in v3)"
@@ -27,11 +30,11 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libpcre.so:devel/pcre \
 		libsnappy.so:archivers/snappy
 
-USES=		compiler:c++14-lang cpe python:2.7,build scons shebangfix
+USES=		compiler:c++14-lang cpe python:2.7,build scons:python2 shebangfix
 USE_RC_SUBR=	mongod
 
 CONFLICTS_BUILD=	mongo-cxx-driver
-CONFLICTS_INSTALL=	mongodb34 mongodb40
+CONFLICTS_INSTALL=	mongodb4[024]
 
 SHEBANG_FILES=	src/mongo/installer/compass/install_compass.in
 python_OLD_CMD=	@python_interpreter@

@@ -2,7 +2,7 @@
 
 PORTNAME=	synergy-1
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.10.3
+DISTVERSION=	1.12.0
 DISTVERSIONSUFFIX=	-stable
 CATEGORIES=	sysutils
 
@@ -21,9 +21,12 @@ GH_ACCOUNT=	symless
 GH_PROJECT=	synergy-core
 USE_XORG=	ice xtst x11 sm xext xinerama xrandr xi
 
+GH_TUPLE=	google:googletest:2fe3bd994b3189899d93f1d5a881e725e046fdc2:google_googletest/ext/googletest # should not be needed: https://github.com/symless/synergy-core/issues/6787
+
+
 CONFLICTS=	synergy
 
-CMAKE_OFF=	SYNERGY_BUILD_LEGACY_INSTALLER SYNERGY_BUILD_LEGACY_GUI
+CMAKE_OFF=	BUILD_TESTS SYNERGY_BUILD_LEGACY_INSTALLER SYNERGY_BUILD_LEGACY_GUI
 CMAKE_ARGS=	-DSYNERGY_REVISION:STRING=${DISTVERSION:S/.//g}0000 # it expects a 7-digit hash
 
 CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib

@@ -2,9 +2,9 @@
 
 PORTNAME=	pdf-tools
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.90-34
-DISTVERSIONSUFFIX=	-g29d9f4f
-PORTREVISION=	1
+DISTVERSION=	0.90-41
+DISTVERSIONSUFFIX=	-g2ece508
+PORTREVISION=	6
 CATEGORIES=	print elisp
 PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
 
@@ -14,11 +14,12 @@ COMMENT=	Emacs support library for PDF files
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN_powerpc64=	fails to configure: cannot find necessary poppler-private header (see README.org)
+BROKEN_FreeBSD_11_powerpc64=	fails to configure on powerpc64 elfv1: cannot find necessary poppler-private header (see README.org)
+BROKEN_FreeBSD_12_powerpc64=	fails to configure on powerpc64 elfv1: cannot find necessary poppler-private header (see README.org)
 
 BUILD_DEPENDS=	cask${EMACS_PKGNAMESUFFIX}>0:devel/cask@${EMACS_FLAVOR} \
 		tablist${EMACS_PKGNAMESUFFIX}>=0.70.4:devel/tablist@${EMACS_FLAVOR}
-LIB_DEPENDS=	libMagickCore-6.so:graphics/ImageMagick6 \
+LIB_DEPENDS=	libMagickCore-7.so:graphics/ImageMagick7 \
 		libpng.so:graphics/png \
 		libpoppler-glib.so:graphics/poppler-glib \
 		libpoppler.so:graphics/poppler

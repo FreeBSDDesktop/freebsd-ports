@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	waifu2x-ncnn-vulkan
-DISTVERSION=	20190712-6
-DISTVERSIONSUFFIX=	-gb373ce2
+DISTVERSION=	20200818
 CATEGORIES=	graphics
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -12,28 +11,24 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	glslangValidator:devel/glslang \
-		${LOCALBASE}/include/vulkan/vulkan.h:devel/vulkan-headers \
-		${LOCALBASE}/lib/libvulkan.so:graphics/vulkan-loader \
-		${LOCALBASE}/lib/libncnn.a:science/ncnn
+		vulkan-headers>0:devel/vulkan-headers
+LIB_DEPENDS=	libwebp.so:graphics/webp \
+		libvulkan.so:graphics/vulkan-loader
 
 USES=		cmake compiler:${OPENMP}c++11-lib
 USE_GITHUB=	yes
 GH_ACCOUNT=	nihui
+GH_TUPLE=	KhronosGroup:glslang:8.13.3743-39-gd39b8afc:glslang/src/ncnn/glslang \
+		Tencent:ncnn:20200727:ncnn/src/ncnn
 CMAKE_SOURCE_PATH=	${WRKSRC}/src
-LDFLAGS+=	-lpthread # XXX Convert ncnn to shared library
+CMAKE_ON=	USE_SYSTEM_WEBP
 PLIST_FILES=	bin/${PORTNAME}
 PORTDATA=	*
 
 .if !exists(/usr/include/omp.h)
-# XXX ports/199603 + ports/210337
+# XXX ports/199603: LLVM openmp in base doesn't support aarch64, armv6, armv7 yet
 OPENMP=		gcc-
 .endif
-
-pre-configure:
-	@if ${GREP} -q 'NCNN_VULKAN.*0' ${LOCALBASE}/include/ncnn/platform.h; then \
-		${ECHO_MSG} "${PKGNAME}: Needs ncnn built with VULKAN enabled."; \
-		return 1; \
-	fi
 
 post-patch:
 	@${REINPLACE_CMD} -e '/PATHSTR/s,models-,${DATADIR}/&,' \

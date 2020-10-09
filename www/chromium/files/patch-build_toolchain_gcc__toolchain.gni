@@ -1,4 +1,4 @@
---- build/toolchain/gcc_toolchain.gni.orig	2019-10-21 19:06:18 UTC
+--- build/toolchain/gcc_toolchain.gni.orig	2020-05-13 18:40:16 UTC
 +++ build/toolchain/gcc_toolchain.gni
 @@ -36,6 +36,11 @@ if (is_linux && target_os == "android") {
    enable_resource_whitelist_generation = false

@@ -2,14 +2,11 @@
 
 PORTNAME=	nerd-fonts
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.0.0
-PORTREVISION=	1
+DISTVERSION=	2.1.0
 CATEGORIES=	x11-fonts
 
 MAINTAINER=	gregf@hugops.pw
 COMMENT=	Developer-targeted fonts with a high number of glyphs
-
-BROKEN=		unfetchable
 
 LICENSE=	MIT
 

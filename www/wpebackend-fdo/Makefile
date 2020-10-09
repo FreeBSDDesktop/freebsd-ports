@@ -1,9 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	wpebackend-fdo
-PORTVERSION=	1.4.0
+PORTVERSION=	1.4.1
 CATEGORIES=	www
 MASTER_SITES=	https://wpewebkit.org/releases/
+
+PATCH_SITES=	https://github.com/Igalia/WPEBackend-fdo/commit/
+PATCHFILES+=	b01aa039d1fe.patch:-p1
 
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	Freedesktop.org backend for WPE WebKit

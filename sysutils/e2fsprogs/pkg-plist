@@ -1,3 +1,5 @@
+/sbin/e2fsck
+/sbin/fsck_ext2fs
 bin/chattr
 bin/e2fsprogs-compile_et
 %%FUSEFS%%bin/fuse2fs
@@ -88,6 +90,7 @@ sbin/resize2fs
 sbin/tune2fs
 %%DATADIR%%/et/et_c.awk
 %%DATADIR%%/et/et_h.awk
+%%PORTDOCS%%share/info/libext2fs.info.gz
 %%NLS%%share/locale/ca/LC_MESSAGES/e2fsprogs.mo
 %%NLS%%share/locale/cs/LC_MESSAGES/e2fsprogs.mo
 %%NLS%%share/locale/da/LC_MESSAGES/e2fsprogs.mo

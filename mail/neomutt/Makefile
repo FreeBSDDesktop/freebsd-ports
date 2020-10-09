@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	neomutt
-PORTVERSION=	20191102
+PORTVERSION=	20200925
 CATEGORIES=	mail
 
 MAINTAINER=	bapt@FreeBSD.org
@@ -17,11 +17,14 @@ USES=		iconv:translit localbase perl5 shebangfix ssl
 
 USE_GITHUB=	yes
 USE_PERL5=	build
+MAKE_JOBS_UNSAFE=	yes
 
 HAS_CONFIGURE=	yes
 
 OPTIONS_SUB=	yes
 SHEBANG_FILES=	contrib/smime_keys
+
+EXTRA_PATCHES=	${FILESDIR}/0001-fix-sidebar-use-abbreviated-path-if-possible.patch:-p1
 
 OPTIONS_DEFINE=	NLS DOCS SASL IDN FLOCK GPGME NOTMUCH
 OPTIONS_DEFAULT=SASL TOKYOCABINET NOTMUCH GPGME LMDB NCURSES GSSAPI_BASE
@@ -43,6 +46,7 @@ SCREEN_DESC=	Screen options
 
 CONFIGURE_ARGS=	--with-ssl="${OPENSSLBASE}" \
 		--locales-fix \
+		--fmemopen \
 		--mandir=${PREFIX}/man \
 		${ICONV_CONFIGURE_ARGS}
 

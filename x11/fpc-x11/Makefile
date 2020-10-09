@@ -1,8 +1,8 @@
 # $FreeBSD$
 
+PORTREVISION=	6
 CATEGORIES=	x11 lang
 PKGNAMESUFFIX=	-x11
-PORTREVISION=	4
 
 COMMENT=	Free Pascal interface to X windows server
 

@@ -1,24 +1,20 @@
 # $FreeBSD$
 
-PORTNAME=		libnormaliz
-DISTVERSIONPREFIX=	v
-DISTVERSION=		3.8.1
-CATEGORIES=		math
+PORTNAME=	libnormaliz
+DISTVERSION=	3.8.7
+CATEGORIES=	math
+MASTER_SITES=	https://github.com/Normaliz/Normaliz/releases/download/v${PORTVERSION}/
+DISTNAME=	normaliz-${PORTVERSION}
 
-MAINTAINER=	phascolarctos@protonmail.ch
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Computations in affin monoids, vector configurations etc
 
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${LOCALBASE}/include/boost/dynamic_bitset.hpp:devel/boost-libs \
-		${LOCALBASE}/include/gmpxx.h:math/gmp
+BUILD_DEPENDS=	${LOCALBASE}/include/gmpxx.h:math/gmp
 
 USES=		autoreconf compiler:c++11-lang gmake libtool
-USE_GITHUB=	yes
-
-GH_ACCOUNT=	Normaliz
-GH_PROJECT=	Normaliz
 
 BUILD_WRKSRC=	${WRKSRC}/source/libnormaliz
 INSTALL_WRKSRC=	${WRKSRC}/source/libnormaliz
@@ -32,18 +28,31 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 OPTIONS_DEFINE=		COCOA DOCS FLINT OPENMP
 COCOA_DESC=		Link with libcocoa.a (might cause circular dependency)
 COCOA_BUILD_DEPENDS=	${LOCALBASE}/lib/libcocoa.a:math/cocoalib
-COCOA_CONFIGURE_ENABLE=	nmzintegrate
+COCOA_CONFIGURE_WITH=	cocoalib
 FLINT_DESC=		Link with libflint.so
-FLINT_BUILD_DEPENDS=	${LOCALBASE}/lib/libflint.so:math/flint2
-FLINT_CONFIGURE_ENABLE=	flint
+FLINT_LIB_DEPENDS=	libflint.so:math/flint2
+FLINT_CONFIGURE_WITH=	flint
 FLINT_LDFLAGS=		-lpthread
-OPENMP_BUILD_DEPENDS=	${LOCALBASE}/lib/libomp.so:devel/openmp
 OPENMP_CONFIGURE_ENABLE=	openmp
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/include/libnormaliz
 	${INSTALL_DATA}	${INSTALL_WRKSRC}/libnormaliz.a ${STAGEDIR}${PREFIX}/lib
-	cd ${INSTALL_WRKSRC} && ${INSTALL_DATA} cone.h cone_property.h convert.h general.h HilbertSeries.h integer.h libnormaliz.h map_operations.h matrix.h my_omp.h normaliz_exception.h sublattice_representation.h vector_operations.h version.h nmz_integrate.h ${STAGEDIR}${PREFIX}/include/libnormaliz
+	cd ${INSTALL_WRKSRC} && ${INSTALL_DATA} \
+		cone.h \
+		cone_property.h \
+		general.h \
+		HilbertSeries.h \
+		integer.h \
+		libnormaliz.h \
+		matrix.h \
+		my_omp.h \
+		normaliz_exception.h \
+		sublattice_representation.h \
+		vector_operations.h \
+		version.h \
+		nmz_integrate.h \
+		${STAGEDIR}${PREFIX}/include/libnormaliz
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}

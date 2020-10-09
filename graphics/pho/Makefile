@@ -2,12 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	pho
-DISTVERSION=	0.9.8
-PORTREVISION=	1
+PORTVERSION=	1.0
 CATEGORIES=	graphics
 MASTER_SITES=	http://shallowsky.com/software/pho/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	danfe@FreeBSD.org
 COMMENT=	Lightweight image viewer
 
 LICENSE=	GPLv2

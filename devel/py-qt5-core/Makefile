@@ -55,5 +55,6 @@ post-install:
 	# This Qt.so masks the Qt.py which is supposed to import
 	# all of the Qt submodules.
 	${RM} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/PyQt5/Qt.so
+	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/PyQt5/QtCore.so
 
 .include <bsd.port.post.mk>

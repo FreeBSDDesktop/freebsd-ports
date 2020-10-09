@@ -2,6 +2,7 @@
 
 PORTNAME=	gui
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits graphics
 PKGNAMEPREFIX=	qt5-
 
@@ -9,7 +10,9 @@ MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Qt graphical user interface module
 
 BUILD_DEPENDS=	at-spi2-core>=0:accessibility/at-spi2-core \
-		${LOCALBASE}/include/linux/input.h:devel/evdev-proto
+		${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
+		${LOCALBASE}/include/vulkan/vulkan.h:devel/vulkan-headers \
+		${LOCALBASE}/include/xf86drm.h:graphics/libdrm
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libevdev.so:devel/libevdev \
 		libfontconfig.so:x11-fonts/fontconfig \
@@ -23,7 +26,8 @@ LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libxcb-render-util.so:x11/xcb-util-renderutil \
 		libxcb-icccm.so:x11/xcb-util-wm \
 		libxkbcommon.so:x11/libxkbcommon
-RUN_DEPENDS=	xdg-open:devel/xdg-utils
+RUN_DEPENDS=	xdg-open:devel/xdg-utils \
+		${LOCALBASE}/include/vulkan/vulkan.h:devel/vulkan-headers
 
 USES=		compiler:c++11-lang gl gnome jpeg localbase qmake:no_env \
 		qt-dist:5,base xorg
@@ -62,6 +66,7 @@ MORE_WRKSRCS+=	src/plugins/imageformats \
 # openglextensions is the static library to use for further things like qtcanvas3d
 MORE_WRKSRCS+=	src/openglextensions
 
+QT_BINARIES=	yes
 QT_DEFINES=	ACCESSIBILITY DBUS FONTCONFIG FREETYPE GLIB \
 		IMAGEFORMAT_PNG OPENGL SHAPE XCB XKB XKBCOMMON XRENDER
 QT_CONFIG=	accessibility accessibility-atspi-bridge dbus \

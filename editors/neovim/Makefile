@@ -3,7 +3,8 @@
 
 PORTNAME=	neovim
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.4.3
+DISTVERSION=	0.4.4
+PORTREVISION=	1
 CATEGORIES=	editors
 
 MAINTAINER=	adamw@FreeBSD.org
@@ -12,8 +13,8 @@ COMMENT=	Next-generation Vim
 LICENSE=	APACHE20
 
 BUILD_DEPENDS=	gperf:devel/gperf \
-		${LUA_MODLIBDIR}/bit.so:devel/lua-bitop \
-		${LUA_MODLIBDIR}/lpeg.so:devel/lua-lpeg
+		${LUA_MODLIBDIR}/bit.so:devel/lua-bitop@${LUA_FLAVOR} \
+		${LUA_MODLIBDIR}/lpeg.so:devel/lua-lpeg@${LUA_FLAVOR}
 LIB_DEPENDS=	libluv.so:devel/luv \
 		libmsgpackc.so:devel/msgpack \
 		libtermkey.so:devel/libtermkey \
@@ -29,6 +30,7 @@ USES=		cmake iconv pathfix pkgconfig
 USE_GITHUB=	yes
 GH_TUPLE=	libmpack:libmpack:1.0.5:libmpack \
 		libmpack:libmpack-lua:1.0.7:libmpack_lua
+PORTSCOUT=	limit:^[0-9\.v]+$$
 
 CMAKE_ARGS=	-DLUA_PRG:FILEPATH="${LUA_CMD}" \
 		-DCMAKE_INSTALL_MANDIR:PATH="${MANPREFIX}/man" \
@@ -38,7 +40,7 @@ OPTIONS_DEFINE=	LUAJIT NLS PYNVIM
 OPTIONS_DEFAULT=LUAJIT
 OPTIONS_EXCLUDE_aarch64=LUAJIT
 OPTIONS_EXCLUDE_mips64=	LUAJIT
-OPTIONS_EXCLUDE_powerpc64=	LUAJIT
+OPTIONS_EXCLUDE_powerpc=LUAJIT
 OPTIONS_EXCLUDE_riscv=	LUAJIT
 OPTIONS_EXCLUDE_sparc64=LUAJIT
 OPTIONS_SUB=	yes
@@ -54,6 +56,13 @@ NLS_CMAKE_BOOL=	ENABLE_LIBINTL
 NLS_USES=	gettext
 PYNVIM_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pynvim>=0.3.0:editors/py-pynvim@${PY_FLAVOR}
 PYNVIM_USES=		python:run
+
+.include <bsd.port.options.mk>
+
+.if ${ARCH:Mpowerpc64*}
+LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
+USES+=		compiler:gcc-c++11-lib
+.endif
 
 post-patch:
 	${REINPLACE_CMD} -e \

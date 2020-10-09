@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	xfce4-desktop
-PORTVERSION=	4.14.1
+PORTVERSION=	4.14.2
 CATEGORIES=	x11-wm xfce
 MASTER_SITES=	XFCE
 DISTNAME=	xfdesktop-${DISTVERSIONFULL}
@@ -28,6 +28,8 @@ INSTALL_TARGET=	install-strip
 
 CONFIGURE_ARGS=	--enable-gio-unix \
 		--enable-notifications
+
+PORTSCOUT=	limitw:1,even
 
 OPTIONS_DEFINE=			NLS THUNAR
 OPTIONS_DEFAULT=		THUNAR

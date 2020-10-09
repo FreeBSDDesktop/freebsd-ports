@@ -1,24 +1,24 @@
---- build/config/compiler/BUILD.gn.orig	2019-10-21 19:06:18 UTC
+--- build/config/compiler/BUILD.gn.orig	2020-07-07 21:58:11 UTC
 +++ build/config/compiler/BUILD.gn
-@@ -57,7 +57,7 @@ declare_args() {
-   # only two architectures that are currently checked in). Turn this off when
-   # you are using a custom toolchain and need to control -B in cflags.
-   linux_use_bundled_binutils =
--      linux_use_bundled_binutils_override && is_linux &&
-+      linux_use_bundled_binutils_override && (is_linux && !is_bsd) &&
-       (current_cpu == "x64" || current_cpu == "x86")
-   binutils_path = rebase_path("//third_party/binutils/Linux_x64/Release/bin",
-                               root_build_dir)
-@@ -288,7 +288,7 @@ config("compiler") {
+@@ -133,7 +133,7 @@ declare_args() {
+   # 'is_android' breaks content_shell_test_apk on android-kitkat-arm-rel.
+   # 'use_xcode_clang' may call old clang.
+   init_stack_vars =
+-      !is_android && !use_xcode_clang && (!is_official_build || is_linux)
++      !is_android && !use_xcode_clang && (!is_official_build || is_linux) && !is_bsd
+ 
+   # This argument is to control whether enabling text section splitting in the
+   # final binary. When enabled, the separated text sections with prefix
+@@ -287,7 +287,7 @@ config("compiler") {
+     }
  
      # Linker warnings.
-     if (fatal_linker_warnings && !(is_chromeos && current_cpu == "arm") &&
--        !is_mac && !is_ios && current_os != "aix") {
-+        !is_mac && !is_ios && current_os != "aix" && !is_bsd) {
-       # TODO(jochen): Enable this on chromeos on arm. http://crbug.com/356580
+-    if (fatal_linker_warnings && !is_mac && !is_ios && current_os != "aix") {
++    if (fatal_linker_warnings && !is_mac && !is_ios && !is_bsd && current_os != "aix") {
        ldflags += [ "-Wl,--fatal-warnings" ]
      }
-@@ -383,7 +383,7 @@ config("compiler") {
+     if (fatal_linker_warnings && (is_mac || is_ios)) {
+@@ -381,7 +381,7 @@ config("compiler") {
  
      # Compiler instrumentation can introduce dependencies in DSOs to symbols in
      # the executable they are loaded into, so they are unresolved at link-time.
@@ -27,8 +27,8 @@
        ldflags += [
          "-Wl,-z,defs",
          "-Wl,--as-needed",
-@@ -483,7 +483,7 @@ config("compiler") {
-     }
+@@ -472,7 +472,7 @@ config("compiler") {
+     ldflags += [ "-Wl,-z,keep-text-section-prefix" ]
    }
  
 -  if (is_clang && !is_nacl && !use_xcode_clang) {
@@ -36,7 +36,7 @@
      cflags += [ "-fcrash-diagnostics-dir=" +
                  rebase_path("//tools/clang/crashreports", root_build_dir) ]
  
-@@ -753,7 +753,7 @@ config("compiler_cpu_abi") {
+@@ -735,7 +735,7 @@ config("compiler_cpu_abi") {
          cflags += [ "-mtune=$arm_tune" ]
        }
      } else if (current_cpu == "arm64") {
@@ -45,7 +45,7 @@
          cflags += [ "--target=aarch64-linux-gnu" ]
          ldflags += [ "--target=aarch64-linux-gnu" ]
        }
-@@ -1104,7 +1104,7 @@ config("compiler_deterministic") {
+@@ -1085,7 +1085,7 @@ config("compiler_deterministic") {
        "-Xclang",
        ".",
      ]
@@ -54,8 +54,8 @@
        # We don't use clang -cc1as on Windows (yet? https://crbug.com/762167)
        asmflags = [ "-Wa,-fdebug-compilation-dir,." ]
      }
-@@ -1493,7 +1493,7 @@ config("default_warnings") {
-         cflags += [ "-Wno-nonportable-include-path" ]
+@@ -1476,7 +1476,7 @@ config("default_warnings") {
+         cflags += [ "-Wno-max-tokens" ]
        }
  
 -      if (current_toolchain == host_toolchain || !use_xcode_clang) {
@@ -63,7 +63,16 @@
          # Flags NaCl (Clang 3.7) and Xcode 9.2 (Clang clang-900.0.39.2) do not
          # recognize.
          cflags += [
-@@ -1722,7 +1722,7 @@ config("thin_archive") {
+@@ -1638,7 +1638,7 @@ config("no_chromium_code") {
+       # suppressing them individually, we just blanket suppress them here.
+       "-Wno-unused-variable",
+     ]
+-    if (!is_nacl && (current_toolchain == host_toolchain || !use_xcode_clang)) {
++    if (!is_nacl && (current_toolchain == host_toolchain || !use_xcode_clang) && !is_bsd) {
+       cflags += [
+         # TODO(https://crbug.com/1031169): Clean up and enable.
+         "-Wno-misleading-indentation",
+@@ -1716,7 +1716,7 @@ config("thin_archive") {
    # Mac and iOS use the mac-specific "libtool" command, not ar, which doesn't
    # have a "thin archive" mode (it does accept -T, but it means truncating
    # archive names to 16 characters, which is not what we want).
@@ -72,7 +81,7 @@
      arflags = [ "-T" ]
    } else if (is_win && use_lld) {
      arflags = [ "/llvmlibthin" ]
-@@ -2292,7 +2292,7 @@ config("symbols") {
+@@ -2246,7 +2246,7 @@ config("symbols") {
      # flag, so we can use use -g1 for pnacl and nacl-clang compiles.
      # gcc nacl is is_nacl && !is_clang, pnacl and nacl-clang are && is_clang.
      if (!is_nacl || is_clang) {
@@ -80,8 +89,8 @@
 +      cflags += [ "-g0" ]
      }
  
-     if (use_debug_fission && !is_nacl && !is_android) {
-@@ -2313,7 +2313,7 @@ config("symbols") {
+     if (is_clang && !is_nacl && !use_xcode_clang) {
+@@ -2274,7 +2274,7 @@ config("symbols") {
      # DWARF info may be corrupt; offsets in a range list entry are in different
      # sections" there.  Maybe just a bug in nacl_switch_32.S.
      if (!is_mac && !is_ios && !is_nacl && current_cpu != "x86" &&

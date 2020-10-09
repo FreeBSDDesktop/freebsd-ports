@@ -1,12 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	swaylock
-DISTVERSION=	1.4
-PORTREVISION=	1
+DISTVERSION=	1.5
+PORTREVISION=	2
 CATEGORIES=	x11
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	45c587e93ca1.patch:-p1
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Screen locker for Wayland
@@ -22,10 +19,10 @@ USES=		compiler:c11 gnome meson pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	swaywm
 USE_GNOME=	cairo pango
-PLIST_FILES=	bin/${PORTNAME} \
+PLIST_FILES=	"@(,,4755) bin/${PORTNAME}" \
 		etc/pam.d/${PORTNAME} \
 		share/bash-completion/completions/${PORTNAME} \
-		share/fish/completions/${PORTNAME}.fish \
+		share/fish/vendor_completions.d/${PORTNAME}.fish \
 		share/zsh/site-functions/_${PORTNAME}
 
 OPTIONS_DEFINE=	MANPAGES PIXBUF

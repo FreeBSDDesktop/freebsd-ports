@@ -829,6 +829,7 @@ otrs/Kernel/System/Console/Command/Admin/WebService/Delete.pm
 otrs/Kernel/System/Console/Command/Admin/WebService/Dump.pm
 otrs/Kernel/System/Console/Command/Admin/WebService/List.pm
 otrs/Kernel/System/Console/Command/Admin/WebService/Update.pm
+otrs/Kernel/System/Console/Command/Dev/Code/CPANAudit.pm
 otrs/Kernel/System/Console/Command/Dev/Code/CPANUpdate.pm
 otrs/Kernel/System/Console/Command/Dev/Code/ContributorsListUpdate.pm
 otrs/Kernel/System/Console/Command/Dev/Code/Generate/ConsoleCommand.pm
@@ -1041,6 +1042,7 @@ otrs/Kernel/System/PostMaster/FollowUp.pm
 otrs/Kernel/System/PostMaster/FollowUpCheck/Attachments.pm
 otrs/Kernel/System/PostMaster/FollowUpCheck/Body.pm
 otrs/Kernel/System/PostMaster/FollowUpCheck/BounceEmail.pm
+otrs/Kernel/System/PostMaster/FollowUpCheck/ExternalTicketNumberRecognition.pm
 otrs/Kernel/System/PostMaster/FollowUpCheck/RawEmail.pm
 otrs/Kernel/System/PostMaster/FollowUpCheck/References.pm
 otrs/Kernel/System/PostMaster/FollowUpCheck/Subject.pm
@@ -1130,6 +1132,7 @@ otrs/Kernel/System/SupportDataCollector/Plugin/OS/Distribution.pm
 otrs/Kernel/System/SupportDataCollector/Plugin/OS/KernelVersion.pm
 otrs/Kernel/System/SupportDataCollector/Plugin/OS/Load.pm
 otrs/Kernel/System/SupportDataCollector/Plugin/OS/PerlModules.pm
+otrs/Kernel/System/SupportDataCollector/Plugin/OS/PerlModulesAudit.pm
 otrs/Kernel/System/SupportDataCollector/Plugin/OS/PerlVersion.pm
 otrs/Kernel/System/SupportDataCollector/Plugin/OS/Swap.pm
 otrs/Kernel/System/SupportDataCollector/Plugin/OTRS/ArticleSearchIndexStatus.pm
@@ -1197,6 +1200,7 @@ otrs/Kernel/System/SysConfig/ValueType/TimeZone.pm
 otrs/Kernel/System/SysConfig/ValueType/VacationDays.pm
 otrs/Kernel/System/SysConfig/ValueType/VacationDaysOneTime.pm
 otrs/Kernel/System/SysConfig/ValueType/WorkingHours.pm
+otrs/Kernel/System/SysConfig/ValueType/YAML.pm
 otrs/Kernel/System/SysConfig/XML.pm
 otrs/Kernel/System/SystemAddress.pm
 otrs/Kernel/System/SystemData.pm
@@ -1284,6 +1288,7 @@ otrs/Kernel/System/XML/Simple.pm
 otrs/Kernel/System/YAML.pm
 otrs/README.md
 otrs/RELEASE
+otrs/SECURITY.md
 otrs/UPDATING.md
 otrs/bin/Cron.sh
 otrs/bin/cgi-bin/app.psgi
@@ -1309,6 +1314,7 @@ otrs/scripts/DBUpdateTo6.pm
 otrs/scripts/DBUpdateTo6/ACLDeploy.pm
 otrs/scripts/DBUpdateTo6/AddAppointmentCalendarNotification.pm
 otrs/scripts/DBUpdateTo6/Base.pm
+otrs/scripts/DBUpdateTo6/CPANAuditCheck.pm
 otrs/scripts/DBUpdateTo6/CacheCleanup.pm
 otrs/scripts/DBUpdateTo6/CleanGroupUserPermissionValue.pm
 otrs/scripts/DBUpdateTo6/CreateAppointmentCalendarTables.pm
@@ -1326,6 +1332,7 @@ otrs/scripts/DBUpdateTo6/MigrateArticleSearchIndex.pm
 otrs/scripts/DBUpdateTo6/MigrateChatData.pm
 otrs/scripts/DBUpdateTo6/MigrateConfigEffectiveValues.pm
 otrs/scripts/DBUpdateTo6/MigrateGenericAgentJobs.pm
+otrs/scripts/DBUpdateTo6/MigrateModifiedSettings.pm
 otrs/scripts/DBUpdateTo6/MigratePackageRepositoryConfiguration.pm
 otrs/scripts/DBUpdateTo6/MigratePossibleNextActions.pm
 otrs/scripts/DBUpdateTo6/MigratePostMasterData.pm
@@ -1436,6 +1443,7 @@ otrs/scripts/test/PostMaster.t
 otrs/scripts/test/Priority.t
 otrs/scripts/test/Queue.t
 otrs/scripts/test/ReferenceData.t
+otrs/scripts/test/RemoveSessionByUser.t
 otrs/scripts/test/SLA.t
 otrs/scripts/test/SMIME.t
 otrs/scripts/test/SMIMEAutoResponse.t
@@ -1645,6 +1653,8 @@ otrs/var/httpd/htdocs/js/jsdoc-readme.md
 otrs/var/httpd/htdocs/js/jsdoc.conf
 otrs/var/httpd/htdocs/js/test/Core.AJAX.UnitTest.html
 otrs/var/httpd/htdocs/js/test/Core.AJAX.UnitTest.js
+otrs/var/httpd/htdocs/js/test/Core.Agent.AppointmentCalendar.UnitTest.html
+otrs/var/httpd/htdocs/js/test/Core.Agent.AppointmentCalendar.UnitTest.js
 otrs/var/httpd/htdocs/js/test/Core.App.Responsive.UnitTest.js
 otrs/var/httpd/htdocs/js/test/Core.App.UnitTest.html
 otrs/var/httpd/htdocs/js/test/Core.App.UnitTest.js
@@ -2981,7 +2991,7 @@ otrs/var/httpd/htdocs/js/thirdparty/d3-3.5.6/d3.min.js
 otrs/var/httpd/htdocs/js/thirdparty/farahey-0.5/farahey.js
 otrs/var/httpd/htdocs/js/thirdparty/fullcalendar-3.4.0/fullcalendar.min.js
 otrs/var/httpd/htdocs/js/thirdparty/fullcalendar-scheduler-1.6.2/scheduler.min.js
-otrs/var/httpd/htdocs/js/thirdparty/jquery-3.2.1/jquery.js
+otrs/var/httpd/htdocs/js/thirdparty/jquery-3.4.1/jquery.js
 otrs/var/httpd/htdocs/js/thirdparty/jquery-browser-detection/jquery-browser-detection.js
 otrs/var/httpd/htdocs/js/thirdparty/jquery-jstree-3.3.7/jquery.jstree.js
 otrs/var/httpd/htdocs/js/thirdparty/jquery-migrate-3.0.0/jquery-migrate.js
@@ -3208,6 +3218,7 @@ otrs/var/webservices/examples/Base.pm
 @group
 @owner root
 @group wheel
+@dir otrs/doc
 @dir otrs/scripts/DBUpdateTo6
 @dir otrs/scripts
 @dir otrs/var/article

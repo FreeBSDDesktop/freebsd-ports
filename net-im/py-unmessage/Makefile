@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	unmessage
-PORTVERSION=	0.2.0
-PORTREVISION=	1
+DISTVERSION=	0.2.0
+PORTREVISION=	3
 CATEGORIES=	net-im net-p2p python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -28,7 +28,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}openssl>=16.0.0:security/py-openssl@${PY_FL
 		${PYTHON_PKGNAMEPREFIX}service_identity>0:security/py-service_identity@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}idna>=0.6:dns/py-idna@${PY_FLAVOR}
 
-USES=		python:2.7
+USES=		python
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=	yes

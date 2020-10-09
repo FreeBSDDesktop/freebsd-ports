@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	urwid
-PORTVERSION=	2.0.1
+PORTVERSION=	2.1.2
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,12 +13,12 @@ COMMENT=	Curses-based user interface library for Python
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-OPTIONS_DEFINE=	EXAMPLES
-
 USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 PORTEXAMPLES=	*
+
+OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/urwid/str_util.so
@@ -28,6 +28,6 @@ post-install-EXAMPLES-on:
 	cd ${WRKSRC}/examples/ && ${INSTALL_DATA} * ${STAGEDIR}${EXAMPLESDIR}/
 
 do-test:
-	cd ${WRKSRC}/ && ${PYTHON_CMD} -m urwid.tests
+	cd ${WRKSRC}/ && ${PYTHON_CMD} setup.py test
 
 .include <bsd.port.mk>

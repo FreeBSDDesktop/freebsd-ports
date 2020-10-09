@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	wsjtx
-DISTVERSION=	2.1.0
-PORTREVISION=	1
+DISTVERSION=	2.1.2
+PORTREVISION=	2
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SF/wsjt/${PORTNAME}-${PORTVERSION}${DISTVERSIONSUFFIX}
 
@@ -19,8 +19,7 @@ BUILD_DEPENDS=	asciidoctor:textproc/rubygem-asciidoctor \
 		${LOCALBASE}/share/xsl/docbook:textproc/docbook-xsl
 LIB_DEPENDS=	libfftw3.so:math/fftw3 \
 		libfftw3f.so:math/fftw3-float \
-		libxslt.so:textproc/libxslt \
-		libomp.so:devel/openmp
+		libxslt.so:textproc/libxslt
 
 USES=		cmake compiler:c++11-lib fortran gl \
 		makeinfo pkgconfig qt:5 tar:tgz
@@ -31,11 +30,26 @@ USE_QT=		core gui network widgets \
 
 CMAKE_ARGS+=	-DCMAKE_PREFIX_PATH+=${LOCALBASE}/wsjtx/lib \
 		-DLOCALBASE::STRING="${LOCALBASE}"
+# for detailed debugging uncomment the next line
+#CMAKE_ARGS+=   --debug-output --trace
 PLIST_SUB+=	PORTVERSION="${PORTVERSION}"
 
+_PATCHES=	wsjtx.patch hamlib.patch
+
 post-patch:
-	${CP} ${FILESDIR}/wsjtx.patch ${WRKSRC}
-	${CP} ${FILESDIR}/hamlib.patch ${WRKSRC}
+.  for _patch in ${_PATCHES}
+	# Keep a copy of the blank patch for the post-build target below
+	${MV} ${WRKSRC}/${_patch} ${WRKSRC}/${_patch}.orig
+	# Copy the patch provided by the ports system
+	${CP} ${FILESDIR}/${_patch}  ${WRKSRC}
+.  endfor
+
+post-build:
+	# With cmake 3.18, the patching stage in the internal build
+	# is run again, trick it by removing the patch again.
+.  for _patch in ${_PATCHES}
+	${MV} ${WRKSRC}/${_patch}.orig  ${WRKSRC}/${_patch}
+.  endfor
 
 do-install:
 	(cd ${CONFIGURE_WRKSRC};${MAKE} -f Makefile DESTDIR=${STAGEDIR} install)

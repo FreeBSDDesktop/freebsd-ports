@@ -9,6 +9,7 @@ share/icons/hicolor/22x22/apps/spectacle.png
 share/icons/hicolor/32x32/apps/spectacle.png
 share/icons/hicolor/48x48/apps/spectacle.png
 share/icons/hicolor/scalable/apps/spectacle.svgz
+share/kconf_update/spectacle_newConfig.upd
 share/kconf_update/spectacle_shortcuts.upd
 share/kglobalaccel/org.kde.spectacle.desktop
 share/knotifications5/spectacle.notifyrc
@@ -41,6 +42,7 @@ share/locale/nn/LC_MESSAGES/spectacle.mo
 share/locale/pl/LC_MESSAGES/spectacle.mo
 share/locale/pt/LC_MESSAGES/spectacle.mo
 share/locale/pt_BR/LC_MESSAGES/spectacle.mo
+share/locale/ro/LC_MESSAGES/spectacle.mo
 share/locale/ru/LC_MESSAGES/spectacle.mo
 share/locale/sk/LC_MESSAGES/spectacle.mo
 share/locale/sl/LC_MESSAGES/spectacle.mo

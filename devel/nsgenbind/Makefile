@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	nsgenbind
-PORTVERSION=	0.7
+PORTVERSION=	0.8
 CATEGORIES=	devel
 MASTER_SITES=	http://download.netsurf-browser.org/libs/releases/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
-MAINTAINER=	neel@neelc.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	NetSurf Generator for JavaScript bindings
 
 LICENSE=	MIT

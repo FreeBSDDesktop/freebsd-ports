@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	PySceneDetect
-PORTVERSION=	0.5.1.1
+PORTVERSION=	0.5.4
 DISTVERSIONPREFIX=	v
 CATEGORIES=	multimedia python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,7 +18,7 @@ RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}opencv>=0:graphics/py-opencv@${PY_FLAVOR} \
 		mkvmerge:multimedia/mkvtoolnix
 
-USES=		python:2.7
+USES=		python
 USE_GITHUB=	yes
 GH_ACCOUNT=	Breakthrough
 USE_PYTHON=	autoplist distutils

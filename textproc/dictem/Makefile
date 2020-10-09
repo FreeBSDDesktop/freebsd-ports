@@ -3,13 +3,13 @@
 
 PORTNAME=	dictem
 PORTVERSION=	1.0.4
-PORTREVISION=	7
+PORTREVISION=	9
 CATEGORIES=	textproc net elisp
 MASTER_SITES=	SF/dictem/dictem/dictem-${PORTVERSION}
 PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
 
 MAINTAINER=	max.n.boyarov@gmail.com
-COMMENT=	DictEm is a dict client for [X]Emacs
+COMMENT=	DICT protocol client for [X]Emacs
 
 LICENSE=	GPLv2
 

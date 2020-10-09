@@ -2,7 +2,7 @@
 
 PORTNAME=		kexi
 DISTVERSION=		3.2.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=		databases kde
 MASTER_SITES=		KDE/stable/${PORTNAME}/src
 DIST_SUBDIR=		KDE/${PORTNAME}
@@ -22,13 +22,13 @@ USE_KDE=		auth bookmarks codecs completion config \
 			iconthemes itemviews jobwidgets kio parts service \
 			solid sonnet texteditor textwidgets widgetsaddons \
 			xmlgui breeze-icons_build
-USE_QT=			core dbus declarative gui network printsupport webkit widgets xml \
+USE_QT=			concurrent core dbus declarative gui network printsupport webkit widgets xml \
 			buildtools_build qmake_build
 
 CONFLICTS_INSTALL=	calligra-2*
 
-CMAKE_ARGS=		-DBUILD_TESTING:BOOL=OFF \
-			-DKEXI_QTGUI_RUNTIME_AVAILABLE:BOOL=TRUE \
-			-DKEXI_ENABLE_QTGUI_FOR_TESTS:BOOL=FALSE
+CMAKE_OFF=		BUILD_TESTING \
+			KEXI_ENABLE_QTGUI_FOR_TESTS
+CMAKE_ON=		KEXI_QTGUI_RUNTIME_AVAILABLE
 
 .include <bsd.port.mk>

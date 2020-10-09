@@ -8,7 +8,7 @@ CATEGORIES=	net-mgmt
 MASTER_SITES=	http://tools.netsa.cert.org/releases/
 
 MAINTAINER=	nacho319+freebsdZilla@gmail.com
-COMMENT=	SuperMediator is an IPFIX mediator by CMU CERT generally used with YAF
+COMMENT=	IPFIX mediator by CMU CERT generally used with YAF
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -34,7 +34,7 @@ SKIPSET_LIB_DEPENDS=	libsilk.so:security/silktools
 SPREAD_LIB_DEPENDS=	libspread.so:net/spread4
 MYSQL_LIB_DEPENDS=	libmysqlclient.so:${_MYSQL_CLIENT}
 
-MYSQL_USE=	mysql
+MYSQL_USES=	mysql
 
 MYSQL_CONFIGURE_WITH=	mysql
 SKIPSET_CONFIGURE_WITH=	skipset

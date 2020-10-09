@@ -1,13 +1,13 @@
 # $FreeBSD$
 
 PORTNAME=	vimb
-DISTVERSION=	3.5.0
+DISTVERSION=	3.6.0
 CATEGORIES=	www
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Vim like browser
 
-LICENSE=	GPLv3
+LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \

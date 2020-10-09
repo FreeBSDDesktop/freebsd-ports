@@ -1,10 +1,10 @@
 # $FreeBSD$
 
 PORTNAME=	yoshimi
-DISTVERSION=	1.6.0.2
+DISTVERSION=	1.7.2
 CATEGORIES=	audio
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Sophisticated software synthesizer
 
 LICENSE=	GPLv2+
@@ -26,6 +26,9 @@ USE_GNOME=	cairo
 
 CMAKE_SOURCE_PATH=	${WRKSRC}/src
 LDFLAGS+=		-Wl,--as-needed
+
+PORTDATA=	*
+PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
 

@@ -1,9 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	musicpd
-PORTVERSION=	0.21.16
+PORTVERSION=	0.22
 CATEGORIES=	audio
-MASTER_SITES=	https://www.musicpd.org/download/mpd/${PORTVERSION:R}/
+MASTER_SITES=	https://www.musicpd.org/download/mpd/${PORTVERSION}/
 DISTNAME=	mpd-${PORTVERSION}
 
 MAINTAINER=	riggs@FreeBSD.org
@@ -12,16 +12,18 @@ COMMENT=	Remote-controllable music daemon
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	${LOCALBASE}/bin/sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
 		libicudata.so:devel/icu
 
-USES=		compiler:c++14-lang gnome meson pkgconfig tar:xz
+USES=		compiler:c++17-lang gnome meson pkgconfig python:build tar:xz
 
 USE_GNOME=	glib20
 
 USE_RC_SUBR=	${PORTNAME}
 MESON_ARGS=	-Dauto_features=disabled \
 		-Dbzip2=enabled \
+		-Ddocumentation=enabled \
 		-Dhttpd=true \
 		-Dicu=enabled \
 		-Doss=enabled \
@@ -45,7 +47,7 @@ OPTIONS_RADIO_ZEROCONF=	AVAHI MDNSRESPONDER
 
 OPTIONS_RADIO_RESAMPLER=	SAMPLERATE SOXR
 
-OPTIONS_MULTI=	FILE_FORMAT
+OPTIONS_MULTI=	DOCUMENTATION FILE_FORMAT
 OPTIONS_MULTI_FILE_FORMAT=	\
 			ADPLUG AUDIOFILE FAAD FFMPEG FLAC FLUIDSYNTH \
 			GME MAD MIKMOD MODPLUG MPG123 MUSEPACK \
@@ -77,7 +79,7 @@ WILDMIDI_DESC=	WildMIDI support (MIDI files)
 YAJL_DESC=	JSON support via libyajl
 ZZIP_DESC=	Support for zzip archives
 
-OPTIONS_DEFAULT=AUDIOFILE CURL FFMPEG FLAC ID3TAG MAD \
+OPTIONS_DEFAULT=CURL FFMPEG FLAC ID3TAG \
 		PLAYLISTS SNDFILE VORBIS VORBISENC
 
 # Decoder plugins
@@ -146,6 +148,7 @@ AO_MESON_ENABLED=	ao
 AO_LIB_DEPENDS=		libao.so:audio/libao
 JACK_MESON_ENABLED=	jack
 JACK_LIB_DEPENDS=	libjack.so:audio/jack
+JACK_CXXFLAGS=		-Wno-register
 OPENAL_MESON_ENABLED=	openal
 OPENAL_USES=		openal
 PULSEAUDIO_MESON_ENABLED=	pulse
@@ -158,7 +161,7 @@ SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
 
 # Input plugins
 CDPARANOIA_MESON_ENABLED=	cdio_paranoia
-CDPARANOIA_LIB_DEPENDS=	libcdda_paranoia.so:audio/cdparanoia
+CDPARANOIA_LIB_DEPENDS=	libcdio_paranoia.so:sysutils/libcdio-paranoia
 CURL_MESON_ENABLED=	curl
 CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
 MMS_MESON_ENABLED=	mms
@@ -170,7 +173,7 @@ SMB_USES=		samba:lib
 ZZIP_MESON_ENABLED=	zzip
 ZZIP_LIB_DEPENDS=	libzzip.so:devel/zziplib
 ISO9660_MESON_ENABLED=	iso9660
-ISO9660_LIB_DEPENDS=	libcdio_paranoia.so:sysutils/libcdio-paranoia
+ISO9660_LIB_DEPENDS=	libiso9660.so:sysutils/libcdio
 
 # Database plugins
 SQLITE3_MESON_ENABLED=	sqlite
@@ -240,22 +243,30 @@ post-patch:
 	 ${REINPLACE_CMD} -e "$${start},$${finish}s,^#,," \
 		${WRKSRC}/doc/mpdconf.example
 # Fix man pages for executable names
-	@${REINPLACE_CMD} -e 's/^\(\.B m\)pd/\1usicpd/' \
-		-e 's#^\(\.BI \)/etc/mpd.conf#\1${PREFIX}/etc/${PORTNAME}.conf#' \
-		-e 's#^mpd.conf#${PORTNAME}.conf#' \
-		-e 's#^mpd(1)#musicpd(1)#' \
-		${WRKSRC}/doc/mpd.1 ${WRKSRC}/doc/mpd.conf.5
+	@${REINPLACE_CMD} \
+		-e 's#^``mpd#``${PORTNAME}#' \
+		-e 's#:: mpd#:: ${PORTNAME}#' \
+		-e 's#mpd(1)#${PORTNAME}(1)#' \
+		-e 's#/etc/mpd.conf#${PREFIX}/etc/${PORTNAME}.conf#' \
+		-e 's#mpd.conf#${PORTNAME}.conf#' \
+		-e 's#mpd.conf(5)#${PORTNAME}.conf(5)#' \
+		${WRKSRC}/doc/mpd.1.rst ${WRKSRC}/doc/mpd.conf.5.rst
+	@${REINPLACE_CMD} \
+		-e "s#'mpd'#'${PORTNAME}'#" \
+		-e "s#'mpd.conf'#'${PORTNAME}.conf'#" \
+		-e "s#'mpd.conf doc#'${PORTNAME}.conf doc#" \
+		${WRKSRC}/doc/conf.py
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/_build/mpd \
-		${STAGEDIR}/${PREFIX}/bin/${PORTNAME}
-	${INSTALL_MAN} ${WRKSRC}/doc/mpd.1 \
-		${STAGEDIR}/${PREFIX}/man/man1/${PORTNAME}.1
-	${INSTALL_MAN} ${WRKSRC}/doc/mpd.conf.5 \
-		${STAGEDIR}/${PREFIX}/man/man5/${PORTNAME}.conf.5
+		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${INSTALL_MAN} ${WRKSRC}/_build/doc/${PORTNAME}.1 \
+		${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/_build/doc/${PORTNAME}.conf.5 \
+		${STAGEDIR}${PREFIX}/man/man5
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}/
 	${INSTALL_DATA} ${WRKSRC}/doc/mpdconf.example \
-		${STAGEDIR}/${PREFIX}/etc/${PORTNAME}.conf.sample
+		${STAGEDIR}${PREFIX}/etc/${PORTNAME}.conf.sample
 
 .include <bsd.port.post.mk>

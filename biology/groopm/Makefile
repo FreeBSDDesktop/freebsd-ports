@@ -2,7 +2,7 @@
 
 PORTNAME=	GroopM
 DISTVERSION=	0.3.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	biology python
 MASTER_SITES=	CHEESESHOP
 
@@ -17,7 +17,7 @@ RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=0.10.1:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}tables>=2.3:devel/py-tables@${PY_FLAVOR}
 
-USES=		python:2.7
+USES=		python
 USE_PYTHON=	distutils noflavors autoplist
 
 NO_ARCH=	yes

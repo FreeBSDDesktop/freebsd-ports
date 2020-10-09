@@ -1,10 +1,10 @@
 # $FreeBSD$
 
 PORTNAME=	php74
-DISTVERSION=	7.4.0RC5
+DISTVERSION=	7.4.10
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
-MASTER_SITES=	https://downloads.php.net/~derick/
+MASTER_SITES=   PHP/distributions
 DISTNAME=	php-${DISTVERSION}
 
 MAINTAINER=	tz@FreeBSD.org
@@ -39,14 +39,14 @@ OPTIONS_DEFAULT=CLI CGI FPM EMBED MYSQLND LINKTHR DTRACE
 OPTIONS_EXCLUDE_DragonFly=	DTRACE
 # ld(1) fails to link probes: Relocations in generic ELF (EM: 0)
 OPTIONS_EXCLUDE_aarch64=	DTRACE
-OPTIONS_EXCLUDE_powerpc=	DTRACE
-OPTIONS_EXCLUDE_powerpc64=	DTRACE
 # dt_modtext:opensolaris/ib/libdtrace/common/dt_link.c: arm not impemented
 OPTIONS_EXCLUDE_armv6=		DTRACE
 OPTIONS_EXCLUDE_armv7=		DTRACE
 # Bug 197128:  No ASM code for MIPS/MIPS64, disable FPM
 OPTIONS_EXCLUDE_mips=		DTRACE FPM
 OPTIONS_EXCLUDE_mips64=		DTRACE FPM
+OPTIONS_EXCLUDE_powerpc=		DTRACE
+OPTIONS_EXCLUDE_powerpc64=		DTRACE
 OPTIONS_EXCLUDE_sparc64=	DTRACE
 OPTIONS_SUB=	yes
 

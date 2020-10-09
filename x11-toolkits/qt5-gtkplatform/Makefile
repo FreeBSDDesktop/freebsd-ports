@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	gtkplatform
-DISTVERSION=	0.2.2
-PORTREVISION=	3
+DISTVERSION=	0.2.4-11
+DISTVERSIONSUFFIX=	-g1149f4f
 CATEGORIES=	x11-toolkits
 PKGNAMEPREFIX=	qt5-
 
@@ -11,6 +11,9 @@ COMMENT=	GTK platform backend for Qt 5
 
 LICENSE=	LGPL3 GPLv2+
 LICENSE_COMB=	dual
+
+DEPRECATED=	Archived upstream
+EXPIRATION_DATE=	2021-04-15
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
@@ -28,6 +31,9 @@ USE_GL=		gl egl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	CrimsonAS
+
+pre-configure:
+	cd ${WRKSRC} && syncqt.pl -module QtGtkExtras -version 0.2.4
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/qt5/plugins/platforms/libqgtk.so

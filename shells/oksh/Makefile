@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	oksh
-DISTVERSION=	6.6
+DISTVERSION=	6.7
 PORTEPOCH=	1
 CATEGORIES=	shells
 MASTER_SITES=	https://github.com/ibara/oksh/releases/download/oksh-${DISTVERSION}/
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Portable OpenBSD Korn shell
 
 LICENSE=	PD
@@ -22,9 +22,5 @@ CURSES_USES=			ncurses
 CURSES_CONFIGURE_ENABLE=	curses
 
 STATIC_CONFIGURE_ENABLE=	static
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${MANPREFIX}/man/man1
 
 .include <bsd.port.mk>

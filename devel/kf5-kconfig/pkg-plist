@@ -52,6 +52,7 @@ lib/libexec/kf5/kconfig_compiler_kf5
 %%QT_MKSPECDIR%%/modules/qt_KConfigGui.pri
 share/locale/af/LC_MESSAGES/kconfig5_qt.qm
 share/locale/ar/LC_MESSAGES/kconfig5_qt.qm
+share/locale/az/LC_MESSAGES/kconfig5_qt.qm
 share/locale/be/LC_MESSAGES/kconfig5_qt.qm
 share/locale/be@latin/LC_MESSAGES/kconfig5_qt.qm
 share/locale/bg/LC_MESSAGES/kconfig5_qt.qm
@@ -141,3 +142,4 @@ share/locale/xh/LC_MESSAGES/kconfig5_qt.qm
 share/locale/zh_CN/LC_MESSAGES/kconfig5_qt.qm
 share/locale/zh_TW/LC_MESSAGES/kconfig5_qt.qm
 share/qlogging-categories5/kconfig.categories
+share/qlogging-categories5/kconfig.renamecategories

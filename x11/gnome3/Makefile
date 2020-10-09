@@ -2,14 +2,18 @@
 # $FreeBSD$
 
 PORTNAME=	gnome3
-PORTVERSION=	3.28
-PORTREVISION=	2
+PORTVERSION=	3.36
+PORTREVISION=	1
 CATEGORIES?=	x11 gnome
 
 MAINTAINER=	gnome@FreeBSD.org
-COMMENT?=	"meta-port" for the GNOME 3 integrated X11 desktop
+COMMENT=	"meta-port" for the GNOME 3 integrated X11 desktop
+
+FLAVORS=	full lite
+FLAVOR?=	full
 
 RUN_DEPENDS?=	dconf-editor:devel/dconf-editor \
+		gdm>=3.0.0:x11/gdm \
 		gnome-session>=3.0.0:x11/gnome-session \
 		gnome-themes-extra>=3.28:x11-themes/gnome-themes-extra \
 		gnome-icon-theme-extras>=3.0.0:misc/gnome-icon-theme-extras \
@@ -33,20 +37,19 @@ RUN_DEPENDS?=	dconf-editor:devel/dconf-editor \
 		caribou>=0:accessibility/caribou \
 		${LOCALBASE}/share/sounds/freedesktop/index.theme:audio/freedesktop-sound-theme
 
-CONFLICTS?=	gnome3-lite-[0-9]*
+OPTIONS_DEFINE=	DOCS
 
 USES=		metaport
 
-.if ${.CURDIR:T}!="gnome3-lite"
-OPTIONS_DEFINE+=DOCS
-
-DOCS_RUN_DEPENDS=	gnome-user-docs>=0:misc/gnome-user-docs \
-			gnome-getting-started-docs>=0:misc/gnome-getting-started-docs
+.if ${FLAVOR} ==lite
+OPTIONS_EXCLUDE=	DOCS
+PKGNAMESUFFIX=	-lite
+COMMENT=	The "meta-port" of the GNOME desktop slimmed down for only the basics
+PKGMESSAGE=	${.CURDIR}/pkg-message-lite
+DESCR=		${.CURDIR}/pkg-descr-lite
 .endif
 
-.include <bsd.port.options.mk>
-
-.if ${.CURDIR:T}!="gnome3-lite"
+.if ${FLAVOR} == "full"
 RUN_DEPENDS+=	epiphany>=3.0.0:www/epiphany \
 		gucharmap>=3.0.0:deskutils/gucharmap \
 		gnome-characters>=3.0.0:deskutils/gnome-characters \
@@ -67,12 +70,15 @@ RUN_DEPENDS+=	epiphany>=3.0.0:www/epiphany \
 		gnome-games>=3.0.0:games/gnome-games \
 		totem>=3.0.0:multimedia/totem \
 		gconf-editor>=3.0.0:sysutils/gconf-editor \
-		gdm>=3.0.0:x11/gdm \
 		gnome-color-manager>=0:graphics/gnome-color-manager \
 		evolution>=3.0.0:mail/evolution \
 		cheese>=3.0.0:multimedia/cheese \
 		ekiga:net-im/ekiga
 
 .endif # !gnome3-lite section
+
+DOCS_RUN_DEPENDS=	gnome-user-docs>=0:misc/gnome-user-docs \
+			gnome-getting-started-docs>=0:misc/gnome-getting-started-docs
+
 
 .include <bsd.port.mk>

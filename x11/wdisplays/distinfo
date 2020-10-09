@@ -1,3 +1,5 @@
-TIMESTAMP = 1572123361
-SHA256 (cyclopsian-wdisplays-s20191026-22669ed_GH0.tar.gz) = 55c59de48a45f1d85b8f7c306d56b325b1d88dbf8a065ae4e6ca24b6fa3e7626
-SIZE (cyclopsian-wdisplays-s20191026-22669ed_GH0.tar.gz) = 84234
+TIMESTAMP = 1589011062
+SHA256 (cyclopsian-wdisplays-1.0_GH0.tar.gz) = fa34d5bdfd87d833e18a89b2acacc27833d7297374719773a705f2d3e89cdddf
+SIZE (cyclopsian-wdisplays-1.0_GH0.tar.gz) = 106819
+SHA256 (657e2966e556.patch) = e7cc9418945f12632fd17b408fdd8f1c0287f31e4bc3d2afab7683a84e8f2fd2
+SIZE (657e2966e556.patch) = 2259

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	fio
-PORTVERSION=	3.16
-PORTREVISION=	1
+PORTVERSION=	3.23
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://brick.kernel.dk/snaps/
 
@@ -14,7 +13,7 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 HAS_CONFIGURE=	yes
-USES=		gmake tar:bzip2
+USES=		compiler:c11 gmake tar:bzip2
 
 CONFIGURE_ARGS+=	--disable-native
 

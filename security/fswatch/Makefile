@@ -17,8 +17,9 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--enable-regex \
 		--enable-stflags
 GNU_CONFIGURE=	yes
+CFLAGS+=	-fcommon
 
-PORTSCOUT=	ignore:0.02.04beta
+PORTSCOUT=	ignore:1
 
 post-patch:
 	@${REINPLACE_CMD} '/INSTALL/ s|prefix)|DESTDIR)$$(&|' \

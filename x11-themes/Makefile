@@ -10,6 +10,7 @@
     SUBDIR += adwaita-qt
     SUBDIR += arc-gruvbox-theme
     SUBDIR += audacious-skins
+    SUBDIR += classiclooks
     SUBDIR += claws-mail-themes
     SUBDIR += clearlooks
     SUBDIR += clearlooks-metacity
@@ -38,14 +39,11 @@
     SUBDIR += gnome-icons
     SUBDIR += gnome-icons-aqua-fusion
     SUBDIR += gnome-icons-crystal
-    SUBDIR += gnome-icons-dropline-neu
-    SUBDIR += gnome-icons-dropline-nou
     SUBDIR += gnome-icons-elementary
     SUBDIR += gnome-icons-faenza
+    SUBDIR += gnome-icons-gartoon-redux
     SUBDIR += gnome-icons-gentoo-test
-    SUBDIR += gnome-icons-gion
     SUBDIR += gnome-icons-iris
-    SUBDIR += gnome-icons-jini
     SUBDIR += gnome-icons-lila
     SUBDIR += gnome-icons-luv
     SUBDIR += gnome-icons-noia-full
@@ -66,9 +64,6 @@
     SUBDIR += gtk-aluminumalloy-volcanic-theme
     SUBDIR += gtk-aquaextremesunken-theme
     SUBDIR += gtk-arc-themes
-    SUBDIR += gtk-aurora-engine
-    SUBDIR += gtk-blueprint-engine
-    SUBDIR += gtk-cleanice-engine
     SUBDIR += gtk-digital-cream-theme
     SUBDIR += gtk-digital-harmony-theme
     SUBDIR += gtk-engines2
@@ -78,10 +73,7 @@
     SUBDIR += gtk-longhorninspirat-theme
     SUBDIR += gtk-milk-theme
     SUBDIR += gtk-murrina-aqua
-    SUBDIR += gtk-murrina-fancy-clearlooks
-    SUBDIR += gtk-murrina-lightblue
     SUBDIR += gtk-murrine-engine
-    SUBDIR += gtk-murrine-themes
     SUBDIR += gtk-nodoka-engine
     SUBDIR += gtk-oxygen-engine
     SUBDIR += gtk-xfce-engine
@@ -96,7 +88,6 @@
     SUBDIR += kde-icons-gartoon-blue-svg
     SUBDIR += kde-icons-gartoon-svg
     SUBDIR += kde-icons-graphite-rade8
-    SUBDIR += kde-icons-kool-gorilla
     SUBDIR += kde-icons-lime-rade8
     SUBDIR += kde-icons-lush
     SUBDIR += kde-icons-noia
@@ -111,6 +102,7 @@
     SUBDIR += lxappearance
     SUBDIR += lxde-icon-theme
     SUBDIR += lxqt-themes
+    SUBDIR += matcha-gtk-themes
     SUBDIR += mate-backgrounds
     SUBDIR += mate-icon-theme
     SUBDIR += mate-icon-theme-faenza
@@ -128,11 +120,9 @@
     SUBDIR += metacity-theme-microgui
     SUBDIR += metacity-themes
     SUBDIR += mint-themes
-    SUBDIR += murrine-configurator
-    SUBDIR += nimbus
-    SUBDIR += numix-theme
+    SUBDIR += numix-gtk-theme
+    SUBDIR += numix-icon-theme
     SUBDIR += openbox-arc-theme
-    SUBDIR += openbox-themes
     SUBDIR += papirus-icon-theme
     SUBDIR += plasma5-breeze
     SUBDIR += plasma5-breeze-gtk
@@ -146,17 +136,16 @@
     SUBDIR += qtcurve-kf5
     SUBDIR += qtcurve-qt5
     SUBDIR += qtcurve-utils
-    SUBDIR += rezlooks
     SUBDIR += sawfish-themes
     SUBDIR += sddm-freebsd-black-theme
+    SUBDIR += sierra-gtk-themes
     SUBDIR += slim-freebsd-black-theme
+    SUBDIR += slim-freebsd-dark-theme
     SUBDIR += slim-freebsd-themes
     SUBDIR += slim-themes
     SUBDIR += thewidgetfactory
-    SUBDIR += ubuntulooks
     SUBDIR += wallpapers-freebsd-kde
     SUBDIR += xcursor-themes
-    SUBDIR += xfce-evolution
     SUBDIR += xfce-icons-elementary
 
 .include <bsd.port.subdir.mk>

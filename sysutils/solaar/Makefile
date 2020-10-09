@@ -2,9 +2,10 @@
 
 PORTNAME=	solaar
 DISTVERSION=	1.0.1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Device manager for the Logitech Unifying Receiver
 
 LICENSE=	GPLv2+

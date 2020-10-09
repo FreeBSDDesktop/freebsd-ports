@@ -37,6 +37,9 @@ ncurses_ARGS=	port
 .if ${ncurses_ARGS} == base
 NCURSESBASE=	/usr
 NCURSESINC=	${NCURSESBASE}/include
+.if !exists(/usr/lib/libncursesw.so)
+NCURSES_IMPL=	ncurses
+.endif
 
 .  if exists(${LOCALBASE}/lib/libncurses.so)
 _USES_sanity+=	400:check-depends-ncurses
@@ -64,7 +67,7 @@ NCURSES_INSTALLED?=
 
 .if ${NCURSES_INSTALLED} != ""
 NCURSES_PORT=	${NCURSES_INSTALLED}
-NCURSES_SHLIBFILE!=	${PKG_INFO} -ql ${NCURSES_INSTALLED} | grep -m 1 "^`pkg query "%p" ${NCURSES_INSTALLED}`/lib/libncurses.so."
+NCURSES_SHLIBFILE!=	${PKG_INFO} -ql ${NCURSES_INSTALLED} | grep -m 1 "^`${PKG_QUERY} "%p" ${NCURSES_INSTALLED}`/lib/libncurses.so."
 NCURSES_SHLIBVER?=	${NCURSES_SHLIBFILE:E}
 .endif
 
@@ -85,5 +88,6 @@ LDFLAGS+=	-Wl,-rpath=${NCURSESRPATH}
 .endif
 
 NCURSESLIB=	${NCURSESBASE}/lib
+NCURSES_IMPL?=	ncursesw
 
 .endif

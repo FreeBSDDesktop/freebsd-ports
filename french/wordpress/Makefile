@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wordpress
-DISTVERSION=	5.2.3
+DISTVERSION=	5.5.1
 DISTVERSIONSUFFIX=	-fr_FR
 PORTEPOCH=	1
 CATEGORIES=	french www
@@ -11,16 +11,16 @@ MASTER_SITES=	http://fr.wordpress.org/
 MAINTAINER=	joneum@FreeBSD.org
 COMMENT=	State-of-the-art semantic personal publishing platform
 
-BROKEN=		unfetchable
-
 LICENSE=	GPLv2
 
+BROKEN=		checksum and size mismatch
 CONFLICTS_INSTALL=	de-wordpress-[0-9].* ja-wordpress-[0-9].* ru-wordpress-[0-9].*
 
 NO_ARCH=	yes
 NO_BUILD=	yes
 USES=		php:web cpe
-USE_PHP=	curl gd hash mysqli pcre tokenizer xml zip zlib ftp
+USE_PHP=	curl exif fileinfo ftp gd hash json mysqli pcre tokenizer xml zip zlib
+RUN_DEPENDS=	${LOCALBASE}/lib/php/${PHP_EXT_DIR}/imagick.so:graphics/pecl-imagick@${PHP_FLAVOR}
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 .if ${DISTVERSION:N*.*.*}

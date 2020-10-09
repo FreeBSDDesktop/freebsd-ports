@@ -3,9 +3,10 @@
 PORTNAME=	kurly
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.2.2
+PORTREVISION=	1
 CATEGORIES=	www
 
-MAINTAINER=	seanc@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Alternative implementation of curl written in Golang
 
 LICENSE=	APACHE20

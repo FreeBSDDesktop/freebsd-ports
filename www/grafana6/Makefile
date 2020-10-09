@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	grafana
-PORTVERSION=	6.4.2
+PORTVERSION=	6.7.4
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 MASTER_SITES+=	https://dl.grafana.com/oss/release/:public
@@ -15,13 +15,13 @@ COMMENT=	Dashboard and graph editor for multiple data stores
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	amd64 i386
+ONLY_FOR_ARCHS=	aarch64 amd64 i386
 
 USES=		go:modules
 USE_RC_SUBR=	grafana
 
 USE_GITHUB=	yes
-TAG=		9504db8
+TAG=		5c11bbd
 
 GO_TARGET=	./pkg/cmd/grafana-server \
 		./pkg/cmd/grafana-cli
@@ -50,20 +50,11 @@ SUB_LIST+=	GRAFANA_USER=${GRAFANA_USER} \
 		GRAFANAPLUGINDIR=${GRAFANAPLUGINDIR} \
 		GRAFANAPROVISIONINGDIR=${GRAFANAPROVISIONINGDIR}
 
-PLIST_SUB+=	GRAFANAHOMEDIR=${GRAFANAHOMEDIR}
+PLIST_SUB+=	${SUB_LIST}
 
 post-extract:
 	@${RM} -r ${WRKSRC}/public
 	@(cd ${WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${DISTDIR}/grafana-${PORTVERSION}.linux-amd64${EXTRACT_SUFX} ${EXTRACT_AFTER_ARGS} grafana-${PORTVERSION}/public)
-
-# unbreak vendored golang.org/x/xerrors with go1.13
-# can be removed after vendor/golang.org/x/xerrors is updated to a985d3407aa7 or later
-post-patch:
-	@${RM} ${WRKSRC}/vendor/golang.org/x/xerrors/adaptor_go1_13.go
-	@${RM} ${WRKSRC}/vendor/golang.org/x/xerrors/format_go1_13.go
-	@${REINPLACE_CMD} '/build !go1.13/d' ${WRKSRC}/vendor/golang.org/x/xerrors/adaptor_go1_12.go
-	@${REINPLACE_CMD} '/build !go1.13/d' ${WRKSRC}/vendor/golang.org/x/xerrors/format_go1_12.go
-	@${REINPLACE_CMD} '/build !go1.13/d' ${WRKSRC}/vendor/golang.org/x/xerrors/frame_go1_12.go
 
 post-install:
 	cd ${WRKSRC} && \

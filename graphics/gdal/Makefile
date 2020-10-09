@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	gdal
-PORTVERSION=	2.4.2
-PORTREVISION=	3
+PORTVERSION=	3.1.0
+PORTREVISION=	6
 CATEGORIES=	graphics geography
 MASTER_SITES=	https://download.osgeo.org/gdal/${PORTVERSION}/ \
 		LOCAL/sunpoet
@@ -14,26 +14,29 @@ COMMENT=	Translator library for raster geospatial data formats
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
 
+BUILD_DEPENDS=	libgeotiff>=1.5.0:graphics/libgeotiff \
+		proj>=6:graphics/proj
 LIB_DEPENDS=	libgeotiff.so:graphics/libgeotiff \
 		libgif.so:graphics/giflib \
 		libjson-c.so:devel/json-c \
 		libpng.so:graphics/png \
 		libproj.so:graphics/proj \
+		libqhull.so.7:math/qhull \
 		libtiff.so:graphics/tiff
 
 OPTIONS_DEFINE=	ARMADILLO CFITSIO CURL ECW EXPAT FREEXL GEOS GTA HDF5 JASPER \
 		KML LIBXML2 MYSQL NETCDF ODBC OPENJPEG PCRE PGSQL SFCGAL \
 		SPATIALITE SQLITE WEBP XERCES ZSTD
-OPTIONS_DEFAULT=JASPER
 OPTIONS_RADIO=	PDF
 OPTIONS_RADIO_PDF=	PODOFO POPPLER
+OPTIONS_DEFAULT=JASPER
 OPTIONS_SUB=	yes
 PCRE_DESC=	Regular expression support for SQLite
 
 USES=		compiler:c++11-lang gmake iconv jpeg localbase pkgconfig ssl tar:xz
 
 CFLAGS+=	-fPIC
-CONFIGURE_ARGS=	--datadir=${DATADIR} \
+CONFIGURE_ARGS=	--datadir=${PREFIX}/share \
 		--enable-static=yes \
 		--with-geotiff=yes \
 		--with-gif=yes \
@@ -45,6 +48,7 @@ CONFIGURE_ARGS=	--datadir=${DATADIR} \
 		--with-libz=/usr \
 		--with-png=yes \
 		--with-proj=yes \
+		--with-qhull=yes \
 		--with-threads=yes \
 		--without-libtool \
 		${ICONV_CONFIGURE_ARG}
@@ -100,7 +104,7 @@ JASPER_LIB_DEPENDS=	libjasper.so:graphics/jasper
 KML_CONFIGURE_WITH=	libkml
 KML_LIB_DEPENDS=	libkmlbase.so:science/libkml
 LIBXML2_CONFIGURE_OFF=	--with-xml2=no
-LIBXML2_CONFIGURE_ON=	--with-xml2=${LOCALBASE}/bin/xml2-config
+LIBXML2_CONFIGURE_ON=	--with-xml2=yes
 LIBXML2_LIB_DEPENDS=	libxml2.so:textproc/libxml2
 MYSQL_CONFIGURE_OFF=	--with-mysql=no
 MYSQL_CONFIGURE_ON=	--with-mysql=${LOCALBASE}/bin/mysql_config
@@ -113,8 +117,7 @@ OPENJPEG_CONFIGURE_WITH=openjpeg
 OPENJPEG_LIB_DEPENDS=	libopenjp2.so:graphics/openjpeg
 PCRE_CONFIGURE_WITH=	pcre
 PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
-PGSQL_CONFIGURE_OFF=	--with-pg=no
-PGSQL_CONFIGURE_ON=	--with-pg=${LOCALBASE}/bin/pg_config
+PGSQL_CONFIGURE_WITH=	pg
 PGSQL_USES=		pgsql
 PODOFO_CONFIGURE_WITH=	podofo
 PODOFO_LIB_DEPENDS=	libpodofo.so:graphics/podofo
@@ -140,6 +143,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|-lminizip|-lkmlminizip|' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|getCString()|c_str()|' ${WRKSRC}/frmts/pdf/pdfdataset.cpp ${WRKSRC}/frmts/pdf/pdfobject.cpp
 # Clean up bundled libraries
+	@${RM} -r ${WRKSRC}/alg/internal_libqhull/
 	@${RM} -r ${WRKSRC}/frmts/gif/giflib/
 	@${RM} -r ${WRKSRC}/frmts/gtiff/libgeotiff/
 	@${RM} -r ${WRKSRC}/frmts/gtiff/libtiff/
@@ -150,9 +154,10 @@ post-patch:
 	@${RM} -r ${WRKSRC}/ogr/ogrsf_frmts/geojson/libjson/
 
 post-install:
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
+	${INSTALL_DATA} ${WRKSRC}/scripts/gdal-bash-completion.sh ${STAGEDIR}${PREFIX}/etc/bash_completion.d
 	cd ${WRKSRC}/ && ${INSTALL_DATA} ${HEADER_FILES} ${STAGEDIR}${PREFIX}/include/
 	${INSTALL_DATA} ${WRKSRC}/libgdal.a ${STAGEDIR}${PREFIX}/lib/
-	${TOUCH} ${STAGEDIR}${PREFIX}/lib/gdalplugins/.keepme
 	${INSTALL_DATA} ${WRKSRC}/GDALmake.opt ${STAGEDIR}${DATADIR}/
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libgdal.so.${PORTVERSION}
 

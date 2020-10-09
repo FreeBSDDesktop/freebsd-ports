@@ -1,35 +1,77 @@
---- bolt.gemspec.orig
+--- bolt.gemspec.orig	2020-09-23 19:43:23 UTC
 +++ bolt.gemspec
-@@ -25,8 +25,8 @@
- 
+@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
      if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
        s.add_runtime_dependency(%q<addressable>.freeze, ["~> 2.5"])
--      s.add_runtime_dependency(%q<aws-sdk-ec2>.freeze, ["~> 1"])
+       s.add_runtime_dependency(%q<aws-sdk-ec2>.freeze, ["~> 1"])
 -      s.add_runtime_dependency(%q<CFPropertyList>.freeze, ["~> 2.2"])
-+      s.add_runtime_dependency(%q<aws-sdk-ec2>.freeze, [">= 1"])
 +      s.add_runtime_dependency(%q<CFPropertyList>.freeze, [">= 2.2"])
        s.add_runtime_dependency(%q<concurrent-ruby>.freeze, ["~> 1.0"])
-       s.add_runtime_dependency(%q<docker-api>.freeze, ["~> 1.34"])
        s.add_runtime_dependency(%q<hiera-eyaml>.freeze, ["~> 3"])
-@@ -48,8 +48,8 @@
-       s.add_development_dependency(%q<rspec>.freeze, ["~> 3.0"])
+       s.add_runtime_dependency(%q<jwt>.freeze, ["~> 2.2"])
+@@ -36,12 +36,12 @@ Gem::Specification.new do |s|
+       s.add_runtime_dependency(%q<net-ssh>.freeze, [">= 4.0"])
+       s.add_runtime_dependency(%q<net-ssh-krb>.freeze, ["~> 0.5"])
+       s.add_runtime_dependency(%q<orchestrator_client>.freeze, ["~> 0.4"])
+-      s.add_runtime_dependency(%q<puppet>.freeze, ["= 6.18.0"])
+-      s.add_runtime_dependency(%q<puppetfile-resolver>.freeze, ["~> 0.4"])
++      s.add_runtime_dependency(%q<puppet>.freeze, [">= 6.18.0"])
++      s.add_runtime_dependency(%q<puppetfile-resolver>.freeze, [">= 0.4"])
+       s.add_runtime_dependency(%q<puppet-resource_api>.freeze, [">= 1.8.1"])
+       s.add_runtime_dependency(%q<puppet-strings>.freeze, ["~> 2.3"])
+       s.add_runtime_dependency(%q<r10k>.freeze, ["~> 3.1"])
+-      s.add_runtime_dependency(%q<ruby_smb>.freeze, ["~> 1.0"])
++      s.add_runtime_dependency(%q<ruby_smb>.freeze, [">= 1.0"])
+       s.add_runtime_dependency(%q<terminal-table>.freeze, ["~> 1.8"])
+       s.add_runtime_dependency(%q<winrm>.freeze, ["~> 2.0"])
+       s.add_runtime_dependency(%q<winrm-fs>.freeze, ["~> 1.3"])
+@@ -53,7 +53,7 @@ Gem::Specification.new do |s|
      else
        s.add_dependency(%q<addressable>.freeze, ["~> 2.5"])
--      s.add_dependency(%q<aws-sdk-ec2>.freeze, ["~> 1"])
+       s.add_dependency(%q<aws-sdk-ec2>.freeze, ["~> 1"])
 -      s.add_dependency(%q<CFPropertyList>.freeze, ["~> 2.2"])
-+      s.add_dependency(%q<aws-sdk-ec2>.freeze, [">= 1"])
 +      s.add_dependency(%q<CFPropertyList>.freeze, [">= 2.2"])
        s.add_dependency(%q<concurrent-ruby>.freeze, ["~> 1.0"])
-       s.add_dependency(%q<docker-api>.freeze, ["~> 1.34"])
        s.add_dependency(%q<hiera-eyaml>.freeze, ["~> 3"])
-@@ -72,8 +72,8 @@
-     end
+       s.add_dependency(%q<jwt>.freeze, ["~> 2.2"])
+@@ -63,12 +63,12 @@ Gem::Specification.new do |s|
+       s.add_dependency(%q<net-ssh>.freeze, [">= 4.0"])
+       s.add_dependency(%q<net-ssh-krb>.freeze, ["~> 0.5"])
+       s.add_dependency(%q<orchestrator_client>.freeze, ["~> 0.4"])
+-      s.add_dependency(%q<puppet>.freeze, ["= 6.18.0"])
+-      s.add_dependency(%q<puppetfile-resolver>.freeze, ["~> 0.4"])
++      s.add_dependency(%q<puppet>.freeze, [">= 6.18.0"])
++      s.add_dependency(%q<puppetfile-resolver>.freeze, [">= 0.4"])
+       s.add_dependency(%q<puppet-resource_api>.freeze, [">= 1.8.1"])
+       s.add_dependency(%q<puppet-strings>.freeze, ["~> 2.3"])
+       s.add_dependency(%q<r10k>.freeze, ["~> 3.1"])
+-      s.add_dependency(%q<ruby_smb>.freeze, ["~> 1.0"])
++      s.add_dependency(%q<ruby_smb>.freeze, [">= 1.0"])
+       s.add_dependency(%q<terminal-table>.freeze, ["~> 1.8"])
+       s.add_dependency(%q<winrm>.freeze, ["~> 2.0"])
+       s.add_dependency(%q<winrm-fs>.freeze, ["~> 1.3"])
+@@ -81,7 +81,7 @@ Gem::Specification.new do |s|
    else
      s.add_dependency(%q<addressable>.freeze, ["~> 2.5"])
--    s.add_dependency(%q<aws-sdk-ec2>.freeze, ["~> 1"])
+     s.add_dependency(%q<aws-sdk-ec2>.freeze, ["~> 1"])
 -    s.add_dependency(%q<CFPropertyList>.freeze, ["~> 2.2"])
-+    s.add_dependency(%q<aws-sdk-ec2>.freeze, [">= 1"])
 +    s.add_dependency(%q<CFPropertyList>.freeze, [">= 2.2"])
      s.add_dependency(%q<concurrent-ruby>.freeze, ["~> 1.0"])
-     s.add_dependency(%q<docker-api>.freeze, ["~> 1.34"])
      s.add_dependency(%q<hiera-eyaml>.freeze, ["~> 3"])
+     s.add_dependency(%q<jwt>.freeze, ["~> 2.2"])
+@@ -91,12 +91,12 @@ Gem::Specification.new do |s|
+     s.add_dependency(%q<net-ssh>.freeze, [">= 4.0"])
+     s.add_dependency(%q<net-ssh-krb>.freeze, ["~> 0.5"])
+     s.add_dependency(%q<orchestrator_client>.freeze, ["~> 0.4"])
+-    s.add_dependency(%q<puppet>.freeze, ["= 6.18.0"])
+-    s.add_dependency(%q<puppetfile-resolver>.freeze, ["~> 0.4"])
++    s.add_dependency(%q<puppet>.freeze, [">= 6.18.0"])
++    s.add_dependency(%q<puppetfile-resolver>.freeze, [">= 0.4"])
+     s.add_dependency(%q<puppet-resource_api>.freeze, [">= 1.8.1"])
+     s.add_dependency(%q<puppet-strings>.freeze, ["~> 2.3"])
+     s.add_dependency(%q<r10k>.freeze, ["~> 3.1"])
+-    s.add_dependency(%q<ruby_smb>.freeze, ["~> 1.0"])
++    s.add_dependency(%q<ruby_smb>.freeze, [">= 1.0"])
+     s.add_dependency(%q<terminal-table>.freeze, ["~> 1.8"])
+     s.add_dependency(%q<winrm>.freeze, ["~> 2.0"])
+     s.add_dependency(%q<winrm-fs>.freeze, ["~> 1.3"])

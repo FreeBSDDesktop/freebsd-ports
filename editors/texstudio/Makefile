@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	texstudio
-DISTVERSION=	2.12.16
-PORTREVISION=	6
+DISTVERSION=	3.0.1
+PORTREVISION=	1
 CATEGORIES=	editors
 
 MAINTAINER=	rigoletto@FreeBSD.org
@@ -10,7 +10,7 @@ COMMENT=	Integrated writing environment for LaTeX documents
 
 LICENSE=	GPLv2
 
-BROKEN_armv6=		fails to compile: error: no member named mc_eip in __mcontext
+BROKEN_armv6=	fails to compile: error: no member named mc_eip in __mcontext
 
 LIB_DEPENDS=	libhunspell-1.7.so:textproc/hunspell \
 		libpoppler.so:graphics/poppler \
@@ -31,7 +31,10 @@ USE_TEX=	latex dvipsk
 USE_GITHUB=	yes
 GH_ACCOUNT=	${PORTNAME}-org
 
-DOS2UNIX_FILES=	${PORTNAME}.pro
+DOS2UNIX_FILES=	${PORTNAME}.pro \
+		src/manhattanstyle.cpp \
+		src/pdfviewer/PDFDocument.h \
+		src/qcodeedit/lib/widgets/qfoldpanel.cpp
 
 QMAKE_ARGS+=	USE_SYSTEM_HUNSPELL=true USE_SYSTEM_QUAZIP=true
 

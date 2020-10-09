@@ -2,8 +2,7 @@
 
 PORTNAME=	ambit
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.3
-PORTREVISION=	3
+DISTVERSION=	0.5.1
 CATEGORIES=	math
 PKGNAMESUFFIX=	-tensor # avoid clash with shells/ambit
 
@@ -14,13 +13,13 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libhdf5.so:science/hdf5 \
-		libomp.so:devel/openmp \
 		libopenblas.so:math/openblas \
 		libsz.so:science/szip
 
 USES=		cmake compiler:c++11-lang
 USE_GITHUB=	yes
 GH_ACCOUNT=	jturney
+USE_LDCONFIG=	yes
 
 # some declared cmake options do nothing: see https://github.com/jturney/ambit/issues/25 and the patch
 CMAKE_ARGS+=	-DSHARED_ONLY:BOOL=ON

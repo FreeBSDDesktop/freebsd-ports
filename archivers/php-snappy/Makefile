@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	snappy
-PORTVERSION=	0.1.9
+PORTVERSION=	0.1.11
 CATEGORIES=	archivers
 PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
 
-MAINTAINER=	joneum@FreeBSD.org
+MAINTAINER=	miwi@FreeBSD.org
 COMMENT=	PHP extension for the snappy compression algorithm
 
 LICENSE=	BSD3CLAUSE PHP301

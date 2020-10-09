@@ -2,13 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	ninja
-PORTVERSION=	1.9.0
+PORTVERSION=	1.10.1
 DISTVERSIONPREFIX=	v
 PORTEPOCH=	2
 CATEGORIES=	devel
 
 MAINTAINER=	kde@FreeBSD.org
-COMMENT=	Ninja is a small build system closest in spirit to Make
+COMMENT=	Small build system closest in spirit to Make
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -20,7 +20,7 @@ CONFLICTS=	irc/ninja-[0-9]*
 USES=		python
 
 PLIST_FILES=	bin/ninja
-PORTDOCS=	HACKING.md README manual.asciidoc
+PORTDOCS=	README.md manual.asciidoc
 
 OPTIONS_DEFINE=		DOCS BASH ZSH
 OPTIONS_DEFAULT=	BASH ZSH
@@ -39,7 +39,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ninja ${STAGEDIR}${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKSRC} && \
-	    ${INSTALL_DATA} HACKING.md README doc/manual.asciidoc \
+	    ${INSTALL_DATA} README.md doc/manual.asciidoc \
 	    ${STAGEDIR}${DOCSDIR})
 
 do-install-BASH-on:

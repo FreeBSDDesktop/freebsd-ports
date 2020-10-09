@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	zabbix44
-PORTVERSION=	4.4.1
-PORTREVISION?=	0
+PORTVERSION=	4.4.10
 CATEGORIES=	net-mgmt
-MASTER_SITES=	SF/zabbix/ZABBIX%20Latest%20Stable/${PORTVERSION}
+MASTER_SITES=	https://cdn.zabbix.com/zabbix/sources/stable/${PORTVERSION:R}/
 PKGNAMESUFFIX?=	-server
 DISTNAME=	zabbix-${PORTVERSION}
 
@@ -17,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
-CONFLICTS=	zabbix[0-35-9][0-9]${PKGNAMESUFFIX} \
+CONFLICTS_INSTALL=	zabbix[0-35-9][0-9]${PKGNAMESUFFIX} \
 		zabbix4[0-35-9]${PKGNAMESUFFIX} \
 		zabbix[0-9]${PKGNAMESUFFIX}
 
@@ -25,7 +24,7 @@ ZABBIX_BUILD=	${PKGNAMESUFFIX:S/^-//}
 
 .if ${ZABBIX_BUILD} != "frontend" # frontend only needs the version/distribution settings
 .if ${ZABBIX_BUILD} != "agent"
-CONFIGURE_ARGS+=	--with-libevent=${LOCALBASE}
+CONFIGURE_ARGS+=	--with-libevent=${LOCALBASE} --cache-file=${WRKSRC}/config.cache
 LIB_DEPENDS+=	libevent.so:devel/libevent
 USE_RC_SUBR=	zabbix_${ZABBIX_BUILD}
 .else
@@ -41,10 +40,12 @@ GROUPS=		zabbix
 PLIST_SUB=	PROXY="@comment "
 .else
 PLIST_SUB=	PROXY=""
+PLIST_FILES+=	bin/zabbix_proxy_js
 .endif
 
 .if ${ZABBIX_BUILD} == "server"
 PLIST_SUB+=	SERVER=""
+PLIST_FILES+=	bin/zabbix_js
 .else
 PLIST_SUB+=	SERVER="@comment "
 .endif
@@ -123,7 +124,7 @@ IPV6_CONFIGURE_ENABLE=	ipv6
 NMAP_RUN_DEPENDS=	nmap:security/nmap \
 			sudo:security/sudo
 
-LIBXML2_CONFIGURE_WITH=	libxml2
+LIBXML2_CONFIGURE_WITH=	libxml2=${LOCALBASE}
 LIBXML2_LIB_DEPENDS=	libxml2.so:textproc/libxml2
 
 OPENSSL_CONFIGURE_WITH=	openssl
@@ -179,6 +180,9 @@ post-patch:
 	@${FIND} ${WRKSRC} -type f \( -name '*.bak' -or -name '*.orig' \) \
 		-exec ${RM} {} +
 
+pre-configure:
+	@echo "ac_cv_env_PKG_CONFIG_set=${LOCALBASE}/bin/pkgconf" > ${WRKSRC}/config.cache
+
 post-install:
 .if ${ZABBIX_BUILD} == "java"
 	${MV} ${STAGEDIR}${PREFIX}/sbin/zabbix_java/settings.sh \
@@ -200,6 +204,11 @@ post-install:
 .if ${ZABBIX_BUILD} == "agent"
 	${MV} ${STAGEDIR}${ETCDIR}/zabbix_${ZABBIX_BUILD}d.conf \
 		${STAGEDIR}${ETCDIR}/zabbix_${ZABBIX_BUILD}d.conf.sample
+.endif
+
+.if ${ZABBIX_BUILD} == "proxy"
+	${MV} ${STAGEDIR}${LOCALBASE}/bin/zabbix_js \
+		${STAGEDIR}${LOCALBASE}/bin/zabbix_proxy_js
 .endif
 
 .else # frontend

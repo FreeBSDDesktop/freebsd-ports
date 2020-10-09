@@ -2,6 +2,7 @@
 
 PORTNAME=	carrierwave
 PORTVERSION=	1.3.1
+PORTREVISION=	2
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
@@ -10,8 +11,8 @@ COMMENT=	Upload files, map them to a range of ORMs, store on different backends
 
 LICENSE=	MIT
 
-RUN_DEPENDS=	rubygem-activemodel50>=4.0.0:databases/rubygem-activemodel50 \
-		rubygem-activesupport50>=4.0.0:devel/rubygem-activesupport50 \
+RUN_DEPENDS=	rubygem-activemodel60>=4.0.0:databases/rubygem-activemodel60 \
+		rubygem-activesupport60>=4.0.0:devel/rubygem-activesupport60 \
 		rubygem-mime-types>=1.16:misc/rubygem-mime-types
 
 USES=		gem

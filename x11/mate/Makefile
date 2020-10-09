@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mate
-PORTVERSION=	1.22.1
+PORTVERSION=	1.24.1
 CATEGORIES=	x11 mate
 
 MAINTAINER=	gnome@FreeBSD.org

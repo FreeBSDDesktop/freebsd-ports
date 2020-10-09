@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	opam
-PORTVERSION=	2.0.4
+PORTVERSION=	2.0.6
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/ocaml/opam/releases/download/${DISTVERSION}/
 PKGNAMEPREFIX=	ocaml-
@@ -19,7 +20,7 @@ RUN_DEPENDS=	curl:ftp/curl \
 USES=		gmake
 USE_OCAML=	yes
 
-ALL_TARGET=	lib-ext all man
+ALL_TARGET=	lib-ext all
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-checks
@@ -34,7 +35,7 @@ DARCS_DESC=		Remote repository synchronized with darcs
 
 RSYNC_RUN_DEPENDS=	rsync:net/rsync
 GIT_RUN_DEPENDS=	git:devel/git
-HG_RUN_DEPENDS=		hg:devel/mercurial
+HG_RUN_DEPENDS=		${PY_MERCURIAL}
 DARCS_RUN_DEPENDS=	darcs:devel/hs-darcs
 
 MAKE_JOBS_UNSAFE=	yes

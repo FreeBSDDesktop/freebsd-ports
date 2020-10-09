@@ -1,5 +1,3 @@
-@comment %%WWWDIR%%/.babelrc.js
-@comment %%WWWDIR%%/.eslintrc.js
 %%WWWDIR%%/AUTHORS.md
 %%WWWDIR%%/CHANGELOG.md
 %%WWWDIR%%/README.md
@@ -15,12 +13,16 @@
 %%WWWDIR%%/js/main-settings.js
 %%WWWDIR%%/js/main-settings.js.map
 %%WWWDIR%%/l10n/.gitkeep
+%%WWWDIR%%/l10n/af.js
+%%WWWDIR%%/l10n/af.json
 %%WWWDIR%%/l10n/ar.js
 %%WWWDIR%%/l10n/ar.json
 %%WWWDIR%%/l10n/ast.js
 %%WWWDIR%%/l10n/ast.json
 %%WWWDIR%%/l10n/bg.js
 %%WWWDIR%%/l10n/bg.json
+%%WWWDIR%%/l10n/br.js
+%%WWWDIR%%/l10n/br.json
 %%WWWDIR%%/l10n/ca.js
 %%WWWDIR%%/l10n/ca.json
 %%WWWDIR%%/l10n/cs.js
@@ -35,6 +37,8 @@
 %%WWWDIR%%/l10n/el.json
 %%WWWDIR%%/l10n/en_GB.js
 %%WWWDIR%%/l10n/en_GB.json
+%%WWWDIR%%/l10n/eo.js
+%%WWWDIR%%/l10n/eo.json
 %%WWWDIR%%/l10n/es.js
 %%WWWDIR%%/l10n/es.json
 %%WWWDIR%%/l10n/es_419.js
@@ -75,6 +79,8 @@
 %%WWWDIR%%/l10n/et_EE.json
 %%WWWDIR%%/l10n/eu.js
 %%WWWDIR%%/l10n/eu.json
+%%WWWDIR%%/l10n/fa.js
+%%WWWDIR%%/l10n/fa.json
 %%WWWDIR%%/l10n/fi.js
 %%WWWDIR%%/l10n/fi.json
 %%WWWDIR%%/l10n/fi_FI.php
@@ -84,10 +90,14 @@
 %%WWWDIR%%/l10n/gl.json
 %%WWWDIR%%/l10n/he.js
 %%WWWDIR%%/l10n/he.json
+%%WWWDIR%%/l10n/hr.js
+%%WWWDIR%%/l10n/hr.json
 %%WWWDIR%%/l10n/hu.js
 %%WWWDIR%%/l10n/hu.json
 %%WWWDIR%%/l10n/ia.js
 %%WWWDIR%%/l10n/ia.json
+%%WWWDIR%%/l10n/id.js
+%%WWWDIR%%/l10n/id.json
 %%WWWDIR%%/l10n/is.js
 %%WWWDIR%%/l10n/is.json
 %%WWWDIR%%/l10n/it.js
@@ -98,10 +108,14 @@
 %%WWWDIR%%/l10n/ka_GE.json
 %%WWWDIR%%/l10n/ko.js
 %%WWWDIR%%/l10n/ko.json
+%%WWWDIR%%/l10n/lb.js
+%%WWWDIR%%/l10n/lb.json
 %%WWWDIR%%/l10n/lt_LT.js
 %%WWWDIR%%/l10n/lt_LT.json
 %%WWWDIR%%/l10n/lv.js
 %%WWWDIR%%/l10n/lv.json
+%%WWWDIR%%/l10n/mk.js
+%%WWWDIR%%/l10n/mk.json
 %%WWWDIR%%/l10n/mn.js
 %%WWWDIR%%/l10n/mn.json
 %%WWWDIR%%/l10n/nb.js
@@ -110,6 +124,8 @@
 %%WWWDIR%%/l10n/nl.json
 %%WWWDIR%%/l10n/nn_NO.js
 %%WWWDIR%%/l10n/nn_NO.json
+%%WWWDIR%%/l10n/oc.js
+%%WWWDIR%%/l10n/oc.json
 %%WWWDIR%%/l10n/pl.js
 %%WWWDIR%%/l10n/pl.json
 %%WWWDIR%%/l10n/pt_BR.js
@@ -137,6 +153,8 @@
 %%WWWDIR%%/l10n/tr.json
 %%WWWDIR%%/l10n/uk.js
 %%WWWDIR%%/l10n/uk.json
+%%WWWDIR%%/l10n/uz.js
+%%WWWDIR%%/l10n/uz.json
 %%WWWDIR%%/l10n/vi.js
 %%WWWDIR%%/l10n/vi.json
 %%WWWDIR%%/l10n/zh_CN.js
@@ -153,7 +171,6 @@
 %%WWWDIR%%/lib/Event/StateChanged.php
 %%WWWDIR%%/lib/Exception/NoTotpSecretFoundException.php
 %%WWWDIR%%/lib/Exception/TotpSecretAlreadySet.php
-%%WWWDIR%%/lib/Listener/IListener.php
 %%WWWDIR%%/lib/Listener/StateChangeActivity.php
 %%WWWDIR%%/lib/Listener/StateChangeRegistryUpdater.php
 %%WWWDIR%%/lib/Migration/Version010501Date20181018124436.php

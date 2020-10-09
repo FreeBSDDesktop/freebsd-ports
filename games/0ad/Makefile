@@ -2,7 +2,7 @@
 
 PORTNAME=	0ad
 PORTVERSION=	0.0.23b
-PORTREVISION=	7
+PORTREVISION=	11
 CATEGORIES=	games
 MASTER_SITES=	http://releases.wildfiregames.com/ \
 		SF/zero-ad/releases
@@ -11,6 +11,9 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}-alpha-unix-build.tar.xz \
 
 MAINTAINER=	madpilot@FreeBSD.org
 COMMENT=	Real-time strategy (RTS) game of ancient warfare
+
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-12-31
 
 BUILD_DEPENDS=	zip:archivers/zip \
 		cmake:devel/cmake

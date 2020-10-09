@@ -2,16 +2,14 @@
 # $FreeBSD$
 
 PORTNAME=	farstream
-PORTVERSION=	0.2.8
-PORTREVISION=	1
+PORTVERSION=	0.2.9
 CATEGORIES=	net-im devel
 MASTER_SITES=	http://freedesktop.org/software/farstream/releases/farstream/
 
-PATCH_SITES=	https://gitlab.collabora.com/farstream/farstream/commit/
-PATCHFILES=	11dde55cbaf5179e8e1885cf1483e538a8d5a4a9.patch:-p1
-
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	Collection of GStreamer modules and libraries for videoconferencing
+
+LICENSE=	LGPL21+
 
 LIB_DEPENDS=	libnice.so:net-im/libnice
 RUN_DEPENDS=	libnice-gst1>=0:net-im/libnice-gst1
@@ -24,5 +22,9 @@ USE_GSTREAMER1=	good bad
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
+
+post-patch:
+	@${FIND} ${WRKSRC} -name Makefile.in -exec ${REINPLACE_CMD} \
+		'/foreach/s/\\#include/#include/' {} +
 
 .include <bsd.port.mk>

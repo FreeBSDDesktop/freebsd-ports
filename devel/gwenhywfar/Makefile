@@ -1,10 +1,10 @@
 # $FreeBSD$
 
 PORTNAME=	gwenhywfar
-PORTVERSION=	4.20.0
-PORTREVISION?=	2
+PORTVERSION=	5.3.0
+PORTREVISION?=	0
 CATEGORIES=	devel net security
-MASTER_SITES=	http://www.aquamaniac.de/sites/download/download.php?package=01&release=208&file=02&dummy=/
+MASTER_SITES=	https://www.aquamaniac.de/rdm/attachments/download/319/
 
 MAINTAINER?=	jhale@FreeBSD.org
 COMMENT?=	Multi-platform helper library for networking and security applications
@@ -26,7 +26,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
-GWEN_SHLIB_VER=	60
+GWEN_SHLIB_VER=	79
 PLIST_SUB=	GWEN_SHLIB_VER="${GWEN_SHLIB_VER}" \
 		GWEN_MAJ_MIN_VER="${PORTVERSION:R}"
 

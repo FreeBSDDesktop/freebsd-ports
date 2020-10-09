@@ -3,6 +3,7 @@
 
 PORTNAME=	inadyn-mt
 PORTVERSION=	02.28.10
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}.v.${PORTVERSION}/
 DISTNAME=	${PORTNAME}.v.${PORTVERSION}
@@ -19,6 +20,11 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-sound
 MAKE_ARGS+=	INSTALL_PREFIX="${STAGEDIR}${PREFIX}/etc"
 
+CFLAGS+=		-fcommon
+
+DEPRECATED=	Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+EXPIRATION_DATE=2021-04-01
+
 PORTDOCS=	readme.html AUTHORS README
 PORTEXAMPLES=	*
 
@@ -32,8 +38,7 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 
 post-patch:
 	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX},g" \
-		${WRKSRC}/man/inadyn-mt.8 ${WRKSRC}/readme.html \
-		${WRKSRC}/src/dyndns.h
+		${WRKSRC}/readme.html ${WRKSRC}/src/dyndns.h
 
 pre-configure:
 	@${REINPLACE_CMD} -e "s,INSTALL_PREFIX=.*,,g" ${WRKSRC}/configure.ac

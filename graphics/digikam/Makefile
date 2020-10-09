@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	digikam
-DISTVERSION=	6.3.0
-PORTREVISION=	2
+DISTVERSION=	7.1.0
+PORTREVISION=	1
 CATEGORIES=	graphics kde
 MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}
 DIST_SUBDIR=	KDE/digikam/${PORTVERSION}
@@ -13,8 +13,7 @@ COMMENT=	KDE digital photo management application
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libKF5KGeoMap.so:astro/libkgeomap \
-		libKF5Sane.so:graphics/libksane \
+LIB_DEPENDS=	libKF5Sane.so:graphics/libksane \
 		libboost_graph.so:devel/boost-libs \
 		libexiv2.so:graphics/exiv2 \
 		libexpat.so:textproc/expat2 \
@@ -29,7 +28,8 @@ LIB_DEPENDS=	libKF5KGeoMap.so:astro/libkgeomap \
 		libopencv_core.so:graphics/opencv-core \
 		libpgf.so:graphics/libpgf \
 		libpng.so:graphics/png \
-		libtiff.so:graphics/tiff
+		libtiff.so:graphics/tiff \
+		libx265.so:multimedia/x265
 
 USES=		bison cmake compiler:c++11-lib desktop-file-utils eigen:3 gl \
 		gnome jpeg kde:5 pkgconfig qt:5 shebangfix tar:xz xorg
@@ -41,8 +41,8 @@ USE_KDE=	archive auth bookmarks calendarcore codecs completion config \
 		kio marble libkipi notifications notifyconfig parts service \
 		solid sonnet textwidgets threadweaver unitconversion \
 		widgetsaddons windowsystem xmlgui
-USE_QT=		concurrent core dbus gui network opengl printsupport sql \
-		widgets x11extras xml xmlpatterns \
+USE_QT=		concurrent core dbus declarative gui location network opengl \
+		printsupport sql webchannel widgets x11extras xml xmlpatterns \
 		sql-sqlite3_run \
 		buildtools_build qmake_build
 USE_XORG=	ice sm x11 xext
@@ -77,7 +77,8 @@ MEDIAPLAYER_LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 MEDIAPLAYER_CMAKE_BOOL_OFF=	CMAKE_DISABLE_FIND_PACKAGE_FFmpeg \
 				CMAKE_DISABLE_FIND_PACKAGE_QtAV
 
-MYSQL_USE=		MYSQL=server QT=sql-mysql_run
+MYSQL_USES=		mysql:server
+MYSQL_USE=		QT=sql-mysql_run
 MYSQL_CMAKE_BOOL=	ENABLE_INTERNALMYSQL \
 			ENABLE_MYSQLSUPPORT
 MYSQL_CMAKE_ON=		-DMYSQLD_PATH:PATH=${LOCALBASE}/libexec \
@@ -99,9 +100,5 @@ WEBENGINE_USE_OFF=	QT=webkit
 WEBENGINE_CMAKE_BOOL=	ENABLE_QWEBENGINE
 
 PLIST_SUB=		SHLIB_VER=${DISTVERSION}
-
-post-extract:
-# Remove localization file already installed by net/libkvkontakte.
-	${RM} ${WRKSRC}/po/*/libkvkontakte.po
 
 .include <bsd.port.mk>

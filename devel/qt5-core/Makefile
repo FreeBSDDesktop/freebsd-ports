@@ -2,15 +2,17 @@
 
 PORTNAME=	core
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	2
 CATEGORIES=	devel
 PKGNAMEPREFIX=	qt5-
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Qt core non-graphical module
 
-LIB_DEPENDS=	libicui18n.so:devel/icu \
-		libpcre2-posix.so:devel/pcre2
-RUN_DEPENDS=	etc_os-release>0:sysutils/etc_os-release
+LIB_DEPENDS=	libdouble-conversion.so:devel/double-conversion \
+		libicui18n.so:devel/icu \
+		libpcre2-posix.so:devel/pcre2 \
+		libzstd.so:archivers/zstd
 
 USES=		compiler:c++11-lang gnome qmake:no_env qt-dist:5,base
 USE_GNOME=	glib20
@@ -24,23 +26,29 @@ CONFIGURE_ARGS=	-no-accessibility -no-gif -no-libpng -no-libjpeg \
 		-no-iconv -no-dbus -no-opengl \
 		-no-egl -no-evdev \
 		-no-fontconfig -no-freetype -no-gtk -no-harfbuzz \
-		-no-libudev -no-xcb -no-xkb -no-xcb-xlib \
+		-no-libudev -no-xcb -no-xcb-xlib \
 		-no-xkbcommon -no-libinput
+
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 BUILD_WRKSRC=	${WRKSRC}/src/corelib
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 
+QT_BINARIES=	yes
 QT_DEFINES=	GLIB
 QT_CONFIG=	glib icu
 
-MORE_WRKSRCS=	src/tools/bootstrap src/tools/qfloat16-tables src/corelib src/tools/qlalr
+MORE_WRKSRCS=	src/tools/bootstrap src/corelib src/tools/qlalr
 
 .include <bsd.port.pre.mk>
-
+# FreeBSD base gained /etc/os-release in r354922, which
+# corresponds to __FreeBSD_version 1300060
+.if ${OSVERSION} < 1300060
+RUN_DEPENDS+=	etc_os-release>0:sysutils/etc_os-release
 post-patch:
 	${REINPLACE_CMD}  -e '/readEtcFile/s|/etc/os-release|${LOCALBASE}/etc/os-release|g' \
 		${WRKSRC}/src/corelib/global/qglobal.cpp
+.endif
 
 post-configure:
 .for d in ${MORE_WRKSRCS}

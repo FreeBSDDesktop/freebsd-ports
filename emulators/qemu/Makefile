@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	qemu
-PORTVERSION=	3.1.1.1
+PORTVERSION=	4.2.1
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 DIST_SUBDIR=	qemu/${PORTVERSION}
@@ -12,31 +12,40 @@ COMMENT?=	QEMU CPU Emulator
 
 LICENSE=	GPLv2
 
+BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx
 LIB_DEPENDS?=	libnettle.so:security/nettle \
 		libfontconfig.so:x11-fonts/fontconfig \
-		libfreetype.so:print/freetype2
+		libfreetype.so:print/freetype2 \
+		libepoxy.so:graphics/libepoxy \
+		libpcre2-8.so:devel/pcre2
 
 .if !defined(PKGNAMESUFFIX) || (${PKGNAMESUFFIX} != "-utils" && ${PKGNAMESUFFIX} != "-guest-agent")
 ONLY_FOR_ARCHS=	amd64 i386 powerpc powerpc64
+USES=		bison compiler:c11 cpe gmake gnome iconv:wchar_t perl5 \
+		pkgconfig python:build tar:xz xorg
 USE_XORG=	pixman
-USE_GNOME+=	cairo glib20 libxml2
+USE_GNOME=	cairo glib20 libxml2
 .endif
 
-USES?=		compiler:c11 cpe gmake gnome pkgconfig bison perl5 \
-		python:build tar:xz
 USE_PERL5=	build
 
-PORTSCOUT=	limit:^3\.0\.
+PORTSCOUT=	limit:^4\.2\.
 
 HAS_CONFIGURE=	yes
 MAKE_ENV+=	BSD_MAKE="${MAKE}" V=1
 
 OPTIONS_DEFINE=	SAMBA X11 GTK3 OPENGL GNUTLS SASL JPEG PNG CURL \
 		VDE CDROM_DMA PCAP USBREDIR X86_TARGETS \
-		STATIC_LINK DOCS NCURSES
+		STATIC_LINK DOCS ISCSI CAPSTONE
+OPTIONS_SINGLE=	NCURSES
+OPTIONS_SINGLE_NCURSES=	NCURSES_DEFAULT NCURSES_BASE NCURSES_PORT
 CDROM_DMA_DESC=		IDE CDROM DMA
 GNUTLS_DESC=		gnutls dependency (vnc encryption)
+ISCSI_DESC=		libiscsi dependency (iSCSI client for emulated drives)
 JPEG_DESC=		jpeg dependency (vnc lossy compression)
+NCURSES_DEFAULT_DESC=	Depend on ncurses (ports if installed, otherwise base)
+NCURSES_BASE_DESC=	Depend on ncurses in base
+NCURSES_PORT_DESC=	Depend on devel/ncurses in ports
 PCAP_DESC=		pcap dependency (networking with bpf)
 PNG_DESC=		png dependency (vnc compression)
 SAMBA_DESC=		samba dependency (for -smb)
@@ -45,8 +54,12 @@ STATIC_LINK_DESC=	Statically link the executables
 USBREDIR_DESC=		usb device network redirection (experimental!)
 VDE_DESC=		vde dependency (for vde networking)
 X86_TARGETS_DESC=	Build only x86 system targets
-OPTIONS_DEFAULT=X11 GTK3 OPENGL GNUTLS SASL JPEG PNG CDROM_DMA CURL PCAP NCURSES VDE
+CAPSTONE_DESC=		Disassembly framework support
+OPTIONS_DEFAULT=X11 GTK3 OPENGL GNUTLS SASL JPEG PNG CDROM_DMA CURL PCAP NCURSES_DEFAULT VDE
 OPTIONS_SUB=	yes
+CAPSTONE_CONFIGURE_ON=	--enable-capstone=system --extra-cflags=-I${LOCALBASE}/include/capstone
+CAPSTONE_CONFIGURE_OFF=	--disable-capstone
+CAPSTONE_LIB_DEPENDS=	libcapstone.so:devel/capstone4
 CURL_CONFIGURE_OFF=	--disable-curl
 CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
 DOCS_BUILD_DEPENDS=	texi2html:textproc/texi2html
@@ -55,19 +68,21 @@ DOCS_USES=		makeinfo
 GNUTLS_CONFIGURE_OFF=	--disable-gnutls
 GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 GTK3_CONFIGURE_OFF=	--disable-gtk --disable-vte
-GTK3_LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon \
-			libepoxy.so:graphics/libepoxy \
-			libpcre2-8.so:devel/pcre2
-GTK3_USE=	GNOME=gtk30,vte3,gdkpixbuf2 XORG=x11,xext GL=gbm
-GTK3_USES=	gettext gl gnome xorg
+GTK3_LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon
+GTK3_USE=	GNOME=gdkpixbuf2,gtk30,vte3 XORG=x11,xext
+GTK3_USES=	gettext gl
+ISCSI_LIB_DEPENDS=	libiscsi.so:net/libiscsi
+ISCSI_CONFIGURE_OFF=	--disable-libiscsi
 JPEG_CONFIGURE_OFF=	--disable-vnc-jpeg
 JPEG_USES=		jpeg
-NCURSES_USES=		ncurses:base
+NCURSES_DEFAULT_USES=	ncurses
+NCURSES_BASE_USES=	ncurses:base
+NCURSES_PORT_USES=	ncurses:port
 OPENGL_CONFIGURE_OFF=	--disable-opengl
-OPENGL_USE=	GL=glu
-OPENGL_USES=		gl
+OPENGL_USE=	GL=gl
+OPENGL_USES=	gl
 PCAP_CONFIGURE_ON=	--enable-pcap
-PCAP_EXTRA_PATCHES=	${FILESDIR}/pcap-patch ${FILESDIR}/pcap-patch-net_net.c \
+PCAP_EXTRA_PATCHES=	${FILESDIR}/pcap-patch-qapi_net.json ${FILESDIR}/pcap-patch-net_net.c \
 			${FILESDIR}/pcap-patch-net_clients.h
 PNG_CONFIGURE_OFF=	--disable-vnc-png
 PNG_LIB_DEPENDS=	libpng.so:graphics/png
@@ -76,7 +91,7 @@ SAMBA_USES=		samba:run # smbd
 SASL_CONFIGURE_OFF=	--disable-vnc-sasl
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 STATIC_LINK_CONFIGURE_ON=	--static
-STATIC_LINK_PREVENTS=		GTK2 X11
+STATIC_LINK_PREVENTS=		GTK3 X11
 STATIC_LINK_PREVENTS_MSG=	X11 ui cannot be built static
 USBREDIR_BUILD_DEPENDS=	usbredir>=0.6:net/usbredir
 USBREDIR_CONFIGURE_OFF=	--disable-usb-redir
@@ -84,20 +99,21 @@ USBREDIR_RUN_DEPENDS=	usbredir>=0.6:net/usbredir
 VDE_CONFIGURE_OFF=	--disable-vde
 VDE_LIB_DEPENDS=	libvdeplug.so:net/vde2
 X11_CONFIGURE_ENABLE=	sdl
-X11_USE=	SDL=sdl2 XORG=x11,xext
-X11_USES=	sdl xorg
-.if !defined(PKGNAMESUFFIX) || ${PKGNAMESUFFIX} != "-utils"
-X86_TARGETS_USE_OFF=	GNOME=cairo,gdkpixbuf2
-X86_TARGETS_USES_OFF=	gnome
+X11_USE=	SDL=sdl2 XORG=x11,xext GNOME=gdkpixbuf2
+X11_USES=	sdl
+.if !defined(PKGNAMESUFFIX) || (${PKGNAMESUFFIX} != "-utils" && ${PKGNAMESUFFIX} != "-guest-agent")
+X86_TARGETS_USE_OFF=	XORG=pixman,x11
+X86_TARGETS_USES_OFF=	xorg
+INSTALLS_ICONS=		yes
 .endif
 
-PORTDOCS?=	docs qemu-doc.html qemu-doc.txt qemu-ga-ref.html qemu-ga-ref.txt \
-	       	qemu-qmp-ref.html qemu-qmp-ref.txt
+PORTDOCS?=	docs interop/.buildinfo interop/* qemu-doc.html qemu-doc.txt qemu-ga-ref.html qemu-ga-ref.txt \
+	       	qemu-qmp-ref.html qemu-qmp-ref.txt specs/.buildinfo specs/*
 
 WITHOUT_CPU_CFLAGS=yes	#to avoid problems with register allocation
 CFLAGS:=	${CFLAGS:C/-fno-tree-vrp//}
-CONFIGURE_ARGS?=--localstatedir=/var --extra-ldflags=-L\"/usr/lib\" \
-		--extra-ldflags=-L\"${LOCALBASE}/lib\" --disable-libssh2 --enable-debug \
+CONFIGURE_ARGS?=	--localstatedir=/var --extra-ldflags=-L\"/usr/lib\" \
+		--extra-ldflags=-L\"${LOCALBASE}/lib\" --disable-libssh --enable-debug \
 		--prefix=${PREFIX} --cc=${CC} --enable-netmap --enable-docs --disable-kvm \
 		--disable-linux-user --disable-linux-aio --disable-xen \
 		--enable-debug-info --python=${PYTHON_CMD} \

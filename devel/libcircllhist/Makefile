@@ -2,27 +2,25 @@
 # $FreeBSD$
 
 PORTNAME=	libcircllhist
-PORTVERSION=	g20190612
+PORTVERSION=	g20200417
+PORTREVISION=	1
 CATEGORIES=	devel
 
-MAINTAINER=	danfe@FreeBSD.org
-COMMENT=	C implementation of Circonus log-linear histograms
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Circonus log-linear histogram C implementation
 
 LICENSE=	BSD3CLAUSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	circonus-labs
-GH_TAGNAME=	5b43fe1
+GH_TAGNAME=	b7c6248
 
 USES=		autoreconf gmake
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
-PLIST_FILES=	include/circllhist.h lib/libcircllhist.a \
-		lib/libcircllhist.so lib/libcircllhist.so.0.0.1 \
-		share/lua/5.1/ffi_libcircllhist.lua
-
-post-patch:
-	@${REINPLACE_CMD} -e 's,-O5 ,,' ${WRKSRC}/configure.ac
+post-install:
+	${LN} -s libcircllhist.so.0.0.1 \
+		${STAGEDIR}${PREFIX}/lib/libcircllhist.so.0
 
 .include <bsd.port.mk>

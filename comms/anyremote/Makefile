@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	anyremote
-PORTVERSION=	6.7.2
+PORTVERSION=	6.7.3
 CATEGORIES=	comms
 MASTER_SITES=	SF
 
-MAINTAINER=	samm@freebsd.org
+MAINTAINER=	samm@FreeBSD.org
 COMMENT=	Remote control service over Bluetooth, infrared, or TCP/IP networking
 
 LICENSE=	GPLv2

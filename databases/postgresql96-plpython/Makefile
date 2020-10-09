@@ -2,4 +2,6 @@
 
 WANT_PGSQL_VER=	9.6
 
-.include "${.CURDIR}/../postgresql12-plpython/Makefile"
+INSTALL_DIRS=	src/pl/plpython contrib/hstore_plpython contrib/ltree_plpython
+
+.include "${.CURDIR}/../postgresql13-plpython/Makefile"

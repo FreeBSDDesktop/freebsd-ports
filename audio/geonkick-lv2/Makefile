@@ -2,8 +2,8 @@
 
 PORTNAME=	geonkick
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.8-2
-DISTVERSIONSUFFIX=	-g2e148d8
+DISTVERSION=	2.3.8
+PORTREVISION=	1
 CATEGORIES=	audio
 PKGNAMESUFFIX=	-lv2
 
@@ -13,26 +13,25 @@ COMMENT=	Software percussion synthesizer
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-.if exists(/usr/include/c++/v1) && !exists(/usr/include/c++/v1/filesystem)
-BROKEN=		STL feature 'filesystem' isn't available # '
-.endif
-
 BUILD_DEPENDS=	lv2>0:audio/lv2 \
 		gmake:devel/gmake \
 		rapidjson>0:devel/rapidjson \
-		redkite>0:x11-toolkits/redkite
+		${LOCALBASE}/lib/libredkite.a:x11-toolkits/redkite
 LIB_DEPENDS=	libjack.so:audio/jack \
 		libsndfile.so:audio/libsndfile
 
-USES=		compiler:c++14-lang cmake:noninja gnome localbase:ldflags \
+USES=		compiler:c++17-lang cmake desktop-file-utils gnome localbase:ldflags \
 		pkgconfig shared-mime-info xorg
 USE_GITHUB=	yes
-GH_ACCOUNT=	quamplex
+GH_ACCOUNT=	iurie-sw
 USE_GNOME=	cairo
 USE_XORG=	x11
 
-CMAKE_ARGS=	-DFREEBSD_GMAKE=${GMAKE}
+.include <bsd.port.pre.mk>
 
-#INSTALLS_ICONS=	yes # disabled because it causes: gtk-update-icon-cache: Failed to open file /usr/local/share/icons/hicolor/.icon-theme.cache : Permission denied
+.if ${CHOSEN_COMPILER_TYPE} == clang
+EXTRA_PATCHES=	${FILESDIR}/extra-patch-plugin_lv2_CMakeLists.txt \
+		${FILESDIR}/extra-patch-standalone_CMakeLists.txt
+.endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

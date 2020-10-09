@@ -3,7 +3,7 @@
 
 PORTNAME=	denemo
 PORTVERSION=	2.0.6
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	audio
 MASTER_SITES=	GNU
 
@@ -30,7 +30,7 @@ RUN_DEPENDS=	xdg-open:devel/xdg-utils
 EXTRACT_BEFORE_ARGS=\
 		-s '!\(/Clarinet in B\).*\(\.denemo\)$$!\1b\2!p' -xf
 
-USES=		bison compiler:c++11-lang desktop-file-utils gettext gmake \
+USES=		bison:alias compiler:c++11-lang desktop-file-utils gettext gmake \
 		gnome pkgconfig
 USE_GNOME=	intltool librsvg2 libxml2
 GNU_CONFIGURE=	yes

@@ -2,7 +2,7 @@
 
 PORTNAME=	qmmp
 PORTVERSION=	1.2.0
-PORTREVISION=	7
+PORTREVISION=	9
 CATEGORIES=	multimedia
 MASTER_SITES=	http://qmmp.ylsoftware.com/files/ \
 	SF/qmmp-dev/${PORTNAME}/
@@ -146,7 +146,7 @@ MPLAYER_RUN_DEPENDS=	mplayer:multimedia/mplayer
 MPLAYER_CMAKE_BOOL=	USE_MPLAYER
 
 PROJECTM_DESC=	Support the projectM music visualiser
-PROJECTM_LIB_DEPENDS=	libprojectM.so.2:graphics/libprojectm
+PROJECTM_LIB_DEPENDS=	libprojectM.so:graphics/libprojectm
 PROJECTM_USES=		gl
 PROJECTM_USE=		GL=gl
 PROJECTM_CMAKE_BOOL=	USE_PROJECTM

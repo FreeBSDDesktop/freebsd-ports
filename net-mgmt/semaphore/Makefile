@@ -3,12 +3,11 @@
 PORTNAME=	semaphore
 PORTVERSION=	2.5.1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	egypcio@FreeBSD.org
 COMMENT=	Open Source alternative to Ansible Tower
-
-BROKEN=		unfetchable
 
 LICENSE=	MIT
 LICENSE_FILE=	${GO_WRKSRC}/LICENSE
@@ -57,7 +56,7 @@ GH_TUPLE=	ansible-semaphore:semaphore-vendor:a44f7be:ansible/vendor/github.com/a
 		pkg:errors:v0.8.0:pkg/vendor/github.com/pkg/errors \
 		russross:blackfriday:v1.5.1:russross/vendor/github.com/russross/blackfriday \
 		golang:net:61147c4:golang/vendor/golang.org/x/net \
-		golang:sys:7dca6fe:golang2/vendor/golang.org/x/sys \
+		golang:sys:226ff32:golang2/vendor/golang.org/x/sys \
 		golang:text:v0.3.0:golang3/vendor/golang.org/x/text \
 		golang:crypto:c7dcf10:golang4/vendor/golang.org/x/crypto \
 		go-asn1-ber:asn1-ber:v1.2:pkgin/vendor/gopkg.in/asn1-ber.v1 \
@@ -66,15 +65,14 @@ GH_TUPLE=	ansible-semaphore:semaphore-vendor:a44f7be:ansible/vendor/github.com/a
 		go-mgo:mgo:3f83fa5:pkgin4/vendor/gopkg.in/mgo.v2 \
 		go-yaml:yaml:v2.2.1:pkgin5/vendor/gopkg.in/yaml.v2
 
-OPTIONS_DEFINE=	MYSQL
-MYSQL_USES=	mysql
-
 post-patch:
 	${REINPLACE_CMD} 's/%%PORTVERSION%%/${PORTVERSION}/g' \
 	  ${WRKSRC}/util/config.go
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/etc/semaphore
-	${CP} ${WRKSRC}/config.json ${STAGEDIR}${PREFIX}/etc/semaphore/semaphore_config.json.sample
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/${PORTNAME}
+	${CP} ${WRKSRC}/config.json ${STAGEDIR}${PREFIX}/etc/${PORTNAME}/semaphore_config.json.sample
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/${PORTNAME}
+	${CP} ${WRKSRC}/db/migrations/*.sql ${STAGEDIR}${PREFIX}/share/${PORTNAME}
 
 .include <bsd.port.mk>

@@ -8,11 +8,10 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}/
 DISTNAME=	${PORTNAME}-jar-21
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT=	JBroFuzz is a web application fuzzer
+COMMENT=	Web application fuzzer
 
 USES=		zip
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 NO_ARCH=	yes
 WRKSRC=		${WRKDIR}/${PORTNAME}

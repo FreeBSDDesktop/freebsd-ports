@@ -1,6 +1,6 @@
---- ui/views/controls/label.cc.orig	2019-10-21 19:07:29 UTC
+--- ui/views/controls/label.cc.orig	2020-07-07 21:58:19 UTC
 +++ ui/views/controls/label.cc
-@@ -691,7 +691,7 @@ bool Label::OnMousePressed(const ui::MouseEvent& event
+@@ -689,7 +689,7 @@ bool Label::OnMousePressed(const ui::MouseEvent& event
      GetFocusManager()->SetFocusedView(this);
    }
  
@@ -9,7 +9,7 @@
    if (event.IsOnlyMiddleMouseButton() && GetFocusManager() && !had_focus)
      GetFocusManager()->SetFocusedView(this);
  #endif
-@@ -876,7 +876,7 @@ bool Label::PasteSelectionClipboard() {
+@@ -875,7 +875,7 @@ bool Label::PasteSelectionClipboard() {
  }
  
  void Label::UpdateSelectionClipboard() {

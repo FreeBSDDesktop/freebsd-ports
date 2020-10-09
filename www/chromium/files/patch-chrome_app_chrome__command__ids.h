@@ -1,8 +1,8 @@
---- chrome/app/chrome_command_ids.h.orig	2019-03-11 22:00:52 UTC
+--- chrome/app/chrome_command_ids.h.orig	2020-05-13 18:39:36 UTC
 +++ chrome/app/chrome_command_ids.h
-@@ -63,7 +63,7 @@
- #define IDC_VISIT_DESKTOP_OF_LRU_USER_2 34049
- #define IDC_VISIT_DESKTOP_OF_LRU_USER_3 34050
+@@ -60,7 +60,7 @@
+ #define IDC_MAXIMIZE_WINDOW             34047
+ #define IDC_ALL_WINDOWS_FRONT           34048
  
 -#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
 +#if (defined(OS_LINUX) || defined(OS_BSD)) && !defined(OS_CHROMEOS)

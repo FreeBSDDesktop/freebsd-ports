@@ -31,17 +31,17 @@ USE_WX=		2.8
 WX_CONF_ARGS=	absolute
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--datadir=${DATADIR}
-LLD_UNSAFE=	yes
 
 DOS2UNIX_GLOB=	*.h *.cpp
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+LDFLAGS_i386=	-Wl,-znotext
 
 SCORCH_VERSION=		43.3d
 SCORCH_REVISION=	# none
 
-MYSQL_USE=	MYSQL=yes
+MYSQL_USES=	mysql
 MYSQL_CONFIGURE_ON=	--with-mysql
 
 PLIST_FILES=	bin/scorched3d \

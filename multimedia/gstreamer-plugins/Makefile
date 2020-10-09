@@ -6,7 +6,7 @@ PORTNAME=	gstreamer
 PORTVERSION?=	${BASE_PORTVERSION}
 # When chasing a shared library for a plug-in bump the PORTREVISION in the
 # plug-in port instead, like ${category}/gstreamer-plugin-${PLUGIN}.
-PORTREVISION?=	12
+PORTREVISION?=	13
 PORTEPOCH=	3
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-plugins-base/:base \
@@ -46,6 +46,9 @@ SHLIB_VERSION=	1
 VERSION=	${GST_VERSION}
 WANT_GSTREAMER=	yes
 USES=		gettext gmake gnome libtool:keepla pathfix pkgconfig shebangfix tar:bzip2
+.if defined(USE_XORG)
+USES+=		xorg
+.endif
 USE_GNOME+=	introspection:build
 GNU_CONFIGURE=	yes
 GST_PLUGIN?=	base
@@ -157,6 +160,9 @@ post-patch:
 	  s|$$(top_builddir)/gst-libs/gst/video/libgstbasevideo-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstbasevideo-@GST_MAJORMINOR@.la|; \
 	  s|$$(top_builddir)/gst-libs/gst/video/libgstvideo-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstvideo-@GST_MAJORMINOR@.la|; \
 	  s|$$(top_builddir)/gst-libs/gst/cdda/libgstcdda-@GST_MAJORMINOR@.la|${LOCALBASE}/lib/libgstcdda-@GST_MAJORMINOR@.la|'
+	@${FIND} ${WRKSRC}/ext ${WRKSRC}/gst ${WRKSRC}/gst-libs \
+		-name Makefile.in -exec ${REINPLACE_CMD} \
+		'/foreach/s/\\#include/#include/' {} +
 	@${REINPLACE_CMD} -e 's|DEFAULT_AUDIOSINK="alsasink"|DEFAULT_AUDIOSINK="${DEFAULT_AUDIOSINK}"|; \
 		s|DEFAULT_AUDIOSRC="alsasrc"|DEFAULT_AUDIOSRC="${DEFAULT_AUDIOSRC}"|' \
 		-e 's|-Wmissing-include-dirs||g' \

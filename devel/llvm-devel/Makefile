@@ -10,9 +10,10 @@ PKGNAMESUFFIX=	-devel
 MAINTAINER=	brooks@FreeBSD.org
 COMMENT=	LLVM and Clang
 
+LICENSE_DIR=	${WRKSRC}/llvm
 .include "Makefile.LICENSE"
 LICENSE+=	LLVM2
-LICENSE_FILE_LLVM2=	${WRKSRC}/LICENSE.TXT
+LICENSE_FILE_LLVM2=	${LICENSE_DIR}/LICENSE.TXT
 LICENSE_NAME_LLVM2= 	Apache License 2.0 with LLVM Exceptions
 LICENSE_PERMS_LLVM2=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE:=	${LICENSE:NARM}
@@ -29,18 +30,19 @@ USES=		cmake compiler:c++11-lib libedit perl5 \
 USE_LDCONFIG=	${LLVM_PREFIX}/lib
 _USES_PYTHON?=	python:build,3.6+
 USES+=		${_USES_PYTHON}
-SHEBANG_FILES=	utils/lit/lit.py utils/llvm-lit/llvm-lit.in \
-		tools/opt-viewer/optrecord.py \
-		tools/opt-viewer/opt-diff.py \
-		tools/opt-viewer/opt-stats.py \
-		tools/opt-viewer/opt-viewer.py
+SHEBANG_FILES=	llvm/utils/lit/lit.py \
+		llvm/utils/llvm-lit/llvm-lit.in \
+		llvm/tools/opt-viewer/optrecord.py \
+		llvm/tools/opt-viewer/opt-diff.py \
+		llvm/tools/opt-viewer/opt-stats.py \
+		llvm/tools/opt-viewer/opt-viewer.py
 
 SUB_FILES=	llvm-wrapper.sh
 SUB_LIST=	LLVM_PREFIX="${LLVM_PREFIX}" LLVM_SUFFIX="${LLVM_SUFFIX}"
 
 CMAKE_INSTALL_PREFIX=	${LLVM_PREFIX}
+CMAKE_SOURCE_PATH=	${WRKSRC}/llvm
 CMAKE_ARGS=	-DLLVM_BUILD_LLVM_DYLIB=ON
-CMAKE_ARGS+=	-DLLVM_LINK_LLVM_DYLIB=ON
 CMAKE_ARGS+=	-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
 CMAKE_ARGS+=	-DLLVM_ENABLE_RTTI=ON
 CMAKE_ARGS+=	-DLLVM_DEFAULT_TARGET_TRIPLE=${CONFIGURE_TARGET}
@@ -61,41 +63,47 @@ CFLAGS+=	-DNDEBUG
 CXXFLAGS+=	-DNDEBUG
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	llvm-mirror
-GH_TAGNAME=	${LLVM_COMMIT}
+GH_PROJECT=	llvm-project
+GH_ACCOUNT=	llvm
+GH_TAGNAME=	${LLVM_PROJECT_COMMIT}
 
 .include "Makefile.snapshot"
 
-OPTIONS_DEFINE=	CLANG DOCS EXTRAS LIT LLD LLDB ELFV2
+OPTIONS_DEFINE=	CLANG DOCS EXTRAS FLANG LIT LLD LLDB MLIR
 OPTIONS_DEFINE_amd64=	COMPILER_RT GOLD OPENMP
 OPTIONS_DEFINE_i386=	COMPILER_RT OPENMP
-OPTIONS_DEFAULT=	CLANG EXTRAS LIT LLD LLDB
+OPTIONS_DEFINE_powerpc64=	GOLD OPENMP
+OPTIONS_DEFAULT=	CLANG EXTRAS LIT LLD LLDB MLIR
 OPTIONS_DEFAULT_amd64=	COMPILER_RT GOLD OPENMP
 OPTIONS_DEFAULT_i386=	COMPILER_RT OPENMP
+OPTIONS_DEFAULT_powerpc64=     ${OPTIONS_DEFAULT_powerpc64_${OSREL:R}} OPENMP
+OPTIONS_DEFAULT_powerpc64_13=  GOLD
 OPTIONS_SUB=	yes
 
 # Pre-declared for options framework
 LIB_DEPENDS=
+PLIST_DIRS=
 PLIST_FILES=
 
 CLANG_DESC=	Build clang
-CLANG_EXTRA_PATCHES=	${PATCHDIR}/clang
 CLANG_CONFLICTS_INSTALL=	clang-devel-3.[1234567]*
-CLANG_GH_PROJECT=	clang:clang
-CLANG_GH_SUBDIR=	tools/clang:clang
-CLANG_GH_TAGNAME=	${CLANG_COMMIT}:clang
 CLANG_CMAKE_ON=		-DCLANG_DEFAULT_OPENMP_RUNTIME=libomp \
 			-DCLANG_LINK_LLVM_DYLIB=ON
 CLANG_PORTDOCS=		clang
+CLANG_PLIST_FILES=	share/toolchains/llvm-devel.mk
+CLANG_SUB_FILES=	xtoolchain.mk
+CLANG_SUB_LIST=		XCC=clang${LLVM_SUFFIX} \
+			XCXX=clang++${LLVM_SUFFIX} \
+			XCPP=clang-cpp${LLVM_SUFFIX} \
+			XLD=ld.lld${LLVM_SUFFIX} \
+			X_COMPILER_TYPE=clang
 CLANG_USE=		GNOME=libxml2
 COMPILER_RT_DESC=	Sanitizer libraries
 COMPILER_RT_IMPLIES=	CLANG
-COMPILER_RT_GH_PROJECT=	compiler-rt:compiler_rt
-COMPILER_RT_GH_TAGNAME=	${COMPILER_RT_COMMIT}:compiler_rt
 COMPILER_RT_PLIST_FILES=${_COMPILER_RT_LIBS:S|^|${_CRTLIBDIR}/|} \
 			${_COMPILER_RT_BLACKLISTS:S|^|${_CRTBLDIR}/|}
 DOCS_PORTDOCS=		llvm
-DOCS_BUILD_DEPENDS=	sphinx-build-${PYTHON_VER}:textproc/py-sphinx@${PY_FLAVOR} \
+DOCS_BUILD_DEPENDS=	${PY_SPHINX} \
 			${PYTHON_PKGNAMEPREFIX}recommonmark>=0.0.20180530:textproc/py-recommonmark@${PY_FLAVOR}
 DOCS_CMAKE_ON=		-DLLVM_ENABLE_SPHINX=ON \
 			-DSPHINX_EXECUTABLE=${LOCALBASE}/bin/sphinx-build-${PYTHON_VER} \
@@ -104,35 +112,29 @@ DOCS_CMAKE_ON=		-DLLVM_ENABLE_SPHINX=ON \
 DOCS_PLIST_FILES=	${MAN1SRCS:S|^|man/man1/|:S|.1$|${LLVM_SUFFIX}.1.gz|}
 EXTRAS_DESC=		Extra clang tools
 EXTRAS_IMPLIES=		CLANG
-EXTRAS_GH_PROJECT=	clang-tools-extra:extras
-EXTRAS_GH_SUBDIR=	tools/clang/tools/extra:extras
-EXTRAS_GH_TAGNAME=	${EXTRAS_COMMIT}:extras
+EXTRAS_PLIST_DIRS=	${LLVM_PREFIX:S|${PREFIX}/||}/include/clang-tidy/plugin
+FLANG_DESC=		Flang FORTRAN compiler
+FLANG_IMPLIES=		MLIR
+#FLANG_PORTDOCS=		flang
+FLANG_PLIST_DIRS=	${LLVM_PREFIX:S|${PREFIX}/||}/include/flang/Config
+# Docs require sphinx-markdown-tables which requires py-markdown > 3.0.1
+FLANG_CMAKE_ON=		-DFLANG_INCLUDE_DOCS=OFF
+# flang is broken with DYLIB linkage
+FLANG_CMAKE_OFF=	-DLLVM_LINK_LLVM_DYLIB=ON
 LIT_DESC=		Install lit and FileCheck test tools
 LLD_DESC=		Install lld, the LLVM linker
-LLD_GH_PROJECT=		lld:lld
-LLD_GH_SUBDIR=		tools/lld:lld
-LLD_GH_TAGNAME=		${LLD_COMMIT}:lld
-LLDB_BUILD_DEPENDS=	swig3.0:devel/swig30
-LLDB_EXTRA_PATCHES=	${PATCHDIR}/lldb
+LLDB_BUILD_DEPENDS=	swig:devel/swig
 LLDB_DESC=		Install lldb, the LLVM debugger
-LLDB_GH_PROJECT=	lldb:lldb
-LLDB_GH_SUBDIR=		tools/lldb:lldb
-LLDB_GH_TAGNAME=	${LLDB_COMMIT}:lldb
 LLDB_IMPLIES=		CLANG
 LLDB_PORTDOCS=		lldb
 LLDB_VARS=		_USES_PYTHON=python:3.6+
+MLIR_DESC=		Multi-Level Intermediate Representation
 OPENMP_DESC=		Install libomp, the LLVM OpenMP runtime library
+OPENMP_PORTDOCS=	openmp
 OPENMP_CONFLICTS_INSTALL=	libiomp5-devel-*
-OPENMP_GH_PROJECT=	openmp:openmp
-OPENMP_GH_SUBDIR=	projects/openmp:openmp
-OPENMP_GH_TAGNAME=	${OPENMP_COMMIT}:openmp
-OPENMP_EXTRA_PATCHES=	${PATCHDIR}/openmp
 GOLD_DESC=		Build the LLVM Gold plugin for LTO
 GOLD_CMAKE_ON=		-DLLVM_BINUTILS_INCDIR=${LOCALBASE}/include
 GOLD_BUILD_DEPENDS=	${LOCALBASE}/bin/ld.gold:devel/binutils
-ELFV2_DESC=		[PowerPC64] Use OpenPOWER ELF ABI v2 by default
-ELFV2_EXTRA_PATCHES=	${PATCHDIR}/ppc64-elfv2
-ELFV2_IMPLIES=		CLANG
 
 PLIST_SUB+=	LLVM_MAJOR=${LLVM_MAJOR} \
 		LLVM_RELEASE=${LLVM_RELEASE}
@@ -158,7 +160,9 @@ MAN1SRCS+=	bugpoint.1 \
 		llvm-dwarfdump.1 \
 		llvm-exegesis.1 \
 		llvm-extract.1 \
+		llvm-install-name-tool.1 \
 		llvm-lib.1 \
+		llvm-libtool-darwin.1 \
 		llvm-lipo.1 \
 		llvm-link.1 \
 		llvm-locstats.1 \
@@ -205,13 +209,11 @@ EXTRAS_LIBS=	\
 EXTRAS_FILES=	index.js
 EXTRAS_PATTERN=	${EXTRAS_COMMANDS:tW:C/  */|/g}|${EXTRAS_LIBS:tW:C/  */|/g}|${EXTRAS_FILES:tW:C/  */|/g}
 
+FLANG_PATTERN=	${FLANG_COMMANDS:S/^/bin./:tW:C/  */|/g}|flang|libFIROptimizer|libFortran
+
+MLIR_PATTERN=	${MLIR_COMMANDS:S/^/bin./:tW:C/  */|/g}|mlir|libMLIR
+
 .include <bsd.port.options.mk>
-
-# PPC_ABI variable is only defined after including bsd.port.options.mk
-.if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
-OPTIONS_DEFAULT_powerpc64=      ELFV2
-.endif
-
 
 # keep in sync with /usr/src/lib/clang/clang.build.mk 
 # ----------- start of sync block ------------------
@@ -230,29 +232,37 @@ CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/arm64/aarch64/}-portbld-${OPSYS:tl}${
 # ----------- end of sync block --------------------
 
 .if ${PORT_OPTIONS:MCLANG}
+LLVM_ENABLE_PROJECTS+=	clang
 COMMANDS+=	${CLANG_COMMANDS}
 MAN1SRCS+=	clang.1 \
 		diagtool.1 \
 		scan-build.1
 CLANG_PATTERN=	(c-index-test|clang|diagtool|hmaptool|scan-|Reporter.py|ScanView.py|scanview.css|sorttable.js|startfile.py|-analyzer)
-SHEBANG_FILES+= tools/clang/tools/clang-format/git-clang-format \
-		tools/clang/tools/clang-format/clang-format-diff.py \
-		tools/clang/tools/scan-view/bin/scan-view \
-		tools/clang/utils/hmaptool/hmaptool
+SHEBANG_FILES+= clang/tools/clang-format/git-clang-format \
+		clang/tools/clang-format/clang-format-diff.py \
+		clang/tools/scan-view/bin/scan-view \
+		clang/utils/hmaptool/hmaptool
 USES+=	gnome
 .endif
 
 .if ${PORT_OPTIONS:MCOMPILER_RT}
-COMPILER_RT_PATTERN=	(sanitizer|include.xray|include\/fuzzer)
+LLVM_ENABLE_PROJECTS+=	compiler-rt
+COMPILER_RT_PATTERN=	(sanitizer|include.xray|include\/fuzzer|profile\/InstrProfData.inc)
 .endif
 
 .if ${PORT_OPTIONS:MEXTRAS}
+LLVM_ENABLE_PROJECTS+=	clang-tools-extra
 COMMANDS+=	${EXTRAS_COMMANDS}
 MAN1SRCS+=	extraclangtools.1
 PORTDOCS+=	clang-tools
-SHEBANG_FILES+=	tools/clang/tools/extra/clang-include-fixer/find-all-symbols/tool/run-find-all-symbols.py \
-		tools/clang/tools/extra/clang-tidy/tool/clang-tidy-diff.py \
-		tools/clang/tools/extra/clang-tidy/tool/run-clang-tidy.py
+SHEBANG_FILES+=	clang-tools-extra/clang-include-fixer/find-all-symbols/tool/run-find-all-symbols.py \
+		clang-tools-extra/clang-tidy/tool/clang-tidy-diff.py \
+		clang-tools-extra/clang-tidy/tool/run-clang-tidy.py
+.endif
+
+.if ${PORT_OPTIONS:MFLANG}
+LLVM_ENABLE_PROJECTS+=	flang
+COMMANDS+=	${FLANG_COMMANDS}
 .endif
 
 .if ${PORT_OPTIONS:MLIT}
@@ -260,15 +270,31 @@ MAN1SRCS+=	lit.1 FileCheck.1
 .endif
 
 .if ${PORT_OPTIONS:MLLD}
+LLVM_ENABLE_PROJECTS+=	lld
 COMMANDS+=	${LLD_COMMANDS}
 PORTDOCS+=	lld
 .endif
 
 .if ${PORT_OPTIONS:MLLDB}
+LLVM_ENABLE_PROJECTS+=	lldb
 COMMANDS+=	${LLDB_COMMANDS}
+MAN1SRCS+=	lldb.1
 .endif
 
-OPENMP_PATTERN=	lib[ig]*omp|omp.h|ompt.h|omp-tools.h
+.if ${PORT_OPTIONS:MMLIR}
+LLVM_ENABLE_PROJECTS+=	mlir
+COMMANDS+=	${MLIR_COMMANDS}
+.endif
+
+.if ${PORT_OPTIONS:MOPENMP}
+LLVM_ENABLE_PROJECTS+=	openmp
+MAN1SRCS+=		llvmopenmp.1
+.endif
+OPENMP_PATTERN=	libarcher|lib[ig]*omp|omp.h|ompt.h|ompt-multiplex.h|omp-tools.h
+
+.if defined(LLVM_ENABLE_PROJECTS)
+CMAKE_ARGS+=	-DLLVM_ENABLE_PROJECTS="${LLVM_ENABLE_PROJECTS:ts;}"
+.endif
 
 .include <bsd.port.pre.mk>
 .include "${.CURDIR}/Makefile.COMMANDS"
@@ -279,7 +305,7 @@ STRIP=
 .endif
 
 _CRTLIBDIR=	${LLVM_PREFIX:S|${PREFIX}/||}/lib/clang/${LLVM_RELEASE}/lib/freebsd
-_CRTBLDIR=	${LLVM_PREFIX:S|${PREFIX}/||}/share
+_CRTBLDIR=	${LLVM_PREFIX:S|${PREFIX}/||}/lib/clang/%%LLVM_RELEASE%%/share
 _COMPILER_RT_BLACKLISTS=	cfi_blacklist.txt
 .if ${ARCH} == "amd64"
 _COMPILER_RT_BLACKLISTS+=	asan_blacklist.txt
@@ -297,6 +323,7 @@ _COMPILER_RT_LIBS= \
 	libclang_rt.dd-x86_64.a \
 	libclang_rt.dyndd-x86_64.so \
 	libclang_rt.fuzzer-x86_64.a \
+	libclang_rt.fuzzer_interceptors-x86_64.a \
 	libclang_rt.fuzzer_no_main-x86_64.a \
 	libclang_rt.msan-x86_64.a \
 	libclang_rt.msan-x86_64.a.syms \
@@ -366,25 +393,19 @@ post-patch:
 	${REINPLACE_CMD} -e 's|import lit|import lit${LLVM_SUFFIX}|' \
 	    -e 's|from lit|from lit${LLVM_SUFFIX}|' \
 	    -e 's|lit\.|lit${LLVM_SUFFIX}.|' \
-	    ${WRKSRC}/utils/lit/lit.py ${WRKSRC}/utils/lit/lit/*.py
-	${REINPLACE_CMD} -e 's,/usr/local/,${LOCALBASE}/,' \
-	    ${WRKSRC}/CMakeLists.txt
+	    ${WRKSRC}/llvm/utils/lit/lit.py ${WRKSRC}/llvm/utils/lit/lit/*.py
 
 post-patch-CLANG-on:
 	${REINPLACE_CMD} -e 's|%%LLVM_PREFIX%%|${LLVM_PREFIX}|' \
-	    ${PATCH_WRKSRC}/tools/clang/lib/Driver/ToolChains/CommonArgs.cpp
+	    ${PATCH_WRKSRC}/clang/lib/Driver/ToolChains/CommonArgs.cpp
 	${REINPLACE_CMD} -e 's|%%LLVM_SUFFIX%%|${LLVM_SUFFIX}|' \
-	    ${PATCH_WRKSRC}/tools/clang/tools/clang-format/clang-format.py \
-	    ${PATCH_WRKSRC}/tools/clang/tools/clang-format/clang-format-sublime.py \
-	    ${PATCH_WRKSRC}/tools/clang/tools/clang-format/git-clang-format
+	    ${PATCH_WRKSRC}/clang/tools/clang-format/clang-format.py \
+	    ${PATCH_WRKSRC}/clang/tools/clang-format/clang-format-sublime.py \
+	    ${PATCH_WRKSRC}/clang/tools/clang-format/git-clang-format
 
-post-build-COMPILER_RT-on:
-	${MKDIR} ${WRKDIR}/compiler-rt-build
-	cd ${WRKDIR}/compiler-rt-build && \
-	${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} \
-	    -DLLVM_CONFIG_PATH=${CONFIGURE_WRKSRC}/bin/llvm-config \
-	    ${WRKSRC_compiler_rt} && \
-	${MAKE_ENV} ${MAKE_CMD}
+post-patch-LLD-on:
+		${REINPLACE_CMD} -e "s|'indexsidebar.html'|['indexsidebar.html']|" \
+			${PATCH_WRKSRC}/lld/docs/conf.py
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/llvm-wrapper.sh \
@@ -420,20 +441,17 @@ post-install-DOCS-off:
 post-install-CLANG-on:
 	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/clang \
 	    ${STAGEDIR}${LLVM_PREFIX}/bin/clang-cpp
+	@${MKDIR} ${STAGEDIR}${PREFIX}/share/toolchains/
+	@${INSTALL_DATA} ${WRKDIR}/xtoolchain.mk \
+	    ${STAGEDIR}${PREFIX}/share/toolchains/llvm${LLVM_SUFFIX}.mk
 
 post-install-COMPILER_RT-on:
-	cd ${WRKDIR}/compiler-rt-build && \
-	    ${MAKE_ENV} ${MAKE_CMD} ${INSTALL_TARGET}
 .if ${ARCH} == "amd64"
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/lib/freebsd/libclang_rt*i386*
+	${RM} ${STAGEDIR}${LLVM_PREFIX}/lib/clang/${LLVM_RELEASE}/lib/freebsd/libclang_rt*i386*
 .endif
-	${MKDIR} ${STAGEDIR}${PREFIX}/${_CRTLIBDIR}
-	${MV} ${STAGEDIR}${LLVM_PREFIX}/lib/freebsd/* \
-	    ${STAGEDIR}${PREFIX}/${_CRTLIBDIR}
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/lib/freebsd
 
 post-install-LIT-on:
-	${INSTALL_SCRIPT} ${PATCH_WRKSRC}/utils/lit/lit.py \
+	${INSTALL_SCRIPT} ${PATCH_WRKSRC}/llvm/utils/lit/lit.py \
 	    ${STAGEDIR}${LLVM_PREFIX}/bin/lit
 	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
 	    ${STAGEDIR}${LLVM_PREFIX}/bin/llvm-lit
@@ -442,12 +460,15 @@ post-install-LIT-on:
 	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/lit \
 	    ${STAGEDIR}${PREFIX}/bin/llvm-lit${LLVM_SUFFIX}
 	${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
-	${INSTALL_DATA} ${WRKSRC}/utils/lit/lit/*.py \
+	${INSTALL_DATA} ${WRKSRC}/llvm/utils/lit/lit/*.py \
 	    ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/lit${LLVM_SUFFIX}
 	${INSTALL_PROGRAM} ${WRKDIR}/.build/bin/FileCheck \
 	    ${STAGEDIR}${LLVM_PREFIX}/bin/
 	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/FileCheck \
 	    ${STAGEDIR}${PREFIX}/bin/FileCheck${LLVM_SUFFIX}
+
+post-install-LLD-on:
+	${LN} -s ld.lld ${STAGEDIR}${LLVM_PREFIX}/bin/ld
 
 TEST_CMD=	'(cd ${WRKSRC}/test; ${SETENV} ${MAKE_ENV} LD_LIBRARY_PATH=${WRKSRC}/Release/lib ${MAKE_CMD} check-local-lit)'
 do-test:
@@ -477,7 +498,8 @@ build-plist:
 	    -e 's|${PORTVERSION}|%%PORTVERSION%%|' \
 	    -e 's|release.cmake|%%CMAKE_BUILD_TYPE%%.cmake|' \
 	    -e 's|${LLVM_RELEASE:C/\./\\./g}|%%LLVM_RELEASE%%|' \
-	    -e 's|${LLVM_MAJOR:C/\./\\./}|%%LLVM_MAJOR%%|' \
+	    -e 's|\([^0-9]\)${LLVM_MAJOR:C/\./\\./}\([^0-9]\)|\1%%LLVM_MAJOR%%\2|' \
+	    -e 's|\([^0-9]\)${LLVM_MAJOR:C/\./\\./}$$|\1%%LLVM_MAJOR%%|' \
 	    | ${SORT} >> ${PLIST}.tmp
 	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX} -type f | \
 	    ${SED} -e 's|${STAGEDIR}${PYTHON_SITELIBDIR}|%%LIT%%%%PYTHON_SITELIBDIR%%|' \
@@ -485,19 +507,21 @@ build-plist:
 	    -e 's|${LLVM_MAJOR:C/\./\\./}|%%LLVM_MAJOR%%|' | \
 	    ${SORT} >> ${PLIST}.tmp
 	awk '{ \
-	    if ($$0 ~ /${CLANG_PATTERN}/ && $$0 !~ /${OPENMP_PATTERN}|${EXTRAS_PATTERN}|libclang_rt/) {printf "%%%%CLANG%%%%"} \
+	    if ($$0 ~ /${CLANG_PATTERN}/ && $$0 !~ /${OPENMP_PATTERN}|${EXTRAS_PATTERN}|${COMPILER_RT_PATTERN}|libclang_rt/) {printf "%%%%CLANG%%%%"} \
 	    if ($$0 ~ /${COMPILER_RT_PATTERN}/) \
 		{printf "%%%%COMPILER_RT%%%%"} \
-	    if ($$0 ~ /lld|wasm-ld/ && $$0 !~ /lldb/) {printf "%%%%LLD%%%%"} \
+	    if ($$0 ~ /(bin\/(ld|lld|wasm-ld))|liblld[^b]|\/lld\// && $$0 !~ /lldb/) {printf "%%%%LLD%%%%"} \
 	    if ($$0 ~ /(${EXTRAS_PATTERN})/) {printf "%%%%EXTRAS%%%%"} \
+	    if ($$0 ~ /(${FLANG_PATTERN})/) {printf "%%%%FLANG%%%%"} \
 	    if ($$0 ~ /(argdumper|lldb|six.py)/) {printf "%%%%LLDB%%%%"} \
+	    if ($$0 ~ /(${MLIR_PATTERN})/) {printf "%%%%MLIR%%%%"} \
 	    if ($$0 ~ /(${OPENMP_PATTERN})/) {printf "%%%%OPENMP%%%%"} \
 	    if ($$0 ~ /LLVMgold/) {printf "%%%%GOLD%%%%"} \
 	    if ($$0 !~ /libclang_rt/) {print} \
 	}' ${PLIST}.tmp >> ${PLIST}
 	${ECHO_CMD} '@postexec if type ccache-update-links >/dev/null 2>&1; then ccache-update-links -v; fi' >> ${PLIST}
 	${ECHO_CMD} '@postunexec if type ccache-update-links >/dev/null 2>&1; then ccache-update-links -v; fi' >> ${PLIST}
-	${RM} ${PLIST}.tmp
+	#${RM} ${PLIST}.tmp
 
 check-commands:
 .for command in ${COMMANDS}

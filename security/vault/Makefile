@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	vault
-PORTVERSION=	1.1.2
-PORTREVISION=	1
+PORTVERSION=	1.5.4
 DISTVERSIONPREFIX=	v
 CATEGORIES=	security
 
@@ -12,19 +11,20 @@ COMMENT=	Tool for securely accessing secrets
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go
+USES=		go:modules
 
 USE_GITHUB=	yes
 GH_TUPLE=	hashicorp:${PORTNAME}:${VAULTTAG}:DEFAULT \
 		swills:vaultui:${VAULTUITAG}:vaultui
 
 GO_PKGNAME=	github.com/${GH_ACCOUNT}/${PORTNAME}
+COMMIT_ID=	685fdfa
 GO_BUILDFLAGS=	-tags=ui \
 		-ldflags="\
-		-X github.com/hashicorp/vault/version.Version=${PORTVERSION} \
-		-X github.com/hashicorp/vault/version.VersionPrerelease= \
-		-X github.com/hashicorp/vault/version.VersionMetadata= \
-		-X github.com/hashicorp/vault/version.GitCommit='${COMMIT_ID}'"
+		-X github.com/hashicorp/vault/sdk/version.Version=${PORTVERSION} \
+		-X github.com/hashicorp/vault/sdk/version.VersionPrerelease= \
+		-X github.com/hashicorp/vault/sdk/version.VersionMetadata= \
+		-X github.com/hashicorp/vault/sdk/version.GitCommit='${COMMIT_ID}'"
 
 VAULTTAG=	${DISTVERSIONPREFIX}${PORTVERSION}
 VAULTUITAG=	${DISTVERSIONPREFIX}${PORTVERSION}
@@ -36,6 +36,8 @@ GROUPS=		vault
 
 PLIST_FILES=	bin/${PORTNAME}
 SUB_FILES=	pkg-message
+
+PORTSCOUT=	limit:^(v?)[0-9]+\.[0-9]+\.[0-9]+$
 
 post-patch:
 	@${CP} ${WRKDIR}/vaultui-${PORTVERSION}/http/bindata_assetfs.go ${WRKDIR}/vault-${PORTVERSION}/http/bindata_assetfs.go

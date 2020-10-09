@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mkvtoolnix
-PORTVERSION=	38.0.0
+PORTVERSION=	51.0.0
 CATEGORIES=	multimedia audio
 MASTER_SITES=	http://www.bunkus.org/videotools/mkvtoolnix/sources/ \
 		https://mkvtoolnix.download/sources/
@@ -23,7 +23,8 @@ LIB_DEPENDS=	libvorbis.so:audio/libvorbis \
 		libebml.so:textproc/libebml \
 		libboost_regex.so:devel/boost-libs \
 		libpugixml.so:textproc/pugixml \
-		libmatroska.so:multimedia/libmatroska
+		libmatroska.so:multimedia/libmatroska \
+		libpcre2-8.so:devel/pcre2
 
 USES=		compiler:c++17-lang iconv localbase pkgconfig tar:xz
 
@@ -39,9 +40,13 @@ MAKE_CMD=	rake -v
 MAKEFILE=	Rakefile
 ALL_TARGET=	#Empty
 
-OPTIONS_DEFINE=	FLAC NLS QT5 MANTRANS
+OPTIONS_DEFINE=	DVDREAD FLAC NLS QT5 MANTRANS
 OPTIONS_DEFAULT=	FLAC QT5
 OPTIONS_SUB=	yes
+
+DVDREAD_DESC=		Support reading DVD chapters via libdvdread
+DVDREAD_LIB_DEPENDS=	libdvdread.so:multimedia/libdvdread
+DVDREAD_CONFIGURE_WITH=	dvdread
 
 FLAC_LIB_DEPENDS=	libFLAC.so:audio/flac
 FLAC_CONFIGURE_WITH=	flac

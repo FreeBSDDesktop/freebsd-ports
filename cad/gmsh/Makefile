@@ -2,10 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	gmsh
-DISTVERSION=	4.3.0
-PORTREVISION=	1
+DISTVERSION=	4.6.0
 CATEGORIES=	cad
-MASTER_SITES=	http://gmsh.info/src/
+MASTER_SITES=	LOCAL/wen \
+		LOCAL/zeising \
+		http://gmsh.info/src/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-source
 DIST_SUBDIR=	gmsh
 
@@ -61,10 +62,6 @@ OCC_USE=		gnome=cairo
 SHARED_CMAKE_BOOL=	ENABLE_BUILD_SHARED
 SHARED_USE=		LDCONFIG=yes
 STATIC_CMAKE_BOOL=	ENABLE_BUILD_LIB
-
-post-patch:
-	@${REINPLACE_CMD} -e "s|share/doc/gmsh|${DOCSDIR_REL}|" \
-		-e 's|share/man/man1|man/man1|' ${WRKSRC}/CMakeLists.txt
 
 post-install-SHARED-on:
 	${RM} -r ${STAGEDIR}/wrkdirs

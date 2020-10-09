@@ -7,16 +7,15 @@ CATEGORIES=	java
 MAINTAINER=	lev@FreeBSD.org
 COMMENT=	Java bindings for Version control system
 
-USES+=		compiler
+USES=		compiler
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.7+
 JAVA_OS=	native
 JAVA_BUILD=	yes
 JAVA_RUN=	yes
 
 
-PORTREVISION_113=	0
+PORTREVISION_114=	0
 PORTREVISION_LTS=	0
 
 SVN_BUILD_BINDINGS=	yes

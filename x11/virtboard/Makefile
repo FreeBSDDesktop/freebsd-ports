@@ -2,12 +2,13 @@
 
 PORTNAME=	virtboard
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.5-26
+DISTVERSION=	0.0.6
+PORTREVISION=	1
 CATEGORIES=	x11
 
-PATCH_SITES=	${GL_SITE}/jbeich/${GL_PROJECT}/commit/
-PATCHFILES+=	42e698964e42.patch:-p1
-PATCHFILES+=	86e6915d4920.patch:-p1
+PATCH_SITES=	${GL_SITE}/jbeich/${GL_PROJECT}/-/commit/
+PATCHFILES+=	42e698964e42.diff:-p1
+PATCHFILES+=	86e6915d4920.diff:-p1
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Basic keyboard, blazing the path of modern Wayland keyboards
@@ -29,7 +30,7 @@ USE_GNOME=	cairo glib20
 USE_XORG=	pixman
 GL_SITE=	https://source.puri.sm
 GL_ACCOUNT=	Librem5
-GL_COMMIT=	576fffc61bcfa8e24f9dcf10d8bf3b32240cc36d
+GL_COMMIT=	1d30b07870bf6138395d6529ab496e321b8b3938
 PLIST_FILES=	bin/${PORTNAME} \
 		share/applications/sm.puri.Virtboard.desktop \
 		share/dbus-1/interfaces/sm.puri.OSK0.xml

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	kicad
-PORTVERSION=	5.1.4
+PORTVERSION=	5.1.7
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-library-footprints
 

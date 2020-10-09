@@ -2,30 +2,38 @@
 # $FreeBSD$
 
 PORTNAME=	libunwind
-PORTVERSION=	20170615	# This is the release date of libunwind 1.2.1
+PORTVERSION=	20200331	# This is the release date on SAVANNAH
+PORTREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	SAVANNAH
-DISTNAME=	${PORTNAME}-1.2.1
+MASTER_SITES=	SAVANNAH \
+		https://github.com/libunwind/libunwind/releases/download/v${PORTVERSION}/
+DISTNAME=	${PORTNAME}-1.4.0
 
-MAINTAINER=	danilo@FreeBSD.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Generic stack unwinding library
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-ONLY_FOR_ARCHS= aarch64 amd64 i386
+ONLY_FOR_ARCHS= aarch64 amd64 i386 powerpc64 powerpc64le
 
-OPTIONS_DEFINE=	DOCS
-OPTIONS_SUB=	yes
-DOCS_CONFIGURE_ON=	ac_cv_path_LATEX2MAN=${TRUE}
-DOCS_CONFIGURE_OFF=	--disable-documentation
+USES=		compiler:c11 libtool pathfix pkgconfig
 
-USES=		libtool pathfix pkgconfig
-USE_LDCONFIG=	yes
+CFLAGS_powerpc64=	-maltivec
+CFLAGS_powerpc64le=	-maltivec
+CONFIGURE_ARGS=	ac_cv_path_LATEX2MAN=${TRUE}
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-LLD_UNSAFE=	yes
+USE_LDCONFIG=	yes
 
-PLIST_SUB=	ARCH=${ARCH:S|i386|x86|:S|amd64|x86_64|}
+PLIST_SUB=	ARCH=${ARCH:S|i386|x86|:S|amd64|x86_64|:C|powerpc64.*|ppc64|}
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ! ${ARCH:Mpowerpc64*}
+PLIST_SUB+=	COREDUMP=""
+.else
+PLIST_SUB+=	COREDUMP="@comment "
+.endif
+
+.include <bsd.port.post.mk>

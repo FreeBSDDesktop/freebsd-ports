@@ -3,7 +3,7 @@
 
 PORTNAME=	mldonkey
 PORTVERSION=	3.1.5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES+=	net-p2p
 MASTER_SITES=	SF
 
@@ -94,6 +94,10 @@ ALL_TARGET+=	\
 		mld_hash
 
 .include <bsd.port.pre.mk>
+
+.if ${ARCH:Mpowerpc*}
+USE_GCC=	yes
+.endif
 
 post-patch:
 	@${SED} \

@@ -14,7 +14,7 @@ RUN_DEPENDS=	kipi-plugins>=0:graphics/kipi-plugins
 
 USES=		cmake compiler:c++11-lang gettext kde:5 pkgconfig qt:5 tar:xz xorg
 USE_KDE=	attica auth codecs completion config configwidgets coreaddons \
-		dbusaddons doctools ecm i18n jobwidgets kdeclarative kio \
+		dbusaddons doctools ecm globalaccel i18n jobwidgets kdeclarative kio \
 		libkipi newstuff notifications package service wayland \
 		widgetsaddons windowsystem xmlgui
 USE_QT=		core concurrent dbus declarative gui network printsupport \

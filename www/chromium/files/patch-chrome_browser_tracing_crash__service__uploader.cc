@@ -1,4 +1,4 @@
---- chrome/browser/tracing/crash_service_uploader.cc.orig	2019-10-21 19:06:23 UTC
+--- chrome/browser/tracing/crash_service_uploader.cc.orig	2020-05-13 18:39:38 UTC
 +++ chrome/browser/tracing/crash_service_uploader.cc
 @@ -161,6 +161,8 @@ void TraceCrashServiceUploader::DoCompressOnBackground
    const char product[] = "Chrome_Linux";

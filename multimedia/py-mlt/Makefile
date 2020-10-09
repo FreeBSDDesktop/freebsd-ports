@@ -5,25 +5,33 @@ PORTREVISION=	0
 CATEGORIES=	multimedia python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-USES=		python:2.7
+USES=		gettext-runtime python:3.5+ shebangfix
 USE_PYTHON=	flavors
 MASTERDIR=	${.CURDIR:H}/mlt
 SLAVEPORT=	swig Python
 
 PORTEXAMPLES=	*
 
-OPTIONS_DEFINE=	EXAMPLES
+SHEBANG_FILES=	src/swig/python/codecs.py \
+		src/swig/python/switcher.py \
+		src/swig/python/getimage.py \
+		src/swig/python/test_animation.py \
+		src/swig/python/webvfx_generator.py \
+		src/swig/python/play.py \
+		src/swig/python/waveforms.py
 
-post-patch:
-	@${REINPLACE_CMD} -e 's,which python,which ${PYTHON_VERSION},' -e 's,python -c,${PYTHON_VERSION} -c,' \
-			  -e 's,python-config,${PYTHON_VERSION}-config,' ${WRKSRC}/src/swig/python/build
+MAKE_ENV+=	PYTHON="${PYTHON_CMD}"
+
+OPTIONS_DEFINE=	EXAMPLES
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 	${INSTALL_LIB} ${INSTALL_WRKSRC}/_mlt.so ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 	${INSTALL_SCRIPT} ${INSTALL_WRKSRC}/mlt.py ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
-	@cd ${STAGEDIR}${PYTHON_SITELIBDIR} && ${PYTHON_CMD} -c 'import mlt'
-	@cd ${STAGEDIR}${PYTHON_SITELIBDIR} && ${PYTHON_CMD} -Oc 'import mlt'
+	${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py -d \
+		${PYTHONPREFIX_SITELIBDIR} -f ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py -d \
+		${PYTHONPREFIX_SITELIBDIR} -f ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 
 post-install-EXAMPLES-on:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}

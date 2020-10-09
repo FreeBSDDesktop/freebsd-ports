@@ -6,7 +6,7 @@ PORTVERSION=	0.54
 CATEGORIES=	irc
 MASTER_SITES=	http://cybione.org/~irssi-xmpp/files/
 
-MAINTAINER=	jadawin@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Irssi plugin to connect to Jabber network
 
 LICENSE=	GPLv2
@@ -24,6 +24,7 @@ DOCSDIR=	${PREFIX}/share/doc/irssi
 CFLAGS_aarch64=	-fPIC
 CFLAGS_amd64=	-fPIC
 CFLAGS_i386=	-fPIC
+CFLAGS_powerpc64=	-fPIC
 
 OPTIONS_DEFINE=	DOCS
 

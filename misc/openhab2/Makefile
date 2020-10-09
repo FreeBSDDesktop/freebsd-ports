@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	openhab2
-PORTVERSION=	2.4.0
-#PORTREVISION=	3
+PORTVERSION=	2.5.9
+#PORTREVISION=	1
 CATEGORIES=	misc java
 MASTER_SITES=	https://bintray.com/openhab/mvn/download_file?file_path=org%2Fopenhab%2Fdistro%2Fopenhab%2F${PORTVERSION}/
 DISTNAME=	openhab-${PORTVERSION}
@@ -24,6 +24,8 @@ NO_ARCH=	yes
 
 USERS=	openhab
 GROUPS=	openhab
+
+PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 post-patch:
 	@${REINPLACE_CMD} -e "s:%%LOCALBASE%%:${LOCALBASE}:g" ${WRKSRC}/runtime/bin/setenv
@@ -63,5 +65,16 @@ do-install:
 .endfor
 	${INSTALL_SCRIPT} ${WRKDIR}/update.freebsd ${STAGEDIR}${PREFIX}/libexec/${PORTNAME}/runtime/bin/
 	(cd ${WRKSRC}/userdata && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/${PORTNAME})
+
+gen-plist:
+	${FIND} ${STAGEDIR} -type f | sed -e "s:${STAGEDIR}${PREFIX}/::g ; s:${PORTVERSION}:%%PORTVERSION%%:g" | sort -u | grep libexec/ >pkg-plist.new
+	echo '@owner openhab' >>pkg-plist.new
+	echo '@group openhab' >>pkg-plist.new
+	${FIND} ${STAGEDIR}${DATADIR} -type f | sed -E -e "s:${STAGEDIR}${DATADIR}/(.*):@sample %%DATADIR%%/\\1 /var/db/openhab2/userdata/\\1:g ; s:${PORTVERSION}:%%PORTVERSION%%:g" | sort -u >>pkg-plist.new
+	${FIND} ${STAGEDIR}${ETCDIR} -type d | sort -u | sed -e "s:${STAGEDIR}${ETCDIR}:@dir %%ETCDIR%%:g ; s:${PORTVERSION}:%%PORTVERSION%%:g"  >>pkg-plist.new
+	${FIND} ${STAGEDIR}${ETCDIR} -type f | sort -u | sed -E -e "s:${STAGEDIR}${ETCDIR}/:%%ETCDIR%%/:g ; s:${PORTVERSION}:%%PORTVERSION%%:g ; s:(.*.sample)$:@sample(openhab,openhab,640) \\1:" >>pkg-plist.new
+	${FIND} ${STAGEDIR}/var/db/${PORTNAME} -type d | sort -ru | sed -e "s:${STAGEDIR}:@dir :g" >>pkg-plist.new
+	echo "@dir /var/log/${PORTNAME}" >>pkg-plist.new
+	echo "@dir /var/run/${PORTNAME}" >>pkg-plist.new
 
 .include <bsd.port.mk>

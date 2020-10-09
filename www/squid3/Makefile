@@ -2,7 +2,7 @@
 
 PORTNAME=	squid
 PORTVERSION=	3.5.28
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www
 MASTER_SITES=	http://www.squid-cache.org/Versions/v3/${PORTVERSION:R}/ \
 		http://www2.us.squid-cache.org/Versions/v3/${PORTVERSION:R}/ \
@@ -26,7 +26,7 @@ COMMENT=	HTTP Caching Proxy
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-CONFLICTS=	squid*-4.*
+CONFLICTS=	squid-* squid-devel-*
 
 BROKEN_powerpc64=	Does not build: error: unrecognizable insn
 
@@ -114,7 +114,7 @@ SSL_CONFIGURE_ON=		--with-openssl=${OPENSSLBASE} \
 				LIBOPENSSL_CFLAGS=-I${OPENSSLINC} \
 				LIBOPENSSL_LIBS="-lcrypto -lssl"
 SSL_USES=			ssl
-SSL_VARS=			BROKEN_SSL=openssl111
+SSL_VARS=			BROKEN_SSL=openssl
 SSL_CRTD_CONFIGURE_ENABLE=	ssl-crtd
 SSL_CRTD_IMPLIES=		SSL
 STACKTRACES_CONFIGURE_ENABLE=	stacktraces
@@ -185,6 +185,8 @@ TP_PF_DESC=		Transparent proxying with PF
 VIA_DB_DESC=		Forward/Via database
 WCCPV2_DESC=		Web Cache Coordination Protocol v2
 WCCP_DESC=		Web Cache Coordination Protocol
+
+CFLAGS+=		-Wno-error=deprecated-declarations
 
 change_files=	ChangeLog \
 		contrib/nextstep/makepkg \

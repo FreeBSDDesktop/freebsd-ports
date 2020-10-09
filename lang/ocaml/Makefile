@@ -24,6 +24,9 @@ BROKEN_sparc64=	No rule to make target 'none.o', needed by 'libasmrun.a'
 BROKEN_mips64=	No ASM support
 BROKEN_mips=	No ASM support
 
+BUILD_DEPENDS=	as:devel/binutils
+RUN_DEPENDS=	as:devel/binutils
+
 USES=		cpe compiler:c11 gmake tar:xz
 USE_LDCONFIG=	yes
 CPE_VENDOR=	inria
@@ -99,6 +102,11 @@ CONFIGURE_ARGS+=-no-graph
 PLIST_SUB+=	PROF="@comment "
 .else
 PLIST_SUB+=	PROF=""
+.endif
+
+.if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-asmcomp_power_arch.ml
+USE_GCC=	yes
 .endif
 
 post-extract:

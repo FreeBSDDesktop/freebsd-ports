@@ -2,7 +2,7 @@
 
 PORTNAME=	openntpd
 PORTVERSION=	6.2p3
-PORTREVISION=	4
+PORTREVISION=	8
 PORTEPOCH=	2
 CATEGORIES=	net
 MASTER_SITES=	OPENBSD/OpenNTPD
@@ -14,9 +14,9 @@ LICENSE=	ISCL
 
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
 
-CONFLICTS=	ntp-[0-9].* ntp-devel-*
-
 USES=		ssl
+
+CONFLICTS=	ntp ntp-devel ntpsec
 
 USE_RC_SUBR=	openntpd
 USERS=		_ntp
@@ -25,7 +25,8 @@ GROUPS=		_ntp
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-cacert=${LOCALBASE}/etc/ssl/cert.pem
 
-SUB_FILES=	480.status-openntpd
+SUB_FILES=	480.status-openntpd pkg-message
+SUB_LIST=	MANPREFIX="${MANPREFIX}"
 
 pre-build:
 	${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},g' \
@@ -52,7 +53,7 @@ LDFLAGS+=		-L${WRKDIR}/libressl/lib
 # are owned by root, which creates problems of its own.
 pre-configure:
 	@cd `${MAKE} -V STAGEDIR -C ${PORTSDIR}/security/libressl`${PREFIX} \
-	    && ${FIND} -E . ! -name *.so\* | ${CPIO} -dump ${WRKDIR}/libressl >/dev/null 2>&1
+	    && ${FIND} . ! -name *.so\* | ${CPIO} -dump ${WRKDIR}/libressl >/dev/null 2>&1
 .endif # SSL_DEFAULT
 
 .include <bsd.port.post.mk>

@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	barvinok
-DISTVERSION=	0.41.2
-PORTREVISION=	1
+DISTVERSION=	0.41.3
 CATEGORIES=	math
 MASTER_SITES=	http://barvinok.gforge.inria.fr/
 
@@ -22,5 +21,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-static --enable-shared --enable-shared-barvinok \
 		--with-gmp=system --with-polylib=system --with-isl=system
 USE_LDCONFIG=	yes
+
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>

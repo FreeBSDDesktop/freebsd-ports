@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	gnutls
-PORTVERSION=	3.6.10
+PORTVERSION=	3.6.15
 CATEGORIES=	security net
 MASTER_SITES=	GNUPG/gnutls/v${PORTVERSION:R}
 
@@ -36,8 +36,8 @@ MAKE_ENV=	MAKEINFOFLAGS=--no-split
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
-OPTIONS_DEFINE=		DANE EXAMPLES IDN NLS P11KIT TPM
-OPTIONS_DEFAULT=	IDN P11KIT TPM
+OPTIONS_DEFINE=		DANE EXAMPLES IDN MAN3 NLS P11KIT TPM
+OPTIONS_DEFAULT=	IDN MAN3 P11KIT TPM
 OPTIONS_SUB=		yes
 
 DANE_DESC=		Certificate verification via DNSSEC
@@ -46,6 +46,8 @@ DANE_CONFIGURE_ENABLE=	libdane
 
 IDN_CONFIGURE_WITH=	idn
 IDN_LIB_DEPENDS=	libidn2.so:dns/libidn2
+
+MAN3_DESC=		Install API manpages (section 3)
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_CONFIGURE_OFF=	ac_cv_lib_intl_gettext=no
@@ -83,7 +85,7 @@ post-patch:
 		${WRKSRC}/lib/includes/gnutls/pkcs11.h \
 		${WRKSRC}/lib/pkcs11.c \
 		${WRKSRC}/src/p11tool-args.c.bak \
-		${WRKSRC}/src/srptool.c		
+		${WRKSRC}/src/srptool.c
 	@${REINPLACE_CMD} \
 		's,/etc/pkcs11/modules,${PREFIX}/share/p11-kit/modules,' \
 		${WRKSRC}/doc/cha-tokens.texi \

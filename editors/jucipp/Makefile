@@ -3,8 +3,7 @@
 
 PORTNAME=	jucipp
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.5.0
-PORTREVISION=	1
+DISTVERSION=	1.6.1
 CATEGORIES=	editors
 
 MAINTAINER=	info@babaei.net
@@ -17,14 +16,15 @@ BUILD_DEPENDS=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT}
 LIB_DEPENDS=	libaspell.so:textproc/aspell \
 		libboost_filesystem.so:devel/boost-libs \
 		libgit2.so:devel/libgit2
-RUN_DEPENDS=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT}
+RUN_DEPENDS=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT} \
+		uctags:devel/universal-ctags
 
 USES=		cmake compiler:c++14-lang desktop-file-utils gnome pkgconfig
 USE_GITLAB=	yes
 GL_ACCOUNT=	cppit
-GL_COMMIT=	2c0df4ae3c83135dc28a51eabf48e3c2c80750b0
-GL_TUPLE=	cppit:libclangmm:687b9c231d850504ec515acb9ccab73f26c34063:libclangmm/lib/libclangmm \
-		eidheim:tiny-process-library:a6773276efdbc322f1abb0159301f5502647eb52:tinyprocesslibrary/lib/tiny-process-library
+GL_COMMIT=	4a1f88590ad1242aed596546c5568bbc40184c0c
+GL_TUPLE=	cppit:libclangmm:c807211edcd3894f0920fcc1c01476d898f93f8f:libclangmm/lib/libclangmm \
+		eidheim:tiny-process-library:c9c8bf810ddad8cd17882b9a9ee628a690e779f5:tinyprocesslibrary/lib/tiny-process-library
 USE_GNOME=	gdkpixbuf2 gtkmm30 gtksourceviewmm3
 INSTALLS_ICONS=	yes
 
@@ -34,5 +34,8 @@ CMAKE_ARGS=	-DCMAKE_INCLUDE_PATH=${LOCALBASE}/llvm${LLVM_DEFAULT}/include \
 PLIST_FILES=	bin/juci \
 		share/applications/juci.desktop \
 		share/icons/hicolor/scalable/apps/juci.svg
+OPTIONS_DEFINE=	TEST
+
+TEST_CMAKE_BOOL=	BUILD_TESTING
 
 .include <bsd.port.mk>

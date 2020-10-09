@@ -2,10 +2,10 @@
 
 PORTNAME=	janet
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.0
+DISTVERSION=	1.12.2
 CATEGORIES=	lang
 
-MAINTAINER=	tobik@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Functional embeddable lisp with C interop, & performant data types
 
 LICENSE=	MIT
@@ -15,5 +15,8 @@ USES=		meson
 USE_GITHUB=	yes
 GH_ACCOUNT=	janet-lang
 USE_LDCONFIG=	yes
+
+PLIST_SUB=	SOVERSION=${DISTVERSION} \
+		SOVERSION_R=${DISTVERSION:R}
 
 .include <bsd.port.mk>

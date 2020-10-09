@@ -1,8 +1,9 @@
 # Created by: Oliver Lehmann <oliver@FreeBSD.org>
 # $FreeBSD$
 
-PORTNAME=	Thunar
-DISTVERSION=	1.8.9
+PORTNAME=	thunar
+DISTVERSION=	1.8.15
+PORTREVISION=	1
 CATEGORIES=	x11-fm xfce
 MASTER_SITES=	XFCE
 DIST_SUBDIR=	xfce4

@@ -2,8 +2,7 @@
 
 PORTNAME=	mlt
 DISTVERSIONPREFIX=	v
-DISTVERSION=	6.16.0
-PORTREVISION?=	2
+DISTVERSION=	6.22.1
 CATEGORIES?=	multimedia
 
 MAINTAINER=	kde@FreeBSD.org
@@ -30,7 +29,9 @@ CONFIGURE_ARGS+=--enable-debug
 # They both install bin/melt.
 CONFLICTS_INSTALL=	freeze-[0-9]*
 
-LIB_DEPENDS=	libfftw3.so:math/fftw3
+LIB_DEPENDS=	libfftw3.so:math/fftw3 \
+		libogg.so:audio/libogg \
+		libvorbis.so:audio/libvorbis
 
 BROKEN_sparc64=		does not compile on sparc64 (invokes i386 asm)
 
@@ -45,15 +46,15 @@ USE_LDCONFIG=	yes
 
 PLIST_SUB=	PORTVERSION="${PORTVERSION}"
 
-PORTDOCS=	AUTHORS ChangeLog NEWS README docs
+PORTDOCS=	AUTHORS NEWS README docs
 PORTEXAMPLES=	demo
 
-OPTIONS_DEFINE=	DOCS EXAMPLES FFMPEG FREI0R GTK2 JACK OPENGL \
+OPTIONS_DEFINE=	DOCS EXAMPLES FFMPEG FREI0R GDK JACK OPENGL \
 		SAMPLERATE SOX SWFDEC VIDSTAB # OPENCV VDPAU
-OPTIONS_DEFAULT=FFMPEG FREI0R GTK2 OPENGL SAMPLERATE SOX SWFDEC VIDSTAB
+OPTIONS_DEFAULT=FFMPEG FREI0R GDK OPENGL SAMPLERATE SOX VIDSTAB
 OPTIONS_SUB=	yes
 
-GTK2_DESC=	Images and text rendering via GTK+ 2
+GDK_DESC=	Images and text rendering via GDK
 SOX_DESC=	SoX audio effects support
 VIDSTAB_DESC=	Video stabilization support via Vid.Stab
 
@@ -65,10 +66,10 @@ FFMPEG_CONFIGURE_ON=	--avformat-suffix="${FFMPEG_SUFX}"
 FREI0R_BUILD_DEPENDS=	${LOCALBASE}/include/frei0r.h:graphics/frei0r
 FREI0R_CONFIGURE_ENABLE=frei0r
 
-GTK2_LIB_DEPENDS=	libexif.so:graphics/libexif \
+GDK_LIB_DEPENDS=	libexif.so:graphics/libexif \
 			libfontconfig.so:x11-fonts/fontconfig
-GTK2_USE=		GNOME=gdkpixbuf2,gtk20,pango
-GTK2_CONFIGURE_ENABLE=	gtk2
+GDK_USE=		GNOME=gdkpixbuf2,gtk20,pango
+GDK_CONFIGURE_ENABLE=	gdk
 
 JACK_LIB_DEPENDS=	libjack.so:audio/jack
 JACK_BUILD_DEPENDS=	${LOCALBASE}/include/ladspa.h:audio/ladspa
@@ -103,6 +104,8 @@ VIDSTAB_LIB_DEPENDS=	libvidstab.so:multimedia/vid.stab
 VIDSTAB_CONFIGURE_ENABLE=vid.stab
 
 pre-configure:
+	# Remove sdl1 support
+	${RM} -r ${WRKSRC}/src/modules/sdl
 	@${REINPLACE_CMD} -e 's,/usr/local,${LOCALBASE},' \
 		${WRKSRC}/src/modules/avformat/vdpau.c \
 		${WRKSRC}/src/modules/frei0r/factory.c \
@@ -160,8 +163,7 @@ COMMENT=	${LANGUAGE} bindings for the MLT multimedia framework
 LICENSE=	LGPL21
 LICENSE_COMB=	single
 
-BUILD_DEPENDS+=	swig3.0:devel/swig30
-BINARY_ALIAS=	swig=swig3.0
+BUILD_DEPENDS+=	swig:devel/swig
 
 _CFLAGS=	-I${LOCALBASE}/include -L${LOCALBASE}/lib
 CFLAGS+=	${_CFLAGS}

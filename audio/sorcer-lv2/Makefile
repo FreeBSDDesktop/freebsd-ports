@@ -3,7 +3,7 @@
 PORTNAME=	Sorcer
 DISTVERSIONPREFIX=	release-
 DISTVERSION=	1.1.3
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	audio
 PKGNAMESUFFIX=	-lv2
 
@@ -12,6 +12,8 @@ COMMENT=	Wavetable LV2 plugin synth targeted at the electronic/dubstep genre
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN=		sorcer_ui.cxx:265:21: error: cannot initialize a member subobject of type 'LV2UI_Handle'
 
 BUILD_DEPENDS=	lv2>0:audio/lv2 \
 		${LOCALBASE}/include/boost/circular_buffer.hpp:devel/boost-libs

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	drm-fbsd11.2-kmod
-PORTVERSION=	4.11g20190906
+PORTVERSION=	4.11g20200420
 CATEGORIES=	graphics
 
 MAINTAINER=	x11@FreeBSD.org
@@ -28,7 +28,7 @@ USES=		kmod uidfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	FreeBSDDesktop
 GH_PROJECT=	kms-drm
-GH_TAGNAME=	72300db
+GH_TAGNAME=	d7d433d
 
 .include <bsd.port.options.mk>
 

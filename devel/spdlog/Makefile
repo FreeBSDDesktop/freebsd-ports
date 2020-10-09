@@ -2,13 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	spdlog
-PORTVERSION=	1.3.1
 DISTVERSIONPREFIX=	v
-PORTREVISION=	2
+DISTVERSION=	1.8.1
+PORTREVISION=	0
 CATEGORIES=	devel
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	b693d0cd915c.patch:-p1
 
 MAINTAINER=	vanilla@FreeBSD.org
 COMMENT=	Super fast C++ logging library
@@ -22,7 +19,7 @@ USES=		cmake compiler:c++11-lib pathfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	gabime
-CMAKE_ON=	SPDLOG_FMT_EXTERNAL
+CMAKE_ON=	SPDLOG_BUILD_SHARED SPDLOG_FMT_EXTERNAL
 CMAKE_OFF=	SPDLOG_BUILD_BENCH
 
 post-extract:

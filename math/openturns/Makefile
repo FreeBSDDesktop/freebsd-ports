@@ -2,8 +2,8 @@
 
 PORTNAME=	openturns
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.13
-PORTREVISION=	3
+DISTVERSION=	1.15
+PORTREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -18,7 +18,6 @@ LIB_DEPENDS=	libceres.so:math/ceres-solver \
 		libcminpack.so:math/cminpack \
 		libgflags.so:devel/gflags \
 		libglog.so:devel/glog \
-		libmuparser.so:math/muparser \
 		libnlopt.so:math/nlopt \
 		libopt.so:math/optpp \
 		libtbb.so:devel/tbb \
@@ -40,8 +39,8 @@ OPTIONS_SUB=		yes
 
 PYTHON_USES=		python
 PYTHON_CMAKE_BOOL=	BUILD_PYTHON
-PYTHON_CMAKE_ON=	-DSWIG_EXECUTABLE=${LOCALBASE}/bin/swig3.0
-PYTHON_BUILD_DEPENDS=	swig3.0:devel/swig30 \
+PYTHON_CMAKE_ON=	-DSWIG_EXECUTABLE=${LOCALBASE}/bin/swig
+PYTHON_BUILD_DEPENDS=	swig:devel/swig \
 			${PYTHON_RUN_DEPENDS}
 PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR}
 

@@ -2,33 +2,38 @@
 # $FreeBSD$
 
 PORTNAME=	libobjc2
-PORTVERSION=	2.0
-PORTREVISION=	1
+DISTVERSIONPREFIX=v
+DISTVERSION=	2.1
+PORTREVISION=	2
 CATEGORIES=	lang devel gnustep
 
-MAINTAINER=	theraven@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Replacement Objective-C runtime supporting modern Objective-C features
 
 LICENSE=	MIT
 
-BROKEN_powerpc=		Does not compile on powerpc: Unsupported relocation type 10
 BROKEN_sparc64=		Does not compile on sparc64: Cannot configure clang properly
 USES=		cmake compiler objc:compiler
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	gnustep
-GH_TAGNAME=	0db500a
+GH_TUPLE=	Tessil:robin-map:757de82:robin_map/third_party/robin-map
 
-SSP_UNSAFE=	yes
+USE_LDCONFIG=	yes
+
+LDFLAGS+=	-lm
+
+TEST_TARGET=	test
+
+CMAKE_ARGS+=	-DLIB_INSTALL_PATH=lib
+
 LDFLAGS_armv7=	-Wl,-znotext
-
-SHLIB_MAJOR=	4
-SHLIB_MINOR=	6
+SSP_UNSAFE=	yes
 
 PLIST_SUB+=	SHLIB_MAJOR=${SHLIB_MAJOR} SHLIB_MINOR=${SHLIB_MINOR}
 
-CMAKE_ARGS+=	-DLIB_INSTALL_PATH=lib
-CMAKE_ARGS+=	-DTESTS=OFF
+SHLIB_MAJOR=	4
+SHLIB_MINOR=	6
 
 .include <bsd.port.pre.mk>
 

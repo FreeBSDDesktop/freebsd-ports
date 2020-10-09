@@ -1,6 +1,6 @@
---- components/autofill/core/browser/autofill_experiments.cc.orig	2019-10-21 19:06:28 UTC
+--- components/autofill/core/browser/autofill_experiments.cc.orig	2020-07-07 21:58:14 UTC
 +++ components/autofill/core/browser/autofill_experiments.cc
-@@ -234,7 +234,7 @@ bool IsAutofillNoLocalSaveOnUploadSuccessExperimentEna
+@@ -226,7 +226,7 @@ bool IsInAutofillSuggestionsDisabledExperiment() {
  }
  
  bool OfferStoreUnmaskedCards(bool is_off_the_record) {

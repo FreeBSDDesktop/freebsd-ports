@@ -10,6 +10,7 @@
     SUBDIR += aewan
     SUBDIR += apel
     SUBDIR += asedit
+    SUBDIR += atom
     SUBDIR += beav
     SUBDIR += biew
     SUBDIR += bitedit
@@ -21,6 +22,7 @@
     SUBDIR += chexedit
     SUBDIR += codelite
     SUBDIR += cooledit
+    SUBDIR += cpeditor
     SUBDIR += cream
     SUBDIR += cudatext
     SUBDIR += deforaos-editor
@@ -35,6 +37,7 @@
     SUBDIR += ecrire
     SUBDIR += edith
     SUBDIR += editorconfig-core-c
+    SUBDIR += elementary-code
     SUBDIR += emacs
     SUBDIR += emacs-devel
     SUBDIR += encryptpad
@@ -71,6 +74,7 @@
     SUBDIR += kak-lsp
     SUBDIR += kakoune
     SUBDIR += kate
+    SUBDIR += kibi
     SUBDIR += kile
     SUBDIR += komodo-edit
     SUBDIR += lazarus
@@ -93,6 +97,7 @@
     SUBDIR += libreoffice-bs
     SUBDIR += libreoffice-ca
     SUBDIR += libreoffice-ca_valencia
+    SUBDIR += libreoffice-ckb
     SUBDIR += libreoffice-cs
     SUBDIR += libreoffice-cy
     SUBDIR += libreoffice-da
@@ -108,6 +113,7 @@
     SUBDIR += libreoffice-eu
     SUBDIR += libreoffice-fa
     SUBDIR += libreoffice-fi
+    SUBDIR += libreoffice-fur
     SUBDIR += libreoffice-fy
     SUBDIR += libreoffice-ga
     SUBDIR += libreoffice-gd
@@ -181,10 +187,10 @@
     SUBDIR += libreoffice-vec
     SUBDIR += libreoffice-xh
     SUBDIR += libreoffice-zu
+    SUBDIR += libreoffice6
     SUBDIR += linux-sublime
     SUBDIR += linux-sublime3
     SUBDIR += madedit
-    SUBDIR += medit
     SUBDIR += mg
     SUBDIR += micro
     SUBDIR += mined
@@ -193,15 +199,14 @@
     SUBDIR += mousepad
     SUBDIR += mp
     SUBDIR += nano
-    SUBDIR += nano-devel
     SUBDIR += ne
     SUBDIR += nedit
     SUBDIR += neovim
     SUBDIR += neovim-qt
     SUBDIR += nvi-devel
     SUBDIR += nvi-m17n
+    SUBDIR += nvi2
     SUBDIR += o
-    SUBDIR += omegaT
     SUBDIR += openoffice-4
     SUBDIR += openoffice-devel
     SUBDIR += p5-Proc-InvokeEditor
@@ -217,9 +222,7 @@
     SUBDIR += puff
     SUBDIR += py-editorconfig
     SUBDIR += py-pynvim
-    SUBDIR += py-room
     SUBDIR += quilter
-    SUBDIR += rox-edit
     SUBDIR += rubygem-neovim
     SUBDIR += scite
     SUBDIR += se
@@ -236,6 +239,7 @@
     SUBDIR += texmacs
     SUBDIR += texmaker
     SUBDIR += texstudio
+    SUBDIR += textadept
     SUBDIR += texworks
     SUBDIR += the
     SUBDIR += thoteditor
@@ -248,11 +252,13 @@
     SUBDIR += vim
     SUBDIR += vim-console
     SUBDIR += vim-tiny
+    SUBDIR += vscode
     SUBDIR += web-mode
     SUBDIR += with-editor
     SUBDIR += wordgrinder
     SUBDIR += wxhexeditor
     SUBDIR += xcoral
+    SUBDIR += xed
     SUBDIR += xi-core
     SUBDIR += xi-term
     SUBDIR += xmlcopyeditor

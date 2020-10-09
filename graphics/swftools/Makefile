@@ -19,7 +19,7 @@ LIB_DEPENDS=	libt1.so:devel/t1lib \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
-USES=		gl gmake pkgconfig jpeg
+USES=		gmake pkgconfig jpeg gl
 USE_GL=		glut
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_lib_zzip_zzip_file_open=no
@@ -29,6 +29,7 @@ LMAN1=		as3compile.1 font2swf.1 gif2swf.1 jpeg2swf.1 pdf2swf.1 \
 		swfextract.1 swfrender.1 swfstrings.1 wav2swf.1
 
 CPPFLAGS+=	-I${LOCALBASE}/include
+CFLAGS+=	-fcommon
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 BINFILES=	as3compile font2swf gif2swf jpeg2swf pdf2swf png2swf \

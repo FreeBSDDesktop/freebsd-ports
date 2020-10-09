@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mediawiki
-PORTVERSION=	1.33.1
+PORTVERSION=	1.33.3
 CATEGORIES=	www
 MASTER_SITES=	http://releases.wikimedia.org/mediawiki/${PORTVERSION:R}/
 PKGNAMESUFFIX=	133${PHP_PKGNAMESUFFIX}
@@ -12,8 +12,11 @@ COMMENT=	Wiki engine used by Wikipedia
 
 LICENSE=	GPLv2
 
-CONFLICTS=	mediawiki131-[0-9]* mediawiki132-[0-9]*
+CONFLICTS=	mediawiki131-[0-9]* mediawiki13[4-5]-[0-9]*
 
+DEPRECATED=	Upstream end of life
+EXPIRATION_DATE=2020-12-31
+	
 USES=		php:flavors shebangfix
 SHEBANG_FILES=	maintenance/dev/*.sh \
 		maintenance/postgres/*.pl \
@@ -41,7 +44,8 @@ MEMCACHED_DESC=	Use memcached
 IMAGICK_DESC=	Use ImageMagick
 SOCKETS_DESC=	Use sockets
 
-MYSQL_USE=	mysql=client php=mysqli
+MYSQL_USES=	mysql
+MYSQL_USE=	php=mysqli
 PGSQL_USE=	php=pgsql
 SQLITE_USE=	php=sqlite3
 LDAP_USE=	php=ldap

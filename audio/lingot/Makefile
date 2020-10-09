@@ -1,4 +1,4 @@
-# Created by: Bartoletti <coder@tuxfamily.org>
+# Created by: Bartoletti <lbartoletti@FreeBSD.org>
 # $FreeBSD$
 
 PORTNAME=	lingot
@@ -6,8 +6,8 @@ PORTVERSION=	1.0.1
 CATEGORIES=	audio
 MASTER_SITES=	SAVANNAH
 
-MAINTAINER=	lbartoletti@tuxfamily.org
-COMMENT=	LINGOT is a musical instrument tuner
+MAINTAINER=	lbartoletti@FreeBSD.org
+COMMENT=	Musical instrument tuner
 
 LICENSE=	GPLv2
 

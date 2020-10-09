@@ -1,4 +1,4 @@
---- media/capture/video/video_capture_device_client.cc.orig	2019-10-21 19:06:36 UTC
+--- media/capture/video/video_capture_device_client.cc.orig	2020-05-13 18:39:45 UTC
 +++ media/capture/video/video_capture_device_client.cc
 @@ -301,7 +301,7 @@ void VideoCaptureDeviceClient::OnIncomingCapturedData(
  // see http://linuxtv.org/downloads/v4l-dvb-apis/packed-rgb.html.

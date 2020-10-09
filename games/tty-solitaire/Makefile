@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tty-solitaire
-PORTVERSION=	1.1.1
+PORTVERSION=	1.3.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	games
 
@@ -16,6 +16,9 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	mpereira
 
 USES=		gmake ncurses
+TEST_TARGET=	test
+
+MAKE_ARGS=	NCURSES=-l${NCURSES_IMPL}
 
 PORTDOCS=	*
 PLIST_FILES=	bin/ttysolitaire

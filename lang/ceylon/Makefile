@@ -7,7 +7,7 @@ CATEGORIES=	lang java
 MASTER_SITES=	http://downloads.ceylon-lang.org/cli/
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT=	Ceylon is a language for writing large programs in teams
+COMMENT=	Language for writing large programs in teams
 
 LICENSE=	APACHE20 GPLv2
 LICENSE_COMB=	multi
@@ -16,7 +16,6 @@ USES=		zip
 NO_BUILD=	yes
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.7+
 JAVA_RUN=	yes
 
 PORTDATA=	*

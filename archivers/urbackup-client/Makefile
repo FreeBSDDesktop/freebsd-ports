@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	urbackup-client
-DISTVERSION=	2.4.8
+DISTVERSION=	2.4.10
 CATEGORIES=	archivers
 MASTER_SITES=	https://hndl.urbackup.org/Client/${DISTVERSION}/
 
-MAINTAINER=	freebsd@coombscloud.com
+MAINTAINER=	ports@freebsd.org
 COMMENT=	Client component of the UrBackup backup system
 
 LICENSE=	AGPLv3+
@@ -40,19 +40,6 @@ CONFFILES=	mariadbdump.conf \
 		mariadbxtrabackup.conf \
 		postgresbase.conf \
 		postgresqldump.conf
-
-post-patch:
-	@(cd ${WRKSRC} && ${REINPLACE_CMD} -E -e 's|[[:<:]]byte[[:>:]]|CryptoPP::byte|g' \
-		cryptoplugin/AESDecryption.cpp \
-		cryptoplugin/AESEncryption.cpp \
-		cryptoplugin/AESGCMDecryption.cpp \
-		cryptoplugin/AESGCMEncryption.cpp \
-		cryptoplugin/CryptoFactory.cpp \
-		cryptoplugin/ECDHKeyExchange.cpp \
-		cryptoplugin/ZlibCompression.cpp \
-		cryptoplugin/ZlibDecompression.cpp \
-		md5.h \
-	)
 
 post-stage:
 	${INSTALL_DATA} ${WRKDIR}/urbackupclient.conf.sample-daemon \

@@ -2,8 +2,8 @@
 
 PORTNAME=	magnum
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2019.01
-PORTREVISION=	3
+DISTVERSION=	2019.10
+PORTREVISION=	0
 CATEGORIES=	graphics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -12,7 +12,7 @@ COMMENT=	Lightweight, modular graphics middleware for games, data visualization
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN=		fails to build
+BROKEN=		Player.hpp:193:32: error: too few arguments provided to function-like macro invocation
 
 LIB_DEPENDS=	libCorradeUtility.so:devel/corrade \
 		libglfw.so:graphics/glfw

@@ -454,8 +454,10 @@ DISTNAME=	${GH_ACCOUNT}-${GH_PROJECT}-${DISTVERSIONFULL}-${GH_TAGNAME_SANITIZED}
 .    else
 DISTNAME=	${GH_ACCOUNT}-${GH_PROJECT}-${GH_TAGNAME_SANITIZED}
 .    endif
-DISTNAME:=	${DISTNAME}_GH${_GITHUB_REV}
-DISTFILES+=	${DISTNAME}${_GITHUB_EXTRACT_SUFX}
+DISTNAME_DEFAULT:=	${DISTNAME}_GH${_GITHUB_REV}
+DISTFILE_DEFAULT=	${DISTNAME_DEFAULT}${_GITHUB_EXTRACT_SUFX}
+DISTNAME:=	${DISTNAME_DEFAULT}
+DISTFILES+=	${DISTFILE_DEFAULT}
 git-clone: git-clone-DEFAULT
 git-clone-DEFAULT: ${_GITHUB_CLONE_DIR}
 	@git clone https://github.com/${GH_ACCOUNT_DEFAULT}/${GH_PROJECT_DEFAULT}.git ${_GITHUB_CLONE_DIR}/${GH_PROJECT_DEFAULT}
@@ -607,7 +609,7 @@ post-extract-gl-DEFAULT:
 .  endif
 .  if !empty(_GITLAB_GROUPS:NDEFAULT)
 .    for _group in ${_GITLAB_GROUPS:NDEFAULT}
-# We set GL_SITE earlier, we need to verify its not empty
+# We set GL_SITE earlier, we need to verify it's not empty
 .      if empty(GL_SITE_${_group})
 GL_SITE_${_group}=	${GL_SITE_DEFAULT}
 .      endif
@@ -666,15 +668,17 @@ MASTER_SITE_GIMP+= \
 .if !defined(IGNORE_MASTER_SITE_GNU)
 MASTER_SITE_GNU+= \
 	https://ftpmirror.gnu.org/%SUBDIR%/ \
-	https://ftp.gnu.org/gnu/%SUBDIR%/ \
-	ftp://ftp.gnu.org/gnu/%SUBDIR%/ \
-	http://www.gtlib.gatech.edu/pub/gnu/gnu/%SUBDIR%/ \
 	https://mirrors.kernel.org/gnu/%SUBDIR%/ \
-	ftp://ftp.kddlabs.co.jp/GNU/gnu/%SUBDIR%/ \
+	https://mirror.netcologne.de/gnu/%SUBDIR%/ \
+	https://www.nic.funet.fi/pub/gnu/gnu/%SUBDIR%/ \
+	http://mirror.navercorp.com/gnu/%SUBDIR%/ \
+	http://ftp.halifax.rwth-aachen.de/gnu/%SUBDIR%/ \
+	http://download.xs4all.nl/gnu/%SUBDIR%/ \
+	http://ftp.kddilabs.jp/GNU/gnu/%SUBDIR%/ \
+	ftp://mirrors.rit.edu/gnu/%SUBDIR%/ \
+	ftp://ftp.fu-berlin.de/unix/gnu/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.gnu.org/gnu/%SUBDIR%/ \
-	ftp://ftp.informatik.hu-berlin.de/pub/gnu/gnu/%SUBDIR%/ \
-	ftp://ftp.informatik.rwth-aachen.de/pub/mirror/ftp.gnu.org/pub/gnu/%SUBDIR%/ \
-	http://ftp.funet.fi/pub/gnu/prep/%SUBDIR%/
+	https://ftp.gnu.org/gnu/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_GNUPG)
@@ -891,11 +895,27 @@ MASTER_SITE_OPENBSD+= \
 	https://mirror.aarnet.edu.au/pub/OpenBSD/%SUBDIR%/
 .endif
 
+# Reference: https://osdn.net/docs/FileRelease_Guide#h2-Release.20File.20URL.20Formats
 .if !defined(IGNORE_MASTER_SITE_OSDN)
-.for mirror in aarnet acc c3sl cznic gigenet iij jaist nchc onet osdn pumath rwthaachen ymu
 MASTER_SITE_OSDN+= \
-	http://${mirror}.dl.osdn.jp/%SUBDIR%/
-.endfor
+	https://osdn.net/dl/%SUBDIR%/
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_OSDN_CHAMBER)
+MASTER_SITE_OSDN_CHAMBER+= \
+	https://osdn.net/downloads/users/%SUBDIR%/
+.endif
+
+# From https://osdn.net/docs/FileRelease_Guide#h2-Direct.20Download
+#   "Currently, when a release-file URL is accessed from wget, curl,
+#   libwww-perl, PowerShell, apt, dnf, or other package management
+#   tools, downloading of the file will begin right away without
+#   having to go via html page."
+# Unfortunately fetch(1) isn't included in such user agents. Therefore
+# add --user-agent option to FETCH_ARGS so access is considered as
+# that of ftp/curl.
+.if !empty(MASTER_SITES:M*OSDN*) || !empty(PATCH_SITES:M*OSDN*)
+FETCH_ARGS+=	--user-agent=curl/7.68.0
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_OSSP)
@@ -1039,7 +1059,7 @@ MASTER_SITE_SAVANNAH+= \
 .if !defined(IGNORE_MASTER_SITE_SOURCEFORGE)
 .for p in https http
 MASTER_SITE_SOURCEFORGE+= ${p}://downloads.sourceforge.net/project/%SUBDIR%/
-.for m in cytranet excellmedia freefr jaist kent nchc \
+.for m in excellmedia freefr jaist nchc \
 	netcologne netix superb-dca2 superb-sea2 ufpr vorboss
 MASTER_SITE_SOURCEFORGE+= ${p}://${m}.dl.sourceforge.net/project/%SUBDIR%/
 .endfor
@@ -1198,17 +1218,21 @@ MASTER_SITE_XORG+= \
 
 .if !defined(IGNORE_MASTER_SITE_KERNEL_ORG)
 MASTER_SITE_KERNEL_ORG+= \
+	https://cdn.kernel.org/pub/%SUBDIR%/ \
 	https://www.kernel.org/pub/%SUBDIR%/ \
+	https://download.xs4all.nl/ftp.kernel.org/pub/%SUBDIR%/ \
+	https://mirrors.mit.edu/kernel/%SUBDIR%/ \
+	http://ftp.nara.wide.ad.jp/pub/kernel.org/%SUBDIR%/ \
+	http://ftp.yandex.ru/pub/%SUBDIR%/ \
+	http://ftp.heanet.ie/pub/kernel.org/pub/%SUBDIR%/ \
 	ftp://ftp.ntu.edu.tw/%SUBDIR%/ \
-	https://ftp.yandex.ru/pub/%SUBDIR%/ \
-	https://ftp.heanet.ie/pub/%SUBDIR%/ \
-	http://slackware.cs.utah.edu/pub/kernel.org/pub/%SUBDIR%/
+	ftp://ftp.riken.jp/Linux/kernel.org/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_ZI)
 MASTER_SITE_ZI+= \
-	https://mirrors.rit.edu/zi/ \
-	https://blackened.zi0r.com/mirrors/ \
+	https://mirrors.rit.edu/zi/%SUBDIR%/ \
+	https://www.zi0r.com/mirrors/%SUBDIR%/ \
 	${MASTER_SITE_LOCAL:S/%SUBDIR%/zi/}
 .endif
 

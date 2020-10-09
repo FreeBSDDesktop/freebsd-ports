@@ -2166,8 +2166,8 @@ lib/python%%XYDOT%%/ensurepip/__pycache__/__main__.cpython-%%XY%%.pyc
 lib/python%%XYDOT%%/ensurepip/__pycache__/_uninstall.cpython-%%XY%%.opt-1.pyc
 lib/python%%XYDOT%%/ensurepip/__pycache__/_uninstall.cpython-%%XY%%.opt-2.pyc
 lib/python%%XYDOT%%/ensurepip/__pycache__/_uninstall.cpython-%%XY%%.pyc
-lib/python%%XYDOT%%/ensurepip/_bundled/pip-19.2.3-py2.py3-none-any.whl
-lib/python%%XYDOT%%/ensurepip/_bundled/setuptools-41.2.0-py2.py3-none-any.whl
+lib/python%%XYDOT%%/ensurepip/_bundled/pip-20.2.1-py2.py3-none-any.whl
+lib/python%%XYDOT%%/ensurepip/_bundled/setuptools-49.2.1-py3-none-any.whl
 lib/python%%XYDOT%%/ensurepip/_uninstall.py
 lib/python%%XYDOT%%/enum.py
 lib/python%%XYDOT%%/filecmp.py
@@ -2221,8 +2221,8 @@ lib/python%%XYDOT%%/http/server.py
 lib/python%%XYDOT%%/idlelib/CREDITS.txt
 lib/python%%XYDOT%%/idlelib/ChangeLog
 lib/python%%XYDOT%%/idlelib/HISTORY.txt
+lib/python%%XYDOT%%/idlelib/Icons/README.txt
 lib/python%%XYDOT%%/idlelib/Icons/folder.gif
-lib/python%%XYDOT%%/idlelib/Icons/idle.icns
 lib/python%%XYDOT%%/idlelib/Icons/idle.ico
 lib/python%%XYDOT%%/idlelib/Icons/idle_16.gif
 lib/python%%XYDOT%%/idlelib/Icons/idle_16.png
@@ -2230,6 +2230,7 @@ lib/python%%XYDOT%%/idlelib/Icons/idle_32.gif
 lib/python%%XYDOT%%/idlelib/Icons/idle_32.png
 lib/python%%XYDOT%%/idlelib/Icons/idle_48.gif
 lib/python%%XYDOT%%/idlelib/Icons/idle_48.png
+lib/python%%XYDOT%%/idlelib/Icons/idle_256.png
 lib/python%%XYDOT%%/idlelib/Icons/minusnode.gif
 lib/python%%XYDOT%%/idlelib/Icons/openfolder.gif
 lib/python%%XYDOT%%/idlelib/Icons/plusnode.gif
@@ -3501,6 +3502,9 @@ lib/python%%XYDOT%%/test/__pycache__/bisect_cmd.cpython-%%XY%%.pyc
 lib/python%%XYDOT%%/test/__pycache__/bytecode_helper.cpython-%%XY%%.opt-1.pyc
 lib/python%%XYDOT%%/test/__pycache__/bytecode_helper.cpython-%%XY%%.opt-2.pyc
 lib/python%%XYDOT%%/test/__pycache__/bytecode_helper.cpython-%%XY%%.pyc
+lib/python%%XYDOT%%/test/__pycache__/dataclass_textanno.cpython-%%XY%%.opt-1.pyc
+lib/python%%XYDOT%%/test/__pycache__/dataclass_textanno.cpython-%%XY%%.opt-2.pyc
+lib/python%%XYDOT%%/test/__pycache__/dataclass_textanno.cpython-%%XY%%.pyc
 lib/python%%XYDOT%%/test/__pycache__/test_clinic.cpython-%%XY%%.opt-1.pyc
 lib/python%%XYDOT%%/test/__pycache__/test_clinic.cpython-%%XY%%.opt-2.pyc
 lib/python%%XYDOT%%/test/__pycache__/test_clinic.cpython-%%XY%%.pyc
@@ -5008,6 +5012,7 @@ lib/python%%XYDOT%%/test/dataclass_module_1.py
 lib/python%%XYDOT%%/test/dataclass_module_1_str.py
 lib/python%%XYDOT%%/test/dataclass_module_2.py
 lib/python%%XYDOT%%/test/dataclass_module_2_str.py
+lib/python%%XYDOT%%/test/dataclass_textanno.py
 lib/python%%XYDOT%%/test/datetimetester.py
 lib/python%%XYDOT%%/test/decimaltestdata/abs.decTest
 lib/python%%XYDOT%%/test/decimaltestdata/add.decTest
@@ -5309,6 +5314,7 @@ lib/python%%XYDOT%%/test/randv2_32.pck
 lib/python%%XYDOT%%/test/randv2_64.pck
 lib/python%%XYDOT%%/test/randv3.pck
 lib/python%%XYDOT%%/test/re_tests.py
+lib/python%%XYDOT%%/test/recursion.tar
 lib/python%%XYDOT%%/test/regrtest.py
 lib/python%%XYDOT%%/test/relimport.py
 lib/python%%XYDOT%%/test/reperf.py
@@ -5889,6 +5895,9 @@ lib/python%%XYDOT%%/test/test_importlib/__pycache__/abc.cpython-%%XY%%.pyc
 lib/python%%XYDOT%%/test/test_importlib/__pycache__/fixtures.cpython-%%XY%%.opt-1.pyc
 lib/python%%XYDOT%%/test/test_importlib/__pycache__/fixtures.cpython-%%XY%%.opt-2.pyc
 lib/python%%XYDOT%%/test/test_importlib/__pycache__/fixtures.cpython-%%XY%%.pyc
+lib/python%%XYDOT%%/test/test_importlib/__pycache__/stubs.cpython-%%XY%%.opt-1.pyc
+lib/python%%XYDOT%%/test/test_importlib/__pycache__/stubs.cpython-%%XY%%.opt-2.pyc
+lib/python%%XYDOT%%/test/test_importlib/__pycache__/stubs.cpython-%%XY%%.pyc
 lib/python%%XYDOT%%/test/test_importlib/__pycache__/test_abc.cpython-%%XY%%.opt-1.pyc
 lib/python%%XYDOT%%/test/test_importlib/__pycache__/test_abc.cpython-%%XY%%.opt-2.pyc
 lib/python%%XYDOT%%/test/test_importlib/__pycache__/test_abc.cpython-%%XY%%.pyc
@@ -6156,6 +6165,7 @@ lib/python%%XYDOT%%/test/test_importlib/source/test_file_loader.py
 lib/python%%XYDOT%%/test/test_importlib/source/test_finder.py
 lib/python%%XYDOT%%/test/test_importlib/source/test_path_hook.py
 lib/python%%XYDOT%%/test/test_importlib/source/test_source_encoding.py
+lib/python%%XYDOT%%/test/test_importlib/stubs.py
 lib/python%%XYDOT%%/test/test_importlib/test_abc.py
 lib/python%%XYDOT%%/test/test_importlib/test_api.py
 lib/python%%XYDOT%%/test/test_importlib/test_lazy.py

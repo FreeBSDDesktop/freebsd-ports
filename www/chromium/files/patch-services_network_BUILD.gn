@@ -1,4 +1,4 @@
---- services/network/BUILD.gn.orig	2019-10-21 19:06:39 UTC
+--- services/network/BUILD.gn.orig	2020-07-07 21:58:16 UTC
 +++ services/network/BUILD.gn
 @@ -261,7 +261,6 @@ jumbo_component("network_service") {
  

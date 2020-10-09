@@ -3,7 +3,7 @@
 
 PORTNAME=	dico
 PORTVERSION=	2.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net textproc
 MASTER_SITES=	GNU
 PKGNAMEPREFIX=	gnu-
@@ -39,7 +39,7 @@ GUILE_CONFIGURE_OFF=	--without-guile
 PCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
 PCRE_CONFIGURE_OFF=	--without-pcre
 
-GSASL_LIB_DEPENDS=	libgsasl.so:security/gsasl
+GSASL_LIB_DEPENDS=	libgsasl.so:security/libgsasl
 GSASL_CONFIGURE_WITH=	gsasl
 
 PAM_CONFIGURE_ENABLE=	pam
@@ -59,6 +59,8 @@ post-patch:
 		-e 's/python-config/$${PYTHON_CONFIG}/' \
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} 's/mergesort/xmergesort/' ${WRKSRC}/lib/mergesort.c
+	@${REINPLACE_CMD} -E '/(dico_markup_list|text_udb_def);/s,^,extern ,' \
+		${WRKSRC}/include/dico/markup.h ${WRKSRC}/dicod/dicod.h
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/dicod.conf ${STAGEDIR}${PREFIX}/etc/dicod.conf.sample

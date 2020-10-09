@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	tqdm
-DISTVERSION=	4.37.0
+PORTVERSION=	4.50.0
 CATEGORIES=	misc
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	neel@neelc.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Fast, extensible progress bar for Python
 
 LICENSE=	MIT MPL20
@@ -14,7 +14,7 @@ LICENSE_COMB=	multi
 LICENSE_FILE_MIT=	${WRKSRC}/LICENCE
 
 USES=		python
-USE_PYTHON=	distutils autoplist concurrent
+USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
 

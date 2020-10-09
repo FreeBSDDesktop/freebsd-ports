@@ -2,10 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	denyhosts
-PORTVERSION=	3.1
-DISTVERSIONPREFIX=	v
+PORTVERSION=	3.1.2
 CATEGORIES=	security
 PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
+MASTER_SITES=	https://github.com/denyhosts/denyhosts/releases/download/v${PORTVERSION:R}/
+DISTNAME=	DenyHosts-${PORTVERSION}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Script to thwart ssh and imap attacks
@@ -20,27 +21,20 @@ USES=		cpe python shebangfix
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
-REINPLACE_ARGS=	-i ''
 USE_RC_SUBR=	denyhosts
 
 PLIST_FILES=	"@sample etc/denyhosts.conf.sample"
 SUB_FILES=	pkg-message
 SUB_LIST=	PYTHON=${PYTHON_CMD}
 
-USE_GITHUB=	yes
-
-SHEBANG_LANG=	env
 SHEBANG_FILES=	daemon-control-dist \
 		plugins/test_deny.py \
 		scripts/restricted_from_invalid.py \
 		scripts/restricted_from_passwd.py
-env_OLD_CMD=	/bin/env
-env_CMD=	${SETENV}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' ${WRKSRC}/daemon-control-dist ${WRKSRC}/denyhosts.conf ${WRKSRC}/setup.py
 	@${REINPLACE_CMD} -e 's|%%PYTHON_CMD%%|${PYTHON_CMD}|' ${WRKSRC}/daemon-control-dist
-	@${FIND} ${WRKSRC} -type f -name '*.bak' -o -name '*.orig' -delete
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/denyhosts.conf ${STAGEDIR}${PREFIX}/etc/denyhosts.conf.sample

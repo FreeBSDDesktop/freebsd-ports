@@ -5,7 +5,7 @@ PORTNAME=	qudos
 PORTVERSION=	0.40.1
 PORTREVISION=	19
 CATEGORIES=	games
-MASTER_SITES=	http://www.bfeared.com/library/quake/archive/quakedev/qudos/quake2/engines/QuDos/
+MASTER_SITES=	http://freebsd.nsu.ru/distfiles/ LOCAL/danfe
 DISTNAME=	QuDos-${PORTVERSION}-src
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		QuDos-${PORTVERSION}.pk3
@@ -13,8 +13,6 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	danfe@FreeBSD.org
 COMMENT=	Enhanced OpenGL-only Quake II engine
-
-BROKEN=		unfetchable
 
 USES=		gmake tar:bzip2
 MAKE_ENV=	WITH_DATADIR=YES WITH_LIBDIR=YES WITH_XMMS=NO \
@@ -177,9 +175,6 @@ post-patch:
 # Resolve name collision with jpeg-8
 	@${REINPLACE_CMD} -e 's|jpeg_mem_src|local_jpeg_mem_src|' \
 		${WRKSRC}/src/ref_gl/gl_image.c
-# Remove controversial options unsupported by modern compilers (e.g. Clang)
-	@${REINPLACE_CMD} -e 's|-falign-loops=2 -falign-jumps=2 ||' \
-		${WRKSRC}/src/ref_gl/Makefile ${WRKSRC}/Makefile
 
 post-build:
 .for bin in ${Q2BIN}

@@ -2,9 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	sqlite3
-DISTVERSION=	3.30.1
+DISTVERSION=	3.33.0
+PORTEPOCH=	1
 CATEGORIES=	databases
-MASTER_SITES=	https://www.sqlite.org/2019/ http://www2.sqlite.org/2019/ http://www3.sqlite.org/2019/
+MASTER_SITES=	https://www.sqlite.org/2020/ http://www2.sqlite.org/2020/ http://www3.sqlite.org/2020/
 DISTNAME=	sqlite-autoconf-${PORTVERSION:C/\.([[:digit:]])[[:>:]]/0\1/g:S/.//g}00
 
 MAINTAINER=	pavelivolkov@gmail.com
@@ -12,7 +13,7 @@ COMMENT=	SQL database engine in a C library
 
 LICENSE=	PD
 
-USES=		libtool ncurses pathfix
+USES=		libtool pathfix
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
@@ -24,10 +25,10 @@ OPTIONS_DEFINE=		FTS4 URI URI_AUTHORITY METADATA \
 			DIRECT_READ MEMMAN SECURE_DELETE UNLOCK_NOTIFY THREADS \
 			EXTENSION ARMOR STMT DBPAGE DBSTAT FTS5 RBU NULL_TRIM \
 			LIKENOTBLOB STSHELL FTS3_TOKEN UNKNOWN_SQL SORT_REF \
-			NORMALIZE DQS
+			NORMALIZE DQS TRUSTED_SCHEMA
 OPTIONS_SINGLE=		RAMT
-OPTIONS_RADIO=		STAT
-OPTIONS_GROUP=		OPT_EXT OPT_FUNC UNICODE RTREEG RL
+OPTIONS_RADIO=		STAT RL
+OPTIONS_GROUP=		OPT_EXT OPT_FUNC UNICODE RTREEG
 
 OPTIONS_GROUP_OPT_EXT=	JSON1 SESSION
 OPTIONS_GROUP_OPT_FUNC=	OFFSET SER1 SOUNDEX
@@ -93,6 +94,9 @@ STMT_DESC=		Prepared statement scan status
 # https://www.sqlite.org/compile.html#enable_sorter_references
 SORT_REF_DESC=		To use references in the sorter
 
+# https://www.sqlite.org/compile.html#trusted_schema
+TRUSTED_SCHEMA_DESC=	SQL functions & virtual tables are considered unsafe
+
 # https://www.sqlite.org/tempfiles.html#tempstore
 OPTIONS_SINGLE_RAMT=	TS0 TS1 TS2 TS3
 RAMT_DESC=		Where to store temporary file
@@ -104,8 +108,8 @@ TS3_DESC=		Always use memory
 # https://www.sqlite.org/queryplanner-ng.html#qpstab
 OPTIONS_RADIO_STAT=	STAT3 STAT4
 STAT_DESC=		Which query planner to use, stability or ...
-STAT3_DESC=		collect histogram data from leftmost column
-STAT4_DESC=		collect histogram data from all columns
+STAT3_DESC=		Collect histogram data from leftmost column
+STAT4_DESC=		Collect histogram data from all columns
 
 # https://sqlite.org/compile.html#enable_dbpage_vtab
 DBPAGE_DESC=		Enable DBPAGE Virtual Table
@@ -127,22 +131,17 @@ RTREE_INT_DESC=		Store 32-bit sig int (no float) coordinates
 GEOPOLY_DESC=		Uses the GeoJSON notation (RFC-7946)
 GEOPOLY_IMPLIES=	RTREE
 
-OPTIONS_GROUP_RL=	READLINES READLINEP EDITLINE
-RL_DESC=		Which command line editing library to use:
-READLINES_DESC=		the libreadline from system
-READLINEP_DESC=		the GNU libreadline from ports
-EDITLINE_DESC=		the BSD libedit from ports
-READLINES_PREVENTS=	READLINEP EDITLINE
-READLINEP_PREVENTS=	READLINES EDITLINE
-EDITLINE_PREVENTS=	READLINES READLINEP
+OPTIONS_RADIO_RL=	READLINE LIBEDIT
+RL_DESC=		Command line editing library
 
 OPTIONS_DEFAULT=	FTS4 URI METADATA SECURE_DELETE UNLOCK_NOTIFY THREADS \
-			EXTENSION TS1 UNICODE61 RTREE DBSTAT STSHELL READLINES \
-			FTS3_TOKEN FTS5 DQS
+			EXTENSION TS1 UNICODE61 RTREE DBSTAT STSHELL LIBEDIT \
+			FTS3_TOKEN FTS5 DQS JSON1
 # SECURE_DELETE, UNLOCK_NOTIFY, DBSTAT (since 41.0) used by www/firefox et al.
 # RTREE used by graphics/mapnik, databases/spatialite
 # FTS3_TOKEN used by audio/clementine-player, mail/thunderbird, www/seamonkey
 # FTS5 used by sysutils/tracker
+# JSON1 used by net-im/py-matrix-synapse
 
 PLIST_FILES=	bin/sqlite3 include/sqlite3.h include/sqlite3ext.h \
 		lib/libsqlite3.a lib/libsqlite3.so lib/libsqlite3.so.0 \
@@ -191,6 +190,8 @@ EXTENSION_CONFIGURE_ENABLE=	dynamic-extensions
 THREADS_CONFIGURE_ENABLE=	threadsafe
 THREADS_LIBS=		-lpthread
 
+TRUSTED_SCHEMA_CPPFLAGS=	-DSQLITE_TRUSTED_SCHEMA=0
+
 ICU_BUILD_DEPENDS=	${LOCALBASE}/bin/icu-config:devel/icu
 ICU_LIB_DEPENDS=	libicudata.so:devel/icu
 ICU_CPPFLAGS=	`${LOCALBASE}/bin/icu-config --cppflags` -DSQLITE_ENABLE_ICU=1
@@ -199,12 +200,10 @@ ICU_LIBS=	`${LOCALBASE}/bin/icu-config --ldflags`
 UNICODE61_CPPFLAGS=	""
 UNICODE61_CPPFLAGS_OFF=	-DSQLITE_DISABLE_FTS3_UNICODE=1
 
-READLINES_CONFIGURE_ON=	--enable-readline
-READLINES_USES=	readline
-READLINEP_CONFIGURE_ON=	--enable-readline
-READLINEP_USES=	readline:port
-EDITLINE_CONFIGURE_ENABLE=	editline
-EDITLINE_USES=	libedit
+LIBEDIT_CONFIGURE_ENABLE=	editline
+LIBEDIT_USES=	libedit
+READLINE_CONFIGURE_ENABLE=	readline
+READLINE_USES=	readline
 
 JSON1_CONFIGURE_ENABLE=	json1
 
@@ -235,6 +234,7 @@ DQS_CPPFLAGS_OFF=	-DSQLITE_DQS=0
 
 # Platform Configuration
 CPPFLAGS+=	-DHAVE_ISNAN=1 -DHAVE_MALLOC_USABLE_SIZE=1 -DHAVE_GMTIME_R=1 -DHAVE_LOCALTIME_R=1 -DHAVE_USLEEP=1 -DHAVE_STRCHRNUL=1
+CFLAGS_powerpc64le=	-DSQLITE_BYTEORDER=1234
 
 post-configure:
 	@${ECHO_MSG} "===> CONFIGURE_ARGS=${CONFIGURE_ARGS}"
@@ -248,8 +248,12 @@ post-build:
 	@${ECHO_MSG} "===> WARNING: on ${ARCH} don't pass atof1-* tests"
 .endif
 
+post-stage:
+	${SETENV} LD_LIBMAP_DISABLE=1 ldd -a "${STAGEDIR}${PREFIX}/bin/${PORTNAME}"
+
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/include/msvc.h
+	${SETENV} LD_LIBMAP_DISABLE=1 ldd -a "${STAGEDIR}${PREFIX}/bin/${PORTNAME}" "${STAGEDIR}${PREFIX}/lib/lib${PORTNAME}.so"
 
 # for compares with checksum from of the site
 sha1: checksum
@@ -258,5 +262,13 @@ sha1: checksum
 .else
 	@sha1 ${DISTDIR}/${ALLFILES}
 .endif
+
+# For compare with checksum from of the site. Now, this is a NIST SHA3-256 hash. sha256 not suitable for compare.
+# But the creation of a new target does not justify the emergence of dependence on the perl5.
+# sha3sum maybe installed with p5-Digest-SHA3 port.
+# EXTRACT_DEPENDS=p5-Digest-SHA3:security/p5-Digest-SHA3; USES=perl5; USE_PERL5=extract;
+# @${PERL} -MDigest::SHA3 -le 'print Digest::SHA3->new(sha_256_hex)->add(<>)->hexdigest' < ${DISTDIR}/${ALLFILES}
+sha3: checksum
+	@sha3sum -a 256 ${DISTDIR}/${ALLFILES}
 
 .include <bsd.port.mk>

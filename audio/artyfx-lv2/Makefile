@@ -4,7 +4,7 @@ PORTNAME=	artyfx
 DISTVERSIONPREFIX=	release-
 DISTVERSION=	1.3-14
 DISTVERSIONSUFFIX=	-gb247969
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 PKGNAMESUFFIX=	-lv2
 
@@ -13,6 +13,8 @@ COMMENT=	ArtyFX plugin bundle
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN=		lv2_ui.cxx:139:3: error: cannot initialize a member subobject of type 'LV2UI_Handle'
 
 BUILD_DEPENDS=	lv2>0:audio/lv2
 LIB_DEPENDS=	libsndfile.so:audio/libsndfile

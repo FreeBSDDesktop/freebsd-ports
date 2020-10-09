@@ -7,12 +7,13 @@
 # Starting with version 1.0-7667, NVidia has dropped support for numerous
 # "legacy" GPUs.  Consult NVidia README (the Appendix) to find out whether
 # you need to use legacy driver version and install one of corresponding
-# slave ports instead (`x11/nvidia-driver-340' or `x11/nvidia-driver-304').
+# slave ports instead (`x11/nvidia-driver-390', `x11/nvidia-driver-340',
+# or `x11/nvidia-driver-304').
 
 PORTNAME=	nvidia-driver
-DISTVERSION?=	440.31
+DISTVERSION?=	440.100
 # Always try to set PORTREVISION as it can be overridden by the slave ports
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	x11
 MASTER_SITES=	NVIDIA/XFree86/FreeBSD-${ARCH_SUFX}/${DISTVERSION}
 DISTNAME=	NVIDIA-FreeBSD-${ARCH_SUFX}-${DISTVERSION}
@@ -34,15 +35,9 @@ USES=		kmod uidfix xorg
 USE_XORG=	x11 xorg-server xext
 USE_LDCONFIG=	yes
 
-# NVIDIA_ROOT is not set in src/Makefile, which results in bogus -I/src
-# passed to compiler and broken build on HEAD since r221320 when option
-# -Wmissing-include-dirs was added for kernel sources.  Until properly
-# fixed upstream (across all versions, including legacy ones), use this
-# hack below to universally set NVIDIA_ROOT.  Also provide X11BASE value
-# since it is still used by legacy drivers.
 GLVND_JSON_PATH=	${PREFIX}/share/glvnd/egl_vendor.d
 WAYLAND_JSON_PATH=	${PREFIX}/share/egl/egl_external_platform.d
-MAKE_ENV=	NVIDIA_ROOT=${WRKSRC} X11BASE=${LOCALBASE} \
+MAKE_ENV=	DEBUG_FLAGS=${DEBUG_FLAGS} \
 		EGL_GLVND_JSON_PATH=${STAGEDIR}${GLVND_JSON_PATH} \
 		EGL_WAYLAND_JSON_PATH=${STAGEDIR}${WAYLAND_JSON_PATH}
 SUB_FILES=	pkg-message nvidia.conf
@@ -250,6 +245,9 @@ post-install: .SILENT
 	${REINPLACE_CMD} -e '/libnvidia-egl-wayland\.so/d ; \
 		/10_nvidia_wayland\.json/d' ${TMPPLIST}
 .endif
+.if ${NVVERSION} < 440.036
+	${REINPLACE_CMD} -e '/lib32\//d' ${TMPPLIST}
+.endif
 # Rename some libraries and install a libmap file to resolve conflict with
 # Mesa libraries.
 	${LN} -sf libGL-NVIDIA.so.1 \
@@ -263,6 +261,8 @@ post-install: .SILENT
 	${MV} -f ${STAGEDIR}${PREFIX}/lib/libEGL.so.1 \
 		${STAGEDIR}${PREFIX}/lib/libEGL-NVIDIA.so.1
 	${RM} ${STAGEDIR}${PREFIX}/lib/libEGL.so
+	${RM} ${STAGEDIR}${PREFIX}/lib/libGLESv1_CM.so
+	${RM} ${STAGEDIR}${PREFIX}/lib/libGLESv1_CM.so.1
 	${LN} -sf libGLESv2-NVIDIA.so.2 \
 		${STAGEDIR}${PREFIX}/lib/libGLESv2-NVIDIA.so
 	${MV} -f ${STAGEDIR}${PREFIX}/lib/libGLESv2.so.2 \

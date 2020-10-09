@@ -6,11 +6,13 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	15
 CATEGORIES=	cad
 
-MAINTAINER=	phascolarctos@protonmail.ch
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Compact Finite Element Analysis System
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN_FreeBSD_12_powerpc64=	fails to link: /usr/bin/ld: : No such file: No such file or directory
 
 LIB_DEPENDS=	libgtkglext-x11-1.0.so:x11-toolkits/gtkglext \
 		libfontconfig.so:x11-fonts/fontconfig \

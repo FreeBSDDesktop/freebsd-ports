@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	phpbb
-DISTVERSION=	3.2.7
+DISTVERSION=	3.3.1
 CATEGORIES=	www
-MASTER_SITES=	https://www.phpbb.com/files/release/
+MASTER_SITES=	https://download.phpbb.com/pub/release/${PORTVERSION:C/([0-9]+\.[0-9]+).*/\1/}/${PORTVERSION}/
 PKGNAMESUFFIX=	3
 DISTNAME=	phpBB-${PORTVERSION}
 
@@ -15,7 +15,7 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/docs/LICENSE.txt
 
 USES=		php tar:bzip2
-USE_PHP=	ctype hash json tokenizer
+USE_PHP=	ctype dom filter hash json tokenizer
 
 CONFLICTS=	phpbb-[0-2]*
 

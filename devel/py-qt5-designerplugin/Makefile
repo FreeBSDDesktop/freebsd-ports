@@ -19,7 +19,7 @@ PYQT_DIST=	yes
 
 USES=		gl python pyqt:5 qt:5
 USE_GL=		gl
-USE_PYQT=	sip_build
+USE_PYQT=	sip_build 
 USE_PYTHON=	concurrent flavors py3kplist
 USE_QT=		core designer gui xml widgets \
 		buildtools_build qmake_build

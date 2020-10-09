@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	hocon
-PORTVERSION=	1.2.6
+PORTVERSION=	1.3.1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 

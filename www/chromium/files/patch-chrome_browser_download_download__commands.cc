@@ -1,6 +1,6 @@
---- chrome/browser/download/download_commands.cc.orig	2019-07-24 18:58:09 UTC
+--- chrome/browser/download/download_commands.cc.orig	2020-05-13 18:39:37 UTC
 +++ chrome/browser/download/download_commands.cc
-@@ -30,7 +30,7 @@
+@@ -27,7 +27,7 @@
  #include "net/base/url_util.h"
  #include "ui/base/clipboard/scoped_clipboard_writer.h"
  
@@ -9,7 +9,7 @@
  #include "chrome/browser/ui/browser.h"
  #include "chrome/browser/ui/browser_finder.h"
  #include "chrome/browser/ui/scoped_tabbed_browser_displayer.h"
-@@ -157,7 +157,7 @@ void DownloadCommands::ExecuteCommand(Command command)
+@@ -154,7 +154,7 @@ void DownloadCommands::ExecuteCommand(Command command)
    model_->ExecuteCommand(this, command);
  }
  
@@ -18,7 +18,7 @@
  
  Browser* DownloadCommands::GetBrowser() const {
    chrome::ScopedTabbedBrowserDisplayer browser_displayer(model_->profile());
-@@ -180,12 +180,12 @@ bool DownloadCommands::CanOpenPdfInSystemViewer() cons
+@@ -177,12 +177,12 @@ bool DownloadCommands::CanOpenPdfInSystemViewer() cons
    return IsDownloadPdf() &&
           (IsAdobeReaderDefaultPDFViewer() ? is_adobe_pdf_reader_up_to_date
                                            : true);

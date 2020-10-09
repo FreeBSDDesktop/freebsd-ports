@@ -30,12 +30,14 @@ lib/libexec/kauth/kauth-policy-gen
 %%QT_PLUGINDIR%%/kauth/backend/kauth_backend_plugin.so
 %%QT_PLUGINDIR%%/kauth/helper/kauth_helper_plugin.so
 %%QT_MKSPECDIR%%/modules/qt_KAuth.pri
+%%QT_MKSPECDIR%%/modules/qt_KAuthCore.pri
 share/dbus-1/system.d/org.kde.kf5auth.conf
 share/kf5/kauth/dbus_policy.stub
 share/kf5/kauth/dbus_service.stub
 share/locale/af/LC_MESSAGES/kauth5_qt.qm
 share/locale/ar/LC_MESSAGES/kauth5_qt.qm
 share/locale/as/LC_MESSAGES/kauth5_qt.qm
+share/locale/az/LC_MESSAGES/kauth5_qt.qm
 share/locale/be/LC_MESSAGES/kauth5_qt.qm
 share/locale/be@latin/LC_MESSAGES/kauth5_qt.qm
 share/locale/bg/LC_MESSAGES/kauth5_qt.qm
@@ -133,3 +135,4 @@ share/locale/zh_CN/LC_MESSAGES/kauth5_qt.qm
 share/locale/zh_HK/LC_MESSAGES/kauth5_qt.qm
 share/locale/zh_TW/LC_MESSAGES/kauth5_qt.qm
 share/qlogging-categories5/kauth.categories
+share/qlogging-categories5/kauth.renamecategories

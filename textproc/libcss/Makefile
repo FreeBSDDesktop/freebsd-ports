@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	libcss
-PORTVERSION=	0.9.0
+PORTVERSION=	0.9.1
 CATEGORIES=	textproc
 MASTER_SITES=	https://download.netsurf-browser.org/libs/releases/
 EXTRACT_SUFX=	-src.tar.gz
 
-MAINTAINER=	neel@neelc.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Cascading Style Sheets library
 
 LICENSE=	MIT
@@ -21,6 +21,7 @@ USES=		gmake iconv:wchar_t localbase pkgconfig
 
 USE_LDCONFIG=	yes
 MAKE_ENV=	COMPONENT_TYPE="lib-shared"
+CFLAGS+=		-Wno-error
 LDFLAGS+=	${ICONV_LIB}
 PLIST_SUB=	VERSION=${PORTVERSION}
 

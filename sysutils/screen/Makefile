@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	screen
-PORTVERSION=	4.7.0
-PORTREVISION=	7
+PORTVERSION=	4.8.0
 CATEGORIES=	sysutils
 MASTER_SITES=	GNU \
 		ftp://ftp.gnu.org/gnu/screen/ \
@@ -25,7 +24,6 @@ OPTIONS_DEFAULT=	INFO NETHACK XTERM_256 SOCKETS SYSTEM_SCREENRC \
 OPTIONS_SINGLE=		IPC NCURSES
 OPTIONS_SINGLE_IPC=	SOCKETS NAMED_PIPES
 OPTIONS_SINGLE_NCURSES=	NCURSES_DEFAULT NCURSES_BASE NCURSES_PORT
-INFO_DESC=		Build and install info documentation
 NETHACK_DESC=		Enable nethack-style messages
 XTERM_256_DESC=		Enable support for 256 colour xterm
 SHOWENC_DESC=		Show encoding on the status line
@@ -49,7 +47,8 @@ CPE_VENDOR=	gnu
 
 .include <bsd.port.options.mk>
 
-.if ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == i386
+.if ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == i386 || \
+    ${ARCH:Mpowerpc*}
 SSP_CFLAGS?=	-fno-stack-protector
 .endif
 

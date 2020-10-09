@@ -4,7 +4,7 @@
 PORTNAME=	lightzone
 DISTVERSION=	4.1.8-3
 DISTVERSIONSUFFIX=	-g36e87773
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	graphics java
 DIST_SUBDIR=	${PORTNAME}
 
@@ -23,7 +23,6 @@ BUILD_DEPENDS=	jhindexer:java/javahelp \
 		tidy:www/tidy-lib \
 		autoconf:devel/autoconf
 LIB_DEPENDS=	liblcms2.so:graphics/lcms2 \
-		libomp.so:devel/openmp \
 		libtiff.so:graphics/tiff
 RUN_DEPENDS=	jhindexer:java/javahelp
 
@@ -41,7 +40,6 @@ USE_GCC=	yes
 USE_LDCONFIG=	yes
 USE_XORG=	x11
 JAVA_VENDOR=	openjdk
-JAVA_VERSION=	1.6+
 JAVA_BUILD=	yes
 JAVA_RUN=	yes
 INSTALLS_ICONS=	yes

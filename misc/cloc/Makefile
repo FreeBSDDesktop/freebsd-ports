@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	cloc
-PORTVERSION=	1.82
+PORTVERSION=	1.86
 CATEGORIES=	misc
 
 MAINTAINER=	danilo@FreeBSD.org

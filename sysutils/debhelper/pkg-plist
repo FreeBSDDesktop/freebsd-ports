@@ -14,6 +14,7 @@ bin/dh_gconf
 bin/dh_gencontrol
 bin/dh_icons
 bin/dh_install
+bin/dh_installalternatives
 bin/dh_installcatalogs
 bin/dh_installchangelogs
 bin/dh_installcron
@@ -39,6 +40,7 @@ bin/dh_installpam
 bin/dh_installppp
 bin/dh_installsystemd
 bin/dh_installsystemduser
+bin/dh_installtmpfiles
 bin/dh_installudev
 bin/dh_installwm
 bin/dh_installxfonts
@@ -61,13 +63,13 @@ bin/dh_ucf
 bin/dh_update_autotools_config
 bin/dh_usrlocal
 bin/maintscript-helper
+bin/postinst-alternatives
 bin/postinst-emacsen
 bin/postinst-icons
 bin/postinst-init
 bin/postinst-init-nostart
 bin/postinst-init-restart
 bin/postinst-init-tmpfiles
-bin/postinst-initramfs-hook
 bin/postinst-menu
 bin/postinst-menu-method
 bin/postinst-modules
@@ -86,7 +88,6 @@ bin/postinst-xfonts
 bin/postrm-debconf
 bin/postrm-icons
 bin/postrm-init
-bin/postrm-initramfs-hook
 bin/postrm-menu
 bin/postrm-menu-method
 bin/postrm-modules
@@ -97,6 +98,7 @@ bin/postrm-systemd-user
 bin/postrm-ucf
 bin/postrm-xfonts
 bin/preinst-emacsen
+bin/prerm-alternatives
 bin/prerm-emacsen
 bin/prerm-init
 bin/prerm-init-norestart
@@ -104,6 +106,8 @@ bin/prerm-systemd
 bin/prerm-systemd-restart
 bin/prerm-usrlocal
 bin/prerm-wm
+%%SITE_PERL%%/DH/AddonAPI.pm
+%%SITE_PERL%%/DH/SequenceState.pm
 %%SITE_PERL%%/Debian/Debhelper/Buildsystem.pm
 %%SITE_PERL%%/Debian/Debhelper/Buildsystem/ant.pm
 %%SITE_PERL%%/Debian/Debhelper/Buildsystem/autoconf.pm
@@ -125,5 +129,6 @@ bin/prerm-wm
 %%SITE_PERL%%/Debian/Debhelper/Sequence/elf_tools.pm
 %%SITE_PERL%%/Debian/Debhelper/Sequence/installinitramfs.pm
 %%SITE_PERL%%/Debian/Debhelper/Sequence/python_support.pm
+%%SITE_PERL%%/Debian/Debhelper/Sequence/root_sequence.pm
 %%SITE_PERL%%/Debian/Debhelper/Sequence/systemd.pm
 %%SITE_PERL%%/Debian/Debhelper/SequencerUtil.pm

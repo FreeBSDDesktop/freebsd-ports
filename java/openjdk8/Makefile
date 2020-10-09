@@ -2,7 +2,6 @@
 
 PORTNAME=	openjdk
 PORTVERSION=	${JDK_MAJOR_VERSION}.${JDK_UPDATE_VERSION}.${JDK_BUILD_NUMBER}.${BSD_JDK_VERSION}
-PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	LOCAL/jkim:jtreg
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
@@ -52,11 +51,13 @@ INSTALLDIR=	${PREFIX}/${PKGBASE}
 NOPRECIOUSMAKEVARS=	yes
 
 JDK_MAJOR_VERSION=	8
-JDK_UPDATE_VERSION=	232
-JDK_BUILD_NUMBER=	09
+JDK_UPDATE_VERSION=	265
+JDK_BUILD_NUMBER=	01
 BSD_JDK_VERSION=	1
 JTREG_VERSION=		4.1
 JTREG_BUILD_NUMBER=	b08
+
+JDK_BUG_URL=		https://bugs.freebsd.org/bugzilla/enter_bug.cgi?product=Ports%20%26%20Packages&component=Individual%20Port(s)&short_desc=java/${PORTNAME}${JDK_MAJOR_VERSION}%3A%20
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--with-boot-jdk=${BOOTSTRAPJDKDIR}
@@ -64,6 +65,10 @@ CONFIGURE_ARGS+=	--with-build-number="b${JDK_BUILD_NUMBER}"
 .if ${JDK_UPDATE_VERSION} > 0
 CONFIGURE_ARGS+=	--with-update-version=${JDK_UPDATE_VERSION}
 .endif
+CONFIGURE_ARGS+=	--with-vendor-name="OpenJDK BSD Porting Team" \
+			--with-vendor-url="https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/" \
+			--with-vendor-bug-url="${JDK_BUG_URL}" \
+			--with-vendor-vm-bug-url="${JDK_BUG_URL}"
 .if defined(NO_CCACHE)
 CONFIGURE_ARGS+=	--disable-ccache
 .endif
@@ -195,13 +200,8 @@ LIB_DEPENDS+=	libffi.so:devel/libffi
 .endif
 
 .if ${COMPILER_TYPE} == clang
-.if ${COMPILER_VERSION} >= 35
-MAKE_ENV+=	COMPILER_WARNINGS_FATAL=false
-.endif
-MAKE_ENV+=	USE_CLANG=true
-.if ${COMPILER_FEATURES:Mlibc++}
+MAKE_ENV+=	COMPILER_WARNINGS_FATAL=false USE_CLANG=true
 CONFIGURE_ENV+=	LIBCXX="-lc++"
-.endif
 .endif
 
 # GCC is broken with PCH: https://lists.freebsd.org/pipermail/svn-src-all/2015-March/101722.html
@@ -212,6 +212,11 @@ MAKE_ARGS+=	USE_PRECOMPILED_HEADER=1
 .else
 MAKE_ARGS+=	USE_PRECOMPILED_HEADER=0
 .endif
+.endif
+
+.if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
+EXTRA_PATCHES+= ${FILESDIR}/extra-patch-ppc64-elfv2
+MAKE_ARGS+=	USE_PRECOMPILED_HEADER=0
 .endif
 
 .if empty(ICONV_LIB)

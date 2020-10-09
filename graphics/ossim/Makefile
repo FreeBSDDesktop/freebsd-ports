@@ -2,10 +2,11 @@
 
 PORTNAME=	ossim
 DISTVERSIONPREFIX=	Neptune-
-DISTVERSION=	2.10.0
+DISTVERSION=	2.10.1
+PORTREVISION=	2
 CATEGORIES=	graphics geography
 
-MAINTAINER=	lbartoletti@tuxfamily.org
+MAINTAINER=	lbartoletti@FreeBSD.org
 COMMENT=	Powerful suite of geospatial libraries and applications
 
 LICENSE=	MIT
@@ -18,7 +19,7 @@ LIB_DEPENDS=	libgeos.so:graphics/geos \
 		libtiff.so:graphics/tiff \
 		libopenjp2.so:graphics/openjpeg \
 		libfreetype.so:print/freetype2 \
-		libOpenThreads.so:graphics/osg
+		libOpenThreads.so:graphics/osg34
 
 USES=		cmake compiler:c++11-lang jpeg localbase
 USE_GITHUB=	yes

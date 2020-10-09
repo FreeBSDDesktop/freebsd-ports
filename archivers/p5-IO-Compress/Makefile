@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	IO-Compress
-PORTVERSION=	2.089
+PORTVERSION=	2.096
 CATEGORIES=	archivers perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -22,8 +22,5 @@ USES=		perl5
 USE_PERL5=	configure
 
 NO_ARCH=	yes
-
-post-patch:
-	@${REINPLACE_CMD} -e '/EXE_FILES/d' ${WRKSRC}/Makefile.PL
 
 .include <bsd.port.mk>

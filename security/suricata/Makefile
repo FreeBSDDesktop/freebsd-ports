@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	suricata
-DISTVERSION=	5.0.0
-PORTREVISION=	1
+DISTVERSION=	5.0.2
+PORTREVISION=	8
 CATEGORIES=	security
 MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 
@@ -139,9 +139,9 @@ post-patch-PYTHON-on:
 		${WRKSRC}/configure.ac
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${ETCDIR} ${STAGEDIR}/var/log/${PORTNAME}
+	@${MKDIR} ${STAGEDIR}${ETCDIR} ${STAGEDIR}/var/log/suricata
 .for f in classification.config reference.config
-	@${MV} ${STAGEDIR}${DATADIR}/${f} ${STAGEDIR}${DATADIR}/${f}.sample
+	@${MV} ${STAGEDIR}${DATADIR}/${f} ${STAGEDIR}${ETCDIR}/${f}.sample
 .endfor
 .for f in suricata.yaml threshold.config
 	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${ETCDIR}/${f}.sample

@@ -24,7 +24,6 @@
     SUBDIR += convmv
     SUBDIR += dosunix
     SUBDIR += drg2sbg
-    SUBDIR += dumpasn1
     SUBDIR += enca
     SUBDIR += erlang-base64url
     SUBDIR += fconv
@@ -49,7 +48,6 @@
     SUBDIR += linux-c7-fribidi
     SUBDIR += lua-iconv
     SUBDIR += lua-json
-    SUBDIR += lua51-iconv
     SUBDIR += mimelib
     SUBDIR += mmencode
     SUBDIR += mpack
@@ -139,9 +137,6 @@
     SUBDIR += pear-Services_JSON
     SUBDIR += pecl-igbinary
     SUBDIR += php-bsdconv
-    SUBDIR += php71-iconv
-    SUBDIR += php71-mbstring
-    SUBDIR += php71-recode
     SUBDIR += php72-iconv
     SUBDIR += php72-mbstring
     SUBDIR += php72-recode
@@ -151,12 +146,10 @@
     SUBDIR += php74-iconv
     SUBDIR += php74-mbstring
     SUBDIR += psiconv
-    SUBDIR += py-bcode
     SUBDIR += py-bencode.py
     SUBDIR += py-bencoder
     SUBDIR += py-better-bencode
     SUBDIR += py-bsdconv
-    SUBDIR += py-iconv
     SUBDIR += py-rencode
     SUBDIR += py-text-unidecode
     SUBDIR += py-unidecode
@@ -184,6 +177,7 @@
     SUBDIR += wkhtmltopdf
     SUBDIR += xdeview
     SUBDIR += xml2c
+    SUBDIR += yj
     SUBDIR += ytnef
     SUBDIR += zbase32
 

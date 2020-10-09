@@ -31,4 +31,6 @@ DOXYGEN_CONFIGURE_ENABLE=	doxygen
 
 INSTALL_TARGET=	install-strip
 
+PORTSCOUT=	limit:^4\.
+
 .include <bsd.port.mk>

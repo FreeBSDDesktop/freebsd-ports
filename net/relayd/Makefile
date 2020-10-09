@@ -2,7 +2,7 @@
 
 PORTNAME=	relayd
 PORTVERSION=	5.5.20140810
-PORTREVISION=	5
+PORTREVISION=	7
 CATEGORIES=	net
 
 MAINTAINER=	koue@chaosophia.net
@@ -25,13 +25,6 @@ MAKE_ARGS+=	BINDIR=${PREFIX}/sbin \
 USERS=		_relayd
 GROUPS=		_relayd
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
-		${WRKSRC}/relayd/relay.c \
-		${WRKSRC}/relayd/relayd.h \
-		${WRKSRC}/relayd/relayd.conf.5 \
-		${WRKSRC}/relayd/relayd.8
-
 post-install:
 	@${INSTALL_DATA} ${WRKSRC}/../etc/relayd.conf \
 		${STAGEDIR}${PREFIX}/etc/relayd.conf.sample
@@ -43,13 +36,19 @@ post-install:
 STAGEDIR_libressl!=	${MAKE} -V STAGEDIR -C ${PORTSDIR}/security/libressl
 . endif
 BUILD_DEPENDS+=	${NONEXISTENT}:security/libressl:stage
+.endif # SSL_DEFAULT
+
 CFLAGS+=	-I${STAGEDIR_libressl}${LOCALBASE}/include
 
 post-configure:
+	${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
+		${WRKSRC}/relayd/relay.c \
+		${WRKSRC}/relayd/relayd.h \
+		${WRKSRC}/relayd/relayd.conf.5 \
+		${WRKSRC}/relayd/relayd.8
 	${REINPLACE_CMD} 's|-lssl|${STAGEDIR_libressl}${LOCALBASE}/lib/libssl.a|g' \
 		 ${WRKSRC}/relayd/Makefile
 	${REINPLACE_CMD} 's|-lcrypto|${STAGEDIR_libressl}${LOCALBASE}/lib/libcrypto.a|g' \
 		${WRKSRC}/relayd/Makefile
-.endif # SSL_DEFAULT
 
 .include <bsd.port.post.mk>

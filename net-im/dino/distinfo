@@ -1,3 +1,5 @@
-TIMESTAMP = 1550952485
-SHA256 (dino-dino-0.0.20190220-6de86c27_GH0.tar.gz) = 5fffbf2c855955da791a56e1f8df5b8f29d36480849642d26ddebaee5669d457
-SIZE (dino-dino-0.0.20190220-6de86c27_GH0.tar.gz) = 349007
+TIMESTAMP = 1602268331
+SHA256 (dino-dino-v0.1.0.20201007-f28aaac_GH0.tar.gz) = 094d19169959e214a0090aaeb4269c63b05594cd4133d67a296988b598b21469
+SIZE (dino-dino-v0.1.0.20201007-f28aaac_GH0.tar.gz) = 508871
+SHA256 (signalapp-libsignal-protocol-c-v2.3.3_GH0.tar.gz) = c22e7690546e24d46210ca92dd808f17c3102e1344cd2f9a370136a96d22319d
+SIZE (signalapp-libsignal-protocol-c-v2.3.3_GH0.tar.gz) = 272073

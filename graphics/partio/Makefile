@@ -1,19 +1,19 @@
 # $FreeBSD$
 
 PORTNAME=	partio
-PORTVERSION=	1.10.1
-PORTREVISION=	1
+PORTVERSION=	1.13.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	graphics math
 
-MAINTAINER=	ports@FreeBSD.org
-COMMENT=	C++ library for manipulating animation particle formats
+MAINTAINER=	danfe@FreeBSD.org
+COMMENT=	C++ library for particle I/O and manipulation
 
 LICENSE=	BSD3CLAUSE
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	swig3.0:devel/swig30
+BUILD_DEPENDS=	swig:devel/swig
 
-USES=		cmake compiler:c++11-lang gl python:2.7 shebangfix xorg
+USES=		cmake compiler:c++11-lang gl python:run shebangfix xorg
 SHEBANG_FILES=	src/tools/partedit.py src/tools/partinspect.py \
 		src/tools/partjson.py
 USE_GL=		gl glu glut
@@ -24,7 +24,6 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	wdas
 
 OPTIONS_DEFINE=		DOCS DOXYGEN EXAMPLES
-OPTIONS_DEFAULT=	DOCS
 
 # DOCS must be selected for PORTDOCS to work
 DOXYGEN_IMPLIES=	DOCS
@@ -33,20 +32,15 @@ DOXYGEN_ALL_TARGET=	all doc
 
 DOCS_BUILD_DEPENDS=	doxygen:devel/doxygen
 
-BINARY_ALIAS=	swig=swig3.0
-
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|python -c|${PYTHON_CMD} -c|' \
-		${WRKSRC}/src/py/CMakeLists.txt \
+	@${REINPLACE_CMD} -e 's,OpenGL::OpenGL,$${OPENGL_LIBRARIES},' \
 		${WRKSRC}/src/tools/CMakeLists.txt
-	@${REINPLACE_CMD} -e '/install(TARGETS/d' \
-		${WRKSRC}/src/tests/CMakeLists.txt
 
 post-patch-DOCS-off:
-	@${REINPLACE_CMD} -e '/ADD_SUBDIRECTORY.*src\/doc.*/d' \
+	@${REINPLACE_CMD} -e '/add_subdirectory(src\/doc)/d' \
 		${WRKSRC}/CMakeLists.txt
 
 # Remove those files that don't yet work

@@ -2,15 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	zfs-stats
-PORTVERSION=	1.2.2
+PORTVERSION=	1.3.0
 PORTREVISION=	1
 CATEGORIES=	sysutils
-MASTER_SITES=	GHC
+MASTER_SITES=	GH
 
 MAINTAINER=	mm@FreeBSD.org
 COMMENT=	Display human-readable ZFS statistics
-
-BROKEN=		unfetchable
 
 LICENSE=	BSD2CLAUSE
 

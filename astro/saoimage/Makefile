@@ -3,7 +3,7 @@
 
 PORTNAME=	saoimage
 PORTVERSION=	1.35.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	astro
 MASTER_SITES=	http://tdc-www.harvard.edu/software/saoimage/
 
@@ -16,7 +16,12 @@ ALL_TARGET=	${OPSYS}
 USES=		xorg
 USE_XORG=	x11
 
-PLIST_FILES=	bin/saoimage etc/imtoolrc.sample man/man1/saoimage.1.gz
+CFLAGS+=		-fcommon
+
+DEPRECATED=	Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+EXPIRATION_DATE=2021-04-01
+
+PLIST_FILES=	bin/saoimage etc/imtoolrc.sample share/man/man1/saoimage.1.gz
 
 post-patch:
 	# MFLAGS is reserved by make
@@ -25,6 +30,6 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/saoimage ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/imtoolrc ${STAGEDIR}${PREFIX}/etc/imtoolrc.sample
-	${INSTALL_MAN} ${WRKSRC}/doc/saoimage.man ${STAGEDIR}${MAN1PREFIX}/man/man1/saoimage.1
+	${INSTALL_MAN} ${WRKSRC}/doc/saoimage.man ${STAGEDIR}${PREFIX}/share/man/man1/saoimage.1
 
 .include <bsd.port.mk>

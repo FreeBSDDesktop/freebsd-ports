@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	pari
-DISTVERSION=	2.11.2
+DISTVERSION=	2.11.4
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	math
 MASTER_SITES=	http://pari.math.u-bordeaux.fr/pub/pari/unix/ \
@@ -20,9 +21,8 @@ LIB_DEPENDS=	libgmp.so:math/gmp
 
 USES=		perl5 readline
 USE_LDCONFIG=	yes
-USE_PERL5=	build
+USE_PERL5=	build run
 HAS_CONFIGURE=	yes
-CFLAGS_powerpc64=	-mminimal-toc
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	--mandir=${MANPREFIX}/man/man1 \
 		--prefix=${PREFIX} \
@@ -58,6 +58,12 @@ PORTDATA=	*
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
+.include <bsd.port.pre.mk>
+
+.if defined(PPC_ABI) && ${PPC_ABI} == ELFv1
+CFLAGS+=	-mminimal-toc
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -E '/libpari_base\=/s/-tls|-gmp//' \
 		${WRKSRC}/Configure
@@ -77,4 +83,4 @@ do-test-PTHREADS-on:
 do-test-MPI-on:
 	@cd ${WRKSRC} && ${MAKE_CMD} test-parallel RUNTEST="mpirun -np 3"
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

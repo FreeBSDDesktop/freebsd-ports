@@ -3,6 +3,7 @@
 PORTNAME=	llvmcpy
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.1.5
+PORTREVISION=	1
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -16,10 +17,9 @@ RUN_DEPENDS=	llvm-config${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT} \
 		${PYTHON_PKGNAMEPREFIX}appdirs>0:devel/py-appdirs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cffi>=1.0.0:devel/py-cffi@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pycparser>0:devel/py-pycparser@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}shutilwhich>0:sysutils/py-shutilwhich@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}pycparser>0:devel/py-pycparser@${PY_FLAVOR}
 
-USES=		python:-3.3 # sysutils/py-shutilwhich has this
+USES=		python
 USE_GITHUB=	yes
 GH_ACCOUNT=	revng
 USE_PYTHON=	distutils autoplist

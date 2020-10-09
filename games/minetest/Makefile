@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	minetest
-PORTVERSION=	5.0.1
+PORTVERSION=	5.3.0
+PORTREVISION=	1
 CATEGORIES=	games
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -18,9 +19,10 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	minetest
 
 USES=		cmake compiler:c11 iconv:wchar_t
-LLD_UNSAFE=	yes
 CMAKE_ARGS=	-DCUSTOM_MANDIR="${PREFIX}/man" \
 		-DCUSTOM_EXAMPLE_CONF_DIR="${PREFIX}/etc"
+
+LDFLAGS_i386=	-Wl,-znotext
 
 PORTDATA=	*
 PORTDOCS=	*
@@ -38,7 +40,6 @@ OPTIONS_GROUP_DATABASE=	PGSQL LEVELDB REDIS SPATIAL
 
 OPTIONS_DEFAULT=	CLIENT SERVER \
 			CURL SOUND FREETYPE NCURSES LUAJIT
-OPTIONS_EXCLUDE_powerpc64=	LUAJIT
 OPTIONS_SUB=		yes
 
 CLIENT_DESC=		Build client
@@ -83,6 +84,10 @@ NLS_USES=		gettext
 NLS_LDFLAGS=		-L${LOCALBASE}/lib
 
 .include <bsd.port.options.mk>
+
+.if ${ARCH} == powerpc64
+LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
+.endif
 
 .if ${PORT_OPTIONS:MCLIENT} && ${PORT_OPTIONS:MSOUND}
 USES+=		openal

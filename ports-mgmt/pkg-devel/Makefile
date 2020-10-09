@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	pkg
-DISTVERSION=	1.12.99.0
+DISTVERSION=	1.15.99.2
 _PKG_VERSION=	${DISTVERSION}
 CATEGORIES=	ports-mgmt
 PKGNAMESUFFIX=	-devel
@@ -13,11 +13,10 @@ LICENSE=	BSD2CLAUSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	freebsd
-GH_TAGNAME=	8004f584
+GH_TAGNAME=	e5a5c7eb14
 
-WITH_DEBUG=	yes
 CFLAGS+=	-O0 -g -Wno-error
-USE_LDCONFIG=	yes
+USE_LDCONFIG=	${PREFIX}/lib/compat/pkg
 HAS_CONFIGURE=	yes
 PORTDOCS=	NEWS
 PORTSCOUT=	ignore:1
@@ -36,6 +35,13 @@ EXTRA_PATCHES=	${FILESDIR}/extra-patch-docs_pkg.8
 
 .include <bsd.port.pre.mk>
 
+.if !exists(/usr/libdata/pkgconfig/liblzma.pc)
+LIBLZMA_LIBS=	-llzma
+.else
+LIBLZMA_PC!=	${EGREP} ^Libs /usr/libdata/pkgconfig/liblzma.pc
+LIBLZMA_LIBS=	${LIBLZMA_PC:M-l*}
+.endif
+
 .if defined(WITH_PKG)
 .if ${WITH_PKG} != devel
 .	if !defined(PACKAGE_BUILDING)
@@ -49,11 +55,16 @@ PKG_DEPENDS=
 .endif
 
 .undef INSTALLS_DEPENDS
-.if !exists(${LOCALBASE}/sbin/pkg) || !defined(CROSS_TOOLCHAIN)
+.if !exists(${LOCALBASE}/sbin/pkg) && !defined(CROSS_TOOLCHAIN)
 PKG_BIN=	${WRKSRC}/src/pkg-static
 .endif
 
+post-patch:
+	${REINPLACE_CMD} -e "s|-llzma|${LIBLZMA_LIBS}|g" ${WRKSRC}/auto.def \
+		${WRKSRC}/src/Makefile.autosetup ${WRKSRC}/tests/Makefile.autosetup
+
 post-install:
+	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/compat/pkg
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/NEWS ${STAGEDIR}${DOCSDIR}/NEWS
 
