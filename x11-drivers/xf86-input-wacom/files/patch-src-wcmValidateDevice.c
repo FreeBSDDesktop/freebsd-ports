@@ -38,7 +38,7 @@
  } wcmType [] =
  {
  	{ "stylus", { BTN_TOOL_PEN,       0                  } },
-@@ -212,6 +213,10 @@ int wcmDeviceTypeKeys(InputInfoPtr pInfo)
+@@ -205,6 +206,10 @@ int wcmDeviceTypeKeys(InputInfoPtr pInfo
  		case 0x314: /* Intuos Pro S */
  		case 0x315: /* Intuos Pro M */
  		case 0x317: /* Intuos Pro L */
