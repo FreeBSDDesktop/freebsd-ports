@@ -165,6 +165,7 @@
     SUBDIR += cfengine315
     SUBDIR += checkrestart
     SUBDIR += chgrep
+    SUBDIR += choria
     SUBDIR += chyves
     SUBDIR += cinnamon-control-center
     SUBDIR += cinnamon-settings-daemon
@@ -974,6 +975,7 @@
     SUBDIR += py-borgmatic
     SUBDIR += py-cron-descriptor
     SUBDIR += py-croniter
+    SUBDIR += py-dict-toolbox
     SUBDIR += py-diffoscope
     SUBDIR += py-dirsync
     SUBDIR += py-distro
@@ -1008,6 +1010,7 @@
     SUBDIR += py-ptyprocess
     SUBDIR += py-py-cpuinfo
     SUBDIR += py-python-consul
+    SUBDIR += py-python-consul2
     SUBDIR += py-python-crontab
     SUBDIR += py-python-nomad
     SUBDIR += py-pytsk
@@ -1016,6 +1019,7 @@
     SUBDIR += py-queuelib
     SUBDIR += py-ranger
     SUBDIR += py-rdiff-backup
+    SUBDIR += py-resolve-march-native
     SUBDIR += py-salt
     SUBDIR += py-salt-2019
     SUBDIR += py-scandir
@@ -1297,6 +1301,7 @@
     SUBDIR += tealdeer
     SUBDIR += tenshi
     SUBDIR += terraform
+    SUBDIR += terraform-docs
     SUBDIR += terraform-provider-gridscale
     SUBDIR += terraform-provider-vultr
     SUBDIR += terragrunt

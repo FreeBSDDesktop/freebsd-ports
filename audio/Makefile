@@ -536,6 +536,7 @@
     SUBDIR += mpg321
     SUBDIR += mpiosh
     SUBDIR += mps
+    SUBDIR += mpz
     SUBDIR += mumble
     SUBDIR += murmur
     SUBDIR += muse-sequencer
@@ -870,7 +871,6 @@
     SUBDIR += ympd
     SUBDIR += yoshimi
     SUBDIR += zam-plugins-lv2
-    SUBDIR += zinf
     SUBDIR += zita-convolver
     SUBDIR += zita-resampler
     SUBDIR += zrythm

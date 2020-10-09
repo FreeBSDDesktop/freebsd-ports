@@ -1,4 +1,4 @@
---- Gemfile.orig	2020-09-21 16:23:36 UTC
+--- Gemfile.orig	2020-10-01 12:48:52 UTC
 +++ Gemfile
 @@ -18,7 +18,7 @@ gem 'default_value_for', '~> 3.3.0'
  # Supported DBs
@@ -17,6 +17,15 @@
  
  # Disable strong_params so that Mash does not respond to :permitted?
  gem 'hashie-forbidden_attributes'
+@@ -148,7 +147,7 @@ gem 'github-markup', '~> 1.7.0', require: 'github/mark
+ gem 'commonmarker', '~> 0.20'
+ gem 'kramdown', '~> 2.3.0'
+ gem 'RedCloth', '~> 4.3.2'
+-gem 'rdoc', '~> 6.1.2'
++gem 'rdoc', '~> 6.1'
+ gem 'org-ruby', '~> 0.9.12'
+ gem 'creole', '~> 0.5.0'
+ gem 'wikicloth', '0.8.1'
 @@ -234,7 +233,7 @@ gem 'redis-rails', '~> 5.0.2'
  gem 'discordrb-webhooks-blackst0ne', '~> 3.3', require: false
  
@@ -26,10 +35,12 @@
  
  # Jira integration
  gem 'jira-ruby', '~> 2.0.0'
-@@ -334,94 +333,6 @@ group :metrics do
+@@ -332,94 +331,6 @@ group :metrics do
+   # Prometheus
+   gem 'prometheus-client-mmap', '~> 0.11.0'
    gem 'raindrops', '~> 0.18'
- end
- 
+-end
+-
 -group :development do
 -  gem 'brakeman', '~> 4.2', require: false
 -  gem 'danger', '~> 8.0', require: false
@@ -116,20 +127,6 @@
 -
 -  # Moved in `test` because https://gitlab.com/gitlab-org/gitlab/-/issues/217527
 -  gem 'derailed_benchmarks', require: false
--end
--
+ end
+ 
  gem 'octokit', '~> 4.15'
- 
- # https://gitlab.com/gitlab-org/gitlab/issues/207207
-@@ -463,9 +374,9 @@ end
- # Gitaly GRPC protocol definitions
- gem 'gitaly', '~> 13.3.0-rc1'
- 
--gem 'grpc', '~> 1.30.2'
-+gem 'grpc', '~> 1.24.0'
- 
--gem 'google-protobuf', '~> 3.12'
-+gem 'google-protobuf', '~> 3.8'
- 
- gem 'toml-rb', '~> 1.0.0'
- 

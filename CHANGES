@@ -11,9 +11,16 @@ in the release notes and/or placed into UPDATING.
 All ports committers are allowed to commit to this file.
 
 20201001:
+AUTHOR: manu@FreeBSD.org
+
+ The @sample keyword was rewritten in lua.
+ It behave exactly like the previous one but it is sandboxed and
+ is rootdir compliant (see pkg -r option).
+
+20201001:
 AUTHOR: bapt@FreeBSD.org
 
-  packages scripts and keywords can both be written in lua (versoin 5.3), see
+  packages scripts and keywords can both be written in lua (version 5.3), see
   pkg-lua-script(5) for the API.
 
   Note that all scripts written in lua will:

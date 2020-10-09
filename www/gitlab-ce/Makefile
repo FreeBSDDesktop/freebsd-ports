@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME?=	gitlab-ce
-PORTVERSION?=	13.4.1
+PORTVERSION?=	13.4.3
 PORTREVISION?=	0
 CATEGORIES=	www devel
 
@@ -95,7 +95,7 @@ MY_DEPENDS=	git>=2.26:devel/git \
 	rubygem-fog-openstack>=1.0<2.0:net/rubygem-fog-openstack \
 	rubygem-fog-rackspace>=0.1.1<1.2.0:net/rubygem-fog-rackspace \
 	rubygem-fog-aliyun>=0.3<1.0:net/rubygem-fog-aliyun \
-	rubygem-gitlab-fog-azure-rm>=0.9<1:net/rubygem-gitlab-fog-azure-rm \
+	rubygem-gitlab-fog-azure-rm>=1.0<2:net/rubygem-gitlab-fog-azure-rm \
 	rubygem-google-api-client>=0.33<1:devel/rubygem-google-api-client \
 	rubygem-unf>=0.1.4<0.2.0:textproc/rubygem-unf \
 	rubygem-seed-fu>=2.3.7<2.4.0:databases/rubygem-seed-fu \
@@ -113,7 +113,7 @@ MY_DEPENDS=	git>=2.26:devel/git \
 	rubygem-commonmarker>=0.20<1.0:textproc/rubygem-commonmarker \
 	rubygem-kramdown>=2.3.0<2.4:textproc/rubygem-kramdown \
 	rubygem-redcloth>=4.3.2<4.4.0:www/rubygem-redcloth \
-	rubygem-rdoc>=6.1.2<6.2:devel/rubygem-rdoc \
+	rubygem-rdoc>=6.1.2<6.3:devel/rubygem-rdoc \
 	rubygem-org-ruby>=0.9.12<0.10.0:textproc/rubygem-org-ruby \
 	rubygem-creole>=0.5.0<0.6.0:textproc/rubygem-creole \
 	rubygem-wikicloth081>=0.8.1<0.8.2:textproc/rubygem-wikicloth081 \
@@ -218,8 +218,8 @@ MY_DEPENDS=	git>=2.26:devel/git \
 	rubygem-ed25519>=1.2<2.0:security/rubygem-ed25519 \
 	rubygem-bcrypt_pbkdf>=1.0<2.0:security/rubygem-bcrypt_pbkdf \
 	rubygem-gitaly>=13.3.0.p.r1<13.4.0:net/rubygem-gitaly \
-	rubygem-grpc124>=1.24.0:net/rubygem-grpc124 \
-	rubygem-google-protobuf38>=3.8.:devel/rubygem-google-protobuf38 \
+	rubygem-grpc>=1.30.2<1.31:net/rubygem-grpc \
+	rubygem-google-protobuf>=3.12<4:devel/rubygem-google-protobuf \
 	rubygem-toml-rb10>=1.0.0<1.1.0:www/rubygem-toml-rb10 \
 	rubygem-flipper017>=0.17.1<0.18.0:devel/rubygem-flipper017 \
 	rubygem-flipper-active_record017>=0.17.1<0.18.0:databases/rubygem-flipper-active_record017 \
@@ -262,7 +262,7 @@ USE_GITLAB=	yes
 GL_ACCOUNT?=	gitlab-org
 GL_PROJECT?=	gitlab-foss
 # Find the here: https://gitlab.com/gitlab-org/gitlab-foss/-/tags
-GL_COMMIT?=	c90be62bdefdb6bb67c73a9c4a6d164c9f78a28d
+GL_COMMIT?=	6689552c4793623a9d47986328a0379ab215f9bc
 
 USERS=	git
 GROUPS=	git
