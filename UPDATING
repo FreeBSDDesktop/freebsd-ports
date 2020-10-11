@@ -9,9 +9,9 @@ you update your ports collection, before attempting any port upgrades.
   AFFECTS: Users of mesa-dri with VAAPI or VDPAU options
   AUTHOR: manu@FreeBSD.org
 
-  The non default option VAAPI and VDPAU of the mesa-dri port were removed
-  and two new ports name mesa-gallium-va and mesa-gallium-vdpau now contain
-  the necessary lib for using VAAPI or VDPAU on AMD hardware.
+  The nondefault options VAAPI and VDPAU were removed from the mesa-dri
+  port and two new ports, mesa-gallium-va and mesa-gallium-vdpau now contain
+  the necessary libraries for using VAAPI or VDPAU on AMD hardware.
 
 20201006:
   AFFECTS: users of sysutils/tenshi
