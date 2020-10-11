@@ -35,9 +35,8 @@ MESON_ARGS+=	-Ddri-drivers="" \
 		-Dglx=disabled \
 		-Degl=disabled \
 		-Dgbm=disabled \
-		-Dtools=""
-
-MESON_ARGS+=	-Dgallium-opencl=icd \
+		-Dtools="" \
+		-Dgallium-opencl=icd \
 		-Dgallium-drivers=r600,radeonsi
 
 LDFLAGS_i386=		-Wl,-znotext
