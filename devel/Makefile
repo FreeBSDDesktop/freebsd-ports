@@ -1106,6 +1106,7 @@
     SUBDIR += libconcurrent
     SUBDIR += libconfig
     SUBDIR += libconfuse
+    SUBDIR += libcreg
     SUBDIR += libcrossguid
     SUBDIR += libcutl
     SUBDIR += libcwd
@@ -1159,6 +1160,7 @@
     SUBDIR += libfortuna
     SUBDIR += libfreefare
     SUBDIR += libfsapfs
+    SUBDIR += libfsext
     SUBDIR += libfsntfs
     SUBDIR += libftdi
     SUBDIR += libftdi1
@@ -4174,6 +4176,7 @@
     SUBDIR += py-bandit
     SUBDIR += py-bcdoc
     SUBDIR += py-beautifultable
+    SUBDIR += py-behave
     SUBDIR += py-bidict
     SUBDIR += py-billiard
     SUBDIR += py-binaryornot
